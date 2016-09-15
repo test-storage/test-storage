@@ -1,0 +1,6 @@
+{
+	"name": "testcase 2",
+	"description": "dummy testcase 2",
+	"actual_result": "actual2",
+	"exprected_result": "expected2"
+}
