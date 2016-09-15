@@ -1,0 +1,29 @@
+{
+  "name": "test-storage",
+  "version": "1.0.0",
+  "description": "Test Management System",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Dmitry Zakharov",
+  "license": "GPLv3",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.2",
+    "expect.js": "^0.3.1",
+    "express": "^4.14.0",
+    "jwt-simple": "^0.5.0",
+    "mocha": "^3.0.2",
+    "mongoose": "^4.6.0",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7",
+    "superagent": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.2"
+  }
+}
