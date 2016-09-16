@@ -20,6 +20,8 @@ mongoose.connect('mongodb://localhost/test-storage') // autogen needed for secur
 app.use(logger('dev'));
 app.use(bodyParser.json());
 
+app.disable('x-powered-by'); // security
+
 app.all('/*', function(req, res, next) {
   // CORS headers
   res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
