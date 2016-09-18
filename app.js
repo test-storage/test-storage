@@ -5,13 +5,13 @@ var bodyParser = require('body-parser');
 var errorhandler = require('errorhandler');
 var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
-
+var Config = require('./config');
+var conf = new Config();
 var app = express();
 
-var config = require('./env.json')[app.get('env')];
 
 if (process.env.NODE_ENV === 'development') {
-  // only use in development 
+  // only use in development (stack traces/errors and etc)
   app.use(errorhandler());
 }
 
@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'development') {
 mongoose.Promise = global.Promise;
 
 // connect to MongoDB
-mongoose.connect(config.db.mongodb) // autogen needed for security? (need investigation)
+mongoose.connect(conf.db.mongodb) // autogen needed for security? (need investigation)
   .then(() =>  console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
 

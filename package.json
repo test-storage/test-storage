@@ -1,11 +1,11 @@
 {
   "name": "test-storage",
   "version": "1.0.0",
-  "description": "Test Management System",
-  "main": "server.js",
+  "description": "Test Case Management System",
+  "main": "app.js",
   "private": true,
   "scripts": {
-    "start": "node server.js",
+    "start": "NODE_ENV=development nodemon app.js",
     "test": "./node_modules/.bin/mocha"
   },
   "keywords": [],
