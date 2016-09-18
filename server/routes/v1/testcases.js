@@ -20,6 +20,8 @@ var testcases = {
    */
 
   getOne: function(req, res) {
+    // TODO check params
+    // req.checkParams("_id").isArray();
      Testcase.findById(req.params.id, function (err, testcase) {
       if (err) return err; // TODO check proper error handling
       res.json(testcase);

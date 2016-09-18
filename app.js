@@ -1,4 +1,5 @@
 var express = require('express');
+var expressValidator = require('express-validator');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -28,6 +29,7 @@ mongoose.connect(conf.db.mongodb) // autogen needed for security? (need investig
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(expressValidator()); // this line must be immediately after express.bodyParser()!
 app.use(express.static(__dirname + '/public')); // static folder for css and images and etc
 app.use(favicon(__dirname + '/public/favicon.ico')); // favicon
 
