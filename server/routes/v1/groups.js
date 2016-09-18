@@ -73,6 +73,27 @@ var groups = {
       if (err) return err;
       res.json(true);
     });
+  },
+
+  /* 
+   * Get all users of group
+   * 
+   */
+
+  getAllGroupUsers: function(req, res) {
+    Group.find(function (err, groups) {
+      if (err) return err; // TODO check proper error handling
+      res.json(groups);
+    }); 
+  },
+
+  /* 
+   * Get single user of group
+   * 
+   */
+
+  getOneGroupUser: function(req, res) {
+
   }
 };
 
