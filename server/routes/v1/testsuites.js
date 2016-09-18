@@ -34,9 +34,9 @@ var testsuites = {
    */
 
   create: function(req, res) {
-    Testsuite.create(req.body, function (err, createTestsuite) {
+    Testsuite.create(req.body, function (err, testsuite) {
       if (err) return err;
-      res.json(createTestsuite);
+      res.json(testsuite);
     });
   },
 
@@ -47,7 +47,7 @@ var testsuites = {
  
   update: function(req, res) {
     // TODO need security check (user input) for update
-    Testsuite.findById( req.params.id, function ( err, testsuite ){
+    Testsuite.findById( req.params.id, function (err, testsuite){
      
      testsuite.name = req.body.name;
      testsuite.description = req.body.description;
@@ -56,7 +56,7 @@ var testsuites = {
      // testsuite.testcases = req.body.testcases; // add testcases to suite
      testsuite.updated = Date.now();
 
-     testsuite.save( function ( err, testsuite, count ){
+     testsuite.save( function (err, testsuite, count){
       if (err) return err; // TODO check proper error handling
       res.json(testsuite);
      });

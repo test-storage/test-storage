@@ -1,45 +1,79 @@
+var mongoose = require('mongoose');
+var User = require('../../models/User.js');
+
 var users = {
  
+  /* 
+   * Get all users 
+   * 
+   */
   getAll: function(req, res) {
-    var allUsers = data; // Spoof a DB call
-    res.json(allUsers);
+    User.find(function (err, users) {
+      if (err) return err; // TODO check proper error handling
+      res.json(users);
+    }); 
   },
  
+  /* 
+   * Get single user 
+   * 
+   */
+
   getOne: function(req, res) {
-    var id = req.params.id;
-    var user = data[id]; // Spoof a DB call
-    res.json(user);
+    // TODO check params
+    // req.checkParams("_id").isArray();
+     User.findById(req.params.id, function (err, user) {
+      if (err) return err; // TODO check proper error handling
+      res.json(user);
+    });
   },
  
+  /* 
+   * Create user 
+   * 
+   */
+
   create: function(req, res) {
-    var newUser = req.body;
-    data.push(newUser); // Spoof a DB call
-    res.json(newUser);
+    User.create(req.body, function (err, user) {
+      if (err) return err;
+      res.json(user);
+    });
   },
+
+  /* 
+   * Update user 
+   * 
+   */
  
   update: function(req, res) {
-    var updateUser = req.body;
-    var id = req.params.id;
-    data[id] = updateUser // Spoof a DB call
-    res.json(updateUser);
+    // TODO need security check (user input) for update
+    User.findById( req.params.id, function (err, user){
+     
+     user.name = req.body.name;
+     user.description = req.body.description;
+     user.prerequisites = req.body.prerequisites;
+     user.environment = req.body.environment;
+     // user.users = req.body.userss; // add userss to suite
+     user.updated = Date.now();
+
+     user.save( function ( err, user, count ){
+      if (err) return err; // TODO check proper error handling
+      res.json(user);
+     });
+    });
   },
+
+  /* 
+   * delete user 
+   * 
+   */
  
   delete: function(req, res) {
-    var id = req.params.id;
-    data.splice(id, 1) // Spoof a DB call
-    res.json(true);
+    User.findByIdAndRemove(req.params.id, function (err, user) {
+      if (err) return err;
+      res.json(true);
+    });
   }
 };
- 
-var data = [{
-  name: 'user 1',
-  id: '1'
-}, {
-  name: 'user 2',
-  id: '2'
-}, {
-  name: 'user 3',
-  id: '3'
-}];
- 
+
 module.exports = users;

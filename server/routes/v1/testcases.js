@@ -34,9 +34,9 @@ var testcases = {
    */
 
   create: function(req, res) {
-    Testcase.create(req.body, function (err, createTestcase) {
+    Testcase.create(req.body, function (err, testcase) {
       if (err) return err;
-      res.json(createTestcase);
+      res.json(testcase);
     });
   },
 
@@ -47,7 +47,7 @@ var testcases = {
  
   update: function(req, res) {
     // TODO need security check (user input) for update
-    Testcase.findById( req.params.id, function ( err, testcase ){
+    Testcase.findById( req.params.id, function (err, testcase){
      testcase.parentId = req.body.parentId;
      testcase.name = req.body.name;
      testcase.description = req.body.description;
@@ -56,7 +56,7 @@ var testcases = {
      testcase.expected = req.body.expected;
      testcase.updated = Date.now();
 
-     testcase.save( function ( err, testcase, count ){
+     testcase.save( function (err, testcase, count){
       if (err) return err; // TODO check proper error handling
       res.json(testcase);
      });
