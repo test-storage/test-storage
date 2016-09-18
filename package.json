@@ -7,7 +7,7 @@
   "scripts": {
     "prestart": "versiony package.json --patch",
     "start": "NODE_ENV=development nodemon app.js",
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha ./test/ --recursive"
   },
   "keywords": [],
   "author": "Dmitry Zakharov",
