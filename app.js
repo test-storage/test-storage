@@ -2,11 +2,18 @@ var express = require('express');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var errorhandler = require('errorhandler');
 var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
-var config = require("./config-debug");
 
 var app = express();
+
+var config = require('./env.json')[app.get('env')];
+
+if (process.env.NODE_ENV === 'development') {
+  // only use in development 
+  app.use(errorhandler());
+}
 
 // Database
 
@@ -15,23 +22,15 @@ mongoose.Promise = global.Promise;
 
 // connect to MongoDB
 mongoose.connect(config.db.mongodb) // autogen needed for security? (need investigation)
-  .then(() =>  console.log('connection succesful'))
+  .then(() =>  console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
 
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-/* TODO 
 app.use(express.static(__dirname + '/public')); // static folder for css and images and etc
-app.use(favicon(__dirname + 'public/favicon.ico')); // favicon
+app.use(favicon(__dirname + '/public/favicon.ico')); // favicon
 
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
-app.configure('production', function(){
-  app.use(express.errorHandler());
-});
-*/ 
 app.disable('x-powered-by'); // security
 
 app.all('/*', function(req, res, next) {
@@ -51,9 +50,9 @@ app.all('/*', function(req, res, next) {
 // Only the requests that start with /api/v1/* will be checked for the token.
 // Any URL's that do not follow the below pattern should be avoided unless you 
 // are sure that authentication is not needed
-app.all('/api/v1/*', [require('./middleware/validateRequest')]);
+app.all('/api/v1/*', [require('./server/middleware/validateRequest')]);
  
-app.use('/', require('./routes'));
+app.use('/', require('./server/routes'));
  
 // If no route is matched by now, it must be a 404
 app.use(function(req, res, next) {
