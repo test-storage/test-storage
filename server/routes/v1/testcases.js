@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Testcase = require('../models/Testcase.js');
+var Testcase = require('../../models/Testcase.js');
 
 var testcases = {
  

@@ -3,20 +3,26 @@ var router = express.Router();
  
 var auth = require('./auth.js');
 
-var testcases = require('./testcases.js');
-var testsuites = require('./testsuites.js');
+var testcases = require('./v1/testcases.js');
+var testsuites = require('./v1/testsuites.js');
+var usergroups = require('./v1/usergroups.js');
+var users = require('./v1/users.js');
+var user = require('./v1/users.js');
 
-var usergroups = require('./usergroups.js');
-var users = require('./users.js');
-var user = require('./users.js');
-
-// TODO add versioning using {api_version} path param
+// define the API versions
+var API_VERSIONS = {'Pre-Production': '/v0', 'Version 1': '/v1'};
  
 /*
  * Routes that can be accessed by any one
  */
 router.post('/login', auth.login);
- 
+
+
+// route to display API versions
+router.get('/api', function(req, res) {
+    res.json(API_VERSIONS);
+})
+
 /*
  * Routes that can be accessed only by autheticated users
  */
