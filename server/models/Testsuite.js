@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var TestcaseSchema = new mongoose.Schema({
+var TestsuiteSchema = new mongoose.Schema({
   parentId: {
     type: Number
   },
@@ -13,14 +13,10 @@ var TestcaseSchema = new mongoose.Schema({
   prerequisites: {
     type: String
   },
-  // steps: Object,
-  actual: String,
-  expected: String,
+  environment: String,
+  testcases: Array,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
-  childId: {
-    type: Number
-  }
 });
 
-module.exports = mongoose.model('Testcase', TestcaseSchema);
+module.exports = mongoose.model('Testsuite', TestsuiteSchema);

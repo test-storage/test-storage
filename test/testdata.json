@@ -1,8 +1,0 @@
-{
-	"parentId": null,
-	"name": "testcase 1",
-	"description": "dummy testcase 1",
-	"prerequisites": "pre",
-	"actual": "actual 1",
-	"expected": "expected 1"
-}

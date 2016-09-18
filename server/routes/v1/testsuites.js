@@ -1,45 +1,79 @@
+var mongoose = require('mongoose');
+var Testsuite = require('../../models/Testsuite.js');
+
 var testsuites = {
  
+  /* 
+   * Get all testsuites 
+   * 
+   */
   getAll: function(req, res) {
-    var allTestsuites = data; // Spoof a DB call
-    res.json(allTestsuites);
+    Testsuite.find(function (err, testsuites) {
+      if (err) return err; // TODO check proper error handling
+      res.json(testsuites);
+    }); 
   },
  
+  /* 
+   * Get single testsuite 
+   * 
+   */
+
   getOne: function(req, res) {
-    var id = req.params.id;
-    var testcase = data[id]; // Spoof a DB call
-    res.json(testcase);
+    // TODO check params
+    // req.checkParams("_id").isArray();
+     Testsuite.findById(req.params.id, function (err, testsuite) {
+      if (err) return err; // TODO check proper error handling
+      res.json(testsuite);
+    });
   },
  
+  /* 
+   * Create testsuite 
+   * 
+   */
+
   create: function(req, res) {
-    var newTestsuites = req.body;
-    data.push(newTestsuites); // Spoof a DB call
-    res.json(newTestsuites);
+    Testsuite.create(req.body, function (err, createTestsuite) {
+      if (err) return err;
+      res.json(createTestsuite);
+    });
   },
+
+  /* 
+   * Update testsuite 
+   * 
+   */
  
   update: function(req, res) {
-    var updateTestsuites = req.body;
-    var id = req.params.id;
-    data[id] = updateTestsuites // Spoof a DB call
-    res.json(updateTestsuites);
+    // TODO need security check (user input) for update
+    Testsuite.findById( req.params.id, function ( err, testsuite ){
+     
+     testsuite.name = req.body.name;
+     testsuite.description = req.body.description;
+     testsuite.prerequisites = req.body.prerequisites;
+     testsuite.environment = req.body.environment;
+     // testsuite.testcases = req.body.testcases; // add testcases to suite
+     testsuite.updated = Date.now();
+
+     testsuite.save( function ( err, testsuite, count ){
+      if (err) return err; // TODO check proper error handling
+      res.json(testsuite);
+     });
+    });
   },
+
+  /* 
+   * delete testsuite 
+   * 
+   */
  
   delete: function(req, res) {
-    var id = req.params.id;
-    data.splice(id, 1) // Spoof a DB call
-    res.json(true);
+    Testsuite.findByIdAndRemove(req.params.id, function (err, testsuite) {
+      if (err) return err;
+      res.json(true);
+    });
   }
 };
- 
-var data = [{
-  name: 'Testsuite 1',
-  id: '1'
-}, {
-  name: 'Testsuite 2',
-  id: '2'
-}, {
-  name: 'Testsuite 3',
-  id: '3'
-}];
  
 module.exports = testsuites;
