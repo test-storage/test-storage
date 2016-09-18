@@ -8,7 +8,6 @@ var testsuites = require('./testsuites.js');
 
 var usergroups = require('./usergroups.js');
 var users = require('./users.js');
-
 var user = require('./users.js');
 
 // TODO add versioning using {api_version} path param

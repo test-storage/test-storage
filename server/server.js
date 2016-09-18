@@ -3,6 +3,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var favicon = require('serve-favicon');
+var config = require("./config-debug");
 
 var app = express();
 
@@ -12,14 +14,24 @@ var app = express();
 mongoose.Promise = global.Promise;
 
 // connect to MongoDB
-mongoose.connect('mongodb://localhost/test-storage') // autogen needed for security? (need investigation)
+mongoose.connect(config.db.mongodb) // autogen needed for security? (need investigation)
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
+/* TODO 
+app.use(express.static(__dirname + '/public')); // static folder for css and images and etc
+app.use(favicon(__dirname + 'public/favicon.ico')); // favicon
 
+app.configure('development', function(){
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+});
+app.configure('production', function(){
+  app.use(express.errorHandler());
+});
+*/ 
 app.disable('x-powered-by'); // security
 
 app.all('/*', function(req, res, next) {
@@ -54,5 +66,5 @@ app.use(function(req, res, next) {
 app.set('port', process.env.PORT || 3000);
  
 var server = app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + server.address().port);
+  console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
 });
