@@ -1,6 +1,8 @@
 {
-	"name": "testcase 2",
-	"description": "dummy testcase 2",
-	"actual_result": "actual2",
-	"exprected_result": "expected2"
+	"parentId": null,
+	"name": "testcase 1",
+	"description": "dummy testcase 1",
+	"prerequisites": "pre",
+	"actual": "actual 1",
+	"expected": "expected 1"
 }

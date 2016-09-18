@@ -1,21 +1,34 @@
 var mongoose = require('mongoose');
 var TestcaseSchema = new mongoose.Schema({
- /* id: { 
-    type: Number, 
-    unique: true, 
-    required: true
-  }, */
+  parentId: {
+    type: Number
+  },
   name: {
     type: String,
     required: true
   },
   description: {
     type: String
-    },
- // steps: Object,
-  actual_result: String,
-  expected_result: String,
-  created_at: { type: Date, default: Date.now }, // TODO check only added when created
-  updated_at: { type: Date, default: Date.now },
+  },
+  prerequisites: {
+    type: String
+  },
+  // steps: Object,
+  actual: String,
+  expected: String,
+  created: { type: Date, required: true, default: Date.now },
+  updated: { type: Date, required: true, default: Date.now },
+  childId: {
+    type: Number
+  }
 });
+
+TestcaseSchema.pre('save', function(next){
+  now = new Date();
+  this.updated_at = now;
+  if ( !this.created_at ) {
+    this.created_at = now;
+  }
+});
+
 module.exports = mongoose.model('Testcase', TestcaseSchema);

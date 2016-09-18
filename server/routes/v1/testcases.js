@@ -11,9 +11,7 @@ var testcases = {
     Testcase.find(function (err, testcases) {
       if (err) return err; // TODO check proper error handling
       res.json(testcases);
-    });
-    //var allTestcases = data; // Spoof a DB call
-    
+    }); 
   },
  
   /* 
@@ -26,9 +24,6 @@ var testcases = {
       if (err) return err; // TODO check proper error handling
       res.json(testcase);
     });
-   // var id = req.params.id;
-   // var testcase = data[id]; // Spoof a DB call
-   // res.json(testcase);
   },
  
   /* 
@@ -41,9 +36,6 @@ var testcases = {
       if (err) return err;
       res.json(createTestcase);
     });
-    //var newTestcases = req.body;
-    //data.push(newTestcases); // Spoof a DB call
-    //res.json(newTestcases);
   },
 
   /* 
@@ -52,10 +44,21 @@ var testcases = {
    */
  
   update: function(req, res) {
-    var updateTestcases = req.body;
-    var id = req.params.id;
-    data[id] = updateTestcases // Spoof a DB call
-    res.json(updateTestcases);
+    // TODO need security check (user input) for update
+    Testcase.findById( req.params.id, function ( err, testcase ){
+     testcase.parentId = req.body.parentId;
+     testcase.name = req.body.name;
+     testcase.description = req.body.description;
+     testcase.prerequisites = req.body.prerequisites;
+     testcase.actual = req.body.actual;
+     testcase.expected = req.body.expected;
+     testcase.updated = Date.now();
+
+     testcase.save( function ( err, testcase, count ){
+      if (err) return err; // TODO check proper error handling
+      res.json(testcase);
+     });
+    });
   },
 
   /* 
@@ -66,23 +69,9 @@ var testcases = {
   delete: function(req, res) {
     Testcase.findByIdAndRemove(req.params.id, function (err, testcase) {
       if (err) return err;
-      res.json(testcase);
+      res.json(true);
     });
-    //var id = req.params.id;
-    //data.splice(id, 1) // Spoof a DB call
-    res.json(true);
   }
 };
- 
-var data = [{
-  name: 'Testcase 1',
-  id: '1'
-}, {
-  name: 'Testcase 2',
-  id: '2'
-}, {
-  name: 'Testcase 3',
-  id: '3'
-}];
  
 module.exports = testcases;
