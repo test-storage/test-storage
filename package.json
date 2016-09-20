@@ -5,8 +5,8 @@
     "main": "app.js",
     "private": true,
     "scripts": {
-        "prestart": "versiony package.json --patch",
         "start": "NODE_ENV=development forever start -c nodemon app.js --exitcrash",
+        "restart": "versiony package.json --patch",
         "test": "./node_modules/.bin/mocha ./test/ --recursive --check-leaks"
     },
     "keywords": [],
@@ -16,21 +16,21 @@
         "body-parser": "^1.15.2",
         "cookie-parser": "^1.4.3",
         "errorhandler": "^1.4.3",
-        "expect.js": "^0.3.1",
         "express": "^4.14.0",
         "express-validator": "^2.20.8",
         "jwt-simple": "^0.5.0",
-        "mocha": "^3.0.2",
         "mongoose": "^4.6.0",
         "morgan": "^1.7.0",
         "path": "^0.12.7",
-        "serve-favicon": "^2.3.0",
-        "should": "^11.1.0",
-        "superagent": "^2.2.0"
+        "serve-favicon": "^2.3.0"
     },
     "devDependencies": {
+        "expect.js": "^0.3.1",
         "forever": "^0.15.2",
         "nodemon": "^1.10.2",
+        "mocha": "^3.0.2",
+        "should": "^11.1.0",
+        "superagent": "^2.2.0",
         "supertest": "^2.0.0",
         "versiony-cli": "^1.3.0"
     }
