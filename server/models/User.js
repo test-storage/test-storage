@@ -9,7 +9,7 @@ var UserSchema = new mongoose.Schema({
     required: true
   },
   title: String,
-  group: Array,
+  group: Array, // TODO change to groups
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
 });

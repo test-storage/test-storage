@@ -36,7 +36,9 @@ var groups = {
   create: function(req, res) {
     Group.create(req.body, function (err, group) {
       if (err) return err;
-      res.json(group);
+      res.status(201).
+      location('/api/v1/groups/' + group._id).
+      json(group);
     });
   },
 
