@@ -36,7 +36,9 @@ var testsuites = {
   create: function(req, res) {
     Testsuite.create(req.body, function (err, testsuite) {
       if (err) return err;
-      res.json(testsuite);
+      res.status(201).
+      location('/api/v1/testsuites/' + testsuite._id).
+      json(testsuite);
     });
   },
 

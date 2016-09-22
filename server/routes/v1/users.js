@@ -36,7 +36,9 @@ var users = {
   create: function(req, res) {
     User.create(req.body, function (err, user) {
       if (err) return err;
-      res.json(user);
+      res.status(201).
+      location('/api/v1/users/' + user._id).
+      json(user);
     });
   },
 

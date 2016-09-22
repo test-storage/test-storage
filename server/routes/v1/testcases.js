@@ -36,7 +36,9 @@ var testcases = {
   create: function(req, res) {
     Testcase.create(req.body, function (err, testcase) {
       if (err) return err;
-      res.json(testcase);
+      res.status(201).
+      location('/api/v1/testcases/' + testcase._id).
+      json(testcase);
     });
   },
 

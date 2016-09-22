@@ -1,17 +1,20 @@
 {
     "name": "test-storage",
-    "version": "0.1.20",
+    "version": "0.1.23",
     "description": "Test Case Management System",
     "main": "app.js",
     "private": true,
     "scripts": {
-        "start": "NODE_ENV=development forever start -c nodemon app.js --exitcrash",
-        "restart": "versiony package.json --patch",
+        "start": "NODE_ENV=development nodemon app.js --exitcrash",
+        "version": "versiony package.json --patch",
         "test": "./node_modules/.bin/mocha ./test/ --recursive --check-leaks"
     },
     "keywords": [],
     "author": "Dmitry Zakharov",
     "license": "GPLv3",
+    "bugs": {
+        "url": "https://github.com/pumano/test-storage/issues"
+    },
     "dependencies": {
         "body-parser": "^1.15.2",
         "cookie-parser": "^1.4.3",

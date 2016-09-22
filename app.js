@@ -30,8 +30,9 @@ mongoose.connect(conf.db.mongodb) // autogen needed for security? (need investig
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(expressValidator()); // this line must be immediately after express.bodyParser()!
+app.use(express.static(__dirname + '/client')); //Angular2 frontend
 app.use(express.static(__dirname + '/public')); // static folder for css and images and etc
-app.use(favicon(__dirname + '/public/favicon.ico')); // favicon
+app.use(favicon(__dirname + '/public/assets/favicon.ico')); // favicon
 
 app.disable('x-powered-by'); // security
 
