@@ -8,8 +8,17 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    require: true
+  },
   title: String,
-  group: Array, // TODO change to groups
+  groups: Array, 
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
 });
