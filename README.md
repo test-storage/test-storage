@@ -3,7 +3,7 @@
 
 Test Storage - test case management system.
 
-Currently in early alpha development.
+Currently in early alpha development and not available via npm. 
 
 ## Installation
 
