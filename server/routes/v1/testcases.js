@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
-var util = require('util');
+
 var Testcase = require('../../models/Testcase.js');
+
+var limitValidator = require('../../middlewares/validateLimitQueryParam');
+var fieldsValidator = require('../../middlewares/validateFieldsQueryParam');
+var pathValidator = require('../../middlewares/validateIdPathParam');
 
 var testcases = {
 
@@ -10,23 +14,22 @@ var testcases = {
    */
   getAll: function (req, res) {
 
-
-    if (req.query.limit) {
-      req.checkQuery('limit', 'Invalid param').isInt();
-      if (req.query.limit > 200) {
-        res.status(400).json('Too many entities requested. Max limit 200 entities.');
-        return;
-      }
+    // check 'limit' param
+    var limit = {};
+    if (limitValidator.isExist(req)) {
+      limitValidator.isInt(req, res);
+      limit['limit'] = limitValidator.sanitize(req);
+      console.log("limit:");
+      console.log(limit);
     }
 
-    var errors = req.validationErrors();
-    if (errors) {
-      res.status(400).json('There have been validation errors: ' + util.inspect(errors));
-      return;
+    // check 'fields' param
+    var fields = {};
+    if (fieldsValidator.isExist(req)) {
+      fields = fieldsValidator.parseFields(req)
     }
-   
 
-    Testcase.find({}, {}, { 'limit': parseInt(req.query.limit)}, function (err, testcases) {
+    Testcase.find({}, fields, limit, function (err, testcases) {
       if (err) return err; // TODO check proper error handling
       res.json(testcases);
     });
@@ -38,34 +41,16 @@ var testcases = {
    */
 
   getOne: function (req, res) {
-    // TODO check params (id as mongoId)
 
-    // check fields param
+    // check 'fields' param
     var fields = {};
-    if (req.query.fields) {
-      if (req.query.fields !== '') {
-        var _fields = req.query.fields.split(",");
-        console.log("_fields: " + _fields);
-        _fields.forEach(function (item, i, _fields) {
-          console.log("_field: " + _fields);
-          fields[item] = 1;
-        });
-      }
-      fields["_id"] = 0;
-      console.log(fields);
+    if (fieldsValidator.isExist(req)) {
+      fields = fieldsValidator.parseFields(req)
     }
 
-  
-
-    // check params
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      res.status(400).json('Wrong ID');
-      return;
-    }
-
-
-
-  
+    // check :id param
+    var pathParam = pathValidator.isMongoId(req);
+    // TODO add sanitizers
 
     Testcase.findById(req.params.id, fields, function (err, testcase) {
       if (err) return err; // TODO check proper error handling
