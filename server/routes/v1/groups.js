@@ -45,7 +45,7 @@ var groups = {
     }
 
     // check :id param
-    pathValidator.isMongoId(req);
+    pathValidator.isMongoId(req, res);
     // TODO add sanitizers
 
     Group.findById(req.params.id, fields, function (err, group) {
@@ -97,6 +97,9 @@ var groups = {
    */
 
   delete: function (req, res) {
+    // check :id param
+    var pathParam = pathValidator.isMongoId(req, res);
+
     Group.findByIdAndRemove(req.params.id, function (err, group) {
       if (err) return err;
       res.json(true);
