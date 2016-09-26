@@ -51,7 +51,7 @@ var testsuites = {
     }
 
     // check :id param
-    var pathParam = pathValidator.isMongoId(req);
+    var pathParam = pathValidator.isMongoId(req, res);
     // TODO add sanitizers
 
     Testsuite.findById(req.params.id, fields, function (err, testsuite) {
@@ -103,6 +103,9 @@ var testsuites = {
    */
 
   delete: function (req, res) {
+    // check :id param
+    var pathParam = pathValidator.isMongoId(req, res);
+
     Testsuite.findByIdAndRemove(req.params.id, function (err, testsuite) {
       if (err) return err;
       res.json(true);

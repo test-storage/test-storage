@@ -46,7 +46,7 @@ var users = {
     }
 
     // check :id param
-    var pathParam = pathValidator.isMongoId(req);
+    var pathParam = pathValidator.isMongoId(req, res);
     // TODO add sanitizers
 
     User.findById(req.params.id, function (err, user) {
@@ -98,6 +98,9 @@ var users = {
    */
 
   delete: function (req, res) {
+    // check :id param
+    var pathParam = pathValidator.isMongoId(req, res);
+
     User.findByIdAndRemove(req.params.id, function (err, user) {
       if (err) return err;
       res.json(true);

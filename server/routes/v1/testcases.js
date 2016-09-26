@@ -44,12 +44,13 @@ var testcases = {
 
     // check 'fields' param
     var fields = {};
+    // TODO turn off _id from response by default
     if (fieldsValidator.isExist(req)) {
       fields = fieldsValidator.parseFields(req)
     }
 
     // check :id param
-    var pathParam = pathValidator.isMongoId(req);
+    var pathParam = pathValidator.isMongoId(req, res);
     // TODO add sanitizers
 
     Testcase.findById(req.params.id, fields, function (err, testcase) {
@@ -128,6 +129,10 @@ var testcases = {
    */
 
   delete: function (req, res) {
+    
+    // check :id param
+    var pathParam = pathValidator.isMongoId(req, res);
+
     Testcase.findByIdAndRemove(req.params.id, function (err, testcase) {
       if (err) return err;
       res.json(true);
