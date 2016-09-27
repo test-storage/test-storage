@@ -3,6 +3,7 @@ var router = express.Router();
  
 var auth = require('./auth.js');
 
+var projects = require('./v1/projects.js');
 var testcases = require('./v1/testcases.js');
 var testsuites = require('./v1/testsuites.js');
 var groups = require('./v1/groups.js');
@@ -25,6 +26,13 @@ router.get('/api', function(req, res) {
 /*
  * Routes that can be accessed only by autheticated users
  */
+
+router.get('/api/v1/projects', projects.getAll);
+router.get('/api/v1/projects/:id', projects.getOne);
+router.post('/api/v1/projects/', projects.create);
+router.put('/api/v1/projects/:id', projects.update);
+router.delete('/api/v1/projects/:id', projects.delete);
+
 router.get('/api/v1/testcases', testcases.getAll);
 router.get('/api/v1/testcases/:id', testcases.getOne);
 router.post('/api/v1/testcases/', testcases.create);
