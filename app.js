@@ -6,12 +6,14 @@ var bodyParser = require('body-parser');
 var errorhandler = require('errorhandler');
 var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
+// TODO implement methodOverride if it will be needed  
+//var methodOverride = require('method-override')
 var Config = require('./config');
 var conf = new Config();
 var app = express();
 
 
-if (process.env.NODE_ENV === 'development') {
+if ('development' == app.get('env')) {
   // only use in development (stack traces/errors and etc)
   app.use(errorhandler());
 }
@@ -68,5 +70,5 @@ app.use(function(req, res, next) {
 app.set('port', process.env.PORT || 3000);
  
 var server = app.listen(app.get('port'), function() {
-  console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
+  console.log("Express server listening on port %d in %s mode", app.get('port'), app.settings.env);
 });
