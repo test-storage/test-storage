@@ -16,6 +16,9 @@ var app = express();
 if ('development' == app.get('env')) {
   // only use in development (stack traces/errors and etc)
   app.use(errorhandler());
+
+  app.use(express.static(join(__dirname, './node_modules')));
+  app.use(express.static(join(__dirname, './tools')));
 }
 
 // Database
