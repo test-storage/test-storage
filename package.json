@@ -7,7 +7,7 @@
   "scripts": {
     "start": "NODE_ENV=development nodemon app.js --exitcrash",
     "version": "versiony package.json --patch",
-    "test": "mocha ./test/ --recursive --check-leaks",
+    "test": "./node_modules/.bin/mocha ./test/ --recursive --check-leaks",
     "postinstall": "typings install",
     "typings": "typings",
     "tsc": "tsc",
