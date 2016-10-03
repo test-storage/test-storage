@@ -10,7 +10,7 @@ describe('GET /testcases', function () {
   it('login', loginUser());
 
   it('uri that requires user to be logged in', function(done){
-    this.timeout(15000);
+    this.timeout(35000);
     request(server.app)
         .get('/api/v1/testcases')
         .set('x-access-token', token)                  
