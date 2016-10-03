@@ -31,7 +31,9 @@ var testcases = {
 
     Testcase.find({}, fields, limit, function (err, testcases) {
       if (err) return err; // TODO check proper error handling
-      res.json(testcases);
+      res.set('Content-Type', 'application/json')
+      .status(200)
+      .json(testcases);
     });
   },
 

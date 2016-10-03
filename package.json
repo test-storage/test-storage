@@ -7,10 +7,9 @@
   "scripts": {
     "start": "NODE_ENV=development nodemon app.js --exitcrash",
     "version": "versiony package.json --patch",
-    "test": "./node_modules/.bin/mocha ./test/ --recursive --check-leaks",
-
+    "test": "mocha ./test/ --recursive --check-leaks",
     "postinstall": "typings install",
-	"typings": "typings",
+    "typings": "typings",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lite": "lite-server"
@@ -53,9 +52,14 @@
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
+    "bluebird": "^3.4.6",
+    "chai": "^3.5.0",
     "expect.js": "^0.3.1",
+    "factory-girl": "^4.0.0-beta.4",
+    "faker": "^3.1.0",
     "forever": "^0.15.2",
     "mocha": "^3.0.2",
+    "mockgoose": "^6.0.8",
     "nodemon": "^1.10.2",
     "should": "^11.1.0",
     "superagent": "^2.3.0",
