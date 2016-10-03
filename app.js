@@ -12,13 +12,12 @@ var Config = require('./config');
 var conf = new Config();
 var app = express();
 
-
 if ('development' == app.get('env')) {
   // only use in development (stack traces/errors and etc)
   app.use(errorhandler());
 
-  app.use(express.static(join(__dirname, './node_modules')));
-  app.use(express.static(join(__dirname, './tools')));
+  //app.use(express.static(__dirname, '/node_modules'));
+  //app.use(express.static(__dirname, '/tools'));
 }
 
 // Database
@@ -27,7 +26,7 @@ if ('development' == app.get('env')) {
 mongoose.Promise = global.Promise;
 
 // connect to MongoDB
-mongoose.connect(conf.db.mongodb) // autogen needed for security? (need investigation)
+mongoose.connect('mongodb://localhost/test-storage') // autogen needed for security? (need investigation)
   .then(() =>  console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
 
