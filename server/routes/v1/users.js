@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var User = require('../../models/User.js');
 
+var util = require('util');
 var limitValidator = require('../../middlewares/validateLimitQueryParam');
 var fieldsValidator = require('../../middlewares/validateFieldsQueryParam');
 var pathValidator = require('../../middlewares/validateIdPathParam');

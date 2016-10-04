@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Group = require('../../models/Group.js');
 
+var util = require('util');
 var limitValidator = require('../../middlewares/validateLimitQueryParam');
 var fieldsValidator = require('../../middlewares/validateFieldsQueryParam');
 var pathValidator = require('../../middlewares/validateIdPathParam');
@@ -74,9 +75,41 @@ var groups = {
    */
 
   update: function (req, res) {
+    
+    // path validation
+    pathValidator.isMongoId(req, res);
+
+    // check body 
+    req.checkBody({
+      'name': {
+        notEmpty: true,
+        errorMessage: 'Name required'
+      },
+      'description': {
+        notEmpty: true,
+        errorMessage: 'Name required' // Error message for the parameter 
+      },
+      'scope.testcases':{
+          optional: true
+      },
+      'scope.testsuites':{
+          optional: true
+      },
+      'users': { // 
+        optional: true, // won't validate if field is empty 
+        isArray: true,
+        errorMessage: 'Invalid users'
+      }
+    });
+
+    var errors = req.validationErrors();
+    if (errors) {
+      res.status(400).json('There have been validation errors: ' + util.inspect(errors));
+      return;
+    }
     // TODO need security check (user input) for update
     Group.findById(req.params.id, function (err, group) {
-
+      
       group.name = req.body.name;
       group.description = req.body.description;
       group.scope.testcases = req.body.scope.testcases;
@@ -86,7 +119,7 @@ var groups = {
 
       group.save(function (err, group, count) {
         if (err) return err; // TODO check proper error handling
-        res.json(group);
+        res.status(200).json(group);
       });
     });
   },
@@ -98,7 +131,7 @@ var groups = {
 
   delete: function (req, res) {
     // check :id param
-    var pathParam = pathValidator.isMongoId(req, res);
+    pathValidator.isMongoId(req, res);
 
     Group.findByIdAndRemove(req.params.id, function (err, group) {
       if (err) return err;
