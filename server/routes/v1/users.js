@@ -103,7 +103,7 @@ var users = {
 
     User.findByIdAndRemove(req.params.id, function (err, user) {
       if (err) return err;
-      res.json(true);
+      res.status(204).json(true);
     });
   }
 };

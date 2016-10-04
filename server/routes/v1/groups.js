@@ -114,7 +114,7 @@ var groups = {
   getAllGroupUsers: function (req, res) {
     Group.find(function (err, groups) {
       if (err) return err; // TODO check proper error handling
-      res.json(groups);
+      res.status(204).json(groups);
     });
   },
 

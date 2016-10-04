@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-
+var util = require('util');
 var Testcase = require('../../models/Testcase.js');
 
 var limitValidator = require('../../middlewares/validateLimitQueryParam');
@@ -67,6 +67,7 @@ var testcases = {
    */
 
   create: function (req, res) {
+    // TODO add validation
     Testcase.create(req.body, function (err, testcase) {
       if (err) return err;
       res.status(201).
@@ -96,8 +97,8 @@ var testcases = {
       'prerequisites': { // 
         optional: true, // won't validate if field is empty 
         isLength: {
-          options: [{ min: 2, max: 10 }],
-          errorMessage: 'Must be between 2 and 10 chars long' // Error message for the validator, takes precedent over parameter message 
+          options: [{ min: 2, max: 250 }],
+          errorMessage: 'Must be between 2 and 250 chars long' // Error message for the validator, takes precedent over parameter message 
         },
         errorMessage: 'Invalid Prerequisites'
       }
@@ -137,7 +138,7 @@ var testcases = {
 
     Testcase.findByIdAndRemove(req.params.id, function (err, testcase) {
       if (err) return err;
-      res.json(true);
+      res.status(204).json(true);
     });
   }
 };
