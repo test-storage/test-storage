@@ -11,6 +11,8 @@ environment:
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm install
+services:
+  - mongodb
 build: off
 test_script:
   - node --version
