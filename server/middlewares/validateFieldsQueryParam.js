@@ -19,7 +19,7 @@ var fields = {
         _fields.forEach(function (item, i, _fields) {
             fields[item] = 1;
         });
-        fields["_id"] = 0;
+       // fields["_id"] = 0;
         console.log("fields:");
         console.log(fields);
         return fields;
