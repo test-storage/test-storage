@@ -108,7 +108,7 @@ var projects = {
 
     Project.findByIdAndRemove(req.params.id, function (err, project) {
       if (err) return err;
-      res.json(true);
+      res.status(204).json(true);
     });
   }
 };

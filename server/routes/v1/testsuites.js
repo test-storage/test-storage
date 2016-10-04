@@ -83,11 +83,12 @@ var testsuites = {
     // TODO need security check (user input) for update
     Testsuite.findById(req.params.id, function (err, testsuite) {
 
+      testsuite.parentId = req.body.parentId;
       testsuite.name = req.body.name;
       testsuite.description = req.body.description;
       testsuite.prerequisites = req.body.prerequisites;
       testsuite.environment = req.body.environment;
-      // testsuite.testcases = req.body.testcases; // add testcases to suite
+      testsuite.testcases = req.body.testcases; // add testcases to suite
       testsuite.updated = Date.now();
 
       testsuite.save(function (err, testsuite, count) {
@@ -108,7 +109,7 @@ var testsuites = {
 
     Testsuite.findByIdAndRemove(req.params.id, function (err, testsuite) {
       if (err) return err;
-      res.json(true);
+      res.status(204).json(true);
     });
   }
 };

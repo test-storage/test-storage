@@ -12,10 +12,12 @@ var Config = require('./config');
 var conf = new Config();
 var app = express();
 
-
 if ('development' == app.get('env')) {
   // only use in development (stack traces/errors and etc)
   app.use(errorhandler());
+
+  //app.use(express.static(__dirname, '/node_modules'));
+  //app.use(express.static(__dirname, '/tools'));
 }
 
 // Database
@@ -24,7 +26,7 @@ if ('development' == app.get('env')) {
 mongoose.Promise = global.Promise;
 
 // connect to MongoDB
-mongoose.connect(conf.db.mongodb) // autogen needed for security? (need investigation)
+mongoose.connect('mongodb://localhost/test-storage') // autogen needed for security? (need investigation)
   .then(() =>  console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
 
@@ -70,5 +72,7 @@ app.use(function(req, res, next) {
 app.set('port', process.env.PORT || 3000);
  
 var server = app.listen(app.get('port'), function() {
-  console.log("Express server listening on port %d in %s mode", app.get('port'), app.settings.env);
+  console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
 });
+
+module.exports = server;

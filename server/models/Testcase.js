@@ -13,7 +13,7 @@ var TestcaseSchema = new mongoose.Schema({
   prerequisites: {
     type: String
   },
-  // steps: Object,
+  steps: Object,
   actual: String,
   expected: String,
   created: { type: Date, required: true, default: Date.now },

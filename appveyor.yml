@@ -1,8 +1,5 @@
 environment:
   matrix:
-    - nodejs_version: "1.8"
-    - nodejs_version: "2.5"
-    - nodejs_version: "3.3"
     - nodejs_version: "4.0"
     - nodejs_version: "4.4"
     - nodejs_version: "5.11"
@@ -11,6 +8,8 @@ environment:
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm install
+services:
+  - mongodb
 build: off
 test_script:
   - node --version

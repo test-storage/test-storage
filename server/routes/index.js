@@ -10,7 +10,7 @@ var groups = require('./v1/groups.js');
 var users = require('./v1/users.js');
 
 // define the API versions
-var API_VERSIONS = {'Pre-Production': '/v0', 'Version 1': '/v1'};
+var API_VERSIONS = {'Version 1': '/v1'};
  
 /*
  * Routes that can be accessed by any one

@@ -78,11 +78,12 @@ var users = {
     // TODO need security check (user input) for update
     User.findById(req.params.id, function (err, user) {
 
-      user.name = req.body.name;
-      user.description = req.body.description;
-      user.prerequisites = req.body.prerequisites;
-      user.environment = req.body.environment;
-      // user.users = req.body.userss; // add userss to suite
+      user.firstName = req.body.firstName;
+      user.lastName = req.body.lastName;
+      user.email = req.body.email;
+      user.password = req.body.password;
+      user.title = req.body.title;
+      user.groups = req.body.groups;
       user.updated = Date.now();
 
       user.save(function (err, user, count) {
@@ -103,7 +104,7 @@ var users = {
 
     User.findByIdAndRemove(req.params.id, function (err, user) {
       if (err) return err;
-      res.json(true);
+      res.status(204).json(true);
     });
   }
 };

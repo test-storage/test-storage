@@ -79,9 +79,9 @@ var groups = {
 
       group.name = req.body.name;
       group.description = req.body.description;
-      group.prerequisites = req.body.prerequisites;
-      group.environment = req.body.environment;
-      // group.users = req.body.userss; // add userss to suite
+      group.scope.testcases = req.body.scope.testcases;
+      group.scope.testsuites = req.body.scope.testsuites;
+      group.users = req.body.users; // add users 
       group.updated = Date.now();
 
       group.save(function (err, group, count) {
@@ -102,7 +102,7 @@ var groups = {
 
     Group.findByIdAndRemove(req.params.id, function (err, group) {
       if (err) return err;
-      res.json(true);
+      res.status(204).json(true);
     });
   },
 
