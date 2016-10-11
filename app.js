@@ -1,6 +1,7 @@
 var express = require('express');
 var expressValidator = require('express-validator');
 var logger = require('morgan');
+var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var errorhandler = require('errorhandler');
@@ -13,6 +14,8 @@ var conf = new Config();
 var app = express();
 
 if ('development' == app.get('env')) {
+  app.use(express.static(path.join(__dirname, '/node_modules')));
+  app.use(express.static(path.join(__dirname, '/tools')));
   // only use in development (stack traces/errors and etc)
   app.use(errorhandler());
 
@@ -34,8 +37,8 @@ mongoose.connect('mongodb://localhost/test-storage') // autogen needed for secur
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(expressValidator()); // this line must be immediately after express.bodyParser()!
-app.use(express.static(__dirname + '/client')); //Angular2 frontend
-app.use(express.static(__dirname + '/public')); // static folder for css and images and etc
+app.use(express.static(path.join(__dirname + '/client'))); //Angular2 frontend
+app.use(express.static(path.join(__dirname + '/public'))); // static folder for css and images and etc
 app.use(favicon(__dirname + '/public/assets/favicon.ico')); // favicon
 
 app.disable('x-powered-by'); // security
