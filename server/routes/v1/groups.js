@@ -78,7 +78,7 @@ var groups = {
     
     // path validation
     pathValidator.isMongoId(req, res);
-
+/*
     // check body 
     req.checkBody({
       'name': {
@@ -97,7 +97,6 @@ var groups = {
       },
       'users': { // 
         optional: true, // won't validate if field is empty 
-        isArray: true,
         errorMessage: 'Invalid users'
       }
     });
@@ -106,14 +105,14 @@ var groups = {
     if (errors) {
       res.status(400).json('There have been validation errors: ' + util.inspect(errors));
       return;
-    }
+    } */
     // TODO need security check (user input) for update
     Group.findById(req.params.id, function (err, group) {
       
       group.name = req.body.name;
       group.description = req.body.description;
-      group.scope.testcases = req.body.scope.testcases;
-      group.scope.testsuites = req.body.scope.testsuites;
+      group.scope = req.body.scope;
+    //  group.scope.testsuites = req.body.scope.testsuites;
       group.users = req.body.users; // add users 
       group.updated = Date.now();
 

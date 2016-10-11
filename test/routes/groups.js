@@ -36,7 +36,7 @@ describe('/groups', function () {
   });
 
   it('GET /groups/:id respond with JSON', function (done) {
-    this.timeout(35000);
+    this.timeout(30000);
     request(server.app)
       .get('/api/v1/groups/' + entityId)
       .set('Accept', 'application/json')
@@ -76,7 +76,7 @@ describe('/groups', function () {
   });
 
   it('PUT /groups respond with JSON', function (done) {
-    this.timeout(35000);
+    this.timeout(55000);
     request(server.app)
       .put('/api/v1/groups/' + entityId)
       .set('x-access-token', token)
@@ -105,7 +105,7 @@ describe('/groups', function () {
 
 
   it('DELETE /groups/:id respond with JSON', function (done) {
-    this.timeout(35000);
+    this.timeout(75000);
     request(server.app)
       .delete('/api/v1/groups/' + entityId)
       .set('Accept', 'application/json')
