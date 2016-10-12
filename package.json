@@ -9,7 +9,7 @@
     "forever": "NODE_ENV=development concurrently \"tsc -w -p ./client\" \"forever start -c nodemon app.js --exitcrash\" ",
     "version": "versiony package.json --patch",
     "test": "./node_modules/.bin/mocha ./test/ --recursive --check-leaks",
-    "postinstall": "typings install && tsc -w -p ./client",
+    "postinstall": "typings install",
     "typings": "typings",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
