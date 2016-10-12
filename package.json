@@ -13,7 +13,7 @@
     "typings": "typings",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "lite": "lite-server",
+    "lint": "tslint 'client/**/*.ts'",
     "bundle:prod": "node tools/builder.js --prod"
   },
   "keywords": [
