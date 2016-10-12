@@ -8,7 +8,7 @@ var isPublic = typeof window != "undefined";
     System.config({
         paths: {
             // paths serve as alias
-            'npm:': (isPublic) ? '/' : 'node_modules/'
+           // 'npm:': (isPublic) ? '/' : 'node_modules/'
         },
         // map tells the System loader where to look for things
         map: {
@@ -42,10 +42,6 @@ var isPublic = typeof window != "undefined";
                 main: './index.js',
                 defaultExtension: 'js'
             },
-            'ng-semantic': {
-                main: 'ng-semantic',
-                defaultExtension: 'js'
-            }
         }
     });
 })(this);

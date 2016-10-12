@@ -22,3 +22,8 @@ Run
 ```bash
 $ npm start
 ```
+
+## Change log 
+If you want to take a look at [change log](https://github.com/pumano/test-storage/blob/master/CHANGELOG.md) just click [here](https://github.com/pumano/test-storage/blob/master/CHANGELOG.md).
+
+More features will be supported shortly!

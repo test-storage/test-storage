@@ -18,6 +18,21 @@ var TestcaseSchema = new mongoose.Schema({
   expected: String,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
+  createdBy: {
+    type: Number
+  },
+  updatedBy: {
+    type: Number
+  },
+  enabled: {
+    type: Boolean
+  },
+  isAutomated: {
+    type: Boolean
+  },
+  version: {
+    type: Number
+  },
   childId: {
     type: Number
   }

@@ -3,14 +3,14 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing'; //TODO: Create app.routing
+//import { AppRoutingModule } from './app.routing'; //TODO: Create app.routing
 
 @NgModule({
     imports: [
         BrowserModule,
-        HttpModule,
+        HttpModule
     
-        AppRoutingModule,
+ //       AppRoutingModule,
     ],
     declarations: [AppComponent],
     providers: [/* TODO: Providers go here */],
