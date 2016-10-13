@@ -1,6 +1,6 @@
 {
   "name": "test-storage",
-  "version": "0.1.35",
+  "version": "0.1.37",
   "description": "Test Case Management System",
   "main": "app.js",
   "private": true,
@@ -38,6 +38,7 @@
     "angular-in-memory-web-api": "^0.1.6",
     "angular2-jwt": "^0.1.24",
     "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
     "cookie-parser": "^1.4.3",
     "core-js": "^2.4.1",
     "errorhandler": "^1.4.3",

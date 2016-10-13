@@ -13,7 +13,7 @@ var isPublic = typeof window != "undefined";
         // map tells the System loader where to look for things
         map: {
             // our app is within the app folder
-            app: 'client',
+            app: '.',
             // angular bundles
             '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
             '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
