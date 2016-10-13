@@ -9,6 +9,7 @@ var isPublic = typeof window != "undefined";
         paths: {
             // paths serve as alias
            // 'npm:': (isPublic) ? '/' : 'node_modules/'
+           'npm:': '/'
         },
         // map tells the System loader where to look for things
         map: {
