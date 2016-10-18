@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  //  moduleId: module.id,
+    moduleId: module.id,
     selector: 'ts-root',
-    template: `
-        <router-outlet></router-outlet>
-        `
+    templateUrl: './app.component.html'
 })
 export class AppComponent { }
