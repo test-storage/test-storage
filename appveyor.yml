@@ -21,17 +21,18 @@ init:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - npm install yarn
-  - ./node_modules/.bin/yarn install
+  - yarn install
 
 services:
   - mongodb
 
 test_script:
   # Output useful info for debugging.
-  - node --version && npm --version
+  - node --version && npm --version && yarn --version
   # Run tests
   - npm test
 
-cache: node_modules
+cache:
+  - node_modules
+  - "%LOCALAPPDATA%/Yarn"
 
