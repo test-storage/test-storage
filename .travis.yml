@@ -6,6 +6,7 @@ node_js:
   - "4.4"
   - "4"
 install:
-- npm install
+- npm install yarn
+- ./node_modules/.bin/yarn install
 services:
   - mongodb
