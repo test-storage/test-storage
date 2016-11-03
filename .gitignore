@@ -1,0 +1,16 @@
+
+# Ignore IDE settings
+.vscode
+.DS_Store
+
+# Ignore from that directories
+node_modules/
+typings/
+dist/
+
+# Ignore generated js and .map files after typescript transpiling 
+client/**/*.js
+*.map
+
+# Ignore npm debug log
+npm-debug.log

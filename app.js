@@ -1,19 +1,26 @@
 var express = require('express');
 var expressValidator = require('express-validator');
 var logger = require('morgan');
+var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var errorhandler = require('errorhandler');
 var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
+// TODO implement methodOverride if it will be needed  
+//var methodOverride = require('method-override')
 var Config = require('./config');
 var conf = new Config();
 var app = express();
 
-
-if (process.env.NODE_ENV === 'development') {
+if ('development' == app.get('env')) {
+  app.use(express.static(path.join(__dirname, '/node_modules')));
+  app.use(express.static(path.join(__dirname, '/tools')));
   // only use in development (stack traces/errors and etc)
   app.use(errorhandler());
+
+  //app.use(express.static(__dirname, '/node_modules'));
+  //app.use(express.static(__dirname, '/tools'));
 }
 
 // Database
@@ -22,7 +29,7 @@ if (process.env.NODE_ENV === 'development') {
 mongoose.Promise = global.Promise;
 
 // connect to MongoDB
-mongoose.connect(conf.db.mongodb) // autogen needed for security? (need investigation)
+mongoose.connect('mongodb://localhost/test-storage') // autogen needed for security? (need investigation)
   .then(() =>  console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
 
@@ -30,8 +37,9 @@ mongoose.connect(conf.db.mongodb) // autogen needed for security? (need investig
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(expressValidator()); // this line must be immediately after express.bodyParser()!
-app.use(express.static(__dirname + '/public')); // static folder for css and images and etc
-app.use(favicon(__dirname + '/public/favicon.ico')); // favicon
+app.use(express.static(path.join(__dirname + '/client'))); //Angular2 frontend
+app.use(express.static(path.join(__dirname + '/public'))); // static folder for css and images and etc
+app.use(favicon(__dirname + '/public/assets/favicon.ico')); // favicon
 
 app.disable('x-powered-by'); // security
 
@@ -69,3 +77,5 @@ app.set('port', process.env.PORT || 3000);
 var server = app.listen(app.get('port'), function() {
   console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
 });
+
+module.exports = server;

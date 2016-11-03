@@ -1,6 +1,6 @@
-module.exports = function() {
-    
-    switch(process.env.NODE_ENV) {
+module.exports = function () {
+
+    switch (process.env.NODE_ENV) {
 
         case 'development':
             return {
@@ -25,16 +25,13 @@ module.exports = function() {
 					"mongodb": "mongodb://localhost/test-storage"
 				},
 				"errorHandlerOptions": {
-					"dumpExceptions": true,
-					"showStack": true
+					"dumpExceptions": false,
+					"showStack": false
 				},
 				"logger": {
 					"api": "logs/api.log",
 					"exception": "logs/exceptions.log"
 				}
             };
-
-		// default:
-		//     return {error or other settings};
     }
 };

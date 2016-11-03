@@ -13,11 +13,26 @@ var TestcaseSchema = new mongoose.Schema({
   prerequisites: {
     type: String
   },
-  // steps: Object,
+  steps: Object,
   actual: String,
   expected: String,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
+  createdBy: {
+    type: Number
+  },
+  updatedBy: {
+    type: Number
+  },
+  enabled: {
+    type: Boolean
+  },
+  isAutomated: {
+    type: Boolean
+  },
+  version: {
+    type: Number
+  },
   childId: {
     type: Number
   }

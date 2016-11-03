@@ -1,24 +1,28 @@
 var mongoose = require('mongoose');
-var User = require('../../models/User.js');
+var Project = require('../../models/Project.js');
 
 var util = require('util');
 var limitValidator = require('../../middlewares/validateLimitQueryParam');
 var fieldsValidator = require('../../middlewares/validateFieldsQueryParam');
 var pathValidator = require('../../middlewares/validateIdPathParam');
 
-var users = {
+var projects = {
 
   /* 
-   * Get all users 
+   * Get all projects 
    * 
    */
+
   getAll: function (req, res) {
 
+    var query = {};
     // check 'limit' param
     var limit = {};
     if (limitValidator.isExist(req)) {
       limitValidator.isInt(req, res);
       limit['limit'] = limitValidator.sanitize(req);
+      console.log("limit:");
+      console.log(limit);
     }
 
     // check 'fields' param
@@ -27,18 +31,19 @@ var users = {
       fields = fieldsValidator.parseFields(req)
     }
 
-    User.find({}, fields, limit, function (err, users) {
+    Project.find(query, fields, limit, function (err, projects) {
       if (err) return err; // TODO check proper error handling
-      res.json(users);
+      res.json(projects);
     });
   },
 
   /* 
-   * Get single user 
+   * Get single project 
    * 
    */
 
   getOne: function (req, res) {
+
 
     // check 'fields' param
     var fields = {};
@@ -50,52 +55,51 @@ var users = {
     var pathParam = pathValidator.isMongoId(req, res);
     // TODO add sanitizers
 
-    User.findById(req.params.id, function (err, user) {
+    Project.findById(req.params.id, fields, function (err, project) {
       if (err) return err; // TODO check proper error handling
-      res.json(user);
+      res.json(project);
     });
   },
 
   /* 
-   * Create user 
+   * Create project 
    * 
    */
 
   create: function (req, res) {
-    User.create(req.body, function (err, user) {
+    project.create(req.body, function (err, project) {
       if (err) return err;
       res.status(201).
-        location('/api/v1/users/' + user._id).
-        json(user);
+        location('/api/v1/projects/' + project._id).
+        json(project);
     });
   },
 
   /* 
-   * Update user 
+   * Update project 
    * 
    */
 
   update: function (req, res) {
     // TODO need security check (user input) for update
-    User.findById(req.params.id, function (err, user) {
+    Project.findById(req.params.id, function (err, project) {
 
-      user.firstName = req.body.firstName;
-      user.lastName = req.body.lastName;
-      user.email = req.body.email;
-      user.password = req.body.password;
-      user.title = req.body.title;
-      user.groups = req.body.groups;
-      user.updated = Date.now();
+      project.name = req.body.name;
+      project.description = req.body.description;
+      project.prerequisites = req.body.prerequisites;
+      project.environment = req.body.environment;
+      // project.testcases = req.body.testcases; // add testcases to suite
+      project.updated = Date.now();
 
-      user.save(function (err, user, count) {
+      project.save(function (err, project, count) {
         if (err) return err; // TODO check proper error handling
-        res.json(user);
+        res.json(project);
       });
     });
   },
 
   /* 
-   * delete user 
+   * delete project 
    * 
    */
 
@@ -103,11 +107,11 @@ var users = {
     // check :id param
     var pathParam = pathValidator.isMongoId(req, res);
 
-    User.findByIdAndRemove(req.params.id, function (err, user) {
+    Project.findByIdAndRemove(req.params.id, function (err, project) {
       if (err) return err;
       res.status(204).json(true);
     });
   }
 };
 
-module.exports = users;
+module.exports = projects;
