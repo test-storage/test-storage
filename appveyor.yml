@@ -28,9 +28,11 @@ services:
 
 test_script:
   # Output useful info for debugging.
-  - node --version && npm --version
+  - node --version && npm --version && yarn --version
   # Run tests
   - npm test
 
-cache: node_modules
+cache:
+  - node_modules
+  - "%LOCALAPPDATA%/Yarn"
 
