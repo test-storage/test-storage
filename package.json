@@ -58,7 +58,9 @@
   },
   "devDependencies": {
     "@types/core-js": "^0.9.34",
+    "@types/es6-promise": "0.0.32",
     "@types/node": "^6.0.46",
+    "@types/selenium-webdriver": "^2.53.33",
     "bluebird": "^3.4.6",
     "chai": "^3.5.0",
     "codelyzer": "^1.0.0-beta.3",
@@ -66,7 +68,7 @@
     "expect.js": "^0.3.1",
     "factory-girl": "^4.0.0-beta.7",
     "faker": "^3.1.0",
-    "forever": "^0.15.2",
+    "forever": "^0.15.3",
     "mocha": "^3.1.2",
     "mockgoose": "^6.0.8",
     "nodemon": "^1.11.0",
