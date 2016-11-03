@@ -7,11 +7,11 @@ var token = "";
 
 var entityId = "";
 
-describe('/testcases', function () {
+describe('/testcases', function() {
 
     it('login', loginUser());
 
-    it('POST /testcases respond with status 201 and JSON', function (done) {
+    it('POST /testcases respond with status 201 and JSON', function(done) {
         this.timeout(35000);
         request(server.app)
             .post('/api/v1/testcases')
@@ -25,16 +25,19 @@ describe('/testcases', function () {
                 'expected': 'expected 1'
             })
             .expect(201)
-            //.expect('Location')
             .expect('Content-Type', /json/)
-            .end(function (err, res) {
+            .expect(function(res) {
+                // Location header
+                res.header.location = res.body._id;
+            })
+            .end(function(err, res) {
                 entityId = res.body._id;
                 if (err) return done(err);
                 done()
             });
     });
 
-    it('GET /testcases/:id respond with JSON', function (done) {
+    it('GET /testcases/:id respond with JSON', function(done) {
         this.timeout(35000);
         request(server.app)
             .get('/api/v1/testcases/' + entityId)
@@ -42,26 +45,26 @@ describe('/testcases', function () {
             .set('x-access-token', token)
             .expect('Content-Type', /json/)
             .expect(200)
-            .end(function (err, res) {
-                res.body.should.have.property('parentId');
-                res.body.should.have.property('prerequisites');
-                res.body.should.have.property('name');
-                res.body.should.have.property('description');
-                res.body.should.have.property('actual');
-                res.body.should.have.property('expected');
+            .end(function(err, res) {
+                res.body.should.have.property('parentId', null);
+                res.body.should.have.property('prerequisites', 'Prerequisites 1');
+                res.body.should.have.property('name', 'Testcase 1');
+                res.body.should.have.property('description', 'Test case description');
+                res.body.should.have.property('actual', 'actual 1');
+                res.body.should.have.property('expected', 'expected 1');
                 if (err) return done(err);
                 done()
             });
     });
 
-    it('GET /testcases respond with JSON', function (done) {
+    it('GET /testcases respond with JSON', function(done) {
         request(server.app)
             .get('/api/v1/testcases')
             .set('Accept', 'application/json')
             .set('x-access-token', token)
             .expect('Content-Type', /json/)
             .expect(200)
-            .end(function (err, res) {
+            .end(function(err, res) {
                 res.body[0].should.have.property('parentId');
                 res.body[0].should.have.property('prerequisites');
                 res.body[0].should.have.property('name');
@@ -73,7 +76,7 @@ describe('/testcases', function () {
             });
     });
 
-    it('PUT /testcases respond with JSON', function (done) {
+    it('PUT /testcases respond with JSON', function(done) {
         this.timeout(35000);
         request(server.app)
             .put('/api/v1/testcases/' + entityId)
@@ -88,7 +91,7 @@ describe('/testcases', function () {
             })
             .expect(200)
             .expect('Content-Type', /json/)
-            .end(function (err, res) {
+            .end(function(err, res) {
                 res.body.should.have.property('parentId', null);
                 res.body.should.have.property('prerequisites', 'Prerequisites 1 edited');
                 res.body.should.have.property('name', 'Testcase 1 edited');
@@ -101,14 +104,14 @@ describe('/testcases', function () {
     });
 
 
-    it('DELETE /testcases/:id respond with JSON', function (done) {
+    it('DELETE /testcases/:id respond with JSON', function(done) {
         this.timeout(35000);
         request(server.app)
             .delete('/api/v1/testcases/' + entityId)
             .set('Accept', 'application/json')
             .set('x-access-token', token)
             .expect(204)
-            .end(function (err, res) {
+            .end(function(err, res) {
                 res.body.should.not.have.property('parentId');
                 res.body.should.not.have.property('prerequisites');
                 res.body.should.not.have.property('name');
@@ -123,7 +126,7 @@ describe('/testcases', function () {
 });
 
 function loginUser() {
-    return function (done) {
+    return function(done) {
         request(server.app)
             .post('/login')
             .send({ username: 'arvind@myapp.com', password: 'pass123' })
