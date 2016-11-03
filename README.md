@@ -5,16 +5,28 @@ Test Storage - test case management system.
 
 Currently in early alpha development and not available via npm. 
 
-## Installation
+## Installation (Production)
 
-```sh
+```bash
+$ npm install -g test-storage --production
+```
+
+Run
+
+```bash
+$ npm start
+```
+
+## Installation (Development)
+
+```bash
 $ npm install -g test-storage
 ```
 
-Install dependencies:
+Tests
 
 ```bash
-$ npm install
+$ npm test
 ```
 
 Run
