@@ -25,7 +25,7 @@ $ npm install -g test-storage
 
 Tests
 
-```bash
+```
 $ npm test
 ```
 
