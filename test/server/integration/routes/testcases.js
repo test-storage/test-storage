@@ -1,28 +1,28 @@
 var request = require('supertest');
 var should = require('should');
 
-var app = require('../../app.js');
+var app = require('../../../../app.js');
 var server = request.agent(app);
 var token = "";
 
 var entityId = "";
 
-describe('/testsuites', function() {
+describe('/testcases', function() {
 
     it('login', loginUser());
 
-    it('POST /testsuites respond with status 201 and JSON', function(done) {
+    it('POST /testcases respond with status 201 and JSON', function(done) {
         this.timeout(35000);
         request(server.app)
-            .post('/api/v1/testsuites')
+            .post('/api/v1/testcases')
             .set('x-access-token', token)
             .send({
-                "parentId": 0,
-                "prerequisites": "Prerequisites 1",
-                "name": "Test suite 1",
-                "description": "Test suite description",
-                "environment": "environment 1",
-                "testcases": [5656567, 6978987, 67667]
+                'parentId': null,
+                'prerequisites': 'Prerequisites 1',
+                'name': 'Testcase 1',
+                'description': 'Test case description',
+                'actual': 'actual 1',
+                'expected': 'expected 1'
             })
             .expect(201)
             .expect('Content-Type', /json/)
@@ -37,78 +37,77 @@ describe('/testsuites', function() {
             });
     });
 
-    it('GET /testsuites/:id respond with JSON', function(done) {
+    it('GET /testcases/:id respond with JSON', function(done) {
         this.timeout(35000);
         request(server.app)
-            .get('/api/v1/testsuites/' + entityId)
+            .get('/api/v1/testcases/' + entityId)
             .set('Accept', 'application/json')
             .set('x-access-token', token)
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function(err, res) {
-                res.body.should.have.property('parentId', 0);
+                res.body.should.have.property('parentId', null);
                 res.body.should.have.property('prerequisites', 'Prerequisites 1');
-                res.body.should.have.property('name', 'Test suite 1');
-                res.body.should.have.property('description', 'Test suite description');
-                res.body.should.have.property('environment', 'environment 1');
-                res.body.should.have.property('testcases', [5656567, 6978987, 67667]);
+                res.body.should.have.property('name', 'Testcase 1');
+                res.body.should.have.property('description', 'Test case description');
+                res.body.should.have.property('actual', 'actual 1');
+                res.body.should.have.property('expected', 'expected 1');
                 if (err) return done(err);
                 done()
             });
     });
 
-    it('GET /testsuites respond with JSON', function(done) {
-        this.timeout(35000);
+    it('GET /testcases respond with JSON', function(done) {
         request(server.app)
-            .get('/api/v1/testsuites')
+            .get('/api/v1/testcases')
             .set('Accept', 'application/json')
             .set('x-access-token', token)
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function(err, res) {
-                // res.body[0].should.have.property('parentId');
+                res.body[0].should.have.property('parentId');
                 res.body[0].should.have.property('prerequisites');
                 res.body[0].should.have.property('name');
                 res.body[0].should.have.property('description');
-                res.body[0].should.have.property('environment');
-                res.body[0].should.have.property('testcases');
+                res.body[0].should.have.property('actual');
+                res.body[0].should.have.property('expected');
                 if (err) return done(err);
                 done()
             });
     });
 
-    it('PUT /testsuites respond with JSON', function(done) {
+    it('PUT /testcases respond with JSON', function(done) {
         this.timeout(35000);
         request(server.app)
-            .put('/api/v1/testsuites/' + entityId)
+            .put('/api/v1/testcases/' + entityId)
             .set('x-access-token', token)
             .send({
-                'parentId': 5,
+                'parentId': null,
                 'prerequisites': 'Prerequisites 1 edited',
-                'name': 'Test suite 1 edited',
-                'description': 'Test suite description edited',
-                'environment': 'environment 1 edited',
-                'testcases': [333, 444, 555]
+                'name': 'Testcase 1 edited',
+                'description': 'Test case description edited',
+                'actual': 'actual 1 edited',
+                'expected': 'expected 1 edited'
             })
             .expect(200)
             .expect('Content-Type', /json/)
             .end(function(err, res) {
-                res.body.should.have.property('parentId', 5);
+                res.body.should.have.property('parentId', null);
                 res.body.should.have.property('prerequisites', 'Prerequisites 1 edited');
-                res.body.should.have.property('name', 'Test suite 1 edited');
-                res.body.should.have.property('description', 'Test suite description edited');
-                res.body.should.have.property('environment', 'environment 1 edited');
-                res.body.should.have.property('testcases', [333, 444, 555]);
+                res.body.should.have.property('name', 'Testcase 1 edited');
+                res.body.should.have.property('description', 'Test case description edited');
+                res.body.should.have.property('actual', 'actual 1 edited');
+                res.body.should.have.property('expected', 'expected 1 edited');
                 if (err) return done(err);
                 done()
             });
     });
 
 
-    it('DELETE /testsuites/:id respond with JSON', function(done) {
+    it('DELETE /testcases/:id respond with JSON', function(done) {
         this.timeout(35000);
         request(server.app)
-            .delete('/api/v1/testsuites/' + entityId)
+            .delete('/api/v1/testcases/' + entityId)
             .set('Accept', 'application/json')
             .set('x-access-token', token)
             .expect(204)
@@ -117,8 +116,8 @@ describe('/testsuites', function() {
                 res.body.should.not.have.property('prerequisites');
                 res.body.should.not.have.property('name');
                 res.body.should.not.have.property('description');
-                res.body.should.not.have.property('environment');
-                res.body.should.not.have.property('testcases');
+                res.body.should.not.have.property('actual');
+                res.body.should.not.have.property('expected');
                 if (err) return done(err);
                 done()
             });
