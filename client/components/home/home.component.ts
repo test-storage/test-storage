@@ -11,8 +11,14 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
     styleUrls: ['home.component.css']
 })
 export class HomeComponent implements OnInit {
+    public sidebarCollapsed = true;
+    constructor(private authenticationService: AuthenticationService) { }
 
-    constructor(private authenticationService: AuthenticationService) {}
+    ngOnInit() {
 
-    ngOnInit() { }
+     }
+
+    onNotify(sidebarCollapsed: boolean): void {
+        this.sidebarCollapsed = sidebarCollapsed;
+    }
 }
