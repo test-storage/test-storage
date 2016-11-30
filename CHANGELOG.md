@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.3.40 (November 30, 2016)
+  - Main sidebar added, header improved, e2e test for login added: ([@pumano](https://github.com/pumano) in [#20](https://github.com/pumano/test-storage/pull/20))
+
 ## 0.2.38 (October 31, 2016)
   - Login Auth + Basic routing and Basic layout: ([@pumano](https://github.com/pumano) in [#13](https://github.com/pumano/test-storage/pull/13))
 
