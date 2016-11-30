@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderNavigationComponent } from './components/header-navigation.component';
 import { TestcaseListComponent } from './components/testcase-list.component';
 import { UserListComponent } from './components/user-list.component';
@@ -27,6 +28,7 @@ import { UserListComponent } from './components/user-list.component';
         AppComponent,
         LoginComponent,
         HomeComponent,
+        SidebarComponent,
         HeaderNavigationComponent,
         TestcaseListComponent,
         UserListComponent

@@ -1,5 +1,5 @@
 {
   "globalDependencies": {
-    "angular-protractor": "registry:dt/angular-protractor#1.5.0+20160914235635"
+    "angular-protractor": "registry:dt/angular-protractor#1.5.0+20161101133457"
   }
 }

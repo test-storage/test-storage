@@ -1,3 +1,33 @@
-.glyphicon.glyphicon-bell, .glyphicon.glyphicon-cog {
+.navbar {
+    border-radius: 0px; 
+}
+
+.glyphicon.glyphicon-bell, .glyphicon.glyphicon-cog, .fa-bell {
     font-size: 20px;
+}
+.fa-bars {
+    font-size: 26px;
+    position: relative;
+    right: 30px;
+}
+
+.icon-info {
+    position: relative;
+}
+.navi i {
+    font-size: 20px;
+}
+.label.label-primary {
+    border-radius: 50%;
+    font-size: 9px;
+    left:23px;
+    position: absolute;
+    top: 10px;
+}
+
+.icon-info .label {
+    border: 2px solid #ffffff;
+    font-weight: 500;
+    padding: 3px 5px;
+    text-align: center;
 }

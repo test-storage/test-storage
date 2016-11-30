@@ -1,20 +1,32 @@
 ## Test Storage
-[![Build Status](https://travis-ci.org/pumano/test-storage.svg?branch=master)](https://travis-ci.org/pumano/test-storage) [![Build status](https://ci.appveyor.com/api/projects/status/os1k40f5ompu8sie?svg=true)](https://ci.appveyor.com/project/pumano/test-storage) [![NSP Status](https://nodesecurity.io/orgs/test-storage/projects/d069f441-5513-4289-99ef-95901d6569a4/badge)](https://nodesecurity.io/orgs/test-storage/projects/d069f441-5513-4289-99ef-95901d6569a4)
+[![Build Status](https://travis-ci.org/pumano/test-storage.svg?branch=master)](https://travis-ci.org/pumano/test-storage) [![Build status](https://ci.appveyor.com/api/projects/status/os1k40f5ompu8sie?svg=true)](https://ci.appveyor.com/project/pumano/test-storage) [![NSP Status](https://nodesecurity.io/orgs/test-storage/projects/d069f441-5513-4289-99ef-95901d6569a4/badge)](https://nodesecurity.io/orgs/test-storage/projects/d069f441-5513-4289-99ef-95901d6569a4) [![Telegram](https://img.shields.io/badge/telegram-join%20chat-blue.svg?style=flat)](https://telegram.me/joinchat/Dz6MkggusIGwAUb4Qg1hwQ)
 
 Test Storage - test case management system.
 
-Currently in early alpha development and not available via npm. 
+Currently in early alpha development and **currently not available via npm**. 
 
-## Installation
+## Installation (Production)
 
-```sh
+```bash
+$ npm install -g test-storage --production
+```
+
+Run
+
+```bash
+$ npm start
+```
+
+## Installation (Development)
+
+```bash
 $ npm install -g test-storage
 ```
 
-Install dependencies:
+Tests
 
-```bash
-$ npm install
+```
+$ npm test
 ```
 
 Run
