@@ -1,13 +1,14 @@
-<ts-header-nav></ts-header-nav>
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <ts-sidebar></ts-sidebar>
-        </div>
+<ts-sidebar></ts-sidebar>
 
-        <div class="col-md-9">
-            <router-outlet></router-outlet>
-        </div>
+<div id="section" style="margin-left: 140px; ">
+    
+    <ts-header-nav></ts-header-nav>
+
+    <div id="content" style="min-height: 916px; margin: 20px; ">
+
+        <router-outlet>
+            <h2>Content will be here</h2>
+            <p>Some content</p>
+        </router-outlet>
     </div>
 </div>
-

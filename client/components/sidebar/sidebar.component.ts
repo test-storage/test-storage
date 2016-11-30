@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     moduleId: module.id,
     selector: 'ts-sidebar',
-    templateUrl: 'sidebar.component.html'
+    templateUrl: 'sidebar.component.html',
+    styleUrls: ['sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
     constructor() { }

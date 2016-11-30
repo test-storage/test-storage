@@ -7,7 +7,8 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 @Component({
     moduleId: module.id,
     selector: 'ts-home',
-    templateUrl: 'home.component.html'
+    templateUrl: 'home.component.html',
+    styleUrls: []
 })
 export class HomeComponent implements OnInit {
 
