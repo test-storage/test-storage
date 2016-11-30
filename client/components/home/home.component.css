@@ -1,0 +1,10 @@
+#content-wrapper {
+    position: relative;
+    bottom: 20px;
+    border: 1px solid #CCC;
+    background-color: #CCC; 
+}
+
+#content {
+    background-color: #FFF;
+}

@@ -6,6 +6,18 @@
   color: #FFF;
 }
 
+.navbar-fixed-left .navbar-brand {
+  width: 140px;
+  height: 52px;
+  /*border-bottom: 1px solid #525252; */
+  border-bottom: 1px solid #e7e7e7; 
+  position: relative;
+  bottom: 1px;
+  right: 1px;
+  background-color: #EAEAEA !important;
+  color: #333;
+}
+
 .navbar-fixed-left a {
   color: #FFF;
 }
