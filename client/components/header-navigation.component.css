@@ -6,7 +6,7 @@
     font-size: 20px;
 }
 .fa-bars {
-    font-size: 26px;
+    font-size: 20px; /* 26 is better */
     position: relative;
     right: 30px;
 }
