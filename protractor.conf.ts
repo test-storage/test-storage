@@ -1,10 +1,10 @@
-import {Config, browser} from 'protractor';
+import { Config, browser } from 'protractor';
 
 export let config: Config = {
   framework: 'mocha',
   mochaOpts: {
     reporter: "spec",
-    timeout: 75000
+    timeout: 500000
   },
   capabilities: {
     browserName: 'chrome'
@@ -19,8 +19,8 @@ export let config: Config = {
   // You could set no globals to true to avoid jQuery '$' and protractor '$'
   // collisions on the global namespace.
   noGlobals: true,
-  useAllAngular2AppRoots: true,
   rootElement: 'ts-root',
   allScriptsTimeout: 5000000,
+  useAllAngular2AppRoots: true
 
 };
