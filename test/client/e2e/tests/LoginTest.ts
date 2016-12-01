@@ -11,7 +11,7 @@ describe('Test Storage loginpage', async function() {
     let loginPage = new LoginPage();
     let homePage = new HomePage();
 
-    browser.get('http://localhost:3000');
+    browser.get('http://localhost:3000', 30000);
     browser.waitForAngular();
     loginPage.typeLogin('arwind@myapp.com');
     loginPage.typePassword('pass123');

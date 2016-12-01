@@ -1,14 +1,16 @@
-<ts-sidebar></ts-sidebar>
+<ts-sidebar [sidebarCollapsed]="sidebarCollapsed"></ts-sidebar>
 
-<div id="section" style="margin-left: 140px; ">
+<div id="section" class="sidebar-full" [class.sidebar-collapsed]="sidebarCollapsed">
     
-    <ts-header-nav></ts-header-nav>
+<ts-header-nav (notify)="onNotify($event)"></ts-header-nav>
 
-    <div id="content" style="min-height: 916px; margin: 20px; ">
+<section id="content-wrapper">
+    <div id="content" style="min-height: 916px;">
 
         <router-outlet>
             <h2>Content will be here</h2>
             <p>Some content</p>
         </router-outlet>
     </div>
+</section>
 </div>
