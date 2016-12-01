@@ -12,7 +12,7 @@ export let config: Config = {
   // Spec patterns are relative to the location of the spec file. They may
   // include glob patterns.
   suites: {
-    all: 'test/client/e2e/tests/**/*.js'
+    all: 'client/e2e/tests/**/*.js'
   },
   seleniumAddress: 'http://localhost:4444/wd/hub',
 
