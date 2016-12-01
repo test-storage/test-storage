@@ -6,6 +6,7 @@ before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start" 
   - 'node_modules/protractor/bin/webdriver-manager update &'
+  - sleep 10
   - 'node_modules/protractor/bin/webdriver-manager start 2>&1 &'  
   - sleep 3
 install:
