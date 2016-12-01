@@ -8,9 +8,8 @@ before_script:
   - 'node_modules/protractor/bin/webdriver-manager update &'
   - sleep 10
   - 'node_modules/protractor/bin/webdriver-manager start 2>&1 &'  
-  - sleep 3
+  - sleep 5
 install:
-  - npm install yarn
-  - ./node_modules/.bin/yarn install
+  yarn install
 services:
   - mongodb
