@@ -12,6 +12,7 @@ before_script:
   - 'node_modules/protractor/bin/webdriver-manager start 2>&1 &'  
   - sleep 5
 install:
-  - npm install
+  - npm install yarn
+  - ./node_modules/.bin/yarn install
 services:
   - mongodb

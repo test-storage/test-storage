@@ -7,7 +7,7 @@ export let config: Config = {
     timeout: 500000
   },
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'firefox'
   },
   // Spec patterns are relative to the location of the spec file. They may
   // include glob patterns.
