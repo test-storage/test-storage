@@ -11,6 +11,7 @@
     "starttest": "nodemon app.js --exitcrash",
     "forever": "concurrently \"tsc -w -p ./client\" \"forever start -c nodemon app.js --exitcrash\" ",
     "version": "versiony package.json --patch",
+    "testserver": "./node_modules/.bin/mocha ./test/server/ --recursive --check-leaks",
     "test": "./node_modules/.bin/mocha ./test/server/ --recursive --check-leaks & npm run protractor",
     "webdriverupdate": "./node_modules/.bin/webdriver-manager update",
     "webdriverstart": "./node_modules/.bin/webdriver-manager start",
