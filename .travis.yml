@@ -10,6 +10,6 @@ before_script:
   - 'node_modules/protractor/bin/webdriver-manager start 2>&1 &'  
   - sleep 5
 install:
-  yarn install
+  - npm install
 services:
   - mongodb
