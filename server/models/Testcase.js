@@ -3,6 +3,9 @@ var TestcaseSchema = new mongoose.Schema({
   parentId: {
     type: Number
   },
+  order: {
+    type: Number
+  },
   name: {
     type: String,
     required: true

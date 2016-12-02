@@ -19,6 +19,9 @@ var groups = {
     if (limitValidator.isExist(req)) {
       limitValidator.isInt(req, res);
       limit['limit'] = limitValidator.sanitize(req);
+    } else {
+      // default limit
+      limit['limit'] = 25;
     }
 
     // check 'fields' param
