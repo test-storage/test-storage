@@ -18,6 +18,7 @@ describe('/testcases', function() {
             .set('x-access-token', token)
             .send({
                 'parentId': null,
+                'order': 2,
                 'prerequisites': 'Prerequisites 1',
                 'name': 'Testcase 1',
                 'description': 'Test case description',
@@ -47,6 +48,7 @@ describe('/testcases', function() {
             .expect(200)
             .end(function(err, res) {
                 res.body.should.have.property('parentId', null);
+                res.body.should.have.property('order', 2);
                 res.body.should.have.property('prerequisites', 'Prerequisites 1');
                 res.body.should.have.property('name', 'Testcase 1');
                 res.body.should.have.property('description', 'Test case description');
@@ -66,6 +68,7 @@ describe('/testcases', function() {
             .expect(200)
             .end(function(err, res) {
                 res.body[0].should.have.property('parentId');
+                res.body[0].should.have.property('order');
                 res.body[0].should.have.property('prerequisites');
                 res.body[0].should.have.property('name');
                 res.body[0].should.have.property('description');
@@ -83,6 +86,7 @@ describe('/testcases', function() {
             .set('x-access-token', token)
             .send({
                 'parentId': null,
+                'order': 2,
                 'prerequisites': 'Prerequisites 1 edited',
                 'name': 'Testcase 1 edited',
                 'description': 'Test case description edited',
@@ -93,6 +97,7 @@ describe('/testcases', function() {
             .expect('Content-Type', /json/)
             .end(function(err, res) {
                 res.body.should.have.property('parentId', null);
+                res.body.should.have.property('order', 2);
                 res.body.should.have.property('prerequisites', 'Prerequisites 1 edited');
                 res.body.should.have.property('name', 'Testcase 1 edited');
                 res.body.should.have.property('description', 'Test case description edited');
@@ -113,6 +118,7 @@ describe('/testcases', function() {
             .expect(204)
             .end(function(err, res) {
                 res.body.should.not.have.property('parentId');
+                res.body.should.not.have.property('order');
                 res.body.should.not.have.property('prerequisites');
                 res.body.should.not.have.property('name');
                 res.body.should.not.have.property('description');
