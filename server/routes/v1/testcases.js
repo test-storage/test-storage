@@ -116,7 +116,6 @@ var testcases = {
       testcase.name = req.body.name;
       testcase.description = req.body.description;
       testcase.prerequisites = req.body.prerequisites;
-      testcase.actual = req.body.actual;
       testcase.expected = req.body.expected;
       testcase.updated = Date.now();
 

@@ -16,9 +16,8 @@ var TestcaseSchema = new mongoose.Schema({
   prerequisites: {
     type: String
   },
-  steps: Object,
-  actual: String,
-  expected: String,
+  steps: [String],
+  expected: [String],
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: {

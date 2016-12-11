@@ -22,8 +22,8 @@ describe('/testcases', function() {
                 'prerequisites': 'Prerequisites 1',
                 'name': 'Testcase 1',
                 'description': 'Test case description',
-                'actual': 'actual 1',
-                'expected': 'expected 1'
+                'steps': ['Check that', 'Check this'],
+                'expected': ['Expected that', 'Expected this']
             })
             .expect(201)
             .expect('Content-Type', /json/)
@@ -52,8 +52,8 @@ describe('/testcases', function() {
                 res.body.should.have.property('prerequisites', 'Prerequisites 1');
                 res.body.should.have.property('name', 'Testcase 1');
                 res.body.should.have.property('description', 'Test case description');
-                res.body.should.have.property('actual', 'actual 1');
-                res.body.should.have.property('expected', 'expected 1');
+                res.body.should.have.property('steps');
+                res.body.should.have.property('expected');
                 if (err) return done(err);
                 done()
             });
@@ -72,7 +72,6 @@ describe('/testcases', function() {
                 res.body[0].should.have.property('prerequisites');
                 res.body[0].should.have.property('name');
                 res.body[0].should.have.property('description');
-                res.body[0].should.have.property('actual');
                 res.body[0].should.have.property('expected');
                 if (err) return done(err);
                 done()
@@ -101,8 +100,8 @@ describe('/testcases', function() {
                 res.body.should.have.property('prerequisites', 'Prerequisites 1 edited');
                 res.body.should.have.property('name', 'Testcase 1 edited');
                 res.body.should.have.property('description', 'Test case description edited');
-                res.body.should.have.property('actual', 'actual 1 edited');
-                res.body.should.have.property('expected', 'expected 1 edited');
+                res.body.should.have.property('steps');
+                res.body.should.have.property('expected');
                 if (err) return done(err);
                 done()
             });
@@ -122,7 +121,7 @@ describe('/testcases', function() {
                 res.body.should.not.have.property('prerequisites');
                 res.body.should.not.have.property('name');
                 res.body.should.not.have.property('description');
-                res.body.should.not.have.property('actual');
+                res.body.should.not.have.property('steps');
                 res.body.should.not.have.property('expected');
                 if (err) return done(err);
                 done()
