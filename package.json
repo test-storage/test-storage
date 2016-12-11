@@ -79,6 +79,7 @@
     "chai-as-promised": "^6.0.0",
     "codelyzer": "^2.0.0-beta.3",
     "concurrently": "^3.1.0",
+    "database-updates": "^1.2.0",
     "factory-girl": "^4.0.0-beta.7",
     "faker": "^3.1.0",
     "forever": "^0.15.3",
