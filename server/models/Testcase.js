@@ -3,6 +3,9 @@ var TestcaseSchema = new mongoose.Schema({
   parentId: {
     type: Number
   },
+  priority: {
+    type: Number
+  },
   order: {
     type: Number
   },
@@ -16,8 +19,8 @@ var TestcaseSchema = new mongoose.Schema({
   prerequisites: {
     type: String
   },
-  steps: [String],
-  expected: [String],
+  steps: Array,
+  expected: Array,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: {
@@ -32,7 +35,7 @@ var TestcaseSchema = new mongoose.Schema({
   isAutomated: {
     type: Boolean
   },
-  version: {
+  estimate: {
     type: Number
   },
   childId: {
