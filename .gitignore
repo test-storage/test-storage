@@ -10,6 +10,7 @@ dist/
 
 # Ignore generated js and .map files after typescript transpiling 
 client/**/*.js
+test/client/**/*.js
 *.map
 
 # Ignore npm debug log
