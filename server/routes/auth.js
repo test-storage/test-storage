@@ -41,9 +41,9 @@ var auth = {
   validate: function(username, password) {
     // spoofing the DB response for simplicity
     var dbUserObj = { // spoofing a userobject from the DB. 
-      name: 'arvind',
+      name: 'admin',
       role: 'admin',
-      username: 'arvind@myapp.com'
+      username: 'admin@test-storage.local'
     };
  
     return dbUserObj;
@@ -52,9 +52,9 @@ var auth = {
   validateUser: function(username) {
     // spoofing the DB response for simplicity
     var dbUserObj = { // spoofing a userobject from the DB. 
-      name: 'arvind',
+      name: 'admin',
       role: 'admin',
-      username: 'arvind@myapp.com'
+      username: 'admin@test-storage.local'
     };
  
     return dbUserObj;

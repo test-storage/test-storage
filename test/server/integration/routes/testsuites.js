@@ -130,7 +130,7 @@ function loginUser() {
     return function(done) {
         request(server.app)
             .post('/login')
-            .send({ username: 'arvind@myapp.com', password: 'pass123' })
+            .send({ username: 'admin@test-storage.local', password: 'pass123' })
             .end(onResponse);
 
         function onResponse(err, res) {
