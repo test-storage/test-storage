@@ -13,7 +13,7 @@ describe('Test Storage loginpage', async function() {
 
     browser.get('http://localhost:3000', 30000);
     browser.waitForAngular();
-    loginPage.typeLogin('arwind@myapp.com');
+    loginPage.typeLogin('admin@test-storage.local');
     loginPage.typePassword('pass123');
     loginPage.submitLoginButton();
         

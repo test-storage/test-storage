@@ -18,11 +18,14 @@ describe('/testcases', function() {
             .set('x-access-token', token)
             .send({
                 'parentId': null,
+                'priority': 1,
+                'order': 2,
                 'prerequisites': 'Prerequisites 1',
                 'name': 'Testcase 1',
                 'description': 'Test case description',
-                'actual': 'actual 1',
-                'expected': 'expected 1'
+                'steps': ['Check that', 'Check this'],
+                'expected': ['Expected that', 'Expected this'],
+                'estimate': 10
             })
             .expect(201)
             .expect('Content-Type', /json/)
@@ -47,11 +50,14 @@ describe('/testcases', function() {
             .expect(200)
             .end(function(err, res) {
                 res.body.should.have.property('parentId', null);
+                res.body.should.have.property('priority', 1);
+                res.body.should.have.property('order', 2);
                 res.body.should.have.property('prerequisites', 'Prerequisites 1');
                 res.body.should.have.property('name', 'Testcase 1');
                 res.body.should.have.property('description', 'Test case description');
-                res.body.should.have.property('actual', 'actual 1');
-                res.body.should.have.property('expected', 'expected 1');
+                res.body.should.have.property('steps', ['Check that', 'Check this']);
+                res.body.should.have.property('expected', ['Expected that', 'Expected this']);
+                res.body.should.have.property('estimate', 10);
                 if (err) return done(err);
                 done()
             });
@@ -66,11 +72,14 @@ describe('/testcases', function() {
             .expect(200)
             .end(function(err, res) {
                 res.body[0].should.have.property('parentId');
+                res.body[0].should.have.property('priority');
+                res.body[0].should.have.property('order');
                 res.body[0].should.have.property('prerequisites');
                 res.body[0].should.have.property('name');
                 res.body[0].should.have.property('description');
-                res.body[0].should.have.property('actual');
+                res.body[0].should.have.property('steps');
                 res.body[0].should.have.property('expected');
+                res.body[0].should.have.property('estimate');
                 if (err) return done(err);
                 done()
             });
@@ -82,22 +91,28 @@ describe('/testcases', function() {
             .put('/api/v1/testcases/' + entityId)
             .set('x-access-token', token)
             .send({
-                'parentId': null,
+                'parentId': 1,
+                'priority': 2,
+                'order': 3,
                 'prerequisites': 'Prerequisites 1 edited',
                 'name': 'Testcase 1 edited',
                 'description': 'Test case description edited',
-                'actual': 'actual 1 edited',
-                'expected': 'expected 1 edited'
+                'steps': ['Check that edited', 'Check this edited'],
+                'expected': ['Expected that edited', 'Expected this edited'],
+                'estimate': 15
             })
             .expect(200)
             .expect('Content-Type', /json/)
             .end(function(err, res) {
-                res.body.should.have.property('parentId', null);
+                res.body.should.have.property('parentId', 1);
+                res.body.should.have.property('priority', 2);
+                res.body.should.have.property('order', 3);
                 res.body.should.have.property('prerequisites', 'Prerequisites 1 edited');
                 res.body.should.have.property('name', 'Testcase 1 edited');
                 res.body.should.have.property('description', 'Test case description edited');
-                res.body.should.have.property('actual', 'actual 1 edited');
-                res.body.should.have.property('expected', 'expected 1 edited');
+                res.body.should.have.property('steps', ['Check that edited', 'Check this edited']);
+                res.body.should.have.property('expected', ['Expected that edited', 'Expected this edited']);
+                res.body.should.have.property('estimate', 15);
                 if (err) return done(err);
                 done()
             });
@@ -113,10 +128,12 @@ describe('/testcases', function() {
             .expect(204)
             .end(function(err, res) {
                 res.body.should.not.have.property('parentId');
+                res.body.should.not.have.property('priority');
+                res.body.should.not.have.property('order');
                 res.body.should.not.have.property('prerequisites');
                 res.body.should.not.have.property('name');
                 res.body.should.not.have.property('description');
-                res.body.should.not.have.property('actual');
+                res.body.should.not.have.property('steps');
                 res.body.should.not.have.property('expected');
                 if (err) return done(err);
                 done()
@@ -129,7 +146,7 @@ function loginUser() {
     return function(done) {
         request(server.app)
             .post('/login')
-            .send({ username: 'arvind@myapp.com', password: 'pass123' })
+            .send({ username: 'admin@test-storage.local', password: 'pass123' })
             .end(onResponse);
 
         function onResponse(err, res) {

@@ -7,7 +7,7 @@ export let config: Config = {
     timeout: 500000
   },
   capabilities: {
-    browserName: 'firefox'
+    browserName: 'firefox' // note: chrome is crashed in Travis CI
   },
   // Spec patterns are relative to the location of the spec file. They may
   // include glob patterns.

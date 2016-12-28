@@ -6,6 +6,7 @@ var auth = require('./auth.js');
 var projects = require('./v1/projects.js');
 var testcases = require('./v1/testcases.js');
 var testsuites = require('./v1/testsuites.js');
+var testplans = require('./v1/testplans.js');
 var groups = require('./v1/groups.js');
 var users = require('./v1/users.js');
 
@@ -44,6 +45,12 @@ router.get('/api/v1/testsuites/:id', testsuites.getOne);
 router.post('/api/v1/testsuites/', testsuites.create);
 router.put('/api/v1/testsuites/:id', testsuites.update);
 router.delete('/api/v1/testsuites/:id', testsuites.delete);
+
+router.get('/api/v1/testplans', testplans.getAll);
+router.get('/api/v1/testplans/:id', testplans.getOne);
+router.post('/api/v1/testplans/', testplans.create);
+router.put('/api/v1/testplans/:id', testplans.update);
+router.delete('/api/v1/testplans/:id', testplans.delete);
 
 router.get('/api/v1/groups', groups.getAll);
 router.get('/api/v1/groups/:id', groups.getOne);
