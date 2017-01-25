@@ -7,13 +7,12 @@ var bodyParser = require('body-parser');
 var errorhandler = require('errorhandler');
 var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
-// TODO implement methodOverride if it will be needed  
+// TODO implement methodOverride if it will be needed
 //var methodOverride = require('method-override')
-var Config = require('./config');
-var conf = new Config();
+var config = require('config');
 var app = express();
 
-if ('development' == app.get('env')) {
+if ('development' == app.get('env') || 'test' == app.get('env')) {
   app.use(express.static(path.join(__dirname, '/node_modules')));
   app.use(express.static(path.join(__dirname, '/tools')));
   // only use in development (stack traces/errors and etc)
@@ -21,6 +20,8 @@ if ('development' == app.get('env')) {
 
   //app.use(express.static(__dirname, '/node_modules'));
   //app.use(express.static(__dirname, '/tools'));
+  console.log("NODE_ENV: " + app.get('env'));
+  console.log("mongo config address: " + config.get('db.mongodb'));
 }
 
 // Database
@@ -29,8 +30,8 @@ if ('development' == app.get('env')) {
 mongoose.Promise = global.Promise;
 
 // connect to MongoDB
-mongoose.connect('mongodb://localhost/test-storage') // autogen needed for security? (need investigation)
-  .then(() =>  console.log('MongoDB connection successful'))
+mongoose.connect(config.get('db.mongodb')) // autogen needed for security? (need investigation)
+  .then(() => console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
 
 
@@ -43,7 +44,7 @@ app.use(favicon(__dirname + '/public/assets/favicon.ico')); // favicon
 
 app.disable('x-powered-by'); // security
 
-app.all('/*', function(req, res, next) {
+app.all('/*', function (req, res, next) {
   // CORS headers
   res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -58,23 +59,23 @@ app.all('/*', function(req, res, next) {
 
 // Auth Middleware - This will check if the token is valid
 // Only the requests that start with /api/v1/* will be checked for the token.
-// Any URL's that do not follow the below pattern should be avoided unless you 
+// Any URL's that do not follow the below pattern should be avoided unless you
 // are sure that authentication is not needed
 app.all('/api/v1/*', [require('./server/middlewares/validateRequest')]);
- 
+
 app.use('/', require('./server/routes'));
- 
+
 // If no route is matched by now, it must be a 404
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
- 
+
 // Start the server
 app.set('port', process.env.PORT || 3000);
- 
-var server = app.listen(app.get('port'), function() {
+
+var server = app.listen(app.get('port'), function () {
   console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
 });
 
