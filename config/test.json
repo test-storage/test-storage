@@ -1,0 +1,14 @@
+{
+    "env": "test",
+    "db": {
+        "mongodb": "mongodb://localhost/test-storage-test"
+    },
+    "errorHandlerOptions": {
+        "dumpExceptions": true,
+        "showStack": true
+    },
+    "logger": {
+        "api": "logs/api.log",
+        "exception": "logs/exceptions.log"
+    }
+}

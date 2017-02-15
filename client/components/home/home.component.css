@@ -1,0 +1,25 @@
+
+#section {
+    z-index: 1;
+}
+
+.sidebar-full{
+    padding-left: 140px; 
+}
+
+.sidebar-collapsed {
+    padding-left: 70px !important;
+}
+
+#content-wrapper {
+    position: relative;
+    bottom: 20px;
+    border: 1px solid transparent;
+    background-color: #EAEAEA; 
+}
+
+#content {
+    background-color: #FFF;
+    margin: 20px;
+    padding: 1px 20px !important;
+}

@@ -1,19 +1,21 @@
 var mongoose = require('mongoose');
-var User = require('../../models/User.js');
+var Testplan = require('../../models/Testplan.js');
 
 var util = require('util');
 var limitValidator = require('../../middlewares/validateLimitQueryParam');
 var fieldsValidator = require('../../middlewares/validateFieldsQueryParam');
 var pathValidator = require('../../middlewares/validateIdPathParam');
 
-var users = {
+var testplans = {
 
   /* 
-   * Get all users 
+   * Get all testplans / GET 
    * 
    */
+
   getAll: function (req, res) {
 
+    var query = {};
     // check 'limit' param
     var limit = {};
     if (limitValidator.isExist(req)) {
@@ -30,18 +32,19 @@ var users = {
       fields = fieldsValidator.parseFields(req)
     }
 
-    User.find({}, fields, limit, function (err, users) {
+    Testplan.find(query, fields, limit, function (err, testplans) {
       if (err) return err; // TODO check proper error handling
-      res.json(users);
+      res.json(testplans);
     });
   },
 
   /* 
-   * Get single user 
+   * Get single testplan / GET :id
    * 
    */
 
   getOne: function (req, res) {
+
 
     // check 'fields' param
     var fields = {};
@@ -53,52 +56,54 @@ var users = {
     var pathParam = pathValidator.isMongoId(req, res);
     // TODO add sanitizers
 
-    User.findById(req.params.id, function (err, user) {
+    Testplan.findById(req.params.id, fields, function (err, testplan) {
       if (err) return err; // TODO check proper error handling
-      res.json(user);
+      res.json(testplan);
     });
   },
 
   /* 
-   * Create user 
+   * Create testplan / POST
    * 
    */
 
   create: function (req, res) {
-    User.create(req.body, function (err, user) {
+      // TODO testplan.createdBy = currentUser;
+    Testplan.create(req.body, function (err, testplan) {
       if (err) return err;
       res.status(201).
-        location('/api/v1/users/' + user._id).
-        json(user);
+        location('/api/v1/testplans/' + testplan._id).
+        json(testplan);
     });
   },
 
   /* 
-   * Update user 
+   * Update testplan / PUT
    * 
    */
 
   update: function (req, res) {
     // TODO need security check (user input) for update
-    User.findById(req.params.id, function (err, user) {
+    Testplan.findById(req.params.id, function (err, testplan) {
 
-      user.firstName = req.body.firstName;
-      user.lastName = req.body.lastName;
-      user.email = req.body.email;
-      user.password = req.body.password;
-      user.title = req.body.title;
-      user.groups = req.body.groups;
-      user.updated = Date.now();
+      testplan.name = req.body.name;
+      testplan.description = req.body.description;
+      testplan.builds = req.body.builds;
+   //   testplan.configurations = req.body.configurations;
+      testplan.environments = req.body.environments;
+      testplan.testruns = req.body.testruns;
+      testplan.updated = Date.now();
+      // TODO testplan.updatedBy = currentUser;
 
-      user.save(function (err, user, count) {
+      testplan.save(function (err, testplan, count) {
         if (err) return err; // TODO check proper error handling
-        res.json(user);
+        res.json(testplan);
       });
     });
   },
 
   /* 
-   * delete user 
+   * delete testplan 
    * 
    */
 
@@ -106,11 +111,11 @@ var users = {
     // check :id param
     var pathParam = pathValidator.isMongoId(req, res);
 
-    User.findByIdAndRemove(req.params.id, function (err, user) {
+    Testplan.findByIdAndRemove(req.params.id, function (err, testplan) {
       if (err) return err;
       res.status(204).json(true);
     });
   }
 };
 
-module.exports = users;
+module.exports = testplans;

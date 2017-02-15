@@ -19,8 +19,8 @@ var testcases = {
     if (limitValidator.isExist(req)) {
       limitValidator.isInt(req, res);
       limit['limit'] = limitValidator.sanitize(req);
-      console.log("limit:");
-      console.log(limit);
+    } else {
+      limit['limit'] = 25;
     }
 
     // check 'fields' param
@@ -112,11 +112,14 @@ var testcases = {
 
     Testcase.findById(req.params.id, function (err, testcase) {
       testcase.parentId = req.body.parentId;
+      testcase.priority = req.body.priority;
+      testcase.order = req.body.order;
       testcase.name = req.body.name;
       testcase.description = req.body.description;
       testcase.prerequisites = req.body.prerequisites;
-      testcase.actual = req.body.actual;
+      testcase.steps = req.body.steps;
       testcase.expected = req.body.expected;
+      testcase.estimate = req.body.estimate;
       testcase.updated = Date.now();
 
       testcase.save(function (err, testcase, count) {
