@@ -1,0 +1,14 @@
+{
+    "env": "production",
+    "db": {
+        "mongodb": "mongodb://localhost/test-storage"
+    },
+    "errorHandlerOptions": {
+        "dumpExceptions": false,
+        "showStack": false
+    },
+    "logger": {
+        "api": "logs/api.log",
+        "exception": "logs/exceptions.log"
+    }
+}
