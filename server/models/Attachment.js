@@ -1,13 +1,10 @@
 var mongoose = require('mongoose');
 var AttachmentSchema = new mongoose.Schema({
   id: {
-    type: Number,
-    required: true,
-    unique: true
+    type: Number
   },
   name: {
-    type: String,
-    required: true
+    type: String
   },
   description: String,
   modified: String,
@@ -15,8 +12,7 @@ var AttachmentSchema = new mongoose.Schema({
   mimeType: String,
   revision: String,
   path: {
-    type: String,
-    required: true
+    type: String
   },
   icon: String,
   created: { type: Date, required: true, default: Date.now },
