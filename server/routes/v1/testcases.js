@@ -119,6 +119,7 @@ var testcases = {
       testcase.prerequisites = req.body.prerequisites;
       testcase.steps = req.body.steps;
       testcase.expected = req.body.expected;
+      testcase.tags = req.body.tags;
       testcase.estimate = req.body.estimate;
       testcase.updated = Date.now();
 

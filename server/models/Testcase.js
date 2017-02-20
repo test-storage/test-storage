@@ -21,6 +21,7 @@ var TestcaseSchema = new mongoose.Schema({
   },
   steps: Array,
   expected: Array,
+  tags: Array,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: {
