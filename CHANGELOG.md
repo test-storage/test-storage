@@ -1,5 +1,11 @@
 # Change Log
 
+
+## 0.4.40 (March 1, 2017)
+- Moved to Angular 4.0.0-rc.1: ([@pumano](https://github.com/pumano) in [ece0ed4276e6939ce1818e30f4f4d5cfad6f2df9](https://github.com/pumano/test-storage/commit/ece0ed4276e6939ce1818e30f4f4d5cfad6f2df9))
+- Test plans added
+- Few changes in test-cases and other entities
+
 ## 0.3.40 (November 30, 2016)
   - Main sidebar added, header improved, e2e test for login added: ([@pumano](https://github.com/pumano) in [#20](https://github.com/pumano/test-storage/pull/20))
 

@@ -1,6 +1,6 @@
 {
   "name": "test-storage",
-  "version": "0.3.40",
+  "version": "0.4.40",
   "description": "Test Case Management System",
   "main": "app.js",
   "private": true,
