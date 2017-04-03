@@ -8,9 +8,9 @@ var pathValidator = require('../../middlewares/validateIdPathParam');
 
 var testcases = {
 
-  /* 
-   * Get all testcases 
-   * 
+  /*
+   * Get all testcases
+   *
    */
   getAll: function (req, res) {
 
@@ -32,14 +32,14 @@ var testcases = {
     Testcase.find({}, fields, limit, function (err, testcases) {
       if (err) return err; // TODO check proper error handling
       res.set('Content-Type', 'application/json')
-      .status(200)
-      .json(testcases);
+        .status(200)
+        .json(testcases);
     });
   },
 
-  /* 
-   * Get single testcase 
-   * 
+  /*
+   * Get single testcase
+   *
    */
 
   getOne: function (req, res) {
@@ -61,9 +61,9 @@ var testcases = {
     });
   },
 
-  /* 
-   * Create testcase 
-   * 
+  /*
+   * Create testcase
+   *
    */
 
   create: function (req, res) {
@@ -76,15 +76,15 @@ var testcases = {
     });
   },
 
-  /* 
-   * Update testcase 
-   * 
+  /*
+   * Update testcase
+   *
    */
 
   update: function (req, res) {
     // TODO need security check (user input) for update
 
-    // check body 
+    // check body
     req.checkBody({
       'name': {
         notEmpty: true,
@@ -92,13 +92,13 @@ var testcases = {
       },
       'description': {
         notEmpty: true,
-        errorMessage: 'Name required' // Error message for the parameter 
+        errorMessage: 'Name required' // Error message for the parameter
       },
-      'prerequisites': { // 
-        optional: true, // won't validate if field is empty 
+      'prerequisites': { //
+        optional: true, // won't validate if field is empty
         isLength: {
           options: [{ min: 2, max: 250 }],
-          errorMessage: 'Must be between 2 and 250 chars long' // Error message for the validator, takes precedent over parameter message 
+          errorMessage: 'Must be between 2 and 250 chars long' // Error message for the validator, takes precedent over parameter message
         },
         errorMessage: 'Invalid Prerequisites'
       }
@@ -130,13 +130,13 @@ var testcases = {
     });
   },
 
-  /* 
-   * delete testcase 
-   * 
+  /*
+   * delete testcase
+   *
    */
 
   delete: function (req, res) {
-    
+
     // check :id param
     var pathParam = pathValidator.isMongoId(req, res);
 

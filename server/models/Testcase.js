@@ -1,5 +1,12 @@
 var mongoose = require('mongoose');
 var TestcaseSchema = new mongoose.Schema({
+  id: {
+    type: Number
+  },
+  key: {
+    type: String,
+    unique: true
+  },
   parentId: {
     type: Number
   },
