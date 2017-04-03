@@ -1,3 +1,6 @@
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
 var express = require('express');
 var expressValidator = require('express-validator');
 var logger = require('morgan');
@@ -32,7 +35,10 @@ mongoose.Promise = global.Promise;
 // connect to MongoDB
 var connectionOptions = {
   user: config.get('db.user'),
-  pass: config.get('db.password')
+  pass: config.get('db.password'),
+  auth: {
+    authdb: 'test-storage'
+  }
 };
 mongoose.connect(config.get('db.path'), connectionOptions) // autogen needed for security? (need investigation)
   .then(() => console.log('MongoDB connection successful'))
@@ -76,11 +82,45 @@ app.use(function (req, res, next) {
   next(err);
 });
 
-// Start the server
-app.set('port', process.env.PORT || 3000);
+/*
+ *
+ * HTTP configuration
+ *
+ */
 
+// Set port
+app.set('port', process.env.PORT || config.get('app.port.http'));
+// Start the server
 var server = app.listen(app.get('port'), function () {
   console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
 });
+
+
+
+/*
+ *
+ *  HTTPS Configuration
+ *
+ *  note: uncomment and add certificate and private key to sslcert/ folder
+ */
+
+/*
+
+var privateKey = fs.readFileSync('sslcert/server.key', 'utf8');
+var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
+
+var credentials = { key: privateKey, cert: certificate };
+
+// Set port
+app.set('port', process.env.PORT || config.get('app.port.https'));
+
+var server = http.createServer(app).listen(app.get('port'), function () {
+  console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
+});
+
+*/
+
+
+
 
 module.exports = server;

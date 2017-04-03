@@ -1,5 +1,11 @@
 {
     "env": "test",
+    "app": {
+        "port": {
+            "http": 3000,
+            "https": 8443
+        }
+    },
     "db": {
         "path": "mongodb://localhost/test-storage-test",
         "user": "admin",
