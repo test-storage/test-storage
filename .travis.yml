@@ -10,6 +10,7 @@ before_script:
   - sleep 10
   - 'node_modules/protractor/bin/webdriver-manager start 2>&1 &'
   - sleep 5
+  - echo 'db.addUser("admin", "admin");' | mongo test-storage
 
 install:
   - npm install yarn

@@ -23,6 +23,9 @@ install:
 services:
   - mongodb
 
+before_test:
+  - echo 'db.addUser("admin", "admin");' | mongo test-storage
+
 test_script:
   # Output useful info for debugging.
   - node --version && npm --version && yarn --version
