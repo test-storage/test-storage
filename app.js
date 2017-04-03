@@ -34,7 +34,7 @@ var connectionOptions = {
   user: config.get('db.user'),
   pass: config.get('db.password')
 };
-mongoose.connect(config.get('db.path')) // autogen needed for security? (need investigation)
+mongoose.connect(config.get('db.path'), connectionOptions) // autogen needed for security? (need investigation)
   .then(() => console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
 
