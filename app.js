@@ -21,7 +21,7 @@ if ('development' == app.get('env') || 'test' == app.get('env')) {
   //app.use(express.static(__dirname, '/node_modules'));
   //app.use(express.static(__dirname, '/tools'));
   console.log("NODE_ENV: " + app.get('env'));
-  console.log("mongo config address: " + config.get('db.mongodb'));
+  console.log("mongo config address: " + config.get('db.path'));
 }
 
 // Database
@@ -30,7 +30,11 @@ if ('development' == app.get('env') || 'test' == app.get('env')) {
 mongoose.Promise = global.Promise;
 
 // connect to MongoDB
-mongoose.connect(config.get('db.mongodb')) // autogen needed for security? (need investigation)
+var connectionOptions = {
+  user: config.get('db.user'),
+  pass: config.get('db.password')
+};
+mongoose.connect(config.get('db.path')) // autogen needed for security? (need investigation)
   .then(() => console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
 

@@ -1,7 +1,9 @@
 {
     "env": "development",
     "db": {
-        "mongodb": "mongodb://localhost/test-storage"
+        "path": "mongodb://localhost/test-storage",
+        "user": "admin",
+        "password": "admin"
     },
     "errorHandlerOptions": {
         "dumpExceptions": true,

@@ -3,15 +3,45 @@
 
 Test Storage - test case management system.
 
-Currently in early alpha development and **currently not available via npm**. 
+Currently in early alpha development and **currently not available via npm**.
 
-## Installation (Production)
+## Dependencies
+- mongodb
+- node.js
+
+## Pre-installation
+
+install node.js
+
+install mongodb
+
+## Installation
 
 ```bash
 $ npm install -g test-storage --production
 ```
 
-Run
+
+## Start
+```
+$ cd test-storage
+```
+
+1. run db-init.js script (script connects to test-storage db and create default user for authentication)
+
+```bash
+$ mongo localhost:27017/test-storage config/db-init.js
+```
+
+Note: to change database user/password for application check config/development.json or config/production.json files
+
+2. run mongo db with authentication
+
+```bash
+$ mongod --auth
+```
+
+3. Start test-storage
 
 ```bash
 $ npm start
@@ -35,7 +65,7 @@ Run
 $ npm start
 ```
 
-## Change log 
+## Change log
 If you want to take a look at [change log](https://github.com/pumano/test-storage/blob/master/CHANGELOG.md) just click [here](https://github.com/pumano/test-storage/blob/master/CHANGELOG.md).
 
 More features will be supported shortly!
