@@ -1,6 +1,7 @@
 {
     "env": "development",
     "app": {
+        "httpsEnabled": false,
         "port": {
             "http": 3000,
             "https": 8443
