@@ -25,7 +25,7 @@ services:
 
 before_test:
   - sleep 10
-  - C:\Users\dz>echo 'db.addUser("admin", "admin");' | "C:\mongodb\bin\mongo" test-storage
+  - echo 'db.addUser("admin", "admin");' | "C:\mongodb\bin\mongo" test-storage
 
 test_script:
   # Output useful info for debugging.
