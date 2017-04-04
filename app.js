@@ -33,12 +33,13 @@ if ('development' == app.get('env') || 'test' == app.get('env')) {
 mongoose.Promise = global.Promise;
 
 // connect to MongoDB
+var connectionString = config.get('db.path') + "/" + config.get('db.name');
 var connectionOptions = {
   user: config.get('db.user'),
   pass: config.get('db.password')
 };
 
-mongoose.connect(config.get('db.path'), connectionOptions) // autogen needed for security? (need investigation)
+mongoose.connect(connectionString, connectionOptions) // autogen needed for security? (need investigation)
   .then(() => console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
 

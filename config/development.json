@@ -10,7 +10,8 @@
         "certificate": "sslcert/server.crt"
     },
     "db": {
-        "path": "mongodb://localhost/test-storage",
+        "name": "test-storage",
+        "path": "mongodb://localhost",
         "user": "admin",
         "password": "admin"
     },
