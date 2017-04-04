@@ -1,11 +1,13 @@
 {
     "env": "production",
     "app": {
-        "httpsEnabled": false,
         "port": {
             "http": 3000,
             "https": 8443
-        }
+        },
+        "httpsEnabled": false,
+        "privateKey": "sslcert/server.key",
+        "certificate": "sslcert/server.crt"
     },
     "db": {
         "path": "mongodb://localhost/test-storage",
