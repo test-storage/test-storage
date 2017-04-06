@@ -32,10 +32,10 @@ var TestcaseSchema = new mongoose.Schema({
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: {
-    type: Number
+    type: String
   },
   updatedBy: {
-    type: Number
+    type: String
   },
   enabled: {
     type: Boolean
