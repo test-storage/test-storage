@@ -41,6 +41,18 @@ paths:
           description: testcase response
           schema:
             $ref: '#/definitions/testcase'
+        '400':
+          description: "Bad request"
+          schema:
+            $ref: '#/definitions/error'
+        '401':
+          description: "Unauthorized"
+          schema:
+            $ref: '#/definitions/error'
+        '500':
+          description: "Internal server error"
+          schema:
+            $ref: '#/definitions/error'
         default:
           description: unexpected error
           schema:
@@ -71,6 +83,22 @@ paths:
             type: array
             items:
               $ref: '#/definitions/testcase'
+        '400':
+          description: "Bad request"
+          schema:
+            $ref: '#/definitions/error'
+        '401':
+          description: "Unauthorized"
+          schema:
+            $ref: '#/definitions/error'
+        '404':
+          description: "Not Found"
+          schema:
+            $ref: '#/definitions/error'
+        '500':
+          description: "Internal server error"
+          schema:
+            $ref: '#/definitions/error'
         default:
           description: unexpected error
           schema:
@@ -95,6 +123,22 @@ paths:
           schema:
             type: object
             $ref: '#/definitions/testcase'
+        '400':
+          description: "Bad request"
+          schema:
+            $ref: '#/definitions/error'
+        '401':
+          description: "Unauthorized"
+          schema:
+            $ref: '#/definitions/error'
+        '404':
+          description: "Not Found"
+          schema:
+            $ref: '#/definitions/error'
+        '500':
+          description: "Internal server error"
+          schema:
+            $ref: '#/definitions/error'
         default:
           description: unexpected error
           schema:
@@ -122,6 +166,22 @@ paths:
           schema:
             type: object
             $ref: '#/definitions/testcase'
+        '400':
+          description: "Bad request"
+          schema:
+            $ref: '#/definitions/error'
+        '401':
+          description: "Unauthorized"
+          schema:
+            $ref: '#/definitions/error'
+        '404':
+          description: "Not Found"
+          schema:
+            $ref: '#/definitions/error'
+        '500':
+          description: "Internal server error"
+          schema:
+            $ref: '#/definitions/error'
         default:
           description: unexpected error
           schema:
@@ -138,6 +198,22 @@ paths:
       responses:
         '204':
           description: Testcase successfully deleted
+        '400':
+          description: "Bad request"
+          schema:
+            $ref: '#/definitions/error'
+        '401':
+          description: "Unauthorized"
+          schema:
+            $ref: '#/definitions/error'
+        '404':
+          description: "Not Found"
+          schema:
+            $ref: '#/definitions/error'
+        '500':
+          description: "Internal server error"
+          schema:
+            $ref: '#/definitions/error'
         default:
           description: unexpected error
           schema:
