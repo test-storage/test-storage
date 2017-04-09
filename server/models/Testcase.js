@@ -46,6 +46,9 @@ var TestcaseSchema = new mongoose.Schema({
   estimate: {
     type: Number
   },
+  status: {
+    type: String
+  },
   childId: {
     type: Number
   }

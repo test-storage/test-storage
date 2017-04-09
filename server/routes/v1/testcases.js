@@ -68,7 +68,9 @@ var testcases = {
 
   create: function (req, res) {
     // TODO add validation
-    Testcase.create(req.body, function (err, testcase) {
+    let _requestBody = req.body;
+    _requestBody.status = "created";
+    Testcase.create(_requestBody, function (err, testcase) {
       if (err) return err;
       res.status(201).
         location('/api/v1/testcases/' + testcase._id).
@@ -121,6 +123,11 @@ var testcases = {
       testcase.expected = req.body.expected;
       testcase.tags = req.body.tags;
       testcase.estimate = req.body.estimate;
+      if (req.body.status) {
+        // TODO add checks
+        // also "Approved"
+        testcase.status = req.body.status;
+      }
       testcase.updated = Date.now();
 
       testcase.save(function (err, testcase, count) {
