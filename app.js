@@ -1,3 +1,6 @@
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
 var express = require('express');
 var expressValidator = require('express-validator');
 var logger = require('morgan');
@@ -21,7 +24,7 @@ if ('development' == app.get('env') || 'test' == app.get('env')) {
   //app.use(express.static(__dirname, '/node_modules'));
   //app.use(express.static(__dirname, '/tools'));
   console.log("NODE_ENV: " + app.get('env'));
-  console.log("mongo config address: " + config.get('db.mongodb'));
+  console.log("mongo config address: " + config.get('db.path'));
 }
 
 // Database
@@ -30,7 +33,13 @@ if ('development' == app.get('env') || 'test' == app.get('env')) {
 mongoose.Promise = global.Promise;
 
 // connect to MongoDB
-mongoose.connect(config.get('db.mongodb')) // autogen needed for security? (need investigation)
+var connectionString = config.get('db.path') + "/" + config.get('db.name');
+var connectionOptions = {
+  user: config.get('db.user'),
+  pass: config.get('db.password')
+};
+
+mongoose.connect(connectionString, connectionOptions) // autogen needed for security? (need investigation)
   .then(() => console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
 
@@ -72,11 +81,38 @@ app.use(function (req, res, next) {
   next(err);
 });
 
-// Start the server
-app.set('port', process.env.PORT || 3000);
 
-var server = app.listen(app.get('port'), function () {
-  console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
-});
+/*
+ *
+ * HTTP configuration
+ *
+ */
+
+if (config.get('app.httpsEnabled') == false) {
+
+  app.set('port', process.env.PORT || config.get('app.port.http'));
+
+  var server = app.listen(app.get('port'), function () {
+    console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
+  });
+} else {
+
+  /*
+   *
+   *  HTTPS Configuration
+   *
+   */
+
+  var privateKey = fs.readFileSync(config.get('app.privateKey'), 'utf8');
+  var certificate = fs.readFileSync(config.get('app.certificate'), 'utf8');
+
+  var credentials = { key: privateKey, cert: certificate };
+
+  app.set('port', process.env.PORT || config.get('app.port.https'));
+
+  var server = http.createServer(app).listen(app.get('port'), function () {
+    console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
+  });
+}
 
 module.exports = server;

@@ -25,6 +25,7 @@ describe('/testcases', function() {
                 'description': 'Test case description',
                 'steps': ['Check that', 'Check this'],
                 'expected': ['Expected that', 'Expected this'],
+                'tags': ['first tag', 'second tag'],
                 'estimate': 10
             })
             .expect(201)
@@ -57,6 +58,7 @@ describe('/testcases', function() {
                 res.body.should.have.property('description', 'Test case description');
                 res.body.should.have.property('steps', ['Check that', 'Check this']);
                 res.body.should.have.property('expected', ['Expected that', 'Expected this']);
+                res.body.should.have.property('tags', ['first tag', 'second tag']);
                 res.body.should.have.property('estimate', 10);
                 if (err) return done(err);
                 done()
@@ -79,6 +81,7 @@ describe('/testcases', function() {
                 res.body[0].should.have.property('description');
                 res.body[0].should.have.property('steps');
                 res.body[0].should.have.property('expected');
+                res.body[0].should.have.property('tags');
                 res.body[0].should.have.property('estimate');
                 if (err) return done(err);
                 done()
@@ -99,6 +102,7 @@ describe('/testcases', function() {
                 'description': 'Test case description edited',
                 'steps': ['Check that edited', 'Check this edited'],
                 'expected': ['Expected that edited', 'Expected this edited'],
+                'tags': ['first tag edited', 'second tag edited'],
                 'estimate': 15
             })
             .expect(200)
@@ -112,6 +116,7 @@ describe('/testcases', function() {
                 res.body.should.have.property('description', 'Test case description edited');
                 res.body.should.have.property('steps', ['Check that edited', 'Check this edited']);
                 res.body.should.have.property('expected', ['Expected that edited', 'Expected this edited']);
+                res.body.should.have.property('tags', ['first tag edited', 'second tag edited']);
                 res.body.should.have.property('estimate', 15);
                 if (err) return done(err);
                 done()
@@ -134,6 +139,7 @@ describe('/testcases', function() {
                 res.body.should.not.have.property('name');
                 res.body.should.not.have.property('description');
                 res.body.should.not.have.property('steps');
+                res.body.should.not.have.property('tags');
                 res.body.should.not.have.property('expected');
                 if (err) return done(err);
                 done()

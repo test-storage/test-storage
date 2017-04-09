@@ -23,6 +23,10 @@ install:
 services:
   - mongodb
 
+before_test:
+  - sleep 10
+  - C:\mongodb\bin\mongo test-storage config/db-init.js
+
 test_script:
   # Output useful info for debugging.
   - node --version && npm --version && yarn --version

@@ -1,5 +1,12 @@
 var mongoose = require('mongoose');
 var TestcaseSchema = new mongoose.Schema({
+  id: {
+    type: Number
+  },
+  key: {
+    type: String,
+    unique: true
+  },
   parentId: {
     type: Number
   },
@@ -21,13 +28,14 @@ var TestcaseSchema = new mongoose.Schema({
   },
   steps: Array,
   expected: Array,
+  tags: Array,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: {
-    type: Number
+    type: String
   },
   updatedBy: {
-    type: Number
+    type: String
   },
   enabled: {
     type: Boolean
