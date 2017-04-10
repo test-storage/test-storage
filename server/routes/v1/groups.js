@@ -8,9 +8,9 @@ var pathValidator = require('../../middlewares/validateIdPathParam');
 
 var groups = {
 
-  /* 
-   * Get all groups 
-   * 
+  /*
+   * Get all groups
+   *
    */
   getAll: function (req, res) {
 
@@ -36,31 +36,31 @@ var groups = {
     });
   },
 
-  /* 
-   * Get single group 
-   * 
+  /*
+   * Get single group
+   *
    */
 
   getOne: function (req, res) {
     // check 'fields' param
-     var fields = {};
+    var fields = {};
     if (fieldsValidator.isExist(req)) {
       fields = fieldsValidator.parseFields(req)
     }
 
     // check :id param
-    pathValidator.isMongoId(req, res);
+    var pathParam = pathValidator.isIdValid(req, res);
     // TODO add sanitizers
 
-    Group.findById(req.params.id, fields, function (err, group) {
+    Group.findOne({ "_id": req.params.id }, fields, function (err, group) {
       if (err) return err; // TODO check proper error handling
       res.json(group);
     });
   },
 
-  /* 
-   * Create group 
-   * 
+  /*
+   * Create group
+   *
    */
 
   create: function (req, res) {
@@ -72,51 +72,51 @@ var groups = {
     });
   },
 
-  /* 
-   * Update group 
-   * 
+  /*
+   * Update group
+   *
    */
 
   update: function (req, res) {
-    
-    // path validation
-    pathValidator.isMongoId(req, res);
-/*
-    // check body 
-    req.checkBody({
-      'name': {
-        notEmpty: true,
-        errorMessage: 'Name required'
-      },
-      'description': {
-        notEmpty: true,
-        errorMessage: 'Name required' // Error message for the parameter 
-      },
-      'scope.testcases':{
-          optional: true
-      },
-      'scope.testsuites':{
-          optional: true
-      },
-      'users': { // 
-        optional: true, // won't validate if field is empty 
-        errorMessage: 'Invalid users'
-      }
-    });
 
-    var errors = req.validationErrors();
-    if (errors) {
-      res.status(400).json('There have been validation errors: ' + util.inspect(errors));
-      return;
-    } */
+    // check :id param
+    var pathParam = pathValidator.isIdValid(req, res);
+    /*
+        // check body
+        req.checkBody({
+          'name': {
+            notEmpty: true,
+            errorMessage: 'Name required'
+          },
+          'description': {
+            notEmpty: true,
+            errorMessage: 'Name required' // Error message for the parameter
+          },
+          'scope.testcases':{
+              optional: true
+          },
+          'scope.testsuites':{
+              optional: true
+          },
+          'users': { //
+            optional: true, // won't validate if field is empty
+            errorMessage: 'Invalid users'
+          }
+        });
+
+        var errors = req.validationErrors();
+        if (errors) {
+          res.status(400).json('There have been validation errors: ' + util.inspect(errors));
+          return;
+        } */
     // TODO need security check (user input) for update
-    Group.findById(req.params.id, function (err, group) {
-      
+    Group.findOne({ "_id": req.params.id }, function (err, group) {
+
       group.name = req.body.name;
       group.description = req.body.description;
       group.scope = req.body.scope;
-    //  group.scope.testsuites = req.body.scope.testsuites;
-      group.users = req.body.users; // add users 
+      //  group.scope.testsuites = req.body.scope.testsuites;
+      group.users = req.body.users; // add users
       group.updated = Date.now();
 
       group.save(function (err, group, count) {
@@ -126,24 +126,24 @@ var groups = {
     });
   },
 
-  /* 
-   * delete group 
-   * 
+  /*
+   * delete group
+   *
    */
 
   delete: function (req, res) {
     // check :id param
-    pathValidator.isMongoId(req, res);
+    var pathParam = pathValidator.isIdValid(req, res);
 
-    Group.findByIdAndRemove(req.params.id, function (err, group) {
+    Group.findOneAndRemove({ "_id": req.params.id }, function (err, group) {
       if (err) return err;
       res.status(204).json(true);
     });
   },
 
-  /* 
+  /*
    * Get all users of group
-   * 
+   *
    */
 
   getAllGroupUsers: function (req, res) {
@@ -153,9 +153,9 @@ var groups = {
     });
   },
 
-  /* 
+  /*
    * Get single user of group
-   * 
+   *
    */
 
   getOneGroupUser: function (req, res) {

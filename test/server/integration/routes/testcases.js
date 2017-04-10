@@ -50,6 +50,7 @@ describe('/testcases', function () {
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
+                res.body.should.have.property('_id');
                 res.body.should.have.property('parentId', null);
                 res.body.should.have.property('priority', 1);
                 res.body.should.have.property('order', 2);
@@ -74,6 +75,7 @@ describe('/testcases', function () {
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
+                res.body[0].should.have.property('_id');
                 res.body[0].should.have.property('parentId');
                 res.body[0].should.have.property('priority');
                 res.body[0].should.have.property('order');
@@ -112,6 +114,7 @@ describe('/testcases', function () {
             .expect(200)
             .expect('Content-Type', /json/)
             .end(function (err, res) {
+                res.body.should.have.property('_id');
                 res.body.should.have.property('parentId', 1);
                 res.body.should.have.property('priority', 2);
                 res.body.should.have.property('order', 3);
@@ -137,6 +140,7 @@ describe('/testcases', function () {
             .set('x-access-token', token)
             .expect(204)
             .end(function (err, res) {
+                res.body.should.not.have.property('_id');
                 res.body.should.not.have.property('parentId');
                 res.body.should.not.have.property('priority');
                 res.body.should.not.have.property('order');

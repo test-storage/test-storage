@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
+const crypto = require('crypto');
 var ProjectSchema = new mongoose.Schema({
-  id: {
-    type: Number,
-    required: true,
-    unique: true
+  _id: {
+    type: String,
+    unique: true,
+    default: crypto.randomBytes(16).toString('hex')
   },
   name: {
     type: String,

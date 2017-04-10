@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
+const crypto = require('crypto');
 var TestcaseSchema = new mongoose.Schema({
-  id: {
-    type: Number
+  _id: {
+    type: String,
+    unique: true,
+    default: crypto.randomBytes(16).toString('hex')
   },
   key: {
     type: String,
@@ -47,7 +50,8 @@ var TestcaseSchema = new mongoose.Schema({
     type: Number
   },
   status: {
-    type: String
+    type: String,
+    default: 'created'
   },
   childId: {
     type: Number

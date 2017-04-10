@@ -70,10 +70,10 @@ var attachments = {
         }
 
         // check :id param
-        pathValidator.isMongoId(req, res);
+        pathValidator.isIdValid(req, res);
         // TODO add sanitizers
 
-        Attachment.findById(req.params.id, fields, function (err, attachment) {
+        Attachment.findOne({ "_id": req.params.id }, fields, function (err, attachment) {
             if (err) return err; // TODO check proper error handling
             res.json(attachment);
         });
@@ -110,9 +110,9 @@ var attachments = {
 
     update: function (req, res) {
         // path validation
-        pathValidator.isMongoId(req, res);
+        var pathParam = pathValidator.isIdValid(req, res);
         // TODO need security check (user input) for update
-        Attachment.findById(req.params.id, function (err, attachment) {
+        Attachment.findOne({ "_id": req.params.id }, function (err, attachment) {
 
             attachment.name = req.body.name;
             attachment.description = req.body.description;
@@ -132,9 +132,9 @@ var attachments = {
 
     delete: function (req, res) {
         // check :id param
-        pathValidator.isMongoId(req, res);
+        var pathParam = pathValidator.isIdValid(req, res);
 
-        Attachment.findByIdAndRemove(req.params.id, function (err, group) {
+        Attachment.findOneAndRemove({ "_id": req.params.id }, function (err, group) {
             if (err) return err;
             res.status(204).json(true);
         });

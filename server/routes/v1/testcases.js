@@ -52,10 +52,10 @@ var testcases = {
     }
 
     // check :id param
-    var pathParam = pathValidator.isMongoId(req, res);
+    var pathParam = pathValidator.isIdValid(req, res);
     // TODO add sanitizers
 
-    Testcase.findById(req.params.id, fields, function (err, testcase) {
+    Testcase.findOne({ "_id": req.params.id }, fields, function (err, testcase) {
       if (err) return err; // TODO check proper error handling
       res.json(testcase);
     });
@@ -68,9 +68,8 @@ var testcases = {
 
   create: function (req, res) {
     // TODO add validation
-    let _requestBody = req.body;
-    _requestBody.status = "created";
-    Testcase.create(_requestBody, function (err, testcase) {
+
+    Testcase.create(req.body, function (err, testcase) {
       if (err) return err;
       res.status(201).
         location('/api/v1/testcases/' + testcase._id).
@@ -85,6 +84,9 @@ var testcases = {
 
   update: function (req, res) {
     // TODO need security check (user input) for update
+
+    // check :id param
+    var pathParam = pathValidator.isIdValid(req, res);
 
     // check body
     req.checkBody({
@@ -112,7 +114,11 @@ var testcases = {
       return;
     }
 
-    Testcase.findById(req.params.id, function (err, testcase) {
+    Testcase.findOne({ "_id": req.params.id }, function (err, testcase) {
+      if (!req.body.id) {
+        // TODO creation logic
+        // + add id, created, createdBy and etc
+      }
       testcase.parentId = req.body.parentId;
       testcase.priority = req.body.priority;
       testcase.order = req.body.order;
@@ -145,9 +151,9 @@ var testcases = {
   delete: function (req, res) {
 
     // check :id param
-    var pathParam = pathValidator.isMongoId(req, res);
+    var pathParam = pathValidator.isIdValid(req, res);
 
-    Testcase.findByIdAndRemove(req.params.id, function (err, testcase) {
+    Testcase.findOneAndRemove({ "_id": req.params.id }, function (err, testcase) {
       if (err) return err;
       res.status(204).json(true);
     });
