@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
+const crypto = require('crypto');
 var AttachmentSchema = new mongoose.Schema({
-  id: {
-    type: Number
+  _id: {
+    type: String,
+    unique: true,
+    default: crypto.randomBytes(16).toString('hex')
   },
   name: {
     type: String

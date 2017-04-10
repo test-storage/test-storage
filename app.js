@@ -13,6 +13,7 @@ var favicon = require('serve-favicon');
 // TODO implement methodOverride if it will be needed
 //var methodOverride = require('method-override')
 var config = require('config');
+
 var app = express();
 
 if ('development' == app.get('env') || 'test' == app.get('env')) {
@@ -20,29 +21,9 @@ if ('development' == app.get('env') || 'test' == app.get('env')) {
   app.use(express.static(path.join(__dirname, '/tools')));
   // only use in development (stack traces/errors and etc)
   app.use(errorhandler());
-
-  //app.use(express.static(__dirname, '/node_modules'));
-  //app.use(express.static(__dirname, '/tools'));
   console.log("NODE_ENV: " + app.get('env'));
   console.log("mongo config address: " + config.get('db.path'));
 }
-
-// Database
-
-// Use native Node promises
-mongoose.Promise = global.Promise;
-
-// connect to MongoDB
-var connectionString = config.get('db.path') + "/" + config.get('db.name');
-var connectionOptions = {
-  user: config.get('db.user'),
-  pass: config.get('db.password')
-};
-
-mongoose.connect(connectionString, connectionOptions) // autogen needed for security? (need investigation)
-  .then(() => console.log('MongoDB connection successful'))
-  .catch((err) => console.error(err));
-
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -50,8 +31,25 @@ app.use(expressValidator()); // this line must be immediately after express.body
 app.use(express.static(path.join(__dirname + '/client'))); //Angular2 frontend
 app.use(express.static(path.join(__dirname + '/public'))); // static folder for css and images and etc
 app.use(favicon(__dirname + '/public/assets/favicon.ico')); // favicon
-
 app.disable('x-powered-by'); // security
+
+/*******************************************************************************
+*                              Database                                        *
+*******************************************************************************/
+// Use native Node promises
+mongoose.Promise = global.Promise;
+
+var connectionString = config.get('db.path') + "/" + config.get('db.name');
+var connectionOptions = {
+  user: config.get('db.user'),
+  pass: config.get('db.password')
+};
+
+mongoose.connect(connectionString, connectionOptions)
+  .then(() => console.log('MongoDB connection successful'))
+  .catch((err) => console.error(err));
+
+
 
 app.all('/*', function (req, res, next) {
   // CORS headers

@@ -8,9 +8,9 @@ var pathValidator = require('../../middlewares/validateIdPathParam');
 
 var testplans = {
 
-  /* 
-   * Get all testplans / GET 
-   * 
+  /*
+   * Get all testplans / GET
+   *
    */
 
   getAll: function (req, res) {
@@ -38,9 +38,9 @@ var testplans = {
     });
   },
 
-  /* 
+  /*
    * Get single testplan / GET :id
-   * 
+   *
    */
 
   getOne: function (req, res) {
@@ -53,22 +53,22 @@ var testplans = {
     }
 
     // check :id param
-    var pathParam = pathValidator.isMongoId(req, res);
+    var pathParam = pathValidator.isIdValid(req, res);
     // TODO add sanitizers
 
-    Testplan.findById(req.params.id, fields, function (err, testplan) {
+    Testplan.findOne({ "_id": req.params.id }, fields, function (err, testplan) {
       if (err) return err; // TODO check proper error handling
       res.json(testplan);
     });
   },
 
-  /* 
+  /*
    * Create testplan / POST
-   * 
+   *
    */
 
   create: function (req, res) {
-      // TODO testplan.createdBy = currentUser;
+    // TODO testplan.createdBy = currentUser;
     Testplan.create(req.body, function (err, testplan) {
       if (err) return err;
       res.status(201).
@@ -77,19 +77,22 @@ var testplans = {
     });
   },
 
-  /* 
+  /*
    * Update testplan / PUT
-   * 
+   *
    */
 
   update: function (req, res) {
+    // check :id param
+    var pathParam = pathValidator.isIdValid(req, res);
+
     // TODO need security check (user input) for update
-    Testplan.findById(req.params.id, function (err, testplan) {
+    Testplan.findOne({ "_id": req.params.id }, function (err, testplan) {
 
       testplan.name = req.body.name;
       testplan.description = req.body.description;
       testplan.builds = req.body.builds;
-   //   testplan.configurations = req.body.configurations;
+      //   testplan.configurations = req.body.configurations;
       testplan.environments = req.body.environments;
       testplan.testruns = req.body.testruns;
       testplan.updated = Date.now();
@@ -102,16 +105,16 @@ var testplans = {
     });
   },
 
-  /* 
-   * delete testplan 
-   * 
+  /*
+   * delete testplan
+   *
    */
 
   delete: function (req, res) {
     // check :id param
-    var pathParam = pathValidator.isMongoId(req, res);
+    var pathParam = pathValidator.isIdValid(req, res);
 
-    Testplan.findByIdAndRemove(req.params.id, function (err, testplan) {
+    Testplan.findOneAndRemove({ "_id": req.params.id }, function (err, testplan) {
       if (err) return err;
       res.status(204).json(true);
     });

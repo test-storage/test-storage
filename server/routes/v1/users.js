@@ -8,9 +8,9 @@ var pathValidator = require('../../middlewares/validateIdPathParam');
 
 var users = {
 
-  /* 
-   * Get all users 
-   * 
+  /*
+   * Get all users
+   *
    */
   getAll: function (req, res) {
 
@@ -36,9 +36,9 @@ var users = {
     });
   },
 
-  /* 
-   * Get single user 
-   * 
+  /*
+   * Get single user
+   *
    */
 
   getOne: function (req, res) {
@@ -50,18 +50,18 @@ var users = {
     }
 
     // check :id param
-    var pathParam = pathValidator.isMongoId(req, res);
+    var pathParam = pathValidator.isIdValid(req, res);
     // TODO add sanitizers
 
-    User.findById(req.params.id, function (err, user) {
+    User.findOne({ "_id": req.params.id }, function (err, user) {
       if (err) return err; // TODO check proper error handling
       res.json(user);
     });
   },
 
-  /* 
-   * Create user 
-   * 
+  /*
+   * Create user
+   *
    */
 
   create: function (req, res) {
@@ -73,14 +73,17 @@ var users = {
     });
   },
 
-  /* 
-   * Update user 
-   * 
+  /*
+   * Update user
+   *
    */
 
   update: function (req, res) {
+    // check :id param
+    var pathParam = pathValidator.isIdValid(req, res);
+
     // TODO need security check (user input) for update
-    User.findById(req.params.id, function (err, user) {
+    User.findOne({ "_id": req.params.id }, function (err, user) {
 
       user.firstName = req.body.firstName;
       user.lastName = req.body.lastName;
@@ -97,16 +100,16 @@ var users = {
     });
   },
 
-  /* 
-   * delete user 
-   * 
+  /*
+   * delete user
+   *
    */
 
   delete: function (req, res) {
     // check :id param
-    var pathParam = pathValidator.isMongoId(req, res);
+    var pathParam = pathValidator.isIdValid(req, res);
 
-    User.findByIdAndRemove(req.params.id, function (err, user) {
+    User.findOneAndRemove({ "_id": req.params.id }, function (err, user) {
       if (err) return err;
       res.status(204).json(true);
     });

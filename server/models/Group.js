@@ -1,5 +1,11 @@
 var mongoose = require('mongoose');
+const crypto = require('crypto');
 var GroupSchema = new mongoose.Schema({
+  _id: {
+    type: String,
+    unique: true,
+    default: crypto.randomBytes(16).toString('hex')
+  },
   name: {
     type: String,
     required: true

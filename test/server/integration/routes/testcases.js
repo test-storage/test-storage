@@ -7,11 +7,11 @@ var token = "";
 
 var entityId = "";
 
-describe('/testcases', function() {
+describe('/testcases', function () {
 
     it('login', loginUser());
 
-    it('POST /testcases respond with status 201 and JSON', function(done) {
+    it('POST /testcases respond with status 201 and JSON', function (done) {
         this.timeout(35000);
         request(server.app)
             .post('/api/v1/testcases')
@@ -30,18 +30,18 @@ describe('/testcases', function() {
             })
             .expect(201)
             .expect('Content-Type', /json/)
-            .expect(function(res) {
+            .expect(function (res) {
                 // Location header
                 res.header.location = res.body._id;
             })
-            .end(function(err, res) {
+            .end(function (err, res) {
                 entityId = res.body._id;
                 if (err) return done(err);
                 done()
             });
     });
 
-    it('GET /testcases/:id respond with JSON', function(done) {
+    it('GET /testcases/:id respond with JSON', function (done) {
         this.timeout(35000);
         request(server.app)
             .get('/api/v1/testcases/' + entityId)
@@ -49,7 +49,8 @@ describe('/testcases', function() {
             .set('x-access-token', token)
             .expect('Content-Type', /json/)
             .expect(200)
-            .end(function(err, res) {
+            .end(function (err, res) {
+                res.body.should.have.property('_id');
                 res.body.should.have.property('parentId', null);
                 res.body.should.have.property('priority', 1);
                 res.body.should.have.property('order', 2);
@@ -60,19 +61,21 @@ describe('/testcases', function() {
                 res.body.should.have.property('expected', ['Expected that', 'Expected this']);
                 res.body.should.have.property('tags', ['first tag', 'second tag']);
                 res.body.should.have.property('estimate', 10);
+                res.body.should.have.property('status', 'created');
                 if (err) return done(err);
                 done()
             });
     });
 
-    it('GET /testcases respond with JSON', function(done) {
+    it('GET /testcases respond with JSON', function (done) {
         request(server.app)
             .get('/api/v1/testcases')
             .set('Accept', 'application/json')
             .set('x-access-token', token)
             .expect('Content-Type', /json/)
             .expect(200)
-            .end(function(err, res) {
+            .end(function (err, res) {
+                res.body[0].should.have.property('_id');
                 res.body[0].should.have.property('parentId');
                 res.body[0].should.have.property('priority');
                 res.body[0].should.have.property('order');
@@ -83,12 +86,14 @@ describe('/testcases', function() {
                 res.body[0].should.have.property('expected');
                 res.body[0].should.have.property('tags');
                 res.body[0].should.have.property('estimate');
+                res.body[0].should.have.property('status');
+                if (err) return done(err);
                 if (err) return done(err);
                 done()
             });
     });
 
-    it('PUT /testcases respond with JSON', function(done) {
+    it('PUT /testcases respond with JSON', function (done) {
         this.timeout(35000);
         request(server.app)
             .put('/api/v1/testcases/' + entityId)
@@ -103,11 +108,13 @@ describe('/testcases', function() {
                 'steps': ['Check that edited', 'Check this edited'],
                 'expected': ['Expected that edited', 'Expected this edited'],
                 'tags': ['first tag edited', 'second tag edited'],
-                'estimate': 15
+                'estimate': 15,
+                'status': 'approved'
             })
             .expect(200)
             .expect('Content-Type', /json/)
-            .end(function(err, res) {
+            .end(function (err, res) {
+                res.body.should.have.property('_id');
                 res.body.should.have.property('parentId', 1);
                 res.body.should.have.property('priority', 2);
                 res.body.should.have.property('order', 3);
@@ -118,20 +125,22 @@ describe('/testcases', function() {
                 res.body.should.have.property('expected', ['Expected that edited', 'Expected this edited']);
                 res.body.should.have.property('tags', ['first tag edited', 'second tag edited']);
                 res.body.should.have.property('estimate', 15);
+                res.body.should.have.property('status', 'approved');
                 if (err) return done(err);
                 done()
             });
     });
 
 
-    it('DELETE /testcases/:id respond with JSON', function(done) {
+    it('DELETE /testcases/:id respond with JSON', function (done) {
         this.timeout(35000);
         request(server.app)
             .delete('/api/v1/testcases/' + entityId)
             .set('Accept', 'application/json')
             .set('x-access-token', token)
             .expect(204)
-            .end(function(err, res) {
+            .end(function (err, res) {
+                res.body.should.not.have.property('_id');
                 res.body.should.not.have.property('parentId');
                 res.body.should.not.have.property('priority');
                 res.body.should.not.have.property('order');
@@ -141,6 +150,7 @@ describe('/testcases', function() {
                 res.body.should.not.have.property('steps');
                 res.body.should.not.have.property('tags');
                 res.body.should.not.have.property('expected');
+                res.body.should.not.have.property('status');
                 if (err) return done(err);
                 done()
             });
@@ -149,7 +159,7 @@ describe('/testcases', function() {
 });
 
 function loginUser() {
-    return function(done) {
+    return function (done) {
         request(server.app)
             .post('/login')
             .send({ username: 'admin@test-storage.local', password: 'pass123' })

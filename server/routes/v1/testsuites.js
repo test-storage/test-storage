@@ -8,9 +8,9 @@ var pathValidator = require('../../middlewares/validateIdPathParam');
 
 var testsuites = {
 
-  /* 
-   * Get all testsuites 
-   * 
+  /*
+   * Get all testsuites
+   *
    */
 
   getAll: function (req, res) {
@@ -38,9 +38,9 @@ var testsuites = {
     });
   },
 
-  /* 
-   * Get single testsuite 
-   * 
+  /*
+   * Get single testsuite
+   *
    */
 
   getOne: function (req, res) {
@@ -53,18 +53,18 @@ var testsuites = {
     }
 
     // check :id param
-    var pathParam = pathValidator.isMongoId(req, res);
+    var pathParam = pathValidator.isIdValid(req, res);
     // TODO add sanitizers
 
-    Testsuite.findById(req.params.id, fields, function (err, testsuite) {
+    Testsuite.findOne({ "_id": req.params.id }, fields, function (err, testsuite) {
       if (err) return err; // TODO check proper error handling
       res.json(testsuite);
     });
   },
 
-  /* 
-   * Create testsuite 
-   * 
+  /*
+   * Create testsuite
+   *
    */
 
   create: function (req, res) {
@@ -76,14 +76,17 @@ var testsuites = {
     });
   },
 
-  /* 
-   * Update testsuite 
-   * 
+  /*
+   * Update testsuite
+   *
    */
 
   update: function (req, res) {
+    // check :id param
+    var pathParam = pathValidator.isIdValid(req, res);
+
     // TODO need security check (user input) for update
-    Testsuite.findById(req.params.id, function (err, testsuite) {
+    Testsuite.findOne({ "_id": req.params.id }, function (err, testsuite) {
 
       testsuite.parentId = req.body.parentId;
       testsuite.name = req.body.name;
@@ -100,16 +103,16 @@ var testsuites = {
     });
   },
 
-  /* 
-   * delete testsuite 
-   * 
+  /*
+   * delete testsuite
+   *
    */
 
   delete: function (req, res) {
     // check :id param
-    var pathParam = pathValidator.isMongoId(req, res);
+    var pathParam = pathValidator.isIdValid(req, res);
 
-    Testsuite.findByIdAndRemove(req.params.id, function (err, testsuite) {
+    Testsuite.findOneAndRemove({ "_id": req.params.id }, function (err, testsuite) {
       if (err) return err;
       res.status(204).json(true);
     });

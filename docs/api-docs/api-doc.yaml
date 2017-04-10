@@ -265,6 +265,8 @@ definitions:
       estimate:
         type: integer
         format: int32
+      status:
+        type: string
       childId:
         type: integer
         format: int32
@@ -364,6 +366,8 @@ definitions:
       estimate:
         type: integer
         format: int32
+      status:
+        type: string
       childId:
         type: integer
         format: int32
