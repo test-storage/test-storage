@@ -2,9 +2,7 @@ var mongoose = require('mongoose');
 var Testplan = require('../../models/Testplan.js');
 
 var util = require('util');
-var limitValidator = require('../../middlewares/validateLimitQueryParam');
-var fieldsValidator = require('../../middlewares/validateFieldsQueryParam');
-var pathValidator = require('../../middlewares/validateIdPathParam');
+var validator = require('../../middlewares/validate');
 
 var testplans = {
 
@@ -15,24 +13,12 @@ var testplans = {
 
   getAll: function (req, res) {
 
-    var query = {};
-    // check 'limit' param
-    var limit = {};
-    if (limitValidator.isExist(req)) {
-      limitValidator.isInt(req, res);
-      limit['limit'] = limitValidator.sanitize(req);
-    } else {
-      // default limit
-      limit['limit'] = 25;
-    }
+    // check limit, offset, fields param
+    var limit = {}, offset = {}, fields = {};
+    limit['limit'] = validator.validateLimit(req, res);
+    fields = validator.validateFields(req, res);
 
-    // check 'fields' param
-    var fields = {};
-    if (fieldsValidator.isExist(req)) {
-      fields = fieldsValidator.parseFields(req)
-    }
-
-    Testplan.find(query, fields, limit, function (err, testplans) {
+    Testplan.find({}, fields, limit, function (err, testplans) {
       if (err) return err; // TODO check proper error handling
       res.json(testplans);
     });
@@ -45,15 +31,11 @@ var testplans = {
 
   getOne: function (req, res) {
 
-
     // check 'fields' param
     var fields = {};
-    if (fieldsValidator.isExist(req)) {
-      fields = fieldsValidator.parseFields(req)
-    }
-
+    fields = validator.validateFields(req, res);
     // check :id param
-    var pathParam = pathValidator.isIdValid(req, res);
+    validator.isPathValid(req, res);
     // TODO add sanitizers
 
     Testplan.findOne({ "_id": req.params.id }, fields, function (err, testplan) {
@@ -84,7 +66,7 @@ var testplans = {
 
   update: function (req, res) {
     // check :id param
-    var pathParam = pathValidator.isIdValid(req, res);
+    validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
     Testplan.findOne({ "_id": req.params.id }, function (err, testplan) {
@@ -112,7 +94,7 @@ var testplans = {
 
   delete: function (req, res) {
     // check :id param
-    var pathParam = pathValidator.isIdValid(req, res);
+    validator.isPathValid(req, res);
 
     Testplan.findOneAndRemove({ "_id": req.params.id }, function (err, testplan) {
       if (err) return err;

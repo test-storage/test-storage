@@ -2,9 +2,7 @@ var mongoose = require('mongoose');
 var User = require('../../models/User.js');
 
 var util = require('util');
-var limitValidator = require('../../middlewares/validateLimitQueryParam');
-var fieldsValidator = require('../../middlewares/validateFieldsQueryParam');
-var pathValidator = require('../../middlewares/validateIdPathParam');
+var validator = require('../../middlewares/validate');
 
 var users = {
 
@@ -14,21 +12,10 @@ var users = {
    */
   getAll: function (req, res) {
 
-    // check 'limit' param
-    var limit = {};
-    if (limitValidator.isExist(req)) {
-      limitValidator.isInt(req, res);
-      limit['limit'] = limitValidator.sanitize(req);
-    } else {
-      // default limit
-      limit['limit'] = 25;
-    }
-
-    // check 'fields' param
-    var fields = {};
-    if (fieldsValidator.isExist(req)) {
-      fields = fieldsValidator.parseFields(req)
-    }
+    // check limit, offset, fields param
+    var limit = {}, offset = {}, fields = {};
+    limit['limit'] = validator.validateLimit(req, res);
+    fields = validator.validateFields(req, res);
 
     User.find({}, fields, limit, function (err, users) {
       if (err) return err; // TODO check proper error handling
@@ -45,15 +32,12 @@ var users = {
 
     // check 'fields' param
     var fields = {};
-    if (fieldsValidator.isExist(req)) {
-      fields = fieldsValidator.parseFields(req)
-    }
-
+    fields = validator.validateFields(req, res);
     // check :id param
-    var pathParam = pathValidator.isIdValid(req, res);
+    validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    User.findOne({ "_id": req.params.id }, function (err, user) {
+    User.findOne({ "_id": req.params.id }, fields, function (err, user) {
       if (err) return err; // TODO check proper error handling
       res.json(user);
     });
@@ -80,7 +64,7 @@ var users = {
 
   update: function (req, res) {
     // check :id param
-    var pathParam = pathValidator.isIdValid(req, res);
+    validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
     User.findOne({ "_id": req.params.id }, function (err, user) {
@@ -107,7 +91,7 @@ var users = {
 
   delete: function (req, res) {
     // check :id param
-    var pathParam = pathValidator.isIdValid(req, res);
+    validator.isPathValid(req, res);
 
     User.findOneAndRemove({ "_id": req.params.id }, function (err, user) {
       if (err) return err;

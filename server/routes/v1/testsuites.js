@@ -2,9 +2,7 @@ var mongoose = require('mongoose');
 var Testsuite = require('../../models/Testsuite.js');
 
 var util = require('util');
-var limitValidator = require('../../middlewares/validateLimitQueryParam');
-var fieldsValidator = require('../../middlewares/validateFieldsQueryParam');
-var pathValidator = require('../../middlewares/validateIdPathParam');
+var validator = require('../../middlewares/validate');
 
 var testsuites = {
 
@@ -15,24 +13,12 @@ var testsuites = {
 
   getAll: function (req, res) {
 
-    var query = {};
-    // check 'limit' param
-    var limit = {};
-    if (limitValidator.isExist(req)) {
-      limitValidator.isInt(req, res);
-      limit['limit'] = limitValidator.sanitize(req);
-    } else {
-      // default limit
-      limit['limit'] = 25;
-    }
+    // check limit, offset, fields param
+    var limit = {}, offset = {}, fields = {};
+    limit['limit'] = validator.validateLimit(req, res);
+    fields = validator.validateFields(req, res);
 
-    // check 'fields' param
-    var fields = {};
-    if (fieldsValidator.isExist(req)) {
-      fields = fieldsValidator.parseFields(req)
-    }
-
-    Testsuite.find(query, fields, limit, function (err, testsuites) {
+    Testsuite.find({}, fields, limit, function (err, testsuites) {
       if (err) return err; // TODO check proper error handling
       res.json(testsuites);
     });
@@ -45,15 +31,11 @@ var testsuites = {
 
   getOne: function (req, res) {
 
-
     // check 'fields' param
     var fields = {};
-    if (fieldsValidator.isExist(req)) {
-      fields = fieldsValidator.parseFields(req)
-    }
-
+    fields = validator.validateFields(req, res);
     // check :id param
-    var pathParam = pathValidator.isIdValid(req, res);
+    validator.isPathValid(req, res);
     // TODO add sanitizers
 
     Testsuite.findOne({ "_id": req.params.id }, fields, function (err, testsuite) {
@@ -83,7 +65,7 @@ var testsuites = {
 
   update: function (req, res) {
     // check :id param
-    var pathParam = pathValidator.isIdValid(req, res);
+    validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
     Testsuite.findOne({ "_id": req.params.id }, function (err, testsuite) {
@@ -110,7 +92,7 @@ var testsuites = {
 
   delete: function (req, res) {
     // check :id param
-    var pathParam = pathValidator.isIdValid(req, res);
+    validator.isPathValid(req, res);
 
     Testsuite.findOneAndRemove({ "_id": req.params.id }, function (err, testsuite) {
       if (err) return err;

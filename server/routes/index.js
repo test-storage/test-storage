@@ -61,8 +61,6 @@ router.delete('/api/v1/testplans/:id', testplans.delete);
 
 router.get('/api/v1/groups', groups.getAll);
 router.get('/api/v1/groups/:id', groups.getOne);
-router.get('api/v1/groups/:id/users/', groups.getAllGroupUsers);
-router.get('api/v1/groups/:id/users/:userid', groups.getOneGroupUser);
 router.post('/api/v1/groups/', groups.create);
 router.put('/api/v1/groups/:id', groups.update);
 router.delete('/api/v1/groups/:id', groups.delete);
