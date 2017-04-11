@@ -23,6 +23,8 @@ var TestsuiteSchema = new mongoose.Schema({
   testcases: Array,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
+  createdBy: String,
+  updatedBy: String
 });
 
 module.exports = mongoose.model('Testsuite', TestsuiteSchema);

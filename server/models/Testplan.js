@@ -17,8 +17,8 @@ var TestplanSchema = new mongoose.Schema({
   testruns: Array,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
-  createdBy: Number,
-  updatedBy: Number
+  createdBy: String,
+  updatedBy: String
 });
 
 module.exports = mongoose.model('Testplan', TestplanSchema);
