@@ -1,7 +1,11 @@
 # Change Log
-## 0.5.41 (March 26, 2017)
+## 0.7.41 (April 10, 2017)
+- Migrate to random ID from mongo's ObjectID: ([@pumano](https://github.com/pumano) in [f1a6296329fb4c2f653fdaab8042351dc035110a](https://github.com/pumano/test-storage/commit/f1a6296329fb4c2f653fdaab8042351dc035110a))
+- Testcase status added: ([@pumano](https://github.com/pumano) in [8d5280e1527dfad69fabc228f1b8aaa8435130ca](https://github.com/pumano/test-storage/commit/8d5280e1527dfad69fabc228f1b8aaa8435130ca))
+
+## 0.5.40 (March 26, 2017)
 - Moved to Angular 4.0.0: ([@pumano](https://github.com/pumano) in [1f1e003e36928d3098bcd92b7c5b0229b8f65617](https://github.com/pumano/test-storage/commit/1f1e003e36928d3098bcd92b7c5b0229b8f65617))
-- Testcase tags added: ([@pumano](https://github.com/pumano) in [d67145728c61b115f567a50436b310ff54a6dc1e] (https://github.com/pumano/test-storage/commit/d67145728c61b115f567a50436b310ff54a6dc1e))
+- Testcase tags added: ([@pumano](https://github.com/pumano) in [d67145728c61b115f567a50436b310ff54a6dc1e](https://github.com/pumano/test-storage/commit/d67145728c61b115f567a50436b310ff54a6dc1e))
 
 ## 0.4.40 (March 1, 2017)
 - Moved to Angular 4.0.0-rc.1: ([@pumano](https://github.com/pumano) in [ece0ed4276e6939ce1818e30f4f4d5cfad6f2df9](https://github.com/pumano/test-storage/commit/ece0ed4276e6939ce1818e30f4f4d5cfad6f2df9))

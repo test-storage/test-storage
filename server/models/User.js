@@ -27,6 +27,8 @@ var UserSchema = new mongoose.Schema({
   groups: Array,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
+  createdBy: String,
+  updatedBy: String
 });
 
 module.exports = mongoose.model('User', UserSchema);

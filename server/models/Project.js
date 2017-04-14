@@ -13,10 +13,14 @@ var ProjectSchema = new mongoose.Schema({
   description: {
     type: String
   },
-  environment: String,
+  enabled: {
+    type: Boolean
+  },
   testcases: Array,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
+  createdBy: String,
+  updatedBy: String
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);

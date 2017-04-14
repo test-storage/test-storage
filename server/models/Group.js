@@ -17,6 +17,8 @@ var GroupSchema = new mongoose.Schema({
   users: Array,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
+  createdBy: String,
+  updatedBy: String
 });
 
 module.exports = mongoose.model('Group', GroupSchema);

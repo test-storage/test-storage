@@ -2,9 +2,7 @@ var mongoose = require('mongoose');
 var Testcase = require('../../models/Testcase.js');
 
 var util = require('util');
-var limitValidator = require('../../middlewares/validateLimitQueryParam');
-var fieldsValidator = require('../../middlewares/validateFieldsQueryParam');
-var pathValidator = require('../../middlewares/validateIdPathParam');
+var validator = require('../../middlewares/validate');
 
 var testcases = {
 
@@ -14,20 +12,10 @@ var testcases = {
    */
   getAll: function (req, res) {
 
-    // check 'limit' param
-    var limit = {};
-    if (limitValidator.isExist(req)) {
-      limitValidator.isInt(req, res);
-      limit['limit'] = limitValidator.sanitize(req);
-    } else {
-      limit['limit'] = 25;
-    }
-
-    // check 'fields' param
-    var fields = {};
-    if (fieldsValidator.isExist(req)) {
-      fields = fieldsValidator.parseFields(req)
-    }
+    // check limit, offset, fields param
+    var limit = {}, offset = {}, fields = {};
+    limit['limit'] = validator.validateLimit(req, res);
+    fields = validator.validateFields(req, res);
 
     Testcase.find({}, fields, limit, function (err, testcases) {
       if (err) return err; // TODO check proper error handling
@@ -46,13 +34,9 @@ var testcases = {
 
     // check 'fields' param
     var fields = {};
-    // TODO turn off _id from response by default
-    if (fieldsValidator.isExist(req)) {
-      fields = fieldsValidator.parseFields(req)
-    }
-
+    fields = validator.validateFields(req, res);
     // check :id param
-    var pathParam = pathValidator.isIdValid(req, res);
+    validator.isPathValid(req, res);
     // TODO add sanitizers
 
     Testcase.findOne({ "_id": req.params.id }, fields, function (err, testcase) {
@@ -86,7 +70,7 @@ var testcases = {
     // TODO need security check (user input) for update
 
     // check :id param
-    var pathParam = pathValidator.isIdValid(req, res);
+    validator.isPathValid(req, res);
 
     // check body
     req.checkBody({
@@ -151,7 +135,7 @@ var testcases = {
   delete: function (req, res) {
 
     // check :id param
-    var pathParam = pathValidator.isIdValid(req, res);
+    validator.isPathValid(req, res);
 
     Testcase.findOneAndRemove({ "_id": req.params.id }, function (err, testcase) {
       if (err) return err;

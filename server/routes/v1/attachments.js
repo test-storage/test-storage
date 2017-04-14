@@ -4,9 +4,7 @@ var Attachment = require('../../models/Attachment.js');
 var multer = require('multer');
 
 var util = require('util');
-var limitValidator = require('../../middlewares/validateLimitQueryParam');
-var fieldsValidator = require('../../middlewares/validateFieldsQueryParam');
-var pathValidator = require('../../middlewares/validateIdPathParam');
+var validator = require('../../middlewares/validate');
 
 
 // Storage init
@@ -34,21 +32,10 @@ var attachments = {
      */
     getAll: function (req, res) {
 
-        // check 'limit' param
-        var limit = {};
-        if (limitValidator.isExist(req)) {
-            limitValidator.isInt(req, res);
-            limit['limit'] = limitValidator.sanitize(req);
-        } else {
-            // default limit
-            limit['limit'] = 25;
-        }
-
-        // check 'fields' param
-        var fields = {};
-        if (fieldsValidator.isExist(req)) {
-            fields = fieldsValidator.parseFields(req)
-        }
+        // check limit, offset, fields param
+        var limit = {}, offset = {}, fields = {};
+        limit['limit'] = validator.validateLimit(req, res);
+        fields = validator.validateFields(req, res);
 
         Attachment.find({}, fields, limit, function (err, attachments) {
             if (err) return err; // TODO check proper error handling
@@ -65,12 +52,9 @@ var attachments = {
     getOne: function (req, res) {
         // check 'fields' param
         var fields = {};
-        if (fieldsValidator.isExist(req)) {
-            fields = fieldsValidator.parseFields(req)
-        }
-
+        fields = validator.validateFields(req, res);
         // check :id param
-        pathValidator.isIdValid(req, res);
+        validator.isPathValid(req, res);
         // TODO add sanitizers
 
         Attachment.findOne({ "_id": req.params.id }, fields, function (err, attachment) {
@@ -110,7 +94,7 @@ var attachments = {
 
     update: function (req, res) {
         // path validation
-        var pathParam = pathValidator.isIdValid(req, res);
+        validator.isPathValid(req, res);
         // TODO need security check (user input) for update
         Attachment.findOne({ "_id": req.params.id }, function (err, attachment) {
 
@@ -132,7 +116,7 @@ var attachments = {
 
     delete: function (req, res) {
         // check :id param
-        var pathParam = pathValidator.isIdValid(req, res);
+        validator.isPathValid(req, res);
 
         Attachment.findOneAndRemove({ "_id": req.params.id }, function (err, group) {
             if (err) return err;
@@ -140,8 +124,6 @@ var attachments = {
         });
 
     }
-
-
 };
 
 module.exports = attachments;
