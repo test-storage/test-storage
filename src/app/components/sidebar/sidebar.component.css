@@ -9,9 +9,9 @@
 
 .navbar-fixed-left .navbar-brand {
   width: 140px;
-  height: 52px;
+  height: 56px;
   /*border-bottom: 1px solid #525252; */
-  border-bottom: 1px solid #e7e7e7; 
+  border-bottom: 1px solid #e7e7e7;
   position: relative;
   bottom: 1px;
   right: 1px;
@@ -47,16 +47,16 @@
 .navbar-fixed-left .navbar-nav > li > .dropdown-menu {
   margin-top: -50px;
   margin-left: 140px;
-  background-color: #333; 
+  background-color: #333;
 }
 
 .navbar-fixed-left .navbar-nav > li > .dropdown-menu > li > a:hover, .divider {
-  background-color: #000; 
+  background-color: #000;
 }
 
 .fa-chevron-down {
   float: right;
-  font-size: 8px; 
+  font-size: 8px;
   position: relative;
   top: 4px;
 }
@@ -79,7 +79,7 @@
 
 .navbar-mini .navbar-brand {
   width: 70px;
-  height: 52px;
+  height: 56px;
   font-size: 0;
 }
 

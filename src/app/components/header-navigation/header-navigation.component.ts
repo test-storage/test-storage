@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthGuard } from './../guards/auth.guard';
-import { AuthenticationService } from '../services/auth/authentication.service';
+import { AuthGuard } from './../../guards/auth.guard';
+import { AuthenticationService } from '../../services/auth/authentication.service';
 
 @Component({
     moduleId: module.id,

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 
-import { AuthHttp, AuthConfig, provideAuth } from 'angular2-jwt';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationService } from './services/auth/authentication.service';
 
@@ -11,10 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { HeaderNavigationComponent } from './components/header-navigation.component';
-import { TestcaseListComponent } from './components/testcase-list.component';
-import { UserListComponent } from './components/user-list.component';
+
+import { HeaderNavigationComponent } from './components/header-navigation/header-navigation.component';
+import { TestcaseListComponent } from './components/testcase-list/testcase-list.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -37,6 +40,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AppComponent,
     LoginComponent,
     HomeComponent,
+    DashboardComponent,
     SidebarComponent,
     HeaderNavigationComponent,
     TestcaseListComponent,
