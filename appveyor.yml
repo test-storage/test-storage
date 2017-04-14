@@ -31,7 +31,7 @@ test_script:
   # Output useful info for debugging.
   - node --version && npm --version && yarn --version
   # Run tests
-  - npm run testserver
+  - npm test
 
 cache:
   - node_modules

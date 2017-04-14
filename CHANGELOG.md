@@ -1,4 +1,7 @@
 # Change Log
+## 0.9.42 (April 14, 2017)
+- Migrate to angular-cli: ([@pumano](https://github.com/pumano) in [1f8a1fc39573b4530e1aa2dc5f74df3f05d854c6](https://github.com/pumano/test-storage/commit/1f8a1fc39573b4530e1aa2dc5f74df3f05d854c6))
+
 ## 0.7.41 (April 10, 2017)
 - Migrate to random ID from mongo's ObjectID: ([@pumano](https://github.com/pumano) in [f1a6296329fb4c2f653fdaab8042351dc035110a](https://github.com/pumano/test-storage/commit/f1a6296329fb4c2f653fdaab8042351dc035110a))
 - Testcase status added: ([@pumano](https://github.com/pumano) in [8d5280e1527dfad69fabc228f1b8aaa8435130ca](https://github.com/pumano/test-storage/commit/8d5280e1527dfad69fabc228f1b8aaa8435130ca))

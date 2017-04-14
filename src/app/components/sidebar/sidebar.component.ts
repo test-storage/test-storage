@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'ts-sidebar',
+    selector: 'app-sidebar',
     templateUrl: 'sidebar.component.html',
     styleUrls: ['sidebar.component.css']
 })

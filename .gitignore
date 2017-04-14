@@ -5,6 +5,11 @@
 /tmp
 /out-tsc
 
+# Ignore generated js and .map files after typescript transpiling
+/src/**/*.js
+*.map
+test/client/**/*.js
+
 # dependencies
 /node_modules
 

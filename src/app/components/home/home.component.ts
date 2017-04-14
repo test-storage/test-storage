@@ -6,7 +6,7 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 
 @Component({
     moduleId: module.id,
-    selector: 'ts-home',
+    selector: 'app-home',
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.css']
 })
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
 
-     }
+    }
 
     onNotify(sidebarCollapsed: boolean): void {
         this.sidebarCollapsed = sidebarCollapsed;

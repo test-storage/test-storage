@@ -5,7 +5,7 @@ import { AuthenticationService } from '../services/auth/authentication.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'ts-header-nav',
+    selector: 'app-header-nav',
     templateUrl: 'header-navigation.component.html',
     styleUrls: ['header-navigation.component.css']
 })
@@ -18,7 +18,7 @@ export class HeaderNavigationComponent implements OnInit {
         private router: Router,
         private authGuard: AuthGuard,
         private authenticationService: AuthenticationService
-        ) { }
+    ) { }
 
     ngOnInit() { }
 

@@ -5,7 +5,7 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 
 @Component({
     moduleId: module.id,
-    selector: 'ts-login',
+    selector: 'app-login',
     templateUrl: 'login.component.html',
     styleUrls: ['login.component.css']
 })
