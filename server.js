@@ -17,26 +17,30 @@ var config = require('config');
 var app = express();
 
 if ('development' == app.get('env') || 'test' == app.get('env')) {
-  app.use(express.static(path.join(__dirname, '/node_modules')));
-  app.use(express.static(path.join(__dirname, '/tools')));
+  //  app.use(express.static(path.join(__dirname, '/node_modules')));
+  //  app.use(express.static(path.join(__dirname, '/tools')));
   // only use in development (stack traces/errors and etc)
   app.use(errorhandler());
   console.log("NODE_ENV: " + app.get('env'));
   console.log("mongo config address: " + config.get('db.path'));
 }
 
+// Point static path to dist
+app.use(express.static(path.join(__dirname, 'dist')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(expressValidator()); // this line must be immediately after express.bodyParser()!
-app.use(express.static(path.join(__dirname + '/client'))); //Angular2 frontend
-app.use(express.static(path.join(__dirname + '/public'))); // static folder for css and images and etc
-app.use(favicon(__dirname + '/public/assets/favicon.ico')); // favicon
+//app.use(express.static(path.join(__dirname + '/client'))); //Angular2 frontend
+//app.use(express.static(path.join(__dirname + '/public'))); // static folder for css and images and etc
+//app.use(favicon(__dirname + '/public/assets/favicon.ico')); // favicon
 app.disable('x-powered-by'); // security
 
 /*******************************************************************************
 *                              Database                                        *
 *******************************************************************************/
 // Use native Node promises
+
 mongoose.Promise = global.Promise;
 
 var connectionString = config.get('db.path') + "/" + config.get('db.name');
@@ -48,7 +52,6 @@ var connectionOptions = {
 mongoose.connect(connectionString, connectionOptions)
   .then(() => console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
-
 
 
 app.all('/*', function (req, res, next) {
@@ -72,13 +75,10 @@ app.all('/api/v1/*', [require('./server/middlewares/validateRequest')]);
 
 app.use('/', require('./server/routes'));
 
-// If no route is matched by now, it must be a 404
-app.use(function (req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+// Catch all other routes and return the index file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
-
 
 /*
  *
