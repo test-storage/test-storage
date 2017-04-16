@@ -11,16 +11,19 @@ Currently in early alpha development and **currently not available via npm**.
 
 ## Pre-installation
 
-install node.js
+* install node.js
+* install mongodb
 
-install mongodb
+for execution you should also install globally:
+```bash
+$ npm install -g nodemon @angular/cli
+```
 
 ## Installation
 
 ```bash
-$ npm install -g test-storage --production
+$ npm install -g test-storage
 ```
-
 
 ## Start
 ```
@@ -47,6 +50,8 @@ $ mongod --auth
 $ npm start
 ```
 
+Docker image will be provided soon.
+
 ## Installation (Development)
 
 ```bash
@@ -62,7 +67,7 @@ $ npm test
 Run
 
 ```bash
-$ npm start
+$ npm run dev
 ```
 
 ## Change log

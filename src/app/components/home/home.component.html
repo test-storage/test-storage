@@ -1,0 +1,16 @@
+<app-sidebar [sidebarCollapsed]="sidebarCollapsed"></app-sidebar>
+
+<div id="section" class="sidebar-full" [class.sidebar-collapsed]="sidebarCollapsed">
+
+    <app-header-nav (notify)="onNotify($event)"></app-header-nav>
+
+    <section id="content-wrapper">
+        <div id="content" style="min-height: 916px;">
+
+            <router-outlet>
+                <h2>Content will be here</h2>
+                <p>Some content</p>
+            </router-outlet>
+        </div>
+    </section>
+</div>
