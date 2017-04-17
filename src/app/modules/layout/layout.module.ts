@@ -20,6 +20,18 @@ const layoutRoutes: Routes = [
       {
         path: 'projects',
         loadChildren: './../../modules/projects/projects.module#ProjectsModule'
+      },
+      {
+        path: 'testcases',
+        loadChildren: './../../modules/testcases/testcases.module#TestcasesModule'
+      },
+      {
+        path: 'executions',
+        loadChildren: './../../modules/test-executions/test-executions.module#TestExecutionsModule'
+      },
+      {
+        path: 'reports',
+        loadChildren: './../../modules/reports/reports.module#ReportsModule'
       }
     ],
     component: LayoutComponent,
