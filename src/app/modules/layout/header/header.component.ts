@@ -1,15 +1,15 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthGuard } from './../../guards/auth.guard';
-import { AuthenticationService } from '../../services/auth/authentication.service';
+import { AuthGuard } from './../../../guards/auth.guard';
+import { AuthenticationService } from '../../../services/auth/authentication.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'app-header-nav',
-    templateUrl: 'header-navigation.component.html',
-    styleUrls: ['header-navigation.component.css']
+    selector: 'app-header',
+    templateUrl: 'header.component.html',
+    styleUrls: ['header.component.css']
 })
-export class HeaderNavigationComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
     private sidebarCollapsed: boolean = true;
     @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();

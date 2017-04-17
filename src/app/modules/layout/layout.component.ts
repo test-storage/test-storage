@@ -7,10 +7,10 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 @Component({
     moduleId: module.id,
     selector: 'app-home',
-    templateUrl: 'home.component.html',
-    styleUrls: ['home.component.css']
+    templateUrl: 'layout.component.html',
+    styleUrls: ['layout.component.css']
 })
-export class HomeComponent implements OnInit {
+export class LayoutComponent implements OnInit {
     public sidebarCollapsed = true;
     constructor(private authenticationService: AuthenticationService) { }
 

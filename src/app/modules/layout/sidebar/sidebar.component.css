@@ -1,14 +1,15 @@
 .navbar-fixed-left {
-  width: 140px;
+  width: 220px; /*140*/
   position: fixed;
   border-radius: 0;
   height: 100%;
   color: #FFF;
+  background: #1b1e24; /*#293846;*/
   z-index: 10;
 }
 
 .navbar-fixed-left .navbar-brand {
-  width: 140px;
+  width: 220px; /*140*/
   height: 56px;
   /*border-bottom: 1px solid #525252; */
   border-bottom: 1px solid #e7e7e7;
@@ -16,17 +17,31 @@
   bottom: 1px;
   right: 1px;
   background-color: #EAEAEA !important;
-  color: #333;
+  color: #6f7b8a;
 }
 
 .navbar-fixed-left a {
-  color: #FFF;
+  color: #a7b1c2;
+
+}
+
+.navbar-fixed-left span.label {
+  float: right;
+  position: relative;
+  border-radius: 25px;
+  top: 3px;
+}
+
+.fa-dashboard, .fa-folder-o, .fa-bar-chart-o, .fa-inbox, .fa-history {
+  font-size: 14px;
+  margin-left: 10px;
+  margin-right: 6px;
 }
 
 .navbar-fixed-left li a {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 300;
-  font-size: 14px;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .navbar-fixed-left i.fa {
@@ -36,17 +51,20 @@
 
 .navbar-fixed-left .navbar-nav > li {
   float: none;  /* Cancel default li float: left */
-  width: 139px;
+  width: 219px; /*139*/
 }
 
+.navbar-fixed-left .navbar-nav > li:hover {
+  background: #22262e;
+}
 .navbar-fixed-left + .container {
-  padding-left: 160px;
+  padding-left: 240px;  /*160*/
 }
 
 /* On using dropdown menu (To right shift popuped) */
 .navbar-fixed-left .navbar-nav > li > .dropdown-menu {
   margin-top: -50px;
-  margin-left: 140px;
+  margin-left: 220px;  /*140*/
   background-color: #333;
 }
 
@@ -61,9 +79,7 @@
   top: 4px;
 }
 
-.fa-dashboard, .fa-folder-o, .fa-bar-chart-o, .fa-inbox, .fa-history {
-  display: none;
-}
+
 
 /* sidebar collapsed */
 
@@ -73,8 +89,12 @@
   border-radius: 0;
   height: 100%;
   color: #FFF;
-  z-index: 9999;
+  z-index: 9999
+}
 
+.navbar-mini span.label {
+  top:-30px;
+  right: 3px;
 }
 
 .navbar-mini .navbar-brand {
@@ -87,6 +107,9 @@
   font-size: 10px;
   position: relative;
   right: 5px;
+}
+.navbar-mini li a span.sidebar-title {
+  display: none;
 }
 
 .navbar-mini .navbar-nav > li {
@@ -102,7 +125,6 @@
   display: inline-block;
   font-size: 26px;
   position: relative;
-  left: 9px;
+  left: 0;
   text-align: center;
-  float: left;
 }

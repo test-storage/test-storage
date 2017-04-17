@@ -9,16 +9,10 @@ import { AuthenticationService } from './services/auth/authentication.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LayoutModule } from './modules/layout/layout.module';
+
 import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-
-import { HeaderNavigationComponent } from './components/header-navigation/header-navigation.component';
-import { TestcaseListComponent } from './components/testcase-list/testcase-list.component';
-import { UserListComponent } from './components/user-list/user-list.component';
-
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -34,17 +28,13 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     BrowserModule,
     HttpModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    LayoutModule
   ],
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
-    DashboardComponent,
-    SidebarComponent,
-    HeaderNavigationComponent,
-    TestcaseListComponent,
-    UserListComponent
+    NotFoundComponent
   ],
   providers: [
     {

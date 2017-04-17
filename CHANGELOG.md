@@ -1,4 +1,7 @@
 # Change Log
+## 0.11.42 (April 17, 2017)
+- Migrate to modules, 404 error page added, small improvements: ([@pumano](https://github.com/pumano) in [#38](https://github.com/pumano/test-storage/pull/38))
+
 ## 0.9.42 (April 14, 2017)
 - Migrate to angular-cli: ([@pumano](https://github.com/pumano) in [1f8a1fc39573b4530e1aa2dc5f74df3f05d854c6](https://github.com/pumano/test-storage/commit/1f8a1fc39573b4530e1aa2dc5f74df3f05d854c6))
 
