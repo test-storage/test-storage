@@ -7,22 +7,23 @@ import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
-import { ProjectsComponent } from './../../components/projects/projects.component';
-import { DashboardComponent } from './../../components/dashboard/dashboard.component';
+import { DashboardModule } from './../dashboard/dashboard.module';
+import { ProjectsModule } from './../projects/projects.module';
 
 const layoutRoutes: Routes = [
   {
     path: '', children: [
       {
         path: 'dashboard',
-        component: DashboardComponent
+        loadChildren: './../../modules/dashboard/dashboard.module#DashboardModule'
       },
       {
         path: 'projects',
-        component: ProjectsComponent
+        loadChildren: './../../modules/projects/projects.module#ProjectsModule'
       }
     ],
-    component: LayoutComponent, canActivate: [AuthGuard]
+    component: LayoutComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
@@ -38,9 +39,7 @@ const layoutRoutes: Routes = [
   declarations: [
     LayoutComponent,
     SidebarComponent,
-    HeaderComponent,
-    DashboardComponent,
-    ProjectsComponent
+    HeaderComponent
   ]
 })
 export class LayoutModule { }

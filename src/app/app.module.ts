@@ -13,12 +13,6 @@ import { LayoutModule } from './modules/layout/layout.module';
 
 import { LoginComponent } from './components/login/login.component';
 
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { TestcaseListComponent } from './components/testcase-list/testcase-list.component';
-import { UserListComponent } from './components/user-list/user-list.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-
-
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
     headerName: 'x-access-token',
@@ -38,9 +32,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   ],
   declarations: [
     AppComponent,
-    LoginComponent,
-    TestcaseListComponent,
-    UserListComponent
+    LoginComponent
   ],
   providers: [
     {
