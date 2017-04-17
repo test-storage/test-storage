@@ -2,26 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 
+import { LayoutModule } from './modules/layout/layout.module';
 import { LoginComponent } from './components/login/login.component';
-import { LayoutComponent } from './components/layout/layout.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
-    path: '', children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
-      {
-        path: 'projects',
-        component: ProjectsComponent
-      }
-    ],
-    component: LayoutComponent, canActivate: [AuthGuard]
+    path: '', loadChildren: './modules/layout/layout.module#LayoutModule'
   },
   // otherwise redirect to home
   { path: '**', redirectTo: '' } // TODO 404

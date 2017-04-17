@@ -9,9 +9,7 @@ import { AuthenticationService } from './services/auth/authentication.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LayoutComponent } from './components/layout/layout.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { HeaderNavigationComponent } from './components/header-navigation/header-navigation.component';
+import { LayoutModule } from './modules/layout/layout.module';
 
 import { LoginComponent } from './components/login/login.component';
 
@@ -35,18 +33,14 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     BrowserModule,
     HttpModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    LayoutModule
   ],
   declarations: [
     AppComponent,
     LoginComponent,
-    LayoutComponent,
-    DashboardComponent,
-    SidebarComponent,
-    HeaderNavigationComponent,
     TestcaseListComponent,
-    UserListComponent,
-    ProjectsComponent
+    UserListComponent
   ],
   providers: [
     {
