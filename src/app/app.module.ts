@@ -9,15 +9,16 @@ import { AuthenticationService } from './services/auth/authentication.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HeaderNavigationComponent } from './components/header-navigation/header-navigation.component';
+
 import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-
-import { HeaderNavigationComponent } from './components/header-navigation/header-navigation.component';
 import { TestcaseListComponent } from './components/testcase-list/testcase-list.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { ProjectsComponent } from './components/projects/projects.component';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -39,12 +40,13 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
+    LayoutComponent,
     DashboardComponent,
     SidebarComponent,
     HeaderNavigationComponent,
     TestcaseListComponent,
-    UserListComponent
+    UserListComponent,
+    ProjectsComponent
   ],
   providers: [
     {

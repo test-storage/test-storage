@@ -58,13 +58,18 @@ Docker image will be provided soon.
 $ npm install -g test-storage
 ```
 
-Tests
+## Tests
 
+unit:
 ```
 $ npm test
 ```
+e2e:
+```
+$ npm e2e
+```
 
-Run
+## Start
 
 ```bash
 $ npm run dev

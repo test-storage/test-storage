@@ -1,7 +1,7 @@
 <div class="navbar navbar-inverse navbar-fixed-left" [class.navbar-mini]="sidebarCollapsed">
-  <a class="navbar-brand" href="#">Test Storage</a>
+  <a class="navbar-brand" routerLink="/">Test Storage</a>
   <ul class="nav navbar-nav">
-    <li class="dropdown"><a routerLink="/dashboard" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-dashboard"></i>Dashboard <span class="fa fa-chevron-down"></span></a>
+    <li class="dropdown"><a routerLink="/dashboard" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-dashboard"></i><span class="sidebar-title">Dashboard</span><span class="fa fa-chevron-down"></span></a>
       <ul class="dropdown-menu" role="menu">
         <li><a href="#">Sub Menu1</a></li>
         <li><a href="#">Sub Menu2</a></li>
@@ -11,9 +11,9 @@
         <li><a href="#">Sub Menu5</a></li>
       </ul>
     </li>
-    <li><a routerLink="/projects"><i class="fa fa-folder-o"></i>Projects</a></li>
-    <li><a routerLink="/testcases"><i class="fa fa-inbox"></i>Testcases</a></li>
-    <li><a routerLink="/executions"><i class="fa fa-history"></i>Test Executions</a></li>
-    <li><a routerLink="/reports"><i class="fa fa-bar-chart-o"></i>Reports</a></li>
+    <li><a routerLink="/projects"><i class="fa fa-folder-o"></i><span class="sidebar-title">Projects</span></a></li>
+    <li><a routerLink="/testcases"><i class="fa fa-inbox"></i><span class="sidebar-title">Testcases</span><span class="label label-primary">1234</span></a></li>
+    <li><a routerLink="/executions"><i class="fa fa-history"></i><span class="sidebar-title">Test Executions</span></a></li>
+    <li><a routerLink="/reports"><i class="fa fa-bar-chart-o"></i><span class="sidebar-title">Reports</span></a></li>
   </ul>
 </div>

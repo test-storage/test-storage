@@ -4,7 +4,7 @@
 }
 
 .sidebar-full{
-    padding-left: 140px; 
+    padding-left: 220px;
 }
 
 .sidebar-collapsed {
@@ -15,7 +15,7 @@
     position: relative;
     bottom: 20px;
     border: 1px solid transparent;
-    background-color: #EAEAEA; 
+    background-color: #EAEAEA;
 }
 
 #content {
