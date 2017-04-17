@@ -4,14 +4,15 @@ import { AuthGuard } from './guards/auth.guard';
 
 import { LayoutModule } from './modules/layout/layout.module';
 import { LoginComponent } from './components/login/login.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: '', loadChildren: './modules/layout/layout.module#LayoutModule'
   },
-  // otherwise redirect to home
-  { path: '**', redirectTo: '' } // TODO 404
+  // otherwise redirect to 404 page
+  { path: '**', component: NotFoundComponent }
 ];
 
 
