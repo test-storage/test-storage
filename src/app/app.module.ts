@@ -14,6 +14,7 @@ import { LayoutModule } from './modules/layout/layout.module';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
+// AoT requires an exported function for factories
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
     headerName: 'x-access-token',
