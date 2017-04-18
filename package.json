@@ -32,6 +32,8 @@
     "@angular/platform-browser": "^4.0.2",
     "@angular/platform-browser-dynamic": "^4.0.2",
     "@angular/router": "^4.0.2",
+    "@ngx-translate/core": "6.0.1",
+    "@ngx-translate/http-loader": "0.0.3",
     "angular2-jwt": "^0.2.2",
     "body-parser": "^1.17.1",
     "bootstrap": "^3.3.7",

@@ -1,0 +1,8 @@
+{
+    "LOGINPAGE": {
+        "USERNAME": "Пользователь",
+        "PASSWORD": "Пароль",
+        "LOGIN_REQUIRED": "Пользователь обязательное поле",
+        "PASSWORD_REQUIRED": "Пароль обязательное поле"
+    }
+}
