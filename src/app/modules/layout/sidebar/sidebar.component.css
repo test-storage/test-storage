@@ -12,12 +12,13 @@
   width: 220px; /*140*/
   height: 56px;
   /*border-bottom: 1px solid #525252; */
-  border-bottom: 1px solid #e7e7e7;
+  border-bottom: 1px solid #1b1e24;/*#e7e7e7;*/
   position: relative;
   bottom: 1px;
   right: 1px;
-  background-color: #EAEAEA !important;
-  color: #6f7b8a;
+  /*background-color: #EAEAEA !important;*/
+  background-color: #1b1e24 !important;
+  color: #1b1e24; /*#6f7b8a;*/
 }
 
 .navbar-fixed-left a {
