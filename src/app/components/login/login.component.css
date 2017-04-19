@@ -1,3 +1,38 @@
-.login {
-  width: 40%;
+
+#login-wrapper {
+  margin: 0, auto;
+}
+
+#login {
+  width: 300px;
+  margin: auto;
+}
+
+#login h2 {
+  text-align: center;
+  padding-top: 20px;
+}
+
+#login form {
+  padding-top: 40px;
+}
+
+.center {
+   margin: 0, auto;
+}
+
+#logo {
+  text-align: center;
+  padding-top: 100px;
+}
+#logo-text {
+  font-family: 'Roboto';
+  font-weight: 100;
+  font-size: 30px;
+}
+
+#logo-strong {
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 30px;
 }
