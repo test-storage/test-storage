@@ -5,5 +5,16 @@
         "LOGIN_REQUIRED": "Username is required",
         "PASSWORD_REQUIRED": "Password is required",
         "LOGIN_BUTTON": "Login"
+    },
+    "HEADER": {
+        "USER_PROFILE": "User Profile",
+        "LOGOUT": "Logout"
+    },
+    "SIDEBAR": {
+        "DASHBOARD": "Dashboard",
+        "PROJECTS": "Projects",
+        "TESTCASES": "Test Сases",
+        "TEST_EXECUTIONS": "Test Executions",
+        "REPORTS": "Reports"
     }
 }

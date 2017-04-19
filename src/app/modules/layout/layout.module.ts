@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './../../guards/auth.guard';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -48,7 +50,8 @@ const layoutRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(layoutRoutes),
-    CommonModule
+    CommonModule,
+    TranslateModule
   ],
   exports: [
     LayoutComponent

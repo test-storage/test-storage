@@ -1,4 +1,6 @@
 # Change Log
+## 0.12.43 (April 17, 2017)
+- i18n (internationalization added), small improvements: ([@pumano](https://github.com/pumano) in [#40](https://github.com/pumano/test-storage/pull/40))
 ## 0.11.42 (April 17, 2017)
 - Migrate to modules, 404 error page added, small improvements: ([@pumano](https://github.com/pumano) in [#38](https://github.com/pumano/test-storage/pull/38))
 
