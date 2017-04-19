@@ -9,7 +9,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var errorhandler = require('errorhandler');
 var mongoose = require('mongoose');
-var favicon = require('serve-favicon');
 // TODO implement methodOverride if it will be needed
 //var methodOverride = require('method-override')
 var config = require('config');
@@ -17,8 +16,6 @@ var config = require('config');
 var app = express();
 
 if ('development' == app.get('env') || 'test' == app.get('env')) {
-  //  app.use(express.static(path.join(__dirname, '/node_modules')));
-  //  app.use(express.static(path.join(__dirname, '/tools')));
   // only use in development (stack traces/errors and etc)
   app.use(errorhandler());
   console.log("NODE_ENV: " + app.get('env'));
@@ -31,13 +28,13 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(expressValidator()); // this line must be immediately after express.bodyParser()!
-//app.use(express.static(path.join(__dirname + '/client'))); //Angular2 frontend
+
 //app.use(express.static(path.join(__dirname + '/public'))); // static folder for css and images and etc
-//app.use(favicon(__dirname + '/public/assets/favicon.ico')); // favicon
+//app.use(express.static(path.join(__dirname + '/i18n')));
 app.disable('x-powered-by'); // security
 
 /*******************************************************************************
-*                              Database                                        *
+*                                  Database                                    *
 *******************************************************************************/
 // Use native Node promises
 
@@ -53,6 +50,10 @@ mongoose.connect(connectionString, connectionOptions)
   .then(() => console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
 
+
+/*******************************************************************************
+*                                   Routes                                     *
+*******************************************************************************/
 
 app.all('/*', function (req, res, next) {
   // CORS headers
@@ -79,6 +80,10 @@ app.use('/', require('./server/routes'));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
+
+/*******************************************************************************
+*                              Server initialization                           *
+*******************************************************************************/
 
 /*
  *

@@ -1,5 +1,5 @@
 .navbar {
-    border-radius: 0px; 
+    border-radius: 0;
 }
 
 .glyphicon.glyphicon-bell, .glyphicon.glyphicon-cog, .fa-bell {
@@ -8,7 +8,13 @@
 .fa-bars {
     font-size: 20px; /* 26 is better */
     position: relative;
-    right: 30px;
+    top: 2px;
+    right: 26px;
+    color: #7a7f8c;
+}
+
+.fa-power-off, .fa-user {
+    color: #676a6c;
 }
 
 .icon-info {

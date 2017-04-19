@@ -1,0 +1,20 @@
+{
+    "LOGINPAGE": {
+        "USERNAME": "Пользователь",
+        "PASSWORD": "Пароль",
+        "LOGIN_REQUIRED": "Обязательное поле Пользователь",
+        "PASSWORD_REQUIRED": "Обязательное поле Пароль",
+        "LOGIN_BUTTON": "Войти"
+    },
+    "HEADER": {
+        "USER_PROFILE": "Профиль пользователя",
+        "LOGOUT": "Выйти"
+    },
+    "SIDEBAR": {
+        "DASHBOARD": "Главная",
+        "PROJECTS": "Проекты",
+        "TESTCASES": "Тест Кейсы",
+        "TEST_EXECUTIONS": "Тест Прогоны",
+        "REPORTS": "Отчеты"
+    }
+}

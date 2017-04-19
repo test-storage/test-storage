@@ -3,16 +3,23 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './../../guards/auth.guard';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
-import { DashboardModule } from './../dashboard/dashboard.module';
-import { ProjectsModule } from './../projects/projects.module';
-
 const layoutRoutes: Routes = [
   {
     path: '', children: [
+      {
+        path: 'settings',
+        loadChildren: './../../modules/settings/settings.module#SettingsModule'
+      },
+      {
+        path: 'profile',
+        loadChildren: './../../modules/profile/profile.module#ProfileModule'
+      },
       {
         path: 'dashboard',
         loadChildren: './../../modules/dashboard/dashboard.module#DashboardModule'
@@ -43,7 +50,8 @@ const layoutRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(layoutRoutes),
-    CommonModule
+    CommonModule,
+    TranslateModule
   ],
   exports: [
     LayoutComponent
