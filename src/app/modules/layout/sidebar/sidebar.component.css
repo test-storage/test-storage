@@ -18,7 +18,20 @@
   right: 1px;
   /*background-color: #EAEAEA !important;*/
   background-color: #1b1e24 !important;
-  color: #1b1e24; /*#6f7b8a;*/
+  color: #FFF; /*#6f7b8a;*/
+  text-align: center;
+}
+
+.logo-text {
+  font-family: 'Roboto';
+  font-weight: 100;
+  font-size: 30px;
+}
+
+.logo-strong {
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 30px;
 }
 
 .navbar-fixed-left a {
@@ -101,6 +114,9 @@
 .navbar-mini .navbar-brand {
   width: 70px;
   height: 56px;
+}
+
+.navbar-mini .navbar-brand span {
   font-size: 0;
 }
 
