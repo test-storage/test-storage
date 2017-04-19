@@ -1,7 +1,7 @@
 <div class="col-md-6 col-md-offset-3">
-    <div class="alert alert-info">
+    <!--<div class="alert alert-info">
         Username: test<br /> Password: test
-    </div>
+    </div>-->
     <h2>Login</h2>
     <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
@@ -10,9 +10,9 @@
             <div *ngIf="f.submitted && !username.valid" class="help-block">{{ 'LOGINPAGE.LOGIN_REQUIRED' | translate }}</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-            <label for="password">{{ 'LOGINPAGE.USERNAME' | translate }}</label>
+            <label for="password">{{ 'LOGINPAGE.PASSWORD' | translate }}</label>
             <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
-            <div *ngIf="f.submitted && !password.valid" class="help-block">{{ 'LOGINPAGE.LOGIN_REQUIRED' | translate }}</div>
+            <div *ngIf="f.submitted && !password.valid" class="help-block">{{ 'LOGINPAGE.PASSWORD_REQUIRED' | translate }}</div>
         </div>
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary">Login</button>
