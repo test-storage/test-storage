@@ -2,7 +2,8 @@
     "LOGINPAGE": {
         "USERNAME": "Пользователь",
         "PASSWORD": "Пароль",
-        "LOGIN_REQUIRED": "Пользователь обязательное поле",
-        "PASSWORD_REQUIRED": "Пароль обязательное поле"
+        "LOGIN_REQUIRED": "Обязательное поле Пользователь",
+        "PASSWORD_REQUIRED": "Обязательное поле Пароль",
+        "LOGIN_BUTTON": "Войти"
     }
 }

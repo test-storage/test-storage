@@ -3,6 +3,7 @@
         "USERNAME": "Username",
         "PASSWORD": "Password",
         "LOGIN_REQUIRED": "Username is required",
-        "PASSWORD_REQUIRED": "Password is required"
+        "PASSWORD_REQUIRED": "Password is required",
+        "LOGIN_BUTTON": "Login"
     }
 }
