@@ -1,5 +1,6 @@
 {
     "LOGINPAGE": {
+        "LOGIN": "Вход",
         "USERNAME": "Пользователь",
         "PASSWORD": "Пароль",
         "LOGIN_REQUIRED": "Обязательное поле Пользователь",

@@ -1,5 +1,6 @@
 {
     "LOGINPAGE": {
+        "LOGIN": "Login",
         "USERNAME": "Username",
         "PASSWORD": "Password",
         "LOGIN_REQUIRED": "Username is required",
