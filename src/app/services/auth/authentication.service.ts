@@ -1,8 +1,8 @@
-import { Injectable }              from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Observable }              from 'rxjs';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 import { contentHeaders } from './headers';
-import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthenticationService {
