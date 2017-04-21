@@ -22,7 +22,7 @@ before_install:
 
 before_script:
   - sleep 5
-  - echo 'db.addUser("admin", "admin");' | mongo test-storage
+  - mongo test-storage config/db-init.js
 
 install:
   - yarn
