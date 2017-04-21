@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'auth', component: LoginComponent },
   {
     path: '', loadChildren: './modules/layout/layout.module#LayoutModule'
   },
