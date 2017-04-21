@@ -33,7 +33,7 @@ $ cd test-storage
 1. run db-init.js script (script connects to test-storage db and create default user for authentication)
 
 ```bash
-$ mongo localhost:27017/test-storage config/db-init.js
+$ mongo test-storage config/db-init.js
 ```
 
 Note: to change database user/password for application check config/development.json or config/production.json files
