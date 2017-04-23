@@ -21,7 +21,7 @@ describe('/testcases', function () {
                 'priority': 1,
                 'order': 2,
                 'prerequisites': 'Prerequisites 1',
-                'name': 'Testcase 1',
+                'title': 'Testcase 1',
                 'description': 'Test case description',
                 'steps': ['Check that', 'Check this'],
                 'expected': ['Expected that', 'Expected this'],
@@ -55,7 +55,7 @@ describe('/testcases', function () {
                 res.body.should.have.property('priority', 1);
                 res.body.should.have.property('order', 2);
                 res.body.should.have.property('prerequisites', 'Prerequisites 1');
-                res.body.should.have.property('name', 'Testcase 1');
+                res.body.should.have.property('title', 'Testcase 1');
                 res.body.should.have.property('description', 'Test case description');
                 res.body.should.have.property('steps', ['Check that', 'Check this']);
                 res.body.should.have.property('expected', ['Expected that', 'Expected this']);
@@ -80,7 +80,7 @@ describe('/testcases', function () {
                 res.body[0].should.have.property('priority');
                 res.body[0].should.have.property('order');
                 res.body[0].should.have.property('prerequisites');
-                res.body[0].should.have.property('name');
+                res.body[0].should.have.property('title');
                 res.body[0].should.have.property('description');
                 res.body[0].should.have.property('steps');
                 res.body[0].should.have.property('expected');
@@ -103,7 +103,7 @@ describe('/testcases', function () {
                 'priority': 2,
                 'order': 3,
                 'prerequisites': 'Prerequisites 1 edited',
-                'name': 'Testcase 1 edited',
+                'title': 'Testcase 1 edited',
                 'description': 'Test case description edited',
                 'steps': ['Check that edited', 'Check this edited'],
                 'expected': ['Expected that edited', 'Expected this edited'],
@@ -119,7 +119,7 @@ describe('/testcases', function () {
                 res.body.should.have.property('priority', 2);
                 res.body.should.have.property('order', 3);
                 res.body.should.have.property('prerequisites', 'Prerequisites 1 edited');
-                res.body.should.have.property('name', 'Testcase 1 edited');
+                res.body.should.have.property('title', 'Testcase 1 edited');
                 res.body.should.have.property('description', 'Test case description edited');
                 res.body.should.have.property('steps', ['Check that edited', 'Check this edited']);
                 res.body.should.have.property('expected', ['Expected that edited', 'Expected this edited']);
@@ -145,7 +145,7 @@ describe('/testcases', function () {
                 res.body.should.not.have.property('priority');
                 res.body.should.not.have.property('order');
                 res.body.should.not.have.property('prerequisites');
-                res.body.should.not.have.property('name');
+                res.body.should.not.have.property('title');
                 res.body.should.not.have.property('description');
                 res.body.should.not.have.property('steps');
                 res.body.should.not.have.property('tags');

@@ -6,14 +6,6 @@ var UserSchema = new mongoose.Schema({
     unique: true,
     default: crypto.randomBytes(16).toString('hex')
   },
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
-    type: String,
-    required: true
-  },
   email: {
     type: String,
     required: true,
@@ -22,6 +14,14 @@ var UserSchema = new mongoose.Schema({
   password: {
     type: String,
     require: true
+  },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
   },
   title: String,
   groups: Array,

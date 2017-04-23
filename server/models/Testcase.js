@@ -19,7 +19,7 @@ var TestcaseSchema = new mongoose.Schema({
   order: {
     type: Number
   },
-  name: {
+  title: {
     type: String,
     required: true
   },

@@ -74,13 +74,13 @@ var testcases = {
 
     // check body
     req.checkBody({
-      'name': {
+      'title': {
         notEmpty: true,
-        errorMessage: 'Name required'
+        errorMessage: 'title required'
       },
       'description': {
         notEmpty: true,
-        errorMessage: 'Name required' // Error message for the parameter
+        errorMessage: 'description required' // Error message for the parameter
       },
       'prerequisites': { //
         optional: true, // won't validate if field is empty
@@ -106,7 +106,7 @@ var testcases = {
       testcase.parentId = req.body.parentId;
       testcase.priority = req.body.priority;
       testcase.order = req.body.order;
-      testcase.name = req.body.name;
+      testcase.title = req.body.title;
       testcase.description = req.body.description;
       testcase.prerequisites = req.body.prerequisites;
       testcase.steps = req.body.steps;
