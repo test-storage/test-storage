@@ -19,6 +19,7 @@ describe('/groups', function () {
             .send({
                 "name": "Dummy user group",
                 "description": "User group for guests",
+                "enabled": true,
                 "scope": {
                     "testcases": "read-only",
                     "testsuites": "read-only"
@@ -49,6 +50,7 @@ describe('/groups', function () {
             .end(function (err, res) {
                 res.body.should.have.property('name', 'Dummy user group');
                 res.body.should.have.property('description', 'User group for guests');
+                res.body.should.have.property('enabled', true);
                 res.body.should.have.property('scope');
                 res.body.scope.should.have.property('testcases', 'read-only');
                 res.body.scope.should.have.property('testsuites', 'read-only');
@@ -69,6 +71,7 @@ describe('/groups', function () {
             .end(function (err, res) {
                 res.body[0].should.have.property('name');
                 res.body[0].should.have.property('description');
+                res.body[0].should.have.property('enabled');
                 res.body[0].should.have.property('scope');
                 res.body[0].scope.should.have.property('testcases');
                 res.body[0].scope.should.have.property('testsuites');
@@ -86,6 +89,7 @@ describe('/groups', function () {
             .send({
                 "name": "Dummy user group edited",
                 "description": "User group for guests edited",
+                "enabled": false,
                 "scope": {
                     "testcases": "read-only edited",
                     "testsuites": "read-only edited"
@@ -97,6 +101,7 @@ describe('/groups', function () {
             .end(function (err, res) {
                 res.body.should.have.property('name', 'Dummy user group edited');
                 res.body.should.have.property('description', 'User group for guests edited');
+                res.body.should.have.property('enabled', false);
                 res.body.should.have.property('scope');
                 res.body.scope.should.have.property('testcases', 'read-only edited');
                 res.body.scope.should.have.property('testsuites', 'read-only edited');
@@ -117,6 +122,7 @@ describe('/groups', function () {
             .end(function (err, res) {
                 res.body.should.not.have.property('name');
                 res.body.should.not.have.property('description');
+                res.body.should.not.have.property('enabled');
                 res.body.should.not.have.property('scope');
                 res.body.should.not.have.property('users');
                 if (err) return done(err);
