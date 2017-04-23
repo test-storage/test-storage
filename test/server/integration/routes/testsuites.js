@@ -1,7 +1,7 @@
 var request = require('supertest');
 var should = require('should');
 
-var app = require('../../../../app.js');
+var app = require('../../../../server.js');
 var server = request.agent(app);
 var token = "";
 
