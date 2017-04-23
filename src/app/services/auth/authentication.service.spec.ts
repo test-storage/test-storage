@@ -1,19 +1,16 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
-import { UserService } from './user.service';
-import { User } from '../../models/user';
-import { AuthenticationService } from '../auth/index';
+import { AuthenticationService } from './authentication.service';
 
-describe('UserService', () => {
+describe('AuthenticationService', () => {
 
-  let subject: UserService = null;
+  let subject: AuthenticationService = null;
   let backend: MockBackend = null;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        UserService,
         AuthenticationService,
         BaseRequestOptions,
         {
@@ -27,15 +24,14 @@ describe('UserService', () => {
       ]
     });
   });
+  beforeEach(inject([AuthenticationService, MockBackend], (authenticationService: AuthenticationService, mockBackend: MockBackend) => {
+    subject = authenticationService;
+    backend = mockBackend;
+  }));
 
-  beforeEach(inject([AuthenticationService, MockBackend, UserService],
-    (authenticationService: AuthenticationService, mockBackend: MockBackend, userService: UserService) => {
-      subject = userService;
-      backend = mockBackend;
-    }));
 
-  // TODO with auth
-  it('should ...', inject([UserService], (service: UserService) => {
+  it('should ...', inject([AuthenticationService], (service: AuthenticationService) => {
     expect(service).toBeTruthy();
   }));
+
 });
