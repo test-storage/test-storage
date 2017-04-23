@@ -1,7 +1,7 @@
 var request = require('supertest');
 var should = require('should');
 
-var app = require('../../../../app.js');
+var app = require('../../../../server.js');
 var server = request.agent(app);
 var token = "";
 
@@ -26,7 +26,7 @@ describe('/testplans', function() {
                         "osVersion": "6.1",
                         "architecture": "ARMv8",
                         "browser": "Chrome"
-                    }], 
+                    }],
                     */
                 "environments": ["Stage", "Production"],
                 "testruns": [23, 24, 25]

@@ -13,6 +13,7 @@ var GroupSchema = new mongoose.Schema({
   description: {
     type: String
   },
+  enabled: Boolean,
   scope: Object,
   users: Array,
   created: { type: Date, required: true, default: Date.now },

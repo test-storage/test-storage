@@ -97,6 +97,7 @@ var groups = {
 
       group.name = req.body.name;
       group.description = req.body.description;
+      group.enabled = req.body.enabled;
       group.scope = req.body.scope;
       //  group.scope.testsuites = req.body.scope.testsuites;
       group.users = req.body.users; // add users

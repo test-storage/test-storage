@@ -1,17 +1,17 @@
 var request = require('supertest');
 var should = require('should');
 
-var app = require('../../../../app.js');
+var app = require('../../../../server.js');
 var server = request.agent(app);
 var token = "";
 
 var entityId = "";
 
-describe('/groups', function() {
+describe('/groups', function () {
 
     it('login', loginUser());
 
-    it('POST /groups respond with status 201 and JSON', function(done) {
+    it('POST /groups respond with status 201 and JSON', function (done) {
         this.timeout(35000);
         request(server.app)
             .post('/api/v1/groups')
@@ -19,6 +19,7 @@ describe('/groups', function() {
             .send({
                 "name": "Dummy user group",
                 "description": "User group for guests",
+                "enabled": true,
                 "scope": {
                     "testcases": "read-only",
                     "testsuites": "read-only"
@@ -27,18 +28,18 @@ describe('/groups', function() {
             })
             .expect(201)
             .expect('Content-Type', /json/)
-            .expect(function(res) {
+            .expect(function (res) {
                 // Location header
                 res.header.location = res.body._id;
             })
-            .end(function(err, res) {
+            .end(function (err, res) {
                 entityId = res.body._id;
                 if (err) return done(err);
                 done()
             });
     });
 
-    it('GET /groups/:id respond with JSON', function(done) {
+    it('GET /groups/:id respond with JSON', function (done) {
         this.timeout(30000);
         request(server.app)
             .get('/api/v1/groups/' + entityId)
@@ -46,9 +47,10 @@ describe('/groups', function() {
             .set('x-access-token', token)
             .expect('Content-Type', /json/)
             .expect(200)
-            .end(function(err, res) {
+            .end(function (err, res) {
                 res.body.should.have.property('name', 'Dummy user group');
                 res.body.should.have.property('description', 'User group for guests');
+                res.body.should.have.property('enabled', true);
                 res.body.should.have.property('scope');
                 res.body.scope.should.have.property('testcases', 'read-only');
                 res.body.scope.should.have.property('testsuites', 'read-only');
@@ -58,7 +60,7 @@ describe('/groups', function() {
             });
     });
 
-    it('GET /groups respond with JSON', function(done) {
+    it('GET /groups respond with JSON', function (done) {
         this.timeout(35000);
         request(server.app)
             .get('/api/v1/groups')
@@ -66,9 +68,10 @@ describe('/groups', function() {
             .set('x-access-token', token)
             .expect('Content-Type', /json/)
             .expect(200)
-            .end(function(err, res) {
+            .end(function (err, res) {
                 res.body[0].should.have.property('name');
                 res.body[0].should.have.property('description');
+                res.body[0].should.have.property('enabled');
                 res.body[0].should.have.property('scope');
                 res.body[0].scope.should.have.property('testcases');
                 res.body[0].scope.should.have.property('testsuites');
@@ -78,7 +81,7 @@ describe('/groups', function() {
             });
     });
 
-    it('PUT /groups respond with JSON', function(done) {
+    it('PUT /groups respond with JSON', function (done) {
         this.timeout(55000);
         request(server.app)
             .put('/api/v1/groups/' + entityId)
@@ -86,6 +89,7 @@ describe('/groups', function() {
             .send({
                 "name": "Dummy user group edited",
                 "description": "User group for guests edited",
+                "enabled": false,
                 "scope": {
                     "testcases": "read-only edited",
                     "testsuites": "read-only edited"
@@ -94,9 +98,10 @@ describe('/groups', function() {
             })
             .expect(200)
             .expect('Content-Type', /json/)
-            .end(function(err, res) {
+            .end(function (err, res) {
                 res.body.should.have.property('name', 'Dummy user group edited');
                 res.body.should.have.property('description', 'User group for guests edited');
+                res.body.should.have.property('enabled', false);
                 res.body.should.have.property('scope');
                 res.body.scope.should.have.property('testcases', 'read-only edited');
                 res.body.scope.should.have.property('testsuites', 'read-only edited');
@@ -107,16 +112,17 @@ describe('/groups', function() {
     });
 
 
-    it('DELETE /groups/:id respond with JSON', function(done) {
+    it('DELETE /groups/:id respond with JSON', function (done) {
         this.timeout(75000);
         request(server.app)
             .delete('/api/v1/groups/' + entityId)
             .set('Accept', 'application/json')
             .set('x-access-token', token)
             .expect(204)
-            .end(function(err, res) {
+            .end(function (err, res) {
                 res.body.should.not.have.property('name');
                 res.body.should.not.have.property('description');
+                res.body.should.not.have.property('enabled');
                 res.body.should.not.have.property('scope');
                 res.body.should.not.have.property('users');
                 if (err) return done(err);
@@ -127,7 +133,7 @@ describe('/groups', function() {
 });
 
 function loginUser() {
-    return function(done) {
+    return function (done) {
         request(server.app)
             .post('/login')
             .send({ username: 'admin@test-storage.local', password: 'pass123' })

@@ -14,6 +14,7 @@ var users = {
 
     // check limit, offset, fields param
     var limit = {}, offset = {}, fields = {};
+    fields['password'] = 0;
     limit['limit'] = validator.validateLimit(req, res);
     fields = validator.validateFields(req, res);
 
@@ -32,6 +33,7 @@ var users = {
 
     // check 'fields' param
     var fields = {};
+    fields['password'] = 0;
     fields = validator.validateFields(req, res);
     // check :id param
     validator.isPathValid(req, res);
@@ -63,11 +65,14 @@ var users = {
    */
 
   update: function (req, res) {
+
+    var fields = {};
+    fields['password'] = 0;
     // check :id param
     validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
-    User.findOne({ "_id": req.params.id }, function (err, user) {
+    User.findOne({ "_id": req.params.id }, fields, function (err, user) {
 
       user.firstName = req.body.firstName;
       user.lastName = req.body.lastName;
