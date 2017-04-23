@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
+import { Routes, RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './modules/layout/layout.module';
 
@@ -16,6 +16,16 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+
+// App routes
+const routes: Routes = [
+  { path: 'auth', component: LoginComponent },
+  {
+    path: '', loadChildren: './modules/layout/layout.module#LayoutModule'
+  },
+  // otherwise redirect to 404 page
+  { path: '**', component: NotFoundComponent }
+];
 
 // AoT requires an exported function for factories
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -35,7 +45,7 @@ export function HttpLoaderFactory(http: Http) {
   imports: [
     BrowserModule,
     HttpModule,
-    AppRoutingModule,
+    RouterModule.forRoot(routes),
     FormsModule,
     LayoutModule,
     TranslateModule.forRoot({
