@@ -71,6 +71,7 @@ var testsuites = {
     Testsuite.findOne({ "_id": req.params.id }, function (err, testsuite) {
 
       testsuite.parentId = req.body.parentId;
+      testsuite.enabled = req.body.enabled;
       testsuite.name = req.body.name;
       testsuite.description = req.body.description;
       testsuite.prerequisites = req.body.prerequisites;
