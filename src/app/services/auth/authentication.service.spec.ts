@@ -3,8 +3,7 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthenticationService } from './authentication.service';
-import { AuthGuard } from '../../guards/auth.guard';
+import { AuthGuard, AuthenticationService } from './index';
 import { LoginComponent } from '../../components/login/login.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { TranslateStore } from '@ngx-translate/core/src/translate.store';
@@ -65,7 +64,7 @@ describe('AuthenticationService', () => {
     (inject([AuthGuard, Router], (authGuard, router) => {
 
       // add a spy
-      //spyOn(router, 'navigate');
+      // spyOn(router, 'navigate');
 
       expect(authGuard.canActivate()).toBeFalsy();
       expect(router.navigate).toHaveBeenCalled();

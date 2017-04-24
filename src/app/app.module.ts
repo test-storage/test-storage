@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './modules/layout/layout.module';
 
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './services/auth/auth-guard.service';
 import { AuthenticationService } from './services/auth/authentication.service';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
