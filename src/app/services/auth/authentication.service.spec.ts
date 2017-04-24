@@ -1,7 +1,14 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, async, inject } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AuthenticationService } from './authentication.service';
+import { AuthGuard } from '../../guards/auth.guard';
+import { LoginComponent } from '../../components/login/login.component';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { TranslateStore } from '@ngx-translate/core/src/translate.store';
+import { FormsModule } from '@angular/forms';
 
 describe('AuthenticationService', () => {
 
@@ -10,7 +17,21 @@ describe('AuthenticationService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        TranslateModule,
+        RouterTestingModule.withRoutes([
+          {
+            path: 'auth',
+            component: LoginComponent
+          }
+        ])
+      ],
+      declarations: [
+        LoginComponent
+      ],
       providers: [
+        AuthGuard,
         AuthenticationService,
         BaseRequestOptions,
         {
@@ -20,7 +41,11 @@ describe('AuthenticationService', () => {
           },
           deps: [MockBackend, BaseRequestOptions]
         },
-        MockBackend
+        MockBackend,
+        {
+          provide: Router,
+          useClass: class { navigate = jasmine.createSpy('navigate'); }
+        },
       ]
     });
   });
@@ -34,4 +59,16 @@ describe('AuthenticationService', () => {
     expect(service).toBeTruthy();
   }));
 
+  it('checks Auth Guard: if a user is valid',
+
+    // inject your guard service AND Router
+    (inject([AuthGuard, Router], (authGuard, router) => {
+
+      // add a spy
+      //spyOn(router, 'navigate');
+
+      expect(authGuard.canActivate()).toBeFalsy();
+      expect(router.navigate).toHaveBeenCalled();
+    })
+    ));
 });
