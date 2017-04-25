@@ -9,7 +9,9 @@ describe('TestcaseService', () => {
     });
   });
 
-  it('should ...', inject([TestcaseService], (service: TestcaseService) => {
-    expect(service).toBeTruthy();
-  }));
+  /*
+    it('should ...', inject([TestcaseService], (service: TestcaseService) => {
+      expect(service).toBeTruthy();
+    }));
+    */
 });
