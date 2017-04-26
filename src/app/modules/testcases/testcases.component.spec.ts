@@ -38,7 +38,6 @@ describe('TestcasesComponent', () => {
     // TestcaseService from the root injector
     TestBed.get(TestcaseService);
 
-
     fixture.detectChanges();
   }));
 
@@ -51,6 +50,7 @@ describe('TestcasesComponent', () => {
       backend.connections.subscribe((connection: MockConnection) => {
 
         expect(connection.request.method).toBe(RequestMethod.Get);
+        expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
         expect(connection.request.url).toBe('/api/v1/testcases');
       });
 

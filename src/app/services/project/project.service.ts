@@ -3,7 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { AuthenticationService } from '../auth/index';
+import { AuthenticationService, contentHeaders } from '../auth/index';
 import { Project } from '../../models/project';
 
 @Injectable()
@@ -16,8 +16,8 @@ export class ProjectService {
 
   public getProjects(): Observable<Project[]> {
     // add authorization header with jwt token
-    const headers = new Headers({ 'x-access-token': this.authenticationService.token });
-    const options = new RequestOptions({ headers: headers });
+    contentHeaders.append('x-access-token', this.authenticationService.token);
+    const options = new RequestOptions({ headers: contentHeaders });
 
     // get projects from api
     return this.http.get('/api/v1/projects', options)

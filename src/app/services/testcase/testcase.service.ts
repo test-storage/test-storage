@@ -3,7 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { AuthenticationService } from '../auth/index';
+import { AuthenticationService, contentHeaders } from '../auth/index';
 import { Testcase } from '../../models/testcase';
 
 @Injectable()
@@ -15,8 +15,8 @@ export class TestcaseService {
 
   public getTestcases(): Observable<Testcase[]> {
     // add authorization header with jwt token
-    const headers = new Headers({ 'x-access-token': this.authenticationService.token });
-    const options = new RequestOptions({ headers: headers });
+    contentHeaders.append('x-access-token', this.authenticationService.token);
+    const options = new RequestOptions({ headers: contentHeaders });
 
     // get test cases from api
     return this.http.get('/api/v1/testcases', options)
