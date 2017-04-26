@@ -40,11 +40,7 @@ describe('AuthenticationService', () => {
           },
           deps: [MockBackend, BaseRequestOptions]
         },
-        MockBackend,
-        {
-          provide: Router,
-          useClass: class { navigate = jasmine.createSpy('navigate'); }
-        },
+        MockBackend
       ]
     });
   });
@@ -64,10 +60,12 @@ describe('AuthenticationService', () => {
     (inject([AuthGuard, Router], (authGuard, router) => {
 
       // add a spy
-      // spyOn(router, 'navigate');
+      spyOn(router, 'navigate');
 
       expect(authGuard.canActivate()).toBeFalsy();
       expect(router.navigate).toHaveBeenCalled();
+      expect(router.navigate).toHaveBeenCalled();
+      expect(router.navigate).toHaveBeenCalledWith(['/auth']);
     })
     ));
 });

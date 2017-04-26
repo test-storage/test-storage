@@ -18,14 +18,11 @@ describe('ProjectService', () => {
           useFactory: (backend, options) => new Http(backend, options),
           deps: [MockBackend, BaseRequestOptions]
         }
-      ],
-      imports: [
-        HttpModule
       ]
     });
   });
 
-  it('should ...', inject([ProjectService, AuthenticationService], (service: ProjectService, auth: AuthenticationService) => {
+  it('should ...', inject([ProjectService], (service: ProjectService) => {
     expect(service).toBeTruthy();
   }));
 });
