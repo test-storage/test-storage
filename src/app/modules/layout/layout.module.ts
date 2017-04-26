@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './../../guards/auth.guard';
+import { AuthGuard } from './../../services/auth/auth-guard.service';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -11,7 +11,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 const layoutRoutes: Routes = [
   {
-    path: '', children: [
+    path: '',
+    children: [
       {
         path: 'settings',
         loadChildren: './../../modules/settings/settings.module#SettingsModule'
@@ -42,7 +43,8 @@ const layoutRoutes: Routes = [
       }
     ],
     component: LayoutComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard]
   }
 ];
 
@@ -60,6 +62,9 @@ const layoutRoutes: Routes = [
     LayoutComponent,
     SidebarComponent,
     HeaderComponent
+  ],
+  providers: [
+    AuthGuard
   ]
 })
 export class LayoutModule { }
