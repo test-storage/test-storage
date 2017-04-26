@@ -5,6 +5,9 @@ Test Storage - test case management system.
 
 Currently in early alpha development and **currently not available via npm**.
 
+Production
+======
+
 ## Dependencies
 - mongodb
 - node.js
@@ -13,6 +16,8 @@ Currently in early alpha development and **currently not available via npm**.
 
 * install node.js
 * install mongodb
+
+__note:__ `mongo` and `mongod` should be accessible via command line interface
 
 for execution you should also install globally:
 ```bash
@@ -36,7 +41,7 @@ $ cd test-storage
 $ mongo test-storage config/db-init.js
 ```
 
-Note: to change database user/password for application check config/development.json or config/production.json files
+__note:__ to change database user/password for application check config/development.json or config/production.json files
 
 2. run mongo db with authentication
 
@@ -52,7 +57,20 @@ $ npm start
 
 Docker image will be provided soon.
 
-## Installation (Development)
+Development
+======
+
+## Pre-installation
+for execution you should also install globally:
+```bash
+$ npm install -g nodemon @angular/cli
+```
+and local:
+```bash
+$ npm install concurrently --save-dev
+```
+
+## Installation
 
 ```bash
 $ npm install -g test-storage
@@ -60,13 +78,23 @@ $ npm install -g test-storage
 
 ## Tests
 
-unit:
+unit tests:
 ```
 $ npm test
 ```
-e2e:
+__note:__ `npm test` runs tests once. For running tests on each file change use:
+```
+$ ng test
+```
+
+e2e tests:
 ```
 $ npm e2e
+```
+
+backend tests:
+```
+$ npm run test:backend
 ```
 
 ## Start
