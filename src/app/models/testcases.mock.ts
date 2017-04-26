@@ -1,0 +1,47 @@
+import { Testcase } from './testcase';
+export const MockedTestcases: Testcase[] = [
+  {
+    '_id': '94994594',
+    'key': 'TC01',
+    'parentId': null,
+    'priority': 1,
+    'order': 2,
+    'prerequisites': 'Prerequisites 1',
+    'title': 'Testcase 1',
+    'description': 'Test case description',
+    'steps': ['Check that', 'Check this'],
+    'expected': ['Expected that', 'Expected this'],
+    'tags': ['first tag', 'second tag'],
+    'estimate': 10,
+    'enabled': true,
+    'isAutomated': false,
+    'status': 'created',
+    'created': '',
+    'updated': '',
+    'createdBy': '',
+    'updatedBy': '',
+    'childId': 2
+  },
+  {
+    '_id': '92e2e2e4994594',
+    'key': 'TC02',
+    'parentId': null,
+    'priority': 1,
+    'order': 2,
+    'prerequisites': 'Prerequisites 2',
+    'title': 'Testcase 2',
+    'description': 'Test case description',
+    'steps': ['Check that', 'Check this'],
+    'expected': ['Expected that', 'Expected this'],
+    'tags': ['first tag', 'second tag'],
+    'estimate': 10,
+    'enabled': true,
+    'isAutomated': false,
+    'status': 'created',
+    'created': '',
+    'updated': '',
+    'createdBy': '',
+    'updatedBy': '',
+    'childId': 2
+  }
+];

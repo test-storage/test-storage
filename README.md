@@ -65,10 +65,6 @@ for execution you should also install globally:
 ```bash
 $ npm install -g nodemon @angular/cli
 ```
-and local:
-```bash
-$ npm install concurrently --save-dev
-```
 
 ## Installation
 
