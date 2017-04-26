@@ -23,6 +23,7 @@ export class TestcaseService {
       .map((response: Response) => response.json());
     // .catch(this.handleError); // TODO error handling
   }
+
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');

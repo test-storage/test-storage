@@ -28,13 +28,6 @@ describe('UserService', () => {
     });
   });
 
-  beforeEach(inject([AuthenticationService, MockBackend, UserService],
-    (authenticationService: AuthenticationService, mockBackend: MockBackend, userService: UserService) => {
-      subject = userService;
-      backend = mockBackend;
-    }));
-
-  // TODO with auth
   it('should ...', inject([UserService], (service: UserService) => {
     expect(service).toBeTruthy();
   }));

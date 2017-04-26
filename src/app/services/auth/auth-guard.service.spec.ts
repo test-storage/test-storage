@@ -11,7 +11,7 @@ describe('AuthGuardService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [AuthGuard, AuthenticationService,
+            providers: [AuthGuard,
                 AuthenticationService,
                 BaseRequestOptions,
                 {
