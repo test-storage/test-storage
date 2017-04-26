@@ -1,4 +1,9 @@
 # Change Log
+## 0.15.50 (April 26, 2017)
+- Services added (fetching data from backend): ([@pumano](https://github.com/pumano) in [#45](https://github.com/test-storage/test-storage/pull/45))
+- Client models added
+- Unit tests added, small improvements
+
 ## 0.13.46 (April 21, 2017)
 - Unit tests execution added: ([@pumano](https://github.com/pumano) in [#43](https://github.com/test-storage/test-storage/pull/43))
 - Chrome Headless support added for execution unit and e2e tests, small improvements
