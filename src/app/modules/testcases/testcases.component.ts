@@ -23,7 +23,7 @@ export class TestcasesComponent implements OnInit {
 
   getTestcases() {
     this.testcaseService.getTestcases().subscribe(
-      data => this.testcases = data,
+      testcases => this.testcases = testcases,
       error => console.log(error)
     );
   }
