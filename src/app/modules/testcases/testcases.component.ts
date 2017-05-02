@@ -18,7 +18,7 @@ export class TestcasesComponent implements OnInit {
   constructor(private testcaseService: TestcaseService) { }
 
   ngOnInit() {
-    this.getTestcases();
+    // this.getTestcases();
   }
 
   getTestcases() {

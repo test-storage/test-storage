@@ -9,6 +9,9 @@ import { TestcaseService } from '../../services/testcase/testcase.service';
 import { Testcase } from '../../models/testcase';
 import { MockedTestcases } from '../../models/testcases.mock';
 
+import { TreeModule } from 'angular-tree-component';
+import { TestcaseTreeComponent } from '../testcase-tree/testcase-tree.component';
+
 
 describe('TestcasesComponent', () => {
   let component: TestcasesComponent;
@@ -17,7 +20,8 @@ describe('TestcasesComponent', () => {
   beforeEach(async(() => {
 
     TestBed.configureTestingModule({
-      declarations: [TestcasesComponent],
+      imports: [TreeModule],
+      declarations: [TestcasesComponent, TestcaseTreeComponent],
       providers: [Http,
         AuthenticationService,
         MockBackend,

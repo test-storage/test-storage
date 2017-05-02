@@ -4,6 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TestcasesComponent } from './testcases.component';
 
+import { TreeModule } from 'angular-tree-component';
+import { TestcaseTreeComponent } from '../testcase-tree/testcase-tree.component';
+
 const testcasesRoutes: Routes = [
   {
     path: '',
@@ -14,10 +17,12 @@ const testcasesRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(testcasesRoutes),
-    CommonModule
+    CommonModule,
+    TreeModule
   ],
   declarations: [
-    TestcasesComponent
+    TestcasesComponent,
+    TestcaseTreeComponent
   ]
 })
 export class TestcasesModule { }
