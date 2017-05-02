@@ -29,8 +29,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(expressValidator()); // this line must be immediately after express.bodyParser()!
 
-//app.use(express.static(path.join(__dirname + '/public'))); // static folder for css and images and etc
-//app.use(express.static(path.join(__dirname + '/i18n')));
+app.use('/i18n', express.static(path.join(__dirname + '/i18n')));
 app.disable('x-powered-by'); // security
 
 /*******************************************************************************
