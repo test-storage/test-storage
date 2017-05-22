@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TestcasesComponent } from './testcases.component';
 
 import { TreeModule } from 'angular-tree-component';
-import { TestcaseTreeComponent } from '../testcase-tree/testcase-tree.component';
+import { TestsuitesTreeComponent } from './testsuites-tree/testsuites-tree.component';
 
 const testcasesRoutes: Routes = [
   {
@@ -22,7 +22,7 @@ const testcasesRoutes: Routes = [
   ],
   declarations: [
     TestcasesComponent,
-    TestcaseTreeComponent
+    TestsuitesTreeComponent
   ]
 })
 export class TestcasesModule { }

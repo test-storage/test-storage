@@ -37,6 +37,8 @@ router.delete('/api/v1/attachments/:id', attachments.delete);
 
 router.get('/api/v1/projects', projects.getAll);
 router.get('/api/v1/projects/:id', projects.getOne);
+// router.get('/api/v1/projects/:id/testsuites/', testsuites.getAllForProject);
+// router.get('/api/v1/projects/:id/testsuites/:id', testsuites.getOneForProject);
 router.post('/api/v1/projects/', projects.create);
 router.put('/api/v1/projects/:id', projects.update);
 router.delete('/api/v1/projects/:id', projects.delete);

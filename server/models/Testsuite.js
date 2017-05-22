@@ -9,6 +9,10 @@ var TestsuiteSchema = new mongoose.Schema({
   parentId: {
     type: Number
   },
+  projectId: {
+    type: String,
+    unique: true
+  },
   enabled: Boolean,
   name: {
     type: String,

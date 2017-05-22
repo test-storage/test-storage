@@ -10,7 +10,7 @@ import { Testcase } from '../../models/testcase';
 import { MockedTestcases } from '../../models/testcases.mock';
 
 import { TreeModule } from 'angular-tree-component';
-import { TestcaseTreeComponent } from '../testcase-tree/testcase-tree.component';
+import { TestsuitesTreeComponent } from './testsuites-tree/testsuites-tree.component';
 
 
 describe('TestcasesComponent', () => {
@@ -21,7 +21,7 @@ describe('TestcasesComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [TreeModule],
-      declarations: [TestcasesComponent, TestcaseTreeComponent],
+      declarations: [TestcasesComponent, TestsuitesTreeComponent],
       providers: [Http,
         AuthenticationService,
         MockBackend,
