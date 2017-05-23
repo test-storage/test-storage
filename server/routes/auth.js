@@ -67,7 +67,7 @@ function genToken(user) {
   var token = jwt.sign({
     exp: expires
   }, require('./config/secret')());
-  console.log(token);
+
   return {
     token: token,
     expires: expires,

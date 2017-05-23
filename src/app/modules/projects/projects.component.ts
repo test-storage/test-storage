@@ -20,15 +20,11 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getProjects();
-    this.getData();
   }
 
-  getData() {
-    console.log(this.projects.length);
-  }
   ngOnDestroy() {
+    // TODO unsubscription from http services needed?
     this.subscription.unsubscribe();
-    console.log('unsubscribed');
   }
 
   getProjects() {
