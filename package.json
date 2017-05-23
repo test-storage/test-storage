@@ -14,7 +14,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng build --prod && ./node_modules/.bin/nodemon server.js --exitcrash",
+    "start": "ng build --prod && node server.js",
     "dev": "concurrently \"ng serve --proxy-config proxy.conf.json\" \"nodemon server.js --exitcrash\" ",
     "lint": "ng lint",
     "test": "ng test --single-run && npm run test:backend",
