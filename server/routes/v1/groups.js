@@ -18,7 +18,9 @@ var groups = {
     fields = validator.validateFields(req, res);
 
     Group.find({}, fields, limit, function (err, groups) {
-      if (err) return err; // TODO check proper error handling
+      if (err) {
+        console.error(err);
+      }
       res.json(groups);
     });
   },
@@ -37,7 +39,9 @@ var groups = {
     // TODO add sanitizers
 
     Group.findOne({ "_id": req.params.id }, fields, function (err, group) {
-      if (err) return err; // TODO check proper error handling
+      if (err) {
+        console.error(err);
+      }
       res.json(group);
     });
   },
@@ -49,7 +53,9 @@ var groups = {
 
   create: function (req, res) {
     Group.create(req.body, function (err, group) {
-      if (err) return err;
+      if (err) {
+        console.error(err);
+      }
       res.status(201).
         location('/api/v1/groups/' + group._id).
         json(group);
@@ -104,7 +110,9 @@ var groups = {
       group.updated = Date.now();
 
       group.save(function (err, group, count) {
-        if (err) return err; // TODO check proper error handling
+        if (err) {
+          console.error(err);
+        }
         res.status(200).json(group);
       });
     });
@@ -120,7 +128,9 @@ var groups = {
     validator.isPathValid(req, res);
 
     Group.findOneAndRemove({ "_id": req.params.id }, function (err, group) {
-      if (err) return err;
+      if (err) {
+        console.error(err);
+      }
       res.status(204).json(true);
     });
   }

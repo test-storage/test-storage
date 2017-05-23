@@ -38,7 +38,9 @@ var attachments = {
         fields = validator.validateFields(req, res);
 
         Attachment.find({}, fields, limit, function (err, attachments) {
-            if (err) return err; // TODO check proper error handling
+            if (err) {
+                console.error(err);
+            }
             res.json(attachments);
         });
     },
@@ -58,7 +60,9 @@ var attachments = {
         // TODO add sanitizers
 
         Attachment.findOne({ "_id": req.params.id }, fields, function (err, attachment) {
-            if (err) return err; // TODO check proper error handling
+            if (err) {
+                console.error(err);
+            }
             res.json(attachment);
         });
     },
@@ -70,7 +74,9 @@ var attachments = {
 
     create: function (req, res) {
         Attachment.create(req.body, function (err, attachment) {
-            if (err) return err;
+            if (err) {
+                console.error(err);
+            }
             res.status(201).
                 location('/api/v1/attachments/' + attachment._id).
                 json(attachment);
@@ -103,7 +109,9 @@ var attachments = {
             attachment.updated = Date.now();
 
             attachment.save(function (err, attachment, count) {
-                if (err) return err; // TODO check proper error handling
+                if (err) {
+                    console.error(err);
+                }
                 res.status(200).json(attachment);
             });
         });
@@ -119,7 +127,9 @@ var attachments = {
         validator.isPathValid(req, res);
 
         Attachment.findOneAndRemove({ "_id": req.params.id }, function (err, group) {
-            if (err) return err;
+            if (err) {
+                console.error(err);
+            }
             res.status(204).json(true);
         });
 

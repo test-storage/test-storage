@@ -40,7 +40,9 @@ var testcases = {
     // TODO add sanitizers
 
     Testcase.findOne({ "_id": req.params.id }, fields, function (err, testcase) {
-      if (err) return err; // TODO check proper error handling
+      if (err) {
+        console.error(err);
+      }
       res.json(testcase);
     });
   },
@@ -54,7 +56,9 @@ var testcases = {
     // TODO add validation
 
     Testcase.create(req.body, function (err, testcase) {
-      if (err) return err;
+      if (err) {
+        console.error(err);
+      }
       res.status(201).
         location('/api/v1/testcases/' + testcase._id).
         json(testcase);
@@ -121,7 +125,9 @@ var testcases = {
       testcase.updated = Date.now();
 
       testcase.save(function (err, testcase, count) {
-        if (err) return err; // TODO check proper error handling
+        if (err) {
+          console.error(err);
+        }
         res.json(testcase);
       });
     });
@@ -138,7 +144,9 @@ var testcases = {
     validator.isPathValid(req, res);
 
     Testcase.findOneAndRemove({ "_id": req.params.id }, function (err, testcase) {
-      if (err) return err;
+      if (err) {
+        console.error(err);
+      }
       res.status(204).json(true);
     });
   }
