@@ -25,5 +25,5 @@ before_script:
   - mongo test-storage config/db-init.js
 
 install:
-  - yarn
+  - npm install
 
