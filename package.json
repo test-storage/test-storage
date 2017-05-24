@@ -14,7 +14,8 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng build --prod && node server.js",
+    "start": "node server.js",
+    "postinstall": "./node_modules/.bin/ng build --prod",
     "dev": "concurrently \"ng serve --proxy-config proxy.conf.json\" \"nodemon server.js --exitcrash\" ",
     "lint": "ng lint",
     "test": "ng test --single-run && npm run test:backend",
