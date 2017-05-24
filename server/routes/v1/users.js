@@ -19,7 +19,9 @@ var users = {
     fields = validator.validateFields(req, res);
 
     User.find({}, fields, limit, function (err, users) {
-      if (err) return err; // TODO check proper error handling
+      if (err) {
+        console.error(err);
+      }
       res.json(users);
     });
   },
@@ -40,7 +42,9 @@ var users = {
     // TODO add sanitizers
 
     User.findOne({ "_id": req.params.id }, fields, function (err, user) {
-      if (err) return err; // TODO check proper error handling
+      if (err) {
+        console.error(err);
+      }
       res.json(user);
     });
   },
@@ -52,7 +56,9 @@ var users = {
 
   create: function (req, res) {
     User.create(req.body, function (err, user) {
-      if (err) return err;
+      if (err) {
+        console.error(err);
+      }
       res.status(201).
         location('/api/v1/users/' + user._id).
         json(user);
@@ -83,7 +89,9 @@ var users = {
       user.updated = Date.now();
 
       user.save(function (err, user, count) {
-        if (err) return err; // TODO check proper error handling
+        if (err) {
+          console.error(err);
+        }
         res.json(user);
       });
     });
@@ -99,7 +107,9 @@ var users = {
     validator.isPathValid(req, res);
 
     User.findOneAndRemove({ "_id": req.params.id }, function (err, user) {
-      if (err) return err;
+      if (err) {
+        console.error(err);
+      }
       res.status(204).json(true);
     });
   }

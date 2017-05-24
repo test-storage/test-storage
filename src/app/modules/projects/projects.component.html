@@ -1,3 +1,6 @@
-<div *ngFor="let project of projects">
-  {{ project.name }}
-</div>
+<ng-template [ngIf]="projects">
+  <div *ngFor="let project of projects">
+    {{ project.name }}
+  </div>
+</ng-template>
+<!--<app-project></app-project>-->

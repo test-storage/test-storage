@@ -19,7 +19,9 @@ var testsuites = {
     fields = validator.validateFields(req, res);
 
     Testsuite.find({}, fields, limit, function (err, testsuites) {
-      if (err) return err; // TODO check proper error handling
+      if (err) {
+        console.error(err);
+      }
       res.json(testsuites);
     });
   },
@@ -39,7 +41,9 @@ var testsuites = {
     // TODO add sanitizers
 
     Testsuite.findOne({ "_id": req.params.id }, fields, function (err, testsuite) {
-      if (err) return err; // TODO check proper error handling
+      if (err) {
+        console.error(err);
+      }
       res.json(testsuite);
     });
   },
@@ -51,7 +55,9 @@ var testsuites = {
 
   create: function (req, res) {
     Testsuite.create(req.body, function (err, testsuite) {
-      if (err) return err;
+      if (err) {
+        console.error(err);
+      }
       res.status(201).
         location('/api/v1/testsuites/' + testsuite._id).
         json(testsuite);
@@ -80,7 +86,9 @@ var testsuites = {
       testsuite.updated = Date.now();
 
       testsuite.save(function (err, testsuite, count) {
-        if (err) return err; // TODO check proper error handling
+        if (err) {
+          console.error(err);
+        }
         res.json(testsuite);
       });
     });
@@ -96,7 +104,9 @@ var testsuites = {
     validator.isPathValid(req, res);
 
     Testsuite.findOneAndRemove({ "_id": req.params.id }, function (err, testsuite) {
-      if (err) return err;
+      if (err) {
+        console.error(err);
+      }
       res.status(204).json(true);
     });
   }

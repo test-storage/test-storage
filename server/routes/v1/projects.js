@@ -39,7 +39,9 @@ var projects = {
     // TODO add sanitizers
 
     Project.findOne({ "_id": req.params.id }, fields, function (err, project) {
-      if (err) return err; // TODO check proper error handling
+      if (err) {
+        console.error(err);
+      }
       res.json(project);
     });
   },
@@ -51,7 +53,9 @@ var projects = {
 
   create: function (req, res) {
     Project.create(req.body, function (err, project) {
-      if (err) return err;
+      if (err) {
+        console.error(err);
+      }
       res.status(201).
         location('/api/v1/projects/' + project._id).
         json(project);
@@ -77,7 +81,9 @@ var projects = {
       project.updated = Date.now();
 
       project.save(function (err, project, count) {
-        if (err) return err; // TODO check proper error handling
+        if (err) {
+          console.error(err);
+        }
         res.json(project);
       });
     });
@@ -93,7 +99,9 @@ var projects = {
     validator.isPathValid(req, res);
 
     Project.findOneAndRemove({ "_id": req.params.id }, function (err, project) {
-      if (err) return err;
+      if (err) {
+        console.error(err);
+      }
       res.status(204).json(true);
     });
   }

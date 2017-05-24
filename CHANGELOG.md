@@ -1,4 +1,10 @@
 # Change Log
+## 0.16.52 (May 24, 2017)
+- Fixes for fetching data from backend: ([@pumano](https://github.com/pumano) in [#47](https://github.com/test-storage/test-storage/pull/47))
+- Unit tests added, small improvements
+- Configured for nodejs production installation
+- Configured for Heroku Deploy
+
 ## 0.15.50 (April 26, 2017)
 - Services added (fetching data from backend): ([@pumano](https://github.com/pumano) in [#45](https://github.com/test-storage/test-storage/pull/45))
 - Client models added

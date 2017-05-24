@@ -5,6 +5,14 @@ Test Storage - test case management system.
 
 Currently in early alpha development and **currently not available via npm**.
 
+Demo
+======
+[https://test-storage.herokuapp.com](https://test-storage.herokuapp.com)
+
+__login:__ admin@test-storage.local
+
+__password:__ 123
+
 Production
 ======
 
@@ -64,10 +72,6 @@ Development
 for execution you should also install globally:
 ```bash
 $ npm install -g nodemon @angular/cli
-```
-and local:
-```bash
-$ npm install concurrently --save-dev
 ```
 
 ## Installation

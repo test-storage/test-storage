@@ -1,12 +1,12 @@
-var jwt = require('jwt-simple');
- 
+var jwt = require('jsonwebtoken');
+
 var auth = {
- 
-  login: function(req, res) {
- 
+
+  login: function (req, res) {
+
     var username = req.body.username || '';
     var password = req.body.password || '';
- 
+
     if (username == '' || password == '') {
       res.status(401);
       res.json({
@@ -15,10 +15,10 @@ var auth = {
       });
       return;
     }
- 
+
     // Fire a query to your DB and check if the credentials are valid
     var dbUserObj = auth.validate(username, password);
-   
+
     if (!dbUserObj) { // If authentication fails, we send a 401 back
       res.status(401);
       res.json({
@@ -27,57 +27,57 @@ var auth = {
       });
       return;
     }
- 
+
     if (dbUserObj) {
- 
+
       // If authentication is success, we will generate a token
       // and dispatch it to the client
- 
+
       res.json(genToken(dbUserObj));
     }
- 
+
   },
- 
-  validate: function(username, password) {
+
+  validate: function (username, password) {
     // spoofing the DB response for simplicity
-    var dbUserObj = { // spoofing a userobject from the DB. 
+    var dbUserObj = { // spoofing a userobject from the DB.
       name: 'admin',
       role: 'admin',
       username: 'admin@test-storage.local'
     };
- 
+
     return dbUserObj;
   },
- 
-  validateUser: function(username) {
+
+  validateUser: function (username) {
     // spoofing the DB response for simplicity
-    var dbUserObj = { // spoofing a userobject from the DB. 
+    var dbUserObj = { // spoofing a userobject from the DB.
       name: 'admin',
       role: 'admin',
       username: 'admin@test-storage.local'
     };
- 
+
     return dbUserObj;
   },
 }
- 
+
 // private method
 function genToken(user) {
   var expires = expiresIn(1); // 1 days
-  var token = jwt.encode({
+  var token = jwt.sign({
     exp: expires
   }, require('./config/secret')());
- 
+
   return {
     token: token,
     expires: expires,
     user: user
   };
 }
- 
+
 function expiresIn(numDays) {
   var dateObj = new Date();
   return dateObj.setDate(dateObj.getDate() + numDays);
 }
- 
+
 module.exports = auth;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Project } from '../../models/project';
 import { ProjectService } from '../../services/project/project.service';
@@ -11,9 +11,10 @@ import { ProjectService } from '../../services/project/project.service';
     ProjectService
   ]
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
 
-  projects: Project[] = [];
+  private subscription;
+  public projects: Project[] = [];
 
   constructor(private projectService: ProjectService) { }
 
@@ -21,9 +22,14 @@ export class ProjectsComponent implements OnInit {
     this.getProjects();
   }
 
+  ngOnDestroy() {
+    // TODO unsubscription from http services needed?
+    this.subscription.unsubscribe();
+  }
+
   getProjects() {
-    this.projectService.getProjects().subscribe(
-      data => this.projects = data,
+    this.subscription = this.projectService.getProjects().subscribe(
+      data => this.projects = data, // Array.from(data) in case of non Project type response
       error => console.log(error)
     );
   }

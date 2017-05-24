@@ -29,8 +29,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(expressValidator()); // this line must be immediately after express.bodyParser()!
 
-//app.use(express.static(path.join(__dirname + '/public'))); // static folder for css and images and etc
-//app.use(express.static(path.join(__dirname + '/i18n')));
+app.use('/i18n', express.static(path.join(__dirname + '/i18n')));
 app.disable('x-powered-by'); // security
 
 /*******************************************************************************
@@ -46,10 +45,15 @@ var connectionOptions = {
   pass: config.get('db.password')
 };
 
+if (process.env.MONGOLAB_URI) {
+  mongoose.connect(process.env.MONGOLAB_URI)
+  .then(() => console.log('MongoDB connection successful'))
+  .catch((err) => console.error(err));
+} else {
 mongoose.connect(connectionString, connectionOptions)
   .then(() => console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
-
+}
 
 /*******************************************************************************
 *                                   Routes                                     *

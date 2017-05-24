@@ -17,6 +17,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
+import { TestcaseListComponent } from './components/testcase-list/testcase-list.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+
 // App routes
 const routes: Routes = [
   { path: 'auth', component: LoginComponent },
@@ -32,6 +35,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
     headerName: 'x-access-token',
     tokenName: 'token',
+    noJwtError: true,
     tokenGetter: (() => localStorage.getItem('currentUser')),
     globalHeaders: [{ 'Content-Type': 'application/json' }],
   }), http, options);
@@ -59,7 +63,9 @@ export function HttpLoaderFactory(http: Http) {
   declarations: [
     AppComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TestcaseListComponent,
+    UserListComponent
   ],
   providers: [
     {

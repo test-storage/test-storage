@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProjectsComponent } from './projects.component';
+import { ProjectComponent } from './project/project.component';
 
 const projectsRoutes: Routes = [
   {
@@ -17,7 +18,8 @@ const projectsRoutes: Routes = [
     CommonModule
   ],
   declarations: [
-    ProjectsComponent
+    ProjectsComponent,
+    ProjectComponent
   ]
 })
 export class ProjectsModule { }

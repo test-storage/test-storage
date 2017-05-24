@@ -4,10 +4,16 @@ var TestsuiteSchema = new mongoose.Schema({
   _id: {
     type: String,
     unique: true,
-    default: crypto.randomBytes(16).toString('hex')
+    default: function () {
+      return crypto.randomBytes(16).toString('hex');
+    }
   },
   parentId: {
     type: Number
+  },
+  projectId: {
+    type: String,
+    unique: true
   },
   enabled: Boolean,
   name: {
