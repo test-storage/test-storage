@@ -45,10 +45,15 @@ var connectionOptions = {
   pass: config.get('db.password')
 };
 
+if (process.env.MONGOLAB_URI) {
+  mongoose.connect(process.env.MONGOLAB_URI)
+  .then(() => console.log('MongoDB connection successful'))
+  .catch((err) => console.error(err));
+} else {
 mongoose.connect(connectionString, connectionOptions)
   .then(() => console.log('MongoDB connection successful'))
   .catch((err) => console.error(err));
-
+}
 
 /*******************************************************************************
 *                                   Routes                                     *
