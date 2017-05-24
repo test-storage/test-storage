@@ -3,7 +3,7 @@ export const MockedTestcases: Testcase[] = [
   {
     '_id': '94994594',
     'key': 'TC01',
-    'parentId': null,
+    'testSuiteId': '45069c63096d72f89cbf9205d27c985b',
     'priority': 1,
     'order': 2,
     'prerequisites': 'Prerequisites 1',
@@ -19,13 +19,12 @@ export const MockedTestcases: Testcase[] = [
     'created': '',
     'updated': '',
     'createdBy': '',
-    'updatedBy': '',
-    'childId': 2
+    'updatedBy': ''
   },
   {
     '_id': '92e2e2e4994594',
     'key': 'TC02',
-    'parentId': null,
+    'testSuiteId': '11111c63096d72f89cbf9205d27c985b',
     'priority': 1,
     'order': 2,
     'prerequisites': 'Prerequisites 2',
@@ -41,7 +40,6 @@ export const MockedTestcases: Testcase[] = [
     'created': '',
     'updated': '',
     'createdBy': '',
-    'updatedBy': '',
-    'childId': 2
+    'updatedBy': ''
   }
 ];
