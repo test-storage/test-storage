@@ -1,6 +1,6 @@
 {
   "name": "test-storage",
-  "version": "0.16.52",
+  "version": "0.16.53",
   "description": "Test Case Management System",
   "license": "GPLv3",
   "author": "Dmitry Zakharov",
@@ -15,7 +15,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "postinstall": "./node_modules/.bin/ng build --prod",
+    "postinstall": "./node_modules/.bin/ng build --prod --aot",
     "dev": "concurrently \"ng serve --proxy-config proxy.conf.json\" \"nodemon server.js --exitcrash\" ",
     "lint": "ng lint",
     "test": "ng test --single-run && npm run test:backend",
