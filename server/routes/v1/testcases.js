@@ -107,7 +107,7 @@ var testcases = {
         // TODO creation logic
         // + add id, created, createdBy and etc
       }
-      testcase.parentId = req.body.parentId;
+      testcase.testSuiteId = req.body.testSuiteId;
       testcase.priority = req.body.priority;
       testcase.order = req.body.order;
       testcase.title = req.body.title;

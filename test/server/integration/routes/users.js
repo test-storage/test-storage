@@ -2,6 +2,7 @@ var request = require('supertest');
 var should = require('should');
 
 var app = require('../../../../server.js');
+var authHelper = require('../../auth-helper.js');
 var server = request.agent(app);
 var token = "";
 
@@ -9,7 +10,13 @@ var entityId = "";
 
 describe('/users', function () {
 
-    it('login', loginUser());
+    it('login', function (done) {
+        this.timeout(35000);
+        authHelper.authenticate(function (restoken) {
+            token = restoken;
+            done();
+        });
+    });
 
     it('POST /users respond with status 201 and JSON', function (done) {
         this.timeout(35000);
@@ -123,22 +130,5 @@ describe('/users', function () {
                 done()
             });
     });
-
 });
-
-function loginUser() {
-    return function (done) {
-        request(server.app)
-            .post('/login')
-            .send({ username: 'admin@test-storage.local', password: 'pass123' })
-            .end(onResponse);
-
-        function onResponse(err, res) {
-            token = res.body.token;
-            if (err) return done(err);
-            return done();
-        }
-    };
-};
-
 

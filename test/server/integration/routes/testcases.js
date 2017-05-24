@@ -2,6 +2,7 @@ var request = require('supertest');
 var should = require('should');
 
 var app = require('../../../../server.js');
+var authHelper = require('../../auth-helper.js');
 var server = request.agent(app);
 var token = "";
 
@@ -9,7 +10,13 @@ var entityId = "";
 
 describe('/testcases', function () {
 
-    it('login', loginUser());
+    it('login', function (done) {
+        this.timeout(35000);
+        authHelper.authenticate(function (restoken) {
+            token = restoken;
+            done();
+        });
+    });
 
     it('POST /testcases respond with status 201 and JSON', function (done) {
         this.timeout(35000);
@@ -17,7 +24,7 @@ describe('/testcases', function () {
             .post('/api/v1/testcases')
             .set('x-access-token', token)
             .send({
-                'parentId': null,
+                'testSuiteId': '45069c63096d72f89cbf9205d27c985b',
                 'priority': 1,
                 'order': 2,
                 'prerequisites': 'Prerequisites 1',
@@ -37,7 +44,7 @@ describe('/testcases', function () {
             .end(function (err, res) {
                 entityId = res.body._id;
                 if (err) return done(err);
-                done()
+                done();
             });
     });
 
@@ -51,7 +58,7 @@ describe('/testcases', function () {
             .expect(200)
             .end(function (err, res) {
                 // res.body.should.have.property('_id');
-                res.body.should.have.property('parentId', null);
+                res.body.should.have.property('testSuiteId', '45069c63096d72f89cbf9205d27c985b');
                 res.body.should.have.property('priority', 1);
                 res.body.should.have.property('order', 2);
                 res.body.should.have.property('prerequisites', 'Prerequisites 1');
@@ -63,7 +70,7 @@ describe('/testcases', function () {
                 res.body.should.have.property('estimate', 10);
                 res.body.should.have.property('status', 'created');
                 if (err) return done(err);
-                done()
+                done();
             });
     });
 
@@ -76,7 +83,7 @@ describe('/testcases', function () {
             .expect(200)
             .end(function (err, res) {
                 //res.body[0].should.have.property('_id');
-                res.body[0].should.have.property('parentId');
+                res.body[0].should.have.property('testSuiteId');
                 res.body[0].should.have.property('priority');
                 res.body[0].should.have.property('order');
                 res.body[0].should.have.property('prerequisites');
@@ -89,7 +96,7 @@ describe('/testcases', function () {
                 res.body[0].should.have.property('status');
                 if (err) return done(err);
                 if (err) return done(err);
-                done()
+                done();
             });
     });
 
@@ -99,7 +106,7 @@ describe('/testcases', function () {
             .put('/api/v1/testcases/' + entityId)
             .set('x-access-token', token)
             .send({
-                'parentId': 1,
+                'testSuiteId': '11111c63096d72f89cbf9205d27c985b',
                 'priority': 2,
                 'order': 3,
                 'prerequisites': 'Prerequisites 1 edited',
@@ -115,7 +122,7 @@ describe('/testcases', function () {
             .expect('Content-Type', /json/)
             .end(function (err, res) {
                 //res.body.should.have.property('_id');
-                res.body.should.have.property('parentId', 1);
+                res.body.should.have.property('testSuiteId', '11111c63096d72f89cbf9205d27c985b');
                 res.body.should.have.property('priority', 2);
                 res.body.should.have.property('order', 3);
                 res.body.should.have.property('prerequisites', 'Prerequisites 1 edited');
@@ -127,7 +134,7 @@ describe('/testcases', function () {
                 res.body.should.have.property('estimate', 15);
                 res.body.should.have.property('status', 'approved');
                 if (err) return done(err);
-                done()
+                done();
             });
     });
 
@@ -141,7 +148,7 @@ describe('/testcases', function () {
             .expect(204)
             .end(function (err, res) {
                 //res.body.should.not.have.property('_id');
-                res.body.should.not.have.property('parentId');
+                res.body.should.not.have.property('testSuiteId');
                 res.body.should.not.have.property('priority');
                 res.body.should.not.have.property('order');
                 res.body.should.not.have.property('prerequisites');
@@ -152,23 +159,8 @@ describe('/testcases', function () {
                 res.body.should.not.have.property('expected');
                 res.body.should.not.have.property('status');
                 if (err) return done(err);
-                done()
+                done();
             });
     });
 
 });
-
-function loginUser() {
-    return function (done) {
-        request(server.app)
-            .post('/login')
-            .send({ username: 'admin@test-storage.local', password: 'pass123' })
-            .end(onResponse);
-
-        function onResponse(err, res) {
-            token = res.body.token;
-            if (err) return done(err);
-            return done();
-        }
-    };
-};
