@@ -10,7 +10,7 @@ var validator = require('../../middlewares/validate');
 // Storage init
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        var path = './uploads';
+        var path = './server/uploads';
         cb(null, path);
     },
     filename: function (req, file, cb) {
