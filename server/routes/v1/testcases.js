@@ -86,13 +86,13 @@ var testcases = {
         notEmpty: true,
         errorMessage: 'description required' // Error message for the parameter
       },
-      'prerequisites': { //
+      'preConditions': { //
         optional: true, // won't validate if field is empty
         isLength: {
           options: [{ min: 2, max: 250 }],
           errorMessage: 'Must be between 2 and 250 chars long' // Error message for the validator, takes precedent over parameter message
         },
-        errorMessage: 'Invalid Prerequisites'
+        errorMessage: 'Invalid Preconditions'
       }
     });
 
@@ -112,9 +112,11 @@ var testcases = {
       testcase.order = req.body.order;
       testcase.title = req.body.title;
       testcase.description = req.body.description;
-      testcase.prerequisites = req.body.prerequisites;
+      testcase.preConditions = req.body.preConditions;
       testcase.steps = req.body.steps;
+      testcase.testData = req.body.testData;
       testcase.expected = req.body.expected;
+      testcase.postConditions = req.body.postConditions;
       testcase.tags = req.body.tags;
       testcase.estimate = req.body.estimate;
       if (req.body.status) {
