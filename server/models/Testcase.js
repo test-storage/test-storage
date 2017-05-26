@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 const crypto = require('crypto');
+
 var TestcaseSchema = new mongoose.Schema({
   _id: { type: String, unique: true,
     default: function () {
@@ -7,9 +8,9 @@ var TestcaseSchema = new mongoose.Schema({
     }
   },
   key: { type: String, unique: true },
-  testSuiteId: { type: String },
-  priority: { type: Number },
-  order: { type: Number },
+  testSuiteId: String,
+  priority: Number,
+  order: Number,
   title: { type: String, required: true },
   description: { type: String },
   prerequisites: { type: String },

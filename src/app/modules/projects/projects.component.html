@@ -1,6 +1,16 @@
-<ng-template [ngIf]="projects">
-  <div *ngFor="let project of projects">
-    {{ project.name }}
-  </div>
-</ng-template>
-<!--<app-project></app-project>-->
+<div id="wrapper">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Project Name</th>
+        <th>Description</th>
+        <th>Enabled</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let project of projects">
+      <td>{{ project.name }}</td>
+      <td>{{ project.description }}</td>
+      <td>{{ project.enabled }}</td>
+    </tr>
+  </table>
+</div>
