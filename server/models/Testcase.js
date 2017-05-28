@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 const crypto = require('crypto');
 
 var TestcaseSchema = new mongoose.Schema({
-  _id: { type: String, unique: true,
+  _id: {
+    type: String, unique: true,
     default: function () {
       return crypto.randomBytes(16).toString('hex');
     }
@@ -13,9 +14,11 @@ var TestcaseSchema = new mongoose.Schema({
   order: Number,
   title: { type: String, required: true },
   description: { type: String },
-  prerequisites: { type: String },
+  preConditions: { type: String },
   steps: Array,
+  testData: Array,
   expected: Array,
+  postConditions: { type: String },
   tags: Array,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },

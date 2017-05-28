@@ -6,9 +6,11 @@ export class Testcase {
     order?: number;
     title: string;
     description?: string;
-    prerequisites?: string;
+    preConditions?: string;
     steps?: Array<string>;
+    testData?: Array<string>;
     expected?: Array<string>;
+    postConditions?: string;
     tags?: Array<string>;
     created?: string;
     updated?: string;

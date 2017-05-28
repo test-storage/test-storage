@@ -27,11 +27,13 @@ describe('/testcases', function () {
                 'testSuiteId': '45069c63096d72f89cbf9205d27c985b',
                 'priority': 1,
                 'order': 2,
-                'prerequisites': 'Prerequisites 1',
+                'preConditions': 'Preconditions 1',
                 'title': 'Testcase 1',
                 'description': 'Test case description',
                 'steps': ['Check that', 'Check this'],
+                'testData': ['data1', 'data2'],
                 'expected': ['Expected that', 'Expected this'],
+                'postConditions': 'Postconditions 1',
                 'tags': ['first tag', 'second tag'],
                 'estimate': 10
             })
@@ -61,11 +63,13 @@ describe('/testcases', function () {
                 res.body.should.have.property('testSuiteId', '45069c63096d72f89cbf9205d27c985b');
                 res.body.should.have.property('priority', 1);
                 res.body.should.have.property('order', 2);
-                res.body.should.have.property('prerequisites', 'Prerequisites 1');
+                res.body.should.have.property('preConditions', 'Preconditions 1');
                 res.body.should.have.property('title', 'Testcase 1');
                 res.body.should.have.property('description', 'Test case description');
                 res.body.should.have.property('steps', ['Check that', 'Check this']);
+                res.body.should.have.property('testData', ['data1', 'data2']);
                 res.body.should.have.property('expected', ['Expected that', 'Expected this']);
+                res.body.should.have.property('postConditions', 'Postconditions 1');
                 res.body.should.have.property('tags', ['first tag', 'second tag']);
                 res.body.should.have.property('estimate', 10);
                 res.body.should.have.property('status', 'created');
@@ -86,11 +90,13 @@ describe('/testcases', function () {
                 res.body[0].should.have.property('testSuiteId');
                 res.body[0].should.have.property('priority');
                 res.body[0].should.have.property('order');
-                res.body[0].should.have.property('prerequisites');
+                res.body[0].should.have.property('preConditions');
                 res.body[0].should.have.property('title');
                 res.body[0].should.have.property('description');
                 res.body[0].should.have.property('steps');
+                res.body[0].should.have.property('testData');
                 res.body[0].should.have.property('expected');
+                res.body[0].should.have.property('postConditions');
                 res.body[0].should.have.property('tags');
                 res.body[0].should.have.property('estimate');
                 res.body[0].should.have.property('status');
@@ -109,11 +115,13 @@ describe('/testcases', function () {
                 'testSuiteId': '11111c63096d72f89cbf9205d27c985b',
                 'priority': 2,
                 'order': 3,
-                'prerequisites': 'Prerequisites 1 edited',
+                'preConditions': 'Preconditions 1 edited',
                 'title': 'Testcase 1 edited',
                 'description': 'Test case description edited',
                 'steps': ['Check that edited', 'Check this edited'],
+                'testData': ['data1 edited', 'data2 edited'],
                 'expected': ['Expected that edited', 'Expected this edited'],
+                'postConditions': 'Postconditions 1 edited',
                 'tags': ['first tag edited', 'second tag edited'],
                 'estimate': 15,
                 'status': 'approved'
@@ -125,11 +133,13 @@ describe('/testcases', function () {
                 res.body.should.have.property('testSuiteId', '11111c63096d72f89cbf9205d27c985b');
                 res.body.should.have.property('priority', 2);
                 res.body.should.have.property('order', 3);
-                res.body.should.have.property('prerequisites', 'Prerequisites 1 edited');
+                res.body.should.have.property('preConditions', 'Preconditions 1 edited');
                 res.body.should.have.property('title', 'Testcase 1 edited');
                 res.body.should.have.property('description', 'Test case description edited');
                 res.body.should.have.property('steps', ['Check that edited', 'Check this edited']);
+                res.body.should.have.property('testData', ['data1 edited', 'data2 edited']);
                 res.body.should.have.property('expected', ['Expected that edited', 'Expected this edited']);
+                res.body.should.have.property('postConditions', 'Postconditions 1 edited');
                 res.body.should.have.property('tags', ['first tag edited', 'second tag edited']);
                 res.body.should.have.property('estimate', 15);
                 res.body.should.have.property('status', 'approved');
@@ -151,12 +161,14 @@ describe('/testcases', function () {
                 res.body.should.not.have.property('testSuiteId');
                 res.body.should.not.have.property('priority');
                 res.body.should.not.have.property('order');
-                res.body.should.not.have.property('prerequisites');
+                res.body.should.not.have.property('preConditions');
                 res.body.should.not.have.property('title');
                 res.body.should.not.have.property('description');
                 res.body.should.not.have.property('steps');
+                res.body.should.not.have.property('testData');
                 res.body.should.not.have.property('tags');
                 res.body.should.not.have.property('expected');
+                res.body.should.not.have.property('postConditions');
                 res.body.should.not.have.property('status');
                 if (err) return done(err);
                 done();
