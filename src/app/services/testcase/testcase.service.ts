@@ -15,15 +15,34 @@ export class TestcaseService {
   }
 
   public getTestcases(): Observable<Testcase[]> {
-    // add authorization header with jwt token
     contentHeaders.set('x-access-token', this.authenticationService.token);
     const options = new RequestOptions({ headers: contentHeaders });
 
-    // get test cases from api
     return this.http.get('/api/v1/testcases', options)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
+
+  public getTestcase(id: string): Observable<Testcase> {
+    contentHeaders.set('x-access-token', this.authenticationService.token);
+    const options = new RequestOptions({ headers: contentHeaders });
+
+    return this.http.get('/api/v1/projects/' + id, options)
+      .map((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
+  public createTestcase(testcase: Testcase): Observable<Testcase> {
+    const body = JSON.stringify(testcase);
+
+    contentHeaders.set('x-access-token', this.authenticationService.token);
+    const options = new RequestOptions({ headers: contentHeaders });
+
+    return this.http.post('/api/v1/projects', body, options)
+      .map((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
 
   private handleError(error: Response) {
     console.error(error);

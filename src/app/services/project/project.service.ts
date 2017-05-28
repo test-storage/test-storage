@@ -26,6 +26,17 @@ export class ProjectService {
       .catch(this.handleError);
   }
 
+  public getProject(id: string): Observable<Project> {
+    // add authorization header with jwt token
+    contentHeaders.set('x-access-token', this.authenticationService.token);
+    const options = new RequestOptions({ headers: contentHeaders });
+
+    // get projects from api
+    return this.http.get('/api/v1/projects/' + id, options)
+      .map((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
   public createProject(project: Project): Observable<Project> {
     const body = JSON.stringify(project);
 

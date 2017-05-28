@@ -1,4 +1,4 @@
-<div id="wrapper">
+<div id="wrapper" *ngIf="projects">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tr *ngFor="let project of projects">
-      <td>{{ project.name }}</td>
+      <td><a routerLink="{{project._id}}">{{ project.name }}</a></td>
       <td>{{ project.description }}</td>
       <td>{{ project.enabled }}</td>
     </tr>

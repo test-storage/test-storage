@@ -3,12 +3,17 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProjectsComponent } from './projects.component';
-import { ProjectComponent } from './project/project.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { ProjectService } from '../../services/project/project.service';
 
 const projectsRoutes: Routes = [
   {
     path: '',
     component: ProjectsComponent
+  },
+  {
+    path: ':id',
+    component: ProjectDetailsComponent
   }
 ];
 
@@ -19,7 +24,10 @@ const projectsRoutes: Routes = [
   ],
   declarations: [
     ProjectsComponent,
-    ProjectComponent
+    ProjectDetailsComponent
+  ],
+  providers: [
+    ProjectService
   ]
 })
 export class ProjectsModule { }
