@@ -1,12 +1,12 @@
 <div id="wrapper" *ngIf="testcases">
-  <table class="table table-striped">
+  <table class="table table-striped" >
     <thead>
       <tr>
         <th>Testcase Title</th>
       </tr>
     </thead>
     <tr *ngFor="let testcase of testcases">
-      <td><a routerLink="{{ testcase._id }}">{{ testcase.name }}</a></td>
+      <td><a routerLink="{{ testcase._id }}">{{ testcase.title }}</a></td>
     </tr>
   </table>
 </div>

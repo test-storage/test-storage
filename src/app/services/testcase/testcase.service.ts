@@ -9,6 +9,9 @@ import { Testcase } from '../../models/testcase';
 
 @Injectable()
 export class TestcaseService {
+
+  apiPath = '/api/v1/testcases';
+
   constructor(
     private http: Http,
     private authenticationService: AuthenticationService) {
@@ -18,7 +21,7 @@ export class TestcaseService {
     contentHeaders.set('x-access-token', this.authenticationService.token);
     const options = new RequestOptions({ headers: contentHeaders });
 
-    return this.http.get('/api/v1/testcases', options)
+    return this.http.get(this.apiPath, options)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
@@ -27,7 +30,7 @@ export class TestcaseService {
     contentHeaders.set('x-access-token', this.authenticationService.token);
     const options = new RequestOptions({ headers: contentHeaders });
 
-    return this.http.get('/api/v1/projects/' + id, options)
+    return this.http.get(this.apiPath + id, options)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
@@ -38,7 +41,7 @@ export class TestcaseService {
     contentHeaders.set('x-access-token', this.authenticationService.token);
     const options = new RequestOptions({ headers: contentHeaders });
 
-    return this.http.post('/api/v1/projects', body, options)
+    return this.http.post(this.apiPath, body, options)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }

@@ -36,7 +36,7 @@ export class TestcaseDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
-  createNewProject() {
+  createNewTestcase() {
     this.testcaseService.createTestcase(this.testcase).subscribe(
       data => console.log('data: ' + JSON.stringify(data)), // this.project = data,
       error => console.log(error)
