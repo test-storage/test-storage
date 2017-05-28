@@ -12,6 +12,10 @@ const testcasesRoutes: Routes = [
   {
     path: '',
     component: TestcasesComponent
+  },
+  {
+    path: ':id',
+    component: TestcaseDetailsComponent
   }
 ];
 
