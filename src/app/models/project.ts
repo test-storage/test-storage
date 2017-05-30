@@ -6,6 +6,6 @@ export class Project {
     testcases: Array<string>;
     created?: string;
     updated?: string;
-    createdBy: string;
-    updatedBy: string;
+    createdBy?: string;
+    updatedBy?: string;
 }

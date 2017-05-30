@@ -12,9 +12,19 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "types": [
+      "node",
+      "jasmine",
+      "mocha",
+      "supertest",
+      "should"
+    ],
     "lib": [
       "es2016",
       "dom"
     ]
-  }
+  },
+  "exclude": [
+    "./node_modules"
+  ]
 }

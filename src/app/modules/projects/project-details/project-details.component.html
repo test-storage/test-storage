@@ -1,0 +1,16 @@
+<div id="wrapper" *ngIf="project">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Project Name</th>
+      <th>Description</th>
+      <th>Enabled</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>{{ project.name }}</td>
+    <td>{{ project.description }}</td>
+    <td>{{ project.enabled }}</td>
+  </tr>
+</table>
+</div>

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, inject, fakeAsync, TestBed } from '@angular/core/testing';
 import { BaseRequestOptions, Http, HttpModule, RequestMethod, Response, ResponseOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AuthenticationService } from '../../services/auth/authentication.service';
 
@@ -9,7 +10,6 @@ import { TestcaseService } from '../../services/testcase/testcase.service';
 import { Testcase } from '../../models/testcase';
 import { MockedTestcases } from '../../models/testcases.mock';
 
-import { TreeModule } from 'angular-tree-component';
 import { TestsuitesTreeComponent } from './testsuites-tree/testsuites-tree.component';
 
 
@@ -20,9 +20,10 @@ describe('TestcasesComponent', () => {
   beforeEach(async(() => {
 
     TestBed.configureTestingModule({
-      imports: [TreeModule],
+      imports: [RouterModule],
       declarations: [TestcasesComponent, TestsuitesTreeComponent],
-      providers: [Http,
+      providers: [
+        Http,
         AuthenticationService,
         MockBackend,
         TestcaseService,

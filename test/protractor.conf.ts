@@ -3,7 +3,7 @@ import { Config, browser } from 'protractor';
 export let config: Config = {
   framework: 'mocha',
   mochaOpts: {
-    reporter: "spec",
+    reporter: 'spec',
     timeout: 500000
   },
   capabilities: {

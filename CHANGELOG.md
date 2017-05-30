@@ -1,4 +1,10 @@
 # Change Log
+## 0.20.0 (May 30, 2017)
+- Migration of backend to typescript: ([@pumano](https://github.com/pumano) in [#48](https://github.com/test-storage/test-storage/pull/48))
+- Migration of backend autotests to typescript
+- Basic UI for Projects and Testcases
+- Fixes for production deployment
+
 ## 0.16.52 (May 24, 2017)
 - Fixes for fetching data from backend: ([@pumano](https://github.com/pumano) in [#47](https://github.com/test-storage/test-storage/pull/47))
 - Unit tests added, small improvements

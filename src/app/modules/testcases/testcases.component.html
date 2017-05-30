@@ -1,4 +1,13 @@
-<div *ngFor="let testcase of testcases">
-  {{ testcase.title }}
+<div id="wrapper" *ngIf="testcases">
+  <table class="table table-striped" >
+    <thead>
+      <tr>
+        <th>Testcase Title</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let testcase of testcases">
+      <td><a routerLink="{{ testcase._id }}">{{ testcase.title }}</a></td>
+    </tr>
+  </table>
 </div>
-<app-testsuites-tree></app-testsuites-tree>
+<!--<app-testsuites-tree></app-testsuites-tree>-->

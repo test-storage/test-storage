@@ -1,5 +1,5 @@
 export class Testcasesuite {
-    _id: string;
+    _id?: string;
     parentId: number;
     projectId: string;
     enabled: boolean;
@@ -8,8 +8,8 @@ export class Testcasesuite {
     prerequisites: string;
     environment: string;
     testcases: Array<string>;
-    created: string;
-    updated: string;
-    createdBy: string;
-    updatedBy: string;
+    created?: string;
+    updated?: string;
+    createdBy?: string;
+    updatedBy?: string;
 }

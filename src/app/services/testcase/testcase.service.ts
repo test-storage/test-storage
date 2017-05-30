@@ -9,21 +9,43 @@ import { Testcase } from '../../models/testcase';
 
 @Injectable()
 export class TestcaseService {
+
+  apiPath = '/api/v1/testcases';
+
   constructor(
     private http: Http,
     private authenticationService: AuthenticationService) {
   }
 
   public getTestcases(): Observable<Testcase[]> {
-    // add authorization header with jwt token
     contentHeaders.set('x-access-token', this.authenticationService.token);
     const options = new RequestOptions({ headers: contentHeaders });
 
-    // get test cases from api
-    return this.http.get('/api/v1/testcases', options)
+    return this.http.get(this.apiPath, options)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
+
+  public getTestcase(id: string): Observable<Testcase> {
+    contentHeaders.set('x-access-token', this.authenticationService.token);
+    const options = new RequestOptions({ headers: contentHeaders });
+
+    return this.http.get(this.apiPath + '/' + id, options)
+      .map((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
+  public createTestcase(testcase: Testcase): Observable<Testcase> {
+    const body = JSON.stringify(testcase);
+
+    contentHeaders.set('x-access-token', this.authenticationService.token);
+    const options = new RequestOptions({ headers: contentHeaders });
+
+    return this.http.post(this.apiPath, body, options)
+      .map((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
 
   private handleError(error: Response) {
     console.error(error);

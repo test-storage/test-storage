@@ -10,21 +10,22 @@ import { Group } from '../../models/group';
 @Injectable()
 export class GroupService {
 
+  apiPath = '/api/v1/groups';
+
   constructor(
     private http: Http,
     private authenticationService: AuthenticationService) {
   }
 
   public getGroups(): Observable<Group[]> {
-    // add authorization header with jwt token
     contentHeaders.set('x-access-token', this.authenticationService.token);
     const options = new RequestOptions({ headers: contentHeaders });
 
-    // get user groups from api
-    return this.http.get('/api/v1/groups', options)
+    return this.http.get(this.apiPath, options)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
+
 
   private handleError(error: Response) {
     console.error(error);
