@@ -1,7 +1,5 @@
-'use strict';
-
-var request = require('supertest');
-var app = require('../../server.js');
+import * as request from 'supertest';
+import { server } from '../../server/server';
 
 /**
  * Authenticate a test user.
@@ -9,14 +7,16 @@ var app = require('../../server.js');
  *
  * @param {function(token:String)} callback
  */
-exports.authenticate = function (callback) {
-  request(app)
+function authenticate(callback) {
+  request(server)
     .post('/login')
     .send({ username: 'admin@test-storage.local', password: 'pass123' })
     .end(function (err, res) {
       if (err) {
-        console.log("" + err);
+        console.log('' + err);
       }
       return callback(res.body.token);
     });
 };
+
+export { authenticate };

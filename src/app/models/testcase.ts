@@ -14,10 +14,10 @@ export class Testcase {
     tags?: Array<string>;
     created?: string;
     updated?: string;
-    createdBy: string;
-    updatedBy: string;
+    createdBy?: string;
+    updatedBy?: string;
     enabled: boolean;
     isAutomated: boolean;
     estimate?: number; // TODO string
-    status: string;
+    status?: string;
 }

@@ -7,19 +7,27 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
     "strictNullChecks": false,
     "suppressImplicitAnyIndexErrors": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "typeRoots": [
       "../node_modules/@types"
     ],
     "types": [
       "node",
-      "mocha",
-      "chai"
+      "jasmine",
+      "mocha"
     ]
   },
   "exclude": [
-    "../node_modules"
+    "./client",
+    "./node_modules",
+    "./dist",
+    "**/*.d.ts"
   ]
 }
