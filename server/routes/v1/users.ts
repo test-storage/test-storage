@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var User = require('../../models/User.js');
+import * as mongoose from 'mongoose';
+import { User } from '../../models/User';
 
-var util = require('util');
-var validator = require('../../middlewares/validate');
+import * as util from 'util';
+import { validator } from '../../middlewares/validate';
 
-var users = {
+const users = {
 
   /*
    * Get all users
@@ -13,7 +13,7 @@ var users = {
   getAll: function (req, res) {
 
     // check limit, offset, fields param
-    var limit = {}, offset = {}, fields = {};
+    let limit = {}, offset = {}, fields = {};
     fields['password'] = 0;
     limit['limit'] = validator.validateLimit(req, res);
     fields = validator.validateFields(req, res);
@@ -34,14 +34,14 @@ var users = {
   getOne: function (req, res) {
 
     // check 'fields' param
-    var fields = {};
+    let fields = {};
     fields['password'] = 0;
     fields = validator.validateFields(req, res);
     // check :id param
     validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    User.findOne({ "_id": req.params.id }, fields, function (err, user) {
+    User.findOne({ '_id': req.params.id }, fields, function (err, user) {
       if (err) {
         console.error(err);
       }
@@ -72,13 +72,13 @@ var users = {
 
   update: function (req, res) {
 
-    var fields = {};
+    let fields = {};
     fields['password'] = 0;
     // check :id param
     validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
-    User.findOne({ "_id": req.params.id }, fields, function (err, user) {
+    User.findOne({ '_id': req.params.id }, fields, function (err, user) {
 
       user.firstName = req.body.firstName;
       user.lastName = req.body.lastName;
@@ -106,7 +106,7 @@ var users = {
     // check :id param
     validator.isPathValid(req, res);
 
-    User.findOneAndRemove({ "_id": req.params.id }, function (err, user) {
+    User.findOneAndRemove({ '_id': req.params.id }, function (err, user) {
       if (err) {
         console.error(err);
       }
@@ -115,4 +115,4 @@ var users = {
   }
 };
 
-module.exports = users;
+export { users }

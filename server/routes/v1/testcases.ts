@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var Testcase = require('../../models/Testcase.js');
+import * as mongoose from 'mongoose';
+import { Testcase } from '../../models/Testcase';
 
-var util = require('util');
-var validator = require('../../middlewares/validate');
+import * as util from 'util';
+import { validator } from '../../middlewares/validate';
 
-var testcases = {
+const testcases = {
 
   /*
    * Get all testcases
@@ -13,12 +13,14 @@ var testcases = {
   getAll: function (req, res) {
 
     // check limit, offset, fields param
-    var limit = {}, offset = {}, fields = {};
+    let limit = {}, offset = {}, fields = {};
     limit['limit'] = validator.validateLimit(req, res);
     fields = validator.validateFields(req, res);
 
     Testcase.find({}, fields, limit, function (err, testcases) {
-      if (err) return err; // TODO check proper error handling
+      if (err) {
+        console.error(err);
+      }
       res.set('Content-Type', 'application/json')
         .status(200)
         .json(testcases);
@@ -33,13 +35,13 @@ var testcases = {
   getOne: function (req, res) {
 
     // check 'fields' param
-    var fields = {};
+    let fields = {};
     fields = validator.validateFields(req, res);
     // check :id param
     validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Testcase.findOne({ "_id": req.params.id }, fields, function (err, testcase) {
+    Testcase.findOne({ '_id': req.params.id }, fields, function (err, testcase) {
       if (err) {
         console.error(err);
       }
@@ -96,13 +98,13 @@ var testcases = {
       }
     });
 
-    var errors = req.validationErrors();
+    const errors = req.validationErrors();
     if (errors) {
       res.status(400).json('There have been validation errors: ' + util.inspect(errors));
       return;
     }
 
-    Testcase.findOne({ "_id": req.params.id }, function (err, testcase) {
+    Testcase.findOne({ '_id': req.params.id }, function (err, testcase) {
       if (!req.body.id) {
         // TODO creation logic
         // + add id, created, createdBy and etc
@@ -145,7 +147,7 @@ var testcases = {
     // check :id param
     validator.isPathValid(req, res);
 
-    Testcase.findOneAndRemove({ "_id": req.params.id }, function (err, testcase) {
+    Testcase.findOneAndRemove({ '_id': req.params.id }, function (err, testcase) {
       if (err) {
         console.error(err);
       }
@@ -154,4 +156,4 @@ var testcases = {
   }
 };
 
-module.exports = testcases;
+export { testcases }

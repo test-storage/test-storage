@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var Project = require('../../models/Project.js');
+import * as mongoose from 'mongoose';
+import { Project } from '../../models/Project';
 
-var util = require('util');
-var validator = require('../../middlewares/validate');
+import * as util from 'util';
+import { validator } from '../../middlewares/validate';
 
-var projects = {
+const projects = {
 
   /*
    * Get all projects
@@ -14,12 +14,14 @@ var projects = {
   getAll: function (req, res) {
 
     // check limit, offset, fields param
-    var limit = {}, offset = {}, fields = {};
+    let limit = {}, offset = {}, fields = {};
     limit['limit'] = validator.validateLimit(req, res);
     fields = validator.validateFields(req, res);
 
     Project.find({}, fields, limit, function (err, projects) {
-      if (err) return err; // TODO check proper error handling
+      if (err) {
+        console.error(err);
+      }
       res.json(projects);
     });
   },
@@ -32,13 +34,13 @@ var projects = {
   getOne: function (req, res) {
 
     // check 'fields' param
-    var fields = {};
+    let fields = {};
     fields = validator.validateFields(req, res);
     // check :id param
     validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Project.findOne({ "_id": req.params.id }, fields, function (err, project) {
+    Project.findOne({ '_id': req.params.id }, fields, function (err, project) {
       if (err) {
         console.error(err);
       }
@@ -72,7 +74,7 @@ var projects = {
     validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
-    Project.findOne({ "_id": req.params.id }, function (err, project) {
+    Project.findOne({ '_id': req.params.id }, function (err, project) {
 
       project.name = req.body.name;
       project.description = req.body.description;
@@ -98,7 +100,7 @@ var projects = {
     // check :id param
     validator.isPathValid(req, res);
 
-    Project.findOneAndRemove({ "_id": req.params.id }, function (err, project) {
+    Project.findOneAndRemove({ '_id': req.params.id }, function (err, project) {
       if (err) {
         console.error(err);
       }
@@ -107,4 +109,4 @@ var projects = {
   }
 };
 
-module.exports = projects;
+export { projects }

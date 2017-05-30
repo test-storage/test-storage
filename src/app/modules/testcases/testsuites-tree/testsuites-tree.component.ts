@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Testsuite } from '../../../models/testsuite';
-import { TreeModule } from 'angular-tree-component';
 
 @Component({
   selector: 'app-testsuites-tree',

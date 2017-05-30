@@ -1,18 +1,18 @@
-var express = require('express');
-var router = express.Router();
+import * as express from 'express';
+const router = express.Router();
 
-var auth = require('./auth.js');
+import { auth } from './auth';
 
-var projects = require('./v1/projects.js');
-var testcases = require('./v1/testcases.js');
-var testsuites = require('./v1/testsuites.js');
-var testplans = require('./v1/testplans.js');
-var groups = require('./v1/groups.js');
-var users = require('./v1/users.js');
-var attachments = require('./v1/attachments.js');
+import { projects } from './v1/projects';
+import { testcases } from './v1/testcases';
+import { testsuites } from './v1/testsuites';
+import { testplans } from './v1/testplans';
+import { groups } from './v1/groups';
+import { users } from './v1/users';
+import { attachments } from './v1/attachments';
 
 // define the API versions
-var API_VERSIONS = { 'Version 1': '/v1' };
+const API_VERSIONS = { 'Version 1': '/v1' };
 
 /*
  * Routes that can be accessed by any one
@@ -82,4 +82,4 @@ router.post('/api/v1/admin/users/', users.create);
 router.put('/api/v1/admin/users/:id', users.update);
 router.delete('/api/v1/admin/users/:id', users.delete);
 
-module.exports = router;
+export = router

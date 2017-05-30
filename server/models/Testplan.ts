@@ -1,6 +1,7 @@
-var mongoose = require('mongoose');
-const crypto = require('crypto');
-var TestplanSchema = new mongoose.Schema({
+import * as mongoose from 'mongoose';
+import * as crypto from 'crypto';
+
+const TestplanSchema = new mongoose.Schema({
   _id: {
     type: String,
     unique: true,
@@ -14,7 +15,7 @@ var TestplanSchema = new mongoose.Schema({
   },
   description: String,
   builds: Array,
-  //configurations: [Object],
+  // configurations: [Object],
   environments: Array,
   testruns: Array,
   created: { type: Date, required: true, default: Date.now },
@@ -23,4 +24,5 @@ var TestplanSchema = new mongoose.Schema({
   updatedBy: String
 });
 
-module.exports = mongoose.model('Testplan', TestplanSchema);
+const Testplan = mongoose.model('Testplan', TestplanSchema);
+export { Testplan }

@@ -1,30 +1,30 @@
-var mongoose = require('mongoose');
-var Attachment = require('../../models/Attachment.js');
+import * as mongoose from 'mongoose';
+import { Attachment } from '../../models/Attachment';
 
-var multer = require('multer');
+import * as multer from 'multer';
 
-var util = require('util');
-var validator = require('../../middlewares/validate');
+import * as util from 'util';
+import { validator } from '../../middlewares/validate';
 
 
 // Storage init
-var storage = multer.diskStorage({
+let storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        var path = './server/uploads';
+        const path = '../../server/uploads';
         cb(null, path);
     },
     filename: function (req, file, cb) {
-        var datetimestamp = Date.now();
+        const datetimestamp = Date.now();
         cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
     }
 })
 
-var upload = multer({
+let upload = multer({
     storage: storage
 }).single('file');
 
 
-var attachments = {
+const attachments = {
 
     /*
      * Get all attachments
@@ -33,7 +33,7 @@ var attachments = {
     getAll: function (req, res) {
 
         // check limit, offset, fields param
-        var limit = {}, offset = {}, fields = {};
+        let limit = {}, offset = {}, fields = {};
         limit['limit'] = validator.validateLimit(req, res);
         fields = validator.validateFields(req, res);
 
@@ -53,13 +53,13 @@ var attachments = {
 
     getOne: function (req, res) {
         // check 'fields' param
-        var fields = {};
+        let fields = {};
         fields = validator.validateFields(req, res);
         // check :id param
         validator.isPathValid(req, res);
         // TODO add sanitizers
 
-        Attachment.findOne({ "_id": req.params.id }, fields, function (err, attachment) {
+        Attachment.findOne({ '_id': req.params.id }, fields, function (err, attachment) {
             if (err) {
                 console.error(err);
             }
@@ -102,7 +102,7 @@ var attachments = {
         // path validation
         validator.isPathValid(req, res);
         // TODO need security check (user input) for update
-        Attachment.findOne({ "_id": req.params.id }, function (err, attachment) {
+        Attachment.findOne({ '_id': req.params.id }, function (err, attachment) {
 
             attachment.name = req.body.name;
             attachment.description = req.body.description;
@@ -126,7 +126,7 @@ var attachments = {
         // check :id param
         validator.isPathValid(req, res);
 
-        Attachment.findOneAndRemove({ "_id": req.params.id }, function (err, group) {
+        Attachment.findOneAndRemove({ '_id': req.params.id }, function (err, group) {
             if (err) {
                 console.error(err);
             }
@@ -136,5 +136,4 @@ var attachments = {
     }
 };
 
-module.exports = attachments;
-
+export { attachments }

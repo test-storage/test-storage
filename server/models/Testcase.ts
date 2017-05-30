@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-const crypto = require('crypto');
+import * as mongoose from 'mongoose';
+import * as crypto from 'crypto';
 
-var TestcaseSchema = new mongoose.Schema({
+const TestcaseSchema = new mongoose.Schema({
   _id: {
     type: String, unique: true,
     default: function () {
@@ -30,4 +30,5 @@ var TestcaseSchema = new mongoose.Schema({
   status: { type: String, default: 'created' }
 });
 
-module.exports = mongoose.model('Testcase', TestcaseSchema);
+const Testcase = mongoose.model('Testcase', TestcaseSchema);
+export { Testcase }

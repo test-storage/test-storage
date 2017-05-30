@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var Testplan = require('../../models/Testplan.js');
+import * as mongoose from 'mongoose';
+import { Testplan } from '../../models/Testplan';
 
-var util = require('util');
-var validator = require('../../middlewares/validate');
+import * as util from 'util';
+import { validator } from '../../middlewares/validate';
 
-var testplans = {
+const testplans = {
 
   /*
    * Get all testplans / GET
@@ -14,12 +14,14 @@ var testplans = {
   getAll: function (req, res) {
 
     // check limit, offset, fields param
-    var limit = {}, offset = {}, fields = {};
+    let limit = {}, offset = {}, fields = {};
     limit['limit'] = validator.validateLimit(req, res);
     fields = validator.validateFields(req, res);
 
     Testplan.find({}, fields, limit, function (err, testplans) {
-      if (err) return err; // TODO check proper error handling
+      if (err) {
+        console.error(err);
+      }
       res.json(testplans);
     });
   },
@@ -32,14 +34,16 @@ var testplans = {
   getOne: function (req, res) {
 
     // check 'fields' param
-    var fields = {};
+    let fields = {};
     fields = validator.validateFields(req, res);
     // check :id param
     validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Testplan.findOne({ "_id": req.params.id }, fields, function (err, testplan) {
-      if (err) return err; // TODO check proper error handling
+    Testplan.findOne({ '_id': req.params.id }, fields, function (err, testplan) {
+      if (err) {
+        console.error(err);
+      }
       res.json(testplan);
     });
   },
@@ -52,7 +56,9 @@ var testplans = {
   create: function (req, res) {
     // TODO testplan.createdBy = currentUser;
     Testplan.create(req.body, function (err, testplan) {
-      if (err) return err;
+      if (err) {
+        console.error(err);
+      }
       res.status(201).
         location('/api/v1/testplans/' + testplan._id).
         json(testplan);
@@ -69,7 +75,7 @@ var testplans = {
     validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
-    Testplan.findOne({ "_id": req.params.id }, function (err, testplan) {
+    Testplan.findOne({ '_id': req.params.id }, function (err, testplan) {
 
       testplan.name = req.body.name;
       testplan.description = req.body.description;
@@ -81,7 +87,9 @@ var testplans = {
       // TODO testplan.updatedBy = currentUser;
 
       testplan.save(function (err, testplan, count) {
-        if (err) return err; // TODO check proper error handling
+        if (err) {
+          console.error(err);
+        }
         res.json(testplan);
       });
     });
@@ -96,11 +104,13 @@ var testplans = {
     // check :id param
     validator.isPathValid(req, res);
 
-    Testplan.findOneAndRemove({ "_id": req.params.id }, function (err, testplan) {
-      if (err) return err;
+    Testplan.findOneAndRemove({ '_id': req.params.id }, function (err, testplan) {
+      if (err) {
+        console.error(err);
+      }
       res.status(204).json(true);
     });
   }
 };
 
-module.exports = testplans;
+export { testplans }

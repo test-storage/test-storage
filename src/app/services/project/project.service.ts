@@ -30,7 +30,7 @@ export class ProjectService {
     contentHeaders.set('x-access-token', this.authenticationService.token);
     const options = new RequestOptions({ headers: contentHeaders });
 
-    return this.http.get(this.apiPath + id, options)
+    return this.http.get(this.apiPath + '/' + id, options)
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }

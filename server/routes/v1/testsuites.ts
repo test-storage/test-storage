@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var Testsuite = require('../../models/Testsuite.js');
+import * as mongoose from 'mongoose';
+import { Testsuite } from '../../models/Testsuite';
 
-var util = require('util');
-var validator = require('../../middlewares/validate');
+import * as util from 'util';
+import { validator } from '../../middlewares/validate';
 
-var testsuites = {
+const testsuites = {
 
   /*
    * Get all testsuites
@@ -14,7 +14,7 @@ var testsuites = {
   getAll: function (req, res) {
 
     // check limit, offset, fields param
-    var limit = {}, offset = {}, fields = {};
+    let limit = {}, offset = {}, fields = {};
     limit['limit'] = validator.validateLimit(req, res);
     fields = validator.validateFields(req, res);
 
@@ -34,13 +34,13 @@ var testsuites = {
   getOne: function (req, res) {
 
     // check 'fields' param
-    var fields = {};
+    let fields = {};
     fields = validator.validateFields(req, res);
     // check :id param
     validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Testsuite.findOne({ "_id": req.params.id }, fields, function (err, testsuite) {
+    Testsuite.findOne({ '_id': req.params.id }, fields, function (err, testsuite) {
       if (err) {
         console.error(err);
       }
@@ -74,7 +74,7 @@ var testsuites = {
     validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
-    Testsuite.findOne({ "_id": req.params.id }, function (err, testsuite) {
+    Testsuite.findOne({ '_id': req.params.id }, function (err, testsuite) {
 
       testsuite.parentId = req.body.parentId;
       testsuite.enabled = req.body.enabled;
@@ -103,7 +103,7 @@ var testsuites = {
     // check :id param
     validator.isPathValid(req, res);
 
-    Testsuite.findOneAndRemove({ "_id": req.params.id }, function (err, testsuite) {
+    Testsuite.findOneAndRemove({ '_id': req.params.id }, function (err, testsuite) {
       if (err) {
         console.error(err);
       }
@@ -112,4 +112,4 @@ var testsuites = {
   }
 };
 
-module.exports = testsuites;
+export { testsuites }

@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-const crypto = require('crypto');
+import * as mongoose from 'mongoose';
+import * as crypto from 'crypto';
 
-var AttachmentSchema = new mongoose.Schema({
+const AttachmentSchema = new mongoose.Schema({
   _id: { type: String, unique: true,
     default: function () {
       return crypto.randomBytes(16).toString('hex');
@@ -21,4 +21,5 @@ var AttachmentSchema = new mongoose.Schema({
   updatedBy: String
 });
 
-module.exports = mongoose.model('Attachment', AttachmentSchema);
+const Attachment = mongoose.model('Attachment', AttachmentSchema);
+export { Attachment }

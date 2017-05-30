@@ -1,7 +1,9 @@
-var mongoose = require('mongoose');
-const crypto = require('crypto');
-var TestsuiteSchema = new mongoose.Schema({
-  _id: { type: String, unique: true,
+import * as mongoose from 'mongoose';
+import * as crypto from 'crypto';
+
+const TestsuiteSchema = new mongoose.Schema({
+  _id: {
+    type: String, unique: true,
     default: function () {
       return crypto.randomBytes(16).toString('hex');
     }
@@ -20,4 +22,5 @@ var TestsuiteSchema = new mongoose.Schema({
   updatedBy: String
 });
 
-module.exports = mongoose.model('Testsuite', TestsuiteSchema);
+const Testsuite = mongoose.model('Testsuite', TestsuiteSchema);
+export { Testsuite }

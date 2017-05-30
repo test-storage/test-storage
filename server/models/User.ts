@@ -1,6 +1,7 @@
-var mongoose = require('mongoose');
-const crypto = require('crypto');
-var UserSchema = new mongoose.Schema({
+import * as mongoose from 'mongoose';
+import * as crypto from 'crypto';
+
+const UserSchema = new mongoose.Schema({
   _id: {
     type: String,
     unique: true,
@@ -33,4 +34,5 @@ var UserSchema = new mongoose.Schema({
   updatedBy: String
 });
 
-module.exports = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
+export { User }

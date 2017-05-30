@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var Group = require('../../models/Group.js');
+import * as mongoose from 'mongoose';
+import { Group } from '../../models/Group';
 
-var util = require('util');
-var validator = require('../../middlewares/validate');
+import * as util from 'util';
+import { validator } from '../../middlewares/validate';
 
-var groups = {
+const groups = {
 
   /*
    * Get all groups
@@ -13,7 +13,7 @@ var groups = {
   getAll: function (req, res) {
 
     // check limit, offset, fields param
-    var limit = {}, offset = {}, fields = {};
+    let limit = {}, offset = {}, fields = {};
     limit['limit'] = validator.validateLimit(req, res);
     fields = validator.validateFields(req, res);
 
@@ -32,13 +32,13 @@ var groups = {
 
   getOne: function (req, res) {
     // check 'fields' param
-    var fields = {};
+    let fields = {};
     fields = validator.validateFields(req, res);
     // check :id param
     validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Group.findOne({ "_id": req.params.id }, fields, function (err, group) {
+    Group.findOne({ '_id': req.params.id }, fields, function (err, group) {
       if (err) {
         console.error(err);
       }
@@ -99,7 +99,7 @@ var groups = {
           return;
         } */
     // TODO need security check (user input) for update
-    Group.findOne({ "_id": req.params.id }, function (err, group) {
+    Group.findOne({ '_id': req.params.id }, function (err, group) {
 
       group.name = req.body.name;
       group.description = req.body.description;
@@ -127,7 +127,7 @@ var groups = {
     // check :id param
     validator.isPathValid(req, res);
 
-    Group.findOneAndRemove({ "_id": req.params.id }, function (err, group) {
+    Group.findOneAndRemove({ '_id': req.params.id }, function (err, group) {
       if (err) {
         console.error(err);
       }
@@ -136,4 +136,4 @@ var groups = {
   }
 };
 
-module.exports = groups;
+export { groups }
