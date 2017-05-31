@@ -7,20 +7,11 @@ const expect = chai.expect;
 
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
-import { Attachment } from '../../../../src/app/models/attachment';
+import { modelFixture, modelFixtureEdited } from './attachments.fixtures';
 
 var token = '';
 var entityId = '';
 
-const modelFixture = {
-    'name': 'Dummy attachment',
-    'description': 'Dummy attachment file'
-};
-
-const modelFixtureEdited = {
-    'name': 'Dummy attachment edited',
-    'description': 'Dummy attachment file edited',
-};
 
 describe('/attachments', function () {
 

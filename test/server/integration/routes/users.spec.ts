@@ -7,29 +7,11 @@ const expect = chai.expect;
 
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
-import { User } from '../../../../src/app/models/user';
+import { modelFixture, modelFixtureEdited } from './users.fixtures';
 
 var token = '';
 var entityId = '';
 
-
-const modelFixture: User = {
-    'firstName': 'Mikhail',
-    'lastName': 'Pavlov',
-    'email': 'test@teststorage.qa',
-    'password': 'password',
-    'title': 'Senior Testing Engineer',
-    'groups': ['1', '3']
-};
-
-const modelFixtureEdited: User = {
-    'firstName': 'Lev',
-    'lastName': 'Ivanov',
-    'email': 'edited@teststorage.qa',
-    'password': 'editedpassword',
-    'title': 'Testing Engineer',
-    'groups': ['2', '4', '5']
-};
 
 describe('/users', function () {
 
@@ -69,12 +51,12 @@ describe('/users', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('firstName', 'Mikhail');
-                expect(res.body).to.have.deep.property('lastName', 'Pavlov');
-                expect(res.body).to.have.deep.property('email', 'test@teststorage.qa');
-                expect(res.body).to.have.deep.property('password', 'password');
-                expect(res.body).to.have.deep.property('title', 'Senior Testing Engineer');
-                expect(res.body).to.have.deep.property('groups', ['1', '3']);
+                expect(res.body).to.have.deep.property('firstName', modelFixture.firstName);
+                expect(res.body).to.have.deep.property('lastName', modelFixture.lastName);
+                expect(res.body).to.have.deep.property('email', modelFixture.email);
+                expect(res.body).to.have.deep.property('password', modelFixture.password);
+                expect(res.body).to.have.deep.property('title', modelFixture.title);
+                expect(res.body).to.have.deep.property('groups', modelFixture.groups);
                 done()
             });
     });
@@ -113,12 +95,12 @@ describe('/users', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('firstName', 'Lev');
-                expect(res.body).to.have.deep.property('lastName', 'Ivanov');
-                expect(res.body).to.have.deep.property('email', 'edited@teststorage.qa');
-                expect(res.body).to.have.deep.property('password', 'editedpassword');
-                expect(res.body).to.have.deep.property('title', 'Testing Engineer');
-                expect(res.body).to.have.deep.property('groups', ['2', '4', '5']);
+                expect(res.body).to.have.deep.property('firstName', modelFixtureEdited.firstName);
+                expect(res.body).to.have.deep.property('lastName', modelFixtureEdited.lastName);
+                expect(res.body).to.have.deep.property('email', modelFixtureEdited.email);
+                expect(res.body).to.have.deep.property('password', modelFixtureEdited.password);
+                expect(res.body).to.have.deep.property('title', modelFixtureEdited.title);
+                expect(res.body).to.have.deep.property('groups', modelFixtureEdited.groups);
                 done()
             });
     });

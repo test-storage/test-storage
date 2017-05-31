@@ -27,11 +27,6 @@ Production
 
 __note:__ `mongo` and `mongod` should be accessible via command line interface
 
-for execution you should also install globally:
-```bash
-$ npm install -g nodemon @angular/cli
-```
-
 ## Installation
 
 ```bash
@@ -84,9 +79,9 @@ $ npm install -g test-storage
 
 unit tests:
 ```
-$ npm test
+$ ng test --single-run
 ```
-__note:__ `npm test` runs tests once. For running tests on each file change use:
+__note:__ For running tests on each file change use:
 ```
 $ ng test
 ```

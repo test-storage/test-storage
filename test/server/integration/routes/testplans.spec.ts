@@ -4,29 +4,13 @@ import chaiHttp = require('chai-http');
 
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
+import { testplanFixture, editedTestplanFixture } from './testplans.fixtures';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 
 var token = '';
 var entityId = '';
-
-const testplanFixture = {
-    'name': 'Test plan dummy',
-    'description': 'Test plan dummy description',
-    'builds': ['2.4.0', '4.3.5', '1.0.3-RC5', '2.5-beta', '1.0.0.244'],
-    'environments': ['Stage', 'Production'],
-    'testruns': [23, 24, 25]
-};
-
-const editedTestplanFixture = {
-    'name': 'Test plan dummy edited',
-    'description': 'Test plan dummy description edited',
-    'builds': ['2.4.0', '4.3.5', '1.0.3-RC5', '2.5-beta', '1.0.0.244', '2.0.0'],
-    'environments': ['Dev', 'Stage', 'Production'],
-    'testruns': [26, 27, 28]
-};
-
 
 
 describe('/testplans', function () {
@@ -66,11 +50,11 @@ describe('/testplans', function () {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.deep.property('name', 'Test plan dummy');
-                expect(res.body).to.have.deep.property('description', 'Test plan dummy description');
-                expect(res.body).to.have.deep.property('builds', ['2.4.0', '4.3.5', '1.0.3-RC5', '2.5-beta', '1.0.0.244']);
-                expect(res.body).to.have.deep.property('environments', ['Stage', 'Production']);
-                expect(res.body).to.have.deep.property('testruns', [23, 24, 25]);
+                expect(res.body).to.have.deep.property('name', testplanFixture.name);
+                expect(res.body).to.have.deep.property('description', testplanFixture.description);
+                expect(res.body).to.have.deep.property('builds', testplanFixture.builds);
+                expect(res.body).to.have.deep.property('environments', testplanFixture.environments);
+                expect(res.body).to.have.deep.property('testruns', testplanFixture.testruns);
                 done()
             });
     });
@@ -85,11 +69,11 @@ describe('/testplans', function () {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('array');
-                expect(res.body[0]).to.have.deep.property('name', 'Test plan dummy');
-                expect(res.body[0]).to.have.deep.property('description', 'Test plan dummy description');
-                expect(res.body[0]).to.have.deep.property('builds', ['2.4.0', '4.3.5', '1.0.3-RC5', '2.5-beta', '1.0.0.244']);
-                expect(res.body[0]).to.have.deep.property('environments', ['Stage', 'Production']);
-                expect(res.body[0]).to.have.deep.property('testruns', [23, 24, 25]);
+                expect(res.body[0]).to.have.deep.property('name');
+                expect(res.body[0]).to.have.deep.property('description');
+                expect(res.body[0]).to.have.deep.property('builds');
+                expect(res.body[0]).to.have.deep.property('environments');
+                expect(res.body[0]).to.have.deep.property('testruns');
                 done()
             });
     });
@@ -105,11 +89,11 @@ describe('/testplans', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('name', 'Test plan dummy edited');
-                expect(res.body).to.have.deep.property('description', 'Test plan dummy description edited');
-                expect(res.body).to.have.deep.property('builds', ['2.4.0', '4.3.5', '1.0.3-RC5', '2.5-beta', '1.0.0.244', '2.0.0']);
-                expect(res.body).to.have.deep.property('environments', ['Dev', 'Stage', 'Production']);
-                expect(res.body).to.have.deep.property('testruns', [26, 27, 28]);
+                expect(res.body).to.have.deep.property('name', editedTestplanFixture.name);
+                expect(res.body).to.have.deep.property('description', editedTestplanFixture.description);
+                expect(res.body).to.have.deep.property('builds', editedTestplanFixture.builds);
+                expect(res.body).to.have.deep.property('environments', editedTestplanFixture.environments);
+                expect(res.body).to.have.deep.property('testruns', editedTestplanFixture.testruns);
                 done()
             });
     });

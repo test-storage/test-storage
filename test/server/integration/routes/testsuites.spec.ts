@@ -7,33 +7,10 @@ const expect = chai.expect;
 
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
-import { Testcasesuite } from '../../../../src/app/models/testcasesuite';
+import { testsuiteFixture, editedTestsuiteFixture } from './testsuites.fixtures';
 
 var token = '';
 var entityId = '';
-
-
-const testsuiteFixture: Testcasesuite = {
-    'parentId': 0,
-    'projectId': 'project',
-    'prerequisites': 'Prerequisites 1',
-    'enabled': true,
-    'name': 'Test suite 1',
-    'description': 'Test suite description',
-    'environment': 'environment 1',
-    'testcases': ['5656567', '6978987', '67667']
-};
-
-const editedTestsuiteFixture: Testcasesuite = {
-    'parentId': 5,
-    'projectId': 'project',
-    'prerequisites': 'Prerequisites 1 edited',
-    'enabled': false,
-    'name': 'Test suite 1 edited',
-    'description': 'Test suite description edited',
-    'environment': 'environment 1 edited',
-    'testcases': ['333', '444', '555']
-};
 
 
 describe('/testsuites', function () {
@@ -74,13 +51,13 @@ describe('/testsuites', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('parentId', 0);
-                expect(res.body).to.have.deep.property('prerequisites', 'Prerequisites 1');
-                expect(res.body).to.have.deep.property('enabled', true);
-                expect(res.body).to.have.deep.property('name', 'Test suite 1');
-                expect(res.body).to.have.deep.property('description', 'Test suite description');
-                expect(res.body).to.have.deep.property('environment', 'environment 1');
-                expect(res.body).to.have.deep.property('testcases', ['5656567', '6978987', '67667']);
+                expect(res.body).to.have.deep.property('parentId', testsuiteFixture.parentId);
+                expect(res.body).to.have.deep.property('prerequisites', testsuiteFixture.prerequisites);
+                expect(res.body).to.have.deep.property('enabled', testsuiteFixture.enabled);
+                expect(res.body).to.have.deep.property('name', testsuiteFixture.name);
+                expect(res.body).to.have.deep.property('description', testsuiteFixture.description);
+                expect(res.body).to.have.deep.property('environment', testsuiteFixture.environment);
+                expect(res.body).to.have.deep.property('testcases', testsuiteFixture.testcases);
                 done()
             });
     });
@@ -119,13 +96,13 @@ describe('/testsuites', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('parentId', 5);
-                expect(res.body).to.have.deep.property('prerequisites', 'Prerequisites 1 edited');
-                expect(res.body).to.have.deep.property('enabled', false);
-                expect(res.body).to.have.deep.property('name', 'Test suite 1 edited');
-                expect(res.body).to.have.deep.property('description', 'Test suite description edited');
-                expect(res.body).to.have.deep.property('environment', 'environment 1 edited');
-                expect(res.body).to.have.deep.property('testcases', ['333', '444', '555']);
+                expect(res.body).to.have.deep.property('parentId', editedTestsuiteFixture.parentId);
+                expect(res.body).to.have.deep.property('prerequisites', editedTestsuiteFixture.prerequisites);
+                expect(res.body).to.have.deep.property('enabled', editedTestsuiteFixture.enabled);
+                expect(res.body).to.have.deep.property('name', editedTestsuiteFixture.name);
+                expect(res.body).to.have.deep.property('description', editedTestsuiteFixture.description);
+                expect(res.body).to.have.deep.property('environment', editedTestsuiteFixture.environment);
+                expect(res.body).to.have.deep.property('testcases', editedTestsuiteFixture.testcases);
                 done()
             });
     });
