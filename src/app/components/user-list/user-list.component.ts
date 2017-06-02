@@ -11,20 +11,20 @@ export class UserListComponent implements OnInit {
     constructor() {
         this.users = [
             {
-                "id": 1,
-                "lastName": "Polyakov",
-                "firstName": "Anton",
-                "email": "polyakov@teststorage.local",
-                "activated": true
+                'id': 1,
+                'lastName': 'Polyakov',
+                'firstName': 'Anton',
+                'email': 'polyakov@teststorage.local',
+                'activated': true
             },
             {
-                "id": 2,
-                "lastName": "Abramtsev",
-                "firstName": "Sergey",
-                "email": "abramtsev@teststorage.local",
-                "activated": true
+                'id': 2,
+                'lastName': 'Abramtsev',
+                'firstName': 'Sergey',
+                'email': 'abramtsev@teststorage.local',
+                'activated': true
             }
-            ]
+        ]
     }
 
     ngOnInit() { }

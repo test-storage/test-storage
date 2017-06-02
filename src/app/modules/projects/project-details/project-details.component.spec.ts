@@ -62,7 +62,7 @@ describe('ProjectDetailsComponent', () => {
     it('should navigate', () => {
           let component = fixture.componentInstance;
           let navigateSpy = spyOn((<any>component).router, 'navigate');
-  
+
           component.clickLink('home');
           expect(navigateSpy).toHaveBeenCalledWith(['/expectedUrl']);
       });
