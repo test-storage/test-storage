@@ -28,7 +28,7 @@
         </li>
         <li><a routerLink="/settings"><i class="glyphicon glyphicon-cog"></i></a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" id="header-person" role="button" aria-haspopup="true" aria-expanded="false">John Doe <span class=" fa fa-angle-down"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" id="header-person" role="button" aria-haspopup="true" aria-expanded="false">{{ user.firstName }} {{ user.lastName }} <span class=" fa fa-angle-down"></span></a>
           <ul class="dropdown-menu">
             <li><a routerLink="/profile"><i class="fa fa-user"></i> {{ 'HEADER.USER_PROFILE' | translate }}</a></li>
             <li role="separator" class="divider"></li>
