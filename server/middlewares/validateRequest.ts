@@ -32,7 +32,7 @@ module.exports = function (req, res, next) {
       if (dbUser) {
 
 
-        if ((req.url.indexOf('admin') >= 0 && dbUser.role === 'admin') ||
+        if ((req.url.indexOf('admin') >= 0 && this.dbUser.title === 'admin') ||
           (req.url.indexOf('admin') < 0 && req.url.indexOf('/api/v1/') >= 0)) {
           next(); // To move to next middleware
         } else {
@@ -70,4 +70,5 @@ module.exports = function (req, res, next) {
     });
     return;
   }
+
 };

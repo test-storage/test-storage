@@ -1,9 +1,12 @@
+import * as mongoose from 'mongoose';
+import { User } from '../models/User';
+
 import * as jwt from 'jsonwebtoken';
 import { secret } from './config/secret';
 
 const auth = {
 
-  login: function (req, res) {
+  login: async function (req, res) {
 
     const username = req.body.username || '';
     const password = req.body.password || '';
@@ -18,7 +21,7 @@ const auth = {
     }
 
     // Fire a query to your DB and check if the credentials are valid
-    const dbUserObj = auth.validate(username, password);
+    const dbUserObj = await auth.validate(username, password);
 
     if (!dbUserObj) { // If authentication fails, we send a 401 back
       res.status(401);
@@ -39,27 +42,28 @@ const auth = {
 
   },
 
-  validate: function (username, password) {
-    // spoofing the DB response for simplicity
-    const dbUserObj = { // spoofing a userobject from the DB.
-      name: 'admin',
-      role: 'admin',
-      username: 'admin@test-storage.local'
-    };
+  validate: async function (username, password) {
+    const fields = { 'password': 0, 'updated': 0, 'created': 0 };
 
-    return dbUserObj;
+    const user = await User.find({ 'email': username, 'password': password }, fields).limit(1);
+    if (user.length > 0) {
+      return user;
+    } else {
+      console.log('User not found!');
+      return;
+    }
   },
 
-  validateUser: function (username) {
-    // spoofing the DB response for simplicity
-    const dbUserObj = { // spoofing a userobject from the DB.
-      name: 'admin',
-      role: 'admin',
-      username: 'admin@test-storage.local'
-    };
-
-    return dbUserObj;
-  },
+  validateUser: async function (username) {
+    const fields = { 'password': 0, 'updated': 0, 'created': 0 };
+    const user = await User.find({ 'email': username }, fields).limit(1);
+    if (user.length > 0) {
+      return user;
+    } else {
+      console.log('User not found!');
+      return;
+    }
+  }
 }
 
 // private method
