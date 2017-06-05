@@ -60,7 +60,6 @@ const auth = {
     if (user.length > 0) {
       return user;
     } else {
-      console.log('User not found!');
       return;
     }
   }
