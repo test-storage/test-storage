@@ -54,7 +54,7 @@ describe('/users', function () {
                 expect(res.body).to.have.deep.property('firstName', modelFixture.firstName);
                 expect(res.body).to.have.deep.property('lastName', modelFixture.lastName);
                 expect(res.body).to.have.deep.property('email', modelFixture.email);
-                expect(res.body).to.have.deep.property('password', modelFixture.password);
+                expect(res.body).to.not.have.deep.property('password');
                 expect(res.body).to.have.deep.property('title', modelFixture.title);
                 expect(res.body).to.have.deep.property('groups', modelFixture.groups);
                 done()
@@ -76,7 +76,6 @@ describe('/users', function () {
                     'firstName',
                     'lastName',
                     'email',
-                    'password',
                     'title',
                     'groups'
                 );
@@ -98,7 +97,7 @@ describe('/users', function () {
                 expect(res.body).to.have.deep.property('firstName', modelFixtureEdited.firstName);
                 expect(res.body).to.have.deep.property('lastName', modelFixtureEdited.lastName);
                 expect(res.body).to.have.deep.property('email', modelFixtureEdited.email);
-                expect(res.body).to.have.deep.property('password', modelFixtureEdited.password);
+                expect(res.body).to.not.have.deep.property('password');
                 expect(res.body).to.have.deep.property('title', modelFixtureEdited.title);
                 expect(res.body).to.have.deep.property('groups', modelFixtureEdited.groups);
                 done()

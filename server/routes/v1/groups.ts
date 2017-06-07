@@ -13,16 +13,26 @@ const groups = {
   getAll: function (req, res) {
 
     // check limit, offset, fields param
-    let limit = {}, offset = {}, fields = {};
-    limit['limit'] = validator.validateLimit(req, res);
-    fields = validator.validateFields(req, res);
+    const limit = validator.validateLimit(req, res);
+    const fields = validator.validateFields(req, res);
+    const offset = validator.validateOffset(req, res);
 
-    Group.find({}, fields, limit, function (err, groups) {
-      if (err) {
-        console.error(err);
-      }
-      res.json(groups);
-    });
+    Group.
+      find({}).
+      limit(limit).
+      select(fields).
+      skip(offset).
+      exec(
+      function (err, groups) {
+
+        if (err) {
+          console.error(err);
+        }
+
+        res.
+          status(200).
+          json(groups);
+      });
   },
 
   /*
@@ -31,19 +41,26 @@ const groups = {
    */
 
   getOne: function (req, res) {
-    // check 'fields' param
-    let fields = {};
-    fields = validator.validateFields(req, res);
-    // check :id param
+
+    // check 'fields' and ':id' params
+    const fields = validator.validateFields(req, res);
     validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Group.findOne({ '_id': req.params.id }, fields, function (err, group) {
-      if (err) {
-        console.error(err);
-      }
-      res.json(group);
-    });
+    Group.
+      findOne({ '_id': req.params.id }).
+      select(fields).
+      exec(
+      function (err, group) {
+
+        if (err) {
+          console.error(err);
+        }
+
+        res.
+          status(200).
+          json(group);
+      });
   },
 
   /*
@@ -52,14 +69,20 @@ const groups = {
    */
 
   create: function (req, res) {
-    Group.create(req.body, function (err, group) {
-      if (err) {
-        console.error(err);
-      }
-      res.status(201).
-        location('/api/v1/groups/' + group._id).
-        json(group);
-    });
+    // TODO create body check
+    Group.
+      create(req.body,
+      function (err, group) {
+
+        if (err) {
+          console.error(err);
+        }
+
+        res.
+          status(201).
+          location('/api/v1/groups/' + group._id).
+          json(group);
+      });
   },
 
   /*
@@ -99,23 +122,30 @@ const groups = {
           return;
         } */
     // TODO need security check (user input) for update
-    Group.findOne({ '_id': req.params.id }, function (err, group) {
+    Group.
+      findOne({ '_id': req.params.id }).
+      exec(
+      function (err, group) {
 
-      group.name = req.body.name;
-      group.description = req.body.description;
-      group.enabled = req.body.enabled;
-      group.scope = req.body.scope;
-      //  group.scope.testsuites = req.body.scope.testsuites;
-      group.users = req.body.users; // add users
-      group.updated = Date.now();
+        group.name = req.body.name;
+        group.description = req.body.description;
+        group.enabled = req.body.enabled;
+        group.scope = req.body.scope;
+        //  group.scope.testsuites = req.body.scope.testsuites;
+        group.users = req.body.users; // add users
+        group.updated = Date.now();
 
-      group.save(function (err, group, count) {
-        if (err) {
-          console.error(err);
-        }
-        res.status(200).json(group);
+        group.save(function (err, group, count) {
+
+          if (err) {
+            console.error(err);
+          }
+
+          res.
+            status(200).
+            json(group);
+        });
       });
-    });
   },
 
   /*
@@ -127,12 +157,19 @@ const groups = {
     // check :id param
     validator.isPathValid(req, res);
 
-    Group.findOneAndRemove({ '_id': req.params.id }, function (err, group) {
-      if (err) {
-        console.error(err);
-      }
-      res.status(204).json(true);
-    });
+    Group.
+      findOneAndRemove({ '_id': req.params.id }).
+      exec(
+      function (err, group) {
+
+        if (err) {
+          console.error(err);
+        }
+
+        res.
+          status(204).
+          json(true);
+      });
   }
 };
 

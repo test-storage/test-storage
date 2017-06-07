@@ -14,16 +14,24 @@ const projects = {
   getAll: function (req, res) {
 
     // check limit, offset, fields param
-    let limit = {}, offset = {}, fields = {};
-    limit['limit'] = validator.validateLimit(req, res);
-    fields = validator.validateFields(req, res);
+    const limit = validator.validateLimit(req, res);
+    const fields = validator.validateFields(req, res);
+    const offset = validator.validateOffset(req, res);
 
-    Project.find({}, fields, limit, function (err, projects) {
-      if (err) {
-        console.error(err);
-      }
-      res.json(projects);
-    });
+    Project.
+      find({}).
+      limit(limit).
+      select(fields).
+      skip(offset).
+      exec(
+      function (err, projects) {
+        if (err) {
+          console.error(err);
+        }
+        res.
+          status(200).
+          json(projects);
+      });
   },
 
   /*
@@ -33,19 +41,23 @@ const projects = {
 
   getOne: function (req, res) {
 
-    // check 'fields' param
-    let fields = {};
-    fields = validator.validateFields(req, res);
-    // check :id param
+    // check 'fields' and ':id' params
+    const fields = validator.validateFields(req, res);
     validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Project.findOne({ '_id': req.params.id }, fields, function (err, project) {
-      if (err) {
-        console.error(err);
-      }
-      res.json(project);
-    });
+    Project.
+      findOne({ '_id': req.params.id }).
+      select(fields).
+      exec(
+      function (err, project) {
+        if (err) {
+          console.error(err);
+        }
+        res.
+          status(200).
+          json(project);
+      });
   },
 
   /*
@@ -54,14 +66,20 @@ const projects = {
    */
 
   create: function (req, res) {
-    Project.create(req.body, function (err, project) {
-      if (err) {
-        console.error(err);
-      }
-      res.status(201).
-        location('/api/v1/projects/' + project._id).
-        json(project);
-    });
+
+    // TODO req.body validation
+    Project.
+      create(req.body,
+      function (err, project) {
+        if (err) {
+          console.error(err);
+        }
+
+        res.
+          status(201).
+          location('/api/v1/projects/' + project._id).
+          json(project);
+      });
   },
 
   /*
@@ -74,21 +92,26 @@ const projects = {
     validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
-    Project.findOne({ '_id': req.params.id }, function (err, project) {
+    Project
+      .findOne({ '_id': req.params.id })
+      .exec(
+      function (err, project) {
+        project.name = req.body.name;
+        project.description = req.body.description;
+        project.enabled = req.body.enabled;
+        project.testcases = req.body.testcases;
+        project.updated = Date.now();
 
-      project.name = req.body.name;
-      project.description = req.body.description;
-      project.enabled = req.body.enabled;
-      project.testcases = req.body.testcases;
-      project.updated = Date.now();
+        project.save(function (err, project, count) {
+          if (err) {
+            console.error(err);
+          }
 
-      project.save(function (err, project, count) {
-        if (err) {
-          console.error(err);
-        }
-        res.json(project);
+          res.
+            status(200).
+            json(project);
+        });
       });
-    });
   },
 
   /*
@@ -100,12 +123,18 @@ const projects = {
     // check :id param
     validator.isPathValid(req, res);
 
-    Project.findOneAndRemove({ '_id': req.params.id }, function (err, project) {
-      if (err) {
-        console.error(err);
-      }
-      res.status(204).json(true);
-    });
+    Project
+      .findOneAndRemove({ '_id': req.params.id })
+      .exec(
+      function (err, project) {
+        if (err) {
+          console.error(err);
+        }
+
+        res.
+          status(204).
+          json(true);
+      });
   }
 };
 

@@ -13,6 +13,7 @@ import * as config from 'config';
 import expressValidator = require('express-validator');
 
 const app: express.Application = express();
+app.disable('x-powered-by'); // security
 
 if ('development' === app.get('env') || 'test' === app.get('env')) {
   // only use in development (stack traces/errors and etc)
@@ -30,8 +31,6 @@ app.use(express.static(path.join(__dirname, '../../dist')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(expressValidator()); // this line must be immediately after express.bodyParser()!
-
-app.disable('x-powered-by'); // security
 
 /*******************************************************************************
 *                                  Database                                    *

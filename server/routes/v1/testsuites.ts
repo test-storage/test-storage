@@ -14,16 +14,26 @@ const testsuites = {
   getAll: function (req, res) {
 
     // check limit, offset, fields param
-    let limit = {}, offset = {}, fields = {};
-    limit['limit'] = validator.validateLimit(req, res);
-    fields = validator.validateFields(req, res);
+    const limit = validator.validateLimit(req, res);
+    const fields = validator.validateFields(req, res);
+    const offset = validator.validateOffset(req, res);
 
-    Testsuite.find({}, fields, limit, function (err, testsuites) {
-      if (err) {
-        console.error(err);
-      }
-      res.json(testsuites);
-    });
+    Testsuite.
+      find({}).
+      limit(limit).
+      select(fields).
+      skip(offset).
+      exec(
+      function (err, testsuites) {
+
+        if (err) {
+          console.error(err);
+        }
+
+        res.
+          status(200).
+          json(testsuites);
+      });
   },
 
   /*
@@ -33,19 +43,25 @@ const testsuites = {
 
   getOne: function (req, res) {
 
-    // check 'fields' param
-    let fields = {};
-    fields = validator.validateFields(req, res);
-    // check :id param
+    // check 'fields' and ':id' params
+    const fields = validator.validateFields(req, res);
     validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Testsuite.findOne({ '_id': req.params.id }, fields, function (err, testsuite) {
-      if (err) {
-        console.error(err);
-      }
-      res.json(testsuite);
-    });
+    Testsuite.
+      findOne({ '_id': req.params.id }).
+      select(fields).
+      exec(
+      function (err, testsuite) {
+
+        if (err) {
+          console.error(err);
+        }
+
+        res.
+          status(200).
+          json(testsuite);
+      });
   },
 
   /*
@@ -54,14 +70,19 @@ const testsuites = {
    */
 
   create: function (req, res) {
-    Testsuite.create(req.body, function (err, testsuite) {
-      if (err) {
-        console.error(err);
-      }
-      res.status(201).
-        location('/api/v1/testsuites/' + testsuite._id).
-        json(testsuite);
-    });
+    Testsuite.
+      create(req.body,
+      function (err, testsuite) {
+
+        if (err) {
+          console.error(err);
+        }
+
+        res.
+          status(201).
+          location('/api/v1/testsuites/' + testsuite._id).
+          json(testsuite);
+      });
   },
 
   /*
@@ -74,24 +95,31 @@ const testsuites = {
     validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
-    Testsuite.findOne({ '_id': req.params.id }, function (err, testsuite) {
+    Testsuite.
+      findOne({ '_id': req.params.id }).
+      exec(
+      function (err, testsuite) {
 
-      testsuite.parentId = req.body.parentId;
-      testsuite.enabled = req.body.enabled;
-      testsuite.name = req.body.name;
-      testsuite.description = req.body.description;
-      testsuite.prerequisites = req.body.prerequisites;
-      testsuite.environment = req.body.environment;
-      testsuite.testcases = req.body.testcases; // add testcases to suite
-      testsuite.updated = Date.now();
+        testsuite.parentId = req.body.parentId;
+        testsuite.enabled = req.body.enabled;
+        testsuite.name = req.body.name;
+        testsuite.description = req.body.description;
+        testsuite.prerequisites = req.body.prerequisites;
+        testsuite.environment = req.body.environment;
+        testsuite.testcases = req.body.testcases; // add testcases to suite
+        testsuite.updated = Date.now();
 
-      testsuite.save(function (err, testsuite, count) {
-        if (err) {
-          console.error(err);
-        }
-        res.json(testsuite);
+        testsuite.save(function (err, testsuite, count) {
+
+          if (err) {
+            console.error(err);
+          }
+
+          res.
+            status(200).
+            json(testsuite);
+        });
       });
-    });
   },
 
   /*
@@ -103,12 +131,19 @@ const testsuites = {
     // check :id param
     validator.isPathValid(req, res);
 
-    Testsuite.findOneAndRemove({ '_id': req.params.id }, function (err, testsuite) {
-      if (err) {
-        console.error(err);
-      }
-      res.status(204).json(true);
-    });
+    Testsuite.
+      findOneAndRemove({ '_id': req.params.id })
+      .exec(
+      function (err, testsuite) {
+
+        if (err) {
+          console.error(err);
+        }
+
+        res.
+          status(204).
+          json(true);
+      });
   }
 };
 
