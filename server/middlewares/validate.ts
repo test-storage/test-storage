@@ -22,10 +22,9 @@ export class Validator {
     }
 } */
 
+export class Validator {
 
-const validator = {
-
-    validateFields: function (req, res) {
+    public validateFields(req, res) {
         if (req.query.fields) {
             if (req.query.fields !== '') {
                 // TODO error handling and safety validation
@@ -34,32 +33,14 @@ const validator = {
             }
         }
 
-    },
+    }
 
-    validateFieldsWithExcludes: function (req, res) {
-        var fields = {};
-        if (req.query.fields) {
-            if (req.query.fields !== '') {
-                // TODO error handling and safety validation
-
-                let fieldsString = req.query.fields;
-                fieldsString = fieldsString.replace(/\s+/g, ''); // delete whitespaces if exists
-                let _fields = fieldsString.split(',');
-                _fields.forEach(function (item, i, _fields) {
-                    fields[item] = 1;
-                });
-                return fields;
-            }
-        }
-        return fields;
-    },
-
-    validateOffset: function (req, res) {
+    public validateOffset(req, res) {
 
         if (req.query.offset) {
 
             if (Number(req.query.offset)) {
-                const offset = Number(req.query.offset)
+                const offset = Number(req.query.offset);
                 if (offset > 200 || offset <= 0) {
                     res.status(400).
                         json({
@@ -83,13 +64,13 @@ const validator = {
             // default offset
             return 0;
         }
-    },
+    }
 
-    validateLimit: function (req, res) {
+    public validateLimit(req, res) {
         if (req.query.limit) {
 
             if (Number(req.query.limit)) {
-                const limit = Number(req.query.limit)
+                const limit = Number(req.query.limit);
                 if (limit > 200 || limit <= 0) {
                     res.status(400).
                         json({
@@ -133,12 +114,17 @@ const validator = {
             // default limit
             return 20;
         }
-    },
+    }
 
-    isPathValid: function (req, res) {
+    isPathValid(req, res) {
         // check params (id as random)
         if (!req.params.id.match('^[a-f0-9]{32}$')) {
-            res.status(400).json('Invalid ID');
+            res.
+                status(400).
+                json({
+                    'status': 400,
+                    'message': 'Invalid ID. Bad value of path {:id} parameter.'
+                });
             return false;
         } else {
             return true;
@@ -146,4 +132,3 @@ const validator = {
     }
 }
 
-export { validator }

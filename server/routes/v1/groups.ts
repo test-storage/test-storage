@@ -2,20 +2,26 @@ import * as mongoose from 'mongoose';
 import { Group } from '../../models/Group';
 
 import * as util from 'util';
-import { validator } from '../../middlewares/validate';
+import { Validator } from '../../middlewares/validate';
 
-const groups = {
+export class Groups {
+
+  private validator: Validator;
+
+  constructor() {
+    this.validator = new Validator();
+  }
 
   /*
    * Get all groups
    *
    */
-  getAll: function (req, res) {
+  getAll(req, res) {
 
     // check limit, offset, fields param
-    const limit = validator.validateLimit(req, res);
-    const fields = validator.validateFields(req, res);
-    const offset = validator.validateOffset(req, res);
+    const limit = this.validator.validateLimit(req, res);
+    const fields = this.validator.validateFields(req, res);
+    const offset = this.validator.validateOffset(req, res);
 
     Group.
       find({}).
@@ -33,18 +39,18 @@ const groups = {
           status(200).
           json(groups);
       });
-  },
+  }
 
   /*
    * Get single group
    *
    */
 
-  getOne: function (req, res) {
+  getOne(req, res) {
 
     // check 'fields' and ':id' params
-    const fields = validator.validateFields(req, res);
-    validator.isPathValid(req, res);
+    const fields = this.validator.validateFields(req, res);
+    this.validator.isPathValid(req, res);
     // TODO add sanitizers
 
     Group.
@@ -61,14 +67,14 @@ const groups = {
           status(200).
           json(group);
       });
-  },
+  }
 
   /*
    * Create group
    *
    */
 
-  create: function (req, res) {
+  create(req, res) {
     // TODO create body check
     Group.
       create(req.body,
@@ -83,16 +89,16 @@ const groups = {
           location('/api/v1/groups/' + group._id).
           json(group);
       });
-  },
+  }
 
   /*
    * Update group
    *
    */
 
-  update: function (req, res) {
+  update(req, res) {
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
     /*
         // check body
         req.checkBody({
@@ -146,16 +152,16 @@ const groups = {
             json(group);
         });
       });
-  },
+  }
 
   /*
    * delete group
    *
    */
 
-  delete: function (req, res) {
+  delete(req, res) {
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
     Group.
       findOneAndRemove({ '_id': req.params.id }).
@@ -173,4 +179,3 @@ const groups = {
   }
 };
 
-export { groups }

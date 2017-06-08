@@ -2,20 +2,25 @@ import * as mongoose from 'mongoose';
 import { Testcase } from '../../models/Testcase';
 
 import * as util from 'util';
-import { validator } from '../../middlewares/validate';
+import { Validator } from '../../middlewares/validate';
 
-const testcases = {
+export class Testcases {
 
+  private validator: Validator;
+
+  constructor() {
+    this.validator = new Validator();
+  }
   /*
    * Get all testcases
    *
    */
-  getAll: function (req, res) {
+  getAll(req, res) {
 
     // check limit, offset, fields param
-    const limit = validator.validateLimit(req, res);
-    const fields = validator.validateFields(req, res);
-    const offset = validator.validateOffset(req, res);
+    const limit = this.validator.validateLimit(req, res);
+    const fields = this.validator.validateFields(req, res);
+    const offset = this.validator.validateOffset(req, res);
 
     Testcase.
       find({}).
@@ -34,18 +39,18 @@ const testcases = {
           status(200).
           json(testcases);
       });
-  },
+  }
 
   /*
    * Get single testcase
    *
    */
 
-  getOne: function (req, res) {
+  getOne(req, res) {
 
     // check 'fields' and ':id' params
-    const fields = validator.validateFields(req, res);
-    validator.isPathValid(req, res);
+    const fields = this.validator.validateFields(req, res);
+    this.validator.isPathValid(req, res);
     // TODO add sanitizers
 
     Testcase.
@@ -62,14 +67,14 @@ const testcases = {
           status(200).
           json(testcase);
       });
-  },
+  }
 
   /*
    * Create testcase
    *
    */
 
-  create: function (req, res) {
+  create(req, res) {
     // TODO add validation
 
     Testcase.
@@ -84,18 +89,18 @@ const testcases = {
           location('/api/v1/testcases/' + testcase._id).
           json(testcase);
       });
-  },
+  }
 
   /*
    * Update testcase
    *
    */
 
-  update: function (req, res) {
+  update(req, res) {
     // TODO need security check (user input) for update
 
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
     // check body
     req.checkBody({
@@ -163,17 +168,17 @@ const testcases = {
             json(testcase);
         });
       });
-  },
+  }
 
   /*
    * delete testcase
    *
    */
 
-  delete: function (req, res) {
+  delete(req, res) {
 
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
     Testcase.
       findOneAndRemove({ '_id': req.params.id }).
@@ -189,5 +194,3 @@ const testcases = {
       });
   }
 };
-
-export { testcases }

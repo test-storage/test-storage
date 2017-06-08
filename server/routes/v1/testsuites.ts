@@ -2,21 +2,26 @@ import * as mongoose from 'mongoose';
 import { Testsuite } from '../../models/Testsuite';
 
 import * as util from 'util';
-import { validator } from '../../middlewares/validate';
+import { Validator } from '../../middlewares/validate';
 
-const testsuites = {
+export class Testsuites {
+
+  private validator: Validator;
+  constructor() {
+    this.validator = new Validator();
+  }
 
   /*
    * Get all testsuites
    *
    */
 
-  getAll: function (req, res) {
+  getAll(req, res) {
 
     // check limit, offset, fields param
-    const limit = validator.validateLimit(req, res);
-    const fields = validator.validateFields(req, res);
-    const offset = validator.validateOffset(req, res);
+    const limit = this.validator.validateLimit(req, res);
+    const fields = this.validator.validateFields(req, res);
+    const offset = this.validator.validateOffset(req, res);
 
     Testsuite.
       find({}).
@@ -34,18 +39,18 @@ const testsuites = {
           status(200).
           json(testsuites);
       });
-  },
+  }
 
   /*
    * Get single testsuite
    *
    */
 
-  getOne: function (req, res) {
+  getOne(req, res) {
 
     // check 'fields' and ':id' params
-    const fields = validator.validateFields(req, res);
-    validator.isPathValid(req, res);
+    const fields = this.validator.validateFields(req, res);
+    this.validator.isPathValid(req, res);
     // TODO add sanitizers
 
     Testsuite.
@@ -62,14 +67,14 @@ const testsuites = {
           status(200).
           json(testsuite);
       });
-  },
+  }
 
   /*
    * Create testsuite
    *
    */
 
-  create: function (req, res) {
+  create(req, res) {
     Testsuite.
       create(req.body,
       function (err, testsuite) {
@@ -83,16 +88,16 @@ const testsuites = {
           location('/api/v1/testsuites/' + testsuite._id).
           json(testsuite);
       });
-  },
+  }
 
   /*
    * Update testsuite
    *
    */
 
-  update: function (req, res) {
+  update(req, res) {
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
     Testsuite.
@@ -120,16 +125,16 @@ const testsuites = {
             json(testsuite);
         });
       });
-  },
+  }
 
   /*
    * delete testsuite
    *
    */
 
-  delete: function (req, res) {
+  delete(req, res) {
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
     Testsuite.
       findOneAndRemove({ '_id': req.params.id })
@@ -146,5 +151,3 @@ const testsuites = {
       });
   }
 };
-
-export { testsuites }

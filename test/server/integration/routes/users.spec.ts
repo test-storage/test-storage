@@ -71,6 +71,7 @@ describe('/users', function () {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('array');
+                expect(res.body[0]).to.not.have.property('password');
                 expect(res.body[0]).to.have.any.keys(
                     '_id',
                     'firstName',

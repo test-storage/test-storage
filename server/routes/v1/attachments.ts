@@ -4,46 +4,64 @@ import { Attachment } from '../../models/Attachment';
 import * as multer from 'multer';
 
 import * as util from 'util';
-import { validator } from '../../middlewares/validate';
+import { Validator } from '../../middlewares/validate';
 
 
-// Storage init
-let storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        const path = '../../server/uploads';
-        cb(null, path);
-    },
-    filename: function (req, file, cb) {
-        const datetimestamp = Date.now();
-        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
+export class Attachments {
+
+    private validator: Validator;
+
+    constructor() {
+        this.validator = new Validator();
+
+
+        // Storage init
+        var storage = multer.diskStorage({
+            destination: function (req, file, cb) {
+                const path = '../../server/uploads';
+                cb(null, path);
+            },
+            filename: function (req, file, cb) {
+                const datetimestamp = Date.now();
+                cb(null, file.fieldname + '-' + datetimestamp + '.' +
+                    file.originalname.split('.')[file.originalname.split('.').length - 1]);
+            }
+        })
+
+        var upload = multer({
+            storage: storage
+        }).single('file');
     }
-})
-
-let upload = multer({
-    storage: storage
-}).single('file');
-
-
-const attachments = {
 
     /*
      * Get all attachments
      *
      */
-    getAll: function (req, res) {
+    getAll(req, res) {
 
         // check limit, offset, fields param
-        let limit = {}, offset = {}, fields = {};
-        limit['limit'] = validator.validateLimit(req, res);
-        fields = validator.validateFields(req, res);
+        const limit = this.validator.validateLimit(req, res);
+        const fields = this.validator.validateFields(req, res);
+        const offset = this.validator.validateOffset(req, res);
 
-        Attachment.find({}, fields, limit, function (err, attachments) {
-            if (err) {
-                console.error(err);
-            }
-            res.json(attachments);
-        });
-    },
+        Attachment.
+            find({}).
+            limit(limit).
+            select(fields).
+            skip(offset).
+            exec(
+            function (err, attachments) {
+
+                if (err) {
+                    console.error(err);
+                } else {
+
+                    res.
+                        status(200).
+                        json(attachments);
+                }
+            });
+    }
 
 
     /*
@@ -51,28 +69,35 @@ const attachments = {
      *
      */
 
-    getOne: function (req, res) {
-        // check 'fields' param
-        let fields = {};
-        fields = validator.validateFields(req, res);
-        // check :id param
-        validator.isPathValid(req, res);
+    getOne(req, res) {
+
+        // check 'fields' and ':id' params
+        const fields = this.validator.validateFields(req, res);
+        this.validator.isPathValid(req, res);
         // TODO add sanitizers
 
-        Attachment.findOne({ '_id': req.params.id }, fields, function (err, attachment) {
-            if (err) {
-                console.error(err);
-            }
-            res.json(attachment);
-        });
-    },
+        Attachment.
+            findOne({ '_id': req.params.id }).
+            select(fields).
+            exec(
+            function (err, attachment) {
+
+                if (err) {
+                    console.error(err);
+                } else {
+                    res.
+                        status(200).
+                        json(attachment);
+                }
+            });
+    }
 
     /*
        * Create attachment
        *
        */
 
-    create: function (req, res) {
+    create(req, res) {
         Attachment.create(req.body, function (err, attachment) {
             if (err) {
                 console.error(err);
@@ -91,16 +116,16 @@ const attachments = {
             res.json({ error_code: 0, err_desc: null });
             // Everything went fine
         }); */
-    },
+    }
 
     /*
      * Update attachment
      *
      */
 
-    update: function (req, res) {
+    update(req, res) {
         // path validation
-        validator.isPathValid(req, res);
+        this.validator.isPathValid(req, res);
         // TODO need security check (user input) for update
         Attachment.findOne({ '_id': req.params.id }, function (err, attachment) {
 
@@ -115,16 +140,16 @@ const attachments = {
                 res.status(200).json(attachment);
             });
         });
-    },
+    }
 
     /*
      * Delete attachment
      *
      */
 
-    delete: function (req, res) {
+    delete(req, res) {
         // check :id param
-        validator.isPathValid(req, res);
+        this.validator.isPathValid(req, res);
 
         Attachment.findOneAndRemove({ '_id': req.params.id }, function (err, group) {
             if (err) {
@@ -135,5 +160,3 @@ const attachments = {
 
     }
 };
-
-export { attachments }

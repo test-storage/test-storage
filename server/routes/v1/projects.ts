@@ -2,21 +2,27 @@ import * as mongoose from 'mongoose';
 import { Project } from '../../models/Project';
 
 import * as util from 'util';
-import { validator } from '../../middlewares/validate';
+import { Validator } from '../../middlewares/validate';
 
-const projects = {
+export class Projects {
+
+  public validator: Validator;
+
+  constructor() {
+    this.validator = new Validator();
+  }
 
   /*
    * Get all projects
    *
    */
 
-  getAll: function (req, res) {
+  getAll(req, res) {
 
     // check limit, offset, fields param
-    const limit = validator.validateLimit(req, res);
-    const fields = validator.validateFields(req, res);
-    const offset = validator.validateOffset(req, res);
+    const limit: number = this.validator.validateLimit(req, res);
+    const fields: number = this.validator.validateFields(req, res);
+    const offset: number = this.validator.validateOffset(req, res);
 
     Project.
       find({}).
@@ -32,18 +38,17 @@ const projects = {
           status(200).
           json(projects);
       });
-  },
+  }
 
   /*
    * Get single project
    *
    */
 
-  getOne: function (req, res) {
-
+  getOne(req, res) {
     // check 'fields' and ':id' params
-    const fields = validator.validateFields(req, res);
-    validator.isPathValid(req, res);
+    const fields = this.validator.validateFields(req, res);
+    this.validator.isPathValid(req, res);
     // TODO add sanitizers
 
     Project.
@@ -58,14 +63,14 @@ const projects = {
           status(200).
           json(project);
       });
-  },
+  }
 
   /*
    * Create project
    *
    */
 
-  create: function (req, res) {
+  create(req, res) {
 
     // TODO req.body validation
     Project.
@@ -80,16 +85,16 @@ const projects = {
           location('/api/v1/projects/' + project._id).
           json(project);
       });
-  },
+  }
 
   /*
    * Update project
    *
    */
 
-  update: function (req, res) {
+  update(req, res) {
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
     Project
@@ -112,16 +117,16 @@ const projects = {
             json(project);
         });
       });
-  },
+  }
 
   /*
    * Delete Project
    *
    */
 
-  delete: function (req, res) {
+  delete(req, res) {
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
     Project
       .findOneAndRemove({ '_id': req.params.id })
@@ -137,5 +142,3 @@ const projects = {
       });
   }
 };
-
-export { projects }

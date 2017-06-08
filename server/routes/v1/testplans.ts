@@ -2,21 +2,26 @@ import * as mongoose from 'mongoose';
 import { Testplan } from '../../models/Testplan';
 
 import * as util from 'util';
-import { validator } from '../../middlewares/validate';
+import { Validator } from '../../middlewares/validate';
 
-const testplans = {
+export class Testplans {
 
+  private validator: Validator;
+
+  constructor() {
+    this.validator = new Validator();
+  }
   /*
    * Get all testplans / GET
    *
    */
 
-  getAll: function (req, res) {
+  getAll(req, res) {
 
     // check limit, offset, fields param
-    const limit = validator.validateLimit(req, res);
-    const fields = validator.validateFields(req, res);
-    const offset = validator.validateOffset(req, res);
+    const limit = this.validator.validateLimit(req, res);
+    const fields = this.validator.validateFields(req, res);
+    const offset = this.validator.validateOffset(req, res);
 
     Testplan.
       find({}).
@@ -29,18 +34,18 @@ const testplans = {
           status(200).
           json(testplans);
       });
-  },
+  }
 
   /*
    * Get single testplan / GET :id
    *
    */
 
-  getOne: function (req, res) {
+  getOne(req, res) {
 
     // check 'fields' and ':id' params
-    const fields = validator.validateFields(req, res);
-    validator.isPathValid(req, res);
+    const fields = this.validator.validateFields(req, res);
+    this.validator.isPathValid(req, res);
     // TODO add sanitizers
 
     Testplan.
@@ -55,14 +60,14 @@ const testplans = {
           status(200).
           json(testplan);
       });
-  },
+  }
 
   /*
    * Create testplan / POST
    *
    */
 
-  create: function (req, res) {
+  create(req, res) {
     // TODO testplan.createdBy = currentUser;
     Testplan.
       create(req.body,
@@ -75,16 +80,16 @@ const testplans = {
           location('/api/v1/testplans/' + testplan._id).
           json(testplan);
       });
-  },
+  }
 
   /*
    * Update testplan / PUT
    *
    */
 
-  update: function (req, res) {
+  update(req, res) {
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
     Testplan.
@@ -111,16 +116,16 @@ const testplans = {
             json(testplan);
         });
       });
-  },
+  }
 
   /*
    * delete testplan
    *
    */
 
-  delete: function (req, res) {
+  delete(req, res) {
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
     Testplan.
       findOneAndRemove({ '_id': req.params.id }).
@@ -136,5 +141,3 @@ const testplans = {
       });
   }
 };
-
-export { testplans }

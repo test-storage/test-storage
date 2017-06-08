@@ -2,20 +2,26 @@ import * as mongoose from 'mongoose';
 import { User } from '../../models/User';
 
 import * as util from 'util';
-import { validator } from '../../middlewares/validate';
+import { Validator } from '../../middlewares/validate';
 
-const users = {
+export class Users {
+
+  private validator: Validator;
+
+  constructor() {
+    this.validator = new Validator();
+  }
 
   /*
    * Get all users
    *
    */
-  getAll: function (req, res) {
+  getAll(req, res) {
 
     // check limit, offset, fields param
-    const limit = validator.validateLimit(req, res);
-    const fields = validator.validateFields(req, res);
-    const offset = validator.validateOffset(req, res);
+    const limit = this.validator.validateLimit(req, res);
+    const fields = this.validator.validateFields(req, res);
+    const offset = this.validator.validateOffset(req, res);
 
     User.
       find({}).
@@ -49,19 +55,18 @@ const users = {
 
       });
 
-  },
+  }
 
   /*
    * Get single user
    *
    */
 
-  getOne: function (req, res) {
+  getOne(req, res) {
 
     // check 'fields' and ':id' params
-    const fields = validator.validateFieldsWithExcludes(req, res);
-    fields['password'] = 0;
-    validator.isPathValid(req, res);
+    const fields = this.validator.validateFields(req, res);
+    this.validator.isPathValid(req, res);
     // TODO add sanitizers
 
     User.
@@ -90,14 +95,14 @@ const users = {
         }
 
       });
-  },
+  }
 
   /*
    * Create user
    *
    */
 
-  create: function (req, res) {
+  create(req, res) {
     // TODO check body data
     User.
       create(req.body,
@@ -117,18 +122,18 @@ const users = {
         }
       });
 
-  },
+  }
 
   /*
    * Update user
    *
    */
 
-  update: function (req, res) {
+  update(req, res) {
 
     const fields = ' -password';
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
     User.findOne({ '_id': req.params.id }).
@@ -158,16 +163,16 @@ const users = {
             json(user);
         });
       });
-  },
+  }
 
   /*
    * delete user
    *
    */
 
-  delete: function (req, res) {
+  delete(req, res) {
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
     User.
       findOneAndRemove({ '_id': req.params.id }).
@@ -184,5 +189,3 @@ const users = {
       });
   }
 };
-
-export { users }
