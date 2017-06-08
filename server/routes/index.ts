@@ -2,8 +2,8 @@ import * as express from 'express';
 
 import { Auth } from './auth';
 
-import { Attachments } from './v1/Attachments';
-import { Projects } from './v1/Projects';
+import { Attachments } from './v1/attachments';
+import { Projects } from './v1/projects';
 import { Testcases } from './v1/testcases';
 import { Testsuites } from './v1/testsuites';
 import { Testplans } from './v1/testplans';
