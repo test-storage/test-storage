@@ -10,6 +10,7 @@ import { AuthGuard, AuthenticationService } from './../../../services/auth/index
 })
 export class HeaderComponent implements OnInit {
 
+    user: any = {};
     private sidebarCollapsed: boolean = true;
     @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -19,7 +20,15 @@ export class HeaderComponent implements OnInit {
         private authenticationService: AuthenticationService
     ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.loadUserData();
+    }
+
+    private loadUserData() {
+        const data = JSON.parse(localStorage.getItem('currentUser'));
+        this.user.firstName = data.firstName;
+        this.user.lastName = data.lastName;
+    }
 
     collapseToggle() {
         if (this.sidebarCollapsed) {

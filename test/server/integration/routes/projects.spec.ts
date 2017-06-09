@@ -4,27 +4,13 @@ import chaiHttp = require('chai-http');
 
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
-import { Project } from '../../../../src/app/models/project';
+import { fixture, changedFixture } from './projects.fixtures';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 
 var token = '';
 var entityId = '';
-
-const fixture: Project = {
-    'name': 'Dummy project',
-    'description': 'Dummy project description',
-    'enabled': true,
-    'testcases': ['949499', '304040', '3040404', '4034030']
-};
-
-const changedFixture: Project = {
-    'name': 'Dummy project edited',
-    'description': 'Dummy project description edited',
-    'enabled': false,
-    'testcases': ['123', '234', '345', '554']
-};
 
 describe('/projects', function () {
 
@@ -60,10 +46,10 @@ describe('/projects', function () {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.deep.property('name', 'Dummy project');
-                expect(res.body).to.have.deep.property('description', 'Dummy project description');
+                expect(res.body).to.have.deep.property('name', fixture.name);
+                expect(res.body).to.have.deep.property('description', fixture.description);
                 expect(res.body).to.have.deep.property('enabled', true);
-                expect(res.body).to.have.deep.property('testcases', ['949499', '304040', '3040404', '4034030']);
+                expect(res.body).to.have.deep.property('testcases', fixture.testcases);
                 expect(res.body).to.have.deep.property('created');
                 expect(res.body).to.have.deep.property('updated');
                 done();
@@ -100,10 +86,10 @@ describe('/projects', function () {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.deep.property('name', 'Dummy project edited');
-                expect(res.body).to.have.deep.property('description', 'Dummy project description edited');
+                expect(res.body).to.have.deep.property('name', changedFixture.name);
+                expect(res.body).to.have.deep.property('description', changedFixture.description);
                 expect(res.body).to.have.deep.property('enabled', false);
-                expect(res.body).to.have.deep.property('testcases', ['123', '234', '345', '554']);
+                expect(res.body).to.have.deep.property('testcases', changedFixture.testcases);
                 expect(res.body).to.have.deep.property('created');
                 expect(res.body).to.have.deep.property('updated');
                 done();

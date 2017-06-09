@@ -1,12 +1,15 @@
+import * as mongoose from 'mongoose';
+import { User } from '../models/User';
+
 import * as jwt from 'jsonwebtoken';
 import { secret } from './config/secret';
 
-const auth = {
+class Auth {
 
-  login: function (req, res) {
+  async login(req, res) {
 
-    const username = req.body.username || '';
-    const password = req.body.password || '';
+    const username: string = req.body.username || '';
+    const password: string = req.body.password || '';
 
     if (username === '' || password === '') {
       res.status(401);
@@ -18,7 +21,7 @@ const auth = {
     }
 
     // Fire a query to your DB and check if the credentials are valid
-    const dbUserObj = auth.validate(username, password);
+    const dbUserObj: object = await this.validate(username, password);
 
     if (!dbUserObj) { // If authentication fails, we send a 401 back
       res.status(401);
@@ -34,51 +37,62 @@ const auth = {
       // If authentication is success, we will generate a token
       // and dispatch it to the client
 
-      res.json(genToken(dbUserObj));
+      await res.json(await this.genToken(dbUserObj));
     }
 
-  },
+  }
 
-  validate: function (username, password) {
-    // spoofing the DB response for simplicity
-    const dbUserObj = { // spoofing a userobject from the DB.
-      name: 'admin',
-      role: 'admin',
-      username: 'admin@test-storage.local'
+  async validate(username, password) {
+
+    const fields = { 'password': 0, 'updated': 0, 'created': 0 };
+
+    const user = await User.find({ 'email': username, 'password': password }, fields).limit(1);
+
+    if (user.length > 0) {
+      return user;
+    } else {
+      console.log('User not found!');
+      return;
+    }
+
+  }
+
+
+
+
+  async validateUser(username) {
+    const fields = { 'password': 0, 'updated': 0, 'created': 0 };
+
+    const user = await User.find({ 'email': username }, fields).limit(1);
+
+    if (user.length > 0) {
+      return user;
+    } else {
+      console.log('User not found!');
+      return;
+    }
+  }
+
+
+  // private method
+  private genToken(user) {
+    const expires = this.expiresIn(1); // 1 days
+    const token = jwt.sign({
+      exp: expires,
+      username: user[0].email
+    }, secret());
+
+    return {
+      token: token,
+      expires: expires,
+      user: user
     };
+  }
 
-    return dbUserObj;
-  },
+  private expiresIn(numDays) {
+    const dateObj = new Date();
+    return dateObj.setDate(dateObj.getDate() + numDays);
+  }
 
-  validateUser: function (username) {
-    // spoofing the DB response for simplicity
-    const dbUserObj = { // spoofing a userobject from the DB.
-      name: 'admin',
-      role: 'admin',
-      username: 'admin@test-storage.local'
-    };
-
-    return dbUserObj;
-  },
 }
-
-// private method
-function genToken(user) {
-  const expires = expiresIn(1); // 1 days
-  const token = jwt.sign({
-    exp: expires
-  }, secret());
-
-  return {
-    token: token,
-    expires: expires,
-    user: user
-  };
-}
-
-function expiresIn(numDays) {
-  const dateObj = new Date();
-  return dateObj.setDate(dateObj.getDate() + numDays);
-}
-
-export { auth }
+export { Auth }

@@ -1,4 +1,8 @@
 # Change Log
+## 0.20.3 (June 09, 2017)
+- Migration of backend to typescript: ([@pumano](https://github.com/pumano) in [#49](https://github.com/test-storage/test-storage/pull/49))
+- Fixes for production deployment
+
 ## 0.20.0 (May 30, 2017)
 - Migration of backend to typescript: ([@pumano](https://github.com/pumano) in [#48](https://github.com/test-storage/test-storage/pull/48))
 - Migration of backend autotests to typescript

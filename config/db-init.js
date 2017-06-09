@@ -14,3 +14,6 @@ db.createUser(
 
     }
 );
+
+
+db.users.insertOne({ email: "admin", password: "admin", firstName: "John", lastName: "Doe", title: "Administrator" });

@@ -21,12 +21,13 @@
     "types": [
       "node",
       "jasmine",
-      "mocha"
+      "mocha",
+      "supertest"
     ]
   },
   "exclude": [
     "./client",
-    "./node_modules",
+    "../node_modules",
     "./dist",
     "**/*.d.ts"
   ]

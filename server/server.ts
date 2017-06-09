@@ -10,28 +10,27 @@ import * as errorhandler from 'errorhandler';
 import * as mongoose from 'mongoose';
 import * as config from 'config';
 
+import { Routes } from './routes';
+import { ValidateRequest } from './middlewares/validateRequest';
+
 import expressValidator = require('express-validator');
 
 const app: express.Application = express();
+app.disable('x-powered-by'); // security
 
 if ('development' === app.get('env') || 'test' === app.get('env')) {
   // only use in development (stack traces/errors and etc)
   app.use(errorhandler());
   console.log('NODE_ENV: ' + app.get('env'));
   console.log('mongo config address: ' + config.get('db.path') + '/' + config.get('db.name'));
-  console.log('index path: ' + path.join(__dirname, '../index.html'));
-  console.log('static path: ' + path.join(__dirname, '../../dist'));
-  console.log('/i18n path: ' + path.join(__dirname, '../../i18n'));
 }
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, '../../dist')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(expressValidator()); // this line must be immediately after express.bodyParser()!
-
-app.disable('x-powered-by'); // security
 
 /*******************************************************************************
 *                                  Database                                    *
@@ -77,15 +76,22 @@ app.all('/*', function (req, res, next) {
 // Only the requests that start with /api/v1/* will be checked for the token.
 // Any URL's that do not follow the below pattern should be avoided unless you
 // are sure that authentication is not needed
-app.all('/api/v1/*', [require('./middlewares/validateRequest')]);
 
-app.use('/', require('./routes'));
+app.all('/api/v1/*', function (req, res, next) {
+  const validateRequest = new ValidateRequest();
+  validateRequest.validateRequest(req, res, next);
+});
 
+// Routes init
+const router = new Routes().router;
+app.use('/', router);
+
+// i18n for frontend
 app.use('/i18n', express.static(path.join('./i18n')));
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'));
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 /*******************************************************************************

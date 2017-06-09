@@ -10,7 +10,7 @@ import { server } from '../../server/server';
 function authenticate(callback) {
   request(server)
     .post('/login')
-    .send({ username: 'admin@test-storage.local', password: 'pass123' })
+    .send({ username: 'admin', password: 'admin' })
     .end(function (err, res) {
       if (err) {
         console.log('' + err);

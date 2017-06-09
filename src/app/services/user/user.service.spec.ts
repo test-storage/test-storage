@@ -7,9 +7,6 @@ import { AuthenticationService } from '../auth/index';
 
 describe('UserService', () => {
 
-  let subject: UserService = null;
-  let backend: MockBackend = null;
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [

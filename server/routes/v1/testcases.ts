@@ -2,81 +2,105 @@ import * as mongoose from 'mongoose';
 import { Testcase } from '../../models/Testcase';
 
 import * as util from 'util';
-import { validator } from '../../middlewares/validate';
+import { Validator } from '../../middlewares/validate';
 
-const testcases = {
+export class Testcases {
 
+  private validator: Validator;
+
+  constructor() {
+    this.validator = new Validator();
+  }
   /*
    * Get all testcases
    *
    */
-  getAll: function (req, res) {
+  getAll(req, res) {
 
     // check limit, offset, fields param
-    let limit = {}, offset = {}, fields = {};
-    limit['limit'] = validator.validateLimit(req, res);
-    fields = validator.validateFields(req, res);
+    const limit = this.validator.validateLimit(req, res);
+    const fields = this.validator.validateFields(req, res);
+    const offset = this.validator.validateOffset(req, res);
 
-    Testcase.find({}, fields, limit, function (err, testcases) {
-      if (err) {
-        console.error(err);
-      }
-      res.set('Content-Type', 'application/json')
-        .status(200)
-        .json(testcases);
-    });
-  },
+    Testcase.
+      find({}).
+      limit(limit).
+      select(fields).
+      skip(offset).
+      exec(
+      function (err, testcases) {
+
+        if (err) {
+          console.error(err);
+        }
+
+        res.
+          set('Content-Type', 'application/json'). // TODO for all json outputs
+          status(200).
+          json(testcases);
+      });
+  }
 
   /*
    * Get single testcase
    *
    */
 
-  getOne: function (req, res) {
+  getOne(req, res) {
 
-    // check 'fields' param
-    let fields = {};
-    fields = validator.validateFields(req, res);
-    // check :id param
-    validator.isPathValid(req, res);
+    // check 'fields' and ':id' params
+    const fields = this.validator.validateFields(req, res);
+    this.validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Testcase.findOne({ '_id': req.params.id }, fields, function (err, testcase) {
-      if (err) {
-        console.error(err);
-      }
-      res.json(testcase);
-    });
-  },
+    Testcase.
+      findOne({ '_id': req.params.id }).
+      select(fields).
+      exec(
+      function (err, testcase) {
+
+        if (err) {
+          console.error(err);
+        }
+
+        res.
+          status(200).
+          json(testcase);
+      });
+  }
 
   /*
    * Create testcase
    *
    */
 
-  create: function (req, res) {
+  create(req, res) {
     // TODO add validation
 
-    Testcase.create(req.body, function (err, testcase) {
-      if (err) {
-        console.error(err);
-      }
-      res.status(201).
-        location('/api/v1/testcases/' + testcase._id).
-        json(testcase);
-    });
-  },
+    Testcase.
+      create(req.body,
+      function (err, testcase) {
+
+        if (err) {
+          console.error(err);
+        }
+
+        res.status(201).
+          location('/api/v1/testcases/' + testcase._id).
+          json(testcase);
+      });
+  }
 
   /*
    * Update testcase
    *
    */
 
-  update: function (req, res) {
+  update(req, res) {
     // TODO need security check (user input) for update
 
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
     // check body
     req.checkBody({
@@ -100,60 +124,73 @@ const testcases = {
 
     const errors = req.validationErrors();
     if (errors) {
-      res.status(400).json('There have been validation errors: ' + util.inspect(errors));
+      res.
+        status(400).
+        json('There have been validation errors: ' + util.inspect(errors));
       return;
     }
 
-    Testcase.findOne({ '_id': req.params.id }, function (err, testcase) {
-      if (!req.body.id) {
-        // TODO creation logic
-        // + add id, created, createdBy and etc
-      }
-      testcase.testSuiteId = req.body.testSuiteId;
-      testcase.priority = req.body.priority;
-      testcase.order = req.body.order;
-      testcase.title = req.body.title;
-      testcase.description = req.body.description;
-      testcase.preConditions = req.body.preConditions;
-      testcase.steps = req.body.steps;
-      testcase.testData = req.body.testData;
-      testcase.expected = req.body.expected;
-      testcase.postConditions = req.body.postConditions;
-      testcase.tags = req.body.tags;
-      testcase.estimate = req.body.estimate;
-      if (req.body.status) {
-        // TODO add checks
-        // also "Approved"
-        testcase.status = req.body.status;
-      }
-      testcase.updated = Date.now();
-
-      testcase.save(function (err, testcase, count) {
-        if (err) {
-          console.error(err);
+    Testcase.
+      findOne({ '_id': req.params.id }).
+      exec(
+      function (err, testcase) {
+        if (!req.body.id) {
+          // TODO creation logic
+          // + add id, created, createdBy and etc
         }
-        res.json(testcase);
+        testcase.testSuiteId = req.body.testSuiteId;
+        testcase.priority = req.body.priority;
+        testcase.order = req.body.order;
+        testcase.title = req.body.title;
+        testcase.description = req.body.description;
+        testcase.preConditions = req.body.preConditions;
+        testcase.steps = req.body.steps;
+        testcase.testData = req.body.testData;
+        testcase.expected = req.body.expected;
+        testcase.postConditions = req.body.postConditions;
+        testcase.tags = req.body.tags;
+        testcase.estimate = req.body.estimate;
+        if (req.body.status) {
+          // TODO add checks
+          // also "Approved"
+          testcase.status = req.body.status;
+        }
+        testcase.updated = Date.now();
+
+        testcase.save(function (err, testcase, count) {
+
+          if (err) {
+            console.error(err);
+          }
+
+          res.
+            status(200).
+            json(testcase);
+        });
       });
-    });
-  },
+  }
 
   /*
    * delete testcase
    *
    */
 
-  delete: function (req, res) {
+  delete(req, res) {
 
     // check :id param
-    validator.isPathValid(req, res);
+    this.validator.isPathValid(req, res);
 
-    Testcase.findOneAndRemove({ '_id': req.params.id }, function (err, testcase) {
-      if (err) {
-        console.error(err);
-      }
-      res.status(204).json(true);
-    });
+    Testcase.
+      findOneAndRemove({ '_id': req.params.id }).
+      exec(
+      function (err, testcase) {
+
+        if (err) {
+          console.error(err);
+        }
+        res.
+          status(204)
+          .json(true);
+      });
   }
 };
-
-export { testcases }

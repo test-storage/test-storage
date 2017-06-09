@@ -7,32 +7,10 @@ const expect = chai.expect;
 
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
-import { Group } from '../../../../src/app/models/group';
+import { modelFixture, modelFixtureEdited } from './groups.fixtures';
 
 var token = '';
 var entityId = '';
-
-const modelFixture = {
-    'name': 'Dummy user group',
-    'description': 'User group for guests',
-    'enabled': true,
-    'scope': {
-        'testcases': 'read-only',
-        'testsuites': 'read-only'
-    },
-    'users': ['949499', '304040', '3040404', '4034030']
-};
-
-const modelFixtureEdited = {
-    'name': 'Dummy user group edited',
-    'description': 'User group for guests edited',
-    'enabled': false,
-    'scope': {
-        'testcases': 'read-only edited',
-        'testsuites': 'read-only edited'
-    },
-    'users': ['111', '222', '333']
-};
 
 
 describe('/groups', function () {
@@ -72,13 +50,13 @@ describe('/groups', function () {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.deep.property('name', 'Dummy user group');
-                expect(res.body).to.have.deep.property('description', 'User group for guests');
-                expect(res.body).to.have.deep.property('enabled', true);
+                expect(res.body).to.have.deep.property('name', modelFixture.name);
+                expect(res.body).to.have.deep.property('description', modelFixture.description);
+                expect(res.body).to.have.deep.property('enabled', modelFixture.enabled);
                 expect(res.body).to.have.deep.property('scope');
-                expect(res.body.scope).to.have.deep.property('testcases', 'read-only');
-                expect(res.body.scope).to.have.deep.property('testsuites', 'read-only');
-                expect(res.body).to.have.deep.property('users', ['949499', '304040', '3040404', '4034030']);
+                expect(res.body.scope).to.have.deep.property('testcases', modelFixture.scope.testcases);
+                expect(res.body.scope).to.have.deep.property('testsuites', modelFixture.scope.testsuites);
+                expect(res.body).to.have.deep.property('users', modelFixture.users);
                 done()
             });
     });
@@ -117,13 +95,13 @@ describe('/groups', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('name', 'Dummy user group edited');
-                expect(res.body).to.have.deep.property('description', 'User group for guests edited');
-                expect(res.body).to.have.deep.property('enabled', false);
+                expect(res.body).to.have.deep.property('name', modelFixtureEdited.name);
+                expect(res.body).to.have.deep.property('description', modelFixtureEdited.description);
+                expect(res.body).to.have.deep.property('enabled', modelFixtureEdited.enabled);
                 expect(res.body).to.have.deep.property('scope');
-                expect(res.body.scope).to.have.deep.property('testcases', 'read-only edited');
-                expect(res.body.scope).to.have.deep.property('testsuites', 'read-only edited');
-                expect(res.body).to.have.deep.property('users', ['111', '222', '333']);
+                expect(res.body.scope).to.have.deep.property('testcases', modelFixtureEdited.scope.testcases);
+                expect(res.body.scope).to.have.deep.property('testsuites', modelFixtureEdited.scope.testsuites);
+                expect(res.body).to.have.deep.property('users', modelFixtureEdited.users);
                 done()
             });
     });

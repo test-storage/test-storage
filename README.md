@@ -9,9 +9,11 @@ Demo
 ======
 [https://test-storage.herokuapp.com](https://test-storage.herokuapp.com)
 
-__login:__ admin@test-storage.local
+__login:__ admin
 
-__password:__ 123
+__password:__ admin
+
+
 
 Production
 ======
@@ -26,11 +28,6 @@ Production
 * install mongodb
 
 __note:__ `mongo` and `mongod` should be accessible via command line interface
-
-for execution you should also install globally:
-```bash
-$ npm install -g nodemon @angular/cli
-```
 
 ## Installation
 
@@ -65,6 +62,8 @@ $ npm start
 
 Docker image will be provided soon.
 
+
+
 Development
 ======
 
@@ -84,9 +83,9 @@ $ npm install -g test-storage
 
 unit tests:
 ```
-$ npm test
+$ ng test --single-run
 ```
-__note:__ `npm test` runs tests once. For running tests on each file change use:
+__note:__ For running tests on each file change use:
 ```
 $ ng test
 ```

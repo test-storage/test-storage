@@ -13,7 +13,7 @@ export class TestcaseListComponent implements OnInit {
             'Check login registration',
             'Invalid registration case',
             'Add users'
-            ];
+        ];
     }
 
     ngOnInit() { }
