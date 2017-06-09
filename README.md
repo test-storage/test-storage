@@ -9,9 +9,11 @@ Demo
 ======
 [https://test-storage.herokuapp.com](https://test-storage.herokuapp.com)
 
-__login:__ admin@test-storage.local
+__login:__ admin
 
-__password:__ 123
+__password:__ admin
+
+
 
 Production
 ======
@@ -59,6 +61,8 @@ $ npm start
 ```
 
 Docker image will be provided soon.
+
+
 
 Development
 ======
