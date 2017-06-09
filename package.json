@@ -14,7 +14,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "./node_modules/.bin/ts-node ./server/server.ts",
+    "start": "node app.js",
     "postinstall": "./node_modules/.bin/ng build --prod --aot",
     "server:run": "nodemon",
     "dev": "concurrently \"npm run server:run \" \"ng serve --progress=false --proxy-config proxy.conf.json\"  ",
