@@ -23,9 +23,6 @@ if ('development' === app.get('env') || 'test' === app.get('env')) {
   app.use(errorhandler());
   console.log('NODE_ENV: ' + app.get('env'));
   console.log('mongo config address: ' + config.get('db.path') + '/' + config.get('db.name'));
-  console.log('index path: ' + path.join(__dirname, '../index.html'));
-  console.log('static path: ' + path.join(__dirname, '../../dist'));
-  console.log('/i18n path: ' + path.join(__dirname, '../../i18n'));
 }
 
 // Point static path to dist
@@ -80,15 +77,16 @@ app.all('/*', function (req, res, next) {
 // Any URL's that do not follow the below pattern should be avoided unless you
 // are sure that authentication is not needed
 
-
 app.all('/api/v1/*', function (req, res, next) {
   const validateRequest = new ValidateRequest();
   validateRequest.validateRequest(req, res, next);
 });
 
+// Routes init
 const router = new Routes().router;
 app.use('/', router);
 
+// i18n for frontend
 app.use('/i18n', express.static(path.join('./i18n')));
 
 // Catch all other routes and return the index file

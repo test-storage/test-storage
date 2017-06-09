@@ -1,27 +1,5 @@
 const util = require('util');
 
-/*
-export class Validator {
-
-    public validateFields(req, res) {
-        let fields = {};
-        if (req.query.fields) {
-            if (req.query.fields !== '') {
-                // TODO error handling and safety validation
-
-                var fieldsString = req.query.fields;
-                fieldsString = fieldsString.replace(/\s+/g, ''); // delete whitespaces if exists
-                var _fields = fieldsString.split(',');
-                _fields.forEach(function (item, i, _fields) {
-                    fields[item] = 1;
-                });
-                return fields;
-            }
-        }
-        return fields;
-    }
-} */
-
 export class Validator {
 
     public validateFields(req, res) {
