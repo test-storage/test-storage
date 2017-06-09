@@ -26,7 +26,7 @@ if ('development' === app.get('env') || 'test' === app.get('env')) {
 }
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, '../../dist')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -91,7 +91,7 @@ app.use('/i18n', express.static(path.join('./i18n')));
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'));
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 /*******************************************************************************
