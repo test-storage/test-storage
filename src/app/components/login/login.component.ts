@@ -5,7 +5,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 
 @Component({
-    moduleId: module.id,
     selector: 'app-login',
     templateUrl: 'login.component.html',
     styleUrls: ['login.component.css']
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         // reset login status
-        this.authenticationService.logout();
+        // this.authenticationService.logout();
     }
 
     login() {
@@ -31,10 +30,12 @@ export class LoginComponent implements OnInit {
             .subscribe(result => {
                 if (result === true) {
                     this.router.navigate(['/']);
-                } else {
-                    this.error = 'Username or password is incorrect';
-                    this.loading = false;
                 }
-            });
+            },
+            error => {
+                this.error = error;
+                this.loading = false;
+            }
+            );
     }
 }
