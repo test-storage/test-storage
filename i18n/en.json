@@ -1,4 +1,7 @@
 {
+    "SETTINGS": {
+        "CHOOSE_LANGUAGE": "Choose language"
+    },
     "ERROR": {
         "SERVER_ERROR": "Server Error"
     },

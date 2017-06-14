@@ -1,0 +1,40 @@
+:host {
+  display: block;
+}
+
+#wrapper {
+    display: flex;
+    height: 400px;
+    width: 100%;
+}
+
+.profile-data {
+    /* border: 1px solid #333; */
+    background-color: gray;
+    height: 100%;
+    width: 20%;
+}
+
+.profile-info {
+    /* border: 1px solid gray; */
+    background-color: #fff;
+    height: 100%;
+    width: 80%;
+}
+
+.profile-work {
+    background: #DADADA;
+    height: 150px;
+    width: 100%;
+}
+
+.profile-personal {
+    background: #CACACA;
+    height: 250px;
+    width: 100%;
+}
+
+.avatar-image {
+    align-self: center;
+    width: 100px;
+}

@@ -1,4 +1,7 @@
 {
+    "SETTINGS": {
+        "CHOOSE_LANGUAGE": "Выберите язык"
+    },
     "ERROR": {
         "SERVER_ERROR": "Ошибка Сервера"
     },

@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-
+import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
+import Animations from '../../animations';
 import { Project } from '../../models/project';
 import { ProjectService } from '../../services/project/project.service';
 
@@ -9,9 +9,14 @@ import { ProjectService } from '../../services/project/project.service';
   styleUrls: ['./projects.component.css'],
   providers: [
     ProjectService
-  ]
+  ],
+  animations: [Animations.pageTransition]
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
+
+  @HostBinding('@routeAnimation') get routeAnimation() {
+    return true;
+  }
 
   private subscription;
   public projects: Project[] = [];
