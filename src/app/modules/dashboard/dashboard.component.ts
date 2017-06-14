@@ -1,11 +1,11 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import Animations from '../../animations';
+import { pageTransition } from '../../animations';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  animations: [Animations.pageTransition]
+  animations: [pageTransition()]
 })
 export class DashboardComponent implements OnInit {
 

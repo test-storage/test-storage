@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
-import Animations from '../../animations';
+import { pageTransition } from '../../animations';
 import { Project } from '../../models/project';
 import { ProjectService } from '../../services/project/project.service';
 
@@ -10,7 +10,7 @@ import { ProjectService } from '../../services/project/project.service';
   providers: [
     ProjectService
   ],
-  animations: [Animations.pageTransition]
+  animations: [pageTransition()]
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
 

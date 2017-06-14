@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import Animations from '../../animations';
+import { pageTransition } from '../../animations';
 
 import { Testcase } from '../../models/testcase';
 import { TestcaseService } from '../../services/testcase/testcase.service';
@@ -11,7 +11,7 @@ import { TestcaseService } from '../../services/testcase/testcase.service';
   providers: [
     TestcaseService
   ],
-  animations: [Animations.pageTransition]
+  animations: [pageTransition()]
 })
 export class TestcasesComponent implements OnInit {
 

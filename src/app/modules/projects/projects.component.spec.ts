@@ -2,6 +2,7 @@ import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
+import { AuthenticationService } from '../../services/auth/authentication.service';
 import { ProjectsComponent } from './projects.component';
 import { ProjectService } from '../../services/project/project.service';
 
@@ -13,6 +14,7 @@ describe('ProjectsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ProjectsComponent],
       providers: [
+        AuthenticationService,
         ProjectService,
         MockBackend,
         BaseRequestOptions,
@@ -35,9 +37,9 @@ describe('ProjectsComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  /*
-    it('should create', inject([ProjectService], (service: ProjectService) => {
-      expect(component).toBeTruthy();
-    }));
-    */
+
+  it('should create', inject([ProjectService], (service: ProjectService) => {
+    expect(component).toBeTruthy();
+  }));
+
 });

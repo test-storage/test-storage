@@ -1,11 +1,11 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import Animations from '../../animations';
+import { pageTransition } from '../../animations';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  animations: [Animations.pageTransition]
+  animations: [pageTransition()]
 })
 export class ProfileComponent implements OnInit {
 
