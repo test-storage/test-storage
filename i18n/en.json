@@ -1,11 +1,15 @@
 {
+    "ERROR": {
+        "SERVER_ERROR": "Server Error"
+    },
     "LOGINPAGE": {
         "LOGIN": "Login",
         "USERNAME": "Username",
         "PASSWORD": "Password",
         "LOGIN_REQUIRED": "Username is required",
         "PASSWORD_REQUIRED": "Password is required",
-        "LOGIN_BUTTON": "Login"
+        "LOGIN_BUTTON": "Login",
+        "INVALID_CREDENTIALS": "Username or password is incorrect"
     },
     "HEADER": {
         "USER_PROFILE": "User Profile",

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AuthenticationService } from '../../services/auth/authentication.service';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
     selector: 'app-login',
@@ -13,11 +14,13 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
-    error = '';
+    error: string;
 
     constructor(
         private router: Router,
-        private authenticationService: AuthenticationService) { }
+        private authenticationService: AuthenticationService,
+        protected translateService: TranslateService
+    ) { }
 
     ngOnInit() {
         // reset login status
@@ -33,7 +36,9 @@ export class LoginComponent implements OnInit {
                 }
             },
             error => {
-                this.error = error;
+                this.translateService.get(error).subscribe((err: string) => {
+                    this.error = err;
+                });
                 this.loading = false;
             }
             );
