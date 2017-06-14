@@ -31,13 +31,20 @@ export class Testcases {
       function (err, testcases) {
 
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(200).
+            json(testcases);
         }
-
-        res.
-          set('Content-Type', 'application/json'). // TODO for all json outputs
-          status(200).
-          json(testcases);
       });
   }
 
@@ -60,12 +67,20 @@ export class Testcases {
       function (err, testcase) {
 
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(200).
+            json(testcase);
         }
-
-        res.
-          status(200).
-          json(testcase);
       });
   }
 
@@ -82,12 +97,21 @@ export class Testcases {
       function (err, testcase) {
 
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(201).
+            location('/api/v1/testcases/' + testcase._id).
+            json(testcase);
         }
-
-        res.status(201).
-          location('/api/v1/testcases/' + testcase._id).
-          json(testcase);
       });
   }
 
@@ -125,6 +149,7 @@ export class Testcases {
     const errors = req.validationErrors();
     if (errors) {
       res.
+        // set('Content-Type', 'application/json').
         status(400).
         json('There have been validation errors: ' + util.inspect(errors));
       return;
@@ -160,12 +185,20 @@ export class Testcases {
         testcase.save(function (err, testcase, count) {
 
           if (err) {
-            console.error(err);
+            console.log(err);
+            res.
+              set('Content-Type', 'application/json').
+              status(500).
+              json({
+                'status': 500,
+                'message': 'Error occured. ' + err
+              });
+          } else {
+            res.
+              set('Content-Type', 'application/json').
+              status(200).
+              json(testcase);
           }
-
-          res.
-            status(200).
-            json(testcase);
         });
       });
   }
@@ -186,11 +219,20 @@ export class Testcases {
       function (err, testcase) {
 
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(204)
+            .json(true);
         }
-        res.
-          status(204)
-          .json(true);
       });
   }
 };
