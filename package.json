@@ -55,6 +55,7 @@
     "angular2-jwt": "^0.2.3",
     "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
+    "compression": "^1.6.2",
     "config": "^1.26.1",
     "cookie-parser": "^1.4.3",
     "core-js": "^2.4.1",

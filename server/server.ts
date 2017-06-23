@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as http from 'http';
 import * as https from 'https';
+import * as compression from 'compression';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as path from 'path';
@@ -16,6 +17,10 @@ import { ValidateRequest } from './middlewares/validateRequest';
 import expressValidator = require('express-validator');
 
 const app: express.Application = express();
+
+// compress all responses
+app.use(compression());
+
 app.disable('x-powered-by'); // security
 
 if ('development' === app.get('env') || 'test' === app.get('env')) {
