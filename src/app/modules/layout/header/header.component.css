@@ -21,6 +21,8 @@
   padding: 1em;
   color: #7a7f8c;
   vertical-align: middle;
+  position: relative;
+  left: 7px;
 }
 
 @media (min-width: 48em) {

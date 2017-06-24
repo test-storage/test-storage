@@ -81,6 +81,10 @@ ul li:hover {
   z-index: 9999
 }
 
+.sidebar-mini .brand-wrapper {
+  height: 53px;
+}
+
 .sidebar-mini .brand span {
   font-size: 0;
 }
