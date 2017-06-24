@@ -51,7 +51,7 @@ ul {
 
 .sidebar ul li {
   width: 219px;
-  padding: 10px;
+  padding: 15px 10px;
   list-style: none;
 }
 
@@ -105,6 +105,8 @@ ul li:hover > a {
 .sidebar-mini .fa-folder-o {
   display: inline-block;
   font-size: 26px;
+  position: relative;
+  right: 3px;
   text-align: center;
 }
 
