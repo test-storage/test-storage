@@ -59,6 +59,10 @@ ul li:hover {
   background: #22262e;
 }
 
+ul li:hover > a {
+  color: #FFF;
+}
+
 .sidebar li a {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
