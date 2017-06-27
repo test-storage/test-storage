@@ -50,8 +50,6 @@ ul {
 }
 
 .sidebar ul li {
-  width: 219px;
-  padding: 15px 10px;
   list-style: none;
 }
 
@@ -61,14 +59,18 @@ ul li:hover {
 
 ul li:hover > a {
   color: #FFF;
+
 }
 
 .sidebar li a {
+  display: block;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
   font-size: 13px;
   color: #a7b1c2;
   text-decoration: none;
+  width: 219px;
+  padding: 15px 10px;
 }
 
 
@@ -94,8 +96,11 @@ ul li:hover > a {
 }
 
 .sidebar-mini ul li {
-  width: 69px;
   text-align: center;
+}
+
+.sidebar-mini li a {
+  width: 69px;
 }
 
 .sidebar-mini .fa-dashboard, 
