@@ -1,4 +1,10 @@
 # Change Log
+## 0.21.5 (June 28, 2017)
+- Notifications API implemented: ([@pumano](https://github.com/pumano) in [#50](https://github.com/test-storage/test-storage/pull/50))
+- Fixes for production deployment
+- Better error handling
+- UI Layout fixes
+
 ## 0.20.3 (June 09, 2017)
 - Migration of backend to typescript: ([@pumano](https://github.com/pumano) in [#49](https://github.com/test-storage/test-storage/pull/49))
 - Fixes for production deployment
