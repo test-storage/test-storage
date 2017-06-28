@@ -9,6 +9,7 @@ const TestcaseSchema = new mongoose.Schema({
     }
   },
   key: { type: String, unique: true },
+  projectId: String,
   testSuiteId: String,
   priority: Number,
   order: Number,

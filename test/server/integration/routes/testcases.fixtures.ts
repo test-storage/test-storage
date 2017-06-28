@@ -2,7 +2,8 @@ import * as faker from 'faker';
 import { Testcase } from '../../../../src/app/models/testcase';
 
 const testcaseFixture: Testcase = {
-    'testSuiteId': '45069c63096d72f89cbf9205d27c985b',
+    'projectId': faker.random.uuid(),
+    'testSuiteId': faker.random.uuid(),
     'priority': 1,
     'order': 2,
     'preConditions': 'Preconditions 1',
@@ -19,7 +20,8 @@ const testcaseFixture: Testcase = {
 }
 
 const editedTestCaseFixture: Testcase = {
-    'testSuiteId': '11111c63096d72f89cbf9205d27c985b',
+    'projectId': faker.random.uuid(),
+    'testSuiteId': faker.random.uuid(),
     'priority': 2,
     'order': 3,
     'preConditions': 'Preconditions 1 edited',

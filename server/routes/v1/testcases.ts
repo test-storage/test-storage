@@ -163,6 +163,7 @@ export class Testcases {
           // TODO creation logic
           // + add id, created, createdBy and etc
         }
+        testcase.projectId = req.body.projectId;
         testcase.testSuiteId = req.body.testSuiteId;
         testcase.priority = req.body.priority;
         testcase.order = req.body.order;

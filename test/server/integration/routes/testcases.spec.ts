@@ -51,7 +51,8 @@ describe('/testcases', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('testSuiteId', '45069c63096d72f89cbf9205d27c985b');
+                expect(res.body).to.have.deep.property('projectId', testcaseFixture.projectId);
+                expect(res.body).to.have.deep.property('testSuiteId', testcaseFixture.testSuiteId);
                 expect(res.body).to.have.deep.property('priority', 1);
                 expect(res.body).to.have.deep.property('order', 2);
                 expect(res.body).to.have.deep.property('preConditions', 'Preconditions 1');
@@ -85,6 +86,7 @@ describe('/testcases', function () {
                 // expect(res.body[0]).to.have.all.keys(
                 expect(res.body[0]).to.have.any.keys(
                     '_id',
+                    'projectId',
                     'testSuiteId',
                     'priority',
                     'order',
@@ -118,7 +120,8 @@ describe('/testcases', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('testSuiteId', '11111c63096d72f89cbf9205d27c985b');
+                expect(res.body).to.have.deep.property('projectId', editedTestCaseFixture.projectId);
+                expect(res.body).to.have.deep.property('testSuiteId', editedTestCaseFixture.testSuiteId);
                 expect(res.body).to.have.deep.property('priority', 2);
                 expect(res.body).to.have.deep.property('order', 3);
                 expect(res.body).to.have.deep.property('preConditions', 'Preconditions 1 edited');

@@ -1,6 +1,7 @@
 export class Testcase {
     _id?: string;
     key?: string;
+    projectId: string;
     testSuiteId: string;
     priority?: number;
     order?: number;
