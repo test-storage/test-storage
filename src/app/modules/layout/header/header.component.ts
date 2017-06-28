@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { AuthGuard, AuthenticationService } from './../../../services/auth/index';
 
 @Component({
-    moduleId: module.id,
     selector: 'app-header',
     templateUrl: 'header.component.html',
     styleUrls: ['header.component.css']
@@ -11,7 +10,9 @@ import { AuthGuard, AuthenticationService } from './../../../services/auth/index
 export class HeaderComponent implements OnInit {
 
     user: any = {};
-    private sidebarCollapsed: boolean = true;
+    private sidebarCollapsed = true;
+    public isDropdownDisplayed = false;
+    public isNotificationsDisplayed = false;
     @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(
@@ -39,6 +40,22 @@ export class HeaderComponent implements OnInit {
             this.notify.emit(true);
         }
 
+    }
+
+    toggleDropdown() {
+        if (this.isDropdownDisplayed) {
+            this.isDropdownDisplayed = false;
+        } else {
+            this.isDropdownDisplayed = true;
+        }
+    }
+
+    toggleNotifications() {
+        if (this.isNotificationsDisplayed) {
+            this.isNotificationsDisplayed = false;
+        } else {
+            this.isNotificationsDisplayed = true;
+        }
     }
 
     logout() {
