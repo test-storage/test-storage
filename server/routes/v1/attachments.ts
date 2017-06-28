@@ -53,10 +53,17 @@ export class Attachments {
             function (err, attachments) {
 
                 if (err) {
-                    console.error(err);
-                } else {
-
+                    console.log(err);
                     res.
+                        set('Content-Type', 'application/json').
+                        status(500).
+                        json({
+                            'status': 500,
+                            'message': 'Error occured. ' + err
+                        });
+                } else {
+                    res.
+                        set('Content-Type', 'application/json').
                         status(200).
                         json(attachments);
                 }
@@ -83,9 +90,17 @@ export class Attachments {
             function (err, attachment) {
 
                 if (err) {
-                    console.error(err);
+                    console.log(err);
+                    res.
+                        set('Content-Type', 'application/json').
+                        status(500).
+                        json({
+                            'status': 500,
+                            'message': 'Error occured. ' + err
+                        });
                 } else {
                     res.
+                        set('Content-Type', 'application/json').
                         status(200).
                         json(attachment);
                 }
@@ -100,11 +115,21 @@ export class Attachments {
     create(req, res) {
         Attachment.create(req.body, function (err, attachment) {
             if (err) {
-                console.error(err);
+                console.log(err);
+                res.
+                    set('Content-Type', 'application/json').
+                    status(500).
+                    json({
+                        'status': 500,
+                        'message': 'Error occured. ' + err
+                    });
+            } else {
+                res.
+                    set('Content-Type', 'application/json').
+                    status(201).
+                    location('/api/v1/attachments/' + attachment._id).
+                    json(attachment);
             }
-            res.status(201).
-                location('/api/v1/attachments/' + attachment._id).
-                json(attachment);
         });
         /*
         upload(req, res, function (err) {
@@ -135,9 +160,20 @@ export class Attachments {
 
             attachment.save(function (err, attachment, count) {
                 if (err) {
-                    console.error(err);
+                    console.log(err);
+                    res.
+                        set('Content-Type', 'application/json').
+                        status(500).
+                        json({
+                            'status': 500,
+                            'message': 'Error occured. ' + err
+                        });
+                } else {
+                    res.
+                        set('Content-Type', 'application/json').
+                        status(200).
+                        json(attachment);
                 }
-                res.status(200).json(attachment);
             });
         });
     }
@@ -153,9 +189,20 @@ export class Attachments {
 
         Attachment.findOneAndRemove({ '_id': req.params.id }, function (err, group) {
             if (err) {
-                console.error(err);
+                console.log(err);
+                res.
+                    set('Content-Type', 'application/json').
+                    status(500).
+                    json({
+                        'status': 500,
+                        'message': 'Error occured. ' + err
+                    });
+            } else {
+                res.
+                    set('Content-Type', 'application/json').
+                    status(204).
+                    json(true);
             }
-            res.status(204).json(true);
         });
 
     }

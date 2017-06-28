@@ -32,11 +32,20 @@ export class Projects {
       exec(
       function (err, projects) {
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(200).
+            json(projects);
         }
-        res.
-          status(200).
-          json(projects);
       });
   }
 
@@ -57,11 +66,20 @@ export class Projects {
       exec(
       function (err, project) {
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(200).
+            json(project);
         }
-        res.
-          status(200).
-          json(project);
       });
   }
 
@@ -77,13 +95,21 @@ export class Projects {
       create(req.body,
       function (err, project) {
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(201).
+            location('/api/v1/projects/' + project._id).
+            json(project);
         }
-
-        res.
-          status(201).
-          location('/api/v1/projects/' + project._id).
-          json(project);
       });
   }
 
@@ -109,12 +135,20 @@ export class Projects {
 
         project.save(function (err, project, count) {
           if (err) {
-            console.error(err);
+            console.log(err);
+            res.
+              set('Content-Type', 'application/json').
+              status(500).
+              json({
+                'status': 500,
+                'message': 'Error occured. ' + err
+              });
+          } else {
+            res.
+              set('Content-Type', 'application/json').
+              status(200).
+              json(project);
           }
-
-          res.
-            status(200).
-            json(project);
         });
       });
   }
@@ -133,12 +167,20 @@ export class Projects {
       .exec(
       function (err, project) {
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(204).
+            json(true);
         }
-
-        res.
-          status(204).
-          json(true);
       });
   }
 };

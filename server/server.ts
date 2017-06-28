@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as http from 'http';
 import * as https from 'https';
+import * as compression from 'compression';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as path from 'path';
@@ -16,6 +17,10 @@ import { ValidateRequest } from './middlewares/validateRequest';
 import expressValidator = require('express-validator');
 
 const app: express.Application = express();
+
+// compress all responses
+app.use(compression());
+
 app.disable('x-powered-by'); // security
 
 if ('development' === app.get('env') || 'test' === app.get('env')) {
@@ -110,7 +115,7 @@ if (config.get('app.httpsEnabled') === false) {
   app.set('port', process.env.PORT || config.get('app.port.http'));
 
   server = app.listen(app.get('port'), function () {
-    console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
+    console.log('HTTP server listening on port %d in %s mode', server.address().port, app.settings.env);
   });
 } else {
 
@@ -120,15 +125,15 @@ if (config.get('app.httpsEnabled') === false) {
    *
    */
 
-  const privateKey = fs.readFileSync(config.get('app.privateKey'), 'utf8');
-  const certificate = fs.readFileSync(config.get('app.certificate'), 'utf8');
-
-  const credentials = { key: privateKey, cert: certificate };
+  const options = {
+    key: fs.readFileSync(config.get('app.privateKey'), 'utf8'),
+    cert: fs.readFileSync(config.get('app.certificate'), 'utf8')
+  };
 
   app.set('port', process.env.PORT || config.get('app.port.https'));
 
-  server = http.createServer(app).listen(app.get('port'), function () {
-    console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
+  server = https.createServer(options, app).listen(app.get('port'), function () {
+    console.log('HTTPS server listening on port %d in %s mode', server.address().port, app.settings.env);
   });
 }
 

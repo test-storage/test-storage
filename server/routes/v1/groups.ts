@@ -32,12 +32,20 @@ export class Groups {
       function (err, groups) {
 
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(200).
+            json(groups);
         }
-
-        res.
-          status(200).
-          json(groups);
       });
   }
 
@@ -60,12 +68,20 @@ export class Groups {
       function (err, group) {
 
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(200).
+            json(group);
         }
-
-        res.
-          status(200).
-          json(group);
       });
   }
 
@@ -81,13 +97,21 @@ export class Groups {
       function (err, group) {
 
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(201).
+            location('/api/v1/groups/' + group._id).
+            json(group);
         }
-
-        res.
-          status(201).
-          location('/api/v1/groups/' + group._id).
-          json(group);
       });
   }
 
@@ -144,12 +168,20 @@ export class Groups {
         group.save(function (err, group, count) {
 
           if (err) {
-            console.error(err);
+            console.log(err);
+            res.
+              set('Content-Type', 'application/json').
+              status(500).
+              json({
+                'status': 500,
+                'message': 'Error occured. ' + err
+              });
+          } else {
+            res.
+              set('Content-Type', 'application/json').
+              status(200).
+              json(group);
           }
-
-          res.
-            status(200).
-            json(group);
         });
       });
   }
@@ -169,12 +201,20 @@ export class Groups {
       function (err, group) {
 
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(204).
+            json(true);
         }
-
-        res.
-          status(204).
-          json(true);
       });
   }
 };

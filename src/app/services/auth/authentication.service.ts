@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Rx';
 import { contentHeaders } from './headers';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthenticationService {
@@ -17,8 +18,10 @@ export class AuthenticationService {
     login(username, password): Observable<boolean> {
         return this.http.post('/login', JSON.stringify({ username: username, password: password }), { headers: contentHeaders })
             .map((response: Response) => {
+
                 // login successful if there's a jwt token in the response
                 const token = response.json() && response.json().token;
+
                 if (token) {
                     // set token property
                     this.token = token;
@@ -38,7 +41,8 @@ export class AuthenticationService {
                     // return false to indicate failed login
                     return false;
                 }
-            });
+            })
+            .catch(this.handleError);
     }
 
     logout(): void {
@@ -46,4 +50,18 @@ export class AuthenticationService {
         this.token = '';
         localStorage.removeItem('currentUser');
     }
+
+    private handleError(error: Response) {
+        console.error(error);
+        if (error.status === 401) {
+            const errorMessage = 'LOGINPAGE.INVALID_CREDENTIALS'; // translation key
+            return Observable.throw(errorMessage);
+        } else {
+            // TODO add translation for server error via ERROR.SERVER_ERROR
+            const serverError = 'Server error';
+            return Observable.throw(error.json().status + ' ' + error.json().message || 'Server error');
+        }
+
+    }
+
 }

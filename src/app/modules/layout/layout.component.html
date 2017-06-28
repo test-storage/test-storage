@@ -1,13 +1,17 @@
-<app-sidebar [sidebarCollapsed]="sidebarCollapsed"></app-sidebar>
+<div id="wrapper">
+    
+    <app-sidebar [sidebarCollapsed]="sidebarCollapsed"></app-sidebar>
 
-<div id="section" class="sidebar-full" [class.sidebar-collapsed]="sidebarCollapsed">
+    <div id="main" class="sidebar-full" [class.sidebar-collapsed]="sidebarCollapsed">
 
-    <app-header (notify)="onNotify($event)"></app-header>
+        <app-header (notify)="onNotify($event)"></app-header>
 
-    <section id="content-wrapper">
-        <div id="content">
-
-            <router-outlet></router-outlet>
-        </div>
-    </section>
+        <section id="content-wrapper">
+            
+            <div id="content">
+                <router-outlet></router-outlet>
+            </div>
+        
+        </section>
+    </div>
 </div>

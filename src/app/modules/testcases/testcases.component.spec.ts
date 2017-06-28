@@ -2,7 +2,7 @@ import { async, ComponentFixture, inject, fakeAsync, TestBed } from '@angular/co
 import { BaseRequestOptions, Http, HttpModule, RequestMethod, Response, ResponseOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Routes, RouterModule } from '@angular/router';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 
 import { TestcasesComponent } from './testcases.component';
@@ -20,7 +20,7 @@ describe('TestcasesComponent', () => {
   beforeEach(async(() => {
 
     TestBed.configureTestingModule({
-      imports: [RouterModule],
+      imports: [RouterModule, BrowserAnimationsModule],
       declarations: [TestcasesComponent, TestsuitesTreeComponent],
       providers: [
         Http,

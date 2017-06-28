@@ -32,12 +32,20 @@ export class Testsuites {
       function (err, testsuites) {
 
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(200).
+            json(testsuites);
         }
-
-        res.
-          status(200).
-          json(testsuites);
       });
   }
 
@@ -60,12 +68,20 @@ export class Testsuites {
       function (err, testsuite) {
 
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(200).
+            json(testsuite);
         }
-
-        res.
-          status(200).
-          json(testsuite);
       });
   }
 
@@ -80,13 +96,21 @@ export class Testsuites {
       function (err, testsuite) {
 
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(201).
+            location('/api/v1/testsuites/' + testsuite._id).
+            json(testsuite);
         }
-
-        res.
-          status(201).
-          location('/api/v1/testsuites/' + testsuite._id).
-          json(testsuite);
       });
   }
 
@@ -117,12 +141,20 @@ export class Testsuites {
         testsuite.save(function (err, testsuite, count) {
 
           if (err) {
-            console.error(err);
+            console.log(err);
+            res.
+              set('Content-Type', 'application/json').
+              status(500).
+              json({
+                'status': 500,
+                'message': 'Error occured. ' + err
+              });
+          } else {
+            res.
+              set('Content-Type', 'application/json').
+              status(200).
+              json(testsuite);
           }
-
-          res.
-            status(200).
-            json(testsuite);
         });
       });
   }
@@ -142,12 +174,20 @@ export class Testsuites {
       function (err, testsuite) {
 
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(204).
+            json(true);
         }
-
-        res.
-          status(204).
-          json(true);
       });
   }
 };

@@ -1,11 +1,18 @@
 {
+    "SETTINGS": {
+        "CHOOSE_LANGUAGE": "Выберите язык"
+    },
+    "ERROR": {
+        "SERVER_ERROR": "Ошибка Сервера"
+    },
     "LOGINPAGE": {
         "LOGIN": "Вход",
         "USERNAME": "Пользователь",
         "PASSWORD": "Пароль",
         "LOGIN_REQUIRED": "Обязательное поле Пользователь",
         "PASSWORD_REQUIRED": "Обязательное поле Пароль",
-        "LOGIN_BUTTON": "Войти"
+        "LOGIN_BUTTON": "Войти",
+        "INVALID_CREDENTIALS": "Логин или пароль не верный"
     },
     "HEADER": {
         "USER_PROFILE": "Профиль пользователя",

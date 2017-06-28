@@ -3,6 +3,7 @@ import * as express from 'express';
 import { Auth } from './auth';
 
 import { Attachments } from './v1/attachments';
+import { Notifications } from './v1/notifications';
 import { Projects } from './v1/projects';
 import { Testcases } from './v1/testcases';
 import { Testsuites } from './v1/testsuites';
@@ -17,6 +18,7 @@ class Routes {
     public router: express.Router;
     protected auth: Auth;
     private attachments: Attachments;
+    public notifications: Notifications;
     public projects: Projects;
     private testcases: Testcases;
     private testsuites: Testsuites;
@@ -29,6 +31,7 @@ class Routes {
         this.router = express.Router();
         this.auth = new Auth();
         this.attachments = new Attachments();
+        this.notifications = new Notifications();
         this.projects = new Projects();
         this.testcases = new Testcases();
         this.testsuites = new Testsuites();
@@ -59,6 +62,12 @@ class Routes {
         this.router.post('/api/v1/attachments', this.attachments.create.bind(this.attachments));
         this.router.put('/api/v1/attachments/:id', this.attachments.update.bind(this.attachments));
         this.router.delete('/api/v1/attachments/:id', this.attachments.delete.bind(this.attachments));
+
+        this.router.get('/api/v1/notifications', this.notifications.getAll.bind(this.notifications));
+        this.router.get('/api/v1/notifications/:id', this.notifications.getOne.bind(this.notifications));
+        this.router.post('/api/v1/notifications', this.notifications.create.bind(this.notifications));
+        this.router.put('/api/v1/notifications/:id', this.notifications.update.bind(this.notifications));
+        this.router.delete('/api/v1/notifications/:id', this.notifications.delete.bind(this.notifications));
 
         this.router.get('/api/v1/projects', this.projects.getAll.bind(this.projects));
         this.router.get('/api/v1/projects/:id', this.projects.getOne.bind(this.projects));

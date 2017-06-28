@@ -49,6 +49,6 @@ export class TestcaseService {
 
   private handleError(error: Response) {
     console.error(error);
-    return Observable.throw(error.json().error || 'Server error');
+    return Observable.throw(error.json().status + ' ' + error.json().message || 'Server error');
   }
 }

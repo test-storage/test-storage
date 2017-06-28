@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http: Http) {
     RouterModule.forRoot(routes),
     FormsModule,
     LayoutModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

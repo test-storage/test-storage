@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const layoutRoutes: Routes = [
   {
@@ -61,7 +62,8 @@ const layoutRoutes: Routes = [
   declarations: [
     LayoutComponent,
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    NotificationsComponent
   ],
   providers: [
     AuthGuard

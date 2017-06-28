@@ -1,19 +1,18 @@
 import * as mongoose from 'mongoose';
-import { User } from '../../models/User';
+import { Notification } from '../../models/Notification';
 
 import * as util from 'util';
 import { Validator } from '../../middlewares/validate';
 
-export class Users {
+export class Notifications {
 
     private validator: Validator;
 
     constructor() {
         this.validator = new Validator();
     }
-
     /*
-     * Get all users
+     * Get all notifications
      *
      */
     getAll(req, res) {
@@ -23,13 +22,13 @@ export class Users {
         const fields = this.validator.validateFields(req, res);
         const offset = this.validator.validateOffset(req, res);
 
-        User.
+        Notification.
             find({}).
-            select(fields).
             limit(limit).
+            select(fields).
             skip(offset).
             exec(
-            function (err, users) {
+            function (err, notifications) {
 
                 if (err) {
                     console.log(err);
@@ -41,25 +40,16 @@ export class Users {
                             'message': 'Error occured. ' + err
                         });
                 } else {
-
-                    // delete password from data array
-                    users.map(function (props) {
-                        props.password = undefined;
-                        return true;
-                    });
-
                     res.
                         set('Content-Type', 'application/json').
                         status(200).
-                        json(users);
+                        json(notifications);
                 }
-
             });
-
     }
 
     /*
-     * Get single user
+     * Get single notification
      *
      */
 
@@ -70,10 +60,11 @@ export class Users {
         this.validator.isPathValid(req, res);
         // TODO add sanitizers
 
-        User.
-            findOne({ '_id': req.params.id }, fields).
+        Notification.
+            findOne({ '_id': req.params.id }).
+            select(fields).
             exec(
-            function (err, user) {
+            function (err, notification) {
 
                 if (err) {
                     console.log(err);
@@ -85,30 +76,25 @@ export class Users {
                             'message': 'Error occured. ' + err
                         });
                 } else {
-
-                    // delete password from data object
-                    user.password = undefined;
-
-
                     res.
                         set('Content-Type', 'application/json').
                         status(200).
-                        json(user);
+                        json(notification);
                 }
-
             });
     }
 
     /*
-     * Create user
+     * Create notification
      *
      */
 
     create(req, res) {
-        // TODO check body data
-        User.
+        // TODO add validation
+
+        Notification.
             create(req.body,
-            function (err, user) {
+            function (err, notification) {
 
                 if (err) {
                     console.log(err);
@@ -120,46 +106,46 @@ export class Users {
                             'message': 'Error occured. ' + err
                         });
                 } else {
-
-                    // delete password from data object
-                    user.password = undefined;
-
                     res.
                         set('Content-Type', 'application/json').
                         status(201).
-                        location('/api/v1/users/' + user._id).
-                        json(user);
+                        location('/api/v1/notifications/' + notification._id).
+                        json(notification);
                 }
             });
-
     }
 
     /*
-     * Update user
+     * Update notification
      *
      */
 
     update(req, res) {
+        // TODO need security check (user input) for update
 
-        const fields = ' -password';
         // check :id param
         this.validator.isPathValid(req, res);
 
-        // TODO need security check (user input) for update
-        User.findOne({ '_id': req.params.id }).
-            select(fields).
+        // TODO check body
+
+        Notification.
+            findOne({ '_id': req.params.id }).
             exec(
-            function (err, user) {
+            function (err, notification) {
+                if (!req.body.id) {
+                    // TODO creation logic
+                    // + add id, created, createdBy and etc
+                }
 
-                user.firstName = req.body.firstName;
-                user.lastName = req.body.lastName;
-                user.email = req.body.email;
-                user.password = req.body.password;
-                user.title = req.body.title;
-                user.groups = req.body.groups;
-                user.updated = Date.now();
+                notification.title = req.body.title;
+                notification.description = req.body.description;
+                notification.entity = req.body.entity;
+                notification.action = req.body.action;
+                notification.senderId = req.body.senderId;
+                notification.recipientId = req.body.recipientId;
+                notification.updated = Date.now();
 
-                user.save(function (err, user, count) {
+                notification.save(function (err, notification, count) {
 
                     if (err) {
                         console.log(err);
@@ -171,32 +157,29 @@ export class Users {
                                 'message': 'Error occured. ' + err
                             });
                     } else {
-
-                        // delete password from data object
-                        user.password = undefined;
-
                         res.
                             set('Content-Type', 'application/json').
                             status(200).
-                            json(user);
+                            json(notification);
                     }
                 });
             });
     }
 
     /*
-     * delete user
+     * delete notification
      *
      */
 
     delete(req, res) {
+
         // check :id param
         this.validator.isPathValid(req, res);
 
-        User.
+        Notification.
             findOneAndRemove({ '_id': req.params.id }).
             exec(
-            function (err, user) {
+            function (err, notification) {
 
                 if (err) {
                     console.log(err);
@@ -210,8 +193,8 @@ export class Users {
                 } else {
                     res.
                         set('Content-Type', 'application/json').
-                        status(204).
-                        json(true);
+                        status(204)
+                        .json(true);
                 }
             });
     }

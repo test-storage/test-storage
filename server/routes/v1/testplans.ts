@@ -28,11 +28,20 @@ export class Testplans {
       exec(
       function (err, testplans) {
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(200).
+            json(testplans);
         }
-        res.
-          status(200).
-          json(testplans);
       });
   }
 
@@ -54,11 +63,20 @@ export class Testplans {
       exec(
       function (err, testplan) {
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(200).
+            json(testplan);
         }
-        res.
-          status(200).
-          json(testplan);
       });
   }
 
@@ -73,12 +91,21 @@ export class Testplans {
       create(req.body,
       function (err, testplan) {
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(201).
+            location('/api/v1/testplans/' + testplan._id).
+            json(testplan);
         }
-        res.
-          status(201).
-          location('/api/v1/testplans/' + testplan._id).
-          json(testplan);
       });
   }
 
@@ -108,12 +135,20 @@ export class Testplans {
 
         testplan.save(function (err, testplan, count) {
           if (err) {
-            console.error(err);
+            console.log(err);
+            res.
+              set('Content-Type', 'application/json').
+              status(500).
+              json({
+                'status': 500,
+                'message': 'Error occured. ' + err
+              });
+          } else {
+            res.
+              set('Content-Type', 'application/json').
+              status(200).
+              json(testplan);
           }
-
-          res.
-            status(200).
-            json(testplan);
         });
       });
   }
@@ -132,12 +167,20 @@ export class Testplans {
       exec(
       function (err, testplan) {
         if (err) {
-          console.error(err);
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(204).
+            json(true);
         }
-
-        res.
-          status(204).
-          json(true);
       });
   }
 };
