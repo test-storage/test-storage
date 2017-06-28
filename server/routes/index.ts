@@ -8,7 +8,7 @@ import { Projects } from './v1/projects';
 import { Testcases } from './v1/testcases';
 import { Testsuites } from './v1/testsuites';
 import { Testplans } from './v1/testplans';
-import { Groups } from './v1/groups';
+import { UserGroups } from './v1/users-groups';
 import { Users } from './v1/users';
 
 
@@ -23,7 +23,7 @@ class Routes {
     private testcases: Testcases;
     private testsuites: Testsuites;
     private testplans: Testplans;
-    private groups: Groups;
+    private usergroups: UserGroups;
     private users: Users;
 
     constructor() {
@@ -36,7 +36,7 @@ class Routes {
         this.testcases = new Testcases();
         this.testsuites = new Testsuites();
         this.testplans = new Testplans();
-        this.groups = new Groups();
+        this.usergroups = new UserGroups();
         this.users = new Users();
 
         // define the API versions
@@ -95,11 +95,11 @@ class Routes {
         this.router.put('/api/v1/testplans/:id', this.testplans.update.bind(this.testplans));
         this.router.delete('/api/v1/testplans/:id', this.testplans.delete.bind(this.testplans));
 
-        this.router.get('/api/v1/groups', this.groups.getAll.bind(this.groups));
-        this.router.get('/api/v1/groups/:id', this.groups.getOne.bind(this.groups));
-        this.router.post('/api/v1/groups/', this.groups.create.bind(this.groups));
-        this.router.put('/api/v1/groups/:id', this.groups.update.bind(this.groups));
-        this.router.delete('/api/v1/groups/:id', this.groups.delete.bind(this.groups));
+        this.router.get('/api/v1/users/groups', this.usergroups.getAll.bind(this.usergroups));
+        this.router.get('/api/v1/users/groups/:id', this.usergroups.getOne.bind(this.usergroups));
+        this.router.post('/api/v1/users/groups/', this.usergroups.create.bind(this.usergroups));
+        this.router.put('/api/v1/users/groups/:id', this.usergroups.update.bind(this.usergroups));
+        this.router.delete('/api/v1/users/groups/:id', this.usergroups.delete.bind(this.usergroups));
 
         this.router.get('/api/v1/users', this.users.getAll.bind(this.users));
         this.router.get('/api/v1/users/:id', this.users.getOne.bind(this.users));
