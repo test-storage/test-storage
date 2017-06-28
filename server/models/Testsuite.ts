@@ -9,7 +9,7 @@ const TestsuiteSchema = new mongoose.Schema({
     }
   },
   parentId: Number,
-  projectId: { type: String, unique: true },
+  projectId: String,
   enabled: Boolean,
   name: { type: String, required: true },
   description: String,

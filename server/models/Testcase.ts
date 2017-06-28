@@ -8,7 +8,7 @@ const TestcaseSchema = new mongoose.Schema({
       return crypto.randomBytes(16).toString('hex');
     }
   },
-  key: { type: String, unique: true },
+  // key: { type: String, unique: true }, // Temporary off
   projectId: String,
   testSuiteId: String,
   priority: Number,
