@@ -4,6 +4,9 @@ import { User } from '../../models/User';
 import * as util from 'util';
 import { Validator } from '../../middlewares/validate';
 
+import * as jwt from 'jsonwebtoken';
+import { secret } from '../config/secret';
+
 export class Users {
 
     private validator: Validator;
@@ -214,5 +217,60 @@ export class Users {
                         json(true);
                 }
             });
+    }
+
+
+    /*
+     * Get single user (me)
+     *
+     */
+
+    getUserMe(req, res) {
+
+        // check 'fields'
+        const fields = this.validator.validateFields(req, res);
+        // TODO add sanitizers
+
+        const token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];
+
+        if (token) {
+            try {
+                const decoded = jwt.decode(token, secret(), { algorithm: 'HS256' });
+
+                User.
+                    findOne({ 'email': decoded.username }, fields).
+                    exec(
+                    function (err, user) {
+
+                        if (err) {
+                            console.log(err);
+                            res.
+                                set('Content-Type', 'application/json').
+                                status(500).
+                                json({
+                                    'status': 500,
+                                    'message': 'Error occured. ' + err
+                                });
+                        } else {
+
+                            // delete password from data object
+                            user.password = undefined;
+
+                            res.
+                                set('Content-Type', 'application/json').
+                                status(200).
+                                json(user);
+                        }
+
+                    });
+            } catch (err) {
+                res.status(500);
+                res.json({
+                    'status': 500,
+                    'message': 'Oops something went wrong',
+                    'error': '' + err
+                });
+            }
+        }
     }
 };

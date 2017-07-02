@@ -13,15 +13,18 @@ var token = '';
 var entityId = '';
 
 
-describe('/users', function () {
+before(function (done) {
 
     it('login', function (done) {
-
         authenticate(function (restoken) {
             token = restoken;
             done();
         });
     });
+    done();
+});
+
+describe('/users', function () {
 
     it('POST /users respond with status 201 and JSON', function (done) {
 
@@ -40,7 +43,7 @@ describe('/users', function () {
             });
     });
 
-    it('GET /users/:id respond with JSON', function (done) {
+    it('GET /users/:id respond with status 200 and JSON', function (done) {
 
         request(app)
             .get('/api/v1/users/' + entityId)
@@ -61,7 +64,7 @@ describe('/users', function () {
             });
     });
 
-    it('GET /users respond with JSON', function (done) {
+    it('GET /users respond with status 200 and JSON', function (done) {
 
         request(app)
             .get('/api/v1/users')
@@ -84,7 +87,7 @@ describe('/users', function () {
             });
     });
 
-    it('PUT /users respond with JSON', function (done) {
+    it('PUT /users respond with status 200 and JSON', function (done) {
 
         request(app)
             .put('/api/v1/users/' + entityId)
@@ -106,7 +109,7 @@ describe('/users', function () {
     });
 
 
-    it('DELETE /users/:id respond with JSON', function (done) {
+    it('DELETE /users/:id respond with status 204 and JSON', function (done) {
 
         request(app)
             .delete('/api/v1/users/' + entityId)
@@ -114,6 +117,29 @@ describe('/users', function () {
             .set('x-access-token', token)
             .end(function (err, res) {
                 expect(res.status).to.equal(204);
+                done()
+            });
+    });
+
+    it('GET /users/me respond with status 200 and JSON', function (done) {
+
+        request(app)
+            .get('/api/v1/users/me')
+            .set('Accept', 'application/json')
+            .set('x-access-token', token)
+            .end(function (err, res) {
+                expect(res.status).to.equal(200);
+                expect(res).to.have.header('content-type', /json/);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.not.have.property('password');
+                expect(res.body).to.have.any.keys(
+                    '_id',
+                    'firstName',
+                    'lastName',
+                    'email',
+                    'title',
+                    'groups'
+                );
                 done()
             });
     });

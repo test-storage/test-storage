@@ -102,10 +102,13 @@ class Routes {
         this.router.delete('/api/v1/users/groups/:id', this.usergroups.delete.bind(this.usergroups));
 
         this.router.get('/api/v1/users', this.users.getAll.bind(this.users));
+        this.router.get('/api/v1/users/me', this.users.getUserMe.bind(this.users));
         this.router.get('/api/v1/users/:id', this.users.getOne.bind(this.users));
         this.router.post('/api/v1/users/', this.users.create.bind(this.users));
         this.router.put('/api/v1/users/:id', this.users.update.bind(this.users));
         this.router.delete('/api/v1/users/:id', this.users.delete.bind(this.users));
+
+
 
         /*
          * Routes that can be accessed only by authenticated & authorized users
