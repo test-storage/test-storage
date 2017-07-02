@@ -54,7 +54,7 @@
     "@types/supertest": "^2.0.1",
     "angular2-jwt": "^0.2.3",
     "body-parser": "^1.17.2",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.0.0-alpha.6",
     "compression": "^1.6.2",
     "config": "^1.26.1",
     "cookie-parser": "^1.4.3",
