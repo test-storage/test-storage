@@ -1,38 +1,39 @@
-
 #login-wrapper {
-  margin: 0, auto;
+    display: flex;
+    align-self: center;
 }
 
 #login {
-  width: 350px;
-  margin: auto;
+    width: 350px;
+    margin: auto;
 }
 
 #login h2 {
-  text-align: center;
-  padding-top: 20px;
+    text-align: center;
+    padding-top: 20px;
 }
 
 #login form {
-  padding-top: 40px;
+    padding-top: 40px;
 }
 
 .center {
-   margin: 0, auto;
+    margin: 0, auto;
 }
 
 #logo {
-  text-align: center;
-  padding-top: 100px;
+    text-align: center;
+    padding-top: 100px;
 }
+
 #logo-text {
-  font-family: 'Roboto';
-  font-weight: 100;
-  font-size: 30px;
+    font-family: 'Roboto';
+    font-weight: 100;
+    font-size: 30px;
 }
 
 #logo-strong {
-  font-family: 'Roboto';
-  font-weight: 700;
-  font-size: 30px;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 30px;
 }
