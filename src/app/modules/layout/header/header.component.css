@@ -161,10 +161,12 @@
     min-width: 160px;
     max-width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 5;
-    border: 1px solid red;
-    top: 53px;
-    /*right: 14px;*/
+    top: 56px;
+    right: 0;
+}
+
+.dropdown-content {
+    z-index: 100;
 }
 
 .dropdown-content a {
@@ -181,7 +183,7 @@
 }
 
 .show {
-    display: block;
+    display: block !important;
 }
 
 ul li:hover a+div {
