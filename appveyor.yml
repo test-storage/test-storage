@@ -29,7 +29,7 @@ before_test:
 
 test_script:
   # Output useful info for debugging.
-  - node --version && npm --version && yarn --version
+  - node --version && npm --version
   # Run tests
   - npm test
 
