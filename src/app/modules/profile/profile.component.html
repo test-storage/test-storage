@@ -1,8 +1,15 @@
 <div id="wrapper" *ngIf="profile">
   <div class="profile-data">
-    <div class="avatar-image">
-      <img src="assets/noavatar.png">
+    <div class="avatar-image" *ngIf="profile.photo;else no_image">
+      <img src="{{ profile.photo }}">
     </div>
+
+    <ng-template #no_image>
+      <div class="avatar-image">
+        <img src="assets/noavatar.png">
+      </div>
+    </ng-template>
+
     <div class="profile-contacts">
       <div class="profile-fullname">
         {{ profile.firstName }} {{ profile.lastName }}

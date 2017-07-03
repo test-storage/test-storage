@@ -26,6 +26,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    photo: String,
     work: {
         title: { type: String, required: true },
         phone: String,
