@@ -6,15 +6,17 @@
       <a id="menu_toggle" class="toggle" (click)="collapseToggle();"><i class="fa fa-bars"></i></a>
     </div>
     <div class="right">
-      
-      <a class="icon-info link dropbtn" (click)="toggleNotifications();"><i class="fa fa-bell" aria-hidden="true"></i><span class="label label-primary">3</span></a>
+
+      <a class="icon-info link dropbtn" (click)="toggleNotifications();"><i class="fa fa-bell" aria-hidden="true"></i>
+        <span class="notifications-alarm"></span>
+      </a>
       <div class="dropdown-content" [class.show]="isNotificationsDisplayed">
         <ul>
           <app-notifications></app-notifications>
         </ul>
       </div>
-      
-      <a class="link" routerLink="/settings"><i class="glyphicon glyphicon-cog"></i></a>
+
+      <a class="link" routerLink="/settings"><i class="fa fa-cog"></i></a>
 
 
 
