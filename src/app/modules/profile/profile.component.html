@@ -1,28 +1,30 @@
-<div id="wrapper">
+<div id="wrapper" *ngIf="profile">
   <div class="profile-data">
     <div class="avatar-image">
       <img src="assets/noavatar.png">
     </div>
     <div class="profile-contacts">
       <div class="profile-fullname">
-        John Doe
+        {{ profile.firstName }} {{ profile.lastName }}
       </div>
       <div class="profile-jobtitle">
-        Senior Test Analyst
+        {{ profile.work.title }}
+        <!-- Senior Test Analyst -->
       </div>
       <div class="profile-register-date">
-        Registered: 15.01.2017
+        Registered: {{ profile.created }}
+        <!-- 15.01.2017 -->
       </div>
 
     </div>
     <div class="profile-social-networks">
-      <ul>
-        <!-- TODO *ngIf if non exist in model - don't show + *ngFor for each social -->
-        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-        <li><a href="#"><i class="fa fa-vk"></i></a></li>
+      <ul *ngIf="profile.social">
+        <li *ngIf="profile.social.github"><a href="{{ profile.social.github }}" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li *ngIf="profile.social.linkedin"><a href="{{ profile.social.linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li *ngIf="profile.social.facebook"><a href="{{ profile.social.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+        <li *ngIf="profile.social.twitter"><a href="{{ profile.social.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li *ngIf="profile.social.instagram"><a href="{{ profile.social.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+        <li *ngIf="profile.social.vk"><a href="{{ profile.social.vk }}"><i class="fa fa-vk" target="_blank"></i></a></li>
       </ul>
     </div>
   </div>
@@ -39,9 +41,9 @@
         </thead>
         <tbody>
           <tr>
-            <td>admin@test-storage.local</td>
-            <td>+7 495 000-11-00</td>
-            <td>Example LLC</td>
+            <td>{{ profile.email }}</td>
+            <td>{{ profile.work.phone }}</td>
+            <td>{{ profile.work.company }}</td>
           </tr>
         </tbody>
       </table>

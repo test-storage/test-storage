@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProfileComponent } from './profile.component';
+import { UserService } from '../../services/user/user.service';
 
 const profileRoutes: Routes = [
   {
@@ -16,6 +17,7 @@ const profileRoutes: Routes = [
     RouterModule.forChild(profileRoutes),
     CommonModule
   ],
+  providers: [UserService],
   declarations: [ProfileComponent]
 })
 export class ProfileModule { }
