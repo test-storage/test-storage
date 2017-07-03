@@ -1,11 +1,68 @@
 <div id="wrapper">
   <div class="profile-data">
-    <img class="avatar-image" src="assets/noavatar.png" />
+    <div class="avatar-image">
+      <img src="assets/noavatar.png">
+    </div>
+    <div class="profile-contacts">
+      <div class="profile-fullname">
+        John Doe
+      </div>
+      <div class="profile-jobtitle">
+        Senior Test Analyst
+      </div>
+      <div class="profile-register-date">
+        Registered: 15.01.2017
+      </div>
+
+    </div>
+    <div class="profile-social-networks">
+      <ul>
+        <!-- TODO *ngIf if non exist in model - don't show + *ngFor for each social -->
+        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fa fa-vk"></i></a></li>
+      </ul>
+    </div>
   </div>
   <div class="profile-info">
-    <div class="profile-work"></div>
-    <div class="profile-personal"></div>
-
+    <div class="profile-work">
+      <h6>Work Information</h6>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Company</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>admin@test-storage.local</td>
+            <td>+7 495 000-11-00</td>
+            <td>Example LLC</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="profile-personal">
+      <h6>Personal Information</h6>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Phone Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>johndoe@example.com</td>
+            <td>+7 495 000-11-00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </div>
