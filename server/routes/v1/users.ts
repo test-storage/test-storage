@@ -158,8 +158,9 @@ export class Users {
                 user.lastName = req.body.lastName;
                 user.email = req.body.email;
                 user.password = req.body.password;
-                user.title = req.body.title;
-                user.groups = req.body.groups;
+                user.work = req.body.work;
+                user.social = req.body.social;
+                user.userGroups = req.body.userGroups;
                 user.updated = Date.now();
 
                 user.save(function (err, user, count) {

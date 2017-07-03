@@ -58,8 +58,9 @@ describe('/users', function () {
                 expect(res.body).to.have.deep.property('lastName', modelFixture.lastName);
                 expect(res.body).to.have.deep.property('email', modelFixture.email);
                 expect(res.body).to.not.have.deep.property('password');
-                expect(res.body).to.have.deep.property('title', modelFixture.title);
-                expect(res.body).to.have.deep.property('groups', modelFixture.groups);
+                expect(res.body).to.have.deep.property('work', modelFixture.work);
+                expect(res.body).to.have.deep.property('social', modelFixture.social);
+                expect(res.body).to.have.deep.property('userGroups', modelFixture.userGroups);
                 done()
             });
     });
@@ -80,8 +81,9 @@ describe('/users', function () {
                     'firstName',
                     'lastName',
                     'email',
+                    'work',
                     'title',
-                    'groups'
+                    'userGroups'
                 );
                 done()
             });
@@ -102,8 +104,9 @@ describe('/users', function () {
                 expect(res.body).to.have.deep.property('lastName', modelFixtureEdited.lastName);
                 expect(res.body).to.have.deep.property('email', modelFixtureEdited.email);
                 expect(res.body).to.not.have.deep.property('password');
-                expect(res.body).to.have.deep.property('title', modelFixtureEdited.title);
-                expect(res.body).to.have.deep.property('groups', modelFixtureEdited.groups);
+                expect(res.body).to.have.deep.property('work', modelFixtureEdited.work);
+                expect(res.body).to.have.deep.property('social', modelFixtureEdited.social);
+                expect(res.body).to.have.deep.property('userGroups', modelFixtureEdited.userGroups);
                 done()
             });
     });
@@ -137,8 +140,9 @@ describe('/users', function () {
                     'firstName',
                     'lastName',
                     'email',
+                    'work',
                     'title',
-                    'groups'
+                    'userGroups'
                 );
                 done()
             });
