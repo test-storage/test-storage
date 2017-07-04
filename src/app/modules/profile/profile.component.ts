@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { pageTransition } from '../../animations';
 
+import { TranslateService } from '@ngx-translate/core';
+
 import { User } from '../../models/user';
 import { UserService } from '../../services/user/user.service';
 
