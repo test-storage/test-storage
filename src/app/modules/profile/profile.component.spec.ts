@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
+import { ThemeService } from '../../services/theme/theme.service';
 
 import { AuthenticationService } from '../../services/auth/authentication.service';
 import { ProfileComponent } from './profile.component';
@@ -22,6 +23,7 @@ describe('ProfileComponent', () => {
         })
       ],
       providers: [
+        ThemeService,
         TranslateService,
         TranslateModule,
         AuthenticationService,
