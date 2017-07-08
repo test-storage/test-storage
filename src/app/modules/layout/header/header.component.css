@@ -1,6 +1,52 @@
-.navigation-bar {
+
+.bright-theme {
     background: #FFF;
 }
+
+
+/* DARK THEME */
+
+.dark-theme {
+    background: #283242;
+}
+
+.navigation-bar.dark-theme .fa {
+    color: #7a7f8c;
+}
+
+.navigation-bar.dark-theme .fa:hover {
+    color: #FFF;
+}
+
+.navigation-bar.dark-theme .dropdown-item .dropdown-content,
+.navigation-bar.dark-theme .right .dropdown-content.dark-theme {
+    background: #283242;
+}
+
+.navigation-bar.dark-theme .notifications-alarm:after {
+    content: '';
+    display: block;
+    width: 11px;
+    height: 11px;
+    border: 1px solid #1B2531;
+    background: #fa424a;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 12px;
+    right: 1px;
+}
+
+.navigation-bar.dark-theme .dropdown-content a {
+    color: #fff;
+}
+
+.navigation-bar.dark-theme .dropdown-content ul li a:hover {
+    background-color: #ddd;
+    color: #1B2531;
+}
+
+/* DEFAULT STYLES */
 
 .navigation-bar .toggle,
 .navigation-bar .brand {
@@ -89,7 +135,6 @@
     cursor: pointer;
 }
 
-.glyphicon.glyphicon-bell,
 .fa.fa-cog,
 .fa-bell {
     font-size: 20px;
@@ -105,16 +150,15 @@
     cursor: pointer;
 }
 
-.navi i {
-    font-size: 20px;
-}
+
+
 
 .notifications-alarm:after {
     content: '';
     display: block;
     width: 11px;
     height: 11px;
-    border: 2px solid #fff;
+    border: 1px solid #fff;
     background: #fa424a;
     border-radius: 50%;
     position: absolute;
@@ -146,7 +190,9 @@
     outline: none;
     text-decoration: none;
     padding: 14px 16px;
+    position: relative;
 }
+
 
 .container a:hover,
 .dropdown-item:hover .dropbtn {

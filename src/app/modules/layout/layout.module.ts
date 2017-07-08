@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './../../services/auth/auth-guard.service';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { ThemeService } from './../../services/theme/theme.service';
 
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
@@ -66,7 +67,8 @@ const layoutRoutes: Routes = [
     NotificationsComponent
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    ThemeService
   ]
 })
 export class LayoutModule { }

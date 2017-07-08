@@ -29,6 +29,7 @@ body {
     background-color: #FFF;
     margin: 20px;
     height: 100%;
+    overflow: hidden;
     min-height: 640px;
 }
 
@@ -40,4 +41,15 @@ body {
   #wrapper {
     flex-direction: column;
   }
+}
+
+/* DARK THEME */
+
+#wrapper.dark-theme #content-wrapper {
+    background-color: #1B2531;
+}
+
+#wrapper.dark-theme #content {
+    background-color: #283242;
+    color: #FFF;
 }

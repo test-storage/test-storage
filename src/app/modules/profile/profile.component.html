@@ -1,4 +1,4 @@
-<div id="wrapper" *ngIf="profile">
+<div id="wrapper" [class.dark-theme]="themeService.theme" *ngIf="profile">
   <div class="profile-data">
     <div class="avatar-image" *ngIf="profile.photo;else no_image">
       <img src="{{ profile.photo }}">

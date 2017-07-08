@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { User } from '../../models/user';
 import { UserService } from '../../services/user/user.service';
+import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +22,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private subscription;
   profile: User;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    protected themeService: ThemeService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.getProfile();
