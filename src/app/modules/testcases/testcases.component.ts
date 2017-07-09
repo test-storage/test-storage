@@ -3,6 +3,7 @@ import { pageTransition } from '../../animations';
 
 import { Testcase } from '../../models/testcase';
 import { TestcaseService } from '../../services/testcase/testcase.service';
+import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
   selector: 'app-testcases',
@@ -21,7 +22,9 @@ export class TestcasesComponent implements OnInit {
 
   testcases: Testcase[] = [];
 
-  constructor(private testcaseService: TestcaseService) { }
+  constructor(
+    public themeService: ThemeService,
+    private testcaseService: TestcaseService) { }
 
   ngOnInit() {
     this.getTestcases();

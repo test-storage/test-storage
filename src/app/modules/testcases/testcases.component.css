@@ -5,3 +5,41 @@
 #wrapper {
     padding: 20px;
 }
+
+
+.noexist-wrapper {
+    display: flex;
+    height: 600px;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-testcase {
+    width: auto;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.no-testcase img {
+    margin-bottom: 20px;
+}
+
+.no-testcase h4 {
+    color: #616161;
+}
+
+.tips {
+    font-size: 12px;
+    color: #a2acb3;
+    margin-bottom: 20px;
+}
+
+/* DARK THEME */
+
+/* TODO WHITE ICON */
+
+#wrapper.dark-theme .no-testcase h4 {
+    color: #FFF;
+}
