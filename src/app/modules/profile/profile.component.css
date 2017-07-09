@@ -8,17 +8,6 @@
     width: 100%;
 }
 
-/* DARK THEME */
-
-#wrapper.dark-theme .profile-data {
-    border-right: 1px solid #7a7f8c;
-    border-bottom: 1px solid #7a7f8c;
-}
-
-#wrapper.dark-theme .profile-work,
-#wrapper.dark-theme .profile-personal {
-    border-bottom: 1px solid #7a7f8c;
-}
 
 
 
@@ -143,4 +132,16 @@
 .profile-work td {
     padding-left: 0;
     padding-bottom: 0;
+}
+
+/* DARK THEME */
+
+#wrapper.dark-theme .profile-data {
+    border-right: 1px solid #303C4D;
+    border-bottom: 1px solid #303C4D;
+}
+
+#wrapper.dark-theme .profile-work,
+#wrapper.dark-theme .profile-personal {
+    border-bottom: 1px solid #303C4D;
 }
