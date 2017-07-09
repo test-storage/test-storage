@@ -5,6 +5,7 @@ import { MockBackend } from '@angular/http/testing';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 import { ProjectsComponent } from './projects.component';
 import { ProjectService } from '../../services/project/project.service';
+import { ThemeService } from '../../services/theme/theme.service';
 
 describe('ProjectsComponent', () => {
   let component: ProjectsComponent;
@@ -14,6 +15,7 @@ describe('ProjectsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ProjectsComponent],
       providers: [
+        ThemeService,
         AuthenticationService,
         ProjectService,
         MockBackend,

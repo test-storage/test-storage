@@ -1,5 +1,9 @@
-<div id="wrapper" *ngIf="projects">
-  <table class="table table-striped">
+<div id="wrapper" [class.dark-theme]="themeService.theme">
+
+<div *ngIf="projects.length > 0; then existProjects else noExistProjects"></div>
+
+<ng-template #existProjects>
+ <table *ngIf="projects.length > 0;" class="table table-striped">
     <thead>
       <tr>
         <th>Project Name</th>
@@ -13,4 +17,21 @@
       <td>{{ project.enabled }}</td>
     </tr>
   </table>
+</ng-template>
+
+
+<ng-template #noExistProjects>
+ <div class="noexist-wrapper">
+   <div class="no-project">
+    <img src="assets/add-project.png">
+    <h4>You have not created Projects yet.</h4>
+    <p class="tips">Tap the 'Create Project' button to get started</p>
+    <button class="btn btn-primary">Create Project</button>
+   </div>
+ </div>
+</ng-template>
+
+ 
+
+
 </div>
