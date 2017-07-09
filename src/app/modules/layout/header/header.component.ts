@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
     @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(
-        protected themeService: ThemeService,
+        public themeService: ThemeService,
         private router: Router,
         private authGuard: AuthGuard,
         private authenticationService: AuthenticationService
@@ -40,7 +40,6 @@ export class HeaderComponent implements OnInit {
             this.sidebarCollapsed = true;
             this.notify.emit(true);
         }
-
     }
 
     logout() {

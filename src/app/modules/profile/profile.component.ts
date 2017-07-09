@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   profile: User;
 
   constructor(
-    protected themeService: ThemeService,
+    public themeService: ThemeService,
     private userService: UserService) { }
 
   ngOnInit() {

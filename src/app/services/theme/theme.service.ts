@@ -11,8 +11,18 @@ export class ThemeService {
    *
    */
 
-  public theme = true;
+  public theme = false;
 
   constructor() { }
+
+  setTheme(theme: string) {
+    if (theme === 'BRIGHT') {
+      this.theme = false;
+    } else if (theme === 'DARK') {
+      this.theme = true;
+    }
+
+    console.log(theme);
+  }
 
 }

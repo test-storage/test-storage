@@ -6,7 +6,6 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 import { ThemeService } from './../../services/theme/theme.service';
 
 @Component({
-    moduleId: module.id,
     selector: 'app-home',
     templateUrl: 'layout.component.html',
     styleUrls: ['layout.component.css']
@@ -15,7 +14,7 @@ export class LayoutComponent implements OnInit {
     public sidebarCollapsed = true;
 
     constructor(
-        protected themeService: ThemeService,
+        public themeService: ThemeService,
         private authenticationService: AuthenticationService) { }
 
     ngOnInit() {
@@ -25,4 +24,5 @@ export class LayoutComponent implements OnInit {
     onNotify(sidebarCollapsed: boolean): void {
         this.sidebarCollapsed = sidebarCollapsed;
     }
+
 }
