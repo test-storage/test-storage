@@ -76,12 +76,14 @@ ul {
     border-bottom: 1px solid #303C4D;
 }
 
-.notifications.dark-theme li a {
-    color: #fff;
+.notifications.dark-theme li a:hover {
+    background-color: #1B2531;
 }
 
-.notifications.dark-theme li a:hover {
-    color: #616161;
+
+
+.notifications.dark-theme li a {
+    color: #fff;
 }
 
 .notifications.dark-theme .footer {

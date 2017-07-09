@@ -42,8 +42,11 @@
 }
 
 .navigation-bar.dark-theme .dropdown-content ul li a:hover {
-    background-color: #ddd;
-    color: #1B2531;
+    background-color: #1B2531;
+    
+    /* alternative color */
+    /*background-color: #ddd;*/
+    /*color: #1B2531;*/
 }
 
 /* DEFAULT STYLES */
