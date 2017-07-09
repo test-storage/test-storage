@@ -50,6 +50,7 @@ ul {
 
 .notifications .notification h6 {
     margin: 0;
+    font-size: 14px;
 }
 
 .notifications .notification span {
