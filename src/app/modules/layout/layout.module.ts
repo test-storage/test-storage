@@ -16,6 +16,11 @@ const layoutRoutes: Routes = [
     path: '',
     children: [
       {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+      },
+      {
         path: 'settings',
         loadChildren: './../../modules/settings/settings.module#SettingsModule'
       },
