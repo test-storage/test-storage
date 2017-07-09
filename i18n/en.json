@@ -1,6 +1,9 @@
 {
     "SETTINGS": {
-        "CHOOSE_LANGUAGE": "Choose language"
+        "CHOOSE_LANGUAGE": "Choose language",
+        "THEME": "Theme",
+        "THEME_BRIGHT": "Bright",
+        "THEME_DARK": "Dark"
     },
     "ERROR": {
         "SERVER_ERROR": "Server Error"

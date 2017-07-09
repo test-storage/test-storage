@@ -1,6 +1,9 @@
 {
     "SETTINGS": {
-        "CHOOSE_LANGUAGE": "Выберите язык"
+        "CHOOSE_LANGUAGE": "Выберите язык",
+        "THEME": "Тема",
+        "THEME_BRIGHT": "Светлая",
+        "THEME_DARK": "Темная"
     },
     "ERROR": {
         "SERVER_ERROR": "Ошибка Сервера"
