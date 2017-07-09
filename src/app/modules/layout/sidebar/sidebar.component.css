@@ -59,7 +59,10 @@ ul li:hover {
 
 ul li:hover > a {
   color: #FFF;
+}
 
+ul li.active > a {
+  color: #2D99ED;
 }
 
 .sidebar li a {
