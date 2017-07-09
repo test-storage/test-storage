@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { ThemeService } from '../../services/theme/theme.service';
 
 import { SettingsComponent } from './settings.component';
 
@@ -21,7 +20,6 @@ const settingsRoutes: Routes = [
   ],
   declarations: [SettingsComponent],
   providers: [
-    ThemeService,
     TranslateService
   ]
 })

@@ -11,9 +11,9 @@
 <div>
   <label>{{ 'SETTINGS.THEME' | translate }}</label>
   
-  <select #themeSelect (change)="themeService.setTheme(themeSelect.value);">
-    <option value="BRIGHT">{{ 'SETTINGS.THEME_BRIGHT' | translate }}</option>
-    <option value="DARK">{{ 'SETTINGS.THEME_DARK' | translate }}</option>
+  <select #themeSelect (change)="themeService.changeTheme(themeSelect.value);">
+    <option value="BRIGHT" [selected]="themeService.getTheme() == 'BRIGHT'">{{ 'SETTINGS.THEME_BRIGHT' | translate }}</option>
+    <option value="DARK" [selected]="themeService.getTheme() == 'DARK'">{{ 'SETTINGS.THEME_DARK' | translate }}</option>
   </select>
   
 </div>

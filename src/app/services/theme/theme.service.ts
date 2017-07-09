@@ -15,14 +15,20 @@ export class ThemeService {
 
   constructor() { }
 
-  setTheme(theme: string) {
+  getTheme() {
+    if (this.theme === false) {
+      return 'BRIGHT';
+    } else if (this.theme === true) {
+      return 'DARK';
+    }
+  }
+
+  changeTheme(theme: string) {
     if (theme === 'BRIGHT') {
       this.theme = false;
     } else if (theme === 'DARK') {
       this.theme = true;
     }
-
-    console.log(theme);
   }
 
 }

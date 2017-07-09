@@ -6,6 +6,6 @@
   height: 940px;
 }
 
-#wrapper.dark-theme {
-  background: #333;
+#wrapper.dark-theme select {
+  color: #333;
 }

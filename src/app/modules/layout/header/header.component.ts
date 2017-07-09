@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
     user: any = {};
     private sidebarCollapsed = true;
-    public shown  = '';
+    public shown = '';
     @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(
@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.loadUserData();
     }
+
 
     private loadUserData() {
         const data = JSON.parse(localStorage.getItem('currentUser'));
