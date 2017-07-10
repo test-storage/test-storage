@@ -1,0 +1,9 @@
+#wrapper {
+    margin: 20px;
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
