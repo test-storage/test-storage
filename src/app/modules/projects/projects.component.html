@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tr *ngFor="let project of projects">
-        <td><a [routerLink]="[project._id]">{{ project.name }}</a></td>
+        <td><a routerLink="project._id">{{ project.name }}</a></td>
         <td>{{ project.description }}</td>
         <td>{{ project.enabled }}</td>
       </tr>
@@ -26,7 +26,7 @@
         <img src="assets/add-project.png">
         <h4>You have not created Projects yet.</h4>
         <p class="tips">Tap the 'Create Project' button to get started</p>
-        <button class="btn btn-primary">Create Project</button>
+        <a routerLink="create" class="btn btn-primary">Create Project</a>
       </div>
     </div>
   </ng-template>
