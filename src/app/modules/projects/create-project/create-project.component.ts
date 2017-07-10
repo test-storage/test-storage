@@ -2,22 +2,38 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { pageTransition } from '../../../animations';
 import { ThemeService } from '../../../services/theme/theme.service';
 
+import { Project } from '../../../models/project';
+import { ProjectService } from '../../../services/project/project.service';
+
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html',
   styleUrls: ['./create-project.component.css'],
-  providers: [ ThemeService ],
+  providers: [
+    ThemeService,
+    ProjectService
+  ],
   animations: [pageTransition()]
 })
+
 export class CreateProjectComponent implements OnInit {
 
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
   }
 
-  constructor(public themeService: ThemeService) { }
+  public project: Project = new Project();
+
+  constructor(public themeService: ThemeService,
+    private projectService: ProjectService) { }
 
   ngOnInit() {
   }
 
+  createNewProject() {
+    this.projectService.createProject(this.project).subscribe(
+      data => console.log('data: ' + JSON.stringify(data)), // this.project = data,
+      error => console.log(error)
+    );
+  }
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { ProjectsComponent } from './projects.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
@@ -26,7 +27,8 @@ const projectsRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(projectsRoutes),
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   declarations: [
     ProjectsComponent,

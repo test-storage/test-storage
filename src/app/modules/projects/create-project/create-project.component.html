@@ -2,25 +2,31 @@
 
   <div class="create-form">
 
+    <form name="form" (ngSubmit)="f.form.valid && createNewProject()" #f="ngForm" novalidate>
 
-    <div class="form-group row">
-      <label for="project-name" class="col-2 col-form-label">Project name</label>
-      <div class="col-6">
-        <input class="form-control" type="text" placeholder="Project name" id="project-name">
+      <div class="form-group row">
+        <label for="project-name" class="col-2 col-form-label">Project name</label>
+        <div class="col-6">
+          <input class="form-control" type="text" name="name" placeholder="Project name" id="project-name" [(ngModel)]="project.name"
+            #name="ngModel" required>
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="description" class="col-2 col-form-label">Description</label>
-      <div class="col-6">
-        <input class="form-control" type="text" placeholder="Description" id="description">
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="offset-sm-2 col-sm-10">
-        <button type="submit" class="btn btn-primary">Create Project</button>
-      </div>
-    </div>
 
+      <div class="form-group row">
+        <label for="description" class="col-2 col-form-label">Description</label>
+        <div class="col-6">
+          <input class="form-control" type="text" name="description" placeholder="Description" id="description" [(ngModel)]="project.description"
+            #description="ngModel" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">Create Project</button>
+        </div>
+      </div>
+
+    </form>
 
   </div>
 

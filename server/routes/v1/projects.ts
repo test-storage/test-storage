@@ -3,13 +3,17 @@ import { Project } from '../../models/Project';
 
 import * as util from 'util';
 import { Validator } from '../../middlewares/validate';
+import { Auth } from '../auth';
 
 export class Projects {
 
   public validator: Validator;
+  private auth: Auth;
 
   constructor() {
+    // TODO thinking about DI
     this.validator = new Validator();
+    this.auth = new Auth();
   }
 
   /*
@@ -90,6 +94,9 @@ export class Projects {
 
   create(req, res) {
 
+    const body = req.body;
+    body.createdBy = this.auth.getUserId;
+
     // TODO req.body validation
     Project.
       create(req.body,
@@ -132,6 +139,7 @@ export class Projects {
         project.enabled = req.body.enabled;
         project.testcases = req.body.testcases;
         project.updated = Date.now();
+        project.updatedBy = this.auth.getUserId;
 
         project.save(function (err, project, count) {
           if (err) {
