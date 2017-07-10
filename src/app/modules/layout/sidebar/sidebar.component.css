@@ -1,79 +1,86 @@
 .sidebar {
-  width: 220px;
-  position: fixed;
-  border-radius: 0;
-  height: 100%;
-  color: #FFF;
-  background: #1b1e24; /*#293846;*/
-  z-index: 10;
+    width: 220px;
+    position: fixed;
+    border-radius: 0;
+    height: 100%;
+    color: #FFF;
+    background: #1b1e24;
+    /*#293846;*/
+    z-index: 10;
 }
 
 .brand-wrapper {
-  text-align: center;
-  padding-top: 5px;
-  padding-bottom: 6px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 6px;
 }
 
 .brand {
-  width: 220px;
-  height: 56px;
-  border-bottom: 1px solid #1b1e24;/*#e7e7e7;*/
-  text-decoration: none;
-  /*background-color: #EAEAEA !important;*/
-  background-color: #1b1e24 !important;
-  color: #FFF; /*#6f7b8a;*/
+    width: 220px;
+    height: 56px;
+    border-bottom: 1px solid #1b1e24;
+    /*#e7e7e7;*/
+    text-decoration: none;
+    /*background-color: #EAEAEA !important;*/
+    background-color: #1b1e24 !important;
+    color: #FFF;
+    /*#6f7b8a;*/
 }
 
 .brand .logo-text {
-  font-family: 'Roboto';
-  font-weight: 100;
-  font-size: 30px;
+    font-family: 'Roboto';
+    font-weight: 100;
+    font-size: 30px;
 }
 
 .brand .logo-strong {
-  font-family: 'Roboto';
-  font-weight: 700;
-  font-size: 30px;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 30px;
 }
 
-
-
-.fa-dashboard, .fa-folder-o, .fa-bar-chart-o, .fa-inbox, .fa-history {
-  font-size: 14px;
-  margin-left: 10px;
-  margin-right: 6px;
+.fa-dashboard,
+.fa-folder-o,
+.fa-bar-chart-o,
+.fa-inbox,
+.fa-history {
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 6px;
 }
 
 ul {
-  /* normalize */
-  -webkit-padding-start: 0px;
+    /* normalize */
+    -webkit-padding-start: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .sidebar ul li {
-  list-style: none;
+    list-style: none;
 }
 
 ul li:hover {
-  background: #22262e;
+    background: #22262e;
 }
 
-ul li:hover > a {
-  color: #FFF;
+ul li:hover>a {
+    color: #FFF;
 }
 
-ul li.active > a {
-  color: #2D99ED;
+ul li.active>a {
+    color: #2D99ED;
 }
 
 .sidebar li a {
-  display: block;
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  color: #a7b1c2;
-  text-decoration: none;
-  width: 219px;
-  padding: 15px 10px;
+    display: block;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #a7b1c2;
+    text-decoration: none;
+    width: 219px;
+    padding: 15px 10px;
 }
 
 
@@ -82,72 +89,70 @@ ul li.active > a {
 **/
 
 .sidebar-mini {
-  width: 70px;
-  position: fixed;
-  border-radius: 0;
-  height: 100%;
-  color: #FFF;
-  z-index: 9999
+    width: 70px;
+    position: fixed;
+    border-radius: 0;
+    height: 100%;
+    color: #FFF;
+    z-index: 9999
 }
 
 .sidebar-mini .brand-wrapper {
-  height: 53px;
+    height: 53px;
 }
 
 .sidebar-mini .brand span {
-  font-size: 0;
+    font-size: 0;
 }
 
 .sidebar-mini ul li {
-  text-align: center;
+    text-align: center;
 }
 
 .sidebar-mini li a {
-  width: 69px;
+    width: 69px !important;
 }
 
-.sidebar-mini .fa-dashboard, 
-.sidebar-mini .fa-bar-chart-o, 
-.sidebar-mini .fa-inbox, 
-.sidebar-mini .fa-history, 
+.sidebar-mini .fa-dashboard,
+.sidebar-mini .fa-bar-chart-o,
+.sidebar-mini .fa-inbox,
+.sidebar-mini .fa-history,
 .sidebar-mini .fa-folder-o {
-  display: inline-block;
-  font-size: 26px;
-  position: relative;
-  right: 3px;
-  text-align: center;
+    display: inline-block;
+    font-size: 26px;
+    position: relative;
+    right: 3px;
+    text-align: center;
 }
 
 .sidebar-mini li a span.sidebar-title {
-  display: none;
+    display: none;
 }
-
-
 
 
 /* On using dropdown menu (To right shift popuped) */
-.sidebar > li > .dropdown-menu {
-  margin-top: -50px;
-  margin-left: 220px;  /*140*/
-  background-color: #333;
+
+.sidebar>li>.dropdown-menu {
+    margin-top: -50px;
+    margin-left: 220px;
+    /*140*/
+    background-color: #333;
 }
 
-.sidebar > li > .dropdown-menu > li > a:hover, .divider {
-  background-color: #000;
+.sidebar>li>.dropdown-menu>li>a:hover,
+.divider {
+    background-color: #000;
 }
 
 .fa-chevron-down {
-  float: right;
-  font-size: 8px;
-  position: relative;
-  top: 4px;
+    float: right;
+    font-size: 8px;
+    position: relative;
+    top: 4px;
 }
 
-
-
 @media (max-width: 800px) {
-
-  .sidebar.sidebar-mini {
-    display: none;
-  }
+    .sidebar.sidebar-mini {
+        display: none;
+    }
 }

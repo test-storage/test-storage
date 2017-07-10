@@ -5,13 +5,14 @@ body {
 #wrapper {
     display: flex;
 }
+
 #main {
     z-index: 1;
     flex: 1;
     height: 100%;
 }
 
-.sidebar-full{
+.sidebar-full {
     padding-left: 220px;
 }
 
@@ -30,18 +31,18 @@ body {
     margin: 20px;
     height: 100%;
     overflow: hidden;
-    min-height: 640px;
+    min-height: 740px;
 }
 
 @media (max-width: 800px) {
-  
-  .sidebar-collapsed {
-      padding-left: 0 !important;
-  }
-  #wrapper {
-    flex-direction: column;
-  }
+    .sidebar-collapsed {
+        padding-left: 0 !important;
+    }
+    #wrapper {
+        flex-direction: column;
+    }
 }
+
 
 /* DARK THEME */
 
