@@ -25,6 +25,10 @@
     flex-direction: column;
 }
 
+.card-block h1 {
+    text-align: center;
+}
+
 .card-button {
     display: block;
 }
