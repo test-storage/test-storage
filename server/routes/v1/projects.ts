@@ -95,7 +95,7 @@ export class Projects {
   create(req, res) {
 
     const body = req.body;
-    body.createdBy = this.auth.getUserId;
+    body.createdBy = this.auth.getUserId(req, res);
 
     // TODO req.body validation
     Project.
@@ -139,7 +139,7 @@ export class Projects {
         project.enabled = req.body.enabled;
         project.testcases = req.body.testcases;
         project.updated = Date.now();
-        project.updatedBy = this.auth.getUserId;
+        project.updatedBy = () => { this.auth.getUserId(req, res); }
 
         project.save(function (err, project, count) {
           if (err) {
