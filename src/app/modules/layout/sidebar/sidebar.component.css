@@ -81,6 +81,7 @@ ul li.active>a {
     text-decoration: none;
     width: 219px;
     padding: 15px 10px;
+    outline: none;
 }
 
 
