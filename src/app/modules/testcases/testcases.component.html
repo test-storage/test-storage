@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tr *ngFor="let testcase of testcases">
-        <td><a [routerLink]="testcase._id">{{ testcase.title }}</a></td>
+        <td><a [routerLink]="['./', testcase._id]">{{ testcase.title }}</a></td>
         <td>{{ testcase.description }}</td>
       </tr>
     </table>

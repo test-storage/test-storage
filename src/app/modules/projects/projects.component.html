@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tr *ngFor="let project of projects">
-        <td><a routerLink="project._id">{{ project.name }}</a></td>
+        <td><a [routerLink]="['./', project._id]">{{ project.name }}</a></td>
         <td>{{ project.description }}</td>
         <td>{{ project.enabled }}</td>
       </tr>
