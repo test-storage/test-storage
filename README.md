@@ -110,3 +110,12 @@ $ npm run dev
 If you want to take a look at [change log](https://github.com/pumano/test-storage/blob/master/CHANGELOG.md) just click [here](https://github.com/pumano/test-storage/blob/master/CHANGELOG.md).
 
 More features will be supported shortly!
+
+## Versioning
+Test Storage will be maintained under the [Semantic Versioning](http://semver.org)
+guidelines such that release versions will be formatted as `<major>.<minor>.<patch>`
+where
+
+* breaking backward compatibility bumps the major,
+* new additions while maintaining backward compatibility bumps the minor, and
+* bug fixes or miscellaneous changes bumps the patch.
