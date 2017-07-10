@@ -1,4 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { Router } from '@angular/router';
 import { pageTransition } from '../../../animations';
 import { ThemeService } from '../../../services/theme/theme.service';
 
@@ -24,7 +25,9 @@ export class CreateProjectComponent implements OnInit {
 
   public project: Project = new Project();
 
-  constructor(public themeService: ThemeService,
+  constructor(
+    public themeService: ThemeService,
+    private router: Router,
     private projectService: ProjectService) { }
 
   ngOnInit() {
@@ -32,7 +35,11 @@ export class CreateProjectComponent implements OnInit {
 
   createNewProject() {
     this.projectService.createProject(this.project).subscribe(
-      data => console.log('data: ' + JSON.stringify(data)), // this.project = data,
+      response => {
+        if (response === 201) {
+          this.router.navigate(['./projects']);
+        }
+      },
       error => console.log(error)
     );
   }

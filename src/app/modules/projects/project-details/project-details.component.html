@@ -5,12 +5,22 @@
       <th>Project Name</th>
       <th>Description</th>
       <th>Enabled</th>
+      <td>Created</td>
+      <td>Updated</td>
+      <td>Created By</td>
+      <td>Updated By</td>
+      <td></td>
     </tr>
   </thead>
   <tr>
     <td>{{ project.name }}</td>
     <td>{{ project.description }}</td>
     <td>{{ project.enabled }}</td>
+    <td>{{ project.created }}</td>
+    <td>{{ project.updated }}</td>
+    <td>{{ project.createdBy }}</td>
+    <td>{{ project.updatedBy }}</td>
+    <td><a (click)="deleteProject(project._id);">Delete</a>
   </tr>
 </table>
 </div>

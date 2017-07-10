@@ -3,6 +3,7 @@ import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from 
 import { MockBackend } from '@angular/http/testing';
 import { ThemeService } from '../../../services/theme/theme.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 
 import { AuthenticationService } from '../../../services/auth/authentication.service';
@@ -19,7 +20,8 @@ describe('CreateProjectComponent', () => {
       imports: [
         BrowserAnimationsModule,
         FormsModule,
-        HttpModule
+        HttpModule,
+        RouterTestingModule
       ],
       declarations: [CreateProjectComponent],
       providers: [

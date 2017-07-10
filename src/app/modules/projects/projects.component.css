@@ -6,6 +6,29 @@
     padding: 20px;
 }
 
+.projects-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project-card {
+    margin: 25px;
+    width: 20rem;
+}
+
+.card-img-top {
+    width: 200px;
+}
+
+.card-block {
+    padding: 1.25rem;
+    flex-direction: column;
+}
+
+.card-button {
+    display: block;
+}
+
 .noexist-wrapper {
     display: flex;
     height: 600px;

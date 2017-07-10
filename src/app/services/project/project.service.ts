@@ -35,14 +35,23 @@ export class ProjectService {
       .catch(this.handleError);
   }
 
-  public createProject(project: Project): Observable<Project> {
+  public createProject(project: Project): Observable<Number> {
     const body = JSON.stringify(project);
 
     contentHeaders.set('x-access-token', this.authenticationService.token);
     const options = new RequestOptions({ headers: contentHeaders });
 
     return this.http.post(this.apiPath, body, options)
-      .map((response: Response) => response.json())
+      .map((response: Response) => response.status)
+      .catch(this.handleError);
+  }
+
+  public deleteProject(id: string): Observable<Number> {
+    contentHeaders.set('x-access-token', this.authenticationService.token);
+    const options = new RequestOptions({ headers: contentHeaders });
+
+    return this.http.delete(this.apiPath + '/' + id, options)
+      .map((response: Response) => response.status)
       .catch(this.handleError);
   }
 
