@@ -20,7 +20,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   }
 
   private subscription;
-  public projects: Project[] = [];
+  public projects: Project[];
 
   constructor(
     public themeService: ThemeService,
@@ -37,7 +37,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   getProjects() {
     this.subscription = this.projectService.getProjects().subscribe(
-      data => this.projects = data, // Array.from(data) in case of non Project type response
+      data => this.projects = data,
       error => console.log(error)
     );
   }
