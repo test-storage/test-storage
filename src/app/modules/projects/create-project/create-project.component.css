@@ -1,5 +1,9 @@
+:host {
+    display: block;
+}
+
 #wrapper {
-    margin: 20px;
+    padding: 20px;
 }
 
 .create-form {

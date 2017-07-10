@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ThemeService } from '../../../services/theme/theme.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CreateProjectComponent } from './create-project.component';
 
@@ -8,9 +10,11 @@ describe('CreateProjectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateProjectComponent ]
+      imports: [BrowserAnimationsModule],
+      declarations: [CreateProjectComponent],
+      providers: [ThemeService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
