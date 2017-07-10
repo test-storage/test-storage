@@ -1,37 +1,37 @@
-<div id="wrapper" [class.dark-theme]="themeService.theme">
+<div *ngIf="testcases" id="wrapper" [class.dark-theme]="themeService.theme">
 
-<div *ngIf="testcases.length > 0; then existTestcases else noExistTestcases"></div>
+  <div *ngIf="testcases.length > 0; then existTestcases else noExistTestcases"></div>
 
-<ng-template #existTestcases>
-  <a class="btn btn-primary">Create New Testcase</a>
- <table *ngIf="testcases.length > 0;" class="table table-striped">
-    <thead>
-      <tr>
-        <th>Testcase Title</th>
-        <th>Description</th>
+  <ng-template #existTestcases>
+    <a class="btn btn-primary">Create New Testcase</a>
+    <table *ngIf="testcases.length > 0;" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Testcase Title</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let testcase of testcases">
+        <td><a [routerLink]="[testcase._id]">{{ testcase.title }}</a></td>
+        <td>{{ testcase.description }}</td>
       </tr>
-    </thead>
-    <tr *ngFor="let testcase of testcases">
-      <td><a routerLink="testcase._id">{{ testcase.title }}</a></td>
-      <td>{{ testcase.description }}</td>
-    </tr>
-  </table>
-  <!--<app-testsuites-tree></app-testsuites-tree>-->
-</ng-template>
+    </table>
+    <!--<app-testsuites-tree></app-testsuites-tree>-->
+  </ng-template>
 
 
-<ng-template #noExistTestcases>
- <div class="noexist-wrapper">
-   <div class="no-testcase">
-    <img src="assets/add-project.png">
-    <h4>You have not created Testsuites / Testcases yet.</h4>
-    <p class="tips">Tap the 'Create Testsuite' button to get started</p>
-    <button class="btn btn-primary">Create Testsuite</button>
-   </div>
- </div>
-</ng-template>
+  <ng-template #noExistTestcases>
+    <div class="noexist-wrapper">
+      <div class="no-testcase">
+        <img src="assets/add-project.png">
+        <h4>You have not created Testsuites / Testcases yet.</h4>
+        <p class="tips">Tap the 'Create Testsuite' button to get started</p>
+        <button class="btn btn-primary">Create Testsuite</button>
+      </div>
+    </div>
+  </ng-template>
 
- 
+
 
 
 </div>

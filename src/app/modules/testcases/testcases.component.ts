@@ -20,7 +20,7 @@ export class TestcasesComponent implements OnInit {
     return true;
   }
 
-  testcases: Testcase[] = [];
+  testcases: Testcase[];
 
   constructor(
     public themeService: ThemeService,
