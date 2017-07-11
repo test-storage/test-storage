@@ -28,7 +28,11 @@ const TestcaseSchema = new mongoose.Schema({
   enabled: { type: Boolean },
   isAutomated: { type: Boolean },
   estimate: { type: Number },
-  status: { type: String, default: 'created' }
+  status: {
+    type: String,
+    enum: ['CREATED', 'APPROVED', 'REJECTED', 'ARCHIEVED'],
+    default: 'CREATED'
+  }
 });
 
 const Testcase = mongoose.model('Testcase', TestcaseSchema);

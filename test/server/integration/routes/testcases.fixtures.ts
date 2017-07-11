@@ -35,7 +35,7 @@ const editedTestCaseFixture: Testcase = {
     'estimate': 15,
     'enabled': true,
     'isAutomated': true,
-    'status': 'approved'
+    'status': 'APPROVED'
 };
 
 export { testcaseFixture, editedTestCaseFixture }
