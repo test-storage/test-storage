@@ -6,7 +6,12 @@
         </a>
   </div>
   <ul>
-    <li [routerLinkActive]="['active']"><a routerLink="/dashboard"><i class="fa fa-dashboard"></i><span class="sidebar-title">{{ 'SIDEBAR.DASHBOARD' | translate }}</span><!--<span class="fa fa-chevron-down"></span>--></a>
+    <li [routerLinkActive]="['active']">
+      <a routerLink="/dashboard">
+        <i class="fa fa-dashboard"></i>
+        <span class="sidebar-title">{{ 'SIDEBAR.DASHBOARD' | translate }}</span>
+        <!--<span class="fa fa-chevron-down"></span>-->
+      </a>
       <!-- <li class="dropdown" class="dropdown-toggle" data-toggle="dropdown">-->
       <!--
       <ul class="dropdown-menu" role="menu">
@@ -19,12 +24,37 @@
       </ul>
       -->
     </li>
-    <li [routerLinkActive]="['active']"><a routerLink="/projects"><i class="fa fa-folder-o"></i><span class="sidebar-title">{{ 'SIDEBAR.PROJECTS' | translate }}</span></a></li>
-    <li [routerLinkActive]="['active']"><a routerLink="/testcases"><i class="fa fa-inbox"></i><span class="sidebar-title">{{ 'SIDEBAR.TESTCASES' | translate }}</span><!--<span class="label label-primary">1234</span>--></a></li>
-    <li [routerLinkActive]="['active']"><a routerLink="/executions"><i class="fa fa-history"></i><span class="sidebar-title">{{ 'SIDEBAR.TEST_EXECUTIONS' | translate }}</span></a></li>
-    <li [routerLinkActive]="['active']"><a routerLink="/reports"><i class="fa fa-bar-chart-o"></i><span class="sidebar-title">{{ 'SIDEBAR.REPORTS' | translate }}</span></a></li>
-  </ul>
-  <ul>
-    <li id="settings" [routerLinkActive]="['active']"><a routerLink="/projects/:id/settings"><i class="fa fa-cog"></i><span class="sidebar-title">{{ 'SIDEBAR.PROJECT_SETTINGS' | translate }}</span></a></li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+      <a routerLink="/projects">
+        <i class="fa fa-folder-o"></i>
+        <span class="sidebar-title">{{ 'SIDEBAR.PROJECTS' | translate }}</span>
+      </a>
+    </li>
+    <li [routerLinkActive]="['active']">
+      <a routerLink="/testcases">
+        <i class="fa fa-inbox"></i>
+        <span class="sidebar-title">{{ 'SIDEBAR.TESTCASES' | translate }}</span>
+        <!--<span class="label label-primary">1234</span>-->
+      </a>
+    </li>
+    <li [routerLinkActive]="['active']">
+      <a routerLink="/executions">
+        <i class="fa fa-history"></i>
+        <span class="sidebar-title">{{ 'SIDEBAR.TEST_EXECUTIONS' | translate }}</span>
+      </a>
+    </li>
+    <li [routerLinkActive]="['active']">
+      <a routerLink="/reports">
+        <i class="fa fa-bar-chart-o"></i>
+        <span class="sidebar-title">{{ 'SIDEBAR.REPORTS' | translate }}</span>
+      </a>
+    </li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" id="settings">
+      <a routerLink="/projects/:id/settings">
+        <!-- TODO [routerLink]="['./projects/', project._id, '/settings']"  get project id from app settings -->
+        <i class="fa fa-cog"></i>
+        <span class="sidebar-title">{{ 'SIDEBAR.PROJECT_SETTINGS' | translate }}</span>
+      </a>
+    </li>
   </ul>
 </div>
