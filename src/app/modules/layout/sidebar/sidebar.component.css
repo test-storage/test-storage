@@ -1,3 +1,19 @@
+/* BLUE THEME */
+
+
+/*
+.sidebar {
+    background: #414864;
+}
+
+.brand-wrapper {
+    background: #4f5A7A;
+}
+*/
+
+
+/* end blue theme */
+
 .sidebar {
     width: 220px;
     position: fixed;
@@ -5,7 +21,6 @@
     height: 100%;
     color: #FFF;
     background: #1b1e24;
-    /*#293846;*/
     z-index: 10;
 }
 
@@ -13,18 +28,14 @@
     text-align: center;
     padding-top: 5px;
     padding-bottom: 6px;
+    background: #22262e;
 }
 
 .brand {
     width: 220px;
-    height: 56px;
-    border-bottom: 1px solid #1b1e24;
-    /*#e7e7e7;*/
+    height: 55px;
     text-decoration: none;
-    /*background-color: #EAEAEA !important;*/
-    background-color: #1b1e24 !important;
     color: #FFF;
-    /*#6f7b8a;*/
 }
 
 .brand .logo-text {
@@ -50,7 +61,6 @@
 }
 
 ul {
-    /* normalize */
     -webkit-padding-start: 0px;
     margin: 0;
     padding: 0;
@@ -99,7 +109,8 @@ ul li.active>a {
 }
 
 .sidebar-mini .brand-wrapper {
-    height: 53px;
+    height: 56px;
+    background: #1b1e24;
 }
 
 .sidebar-mini .brand span {
@@ -136,7 +147,6 @@ ul li.active>a {
 .sidebar>li>.dropdown-menu {
     margin-top: -50px;
     margin-left: 220px;
-    /*140*/
     background-color: #333;
 }
 
