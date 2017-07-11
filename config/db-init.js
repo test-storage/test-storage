@@ -28,6 +28,7 @@ db.users.insertOne(
             company: "Example LLC"
         },
         social: {
+            skype: "#",
             facebook: "#",
             twitter: "#",
             linkedin: "#",

@@ -12,6 +12,7 @@ const modelFixture: User = {
         'company': faker.company.companyName()
     },
     'social': {
+        'skype': faker.internet.userName(),
         'github': faker.internet.url(),
         'facebook': faker.internet.url(),
         'twitter': faker.internet.url(),
@@ -29,6 +30,7 @@ const modelFixtureEdited: User = {
         'title': faker.name.jobTitle()
     },
     'social': {
+        'skype': faker.internet.userName(),
         'github': faker.internet.url(),
         'facebook': faker.internet.url(),
         'twitter': faker.internet.url(),

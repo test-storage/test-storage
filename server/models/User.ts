@@ -33,6 +33,7 @@ const UserSchema = new mongoose.Schema({
         company: String
     },
     social: {
+        skype: String,
         github: String,
         facebook: String,
         twitter: String,

@@ -11,6 +11,7 @@ export class User {
     company?: string;
   };
   social?: {
+    skype?: string,
     github?: string,
     facebook?: string,
     twitter?: string,
