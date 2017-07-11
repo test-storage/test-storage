@@ -24,6 +24,11 @@
     z-index: 10;
 }
 
+#settings {
+    position: absolute;
+    bottom: 0;
+}
+
 .brand-wrapper {
     text-align: center;
     padding-top: 5px;
@@ -53,6 +58,7 @@
 .fa-dashboard,
 .fa-folder-o,
 .fa-bar-chart-o,
+.fa-cog,
 .fa-inbox,
 .fa-history {
     font-size: 14px;
@@ -128,6 +134,7 @@ ul li.active>a {
 .sidebar-mini .fa-dashboard,
 .sidebar-mini .fa-bar-chart-o,
 .sidebar-mini .fa-inbox,
+.sidebar-mini .fa-cog,
 .sidebar-mini .fa-history,
 .sidebar-mini .fa-folder-o {
     display: inline-block;

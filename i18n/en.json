@@ -17,7 +17,8 @@
         "PROJECTS": "Projects",
         "TESTCASES": "Test Сases",
         "TEST_EXECUTIONS": "Test Executions",
-        "REPORTS": "Reports"
+        "REPORTS": "Reports",
+        "PROJECT_SETTINGS": "Project Settings"
     },
     "LOGINPAGE": {
         "LOGIN": "Login",

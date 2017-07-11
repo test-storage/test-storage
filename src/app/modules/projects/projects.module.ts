@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ProjectsComponent } from './projects.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { ProjectSettingsComponent } from './project-settings/project-settings.component';
 import { ProjectService } from '../../services/project/project.service';
 import { CreateProjectComponent } from './create-project/create-project.component';
 
@@ -21,6 +22,11 @@ const projectsRoutes: Routes = [
   {
     path: ':id',
     component: ProjectDetailsComponent
+  },
+  {
+    path: ':id/settings',
+    component: ProjectSettingsComponent,
+    pathMatch: 'full'
   }
 ];
 
@@ -33,6 +39,7 @@ const projectsRoutes: Routes = [
   declarations: [
     ProjectsComponent,
     ProjectDetailsComponent,
+    ProjectSettingsComponent,
     CreateProjectComponent
   ],
   providers: [

@@ -24,4 +24,7 @@
     <li [routerLinkActive]="['active']"><a routerLink="/executions"><i class="fa fa-history"></i><span class="sidebar-title">{{ 'SIDEBAR.TEST_EXECUTIONS' | translate }}</span></a></li>
     <li [routerLinkActive]="['active']"><a routerLink="/reports"><i class="fa fa-bar-chart-o"></i><span class="sidebar-title">{{ 'SIDEBAR.REPORTS' | translate }}</span></a></li>
   </ul>
+  <ul>
+    <li id="settings" [routerLinkActive]="['active']"><a routerLink="/projects/:id/settings"><i class="fa fa-cog"></i><span class="sidebar-title">{{ 'SIDEBAR.PROJECT_SETTINGS' | translate }}</span></a></li>
+  </ul>
 </div>

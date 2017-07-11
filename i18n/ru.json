@@ -17,7 +17,8 @@
         "PROJECTS": "Проекты",
         "TESTCASES": "Тест Кейсы",
         "TEST_EXECUTIONS": "Тест Прогоны",
-        "REPORTS": "Отчеты"
+        "REPORTS": "Отчеты",
+        "PROJECT_SETTINGS": "Настройки Проекта"
     },
     "LOGINPAGE": {
         "LOGIN": "Вход",
