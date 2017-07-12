@@ -61,6 +61,7 @@ describe('/users', function () {
                 expect(res.body).to.have.deep.property('work', modelFixture.work);
                 expect(res.body).to.have.deep.property('social', modelFixture.social);
                 expect(res.body).to.have.deep.property('userGroups', modelFixture.userGroups);
+                expect(res.body).to.have.deep.property('projects', modelFixture.projects);
                 done()
             });
     });
@@ -83,7 +84,8 @@ describe('/users', function () {
                     'email',
                     'work',
                     'title',
-                    'userGroups'
+                    'userGroups',
+                    'projects'
                 );
                 done()
             });
@@ -107,6 +109,7 @@ describe('/users', function () {
                 expect(res.body).to.have.deep.property('work', modelFixtureEdited.work);
                 expect(res.body).to.have.deep.property('social', modelFixtureEdited.social);
                 expect(res.body).to.have.deep.property('userGroups', modelFixtureEdited.userGroups);
+                expect(res.body).to.have.deep.property('projects', modelFixtureEdited.projects);
                 done()
             });
     });
@@ -142,7 +145,8 @@ describe('/users', function () {
                     'email',
                     'work',
                     'title',
-                    'userGroups'
+                    'userGroups',
+                    'projects'
                 );
                 done()
             });

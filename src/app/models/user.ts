@@ -20,6 +20,7 @@ export class User {
     vk?: string
   }
   userGroups: Array<string>;
+  projects?: Array<string>;
   created?: string;
   updated?: string;
   createdBy?: string;

@@ -18,7 +18,8 @@ const modelFixture: User = {
         'twitter': faker.internet.url(),
         'linkedin': faker.internet.url()
     },
-    'userGroups': [faker.random.uuid(), faker.random.uuid()]
+    'userGroups': [faker.random.uuid(), faker.random.uuid()],
+    'projects': [faker.random.uuid(), faker.random.uuid(), faker.random.uuid()]
 };
 
 const modelFixtureEdited: User = {
@@ -36,7 +37,8 @@ const modelFixtureEdited: User = {
         'twitter': faker.internet.url(),
         'linkedin': faker.internet.url()
     },
-    'userGroups': [faker.random.uuid(), faker.random.uuid(), faker.random.uuid()]
+    'userGroups': [faker.random.uuid(), faker.random.uuid(), faker.random.uuid()],
+    'projects': [faker.random.uuid(), faker.random.uuid(), faker.random.uuid()]
 };
 
 export { modelFixture, modelFixtureEdited }

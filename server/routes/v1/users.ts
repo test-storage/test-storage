@@ -161,6 +161,7 @@ export class Users {
                 user.work = req.body.work;
                 user.social = req.body.social;
                 user.userGroups = req.body.userGroups;
+                user.projects = req.body.projects;
                 user.updated = Date.now();
 
                 user.save(function (err, user, count) {

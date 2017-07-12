@@ -42,6 +42,7 @@ const UserSchema = new mongoose.Schema({
         vk: String
     },
     userGroups: Array,
+    projects: Array,
     created: { type: Date, required: true, default: Date.now },
     updated: { type: Date, required: true, default: Date.now },
     createdBy: String,
