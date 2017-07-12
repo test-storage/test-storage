@@ -24,7 +24,7 @@
         <td>{{ user.updated }}</td>
         <td>{{ user.createdBy }}</td>
         <td>{{ user.updatedBy }}</td>
-        <td><a (click)="deleteUser(user._id);">Delete</a>
+        <td><a *ngIf="user.email != 'admin';" (click)="deleteUser(user._id);">Delete</a>
       </tr>
     </table>
 
