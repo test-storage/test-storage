@@ -1,5 +1,6 @@
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { pageTransition } from '../../animations';
+
 import { Project } from '../../models/project';
 import { ProjectService } from '../../services/project/project.service';
 import { ThemeService } from '../../services/theme/theme.service';
