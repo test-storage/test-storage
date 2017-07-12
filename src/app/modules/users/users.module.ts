@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { UsersComponent } from './users.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
@@ -28,7 +29,8 @@ const usersRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(usersRoutes),
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   declarations: [
     UsersComponent,
