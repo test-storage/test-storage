@@ -1,3 +1,7 @@
 :host {
     display: block;
 }
+
+#wrapper {
+    padding: 20px;
+}
