@@ -44,6 +44,26 @@ export class UserService {
             .catch(this.handleError);
     }
 
+    public createUser(user: User): Observable<Number> {
+        const body = JSON.stringify(user);
+
+        contentHeaders.set('x-access-token', this.authenticationService.token);
+        const options = new RequestOptions({ headers: contentHeaders });
+
+        return this.http.post(this.apiPath, body, options)
+            .map((response: Response) => response.status)
+            .catch(this.handleError);
+    }
+
+    public deleteUser(id: string): Observable<Number> {
+        contentHeaders.set('x-access-token', this.authenticationService.token);
+        const options = new RequestOptions({ headers: contentHeaders });
+
+        return this.http.delete(this.apiPath + '/' + id, options)
+            .map((response: Response) => response.status)
+            .catch(this.handleError);
+    }
+
 
 
     private handleError(error: Response) {

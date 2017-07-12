@@ -47,6 +47,10 @@ const layoutRoutes: Routes = [
       {
         path: 'reports',
         loadChildren: './../../modules/reports/reports.module#ReportsModule'
+      },
+      {
+        path: 'users',
+        loadChildren: './../../modules/users/users.module#UsersModule'
       }
     ],
     component: LayoutComponent,
