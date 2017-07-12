@@ -1,3 +1,28 @@
-<p>
-  user-details works!
-</p>
+<div id="wrapper" *ngIf="user">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Email</th>
+        <th>Projects</th>
+        <th>Created</th>
+        <th>Updated</th>
+        <th>Created By</th>
+        <th>Updated By</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tr>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.projects }}</td>
+      <td>{{ user.created }}</td>
+      <td>{{ user.updated }}</td>
+      <td>{{ user.createdBy }}</td>
+      <td>{{ user.updatedBy }}</td>
+      <td><a *ngIf="user.email != 'admin';" (click)="deleteUser(user._id);">Delete</a>
+    </tr>
+  </table>
+</div>

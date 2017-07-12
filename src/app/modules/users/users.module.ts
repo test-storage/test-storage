@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsersComponent } from './users.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserService } from '../../services/user/user.service';
+import { UsersCreateComponent } from './users-create/users-create.component';
 
 
 const usersRoutes: Routes = [
@@ -22,7 +23,8 @@ const usersRoutes: Routes = [
   ],
   declarations: [
     UsersComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    UsersCreateComponent
   ],
   providers: [UserService]
 })
