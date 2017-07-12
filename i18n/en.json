@@ -1,18 +1,12 @@
 {
     "SETTINGS": {
-        "CHOOSE_LANGUAGE": "Choose language"
+        "CHOOSE_LANGUAGE": "Choose language",
+        "THEME": "Theme",
+        "THEME_BRIGHT": "Bright",
+        "THEME_DARK": "Dark"
     },
     "ERROR": {
         "SERVER_ERROR": "Server Error"
-    },
-    "LOGINPAGE": {
-        "LOGIN": "Login",
-        "USERNAME": "Username",
-        "PASSWORD": "Password",
-        "LOGIN_REQUIRED": "Username is required",
-        "PASSWORD_REQUIRED": "Password is required",
-        "LOGIN_BUTTON": "Login",
-        "INVALID_CREDENTIALS": "Username or password is incorrect"
     },
     "HEADER": {
         "USER_PROFILE": "User Profile",
@@ -23,6 +17,24 @@
         "PROJECTS": "Projects",
         "TESTCASES": "Test Сases",
         "TEST_EXECUTIONS": "Test Executions",
-        "REPORTS": "Reports"
+        "REPORTS": "Reports",
+        "PROJECT_SETTINGS": "Project Settings"
+    },
+    "LOGINPAGE": {
+        "LOGIN": "Login",
+        "USERNAME": "Username",
+        "PASSWORD": "Password",
+        "LOGIN_REQUIRED": "Username is required",
+        "PASSWORD_REQUIRED": "Password is required",
+        "LOGIN_BUTTON": "Login",
+        "INVALID_CREDENTIALS": "Username or password is incorrect"
+    },
+    "USERPROFILEPAGE": {
+        "REGISTERED": "Registered",
+        "EMAIL": "Email",
+        "PHONE_NUMBER": "Phone Number",
+        "COMPANY": "Company",
+        "WORK_INFORMATION": "Work Information",
+        "PERSONAL_INFORMATION": "Personal Information"
     }
 }

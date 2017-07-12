@@ -73,13 +73,32 @@ class Auth {
     }
   }
 
+  getUserId(req, res): string {
+
+    const token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];
+
+    if (token) {
+      try {
+        const decoded = jwt.decode(token, secret(), { algorithm: 'HS256' });
+        return decoded.userId;
+      } catch (err) {
+        res.status(500);
+        res.json({
+          'status': 500,
+          'message': 'Oops something went wrong',
+          'error': '' + err
+        });
+      }
+    }
+  }
 
   // private method
   private genToken(user) {
     const expires = this.expiresIn(1); // 1 days
     const token = jwt.sign({
       exp: expires,
-      username: user[0].email
+      username: user[0].email,
+      userId: user[0]._id
     }, secret());
 
     return {

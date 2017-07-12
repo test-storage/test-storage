@@ -8,7 +8,8 @@ const TestcaseSchema = new mongoose.Schema({
       return crypto.randomBytes(16).toString('hex');
     }
   },
-  key: { type: String, unique: true },
+  // key: { type: String, unique: true }, // Temporary off
+  projectId: String,
   testSuiteId: String,
   priority: Number,
   order: Number,
@@ -27,7 +28,11 @@ const TestcaseSchema = new mongoose.Schema({
   enabled: { type: Boolean },
   isAutomated: { type: Boolean },
   estimate: { type: Number },
-  status: { type: String, default: 'created' }
+  status: {
+    type: String,
+    enum: ['CREATED', 'APPROVED', 'REJECTED', 'ARCHIEVED'],
+    default: 'CREATED'
+  }
 });
 
 const Testcase = mongoose.model('Testcase', TestcaseSchema);

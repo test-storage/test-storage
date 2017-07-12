@@ -1,10 +1,10 @@
 import * as mongoose from 'mongoose';
-import { Group } from '../../models/Group';
+import { UserGroup } from '../../models/UserGroup';
 
 import * as util from 'util';
 import { Validator } from '../../middlewares/validate';
 
-export class Groups {
+export class UserGroups {
 
   private validator: Validator;
 
@@ -13,7 +13,7 @@ export class Groups {
   }
 
   /*
-   * Get all groups
+   * Get all user groups
    *
    */
   getAll(req, res) {
@@ -23,7 +23,7 @@ export class Groups {
     const fields = this.validator.validateFields(req, res);
     const offset = this.validator.validateOffset(req, res);
 
-    Group.
+    UserGroup.
       find({}).
       limit(limit).
       select(fields).
@@ -50,7 +50,7 @@ export class Groups {
   }
 
   /*
-   * Get single group
+   * Get single user group
    *
    */
 
@@ -61,7 +61,7 @@ export class Groups {
     this.validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Group.
+    UserGroup.
       findOne({ '_id': req.params.id }).
       select(fields).
       exec(
@@ -86,13 +86,13 @@ export class Groups {
   }
 
   /*
-   * Create group
+   * Create user group
    *
    */
 
   create(req, res) {
     // TODO create body check
-    Group.
+    UserGroup.
       create(req.body,
       function (err, group) {
 
@@ -116,7 +116,7 @@ export class Groups {
   }
 
   /*
-   * Update group
+   * Update user group
    *
    */
 
@@ -152,7 +152,7 @@ export class Groups {
           return;
         } */
     // TODO need security check (user input) for update
-    Group.
+    UserGroup.
       findOne({ '_id': req.params.id }).
       exec(
       function (err, group) {
@@ -187,7 +187,7 @@ export class Groups {
   }
 
   /*
-   * delete group
+   * delete user group
    *
    */
 
@@ -195,7 +195,7 @@ export class Groups {
     // check :id param
     this.validator.isPathValid(req, res);
 
-    Group.
+    UserGroup.
       findOneAndRemove({ '_id': req.params.id }).
       exec(
       function (err, group) {

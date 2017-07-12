@@ -1,5 +1,106 @@
+.notifications .header, .notifications .footer {
+    text-align: center;
+    padding: 5px;
+}
+
+.notifications .header {
+    border-bottom: 1px solid #eee;
+    font-size: 11px;
+    color: #a2acb3 !important;
+    text-transform: uppercase
+}
+
+.notifications .footer {
+    border-top: 1px solid #eee;
+    font-size: 12px;
+}
+.notifications .footer a {
+    text-decoration: none;
+}
+
+.notifications .fa-2x {
+    padding-right: 20px;
+}
+
+
 ul {
     padding: 0;
     margin: 0;
     list-style: none;
+}
+
+.notifications li a {
+    display: block;
+    padding: 20px;
+    border-bottom: 1px solid #f5f5f5;
+    color: #616161;
+    line-height: 1.45;
+    text-decoration: none;
+    /* font-size: 14px; */
+}
+
+.notifications li a:hover {
+    background-color: #EAEAEA;
+}
+
+.notifications .notification {
+    display: flex;
+    flex-direction: row;
+}
+
+.notifications .notification h6 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.notifications .notification span {
+    font-size: 12px;
+    line-height: 1.35;
+    color: #bdbdbd;
+}
+
+/* DARK THEME */
+
+.notifications.dark-theme .header, 
+.notifications.dark-theme .footer {
+    background: #283242;
+    color: #FFF;
+}
+
+.notifications.dark-theme ul li {
+    background: #283242;
+    color: #FFF;
+}
+
+.notifications.dark-theme .header, 
+.notifications.dark-theme li a {
+    border-bottom: 1px solid #303C4D;
+}
+
+.notifications.dark-theme li a:hover {
+    background-color: #1B2531;
+}
+
+
+
+.notifications.dark-theme li a {
+    color: #fff;
+}
+
+.notifications.dark-theme .footer {
+    border-top: 1px solid #303C4D;
+}
+
+/* icons */
+
+.fa-envelope {
+    color: #f9d00d;
+}
+
+.fa-check-circle {
+    color: #81c04d;
+}
+
+.fa-list-alt {
+    color: #03a9f4;;
 }

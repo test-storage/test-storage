@@ -9,7 +9,7 @@ const ProjectSchema = new mongoose.Schema({
   },
   name: { type: String, required: true },
   description: String,
-  enabled: Boolean,
+  enabled: { type: Boolean, default: true },
   testcases: Array,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },

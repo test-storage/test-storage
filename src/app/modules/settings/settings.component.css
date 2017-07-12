@@ -5,3 +5,7 @@
 #wrapper {
   height: 940px;
 }
+
+#wrapper.dark-theme select {
+  color: #333;
+}

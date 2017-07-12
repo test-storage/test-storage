@@ -163,6 +163,7 @@ export class Testcases {
           // TODO creation logic
           // + add id, created, createdBy and etc
         }
+        testcase.projectId = req.body.projectId;
         testcase.testSuiteId = req.body.testSuiteId;
         testcase.priority = req.body.priority;
         testcase.order = req.body.order;
@@ -232,6 +233,47 @@ export class Testcases {
             set('Content-Type', 'application/json').
             status(204)
             .json(true);
+        }
+      });
+  }
+
+
+  /*
+   * Get all testcases by project id
+   *
+   */
+  getAllTestcasesByProjectId(req, res) {
+
+    // check limit, offset, fields param
+    const limit = this.validator.validateLimit(req, res);
+    const fields = this.validator.validateFields(req, res);
+    const offset = this.validator.validateOffset(req, res);
+
+    // check :id param
+    this.validator.isPathValid(req, res);
+
+    Testcase.
+      find({ 'projectId': req.params.id }).
+      limit(limit).
+      select(fields).
+      skip(offset).
+      exec(
+      function (err, testcases) {
+
+        if (err) {
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(200).
+            json(testcases);
         }
       });
   }

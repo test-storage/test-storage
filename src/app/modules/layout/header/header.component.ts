@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthGuard, AuthenticationService } from './../../../services/auth/index';
+import { ThemeService } from './../../../services/theme/theme.service';
 
 @Component({
     selector: 'app-header',
@@ -11,11 +12,11 @@ export class HeaderComponent implements OnInit {
 
     user: any = {};
     private sidebarCollapsed = true;
-    public isDropdownDisplayed = false;
-    public isNotificationsDisplayed = false;
+    public shown = '';
     @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(
+        public themeService: ThemeService,
         private router: Router,
         private authGuard: AuthGuard,
         private authenticationService: AuthenticationService
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.loadUserData();
     }
+
 
     private loadUserData() {
         const data = JSON.parse(localStorage.getItem('currentUser'));
@@ -38,23 +40,6 @@ export class HeaderComponent implements OnInit {
         } else {
             this.sidebarCollapsed = true;
             this.notify.emit(true);
-        }
-
-    }
-
-    toggleDropdown() {
-        if (this.isDropdownDisplayed) {
-            this.isDropdownDisplayed = false;
-        } else {
-            this.isDropdownDisplayed = true;
-        }
-    }
-
-    toggleNotifications() {
-        if (this.isNotificationsDisplayed) {
-            this.isNotificationsDisplayed = false;
-        } else {
-            this.isNotificationsDisplayed = true;
         }
     }
 

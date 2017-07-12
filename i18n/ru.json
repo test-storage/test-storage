@@ -1,18 +1,12 @@
 {
     "SETTINGS": {
-        "CHOOSE_LANGUAGE": "Выберите язык"
+        "CHOOSE_LANGUAGE": "Выберите язык",
+        "THEME": "Тема",
+        "THEME_BRIGHT": "Светлая",
+        "THEME_DARK": "Темная"
     },
     "ERROR": {
         "SERVER_ERROR": "Ошибка Сервера"
-    },
-    "LOGINPAGE": {
-        "LOGIN": "Вход",
-        "USERNAME": "Пользователь",
-        "PASSWORD": "Пароль",
-        "LOGIN_REQUIRED": "Обязательное поле Пользователь",
-        "PASSWORD_REQUIRED": "Обязательное поле Пароль",
-        "LOGIN_BUTTON": "Войти",
-        "INVALID_CREDENTIALS": "Логин или пароль не верный"
     },
     "HEADER": {
         "USER_PROFILE": "Профиль пользователя",
@@ -23,6 +17,24 @@
         "PROJECTS": "Проекты",
         "TESTCASES": "Тест Кейсы",
         "TEST_EXECUTIONS": "Тест Прогоны",
-        "REPORTS": "Отчеты"
+        "REPORTS": "Отчеты",
+        "PROJECT_SETTINGS": "Настройки Проекта"
+    },
+    "LOGINPAGE": {
+        "LOGIN": "Вход",
+        "USERNAME": "Пользователь",
+        "PASSWORD": "Пароль",
+        "LOGIN_REQUIRED": "Обязательное поле Пользователь",
+        "PASSWORD_REQUIRED": "Обязательное поле Пароль",
+        "LOGIN_BUTTON": "Войти",
+        "INVALID_CREDENTIALS": "Логин или пароль не верный"
+    },
+    "USERPROFILEPAGE": {
+        "REGISTERED": "Зарегистрирован",
+        "EMAIL": "Email",
+        "PHONE_NUMBER": "Телефонный Номер",
+        "COMPANY": "Компания",
+        "WORK_INFORMATION": "Рабочая Информация",
+        "PERSONAL_INFORMATION": "Персональная Информация"
     }
 }

@@ -1,16 +1,45 @@
-<div id="wrapper" *ngIf="projects">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Project Name</th>
-        <th>Description</th>
-        <th>Enabled</th>
-      </tr>
-    </thead>
-    <tr *ngFor="let project of projects">
-      <td><a routerLink="project._id">{{ project.name }}</a></td>
-      <td>{{ project.description }}</td>
-      <td>{{ project.enabled }}</td>
-    </tr>
-  </table>
-</div>
+<div *ngIf="projects" id="wrapper" [class.dark-theme]="themeService.theme">
+
+  <div *ngIf="projects.length > 0; then existProjects else noExistProjects"></div>
+
+  <ng-template #existProjects>
+    <div class="projects-wrapper" *ngIf="projects.length > 0;">
+
+      <div class="project-card card" *ngFor="let project of projects">
+        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15d2e4c529b%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15d2e4c529b%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22117.75%22%20y%3D%2297.3546875%22%3E318x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title">{{ project.name }}</h4>
+          <p class="card-text">{{ project.description }}</p>
+          <a [routerLink]="['./', project._id]" class="card-button btn btn-primary">Edit</a>
+        </div>
+      </div>
+
+      <div class="project-card card">
+        <div class="card-block">
+          <h1><i class="fa fa-3x fa-plus"></i></h1>
+          <br><br>
+          <a [routerLink]="['./create']" class="card-button btn btn-primary">Create Project</a>
+        </div>
+      </div>
+
+     
+
+      </div>
+  </ng-template>
+
+
+  <ng-template #noExistProjects>
+    <div class="noexist-wrapper">
+      <div class="no-project">
+        <img src="assets/add-project.png">
+        <h4>You have not created Projects yet.</h4>
+        <p class="tips">Tap the 'Create Project' button to get started</p>
+        <a routerLink="create" class="btn btn-primary">Create Project</a>
+      </div>
+    </div>
+  </ng-template>
+
+
+
+
+  </div>

@@ -1,4 +1,16 @@
 # Change Log
+
+## 0.22.0 (July 12, 2017)
+- Projects UI: ([@pumano](https://github.com/pumano) in [#51](https://github.com/test-storage/test-storage/pull/51))
+- Notifications UI
+- Profile UI
+- i18n support for multiple pages
+- Themes (bright / dark) 
+- /users/me API
+- Multiple API changes
+- Default routing root changed from / to /dashboard
+- bootstrap updated to 4
+
 ## 0.21.5 (June 28, 2017)
 - Notifications API implemented: ([@pumano](https://github.com/pumano) in [#50](https://github.com/test-storage/test-storage/pull/50))
 - Fixes for production deployment

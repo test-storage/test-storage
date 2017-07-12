@@ -13,15 +13,18 @@ var token = '';
 var entityId = '';
 
 
-describe('/users', function () {
+before(function (done) {
 
     it('login', function (done) {
-
         authenticate(function (restoken) {
             token = restoken;
             done();
         });
     });
+    done();
+});
+
+describe('/users', function () {
 
     it('POST /users respond with status 201 and JSON', function (done) {
 
@@ -40,7 +43,7 @@ describe('/users', function () {
             });
     });
 
-    it('GET /users/:id respond with JSON', function (done) {
+    it('GET /users/:id respond with status 200 and JSON', function (done) {
 
         request(app)
             .get('/api/v1/users/' + entityId)
@@ -55,13 +58,15 @@ describe('/users', function () {
                 expect(res.body).to.have.deep.property('lastName', modelFixture.lastName);
                 expect(res.body).to.have.deep.property('email', modelFixture.email);
                 expect(res.body).to.not.have.deep.property('password');
-                expect(res.body).to.have.deep.property('title', modelFixture.title);
-                expect(res.body).to.have.deep.property('groups', modelFixture.groups);
+                expect(res.body).to.have.deep.property('work', modelFixture.work);
+                expect(res.body).to.have.deep.property('social', modelFixture.social);
+                expect(res.body).to.have.deep.property('userGroups', modelFixture.userGroups);
+                expect(res.body).to.have.deep.property('projects', modelFixture.projects);
                 done()
             });
     });
 
-    it('GET /users respond with JSON', function (done) {
+    it('GET /users respond with status 200 and JSON', function (done) {
 
         request(app)
             .get('/api/v1/users')
@@ -77,14 +82,16 @@ describe('/users', function () {
                     'firstName',
                     'lastName',
                     'email',
+                    'work',
                     'title',
-                    'groups'
+                    'userGroups',
+                    'projects'
                 );
                 done()
             });
     });
 
-    it('PUT /users respond with JSON', function (done) {
+    it('PUT /users respond with status 200 and JSON', function (done) {
 
         request(app)
             .put('/api/v1/users/' + entityId)
@@ -99,14 +106,16 @@ describe('/users', function () {
                 expect(res.body).to.have.deep.property('lastName', modelFixtureEdited.lastName);
                 expect(res.body).to.have.deep.property('email', modelFixtureEdited.email);
                 expect(res.body).to.not.have.deep.property('password');
-                expect(res.body).to.have.deep.property('title', modelFixtureEdited.title);
-                expect(res.body).to.have.deep.property('groups', modelFixtureEdited.groups);
+                expect(res.body).to.have.deep.property('work', modelFixtureEdited.work);
+                expect(res.body).to.have.deep.property('social', modelFixtureEdited.social);
+                expect(res.body).to.have.deep.property('userGroups', modelFixtureEdited.userGroups);
+                expect(res.body).to.have.deep.property('projects', modelFixtureEdited.projects);
                 done()
             });
     });
 
 
-    it('DELETE /users/:id respond with JSON', function (done) {
+    it('DELETE /users/:id respond with status 204 and JSON', function (done) {
 
         request(app)
             .delete('/api/v1/users/' + entityId)
@@ -114,6 +123,31 @@ describe('/users', function () {
             .set('x-access-token', token)
             .end(function (err, res) {
                 expect(res.status).to.equal(204);
+                done()
+            });
+    });
+
+    it('GET /users/me respond with status 200 and JSON', function (done) {
+
+        request(app)
+            .get('/api/v1/users/me')
+            .set('Accept', 'application/json')
+            .set('x-access-token', token)
+            .end(function (err, res) {
+                expect(res.status).to.equal(200);
+                expect(res).to.have.header('content-type', /json/);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.not.have.property('password');
+                expect(res.body).to.have.any.keys(
+                    '_id',
+                    'firstName',
+                    'lastName',
+                    'email',
+                    'work',
+                    'title',
+                    'userGroups',
+                    'projects'
+                );
                 done()
             });
     });

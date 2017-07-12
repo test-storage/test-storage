@@ -4,6 +4,7 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthenticationService } from '../../services/auth/authentication.service';
+import { ThemeService } from '../../services/theme/theme.service';
 
 import { TestcasesComponent } from './testcases.component';
 import { TestcaseService } from '../../services/testcase/testcase.service';
@@ -23,6 +24,7 @@ describe('TestcasesComponent', () => {
       imports: [RouterModule, BrowserAnimationsModule],
       declarations: [TestcasesComponent, TestsuitesTreeComponent],
       providers: [
+        ThemeService,
         Http,
         AuthenticationService,
         MockBackend,

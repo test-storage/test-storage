@@ -4,8 +4,23 @@ export class User {
   password: string;
   firstName: string;
   lastName: string;
-  title?: string;
-  groups: Array<string>;
+  photo?: string;
+  work: {
+    title: string;
+    phone?: string;
+    company?: string;
+  };
+  social?: {
+    skype?: string,
+    github?: string,
+    facebook?: string,
+    twitter?: string,
+    linkedin?: string,
+    instagram?: string,
+    vk?: string
+  }
+  userGroups: Array<string>;
+  projects?: Array<string>;
   created?: string;
   updated?: string;
   createdBy?: string;

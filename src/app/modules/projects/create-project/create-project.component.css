@@ -1,0 +1,13 @@
+:host {
+    display: block;
+}
+
+#wrapper {
+    padding: 20px;
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}

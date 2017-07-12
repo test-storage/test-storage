@@ -7,26 +7,28 @@ const expect = chai.expect;
 
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
-import { modelFixture, modelFixtureEdited } from './groups.fixtures';
+import { modelFixture, modelFixtureEdited } from './users-groups.fixtures';
 
 var token = '';
 var entityId = '';
 
-
-describe('/groups', function () {
+before(function (done) {
 
     it('login', function (done) {
-
         authenticate(function (restoken) {
             token = restoken;
             done();
         });
     });
+    done();
+});
 
-    it('POST /groups respond with status 201 and JSON', function (done) {
+describe('/users/groups', function () {
+
+    it('POST /users/groups respond with status 201 and JSON', function (done) {
 
         request(app)
-            .post('/api/v1/groups')
+            .post('/api/v1/users/groups')
             .set('x-access-token', token)
             .send(modelFixture)
             .end(function (err, res) {
@@ -40,10 +42,10 @@ describe('/groups', function () {
             });
     });
 
-    it('GET /groups/:id respond with JSON', function (done) {
+    it('GET /users/groups/:id respond with JSON', function (done) {
 
         request(app)
-            .get('/api/v1/groups/' + entityId)
+            .get('/api/v1/users/groups/' + entityId)
             .set('Accept', 'application/json')
             .set('x-access-token', token)
             .end(function (err, res) {
@@ -61,10 +63,10 @@ describe('/groups', function () {
             });
     });
 
-    it('GET /groups respond with JSON', function (done) {
+    it('GET /users/groups respond with JSON', function (done) {
 
         request(app)
-            .get('/api/v1/groups')
+            .get('/api/v1/users/groups')
             .set('Accept', 'application/json')
             .set('x-access-token', token)
             .end(function (err, res) {
@@ -84,10 +86,10 @@ describe('/groups', function () {
             });
     });
 
-    it('PUT /groups respond with JSON', function (done) {
+    it('PUT /users/groups respond with JSON', function (done) {
 
         request(app)
-            .put('/api/v1/groups/' + entityId)
+            .put('/api/v1/users/groups/' + entityId)
             .set('x-access-token', token)
             .send(modelFixtureEdited)
             .end(function (err, res) {
@@ -107,10 +109,10 @@ describe('/groups', function () {
     });
 
 
-    it('DELETE /groups/:id respond with JSON', function (done) {
+    it('DELETE /users/groups/:id respond with JSON', function (done) {
 
         request(app)
-            .delete('/api/v1/groups/' + entityId)
+            .delete('/api/v1/users/groups/' + entityId)
             .set('Accept', 'application/json')
             .set('x-access-token', token)
             .end(function (err, res) {

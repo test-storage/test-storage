@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { pageTransition } from '../../animations';
 import { TranslateService } from '@ngx-translate/core';
+import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
   selector: 'app-settings',
@@ -14,7 +15,10 @@ export class SettingsComponent implements OnInit {
     return true;
   }
 
-  constructor(public translate: TranslateService) { }
+  constructor(
+    public themeService: ThemeService,
+    public translate: TranslateService) { }
+
 
   ngOnInit() {
   }

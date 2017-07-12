@@ -2,6 +2,7 @@ import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { pageTransition } from '../../animations';
 import { Project } from '../../models/project';
 import { ProjectService } from '../../services/project/project.service';
+import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
   selector: 'app-projects',
@@ -19,9 +20,11 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   }
 
   private subscription;
-  public projects: Project[] = [];
+  public projects: Project[];
 
-  constructor(private projectService: ProjectService) { }
+  constructor(
+    public themeService: ThemeService,
+    private projectService: ProjectService) { }
 
   ngOnInit() {
     this.getProjects();
@@ -34,7 +37,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   getProjects() {
     this.subscription = this.projectService.getProjects().subscribe(
-      data => this.projects = data, // Array.from(data) in case of non Project type response
+      data => this.projects = data,
       error => console.log(error)
     );
   }

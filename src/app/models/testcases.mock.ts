@@ -3,6 +3,7 @@ export const MockedTestcases: Testcase[] = [
   {
     '_id': '94994594',
     'key': 'TC01',
+    'projectId': '45069c63096d72f89cbf9205d27c985b',
     'testSuiteId': '45069c63096d72f89cbf9205d27c985b',
     'priority': 1,
     'order': 2,
@@ -17,7 +18,7 @@ export const MockedTestcases: Testcase[] = [
     'estimate': 10,
     'enabled': true,
     'isAutomated': false,
-    'status': 'created',
+    'status': 'CREATED',
     'created': '',
     'updated': '',
     'createdBy': '',
@@ -26,6 +27,7 @@ export const MockedTestcases: Testcase[] = [
   {
     '_id': '92e2e2e4994594',
     'key': 'TC02',
+    'projectId': '45069c63096d72f89cbf9205d27c985b',
     'testSuiteId': '11111c63096d72f89cbf9205d27c985b',
     'priority': 1,
     'order': 2,
@@ -40,7 +42,7 @@ export const MockedTestcases: Testcase[] = [
     'estimate': 10,
     'enabled': true,
     'isAutomated': false,
-    'status': 'created',
+    'status': 'CREATED',
     'created': '',
     'updated': '',
     'createdBy': '',

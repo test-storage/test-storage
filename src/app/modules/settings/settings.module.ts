@@ -19,6 +19,8 @@ const settingsRoutes: Routes = [
     TranslateModule
   ],
   declarations: [SettingsComponent],
-  providers: [TranslateService]
+  providers: [
+    TranslateService
+  ]
 })
 export class SettingsModule { }

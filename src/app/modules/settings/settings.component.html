@@ -1,8 +1,20 @@
+<div id="wrapper" [class.dark-theme]="themeService.theme">
 <h1>Settings</h1>
 
 <div>
+
   <label>{{ 'SETTINGS.CHOOSE_LANGUAGE' | translate }}</label>
   <select #langSelect (change)="translate.use(langSelect.value)">
-          <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
-        </select>
+    <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+  </select>
+</div>
+<div>
+  <label>{{ 'SETTINGS.THEME' | translate }}</label>
+  
+  <select #themeSelect (change)="themeService.changeTheme(themeSelect.value);">
+    <option value="BRIGHT" [selected]="themeService.getTheme() == 'BRIGHT'">{{ 'SETTINGS.THEME_BRIGHT' | translate }}</option>
+    <option value="DARK" [selected]="themeService.getTheme() == 'DARK'">{{ 'SETTINGS.THEME_DARK' | translate }}</option>
+  </select>
+  
+</div>
 </div>

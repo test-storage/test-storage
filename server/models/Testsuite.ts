@@ -9,13 +9,20 @@ const TestsuiteSchema = new mongoose.Schema({
     }
   },
   parentId: Number,
-  projectId: { type: String, unique: true },
-  enabled: Boolean,
+  projectId: String,
+  enabled: Boolean, // TODO delete
+  /* TODO
+  status: {
+    enum: ['ACTIVE', 'ARCHIEVED']
+  },
+  */
   name: { type: String, required: true },
   description: String,
+  /* TODO delete if not needed */
   prerequisites: String,
   environment: String,
   testcases: Array,
+  /* end */
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: String,

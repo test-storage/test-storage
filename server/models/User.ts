@@ -26,8 +26,23 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    title: String,
-    groups: Array,
+    photo: String,
+    work: {
+        title: { type: String, required: true },
+        phone: String,
+        company: String
+    },
+    social: {
+        skype: String,
+        github: String,
+        facebook: String,
+        twitter: String,
+        linkedin: String,
+        instagram: String,
+        vk: String
+    },
+    userGroups: Array,
+    projects: Array,
     created: { type: Date, required: true, default: Date.now },
     updated: { type: Date, required: true, default: Date.now },
     createdBy: String,

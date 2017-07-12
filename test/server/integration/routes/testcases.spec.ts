@@ -51,7 +51,8 @@ describe('/testcases', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('testSuiteId', '45069c63096d72f89cbf9205d27c985b');
+                expect(res.body).to.have.deep.property('projectId', testcaseFixture.projectId);
+                expect(res.body).to.have.deep.property('testSuiteId', testcaseFixture.testSuiteId);
                 expect(res.body).to.have.deep.property('priority', 1);
                 expect(res.body).to.have.deep.property('order', 2);
                 expect(res.body).to.have.deep.property('preConditions', 'Preconditions 1');
@@ -65,7 +66,7 @@ describe('/testcases', function () {
                 expect(res.body).to.have.deep.property('estimate', 10);
                 expect(res.body).to.have.deep.property('enabled', true);
                 expect(res.body).to.have.deep.property('isAutomated', true);
-                expect(res.body).to.have.deep.property('status', 'created');
+                expect(res.body).to.have.deep.property('status', 'CREATED');
                 expect(res.body).to.have.deep.property('created');
                 expect(res.body).to.have.deep.property('updated');
                 done();
@@ -85,6 +86,7 @@ describe('/testcases', function () {
                 // expect(res.body[0]).to.have.all.keys(
                 expect(res.body[0]).to.have.any.keys(
                     '_id',
+                    'projectId',
                     'testSuiteId',
                     'priority',
                     'order',
@@ -118,21 +120,22 @@ describe('/testcases', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('testSuiteId', '11111c63096d72f89cbf9205d27c985b');
+                expect(res.body).to.have.deep.property('projectId', editedTestCaseFixture.projectId);
+                expect(res.body).to.have.deep.property('testSuiteId', editedTestCaseFixture.testSuiteId);
                 expect(res.body).to.have.deep.property('priority', 2);
                 expect(res.body).to.have.deep.property('order', 3);
-                expect(res.body).to.have.deep.property('preConditions', 'Preconditions 1 edited');
-                expect(res.body).to.have.deep.property('title', 'Testcase 1 edited');
-                expect(res.body).to.have.deep.property('description', 'Test case description edited');
+                expect(res.body).to.have.deep.property('preConditions', editedTestCaseFixture.preConditions);
+                expect(res.body).to.have.deep.property('title', editedTestCaseFixture.title);
+                expect(res.body).to.have.deep.property('description', editedTestCaseFixture.description);
                 expect(res.body).to.have.deep.property('steps', ['Check that edited', 'Check this edited']);
                 expect(res.body).to.have.deep.property('testData', ['data1 edited', 'data2 edited']);
                 expect(res.body).to.have.deep.property('expected', ['Expected that edited', 'Expected this edited']);
-                expect(res.body).to.have.deep.property('postConditions', 'Postconditions 1 edited');
+                expect(res.body).to.have.deep.property('postConditions', editedTestCaseFixture.postConditions);
                 expect(res.body).to.have.deep.property('tags', ['first tag edited', 'second tag edited']);
                 expect(res.body).to.have.deep.property('estimate', 15);
                 expect(res.body).to.have.deep.property('enabled', true);
                 expect(res.body).to.have.deep.property('isAutomated', true);
-                expect(res.body).to.have.deep.property('status', 'approved');
+                expect(res.body).to.have.deep.property('status', editedTestCaseFixture.status);
                 expect(res.body).to.have.deep.property('created');
                 expect(res.body).to.have.deep.property('updated');
                 done();

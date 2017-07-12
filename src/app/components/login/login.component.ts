@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ThemeService } from '../../services/theme/theme.service';
 
 import { AuthenticationService } from '../../services/auth/authentication.service';
 
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
     error: string;
 
     constructor(
+        public themeService: ThemeService,
         private router: Router,
         private authenticationService: AuthenticationService,
         protected translateService: TranslateService

@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 import * as crypto from 'crypto';
 
-const GroupSchema = new mongoose.Schema({
+const UserGroupSchema = new mongoose.Schema({
   _id: {
     type: String, unique: true,
     default: function () {
@@ -19,5 +19,5 @@ const GroupSchema = new mongoose.Schema({
   updatedBy: String
 });
 
-const Group = mongoose.model('Group', GroupSchema);
-export { Group }
+const UserGroup = mongoose.model('UserGroup', UserGroupSchema);
+export { UserGroup }

@@ -1,5 +1,5 @@
 :host {
-  display: block;
+    display: block;
 }
 
 #wrapper {
@@ -8,33 +8,140 @@
     width: 100%;
 }
 
+
+
+
+/* DEFAULT THEME */
+
+
 .profile-data {
     /* border: 1px solid #333; */
-    background-color: gray;
+    justify-content: center;
+    flex-direction: column;
     height: 100%;
     width: 20%;
+    border-right: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+}
+
+.avatar-image {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    flex: 1;
+    height: 150px;
+    /*align-self: center;*/
+    /*width: 100px;*/
+}
+
+.avatar-image img {
+    align-self: center;
+    justify-content: center;
+    width: 100px;
+}
+
+.profile-contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-fullname {
+    padding: 5px;
+    color: #888;
+    font-weight: bold;
+    font-size: 20px;
+    align-self: center;
+    justify-content: center;
+}
+
+.profile-jobtitle {
+    padding: 5px;
+    color: #C5C5C5;
+    font-size: 15px;
+    align-self: center;
+}
+
+.profile-register-date {
+    padding: 5px;
+    color: #C5C5C5;
+    font-size: 15px;
+    align-self: center;
+}
+
+.profile-social-networks {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+
+.profile-social-networks ul {
+    display: inline-flex;
+    align-content: space-between;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.profile-social-networks li a {
+    padding: 10px;
 }
 
 .profile-info {
-    /* border: 1px solid gray; */
-    background-color: #fff;
     height: 100%;
     width: 80%;
 }
 
+.profile-work th,
+.profile-work td,
+.profile-personal th,
+.profile-personal td {
+    border: 0 !important;
+}
+
+.profile-work h6,
+.profile-work td,
+.profile-personal h6,
+.profile-personal td {
+    color: #C5C5C5;
+}
+
 .profile-work {
-    background: #DADADA;
+    
+    padding: 20px 20px 10px 50px;
+    /*#DADADA;*/
     height: 150px;
     width: 100%;
+    border-bottom: 1px solid #CCC;
 }
 
 .profile-personal {
-    background: #CACACA;
+    padding: 20px 20px 10px 50px;
     height: 250px;
     width: 100%;
+    border-bottom: 1px solid #CCC;
 }
 
-.avatar-image {
-    align-self: center;
-    width: 100px;
+.profile-personal th,
+.profile-personal td,
+.profile-work th,
+.profile-work td {
+    padding-left: 0;
+    padding-bottom: 0;
+}
+
+/* DARK THEME */
+
+#wrapper.dark-theme .profile-data {
+    border-right: 1px solid #303C4D;
+    border-bottom: 1px solid #303C4D;
+}
+
+#wrapper.dark-theme .profile-work,
+#wrapper.dark-theme .profile-personal {
+    border-bottom: 1px solid #303C4D;
 }

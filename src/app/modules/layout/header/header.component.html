@@ -1,27 +1,27 @@
 <header>
-  <nav class="navigation-bar">
+  <nav class="navigation-bar" [class.dark-theme]="themeService.theme">
 
 
     <div class="left">
       <a id="menu_toggle" class="toggle" (click)="collapseToggle();"><i class="fa fa-bars"></i></a>
     </div>
     <div class="right">
-      
-      <a class="icon-info link dropbtn" (click)="toggleNotifications();"><i class="fa fa-bell" aria-hidden="true"></i><span class="label label-primary">3</span></a>
-      <div class="dropdown-content" [class.show]="isNotificationsDisplayed">
-        <ul>
+
+      <a class="icon-info link dropbtn" (click)="shown !== 'NOTIFICATIONS' ? shown = 'NOTIFICATIONS' : shown = ''"><i class="fa fa-bell" aria-hidden="true"></i>
+        <span class="notifications-alarm"></span>
+      </a>
+      <div class="dropdown-content" [class.show]="shown === 'NOTIFICATIONS'">
           <app-notifications></app-notifications>
-        </ul>
       </div>
-      
-      <a class="link" routerLink="/settings"><i class="glyphicon glyphicon-cog"></i></a>
+
+      <a class="link" routerLink="/settings"><i class="fa fa-cog"></i></a>
 
 
 
 
       <li class="link dropdown-item">
-        <a class="dropbtn" (click)="toggleDropdown();">{{ user.firstName }} {{ user.lastName }} <span class="fa fa-angle-down" [class.chevron-rotated]="isDropdownDisplayed"></span></a>
-        <div class="dropdown-content" [class.show]="isDropdownDisplayed">
+        <a class="dropbtn" (click)="shown !== 'SETTINGS' ? shown = 'SETTINGS' : shown = ''">{{ user.firstName }} {{ user.lastName }} <span class="fa fa-angle-down" [class.chevron-rotated]="shown === 'SETTINGS'"></span></a>
+        <div class="dropdown-content" [class.show]="shown === 'SETTINGS'">
           <ul>
             <li><a routerLink="/profile"><i class="fa fa-user"></i> {{ 'HEADER.USER_PROFILE' | translate }}</a></li>
             <li><a (click)="logout()"><i class="fa fa-power-off"></i> {{ 'HEADER.LOGOUT' | translate }}</a></li>

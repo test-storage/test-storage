@@ -26,6 +26,24 @@ export class UserService {
             .catch(this.handleError);
     }
 
+    getUser(id: string): Observable<User> {
+        contentHeaders.set('x-access-token', this.authenticationService.token);
+        const options = new RequestOptions({ headers: contentHeaders });
+
+        return this.http.get(this.apiPath + '/' + id, options)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+    }
+
+    getUsersMe(): Observable<User> {
+        contentHeaders.set('x-access-token', this.authenticationService.token);
+        const options = new RequestOptions({ headers: contentHeaders });
+
+        return this.http.get(this.apiPath + '/' + 'me', options)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+    }
+
 
 
     private handleError(error: Response) {

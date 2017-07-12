@@ -190,4 +190,44 @@ export class Testsuites {
         }
       });
   }
+
+  /*
+   * Get all testsuites by project id
+   *
+   */
+  getAllTestsuitesByProjectId(req, res) {
+
+    // check limit, offset, fields param
+    const limit = this.validator.validateLimit(req, res);
+    const fields = this.validator.validateFields(req, res);
+    const offset = this.validator.validateOffset(req, res);
+
+    // check :id param
+    this.validator.isPathValid(req, res);
+
+    Testsuite.
+      find({ 'projectId': req.params.id }).
+      limit(limit).
+      select(fields).
+      skip(offset).
+      exec(
+      function (err, testcases) {
+
+        if (err) {
+          console.log(err);
+          res.
+            set('Content-Type', 'application/json').
+            status(500).
+            json({
+              'status': 500,
+              'message': 'Error occured. ' + err
+            });
+        } else {
+          res.
+            set('Content-Type', 'application/json').
+            status(200).
+            json(testcases);
+        }
+      });
+  }
 };

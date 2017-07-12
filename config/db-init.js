@@ -16,4 +16,22 @@ db.createUser(
 );
 
 
-db.users.insertOne({ email: "admin", password: "admin", firstName: "John", lastName: "Doe", title: "Administrator" });
+db.users.insertOne(
+    {
+        email: "admin",
+        password: "admin",
+        firstName: "John",
+        lastName: "Doe",
+        work: {
+            title: "Administrator",
+            phone: "+7 (495) 123-45-67",
+            company: "Example LLC"
+        },
+        social: {
+            skype: "#",
+            facebook: "#",
+            twitter: "#",
+            linkedin: "#",
+            github: "#"
+        }
+    });
