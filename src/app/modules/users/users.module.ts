@@ -12,7 +12,16 @@ const usersRoutes: Routes = [
   {
     path: '',
     component: UsersComponent
-  }
+  },
+  {
+    path: 'create',
+    component: UsersCreateComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: ':id',
+    component: UserDetailsComponent
+  },
 ];
 
 

@@ -1,7 +1,7 @@
 <div *ngIf="users" id="wrapper" [class.dark-theme]="themeService.theme">
 
   <div>
-    <a class="btn btn-primary">Create New User</a>
+    <a routerLink="create" class="btn btn-primary">Create New User</a>
     <br>
     <table *ngIf="users.length > 0;" class="table table-striped">
       <thead>
