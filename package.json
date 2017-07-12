@@ -49,7 +49,6 @@
     "@types/express": "^4.0.36",
     "@types/jasmine": "2.5.53",
     "@types/mocha": "2.2.41",
-    "@types/mongoose": "^4.7.18",
     "@types/morgan": "^1.7.32",
     "@types/node": "~8.0.10",
     "@types/should": "^8.3.0",
