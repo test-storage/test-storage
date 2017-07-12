@@ -1,5 +1,6 @@
 import * as mongoose from 'mongoose';
 import * as crypto from 'crypto';
+import * as bcrypt from 'bcrypt';
 
 const UserSchema = new mongoose.Schema({
     _id: {
