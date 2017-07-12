@@ -15,7 +15,7 @@ __password:__ admin
 
 
 
-Production
+Installation
 ======
 
 ## Dependencies
@@ -40,13 +40,13 @@ $ npm install -g test-storage
 $ cd test-storage
 ```
 
-1. run db-init.js script (script connects to test-storage db and create default user for authentication)
+1. run db-init.js script (script connects to test-storage db and create default user for authentication and default user for application)
 
 ```bash
 $ mongo test-storage config/db-init.js
 ```
 
-__note:__ to change database user/password for application check config/development.json or config/production.json files
+__note:__ to change database user/password for application check config/production.json file
 
 2. run mongo db with authentication
 
@@ -60,62 +60,13 @@ $ mongod --auth
 $ npm start
 ```
 
-Docker image will be provided soon.
-
-
-
-Development
-======
-
-## Pre-installation
-for execution you should also install globally:
-```bash
-$ npm install -g nodemon @angular/cli
-```
-
-## Installation
-
-```bash
-$ npm install -g test-storage
-```
-
-## Tests
-
-unit tests:
-```
-$ ng test --single-run
-```
-__note:__ For running tests on each file change use:
-```
-$ ng test
-```
-
-e2e tests:
-```
-$ npm e2e
-```
-
-backend tests:
-```
-$ npm run test:backend
-```
-
-## Start
-
-```bash
-$ npm run dev
-```
+__note:__ Docker image will be provided soon.
 
 ## Change log
 If you want to take a look at [change log](https://github.com/pumano/test-storage/blob/master/CHANGELOG.md) just click [here](https://github.com/pumano/test-storage/blob/master/CHANGELOG.md).
 
 More features will be supported shortly!
 
-## Versioning
-Test Storage will be maintained under the [Semantic Versioning](http://semver.org)
-guidelines such that release versions will be formatted as `<major>.<minor>.<patch>`
-where
+## Contributing
 
-* breaking backward compatibility bumps the major,
-* new additions while maintaining backward compatibility bumps the minor, and
-* bug fixes or miscellaneous changes bumps the patch.
+Check details [here](https://github.com/pumano/test-storage/blob/master/CONTRIBUTING.md)
