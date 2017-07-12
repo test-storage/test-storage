@@ -9,11 +9,11 @@ import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from '../../../services/auth/authentication.service';
 import { ProjectService } from '../../../services/project/project.service';
 
-import { CreateProjectComponent } from './create-project.component';
+import { ProjectCreateComponent } from './project-create.component';
 
-describe('CreateProjectComponent', () => {
-  let component: CreateProjectComponent;
-  let fixture: ComponentFixture<CreateProjectComponent>;
+describe('ProjectCreateComponent', () => {
+  let component: ProjectCreateComponent;
+  let fixture: ComponentFixture<ProjectCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,7 +23,7 @@ describe('CreateProjectComponent', () => {
         HttpModule,
         RouterTestingModule
       ],
-      declarations: [CreateProjectComponent],
+      declarations: [ProjectCreateComponent],
       providers: [
         ThemeService,
         ProjectService,
@@ -41,7 +41,7 @@ describe('CreateProjectComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateProjectComponent);
+    fixture = TestBed.createComponent(ProjectCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

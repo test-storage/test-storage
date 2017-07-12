@@ -7,7 +7,7 @@ import { ProjectsComponent } from './projects.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { ProjectSettingsComponent } from './project-settings/project-settings.component';
 import { ProjectService } from '../../services/project/project.service';
-import { CreateProjectComponent } from './create-project/create-project.component';
+import { ProjectCreateComponent } from './project-create/project-create.component';
 
 const projectsRoutes: Routes = [
   {
@@ -16,7 +16,7 @@ const projectsRoutes: Routes = [
   },
   {
     path: 'create',
-    component: CreateProjectComponent,
+    component: ProjectCreateComponent,
     pathMatch: 'full'
   },
   {
@@ -40,7 +40,7 @@ const projectsRoutes: Routes = [
     ProjectsComponent,
     ProjectDetailsComponent,
     ProjectSettingsComponent,
-    CreateProjectComponent
+    ProjectCreateComponent
   ],
   providers: [
     ProjectService

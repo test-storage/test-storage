@@ -13,16 +13,6 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
 
   id: string;
   private subscription;
-
-  /* project: Project = {
-    name: 'Dummy Project 10',
-    description: 'Dummy Project Description',
-    enabled: true,
-    testcases: [],
-    createdBy: 'Admin',
-    updatedBy: 'Admin'
-  }; */
-
   project: Project;
 
   constructor(
