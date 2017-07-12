@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectSettingsComponent } from './project-settings.component';
 
 describe('ProjectSettingsComponent', () => {
@@ -8,6 +8,7 @@ describe('ProjectSettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [BrowserAnimationsModule],
       declarations: [ ProjectSettingsComponent ]
     })
     .compileComponents();
