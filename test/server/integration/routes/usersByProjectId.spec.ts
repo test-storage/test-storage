@@ -1,6 +1,7 @@
 import * as request from 'supertest';
 import * as chai from 'chai';
 import chaiHttp = require('chai-http');
+import * as faker from 'faker';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -8,7 +9,7 @@ const expect = chai.expect;
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
 
-import { modelFixture, modelFixtureEdited } from './users.fixtures';
+import { modelFixture, modelFixtureEdited } from './users2.fixtures';
 import { fixture, changedFixture } from './projects.fixtures';
 
 
@@ -48,6 +49,8 @@ before(function (done) {
     });
 
     it('Before: User created', function (done) {
+
+
 
         request(app)
             .post('/api/v1/users')
