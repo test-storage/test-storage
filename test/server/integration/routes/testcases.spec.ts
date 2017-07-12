@@ -56,8 +56,8 @@ describe('/testcases', function () {
                 expect(res.body).to.have.deep.property('priority', 1);
                 expect(res.body).to.have.deep.property('order', 2);
                 expect(res.body).to.have.deep.property('preConditions', 'Preconditions 1');
-                expect(res.body).to.have.deep.property('title', 'Testcase 1');
-                expect(res.body).to.have.deep.property('description', 'Test case description');
+                expect(res.body).to.have.deep.property('title', testcaseFixture.title);
+                expect(res.body).to.have.deep.property('description', testcaseFixture.description);
                 expect(res.body).to.have.deep.property('steps', ['Check that', 'Check this']);
                 expect(res.body).to.have.deep.property('testData', ['data1', 'data2']);
                 expect(res.body).to.have.deep.property('expected', ['Expected that', 'Expected this']);
