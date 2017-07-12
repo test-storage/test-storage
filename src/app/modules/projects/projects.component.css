@@ -45,7 +45,6 @@
     align-self: center;
     justify-content: center;
     text-align: center;
-    
 }
 
 .no-project img {
@@ -62,10 +61,16 @@
     margin-bottom: 20px;
 }
 
+
 /* DARK THEME */
+
 
 /* TODO WHITE ICON */
 
 #wrapper.dark-theme .no-project h4 {
     color: #FFF;
+}
+
+#wrapper.dark-theme .card {
+    background: inherit;
 }
