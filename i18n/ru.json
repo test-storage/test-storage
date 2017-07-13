@@ -28,7 +28,9 @@
         "LOGIN_REQUIRED": "Обязательное поле Пользователь",
         "PASSWORD_REQUIRED": "Обязательное поле Пароль",
         "LOGIN_BUTTON": "Войти",
-        "INVALID_CREDENTIALS": "Логин или пароль не верный"
+        "INVALID_CREDENTIALS": "Логин или пароль не верный",
+        "REMEMBER_ME": "Запомнить меня",
+        "FORGOT_PASSWORD": "Восстановить пароль"
     },
     "USERPROFILEPAGE": {
         "REGISTERED": "Зарегистрирован",
