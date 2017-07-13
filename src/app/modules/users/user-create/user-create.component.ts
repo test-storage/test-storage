@@ -7,16 +7,16 @@ import { User } from '../../../models/user';
 import { UserService } from '../../../services/user/user.service';
 
 @Component({
-  selector: 'app-users-create',
-  templateUrl: './users-create.component.html',
-  styleUrls: ['./users-create.component.css'],
+  selector: 'app-user-create',
+  templateUrl: './user-create.component.html',
+  styleUrls: ['./user-create.component.css'],
   providers: [
     ThemeService,
     UserService
   ],
   animations: [pageTransition()]
 })
-export class UsersCreateComponent implements OnInit {
+export class UserCreateComponent implements OnInit {
 
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;

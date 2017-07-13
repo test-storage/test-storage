@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { UsersComponent } from './users.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserService } from '../../services/user/user.service';
-import { UsersCreateComponent } from './users-create/users-create.component';
+import { UserCreateComponent } from './user-create/user-create.component';
 
 
 const usersRoutes: Routes = [
@@ -16,7 +16,7 @@ const usersRoutes: Routes = [
   },
   {
     path: 'create',
-    component: UsersCreateComponent,
+    component: UserCreateComponent,
     pathMatch: 'full'
   },
   {
@@ -35,7 +35,7 @@ const usersRoutes: Routes = [
   declarations: [
     UsersComponent,
     UserDetailsComponent,
-    UsersCreateComponent
+    UserCreateComponent
   ],
   providers: [UserService]
 })
