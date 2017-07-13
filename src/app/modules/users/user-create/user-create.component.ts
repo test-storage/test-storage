@@ -32,7 +32,9 @@ export class UserCreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  createNewUser() {
+  createNewUser(user) {
+    this.user = user;
+
     this.userService.createUser(this.user).subscribe(
       response => {
         if (response === 201) {
@@ -41,6 +43,7 @@ export class UserCreateComponent implements OnInit {
       },
       error => console.log(error)
     );
+
   }
 
 }
