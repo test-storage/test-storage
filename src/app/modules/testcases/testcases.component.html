@@ -21,9 +21,18 @@
         <td><a [routerLink]="['./', testcase._id]">{{ testcase.title }}</a></td>
         <td>{{ testcase.description }}</td>
         <td>{{ testcase.preConditions }}</td>
-        <td>{{ testcase.steps }}</td>
-        <td>{{ testcase.testData }}</td>
-        <td>{{ testcase.expected }}</td>
+         <td><ul *ngFor="let step of testcase.steps">
+        <li>{{ step }}</li>
+        </ul>
+      </td>
+      <td><ul *ngFor="let testData of testcase.testData">
+        <li>{{ testData }}</li>
+        </ul>
+      </td>
+      <td><ul *ngFor="let expected of testcase.expected">
+        <li>{{ expected }}</li>
+        </ul>
+      </td>
         <td>{{ testcase.postConditions }}</td>
         <td><a (click)="deleteTestcase(testcase._id);">Delete</a>
       </tr>
