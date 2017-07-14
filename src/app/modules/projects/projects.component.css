@@ -54,8 +54,8 @@
 
 .edit-button {
     margin: 10px;
-    background-color: #CACACA;
-    border-color: #CCC;
+    background-color: #999;
+    border-color: #777;
 }
 
 #wrapper.dark-theme div.project-card {

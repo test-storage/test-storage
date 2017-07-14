@@ -1,5 +1,5 @@
 <div id="wrapper" *ngIf="testcase">
-  <table class="table table-striped">
+  <table class="table">
     <thead>
       <tr>
         <th>Testcase Title</th>
@@ -15,16 +15,19 @@
       <td>{{ testcase.title }}</td>
       <td>{{ testcase.description }}</td>
       <td>{{ testcase.preConditions }}</td>
-      <td><ul *ngFor="let step of testcase.steps">
-        <li>{{ step }}</li>
+      <td>
+        <ul *ngFor="let step of testcase.steps">
+          <li>{{ step }}</li>
         </ul>
       </td>
-      <td><ul *ngFor="let testData of testcase.testData">
-        <li>{{ testData }}</li>
+      <td>
+        <ul *ngFor="let testData of testcase.testData">
+          <li>{{ testData }}</li>
         </ul>
       </td>
-      <td><ul *ngFor="let expected of testcase.expected">
-        <li>{{ expected }}</li>
+      <td>
+        <ul *ngFor="let expected of testcase.expected">
+          <li>{{ expected }}</li>
         </ul>
       </td>
       <td>{{ testcase.postConditions }}</td>
