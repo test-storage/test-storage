@@ -3,5 +3,9 @@
 }
 
 #wrapper {
+    height: 100%;
+    overflow: hidden;
+    min-height: 740px;
+    background-color: #FFF;
     padding: 20px;
 }

@@ -41,11 +41,12 @@ export class UsersComponent implements OnInit, OnDestroy {
 
 
   deleteUser(id: string) {
+    // TODO ask user about "You are want to delete this user?"
     // TODO delete by object not by ID
     this.userService.deleteUser(id).subscribe(
       response => {
         if (response === 204) {
-          console.log('User deleted successfully');
+          console.log('User deleted successfully'); // TODO modal success
           this.users = this.users.filter(user => user._id !== id);
         }
       },

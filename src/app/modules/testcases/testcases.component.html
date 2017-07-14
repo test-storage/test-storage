@@ -1,58 +1,62 @@
-<div *ngIf="testcases" id="wrapper" [class.dark-theme]="themeService.theme">
+<div id="wrapper" [class.dark-theme]="themeService.theme">
+  <div *ngIf="testcases">
 
-  <div *ngIf="testcases.length > 0; then existTestcases else noExistTestcases"></div>
+    <div *ngIf="testcases.length > 0; then existTestcases else noExistTestcases"></div>
 
-  <ng-template #existTestcases>
-    <a class="btn btn-primary">Create New Testcase</a>
-    <table *ngIf="testcases.length > 0;" class="table table-striped">
-      <thead>
-        <tr>
-          <th>Testcase Title</th>
-          <th>Description</th>
-          <th>Preconditions</th>
-          <th>Steps</th>
-          <th>Test Data</th>
-          <th>Expected Result</th>
-          <th>Postconditions</th>
-          <th></th>
+    <ng-template #existTestcases>
+      <a class="btn btn-primary">Create New Testcase</a>
+      <table *ngIf="testcases.length > 0;" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Testcase Title</th>
+            <th>Description</th>
+            <th>Preconditions</th>
+            <th>Steps</th>
+            <th>Test Data</th>
+            <th>Expected Result</th>
+            <th>Postconditions</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tr *ngFor="let testcase of testcases">
+          <td><a [routerLink]="['./', testcase._id]">{{ testcase.title }}</a></td>
+          <td>{{ testcase.description }}</td>
+          <td>{{ testcase.preConditions }}</td>
+          <td>
+            <ul *ngFor="let step of testcase.steps">
+              <li>{{ step }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul *ngFor="let testData of testcase.testData">
+              <li>{{ testData }}</li>
+            </ul>
+          </td>
+          <td>
+            <ul *ngFor="let expected of testcase.expected">
+              <li>{{ expected }}</li>
+            </ul>
+          </td>
+          <td>{{ testcase.postConditions }}</td>
+          <td><a (click)="deleteTestcase(testcase._id);">Delete</a>
         </tr>
-      </thead>
-      <tr *ngFor="let testcase of testcases">
-        <td><a [routerLink]="['./', testcase._id]">{{ testcase.title }}</a></td>
-        <td>{{ testcase.description }}</td>
-        <td>{{ testcase.preConditions }}</td>
-         <td><ul *ngFor="let step of testcase.steps">
-        <li>{{ step }}</li>
-        </ul>
-      </td>
-      <td><ul *ngFor="let testData of testcase.testData">
-        <li>{{ testData }}</li>
-        </ul>
-      </td>
-      <td><ul *ngFor="let expected of testcase.expected">
-        <li>{{ expected }}</li>
-        </ul>
-      </td>
-        <td>{{ testcase.postConditions }}</td>
-        <td><a (click)="deleteTestcase(testcase._id);">Delete</a>
-      </tr>
-    </table>
-    <!--<app-testsuites-tree></app-testsuites-tree>-->
-  </ng-template>
+      </table>
+      <!--<app-testsuites-tree></app-testsuites-tree>-->
+    </ng-template>
 
 
-  <ng-template #noExistTestcases>
-    <div class="noexist-wrapper">
-      <div class="no-testcase">
-        <img src="assets/add-project.png">
-        <h4>You have not created Testsuites / Testcases yet.</h4>
-        <p class="tips">Tap the 'Create Testsuite' button to get started</p>
-        <button class="btn btn-primary">Create Testsuite</button>
+    <ng-template #noExistTestcases>
+      <div class="noexist-wrapper">
+        <div class="no-testcase">
+          <img src="assets/add-project.png">
+          <h4>You have not created Testsuites / Testcases yet.</h4>
+          <p class="tips">Tap the 'Create Testsuite' button to get started</p>
+          <button class="btn btn-primary">Create Testsuite</button>
+        </div>
       </div>
-    </div>
-  </ng-template>
+    </ng-template>
 
 
 
-
+  </div>
 </div>

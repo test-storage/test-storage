@@ -3,9 +3,12 @@
 }
 
 #wrapper {
+    height: 100%;
+    overflow: hidden;
+    min-height: 740px;
+    background-color: #FFF;
     padding: 20px;
 }
-
 
 .noexist-wrapper {
     display: flex;
@@ -19,7 +22,6 @@
     align-self: center;
     justify-content: center;
     text-align: center;
-    
 }
 
 .no-testcase img {
@@ -36,7 +38,9 @@
     margin-bottom: 20px;
 }
 
+
 /* DARK THEME */
+
 
 /* TODO WHITE ICON */
 
