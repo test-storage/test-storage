@@ -48,9 +48,15 @@
     border-color: #CCC;
 }
 
-.project-card:hover>a {
+.project-card:hover>a,
+#wrapper.dark-theme .project-card:hover>a {
     background-color: #0275d8;
     border-color: #0275d8;
+}
+
+#wrapper.dark-theme .edit-button {
+    background-color: #303C4D;
+    border-color: #1B2531;
 }
 
 .create-card {
