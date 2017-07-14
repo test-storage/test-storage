@@ -46,6 +46,15 @@ export class TestcaseService {
       .catch(this.handleError);
   }
 
+  public deleteTestcase(id: string): Observable<Number> {
+    contentHeaders.set('x-access-token', this.authenticationService.token);
+    const options = new RequestOptions({ headers: contentHeaders });
+
+    return this.http.delete(this.apiPath + '/' + id, options)
+      .map((response: Response) => response.status)
+      .catch(this.handleError);
+  }
+
 
   private handleError(error: Response) {
     console.error(error);

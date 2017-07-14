@@ -9,11 +9,23 @@
         <tr>
           <th>Testcase Title</th>
           <th>Description</th>
+          <th>Preconditions</th>
+          <th>Steps</th>
+          <th>Test Data</th>
+          <th>Expected Result</th>
+          <th>Postconditions</th>
+          <th></th>
         </tr>
       </thead>
       <tr *ngFor="let testcase of testcases">
         <td><a [routerLink]="['./', testcase._id]">{{ testcase.title }}</a></td>
         <td>{{ testcase.description }}</td>
+        <td>{{ testcase.preConditions }}</td>
+        <td>{{ testcase.steps }}</td>
+        <td>{{ testcase.testData }}</td>
+        <td>{{ testcase.expected }}</td>
+        <td>{{ testcase.postConditions }}</td>
+        <td><a (click)="deleteTestcase(testcase._id);">Delete</a>
       </tr>
     </table>
     <!--<app-testsuites-tree></app-testsuites-tree>-->
