@@ -13,8 +13,7 @@ import { testcaseFixture, editedTestCaseFixture } from './testcases.fixtures';
 var token = '';
 var entityId = '';
 
-
-describe('/testcases', function () {
+before(function (done) {
 
     it('login', function (done) {
         authenticate(function (restoken) {
@@ -22,6 +21,10 @@ describe('/testcases', function () {
             done();
         });
     });
+    done();
+});
+
+describe('/testcases', function () {
 
     it('POST /testcases respond with status 201 and JSON', function (done) {
 
