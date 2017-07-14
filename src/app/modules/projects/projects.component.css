@@ -14,6 +14,7 @@
 .project-card {
     margin: 25px;
     width: 300px;
+    overflow: hidden;
 }
 
 .card-img-top {
@@ -46,6 +47,10 @@
     margin: 10px;
     background-color: #CACACA;
     border-color: #CCC;
+}
+
+#wrapper.dark-theme div.project-card {
+    background-color: #2d3035;
 }
 
 .project-card:hover>a,
