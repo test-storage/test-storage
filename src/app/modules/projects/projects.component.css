@@ -13,11 +13,11 @@
 
 .project-card {
     margin: 25px;
-    width: 20rem;
+    width: 300px;
 }
 
 .card-img-top {
-    width: 200px;
+    width: 300px;
 }
 
 .card-block {
@@ -29,8 +29,28 @@
     text-align: center;
 }
 
-.card-button {
+.edit-icon {
+    color: #fff;
+    position: absolute;
+    display: none;
+    font-size: 20px;
+    right: 15px;
+    top: 15px;
+}
+
+.project-card:hover>.edit-icon {
     display: block;
+}
+
+.edit-button {
+    margin: 10px;
+    background-color: #CACACA;
+    border-color: #CCC;
+}
+
+.project-card:hover>a {
+    background-color: #0275d8;
+    border-color: #0275d8;
 }
 
 .noexist-wrapper {
