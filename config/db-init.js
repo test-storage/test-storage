@@ -18,6 +18,7 @@ db.createUser(
 
 db.users.insertOne(
     {
+        _id: "3ebbce696d3e19e323bc540fb4a34fb4",
         email: "admin",
         password: "admin",
         firstName: "John",
@@ -33,5 +34,10 @@ db.users.insertOne(
             twitter: "#",
             linkedin: "#",
             github: "#"
-        }
-    });
+        },
+        created: Date.now(),
+        updated: Date.now(),
+        createdBy: "admin",
+        updatedBy: "admin"
+    }
+);
