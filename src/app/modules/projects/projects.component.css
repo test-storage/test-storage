@@ -53,6 +53,17 @@
     border-color: #0275d8;
 }
 
+.create-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    direction: column;
+}
+
+.create-button {
+    margin: 10px;
+}
+
 .noexist-wrapper {
     display: flex;
     height: 600px;

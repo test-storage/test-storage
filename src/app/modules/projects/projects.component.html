@@ -20,17 +20,21 @@
 
 
       <div class="project-card card">
-        <div class="card-block">
+        <div class="card-block create-card">
           <h1><i class="fa fa-3x fa-plus"></i></h1>
-          <br><br>
-          <a [routerLink]="['./create']" class="btn btn-primary">Create Project</a>
         </div>
+        <a [routerLink]="['./create']" class="btn btn-primary create-button">Create Project</a>
       </div>
 
 
 
     </div>
   </ng-template>
+
+
+
+
+
 
 
   <ng-template #noExistProjects>
