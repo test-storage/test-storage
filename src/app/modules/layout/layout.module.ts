@@ -9,7 +9,9 @@ import { ThemeService } from './../../services/theme/theme.service';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+
 import { NotificationsComponent } from './notifications/notifications.component';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 const layoutRoutes: Routes = [
   {
@@ -64,7 +66,8 @@ const layoutRoutes: Routes = [
   imports: [
     RouterModule.forChild(layoutRoutes),
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    SimpleNotificationsModule.forRoot()
   ],
   exports: [
     LayoutComponent
