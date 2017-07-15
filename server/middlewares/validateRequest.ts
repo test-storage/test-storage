@@ -29,9 +29,9 @@ export class ValidateRequest {
         const decoded = jwt.decode(token, secret(), { algorithm: 'HS256', expiresIn: '1d' });
 
         if (decoded.exp <= Date.now()) {
-          res.status(400);
+          res.status(401);
           res.json({
-            'status': 400,
+            'status': 401,
             'message': 'Token Expired'
           });
           return;
