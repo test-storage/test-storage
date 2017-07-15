@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, Router } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
+import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor(private authService: AuthenticationService, private router: Router) { }
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router) { }
 
   canActivate(): boolean {
     return this.checkIfLoggedIn();
@@ -17,10 +20,20 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   private checkIfLoggedIn(): boolean {
 
     if (localStorage.getItem('currentUser')) {
-      // logged in so return true
-      return true;
+
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      const token = currentUser && currentUser.token;
+
+      // if token exist
+      if (token) {
+        if (tokenNotExpired(null, token)) {
+          // if token not expired return true
+          return true;
+        }
+      }
     }
-    // not logged in so redirect to login page
+
+    // if token expired or not exist redirect to login page
     this.router.navigate(['/auth']);
     return false;
   }
