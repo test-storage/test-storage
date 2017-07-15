@@ -20,10 +20,14 @@
 .project-card {
     margin: 25px;
     width: 300px;
+    box-sizing: border-box;
     /*box-shadow: 0 1px 0px #dfe2e7;*/
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15), inset 0 -1px 0 0 rgba(0, 0, 0, 0.2);
     /*#dfe2e7;*/
     overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-img-top {
@@ -46,10 +50,11 @@
     font-size: 20px;
     right: 15px;
     top: 15px;
+    
 }
 
 .project-card:hover>.edit-icon {
-    display: block;
+    display: flex;
 }
 
 .edit-button {
@@ -73,16 +78,32 @@
     border-color: #1B2531;
 }
 
+
 .create-card {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    direction: column;
+    justify-content: flex-end;
+    
+    flex-direction: column;
 }
+
+.create-card .card-block {
+    align-self: center;
+    justify-content: center;
+}
+
 
 .create-button {
     margin: 10px;
 }
+
+
+
+
+
+
+
+
+
 
 .noexist-wrapper {
     display: flex;
