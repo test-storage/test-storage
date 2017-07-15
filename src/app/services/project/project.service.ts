@@ -59,7 +59,13 @@ export class ProjectService {
 
   private handleError(error: Response) {
     console.error(error);
-    return Observable.throw(error.json().status + ' ' + error.json().message || 'Server error');
+    if (error.status === 400 && error.json().message === 'Token Expired') {
+      const errorMessage = error.json().message;
+
+      return Observable.throw(errorMessage);
+    } else {
+      return Observable.throw(error.json().status + ' ' + error.json().message || 'Server error');
+    }
   }
 
 }

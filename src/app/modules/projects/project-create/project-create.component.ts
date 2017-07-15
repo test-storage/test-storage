@@ -6,6 +6,8 @@ import { ThemeService } from '../../../services/theme/theme.service';
 import { Project } from '../../../models/project';
 import { ProjectService } from '../../../services/project/project.service';
 
+import { NotificationsService } from 'angular2-notifications';
+
 @Component({
   selector: 'app-project-create',
   templateUrl: './project-create.component.html',
@@ -28,7 +30,9 @@ export class ProjectCreateComponent implements OnInit {
   constructor(
     public themeService: ThemeService,
     private router: Router,
-    private projectService: ProjectService) { }
+    private projectService: ProjectService,
+    private notificationsService: NotificationsService,
+  ) { }
 
   ngOnInit() {
   }
@@ -37,10 +41,27 @@ export class ProjectCreateComponent implements OnInit {
     this.projectService.createProject(this.project).subscribe(
       response => {
         if (response === 201) {
-          this.router.navigate(['./projects']);
+          this.showNotification('Project ' + this.project.name, 'created successfully!');
+
+           this.router.navigate(['./projects']);
         }
       },
       error => console.log(error)
+    );
+  }
+
+  showNotification(title, description) {
+
+    this.notificationsService.success(
+      title,
+      description,
+      {
+        timeOut: 5000,
+        showProgressBar: false,
+        pauseOnHover: false,
+        clickToClose: false,
+        maxLength: 30
+      }
     );
   }
 }
