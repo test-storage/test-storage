@@ -159,8 +159,12 @@ ul li.active>a {
     top: 4px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
     .sidebar.sidebar-mini {
         display: none;
+    }
+
+    .sidebar {
+        width: 90%;
     }
 }

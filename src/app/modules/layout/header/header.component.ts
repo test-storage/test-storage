@@ -11,7 +11,7 @@ import { ThemeService } from './../../../services/theme/theme.service';
 export class HeaderComponent implements OnInit {
 
     user: any = {};
-    private sidebarCollapsed = true;
+    public sidebarCollapsed = true;
     public shown = '';
     @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
 
