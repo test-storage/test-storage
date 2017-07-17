@@ -93,13 +93,13 @@ class Auth {
   }
 
   // private method
-  private genToken(user) {
-    const expires = this.expiresIn(1); // 1 days
+  private async genToken(user) {
+    const expires = await this.expiresIn(1); // 1 days
     const token = jwt.sign({
-      exp: expires,
+      // exp: expires,
       username: user[0].email,
       userId: user[0]._id
-    }, secret());
+    }, secret(), { expiresIn: '1d' });
 
     return {
       token: token,
