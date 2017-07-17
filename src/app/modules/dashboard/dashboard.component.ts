@@ -1,6 +1,9 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { pageTransition } from '../../animations';
 
+import { ThemeService } from '../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -13,7 +16,10 @@ export class DashboardComponent implements OnInit {
     return true;
   }
 
-  constructor() { }
+  constructor(
+    public themeService: ThemeService,
+    private notificationsService: NotificationsService
+  ) { }
 
   ngOnInit() {
   }

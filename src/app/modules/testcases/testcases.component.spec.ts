@@ -3,8 +3,11 @@ import { BaseRequestOptions, Http, HttpModule, RequestMethod, Response, Response
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthenticationService } from '../../services/auth/authentication.service';
+
 import { ThemeService } from '../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
+
+import { AuthenticationService } from '../../services/auth/authentication.service';
 
 import { TestcasesComponent } from './testcases.component';
 import { TestcaseService } from '../../services/testcase/testcase.service';
@@ -24,6 +27,7 @@ describe('TestcasesComponent', () => {
       imports: [RouterModule, BrowserAnimationsModule],
       declarations: [TestcasesComponent, TestsuitesTreeComponent],
       providers: [
+        NotificationsService,
         ThemeService,
         Http,
         AuthenticationService,

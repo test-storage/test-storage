@@ -2,6 +2,7 @@
     display: flex;
     align-self: center;
     min-height: 700px;
+    height: 100vh;
 }
 
 #wrapper.dark-theme {
@@ -10,7 +11,8 @@
 
 #wrapper.dark-theme #logo-text,
 #wrapper.dark-theme #logo-strong,
-#wrapper.dark-theme #login h2 {
+#wrapper.dark-theme #login h2,
+#wrapper.dark-theme label {
     color: #FFF;
 }
 
@@ -68,7 +70,7 @@ input.input-md {
 }
 
 .checkbox-custom {
-    padding-left: 20px
+    /*padding-left: 20px*/
 }
 
 .checkbox-custom label {

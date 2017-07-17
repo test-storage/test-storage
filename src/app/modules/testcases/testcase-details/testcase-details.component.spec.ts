@@ -4,9 +4,12 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
-import { TestcaseService } from '../../../services/testcase/testcase.service';
+import { ThemeService } from '../../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
+
 import { AuthenticationService } from '../../../services/auth/authentication.service';
 
+import { TestcaseService } from '../../../services/testcase/testcase.service';
 import { TestcaseDetailsComponent } from './testcase-details.component';
 
 describe('TestcaseDetailsComponent', () => {
@@ -17,6 +20,8 @@ describe('TestcaseDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [TestcaseDetailsComponent],
       providers: [
+        NotificationsService,
+        ThemeService,
         TestcaseService,
         Http,
         AuthenticationService,

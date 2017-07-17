@@ -1,36 +1,38 @@
-<div id="wrapper" *ngIf="testcase">
-  <table class="table">
-    <thead>
+<div id="wrapper" [class.dark-theme]="themeService.theme">
+  <div *ngIf="testcase">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Testcase Title</th>
+          <th>Description</th>
+          <th>Preconditions</th>
+          <th>Steps</th>
+          <th>Test Data</th>
+          <th>Expected Result</th>
+          <th>Postconditions</th>
+        </tr>
+      </thead>
       <tr>
-        <th>Testcase Title</th>
-        <th>Description</th>
-        <th>Preconditions</th>
-        <th>Steps</th>
-        <th>Test Data</th>
-        <th>Expected Result</th>
-        <th>Postconditions</th>
+        <td>{{ testcase.title }}</td>
+        <td>{{ testcase.description }}</td>
+        <td>{{ testcase.preConditions }}</td>
+        <td>
+          <ul *ngFor="let step of testcase.steps">
+            <li>{{ step }}</li>
+          </ul>
+        </td>
+        <td>
+          <ul *ngFor="let testData of testcase.testData">
+            <li>{{ testData }}</li>
+          </ul>
+        </td>
+        <td>
+          <ul *ngFor="let expected of testcase.expected">
+            <li>{{ expected }}</li>
+          </ul>
+        </td>
+        <td>{{ testcase.postConditions }}</td>
       </tr>
-    </thead>
-    <tr>
-      <td>{{ testcase.title }}</td>
-      <td>{{ testcase.description }}</td>
-      <td>{{ testcase.preConditions }}</td>
-      <td>
-        <ul *ngFor="let step of testcase.steps">
-          <li>{{ step }}</li>
-        </ul>
-      </td>
-      <td>
-        <ul *ngFor="let testData of testcase.testData">
-          <li>{{ testData }}</li>
-        </ul>
-      </td>
-      <td>
-        <ul *ngFor="let expected of testcase.expected">
-          <li>{{ expected }}</li>
-        </ul>
-      </td>
-      <td>{{ testcase.postConditions }}</td>
-    </tr>
-  </table>
+    </table>
+  </div>
 </div>

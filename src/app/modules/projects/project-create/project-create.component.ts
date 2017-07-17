@@ -1,12 +1,14 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { pageTransition } from '../../../animations';
+
 import { ThemeService } from '../../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
 
 import { Project } from '../../../models/project';
 import { ProjectService } from '../../../services/project/project.service';
 
-import { NotificationsService } from 'angular2-notifications';
+
 
 @Component({
   selector: 'app-project-create',
@@ -28,10 +30,10 @@ export class ProjectCreateComponent implements OnInit {
   public project: Project = new Project();
 
   constructor(
-    public themeService: ThemeService,
     private router: Router,
     private projectService: ProjectService,
-    private notificationsService: NotificationsService,
+    public themeService: ThemeService,
+    private notificationsService: NotificationsService
   ) { }
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class ProjectCreateComponent implements OnInit {
         if (response === 201) {
           this.showNotification('Project ' + this.project.name, 'created successfully!');
 
-           this.router.navigate(['./projects']);
+          this.router.navigate(['./projects']);
         }
       },
       error => console.log(error)

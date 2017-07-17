@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { ThemeService } from '../../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
+
 import { Testcase } from '../../../models/testcase';
 import { TestcaseService } from '../../../services/testcase/testcase.service';
 
@@ -15,7 +18,12 @@ export class TestcaseDetailsComponent implements OnInit, OnDestroy {
   private subscription;
   testcase: Testcase;
 
-  constructor(private route: ActivatedRoute, private testcaseService: TestcaseService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private testcaseService: TestcaseService,
+    public themeService: ThemeService,
+    private notificationsService: NotificationsService
+  ) { }
 
   ngOnInit() {
     this.subscription = this.route.params.subscribe(params => {

@@ -1,26 +1,28 @@
-<div id="wrapper" *ngIf="project">
-  <table class="table">
-    <thead>
+<div id="wrapper" [class.dark-theme]="themeService.theme">
+  <div *ngIf="project">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Project Name</th>
+          <th>Description</th>
+          <th>Enabled</th>
+          <th>Created</th>
+          <th>Updated</th>
+          <th>Created By</th>
+          <th>Updated By</th>
+          <th></th>
+        </tr>
+      </thead>
       <tr>
-        <th>Project Name</th>
-        <th>Description</th>
-        <th>Enabled</th>
-        <th>Created</th>
-        <th>Updated</th>
-        <th>Created By</th>
-        <th>Updated By</th>
-        <th></th>
+        <td>{{ project.name }}</td>
+        <td>{{ project.description }}</td>
+        <td>{{ project.enabled }}</td>
+        <td>{{ project.created }}</td>
+        <td>{{ project.updated }}</td>
+        <td>{{ project.createdBy }}</td>
+        <td>{{ project.updatedBy }}</td>
+        <td><a (click)="deleteProject(project._id);">Delete</a>
       </tr>
-    </thead>
-    <tr>
-      <td>{{ project.name }}</td>
-      <td>{{ project.description }}</td>
-      <td>{{ project.enabled }}</td>
-      <td>{{ project.created }}</td>
-      <td>{{ project.updated }}</td>
-      <td>{{ project.createdBy }}</td>
-      <td>{{ project.updatedBy }}</td>
-      <td><a (click)="deleteProject(project._id);">Delete</a>
-    </tr>
-  </table>
+    </table>
+  </div>
 </div>

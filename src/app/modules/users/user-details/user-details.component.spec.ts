@@ -5,6 +5,9 @@ import { MockBackend } from '@angular/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
+import { ThemeService } from '../../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
+
 import { AuthenticationService } from '../../../services/auth/authentication.service';
 
 import { UserService } from '../../../services/user/user.service';
@@ -22,6 +25,8 @@ describe('UserDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [UserDetailsComponent],
       providers: [
+        NotificationsService,
+        ThemeService,
         UserService,
         AuthenticationService,
         MockBackend,

@@ -10,6 +10,11 @@
     padding: 20px;
 }
 
+#wrapper.dark-theme {
+    background-color: #283242;
+    color: #FFF;
+}
+
 .create-form {
     display: flex;
     flex-direction: column;

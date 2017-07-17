@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ThemeService } from '../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
+
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
@@ -12,7 +15,11 @@ describe('DashboardComponent', () => {
       imports: [
         BrowserAnimationsModule
       ],
-      declarations: [DashboardComponent]
+      declarations: [DashboardComponent],
+      providers: [
+        NotificationsService,
+        ThemeService
+      ]
     })
       .compileComponents();
   }));

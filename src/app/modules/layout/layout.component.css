@@ -41,17 +41,14 @@ body {
         overflow: hidden;
     }
     .sidebar-full {
-        padding-left: 89%;
+        padding-left: 86%;
     }
-
-    .sidebar-full > #content-wrapper {
+    .sidebar-full>#content-wrapper {
         display: none !important;
     }
-
-    .sidebar-collapsed > #content-wrapper {
+    .sidebar-collapsed>#content-wrapper {
         display: block !important;
     }
-
 }
 
 

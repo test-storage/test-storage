@@ -1,9 +1,11 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { pageTransition } from '../../animations';
 
+import { ThemeService } from '../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
+
 import { Testcase } from '../../models/testcase';
 import { TestcaseService } from '../../services/testcase/testcase.service';
-import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
   selector: 'app-testcases',
@@ -23,8 +25,10 @@ export class TestcasesComponent implements OnInit {
   testcases: Testcase[];
 
   constructor(
-    public themeService: ThemeService,
-    private testcaseService: TestcaseService) { }
+    private testcaseService: TestcaseService,
+    private notificationsService: NotificationsService,
+    public themeService: ThemeService
+  ) { }
 
   ngOnInit() {
     this.getTestcases();
@@ -37,7 +41,7 @@ export class TestcasesComponent implements OnInit {
     );
   }
 
-   deleteTestcase(id: string) {
+  deleteTestcase(id: string) {
     // TODO delete by object not by ID
     this.testcaseService.deleteTestcase(id).subscribe(
       response => {

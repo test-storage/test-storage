@@ -36,8 +36,12 @@
     right: 1px;
 }
 
-.navigation-bar.dark-theme .dropdown-content a {
+.navigation-bar.dark-theme a {
     color: #fff;
+}
+
+.navigation-bar.dark-theme .link {
+    background-color: #283242;
 }
 
 .navigation-bar.dark-theme .dropdown-content ul li a:hover {
@@ -45,6 +49,10 @@
     /* alternative color */
     /*background-color: #ddd;*/
     /*color: #1B2531;*/
+}
+
+.navigation-bar.dark-theme .dropbtn {
+    background-color: #283242;
 }
 
 
