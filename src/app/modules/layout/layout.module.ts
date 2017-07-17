@@ -11,6 +11,8 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 
+import { ClickOutModule } from 'ngx-clickout';
+
 const layoutRoutes: Routes = [
   {
     path: '',
@@ -64,7 +66,8 @@ const layoutRoutes: Routes = [
   imports: [
     RouterModule.forChild(layoutRoutes),
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    ClickOutModule
   ],
   exports: [
     LayoutComponent

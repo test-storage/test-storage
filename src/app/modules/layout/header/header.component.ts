@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthGuard, AuthenticationService } from './../../../services/auth/index';
 import { ThemeService } from './../../../services/theme/theme.service';
+import { ClickOutDirective } from 'ngx-clickout';
 
 @Component({
     selector: 'app-header',
@@ -41,6 +42,11 @@ export class HeaderComponent implements OnInit {
             this.sidebarCollapsed = true;
             this.notify.emit(true);
         }
+    }
+
+    closeDropdown() {
+        console.log('OK');
+        this.shown = '';
     }
 
     logout() {
