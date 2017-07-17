@@ -3,10 +3,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
+
+import { ThemeService } from '../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
+
 import { AuthenticationService } from '../../services/auth/authentication.service';
 import { ProjectsComponent } from './projects.component';
 import { ProjectService } from '../../services/project/project.service';
-import { ThemeService } from '../../services/theme/theme.service';
+
 
 describe('ProjectsComponent', () => {
   let component: ProjectsComponent;
@@ -17,6 +21,7 @@ describe('ProjectsComponent', () => {
       declarations: [ProjectsComponent],
       providers: [
         ThemeService,
+        NotificationsService,
         AuthenticationService,
         ProjectService,
         MockBackend,
@@ -42,7 +47,8 @@ describe('ProjectsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', inject([ProjectService], (service: ProjectService) => {
+  it('should create', inject([ProjectService, NotificationsService], (
+    service: ProjectService, notificationsService: NotificationsService) => {
     expect(component).toBeTruthy();
   }));
 

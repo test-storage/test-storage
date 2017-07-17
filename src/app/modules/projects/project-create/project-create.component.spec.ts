@@ -1,14 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-import { ThemeService } from '../../../services/theme/theme.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 
+import { ThemeService } from '../../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
+
 import { AuthenticationService } from '../../../services/auth/authentication.service';
 import { ProjectService } from '../../../services/project/project.service';
-
 import { ProjectCreateComponent } from './project-create.component';
 
 describe('ProjectCreateComponent', () => {
@@ -26,6 +27,7 @@ describe('ProjectCreateComponent', () => {
       declarations: [ProjectCreateComponent],
       providers: [
         ThemeService,
+        NotificationsService,
         ProjectService,
         AuthenticationService,
         MockBackend,

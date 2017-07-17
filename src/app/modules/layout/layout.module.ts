@@ -9,7 +9,9 @@ import { ThemeService } from './../../services/theme/theme.service';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+
 import { NotificationsComponent } from './notifications/notifications.component';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { ClickOutModule } from 'ngx-clickout';
 
@@ -67,7 +69,8 @@ const layoutRoutes: Routes = [
     RouterModule.forChild(layoutRoutes),
     CommonModule,
     TranslateModule,
-    ClickOutModule
+    ClickOutModule,
+    SimpleNotificationsModule.forRoot()
   ],
   exports: [
     LayoutComponent

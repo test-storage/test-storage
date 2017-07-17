@@ -12,7 +12,7 @@ import { ClickOutDirective } from 'ngx-clickout';
 export class HeaderComponent implements OnInit {
 
     user: any = {};
-    private sidebarCollapsed = true;
+    public sidebarCollapsed = true;
     public shown = '';
     @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
 

@@ -1,16 +1,16 @@
-#login-wrapper {
+#wrapper {
     display: flex;
     align-self: center;
     min-height: 700px;
 }
 
-#login-wrapper.dark-theme {
+#wrapper.dark-theme {
     background: #283242;
 }
 
-#login-wrapper.dark-theme #logo-text,
-#login-wrapper.dark-theme #logo-strong,
-#login-wrapper.dark-theme #login h2 {
+#wrapper.dark-theme #logo-text,
+#wrapper.dark-theme #logo-strong,
+#wrapper.dark-theme #login h2 {
     color: #FFF;
 }
 
@@ -34,7 +34,6 @@
 
 #logo {
     text-align: center;
-    padding-top: 70px;
 }
 
 #logo-text {

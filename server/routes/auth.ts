@@ -3,6 +3,7 @@ import { User } from '../models/User';
 
 import * as jwt from 'jsonwebtoken';
 import { secret } from './config/secret';
+import * as bcrypt from 'bcrypt';
 
 class Auth {
 
@@ -44,11 +45,24 @@ class Auth {
 
   async validate(username, password) {
 
-    const fields = { 'password': 0, 'updated': 0, 'created': 0 };
+    const fields = { 'updated': 0, 'created': 0 };
 
-    const user = await User.find({ 'email': username, 'password': password }, fields).limit(1);
+    const user = await User.find({ 'email': username }, fields).limit(1);
+
+    // compare password with hash
+    await this.comparePassword(password, user[0].password, function (err, isMatch) {
+      if (err) {
+        throw err;
+      }
+
+      user[0].password = undefined;
+      return user;
+    });
+
 
     if (user.length > 0) {
+      user[0].password = undefined;
+
       return user;
     } else {
       console.log('User not found!');
@@ -57,6 +71,14 @@ class Auth {
 
   }
 
+  // Method to compare password for login
+  async comparePassword(candidatePassword, actualPassword, cb) {
+    bcrypt.compare(candidatePassword, actualPassword, (err, isMatch) => {
+      if (err) { return cb(err); }
+
+      cb(null, isMatch);
+    });
+  };
 
 
 
@@ -93,13 +115,13 @@ class Auth {
   }
 
   // private method
-  private genToken(user) {
-    const expires = this.expiresIn(1); // 1 days
+  private async genToken(user) {
+    const expires = await this.expiresIn(1); // 1 days
     const token = jwt.sign({
-      exp: expires,
+      // exp: expires,
       username: user[0].email,
       userId: user[0]._id
-    }, secret());
+    }, secret(), { expiresIn: '1d' });
 
     return {
       token: token,

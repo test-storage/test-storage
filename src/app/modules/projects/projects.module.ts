@@ -9,6 +9,8 @@ import { ProjectSettingsComponent } from './project-settings/project-settings.co
 import { ProjectService } from '../../services/project/project.service';
 import { ProjectCreateComponent } from './project-create/project-create.component';
 
+import { SimpleNotificationsModule } from 'angular2-notifications';
+
 const projectsRoutes: Routes = [
   {
     path: '',
@@ -34,7 +36,8 @@ const projectsRoutes: Routes = [
   imports: [
     RouterModule.forChild(projectsRoutes),
     CommonModule,
-    FormsModule
+    FormsModule,
+    SimpleNotificationsModule
   ],
   declarations: [
     ProjectsComponent,
