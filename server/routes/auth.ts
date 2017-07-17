@@ -23,7 +23,7 @@ class Auth {
 
     // Fire a query to your DB and check if the credentials are valid
     const dbUserObj: object = await this.validate(username, password);
-
+    console.log(dbUserObj);
     if (!dbUserObj) { // If authentication fails, we send a 401 back
       res.status(401);
       res.json({
@@ -49,20 +49,14 @@ class Auth {
 
     const user = await User.find({ 'email': username }, fields).limit(1);
 
-
     if (user.length > 0) {
       // compare password with hash
-      console.log(password);
-      console.log(user[0].password);
-      await this.comparePassword(password, user[0].password, function (err, isMatch) {
-        if (err) {
-          throw err;
-        } else {
+      const passwordIsMatch = await bcrypt.compareSync(password, user[0].password);
 
-          user[0].password = undefined;
-          return user;
-        }
-      });
+      if (passwordIsMatch) {
+        user[0].password = undefined;
+        return user[0];
+      }
     } else {
       console.log('User not found!');
       return null;
@@ -71,10 +65,9 @@ class Auth {
   }
 
   // Method to compare password for login
-  async comparePassword(candidatePassword, actualPassword, cb) {
-    bcrypt.compare(candidatePassword, actualPassword, (err, isMatch) => {
+  async comparePassword(password, hash, cb) {
+    await bcrypt.compare(password, hash, (err, isMatch) => {
       if (err) { return cb(err); }
-
       cb(null, isMatch);
     });
   };
@@ -87,7 +80,7 @@ class Auth {
     const user = await User.find({ 'email': username }, fields).limit(1);
 
     if (user.length > 0) {
-      return user;
+      return user[0];
     } else {
       console.log('User not found!');
       return;
@@ -118,13 +111,13 @@ class Auth {
     const expires = await this.expiresIn(1); // 1 days
     const token = jwt.sign({
       // exp: expires,
-      username: user[0].email,
-      userId: user[0]._id
+      username: user.email,
+      userId: user._id
     }, secret(), { expiresIn: '1d' });
 
     return {
       token: token,
-      expires: expires,
+      // expires: expires, // TODO Proper date
       user: user
     };
   }
