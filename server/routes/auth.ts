@@ -49,24 +49,23 @@ class Auth {
 
     const user = await User.find({ 'email': username }, fields).limit(1);
 
-    // compare password with hash
-    await this.comparePassword(password, user[0].password, function (err, isMatch) {
-      if (err) {
-        throw err;
-      }
-
-      user[0].password = undefined;
-      return user;
-    });
-
 
     if (user.length > 0) {
-      user[0].password = undefined;
+      // compare password with hash
+      console.log(password);
+      console.log(user[0].password);
+      await this.comparePassword(password, user[0].password, function (err, isMatch) {
+        if (err) {
+          throw err;
+        } else {
 
-      return user;
+          user[0].password = undefined;
+          return user;
+        }
+      });
     } else {
       console.log('User not found!');
-      return;
+      return null;
     }
 
   }
