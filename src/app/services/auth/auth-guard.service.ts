@@ -19,6 +19,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   private checkIfLoggedIn(): boolean {
 
+
     if (localStorage.getItem('currentUser')) {
 
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -26,9 +27,14 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
       // if token exist
       if (token) {
-        if (tokenNotExpired(null, token)) {
-          // if token not expired return true
+        // if token not expired return true
+        const isExpired = tokenNotExpired(null, token);
+
+        if (isExpired === true) {
           return true;
+        } else {
+          this.router.navigate(['/auth']);
+          return false;
         }
       }
     }
