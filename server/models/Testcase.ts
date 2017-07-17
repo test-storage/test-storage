@@ -30,7 +30,7 @@ const TestcaseSchema = new mongoose.Schema({
   estimate: { type: Number },
   status: {
     type: String,
-    enum: ['CREATED', 'APPROVED', 'REJECTED', 'ARCHIEVED'],
+    enum: ['CREATED', 'PENDING', 'APPROVED', 'REJECTED', 'ARCHIEVED'],
     default: 'CREATED'
   }
 });

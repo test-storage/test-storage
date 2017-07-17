@@ -15,9 +15,10 @@
     "SIDEBAR": {
         "DASHBOARD": "Dashboard",
         "PROJECTS": "Projects",
-        "TESTCASES": "Test Сases",
+        "TESTCASES": "Test Cases",
         "TEST_EXECUTIONS": "Test Executions",
         "REPORTS": "Reports",
+        "USERS": "Users",
         "PROJECT_SETTINGS": "Project Settings"
     },
     "LOGINPAGE": {
@@ -27,7 +28,9 @@
         "LOGIN_REQUIRED": "Username is required",
         "PASSWORD_REQUIRED": "Password is required",
         "LOGIN_BUTTON": "Login",
-        "INVALID_CREDENTIALS": "Username or password is incorrect"
+        "INVALID_CREDENTIALS": "Username or password is incorrect",
+        "REMEMBER_ME": "Remember me",
+        "FORGOT_PASSWORD": "Forgot password"
     },
     "USERPROFILEPAGE": {
         "REGISTERED": "Registered",

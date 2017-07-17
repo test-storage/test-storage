@@ -1,13 +1,14 @@
 {
     "env": "production",
     "app": {
+        "enableGzipCompression": true,
         "port": {
             "http": 3000,
             "https": 8443
         },
         "httpsEnabled": false,
-        "privateKey": "sslcert/server.key",
-        "certificate": "sslcert/server.crt"
+        "privateKey": "certs/server.key",
+        "certificate": "certs/server.crt"
     },
     "db": {
         "name": "test-storage",

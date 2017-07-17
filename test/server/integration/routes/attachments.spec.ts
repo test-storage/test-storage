@@ -12,16 +12,18 @@ import { modelFixture, modelFixtureEdited } from './attachments.fixtures';
 var token = '';
 var entityId = '';
 
-
-describe('/attachments', function () {
+before(function (done) {
 
     it('login', function (done) {
-
         authenticate(function (restoken) {
             token = restoken;
             done();
         });
     });
+    done();
+});
+
+describe('/attachments', function () {
 
     it('POST /attachments respond with status 201 and JSON', function (done) {
 

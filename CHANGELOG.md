@@ -1,11 +1,21 @@
 # Change Log
 
+## 0.23.0 (July 17, 2017)
+- Overall UI improvements: ([@pumano](https://github.com/pumano) in [#52](https://github.com/test-storage/test-storage/pull/52))
+- Password hashing
+- Authentication enhancements and bug fixes
+- Users: Possible to add / check details / delete users via UI
+- 404 error page UI
+- fix routing issues to details pages
+- gzip encoding settings via config file (gzip enabled by default)
+- Toast Notifications
+
 ## 0.22.0 (July 12, 2017)
 - Projects UI: ([@pumano](https://github.com/pumano) in [#51](https://github.com/test-storage/test-storage/pull/51))
 - Notifications UI
 - Profile UI
 - i18n support for multiple pages
-- Themes (bright / dark) 
+- Themes (bright / dark)
 - /users/me API
 - Multiple API changes
 - Default routing root changed from / to /dashboard

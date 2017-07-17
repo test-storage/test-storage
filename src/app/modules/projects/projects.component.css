@@ -11,13 +11,27 @@
     flex-wrap: wrap;
 }
 
+@media (max-width: 768px) {
+    .projects-wrapper {
+        justify-content: center;
+    }
+}
+
 .project-card {
     margin: 25px;
-    width: 20rem;
+    width: 300px;
+    box-sizing: border-box;
+    /*box-shadow: 0 1px 0px #dfe2e7;*/
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15), inset 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+    /*#dfe2e7;*/
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-img-top {
-    width: 200px;
+    width: 300px;
 }
 
 .card-block {
@@ -29,9 +43,67 @@
     text-align: center;
 }
 
-.card-button {
-    display: block;
+.edit-icon {
+    color: #fff;
+    position: absolute;
+    display: none;
+    font-size: 20px;
+    right: 15px;
+    top: 15px;
+    
 }
+
+.project-card:hover>.edit-icon {
+    display: flex;
+}
+
+.edit-button {
+    margin: 10px;
+    background-color: #999;
+    border-color: #777;
+}
+
+#wrapper.dark-theme div.project-card {
+    background-color: #2d3035;
+}
+
+.project-card:hover>a,
+#wrapper.dark-theme .project-card:hover>a {
+    background-color: #0275d8;
+    border-color: #0275d8;
+}
+
+#wrapper.dark-theme .edit-button {
+    background-color: #303C4D;
+    border-color: #1B2531;
+}
+
+
+.create-card {
+    display: flex;
+    justify-content: flex-end;
+    
+    flex-direction: column;
+}
+
+.create-card .card-block {
+    align-self: center;
+    justify-content: center;
+}
+
+
+.create-button {
+    margin: 10px;
+}
+
+
+
+
+
+
+
+
+
 
 .noexist-wrapper {
     display: flex;
@@ -45,7 +117,6 @@
     align-self: center;
     justify-content: center;
     text-align: center;
-    
 }
 
 .no-project img {
@@ -62,10 +133,16 @@
     margin-bottom: 20px;
 }
 
+
 /* DARK THEME */
+
 
 /* TODO WHITE ICON */
 
 #wrapper.dark-theme .no-project h4 {
     color: #FFF;
+}
+
+#wrapper.dark-theme .card {
+    background: inherit;
 }

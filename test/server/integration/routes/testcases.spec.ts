@@ -13,8 +13,7 @@ import { testcaseFixture, editedTestCaseFixture } from './testcases.fixtures';
 var token = '';
 var entityId = '';
 
-
-describe('/testcases', function () {
+before(function (done) {
 
     it('login', function (done) {
         authenticate(function (restoken) {
@@ -22,6 +21,10 @@ describe('/testcases', function () {
             done();
         });
     });
+    done();
+});
+
+describe('/testcases', function () {
 
     it('POST /testcases respond with status 201 and JSON', function (done) {
 
@@ -56,8 +59,8 @@ describe('/testcases', function () {
                 expect(res.body).to.have.deep.property('priority', 1);
                 expect(res.body).to.have.deep.property('order', 2);
                 expect(res.body).to.have.deep.property('preConditions', 'Preconditions 1');
-                expect(res.body).to.have.deep.property('title', 'Testcase 1');
-                expect(res.body).to.have.deep.property('description', 'Test case description');
+                expect(res.body).to.have.deep.property('title', testcaseFixture.title);
+                expect(res.body).to.have.deep.property('description', testcaseFixture.description);
                 expect(res.body).to.have.deep.property('steps', ['Check that', 'Check this']);
                 expect(res.body).to.have.deep.property('testData', ['data1', 'data2']);
                 expect(res.body).to.have.deep.property('expected', ['Expected that', 'Expected this']);

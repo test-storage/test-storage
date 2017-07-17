@@ -3,16 +3,21 @@
 }
 
 #wrapper {
+    height: 100%;
+    overflow: hidden;
+    min-height: 740px;
+    /* padding: 20px; */
+}
+
+#profile {
+    background-color: #FFF;
     display: flex;
     height: 400px;
     width: 100%;
 }
 
 
-
-
 /* DEFAULT THEME */
-
 
 .profile-data {
     /* border: 1px solid #333; */
@@ -111,7 +116,6 @@
 }
 
 .profile-work {
-    
     padding: 20px 20px 10px 50px;
     /*#DADADA;*/
     height: 150px;
@@ -133,6 +137,7 @@
     padding-left: 0;
     padding-bottom: 0;
 }
+
 
 /* DARK THEME */
 

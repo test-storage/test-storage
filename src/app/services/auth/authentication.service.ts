@@ -30,9 +30,9 @@ export class AuthenticationService {
                     localStorage.setItem('currentUser', JSON.stringify({
                         username: username,
                         token: token,
-                        firstName: response.json().user[0].firstName,
-                        lastName: response.json().user[0].lastName,
-                        title: response.json().user[0].title
+                        firstName: response.json().user.firstName,
+                        lastName: response.json().user.lastName,
+                        title: response.json().user.title
                     }));
 
                     // return true to indicate successful login

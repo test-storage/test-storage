@@ -29,6 +29,10 @@ Each commit message should include a **type**, a **scope** and a **subject**:
 
 ```
  <type>(<scope>): <subject>
+ <BLANK LINE>
+ <body>
+ <BLANK LINE>
+ <footer>
 ```
 
 Lines should not exceed 100 characters. This allows the message to be easier to read on github as well as in various git tools and produces a nice, neat commit log ie:
@@ -68,13 +72,25 @@ The subject contains succinct description of the change:
 * don't capitalize first letter
 * no dot (.) at the end
 
-### Body
+#### Body
 Just as in the **subject**, use the imperative, present tense: "change" not "changed" nor "changes".
 The body should include the motivation for the change and contrast this with previous behavior.
 
-### Footer
+#### Footer
 The footer should contain any information about **Breaking Changes** and is also the place to
 [reference GitHub issues that this commit closes](https://help.github.com/articles/closing-issues-via-commit-messages/).
+
+#### Referencing issues
+
+Closed bugs should be listed on a separate line in the footer prefixed with "Closes" keyword like this:
+```
+Closes #234
+```
+
+or in case of multiple issues:
+```
+Closes #123, #245, #992
+```
 
 **Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines.
 The rest of the commit message is then used for this.

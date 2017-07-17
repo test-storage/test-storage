@@ -12,7 +12,7 @@ const expect = chai.expect;
 var token = '';
 var entityId = '';
 
-describe('/notifications', function () {
+before(function (done) {
 
     it('login', function (done) {
         authenticate(function (restoken) {
@@ -20,6 +20,10 @@ describe('/notifications', function () {
             done();
         });
     });
+    done();
+});
+
+describe('/notifications', function () {
 
     it('POST /notifications respond with status 201 and JSON', function (done) {
         chai.request(app)

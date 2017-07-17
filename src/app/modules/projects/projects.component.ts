@@ -1,8 +1,12 @@
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { pageTransition } from '../../animations';
+
 import { Project } from '../../models/project';
 import { ProjectService } from '../../services/project/project.service';
 import { ThemeService } from '../../services/theme/theme.service';
+
+import { NotificationsService } from 'angular2-notifications';
+
 
 @Component({
   selector: 'app-projects',
@@ -23,6 +27,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   public projects: Project[];
 
   constructor(
+    private notificationsService: NotificationsService,
     public themeService: ThemeService,
     private projectService: ProjectService) { }
 
@@ -38,7 +43,13 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   getProjects() {
     this.subscription = this.projectService.getProjects().subscribe(
       data => this.projects = data,
-      error => console.log(error)
+      error => this.notificationsService.error(error, '', {
+        timeOut: 5000,
+        showProgressBar: false,
+        pauseOnHover: false,
+        clickToClose: false,
+        maxLength: 10
+      })
     );
   }
 

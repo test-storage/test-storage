@@ -275,4 +275,50 @@ export class Users {
             }
         }
     }
+
+    /*
+   * Get all users by project id
+   *
+   */
+    getAllUsersByProjectId(req, res) {
+
+        // check limit, offset, fields param
+        const limit = this.validator.validateLimit(req, res);
+        const fields = this.validator.validateFields(req, res);
+        const offset = this.validator.validateOffset(req, res);
+
+        // check :id param
+        this.validator.isPathValid(req, res);
+
+        User.
+            find({ 'projects': req.params.id }).
+            limit(limit).
+            select(fields).
+            skip(offset).
+            exec(
+            function (err, users) {
+
+                if (err) {
+                    console.log(err);
+                    res.
+                        set('Content-Type', 'application/json').
+                        status(500).
+                        json({
+                            'status': 500,
+                            'message': 'Error occured. ' + err
+                        });
+                } else {
+                    // delete password from data array
+                    users.map(function (props) {
+                        props.password = undefined;
+                        return true;
+                    });
+
+                    res.
+                        set('Content-Type', 'application/json').
+                        status(200).
+                        json(users);
+                }
+            });
+    }
 };

@@ -26,12 +26,12 @@ export class ValidateRequest {
 
     if (token) {
       try {
-        const decoded = jwt.decode(token, secret(), { algorithm: 'HS256', expiresIn: '1d' });
+        const decoded = await jwt.verify(token, secret(), { algorithm: 'HS256' });
 
-        if (decoded.exp <= Date.now()) {
-          res.status(400);
+        if (decoded.exp <= Math.floor(Date.now() / 1000)) {
+          res.status(401);
           res.json({
-            'status': 400,
+            'status': 401,
             'message': 'Token Expired'
           });
           return;

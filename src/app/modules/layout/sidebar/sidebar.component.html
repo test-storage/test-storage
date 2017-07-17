@@ -49,6 +49,12 @@
         <span class="sidebar-title">{{ 'SIDEBAR.REPORTS' | translate }}</span>
       </a>
     </li>
+    <li [routerLinkActive]="['active']">
+      <a routerLink="/users">
+        <i class="fa fa-user"></i>
+        <span class="sidebar-title">{{ 'SIDEBAR.USERS' | translate }}</span>
+      </a>
+    </li>
     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" id="settings">
       <a routerLink="/projects/:id/settings">
         <!-- TODO [routerLink]="['./projects/', project._id, '/settings']"  get project id from app settings -->

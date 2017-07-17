@@ -55,12 +55,7 @@
     font-size: 30px;
 }
 
-.fa-dashboard,
-.fa-folder-o,
-.fa-bar-chart-o,
-.fa-cog,
-.fa-inbox,
-.fa-history {
+.sidebar .fa {
     font-size: 14px;
     margin-left: 10px;
     margin-right: 6px;
@@ -131,12 +126,7 @@ ul li.active>a {
     width: 69px !important;
 }
 
-.sidebar-mini .fa-dashboard,
-.sidebar-mini .fa-bar-chart-o,
-.sidebar-mini .fa-inbox,
-.sidebar-mini .fa-cog,
-.sidebar-mini .fa-history,
-.sidebar-mini .fa-folder-o {
+.sidebar-mini .fa {
     display: inline-block;
     font-size: 26px;
     position: relative;
@@ -169,8 +159,12 @@ ul li.active>a {
     top: 4px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
     .sidebar.sidebar-mini {
         display: none;
+    }
+
+    .sidebar {
+        width: 90%;
     }
 }

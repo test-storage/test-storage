@@ -12,16 +12,18 @@ import { testsuiteFixture, editedTestsuiteFixture } from './testsuites.fixtures'
 var token = '';
 var entityId = '';
 
-
-describe('/testsuites', function () {
+before(function (done) {
 
     it('login', function (done) {
-
         authenticate(function (restoken) {
             token = restoken;
             done();
         });
     });
+    done();
+});
+
+describe('/testsuites', function () {
 
     it('POST /testsuites respond with status 201 and JSON', function (done) {
 

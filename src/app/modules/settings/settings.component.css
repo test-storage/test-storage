@@ -1,11 +1,15 @@
 :host {
-  display: block;
+    display: block;
 }
 
 #wrapper {
-  height: 940px;
+    height: 100%;
+    overflow: hidden;
+    min-height: 740px;
+    background-color: #FFF;
+    padding: 20px;
 }
 
 #wrapper.dark-theme select {
-  color: #333;
+    color: #333;
 }

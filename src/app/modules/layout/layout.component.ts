@@ -5,6 +5,8 @@ import { AuthHttp } from 'angular2-jwt';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 import { ThemeService } from './../../services/theme/theme.service';
 
+import { SimpleNotificationsComponent } from 'angular2-notifications';
+
 @Component({
     selector: 'app-home',
     templateUrl: 'layout.component.html',

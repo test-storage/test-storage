@@ -3,6 +3,7 @@ import { User } from '../models/User';
 
 import * as jwt from 'jsonwebtoken';
 import { secret } from './config/secret';
+import * as bcrypt from 'bcrypt';
 
 class Auth {
 
@@ -22,7 +23,7 @@ class Auth {
 
     // Fire a query to your DB and check if the credentials are valid
     const dbUserObj: object = await this.validate(username, password);
-
+    console.log(dbUserObj);
     if (!dbUserObj) { // If authentication fails, we send a 401 back
       res.status(401);
       res.json({
@@ -44,19 +45,32 @@ class Auth {
 
   async validate(username, password) {
 
-    const fields = { 'password': 0, 'updated': 0, 'created': 0 };
+    const fields = { 'updated': 0, 'created': 0 };
 
-    const user = await User.find({ 'email': username, 'password': password }, fields).limit(1);
+    const user = await User.find({ 'email': username }, fields).limit(1);
 
     if (user.length > 0) {
-      return user;
+      // compare password with hash
+      const passwordIsMatch = await bcrypt.compareSync(password, user[0].password);
+
+      if (passwordIsMatch) {
+        user[0].password = undefined;
+        return user[0];
+      }
     } else {
       console.log('User not found!');
-      return;
+      return null;
     }
 
   }
 
+  // Method to compare password for login
+  async comparePassword(password, hash, cb) {
+    await bcrypt.compare(password, hash, (err, isMatch) => {
+      if (err) { return cb(err); }
+      cb(null, isMatch);
+    });
+  };
 
 
 
@@ -66,7 +80,7 @@ class Auth {
     const user = await User.find({ 'email': username }, fields).limit(1);
 
     if (user.length > 0) {
-      return user;
+      return user[0];
     } else {
       console.log('User not found!');
       return;
@@ -93,17 +107,17 @@ class Auth {
   }
 
   // private method
-  private genToken(user) {
-    const expires = this.expiresIn(1); // 1 days
+  private async genToken(user) {
+    const expires = await this.expiresIn(1); // 1 days
     const token = jwt.sign({
-      exp: expires,
-      username: user[0].email,
-      userId: user[0]._id
-    }, secret());
+      // exp: expires,
+      username: user.email,
+      userId: user._id
+    }, secret(), { expiresIn: '1d' });
 
     return {
       token: token,
-      expires: expires,
+      // expires: expires, // TODO Proper date
       user: user
     };
   }

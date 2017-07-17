@@ -73,6 +73,7 @@ class Routes {
         this.router.get('/api/v1/projects/:id', this.projects.getOne.bind(this.projects));
         this.router.get('/api/v1/projects/:id/testcases', this.testcases.getAllTestcasesByProjectId.bind(this.testcases));
         this.router.get('/api/v1/projects/:id/testsuites', this.testsuites.getAllTestsuitesByProjectId.bind(this.testsuites));
+        this.router.get('/api/v1/projects/:id/users', this.users.getAllUsersByProjectId.bind(this.users));
         this.router.post('/api/v1/projects/', this.projects.create.bind(this.projects));
         this.router.put('/api/v1/projects/:id', this.projects.update.bind(this.projects));
         this.router.delete('/api/v1/projects/:id', this.projects.delete.bind(this.projects));

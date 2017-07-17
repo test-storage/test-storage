@@ -12,16 +12,18 @@ const expect = chai.expect;
 var token = '';
 var entityId = '';
 
-
-describe('/testplans', function () {
+before(function (done) {
 
     it('login', function (done) {
-
         authenticate(function (restoken) {
             token = restoken;
             done();
         });
     });
+    done();
+});
+
+describe('/testplans', function () {
 
     it('POST /testplans respond with status 201 and JSON', function (done) {
 

@@ -12,7 +12,6 @@ import { modelFixture, modelFixtureEdited } from './users.fixtures';
 var token = '';
 var entityId = '';
 
-
 before(function (done) {
 
     it('login', function (done) {

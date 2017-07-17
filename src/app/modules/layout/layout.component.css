@@ -27,20 +27,31 @@ body {
 }
 
 #content {
-    background-color: #FFF;
     margin: 20px;
     height: 100%;
     overflow: hidden;
     min-height: 740px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
     .sidebar-collapsed {
         padding-left: 0 !important;
     }
     #wrapper {
-        flex-direction: column;
+        overflow: hidden;
     }
+    .sidebar-full {
+        padding-left: 89%;
+    }
+
+    .sidebar-full > #content-wrapper {
+        display: none !important;
+    }
+
+    .sidebar-collapsed > #content-wrapper {
+        display: block !important;
+    }
+
 }
 
 

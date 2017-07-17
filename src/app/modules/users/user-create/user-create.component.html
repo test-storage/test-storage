@@ -1,0 +1,83 @@
+<div id="wrapper">
+
+  <div class="create-form">
+
+    <form name="form" (ngSubmit)="f.form.valid && createNewUser(f.value)" #f="ngForm" novalidate>
+
+      <div class="form-group row">
+        <label for="email" class="col-2 col-form-label">Email</label>
+        <div class="col-6">
+          <input class="form-control" type="email" name="email" id="email" placeholder="me@example.com" ngModel #email="ngModel" required>
+
+
+          <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+            <div [hidden]="!email.errors.required">
+              <li><small>Name is required</small></li>
+            </div>
+            <div [hidden]="email.errors.valid || (email.pristine && !f.submitted)">
+              <li><small>Email must contain @ and dot symbols. Example: 'email@example.com'</small></li>
+            </div>
+            <div [hidden]="!email.errors.minlength">
+              Name must be at least 4 characters long.
+            </div>
+            <div [hidden]="!email.errors.maxlength">
+              Name cannot be more than 24 characters long.
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="form-group row">
+        <label for="last-name" class="col-2 col-form-label">Last name</label>
+        <div class="col-6">
+          <input class="form-control" type="text" name="lastName" placeholder="Last Name" id="last-name" ngModel required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="first-name" class="col-2 col-form-label">First name</label>
+        <div class="col-6">
+          <input class="form-control" type="text" name="firstName" placeholder="First Name" id="first-name" ngModel required>
+        </div>
+      </div>
+
+      <div ngModelGroup="work">
+
+        <div class="form-group row">
+          <label for="title" class="col-2 col-form-label">Job Title</label>
+          <div class="col-6">
+            <input class="form-control" type="text" name="title" placeholder="Job title" id="title" ngModel required>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="company" class="col-2 col-form-label">Company</label>
+          <div class="col-6">
+            <input class="form-control" type="text" name="company" placeholder="Company" id="company" ngModel>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="password" class="col-2 col-form-label">Password</label>
+        <div class="col-6">
+          <input class="form-control" type="text" name="password" placeholder="Password" id="password" [(ngModel)]="user.password"
+            #password="ngModel" required>
+        </div>
+      </div>
+
+
+
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">Create User</button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

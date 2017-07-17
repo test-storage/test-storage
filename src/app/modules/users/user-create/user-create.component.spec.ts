@@ -7,13 +7,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 
 import { AuthenticationService } from '../../../services/auth/authentication.service';
-import { ProjectService } from '../../../services/project/project.service';
+import { UserService } from '../../../services/user/user.service';
 
-import { CreateProjectComponent } from './create-project.component';
+import { UserCreateComponent } from './user-create.component';
 
-describe('CreateProjectComponent', () => {
-  let component: CreateProjectComponent;
-  let fixture: ComponentFixture<CreateProjectComponent>;
+describe('UserCreateComponent', () => {
+  let component: UserCreateComponent;
+  let fixture: ComponentFixture<UserCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,10 +23,10 @@ describe('CreateProjectComponent', () => {
         HttpModule,
         RouterTestingModule
       ],
-      declarations: [CreateProjectComponent],
+      declarations: [UserCreateComponent],
       providers: [
         ThemeService,
-        ProjectService,
+        UserService,
         AuthenticationService,
         MockBackend,
         BaseRequestOptions,
@@ -41,7 +41,7 @@ describe('CreateProjectComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateProjectComponent);
+    fixture = TestBed.createComponent(UserCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

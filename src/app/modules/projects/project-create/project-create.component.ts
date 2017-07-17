@@ -6,10 +6,12 @@ import { ThemeService } from '../../../services/theme/theme.service';
 import { Project } from '../../../models/project';
 import { ProjectService } from '../../../services/project/project.service';
 
+import { NotificationsService } from 'angular2-notifications';
+
 @Component({
-  selector: 'app-create-project',
-  templateUrl: './create-project.component.html',
-  styleUrls: ['./create-project.component.css'],
+  selector: 'app-project-create',
+  templateUrl: './project-create.component.html',
+  styleUrls: ['./project-create.component.css'],
   providers: [
     ThemeService,
     ProjectService
@@ -17,7 +19,7 @@ import { ProjectService } from '../../../services/project/project.service';
   animations: [pageTransition()]
 })
 
-export class CreateProjectComponent implements OnInit {
+export class ProjectCreateComponent implements OnInit {
 
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
@@ -28,7 +30,9 @@ export class CreateProjectComponent implements OnInit {
   constructor(
     public themeService: ThemeService,
     private router: Router,
-    private projectService: ProjectService) { }
+    private projectService: ProjectService,
+    private notificationsService: NotificationsService,
+  ) { }
 
   ngOnInit() {
   }
@@ -37,10 +41,27 @@ export class CreateProjectComponent implements OnInit {
     this.projectService.createProject(this.project).subscribe(
       response => {
         if (response === 201) {
-          this.router.navigate(['./projects']);
+          this.showNotification('Project ' + this.project.name, 'created successfully!');
+
+           this.router.navigate(['./projects']);
         }
       },
       error => console.log(error)
+    );
+  }
+
+  showNotification(title, description) {
+
+    this.notificationsService.success(
+      title,
+      description,
+      {
+        timeOut: 5000,
+        showProgressBar: false,
+        pauseOnHover: false,
+        clickToClose: false,
+        maxLength: 30
+      }
     );
   }
 }
