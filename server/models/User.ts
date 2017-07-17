@@ -50,7 +50,7 @@ const UserSchema = new mongoose.Schema({
     updatedBy: String
 });
 
-/*
+
 UserSchema.pre('save', function (next) {
     var user = this;
     if (this.isModified('password') || this.isNew) {
@@ -71,6 +71,7 @@ UserSchema.pre('save', function (next) {
     }
 });
 
+/*
 UserSchema.methods.comparePassword = function (passw, cb) {
     bcrypt.compare(passw, this.password, function (err, isMatch) {
         if (err) {
@@ -79,6 +80,8 @@ UserSchema.methods.comparePassword = function (passw, cb) {
         cb(null, isMatch);
     });
 };
+
 */
+
 const User = mongoose.model('User', UserSchema);
 export { User }
