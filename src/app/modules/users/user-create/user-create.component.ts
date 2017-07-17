@@ -13,7 +13,6 @@ import { UserService } from '../../../services/user/user.service';
   templateUrl: './user-create.component.html',
   styleUrls: ['./user-create.component.css'],
   providers: [
-    ThemeService,
     UserService
   ],
   animations: [pageTransition()]

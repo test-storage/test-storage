@@ -15,7 +15,6 @@ import { ProjectService } from '../../../services/project/project.service';
   templateUrl: './project-create.component.html',
   styleUrls: ['./project-create.component.css'],
   providers: [
-    ThemeService,
     ProjectService
   ],
   animations: [pageTransition()]
