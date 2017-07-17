@@ -5,6 +5,8 @@ import { MockBackend } from '@angular/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
+import { NotificationsService } from 'angular2-notifications';
+
 import { AuthenticationService } from '../../../services/auth/authentication.service';
 
 import { ProjectService } from '../../../services/project/project.service';
@@ -21,6 +23,7 @@ describe('ProjectDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ProjectDetailsComponent],
       providers: [
+        NotificationsService,
         ProjectService,
         AuthenticationService,
         MockBackend,

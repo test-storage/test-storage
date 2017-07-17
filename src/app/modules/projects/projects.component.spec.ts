@@ -47,7 +47,8 @@ describe('ProjectsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', inject([ProjectService], (service: ProjectService) => {
+  it('should create', inject([ProjectService, NotificationsService], (
+    service: ProjectService, notificationsService: NotificationsService) => {
     expect(component).toBeTruthy();
   }));
 
