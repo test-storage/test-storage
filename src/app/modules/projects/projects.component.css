@@ -18,6 +18,9 @@
 }
 
 @media (max-width: 850px) {
+    #wrapper {
+        padding: 0;
+    }
     #wrapper .project-card {
         width: 100%;
     }
