@@ -163,8 +163,11 @@ ul li.active>a {
     .sidebar.sidebar-mini {
         display: none;
     }
-
     .sidebar {
-        width: 90%;
+        width: 90vw;
+        border: 1px solid red;
+    }
+    .sidebar li a {
+        font-size: 300px;
     }
 }

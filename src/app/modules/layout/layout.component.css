@@ -24,6 +24,7 @@ body {
     border: 1px solid transparent;
     background-color: #EAEAEA;
     overflow: hidden;
+    height: 100vh;
 }
 
 #content {
@@ -41,7 +42,7 @@ body {
         overflow: hidden;
     }
     .sidebar-full {
-        padding-left: 86%;
+        padding-left: 90vw;
     }
     .sidebar-full>#content-wrapper {
         display: none !important;

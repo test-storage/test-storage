@@ -91,6 +91,7 @@
     /* 48em */
     .navigation-bar {
         display: flex;
+        width: 100vw;
     }
     .navigation-bar .left,
     .navigation-bar .right {
