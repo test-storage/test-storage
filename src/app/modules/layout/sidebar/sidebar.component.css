@@ -168,6 +168,10 @@ ul li.active>a {
         border: 1px solid red;
     }
     .sidebar li a {
-        font-size: 300px;
+        font-size: 35px;
+        width: 89vw;
+    }
+    .sidebar .fa {
+        font-size: 35px;
     }
 }

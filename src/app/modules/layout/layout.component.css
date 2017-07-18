@@ -10,6 +10,8 @@ body {
     z-index: 1;
     flex: 1;
     height: 100%;
+    overflow: hidden;
+    width: 100%;
 }
 
 .sidebar-full {
