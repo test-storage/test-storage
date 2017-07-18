@@ -3,6 +3,7 @@ import { BaseRequestOptions, Http, HttpModule, RequestMethod, Response, Response
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { ThemeService } from '../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -24,7 +25,11 @@ describe('TestcasesComponent', () => {
   beforeEach(async(() => {
 
     TestBed.configureTestingModule({
-      imports: [RouterModule, BrowserAnimationsModule],
+      imports: [
+        RouterModule,
+        BrowserAnimationsModule,
+        FormsModule
+      ],
       declarations: [TestcasesComponent, TestsuitesTreeComponent],
       providers: [
         NotificationsService,
