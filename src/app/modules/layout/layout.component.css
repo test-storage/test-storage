@@ -4,6 +4,7 @@ body {
 
 #wrapper {
     display: flex;
+    height: 100%;
 }
 
 #main {
@@ -26,7 +27,7 @@ body {
     border: 1px solid transparent;
     background-color: #EAEAEA;
     overflow: hidden;
-    height: 100vh;
+    height: 100%;
 }
 
 #content {
