@@ -1,12 +1,11 @@
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { pageTransition } from '../../animations';
 
-import { Project } from '../../models/project';
-import { ProjectService } from '../../services/project/project.service';
 import { ThemeService } from '../../services/theme/theme.service';
-
 import { NotificationsService } from 'angular2-notifications';
 
+import { Project } from '../../models/project';
+import { ProjectService } from '../../services/project/project.service';
 
 @Component({
   selector: 'app-projects',
@@ -27,9 +26,10 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   public projects: Project[];
 
   constructor(
+    private projectService: ProjectService,
     private notificationsService: NotificationsService,
-    public themeService: ThemeService,
-    private projectService: ProjectService) { }
+    public themeService: ThemeService
+  ) { }
 
   ngOnInit() {
     this.getProjects();

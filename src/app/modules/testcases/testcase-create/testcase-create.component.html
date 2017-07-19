@@ -1,0 +1,37 @@
+<div id="wrapper" [class.dark-theme]="themeService.theme">
+
+  <div class="create-form">
+
+    <form name="form" (ngSubmit)="f.form.valid && createNewTestcase()" #f="ngForm" novalidate>
+
+      <div class="form-group row">
+        <label for="testcase-name" class="col-2 col-form-label">Testcase title</label>
+        <div class="col-6">
+          <input class="form-control" type="text" name="title" placeholder="Testcase title" id="testcase-name" [(ngModel)]="testcase.title"
+            #title="ngModel" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="description" class="col-2 col-form-label">Description</label>
+        <div class="col-6">
+          <input class="form-control" type="text" name="description" placeholder="Description" id="description" [(ngModel)]="testcase.description"
+            #description="ngModel" required>
+        </div>
+      </div>
+
+      <!-- TODO dropdown select project || get data from current context of creation -->
+
+      <!-- TODO dropdown select testsuite || get data from current context of creation -->
+
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">Create Testcase</button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

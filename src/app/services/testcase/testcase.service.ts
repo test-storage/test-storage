@@ -35,14 +35,14 @@ export class TestcaseService {
       .catch(this.handleError);
   }
 
-  public createTestcase(testcase: Testcase): Observable<Testcase> {
+  public createTestcase(testcase: Testcase): Observable<Number> {
     const body = JSON.stringify(testcase);
 
     contentHeaders.set('x-access-token', this.authenticationService.token);
     const options = new RequestOptions({ headers: contentHeaders });
 
     return this.http.post(this.apiPath, body, options)
-      .map((response: Response) => response.json())
+      .map((response: Response) => response.status) // response.json())
       .catch(this.handleError);
   }
 

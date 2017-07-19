@@ -17,8 +17,8 @@ export class Testcase {
     updated?: string;
     createdBy?: string;
     updatedBy?: string;
-    enabled: boolean;
-    isAutomated: boolean;
+    enabled?: boolean;
+    isAutomated?: boolean;
     estimate?: number; // TODO string
     status?: string;
 }

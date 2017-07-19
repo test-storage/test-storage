@@ -1,43 +1,41 @@
-import { async, ComponentFixture, inject, fakeAsync, TestBed } from '@angular/core/testing';
-import { BaseRequestOptions, Http, HttpModule, RequestMethod, Response, ResponseOptions } from '@angular/http';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
 import { AuthenticationService } from '../../../services/auth/authentication.service';
-
 import { TestcaseService } from '../../../services/testcase/testcase.service';
-import { TestcaseDetailsComponent } from './testcase-details.component';
+import { TestcaseCreateComponent } from './testcase-create.component';
 
-describe('TestcaseDetailsComponent', () => {
-  let component: TestcaseDetailsComponent;
-  let fixture: ComponentFixture<TestcaseDetailsComponent>;
+describe('TestcaseCreateComponent', () => {
+  let component: TestcaseCreateComponent;
+  let fixture: ComponentFixture<TestcaseCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestcaseDetailsComponent],
+      imports: [
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpModule,
+        RouterTestingModule
+      ],
+      declarations: [TestcaseCreateComponent],
       providers: [
-        NotificationsService,
         ThemeService,
+        NotificationsService,
         TestcaseService,
-        Http,
         AuthenticationService,
         MockBackend,
-        TestcaseService,
         BaseRequestOptions,
         {
           provide: Http,
           useFactory: (backend, options) => new Http(backend, options),
           deps: [MockBackend, BaseRequestOptions]
-        },
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            params: Observable.of({ id: 123 })
-          }
         }
       ]
     })
@@ -45,7 +43,7 @@ describe('TestcaseDetailsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestcaseDetailsComponent);
+    fixture = TestBed.createComponent(TestcaseCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4,12 +4,15 @@ body {
 
 #wrapper {
     display: flex;
+    height: 100%;
 }
 
 #main {
     z-index: 1;
     flex: 1;
     height: 100%;
+    overflow: hidden;
+    width: 100%;
 }
 
 .sidebar-full {
@@ -24,6 +27,7 @@ body {
     border: 1px solid transparent;
     background-color: #EAEAEA;
     overflow: hidden;
+    height: 100%;
 }
 
 #content {
@@ -41,17 +45,14 @@ body {
         overflow: hidden;
     }
     .sidebar-full {
-        padding-left: 89%;
+        padding-left: 90vw;
     }
-
-    .sidebar-full > #content-wrapper {
+    .sidebar-full>#content-wrapper {
         display: none !important;
     }
-
-    .sidebar-collapsed > #content-wrapper {
+    .sidebar-collapsed>#content-wrapper {
         display: block !important;
     }
-
 }
 
 

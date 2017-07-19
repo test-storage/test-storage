@@ -1,7 +1,9 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { pageTransition } from '../../../animations';
+
 import { ThemeService } from '../../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
 
 import { User } from '../../../models/user';
 import { UserService } from '../../../services/user/user.service';
@@ -11,7 +13,6 @@ import { UserService } from '../../../services/user/user.service';
   templateUrl: './user-create.component.html',
   styleUrls: ['./user-create.component.css'],
   providers: [
-    ThemeService,
     UserService
   ],
   animations: [pageTransition()]
@@ -25,9 +26,11 @@ export class UserCreateComponent implements OnInit {
   public user: User = new User();
 
   constructor(
-    public themeService: ThemeService,
     private router: Router,
-    private userService: UserService) { }
+    private userService: UserService,
+    private notificationsService: NotificationsService,
+    public themeService: ThemeService
+  ) { }
 
   ngOnInit() {
   }

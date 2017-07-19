@@ -1,8 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
-import { SettingsComponent } from './settings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 import { ThemeService } from '../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
+
+import { SettingsComponent } from './settings.component';
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
@@ -18,6 +21,7 @@ describe('SettingsComponent', () => {
       ],
       declarations: [SettingsComponent],
       providers: [
+        NotificationsService,
         ThemeService,
         TranslateService,
         TranslateModule

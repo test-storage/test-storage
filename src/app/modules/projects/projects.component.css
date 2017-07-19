@@ -11,9 +11,21 @@
     flex-wrap: wrap;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .projects-wrapper {
         justify-content: center;
+    }
+}
+
+@media (max-width: 850px) {
+    #wrapper {
+        padding: 0;
+    }
+    #wrapper .project-card {
+        width: 100%;
+    }
+    #wrapper .card-img-top {
+        width: 100%;
     }
 }
 
@@ -50,7 +62,6 @@
     font-size: 20px;
     right: 15px;
     top: 15px;
-    
 }
 
 .project-card:hover>.edit-icon {
@@ -78,11 +89,9 @@
     border-color: #1B2531;
 }
 
-
 .create-card {
     display: flex;
     justify-content: flex-end;
-    
     flex-direction: column;
 }
 
@@ -91,19 +100,9 @@
     justify-content: center;
 }
 
-
 .create-button {
     margin: 10px;
 }
-
-
-
-
-
-
-
-
-
 
 .noexist-wrapper {
     display: flex;

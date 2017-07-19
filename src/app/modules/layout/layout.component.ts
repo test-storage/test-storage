@@ -8,7 +8,7 @@ import { ThemeService } from './../../services/theme/theme.service';
 import { SimpleNotificationsComponent } from 'angular2-notifications';
 
 @Component({
-    selector: 'app-home',
+    selector: 'app-layout',
     templateUrl: 'layout.component.html',
     styleUrls: ['layout.component.css']
 })

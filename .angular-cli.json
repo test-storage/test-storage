@@ -24,11 +24,11 @@
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/font-awesome/css/font-awesome.min.css"
       ],
-      "scripts": [
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
+        "hmr": "environments/environment.hmr.ts",
         "prod": "environments/environment.prod.ts"
       }
     }

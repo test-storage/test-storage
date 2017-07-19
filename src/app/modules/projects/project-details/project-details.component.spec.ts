@@ -5,6 +5,7 @@ import { MockBackend } from '@angular/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
+import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
 import { AuthenticationService } from '../../../services/auth/authentication.service';
@@ -24,6 +25,7 @@ describe('ProjectDetailsComponent', () => {
       declarations: [ProjectDetailsComponent],
       providers: [
         NotificationsService,
+        ThemeService,
         ProjectService,
         AuthenticationService,
         MockBackend,

@@ -4,7 +4,7 @@
     <div *ngIf="testcases.length > 0; then existTestcases else noExistTestcases"></div>
 
     <ng-template #existTestcases>
-      <a class="btn btn-primary">Create New Testcase</a>
+      <a [routerLink]="['./create']" class="btn btn-primary">Create New Testcase</a>
       <table *ngIf="testcases.length > 0;" class="table table-striped">
         <thead>
           <tr>
@@ -51,7 +51,7 @@
           <img src="assets/add-project.png">
           <h4>You have not created Testsuites / Testcases yet.</h4>
           <p class="tips">Tap the 'Create Testsuite' button to get started</p>
-          <button class="btn btn-primary">Create Testsuite</button>
+          <button [routerLink]="['./create']" class="btn btn-primary">Create Testsuite</button>
         </div>
       </div>
     </ng-template>

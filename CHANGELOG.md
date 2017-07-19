@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.24.0 (July 19, 2017)
+- UI improvements: ([@pumano](https://github.com/pumano) in [#53](https://github.com/test-storage/test-storage/pull/53))
+- Testcases: Possibility to create testcases
+- Development: Hot Module Replacement added
+
 ## 0.23.0 (July 17, 2017)
 - Overall UI improvements: ([@pumano](https://github.com/pumano) in [#52](https://github.com/test-storage/test-storage/pull/52))
 - Password hashing

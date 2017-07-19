@@ -5,32 +5,32 @@ import { pageTransition } from '../../../animations';
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
-import { Project } from '../../../models/project';
-import { ProjectService } from '../../../services/project/project.service';
+import { Testcase } from '../../../models/testcase';
+import { TestcaseService } from '../../../services/testcase/testcase.service';
 
 
 
 @Component({
-  selector: 'app-project-create',
-  templateUrl: './project-create.component.html',
-  styleUrls: ['./project-create.component.css'],
+  selector: 'app-testcase-create',
+  templateUrl: './testcase-create.component.html',
+  styleUrls: ['./testcase-create.component.css'],
   providers: [
-    ProjectService
+    TestcaseService
   ],
   animations: [pageTransition()]
 })
 
-export class ProjectCreateComponent implements OnInit {
+export class TestcaseCreateComponent implements OnInit {
 
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
   }
 
-  public project: Project = new Project();
+  public testcase: Testcase = new Testcase();
 
   constructor(
     private router: Router,
-    private projectService: ProjectService,
+    private testcaseService: TestcaseService,
     public themeService: ThemeService,
     private notificationsService: NotificationsService
   ) { }
@@ -38,13 +38,13 @@ export class ProjectCreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  createNewProject() {
-    this.projectService.createProject(this.project).subscribe(
+  createNewTestcase() {
+    this.testcaseService.createTestcase(this.testcase).subscribe(
       response => {
         if (response === 201) {
-          this.showNotification('Project ' + this.project.name, 'created successfully!');
+          this.showNotification('Testcase ' + this.testcase.title, 'created successfully!');
 
-          this.router.navigate(['./projects']);
+          this.router.navigate(['./testcases']);
         }
       },
       error => console.log(error)
