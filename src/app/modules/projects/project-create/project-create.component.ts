@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { pageTransition } from '../../../animations';
 
 import { ThemeService } from '../../../services/theme/theme.service';
-import { NotificationsService } from 'angular2-notifications';
+import { ToastNotificationsService } from '../../../services/toast-notifications/toast-notifications.service';
 
 import { Project } from '../../../models/project';
 import { ProjectService } from '../../../services/project/project.service';
@@ -32,7 +32,7 @@ export class ProjectCreateComponent implements OnInit {
     private router: Router,
     private projectService: ProjectService,
     public themeService: ThemeService,
-    private notificationsService: NotificationsService
+    private toastNotificationsService: ToastNotificationsService
   ) { }
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class ProjectCreateComponent implements OnInit {
     this.projectService.createProject(this.project).subscribe(
       response => {
         if (response === 201) {
-          this.showNotification('Project ' + this.project.name, 'created successfully!');
+          this.toastNotificationsService.success('Project ' + this.project.name, 'created successfully!');
 
           this.router.navigate(['./projects']);
         }
@@ -51,18 +51,4 @@ export class ProjectCreateComponent implements OnInit {
     );
   }
 
-  showNotification(title, description) {
-
-    this.notificationsService.success(
-      title,
-      description,
-      {
-        timeOut: 5000,
-        showProgressBar: false,
-        pauseOnHover: false,
-        clickToClose: false,
-        maxLength: 30
-      }
-    );
-  }
 }

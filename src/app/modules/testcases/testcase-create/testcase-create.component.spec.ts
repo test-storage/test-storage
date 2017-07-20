@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
+import { ToastNotificationsService } from '../../../services/toast-notifications/toast-notifications.service';
 
 import { AuthenticationService } from '../../../services/auth/authentication.service';
 import { TestcaseService } from '../../../services/testcase/testcase.service';
@@ -28,6 +29,7 @@ describe('TestcaseCreateComponent', () => {
       providers: [
         ThemeService,
         NotificationsService,
+        ToastNotificationsService,
         TestcaseService,
         AuthenticationService,
         MockBackend,
