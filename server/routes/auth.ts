@@ -23,7 +23,7 @@ class Auth {
 
     // Fire a query to your DB and check if the credentials are valid
     const dbUserObj: object = await this.validate(username, password);
-    console.log(dbUserObj);
+
     if (!dbUserObj) { // If authentication fails, we send a 401 back
       res.status(401);
       res.json({
