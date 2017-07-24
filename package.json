@@ -19,7 +19,7 @@
     "server:run": "nodemon",
     "hmr": "concurrently \"npm run server:run \" \"ng serve --hmr -e=hmr --progress=false --proxy-config proxy.conf.json\" ",
     "dev": "concurrently \"npm run server:run \" \"ng serve --progress=false --proxy-config proxy.conf.json\"  ",
-    "lint": "ng lint",
+    "lint": "ng lint --type-check",
     "test": "ng test --single-run --silent && npm run test:backend",
     "test:backend": "./node_modules/.bin/_mocha ./test/server/**/*.spec.ts --compilers ts:ts-node/register --recursive --check-leaks -t 50000",
     "test:coverage": "ng test --code-coverage",

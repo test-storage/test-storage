@@ -30,6 +30,8 @@ before_test:
 test_script:
   # Output useful info for debugging.
   - node --version && npm --version
+  # linting
+  - npm run lint
   # Run tests
   - npm test
 

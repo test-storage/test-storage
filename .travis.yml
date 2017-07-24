@@ -25,6 +25,14 @@ before_script:
   - sleep 5
   - mongo test-storage config/db-init.js
 
+script:
+  # Output useful info for debugging.
+  - node --version && npm --version
+  # linting
+  - npm run lint
+  # Run tests
+  - npm test
+
 install:
   - npm install
 
