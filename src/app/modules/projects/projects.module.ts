@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { ToastNotificationsService } from '../../services/toast-notifications/toast-notifications.service';
 
 import { ProjectsComponent } from './projects.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
@@ -47,8 +46,7 @@ const projectsRoutes: Routes = [
     ProjectCreateComponent
   ],
   providers: [
-    ProjectService,
-    ToastNotificationsService
+    ProjectService
   ]
 })
 export class ProjectsModule { }

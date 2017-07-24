@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { ToastNotificationsService } from '../../services/toast-notifications/toast-notifications.service';
 
 import { TestcasesComponent } from './testcases.component';
 import { TestcaseService } from '../../services/testcase/testcase.service';
@@ -44,8 +43,7 @@ const testcasesRoutes: Routes = [
     TestcaseCreateComponent
   ],
   providers: [
-    TestcaseService,
-    ToastNotificationsService
+    TestcaseService
   ]
 })
 export class TestcasesModule { }

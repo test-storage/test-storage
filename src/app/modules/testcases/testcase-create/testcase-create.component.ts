@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { pageTransition } from '../../../animations';
 
 import { ThemeService } from '../../../services/theme/theme.service';
-import { ToastNotificationsService } from '../../../services/toast-notifications/toast-notifications.service';
+import { NotificationsService } from 'angular2-notifications';
 
 import { Testcase } from '../../../models/testcase';
 import { TestcaseService } from '../../../services/testcase/testcase.service';
@@ -32,7 +32,7 @@ export class TestcaseCreateComponent implements OnInit {
     private router: Router,
     private testcaseService: TestcaseService,
     public themeService: ThemeService,
-    private toastNotificationsService: ToastNotificationsService
+    private toastNotificationsService: NotificationsService
   ) { }
 
   ngOnInit() {

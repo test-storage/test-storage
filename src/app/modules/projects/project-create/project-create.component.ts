@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { pageTransition } from '../../../animations';
 
 import { ThemeService } from '../../../services/theme/theme.service';
-import { ToastNotificationsService } from '../../../services/toast-notifications/toast-notifications.service';
+import { NotificationsService } from 'angular2-notifications';
 
 import { Project } from '../../../models/project';
 import { ProjectService } from '../../../services/project/project.service';
@@ -32,7 +32,7 @@ export class ProjectCreateComponent implements OnInit {
     private router: Router,
     private projectService: ProjectService,
     public themeService: ThemeService,
-    private toastNotificationsService: ToastNotificationsService
+    private toastNotificationsService: NotificationsService
   ) { }
 
   ngOnInit() {

@@ -15,6 +15,14 @@ import { SimpleNotificationsComponent } from 'angular2-notifications';
 export class LayoutComponent implements OnInit {
     public sidebarCollapsed = true;
 
+    public toastNotificationsOptions = {
+        timeOut: 5000,
+        showProgressBar: false,
+        pauseOnHover: false,
+        clickToClose: false,
+        maxLength: 30
+    }
+
     constructor(
         public themeService: ThemeService,
         private authenticationService: AuthenticationService) { }
