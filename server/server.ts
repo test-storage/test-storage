@@ -51,8 +51,6 @@ mongoose.Promise = global.Promise;
 const connectionString = config.get('db.scheme') + config.get('db.user') + ':' + config.get('db.password') + '@' +
   config.get('db.host') + '/' + config.get('db.name');
 
-console.log(connectionString);
-
 const connectionOptions = {
   useMongoClient: true
 };
