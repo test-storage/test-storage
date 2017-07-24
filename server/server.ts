@@ -31,7 +31,7 @@ if ('development' === app.get('env') || 'test' === app.get('env')) {
   // only use in development (stack traces/errors and etc)
   app.use(errorhandler());
   console.log('NODE_ENV: ' + app.get('env'));
-  console.log('mongo config address: ' + config.get('db.path') + '/' + config.get('db.name'));
+  console.log('mongo config address: ' + config.get('db.host') + '/' + config.get('db.name'));
 }
 
 // Point static path to dist
@@ -48,10 +48,13 @@ app.use(expressValidator()); // this line must be immediately after express.body
 // Use native Node promises
 mongoose.Promise = global.Promise;
 
-const connectionString = config.get('db.path') + '/' + config.get('db.name');
+const connectionString = config.get('db.scheme') + config.get('db.user') + ':' + config.get('db.password') + '@' +
+  config.get('db.host') + '/' + config.get('db.name');
+
+console.log(connectionString);
+
 const connectionOptions = {
-  user: config.get('db.user'),
-  pass: config.get('db.password')
+  useMongoClient: true
 };
 
 if (process.env.MONGOLAB_URI) {
