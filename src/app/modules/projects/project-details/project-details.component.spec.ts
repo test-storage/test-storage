@@ -18,7 +18,7 @@ describe('ProjectDetailsComponent', () => {
   let fixture: ComponentFixture<ProjectDetailsComponent>;
   const mockRouter = {
     navigate: jasmine.createSpy('navigate')
-  }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

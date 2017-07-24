@@ -21,7 +21,7 @@ export class LayoutComponent implements OnInit {
         pauseOnHover: false,
         clickToClose: false,
         maxLength: 30
-    }
+    };
 
     constructor(
         public themeService: ThemeService,

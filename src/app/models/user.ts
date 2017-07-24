@@ -18,7 +18,7 @@ export class User {
     linkedin?: string,
     instagram?: string,
     vk?: string
-  }
+  };
   userGroups?: Array<string>;
   projects?: Array<string>;
   created?: string;

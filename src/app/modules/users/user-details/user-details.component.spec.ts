@@ -19,7 +19,7 @@ describe('UserDetailsComponent', () => {
 
   const mockRouter = {
     navigate: jasmine.createSpy('navigate')
-  }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
