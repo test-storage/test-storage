@@ -165,13 +165,12 @@ ul li.active>a {
     }
     .sidebar {
         width: 90vw;
-        border: 1px solid red;
     }
     .sidebar li a {
-        font-size: 35px;
+        font-size: 25px;
         width: 89vw;
     }
     .sidebar .fa {
-        font-size: 35px;
+        font-size: 25px;
     }
 }
