@@ -3,7 +3,6 @@ export class Project {
     name: string;
     description: string;
     enabled?: boolean;
-    testcases?: Array<string>;
     created?: string;
     updated?: string;
     createdBy?: string;

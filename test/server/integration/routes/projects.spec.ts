@@ -53,7 +53,6 @@ describe('/projects', function () {
                 expect(res.body).to.have.deep.property('name', fixture.name);
                 expect(res.body).to.have.deep.property('description', fixture.description);
                 expect(res.body).to.have.deep.property('enabled', true);
-                expect(res.body).to.have.deep.property('testcases', fixture.testcases);
                 expect(res.body).to.have.deep.property('created');
                 expect(res.body).to.have.deep.property('updated');
                 done();
@@ -73,7 +72,6 @@ describe('/projects', function () {
                     'name',
                     'description',
                     'enabled',
-                    'testcases',
                     'created',
                     'updated'
                 );
@@ -93,7 +91,6 @@ describe('/projects', function () {
                 expect(res.body).to.have.deep.property('name', changedFixture.name);
                 expect(res.body).to.have.deep.property('description', changedFixture.description);
                 expect(res.body).to.have.deep.property('enabled', false);
-                expect(res.body).to.have.deep.property('testcases', changedFixture.testcases);
                 expect(res.body).to.have.deep.property('created');
                 expect(res.body).to.have.deep.property('updated');
                 done();
