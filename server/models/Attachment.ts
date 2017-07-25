@@ -22,4 +22,4 @@ const AttachmentSchema = new mongoose.Schema({
 });
 
 const Attachment = mongoose.model('Attachment', AttachmentSchema);
-export { Attachment }
+export { Attachment };

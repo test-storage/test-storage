@@ -30,4 +30,4 @@ const TestsuiteSchema = new mongoose.Schema({
 });
 
 const Testsuite = mongoose.model('Testsuite', TestsuiteSchema);
-export { Testsuite }
+export { Testsuite };
