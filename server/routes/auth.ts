@@ -70,7 +70,7 @@ class Auth {
       if (err) { return cb(err); }
       cb(null, isMatch);
     });
-  };
+  }
 
 
 
@@ -128,4 +128,4 @@ class Auth {
   }
 
 }
-export { Auth }
+export { Auth };
