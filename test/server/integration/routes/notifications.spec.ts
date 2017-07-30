@@ -9,23 +9,23 @@ import { fixture, changedFixture } from './notifications.fixtures';
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-var token = '';
-var entityId = '';
+let token = '';
+let entityId = '';
 
-before(function (done) {
+before(function () {
 
-    it('login', function (done) {
-        authenticate(function (restoken) {
-            token = restoken;
+    it('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
             done();
         });
     });
-    done();
+
 });
 
 describe('/notifications', function () {
 
-    it('POST /notifications respond with status 201 and JSON', function (done) {
+    it('POST /notifications respond with status 201 and JSON', function (done: DoneFn) {
         chai.request(app)
             .post('/api/v1/notifications')
             .set('x-access-token', token)
@@ -41,7 +41,7 @@ describe('/notifications', function () {
             });
     });
 
-    it('GET /notifications/:id respond with status 200 and JSON', function (done) {
+    it('GET /notifications/:id respond with status 200 and JSON', function (done: DoneFn) {
         request(app)
             .get('/api/v1/notifications/' + entityId)
             .set('Accept', 'application/json')
@@ -62,7 +62,7 @@ describe('/notifications', function () {
             });
     });
 
-    it('GET /notifications respond with status 200 and JSON', function (done) {
+    it('GET /notifications respond with status 200 and JSON', function (done: DoneFn) {
         request(app)
             .get('/api/v1/notifications')
             .set('Accept', 'application/json')
@@ -85,7 +85,7 @@ describe('/notifications', function () {
             });
     });
 
-    it('PUT /notifications respond with status 200 and JSON', function (done) {
+    it('PUT /notifications respond with status 200 and JSON', function (done: DoneFn) {
         request(app)
             .put('/api/v1/notifications/' + entityId)
             .set('x-access-token', token)
@@ -107,7 +107,7 @@ describe('/notifications', function () {
     });
 
 
-    it('DELETE /notifications/:id respond with status 204', function (done) {
+    it('DELETE /notifications/:id respond with status 204', function (done: DoneFn) {
         request(app)
             .delete('/api/v1/notifications/' + entityId)
             .set('Accept', 'application/json')

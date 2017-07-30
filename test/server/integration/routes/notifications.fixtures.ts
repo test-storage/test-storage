@@ -18,5 +18,6 @@ const changedFixture: Notification = {
     'senderId': faker.random.uuid(),
     'recipientId': faker.random.uuid()
 };
+
 export { fixture, changedFixture };
 

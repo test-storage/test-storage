@@ -9,23 +9,23 @@ import { testplanFixture, editedTestplanFixture } from './testplans.fixtures';
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-var token = '';
-var entityId = '';
+let token = '';
+let entityId = '';
 
-before(function (done) {
+before(function () {
 
-    it('login', function (done) {
-        authenticate(function (restoken) {
-            token = restoken;
+    it('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
             done();
         });
     });
-    done();
+
 });
 
 describe('/testplans', function () {
 
-    it('POST /testplans respond with status 201 and JSON', function (done) {
+    it('POST /testplans respond with status 201 and JSON', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/testplans')
@@ -42,7 +42,7 @@ describe('/testplans', function () {
             });
     });
 
-    it('GET /testplans/:id respond with status 200 and JSON', function (done) {
+    it('GET /testplans/:id respond with status 200 and JSON', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/testplans/' + entityId)
@@ -57,11 +57,11 @@ describe('/testplans', function () {
                 expect(res.body).to.have.deep.property('builds', testplanFixture.builds);
                 expect(res.body).to.have.deep.property('environments', testplanFixture.environments);
                 expect(res.body).to.have.deep.property('testruns', testplanFixture.testruns);
-                done()
+                done();
             });
     });
 
-    it('GET /testplans respond with status 200 and JSON', function (done) {
+    it('GET /testplans respond with status 200 and JSON', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/testplans')
@@ -76,11 +76,11 @@ describe('/testplans', function () {
                 expect(res.body[0]).to.have.deep.property('builds');
                 expect(res.body[0]).to.have.deep.property('environments');
                 expect(res.body[0]).to.have.deep.property('testruns');
-                done()
+                done();
             });
     });
 
-    it('PUT /testplans respond with status 200 and JSON', function (done) {
+    it('PUT /testplans respond with status 200 and JSON', function (done: DoneFn) {
 
         request(app)
             .put('/api/v1/testplans/' + entityId)
@@ -96,12 +96,12 @@ describe('/testplans', function () {
                 expect(res.body).to.have.deep.property('builds', editedTestplanFixture.builds);
                 expect(res.body).to.have.deep.property('environments', editedTestplanFixture.environments);
                 expect(res.body).to.have.deep.property('testruns', editedTestplanFixture.testruns);
-                done()
+                done();
             });
     });
 
 
-    it('DELETE /testplans/:id respond with status 200', function (done) {
+    it('DELETE /testplans/:id respond with status 200', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/testplans/' + entityId)
@@ -109,16 +109,8 @@ describe('/testplans', function () {
             .set('x-access-token', token)
             .end(function (err, res) {
                 expect(res.status).to.equal(204);
-                done()
+                done();
             });
     });
 
-    /*
-        'configurations', [
-            {
-                'os': 'iOS',
-                'osVersion': '10.1',
-                'architecture': 'x64'
-            }]);
-    */
 });

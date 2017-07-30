@@ -8,24 +8,21 @@ import { authenticate } from '../../auth-helper';
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-var token = '';
-var entityId = '';
+let token = '';
 
+before(function () {
 
-before(function (done) {
-
-    it('login', function (done) {
-        authenticate(function (restoken) {
-            token = restoken;
+    it('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
             done();
         });
     });
-    done();
 });
 
 describe('Core Tests', function () {
 
-    it('GET /projects respond with Content-Encoding: gzip', function (done) {
+    it('GET /projects respond with Content-Encoding: gzip', function (done: DoneFn) {
         request(app)
             .get('/api/v1/projects')
             .set('Accept', 'application/json')
@@ -33,7 +30,7 @@ describe('Core Tests', function () {
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
-                expect(res).to.have.header('Content-Encoding', 'gzip')
+                expect(res).to.have.header('Content-Encoding', 'gzip');
                 done();
             });
     });

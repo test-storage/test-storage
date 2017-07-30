@@ -11,4 +11,4 @@ const modelFixtureEdited = {
     'description': 'Dummy attachment file edited',
 };
 
-export { modelFixture, modelFixtureEdited }
+export { modelFixture, modelFixtureEdited };

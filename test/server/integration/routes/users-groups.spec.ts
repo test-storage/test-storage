@@ -9,23 +9,23 @@ import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
 import { modelFixture, modelFixtureEdited } from './users-groups.fixtures';
 
-var token = '';
-var entityId = '';
+let token = '';
+let entityId = '';
 
-before(function (done) {
+before(function () {
 
-    it('login', function (done) {
-        authenticate(function (restoken) {
-            token = restoken;
+    it('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
             done();
         });
     });
-    done();
+
 });
 
 describe('/users/groups', function () {
 
-    it('POST /users/groups respond with status 201 and JSON', function (done) {
+    it('POST /users/groups respond with status 201 and JSON', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/users/groups')
@@ -42,7 +42,7 @@ describe('/users/groups', function () {
             });
     });
 
-    it('GET /users/groups/:id respond with JSON', function (done) {
+    it('GET /users/groups/:id respond with JSON', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/users/groups/' + entityId)
@@ -59,11 +59,11 @@ describe('/users/groups', function () {
                 expect(res.body.scope).to.have.deep.property('testcases', modelFixture.scope.testcases);
                 expect(res.body.scope).to.have.deep.property('testsuites', modelFixture.scope.testsuites);
                 expect(res.body).to.have.deep.property('users', modelFixture.users);
-                done()
+                done();
             });
     });
 
-    it('GET /users/groups respond with JSON', function (done) {
+    it('GET /users/groups respond with JSON', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/users/groups')
@@ -82,11 +82,11 @@ describe('/users/groups', function () {
                 );
                 expect(res.body[0].scope).to.have.property('testcases');
                 expect(res.body[0].scope).to.have.property('testsuites');
-                done()
+                done();
             });
     });
 
-    it('PUT /users/groups respond with JSON', function (done) {
+    it('PUT /users/groups respond with JSON', function (done: DoneFn) {
 
         request(app)
             .put('/api/v1/users/groups/' + entityId)
@@ -104,12 +104,12 @@ describe('/users/groups', function () {
                 expect(res.body.scope).to.have.deep.property('testcases', modelFixtureEdited.scope.testcases);
                 expect(res.body.scope).to.have.deep.property('testsuites', modelFixtureEdited.scope.testsuites);
                 expect(res.body).to.have.deep.property('users', modelFixtureEdited.users);
-                done()
+                done();
             });
     });
 
 
-    it('DELETE /users/groups/:id respond with JSON', function (done) {
+    it('DELETE /users/groups/:id respond with JSON', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/users/groups/' + entityId)
@@ -117,7 +117,7 @@ describe('/users/groups', function () {
             .set('x-access-token', token)
             .end(function (err, res) {
                 expect(res.status).to.equal(204);
-                done()
+                done();
             });
     });
 
