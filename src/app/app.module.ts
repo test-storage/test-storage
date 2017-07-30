@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, Http, RequestOptions } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { AuthenticationService } from './services/auth/authentication.service';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -29,17 +30,7 @@ const routes: Routes = [
 ];
 
 // AoT requires an exported function for factories
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp(new AuthConfig({
-    headerName: 'x-access-token',
-    tokenName: 'token',
-    noJwtError: true,
-    tokenGetter: (() => localStorage.getItem('currentUser')),
-    globalHeaders: [{ 'Content-Type': 'application/json' }],
-  }), http, options);
-}
-
-export function HttpLoaderFactory(http: Http) {
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json');
 }
 
@@ -47,6 +38,7 @@ export function HttpLoaderFactory(http: Http) {
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     FormsModule,
     LayoutModule,
@@ -55,7 +47,7 @@ export function HttpLoaderFactory(http: Http) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [Http]
+        deps: [HttpClient]
       }
     })
   ],
@@ -65,11 +57,6 @@ export function HttpLoaderFactory(http: Http) {
     NotFoundComponent
   ],
   providers: [
-    {
-      provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
-      deps: [Http, RequestOptions]
-    },
     AuthGuard,
     AuthenticationService
   ],
