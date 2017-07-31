@@ -25,4 +25,4 @@ const TestplanSchema = new mongoose.Schema({
 });
 
 const Testplan = mongoose.model('Testplan', TestplanSchema);
-export { Testplan }
+export { Testplan };

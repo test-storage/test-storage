@@ -10,14 +10,14 @@ import { authenticate } from '../../auth-helper';
 import { testcaseFixture, editedTestCaseFixture } from './testcases.fixtures';
 
 
-var token = '';
-var entityId = '';
+let token = '';
+let entityId = '';
 
-before(function (done) {
+before(function (done: DoneFn) {
 
-    it('login', function (done) {
-        authenticate(function (restoken) {
-            token = restoken;
+    it('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
             done();
         });
     });
@@ -26,7 +26,7 @@ before(function (done) {
 
 describe('/testcases', function () {
 
-    it('POST /testcases respond with status 201 and JSON', function (done) {
+    it('POST /testcases respond with status 201 and JSON', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/testcases')
@@ -43,7 +43,7 @@ describe('/testcases', function () {
             });
     });
 
-    it('GET /testcases/:id respond with status 200 and JSON', function (done) {
+    it('GET /testcases/:id respond with status 200 and JSON', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/testcases/' + entityId)
@@ -76,7 +76,7 @@ describe('/testcases', function () {
             });
     });
 
-    it('GET /testcases respond with status 200 and JSON', function (done) {
+    it('GET /testcases respond with status 200 and JSON', function (done: DoneFn) {
         request(app)
             .get('/api/v1/testcases')
             .set('Accept', 'application/json')
@@ -112,7 +112,7 @@ describe('/testcases', function () {
             });
     });
 
-    it('PUT /testcases respond with status 200 and JSON', function (done) {
+    it('PUT /testcases respond with status 200 and JSON', function (done: DoneFn) {
 
         request(app)
             .put('/api/v1/testcases/' + entityId)
@@ -146,7 +146,7 @@ describe('/testcases', function () {
     });
 
 
-    it('DELETE /testcases/:id respond with status 204', function (done) {
+    it('DELETE /testcases/:id respond with status 204', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/testcases/' + entityId)

@@ -17,4 +17,4 @@ const editedTestplanFixture: Testplan = {
     'testruns': [faker.random.uuid(), faker.random.uuid(), faker.random.uuid()]
 };
 
-export { testplanFixture, editedTestplanFixture }
+export { testplanFixture, editedTestplanFixture };

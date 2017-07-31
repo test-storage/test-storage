@@ -9,23 +9,23 @@ import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
 import { testsuiteFixture, editedTestsuiteFixture } from './testsuites.fixtures';
 
-var token = '';
-var entityId = '';
+let token = '';
+let entityId = '';
 
-before(function (done) {
+before(function () {
 
-    it('login', function (done) {
-        authenticate(function (restoken) {
-            token = restoken;
+    it('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
             done();
         });
     });
-    done();
+
 });
 
 describe('/testsuites', function () {
 
-    it('POST /testsuites respond with status 201 and JSON', function (done) {
+    it('POST /testsuites respond with status 201 and JSON', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/testsuites')
@@ -38,11 +38,11 @@ describe('/testsuites', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res).to.have.header('Location', '/api/v1/testsuites/' + res.body._id);
                 entityId = res.body._id;
-                done()
+                done();
             });
     });
 
-    it('GET /testsuites/:id respond with JSON', function (done) {
+    it('GET /testsuites/:id respond with JSON', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/testsuites/' + entityId)
@@ -60,11 +60,11 @@ describe('/testsuites', function () {
                 expect(res.body).to.have.deep.property('description', testsuiteFixture.description);
                 expect(res.body).to.have.deep.property('environment', testsuiteFixture.environment);
                 expect(res.body).to.have.deep.property('testcases', testsuiteFixture.testcases);
-                done()
+                done();
             });
     });
 
-    it('GET /testsuites respond with JSON', function (done) {
+    it('GET /testsuites respond with JSON', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/testsuites')
@@ -83,11 +83,11 @@ describe('/testsuites', function () {
                     'environment',
                     'testcases'
                 );
-                done()
+                done();
             });
     });
 
-    it('PUT /testsuites respond with JSON', function (done) {
+    it('PUT /testsuites respond with JSON', function (done: DoneFn) {
 
         request(app)
             .put('/api/v1/testsuites/' + entityId)
@@ -105,12 +105,12 @@ describe('/testsuites', function () {
                 expect(res.body).to.have.deep.property('description', editedTestsuiteFixture.description);
                 expect(res.body).to.have.deep.property('environment', editedTestsuiteFixture.environment);
                 expect(res.body).to.have.deep.property('testcases', editedTestsuiteFixture.testcases);
-                done()
+                done();
             });
     });
 
 
-    it('DELETE /testsuites/:id respond with JSON', function (done) {
+    it('DELETE /testsuites/:id respond with JSON', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/testsuites/' + entityId)
@@ -118,7 +118,7 @@ describe('/testsuites', function () {
             .set('x-access-token', token)
             .end(function (err, res) {
                 expect(res.status).to.equal(204);
-                done()
+                done();
             });
     });
 

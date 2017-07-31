@@ -39,10 +39,10 @@ Lines should not exceed 100 characters. This allows the message to be easier to 
 
 ```
  #271 feat(standard): add style config and refactor to match
- #270 fix(config): only override publicPath when served by webpack 
- #269 feat(eslint-config-defaults): replace eslint-config-airbnb 
- #268 feat(config): allow user to configure webpack stats output 
-``` 
+ #270 fix(config): only override publicPath when served by webpack
+ #269 feat(eslint-config-defaults): replace eslint-config-airbnb
+ #268 feat(config): allow user to configure webpack stats output
+```
 
 #### Type
 
@@ -110,6 +110,20 @@ $ npm install -g nodemon @angular/cli
 $ npm install -g test-storage
 ```
 
+## Start
+
+Basic dev setup:
+
+```bash
+$ npm run dev
+```
+
+With Hot module replacement:
+
+```bash
+$ npm run hmr
+```
+
 ## Tests
 
 unit tests:
@@ -129,10 +143,4 @@ $ npm e2e
 backend tests:
 ```
 $ npm run test:backend
-```
-
-## Start
-
-```bash
-$ npm run dev
 ```

@@ -12,23 +12,22 @@ import { testcaseFixture, editedTestCaseFixture } from './testcases.fixtures';
 import { fixture, changedFixture } from './projects.fixtures';
 
 
-var token = '';
-var entityId = '';
-var projectId = '';
-var firstTestcaseId = '';
-var secondTestcaseId = '';
+let token = '';
+let projectId = '';
+let firstTestcaseId = '';
+let secondTestcaseId = '';
 
 
 before(function (done) {
 
-    it('login', function (done) {
-        authenticate(function (restoken) {
-            token = restoken;
+    it('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
             done();
         });
     });
 
-    it('Before: Project created', function (done) {
+    it('Before: Project created', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/projects')
@@ -47,7 +46,7 @@ before(function (done) {
             });
     });
 
-    it('Before: Testcase created', function (done) {
+    it('Before: Testcase created', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/testcases')
@@ -64,7 +63,7 @@ before(function (done) {
             });
     });
 
-    it('Before: Testcase created', function (done) {
+    it('Before: Testcase created', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/testcases')
@@ -133,9 +132,9 @@ describe('/projects/:id/testcases', function () {
     });
 });
 
-after('Cleanup', function (done) {
+after('Cleanup', function (done: DoneFn) {
 
-    it('After: Delete Project', function (done) {
+    it('After: Delete Project', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/projects/' + projectId)
@@ -146,7 +145,7 @@ after('Cleanup', function (done) {
             });
     });
 
-    it('After: Delete first Testcase', function (done) {
+    it('After: Delete first Testcase', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/testcases/' + firstTestcaseId)
@@ -157,7 +156,7 @@ after('Cleanup', function (done) {
             });
     });
 
-    it('After: Delete second Testcase', function (done) {
+    it('After: Delete second Testcase', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/testcases/' + secondTestcaseId)

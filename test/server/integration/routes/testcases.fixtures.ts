@@ -17,7 +17,7 @@ const testcaseFixture: Testcase = {
     'estimate': 10,
     'enabled': true,
     'isAutomated': true
-}
+};
 
 const editedTestCaseFixture: Testcase = {
     'projectId': faker.random.uuid(),
@@ -38,4 +38,4 @@ const editedTestCaseFixture: Testcase = {
     'status': 'APPROVED'
 };
 
-export { testcaseFixture, editedTestCaseFixture }
+export { testcaseFixture, editedTestCaseFixture };

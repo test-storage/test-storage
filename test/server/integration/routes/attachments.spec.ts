@@ -9,23 +9,22 @@ import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
 import { modelFixture, modelFixtureEdited } from './attachments.fixtures';
 
-var token = '';
-var entityId = '';
+let token = '';
+let entityId = '';
 
-before(function (done) {
+before(function () {
 
-    it('login', function (done) {
-        authenticate(function (restoken) {
-            token = restoken;
+    it('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
             done();
         });
     });
-    done();
 });
 
 describe('/attachments', function () {
 
-    it('POST /attachments respond with status 201 and JSON', function (done) {
+    it('POST /attachments respond with status 201 and JSON', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/attachments')
@@ -42,7 +41,7 @@ describe('/attachments', function () {
             });
     });
 
-    it('GET /attachments/:id respond with JSON', function (done) {
+    it('GET /attachments/:id respond with JSON', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/attachments/' + entityId)
@@ -58,7 +57,7 @@ describe('/attachments', function () {
             });
     });
 
-    it('GET /attachments respond with JSON', function (done) {
+    it('GET /attachments respond with JSON', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/attachments')
@@ -76,7 +75,7 @@ describe('/attachments', function () {
             });
     });
 
-    it('PUT /attachments respond with JSON', function (done) {
+    it('PUT /attachments respond with JSON', function (done: DoneFn) {
 
         request(app)
             .put('/api/v1/attachments/' + entityId)
@@ -94,7 +93,7 @@ describe('/attachments', function () {
     });
 
 
-    it('DELETE /attachments/:id respond with JSON', function (done) {
+    it('DELETE /attachments/:id respond with JSON', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/attachments/' + entityId)

@@ -15,7 +15,7 @@ export function pageTransition() {
             }),
             animate('0.6s ease-in-out')
         ])
-    ])
+    ]);
 }
 
 export function fadeInAnimation() {
@@ -31,7 +31,7 @@ export function fadeInAnimation() {
             // animation and styles at end of transition
             animate('.3s', style({ opacity: 1 }))
         ]),
-    ])
+    ]);
 }
 
 

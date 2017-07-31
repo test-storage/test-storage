@@ -21,4 +21,4 @@ const modelFixtureEdited = {
     },
     'users': [faker.random.uuid(), faker.random.uuid(), faker.random.uuid(), faker.random.uuid()]
 };
-export { modelFixture, modelFixtureEdited }
+export { modelFixture, modelFixtureEdited };

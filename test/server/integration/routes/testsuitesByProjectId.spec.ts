@@ -12,23 +12,22 @@ import { testsuiteFixture, editedTestsuiteFixture } from './testsuites.fixtures'
 import { fixture, changedFixture } from './projects.fixtures';
 
 
-var token = '';
-var entityId = '';
-var projectId = '';
-var firstTestsuiteId = '';
-var secondTestsuiteId = '';
+let token = '';
+let projectId = '';
+let firstTestsuiteId = '';
+let secondTestsuiteId = '';
 
 
-before(function (done) {
+before(function (done: DoneFn) {
 
-    it('login', function (done) {
-        authenticate(function (restoken) {
-            token = restoken;
+    it('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
             done();
         });
     });
 
-    it('Before: Project created', function (done) {
+    it('Before: Project created', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/projects')
@@ -47,7 +46,7 @@ before(function (done) {
             });
     });
 
-    it('Before: Testsuite created', function (done) {
+    it('Before: Testsuite created', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/testsuites')
@@ -60,11 +59,11 @@ before(function (done) {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res).to.have.header('Location', '/api/v1/testsuites/' + res.body._id);
                 firstTestsuiteId = res.body._id;
-                done()
+                done();
             });
     });
 
-    it('Before: Testsuite created', function (done) {
+    it('Before: Testsuite created', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/testsuites')
@@ -77,7 +76,7 @@ before(function (done) {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res).to.have.header('Location', '/api/v1/testsuites/' + res.body._id);
                 secondTestsuiteId = res.body._id;
-                done()
+                done();
             });
     });
 
@@ -89,14 +88,14 @@ describe('/projects/:id/testsuites', function () {
 
     // TEST PLAN
     // create project (get projectId)
-    // create 2 testcases for that project
-    // get testcases by project Id
+    // create 2 testsuites for that project
+    // get testsuites by project Id
     // validate length and etc
     // cleanup:
     // delete project
-    // delete testcases
+    // delete testsuites
 
-    it('GET /projects/:id/testsuites should respond with status 200 and with list of testsuites by project id', function (done) {
+    it('GET /projects/:id/testsuites should respond with status 200 and with list of testsuites by project id', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/projects/' + projectId + '/testsuites')
@@ -125,9 +124,9 @@ describe('/projects/:id/testsuites', function () {
 
 });
 
-after(function (done) {
+after(function (done: DoneFn) {
 
-    it('After: Delete Project', function (done) {
+    it('After: Delete Project', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/projects/' + projectId)
@@ -138,7 +137,7 @@ after(function (done) {
             });
     });
 
-    it('After: Delete first Testsuite', function (done) {
+    it('After: Delete first Testsuite', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/testsuites/' + firstTestsuiteId)
@@ -149,7 +148,7 @@ after(function (done) {
             });
     });
 
-    it('After: Delete second Testsuite', function (done) {
+    it('After: Delete second Testsuite', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/testsuites/' + secondTestsuiteId)

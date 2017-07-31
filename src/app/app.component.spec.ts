@@ -1,13 +1,18 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
-import { HttpModule, Http, RequestOptions } from '@angular/http';
-import { TranslateService, TranslateModule, TranslateLoader } from '@ngx-translate/core';
+
+import { HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
+import { TranslateService, TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 import { TranslateStore } from '@ngx-translate/core/src/translate.store';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-export function HttpLoaderFactory(http: Http) {
-  return new TranslateHttpLoader(http, './i18n/', '.json');
+import { AppComponent } from './app.component';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateFakeLoader();
 }
 
 describe('AppComponent', () => {
@@ -18,11 +23,12 @@ describe('AppComponent', () => {
       ],
       imports: [
         HttpModule,
+        HttpClientModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
             useFactory: HttpLoaderFactory,
-            deps: [Http]
+            deps: [HttpClient]
           }
         }),
         RouterTestingModule
@@ -35,13 +41,13 @@ describe('AppComponent', () => {
   }));
 
 
-  /*
-    it('should create the app', async(() => {
-      const fixture = TestBed.createComponent(AppComponent);
-      const app = fixture.debugElement.componentInstance;
-      expect(app).toBeTruthy();
-    }));
-  */
+
+  it('should create the app', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  }));
+
 
 
   /*

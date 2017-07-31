@@ -9,23 +9,23 @@ import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
 import { modelFixture, modelFixtureEdited } from './users.fixtures';
 
-var token = '';
-var entityId = '';
+let token = '';
+let entityId = '';
 
-before(function (done) {
+before(function () {
 
-    it('login', function (done) {
-        authenticate(function (restoken) {
-            token = restoken;
+    it('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
             done();
         });
     });
-    done();
+
 });
 
 describe('/users', function () {
 
-    it('POST /users respond with status 201 and JSON', function (done) {
+    it('POST /users respond with status 201 and JSON', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/users')
@@ -42,7 +42,7 @@ describe('/users', function () {
             });
     });
 
-    it('GET /users/:id respond with status 200 and JSON', function (done) {
+    it('GET /users/:id respond with status 200 and JSON', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/users/' + entityId)
@@ -61,11 +61,11 @@ describe('/users', function () {
                 expect(res.body).to.have.deep.property('social', modelFixture.social);
                 expect(res.body).to.have.deep.property('userGroups', modelFixture.userGroups);
                 expect(res.body).to.have.deep.property('projects', modelFixture.projects);
-                done()
+                done();
             });
     });
 
-    it('GET /users respond with status 200 and JSON', function (done) {
+    it('GET /users respond with status 200 and JSON', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/users')
@@ -86,11 +86,11 @@ describe('/users', function () {
                     'userGroups',
                     'projects'
                 );
-                done()
+                done();
             });
     });
 
-    it('PUT /users respond with status 200 and JSON', function (done) {
+    it('PUT /users respond with status 200 and JSON', function (done: DoneFn) {
 
         request(app)
             .put('/api/v1/users/' + entityId)
@@ -109,12 +109,12 @@ describe('/users', function () {
                 expect(res.body).to.have.deep.property('social', modelFixtureEdited.social);
                 expect(res.body).to.have.deep.property('userGroups', modelFixtureEdited.userGroups);
                 expect(res.body).to.have.deep.property('projects', modelFixtureEdited.projects);
-                done()
+                done();
             });
     });
 
 
-    it('DELETE /users/:id respond with status 204 and JSON', function (done) {
+    it('DELETE /users/:id respond with status 204 and JSON', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/users/' + entityId)
@@ -122,11 +122,11 @@ describe('/users', function () {
             .set('x-access-token', token)
             .end(function (err, res) {
                 expect(res.status).to.equal(204);
-                done()
+                done();
             });
     });
 
-    it('GET /users/me respond with status 200 and JSON', function (done) {
+    it('GET /users/me respond with status 200 and JSON', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/users/me')
@@ -147,7 +147,7 @@ describe('/users', function () {
                     'userGroups',
                     'projects'
                 );
-                done()
+                done();
             });
     });
 });

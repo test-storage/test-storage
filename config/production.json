@@ -11,8 +11,9 @@
         "certificate": "certs/server.crt"
     },
     "db": {
+        "scheme": "mongodb://",
         "name": "test-storage",
-        "path": "mongodb://localhost",
+        "host": "localhost",
         "user": "admin",
         "password": "admin"
     },

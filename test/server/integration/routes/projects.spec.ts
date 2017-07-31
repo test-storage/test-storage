@@ -9,23 +9,23 @@ import { fixture, changedFixture } from './projects.fixtures';
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-var token = '';
-var entityId = '';
+let token = '';
+let entityId = '';
 
-before(function (done) {
+before(function () {
 
-    it('login', function (done) {
-        authenticate(function (restoken) {
-            token = restoken;
+    it('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
             done();
         });
     });
-    done();
+
 });
 
 describe('/projects', function () {
 
-    it('POST /projects respond with status 201 and JSON', function (done) {
+    it('POST /projects respond with status 201 and JSON', function (done: DoneFn) {
         chai.request(app)
             .post('/api/v1/projects')
             .set('x-access-token', token)
@@ -41,7 +41,7 @@ describe('/projects', function () {
             });
     });
 
-    it('GET /projects/:id respond with status 200 and JSON', function (done) {
+    it('GET /projects/:id respond with status 200 and JSON', function (done: DoneFn) {
         request(app)
             .get('/api/v1/projects/' + entityId)
             .set('Accept', 'application/json')
@@ -53,14 +53,13 @@ describe('/projects', function () {
                 expect(res.body).to.have.deep.property('name', fixture.name);
                 expect(res.body).to.have.deep.property('description', fixture.description);
                 expect(res.body).to.have.deep.property('enabled', true);
-                expect(res.body).to.have.deep.property('testcases', fixture.testcases);
                 expect(res.body).to.have.deep.property('created');
                 expect(res.body).to.have.deep.property('updated');
                 done();
             });
     });
 
-    it('GET /projects respond with status 200 and JSON', function (done) {
+    it('GET /projects respond with status 200 and JSON', function (done: DoneFn) {
         request(app)
             .get('/api/v1/projects')
             .set('Accept', 'application/json')
@@ -73,7 +72,6 @@ describe('/projects', function () {
                     'name',
                     'description',
                     'enabled',
-                    'testcases',
                     'created',
                     'updated'
                 );
@@ -81,7 +79,7 @@ describe('/projects', function () {
             });
     });
 
-    it('PUT /projects respond with status 200 and JSON', function (done) {
+    it('PUT /projects respond with status 200 and JSON', function (done: DoneFn) {
         request(app)
             .put('/api/v1/projects/' + entityId)
             .set('x-access-token', token)
@@ -93,7 +91,6 @@ describe('/projects', function () {
                 expect(res.body).to.have.deep.property('name', changedFixture.name);
                 expect(res.body).to.have.deep.property('description', changedFixture.description);
                 expect(res.body).to.have.deep.property('enabled', false);
-                expect(res.body).to.have.deep.property('testcases', changedFixture.testcases);
                 expect(res.body).to.have.deep.property('created');
                 expect(res.body).to.have.deep.property('updated');
                 done();
@@ -101,7 +98,7 @@ describe('/projects', function () {
     });
 
 
-    it('DELETE /projects/:id respond with status 204', function (done) {
+    it('DELETE /projects/:id respond with status 204', function (done: DoneFn) {
         request(app)
             .delete('/api/v1/projects/' + entityId)
             .set('Accept', 'application/json')

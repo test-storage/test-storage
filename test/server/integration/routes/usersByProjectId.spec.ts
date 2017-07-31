@@ -13,23 +13,22 @@ import { modelFixture, modelFixtureEdited } from './users2.fixtures';
 import { fixture, changedFixture } from './projects.fixtures';
 
 
-var token = '';
-var entityId = '';
-var projectId = '';
-var firstUserId = '';
-var secondUserId = '';
+let token = '';
+let projectId = '';
+let firstUserId = '';
+let secondUserId = '';
 
 
-before(function (done) {
+before(function (done: DoneFn) {
 
-    it('login', function (done) {
-        authenticate(function (restoken) {
-            token = restoken;
+    it('login', function (done: DoneFn) {
+        authenticate(function (accessToken) {
+            token = accessToken;
             done();
         });
     });
 
-    it('Before: Project created', function (done) {
+    it('Before: Project created', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/projects')
@@ -48,7 +47,7 @@ before(function (done) {
             });
     });
 
-    it('Before: User created', function (done) {
+    it('Before: User created', function (done: DoneFn) {
 
 
 
@@ -63,11 +62,11 @@ before(function (done) {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res).to.have.header('Location', '/api/v1/users/' + res.body._id);
                 firstUserId = res.body._id;
-                done()
+                done();
             });
     });
 
-    it('Before: User created', function (done) {
+    it('Before: User created', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/users')
@@ -80,7 +79,7 @@ before(function (done) {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res).to.have.header('Location', '/api/v1/users/' + res.body._id);
                 secondUserId = res.body._id;
-                done()
+                done();
             });
     });
 
@@ -99,7 +98,7 @@ describe('/projects/:id/users', function () {
     // delete project
     // delete users
 
-    it('GET /projects/:id/users should respond with status 200 and with list of users by project id', function (done) {
+    it('GET /projects/:id/users should respond with status 200 and with list of users by project id', function (done: DoneFn) {
 
         request(app)
             .get('/api/v1/projects/' + projectId + '/users')
@@ -130,9 +129,9 @@ describe('/projects/:id/users', function () {
 
 });
 
-after(function (done) {
+after(function (done: DoneFn) {
 
-    it('After: Delete Project', function (done) {
+    it('After: Delete Project', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/projects/' + projectId)
@@ -143,7 +142,7 @@ after(function (done) {
             });
     });
 
-    it('After: Delete first User', function (done) {
+    it('After: Delete first User', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/users/' + firstUserId)
@@ -154,7 +153,7 @@ after(function (done) {
             });
     });
 
-    it('After: Delete second User', function (done) {
+    it('After: Delete second User', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/users/' + secondUserId)

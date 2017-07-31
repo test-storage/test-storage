@@ -121,4 +121,4 @@ class Routes {
         this.router.delete('/api/v1/admin/users/:id', this.users.delete.bind(this.users));
     }
 }
-export { Routes }
+export { Routes };

@@ -20,4 +20,4 @@ const UserGroupSchema = new mongoose.Schema({
 });
 
 const UserGroup = mongoose.model('UserGroup', UserGroupSchema);
-export { UserGroup }
+export { UserGroup };

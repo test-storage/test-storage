@@ -23,4 +23,4 @@ const editedTestsuiteFixture: Testcasesuite = {
     'testcases': [faker.random.uuid(), faker.random.uuid()]
 };
 
-export { testsuiteFixture, editedTestsuiteFixture }
+export { testsuiteFixture, editedTestsuiteFixture };

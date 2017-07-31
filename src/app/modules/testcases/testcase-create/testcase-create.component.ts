@@ -32,7 +32,7 @@ export class TestcaseCreateComponent implements OnInit {
     private router: Router,
     private testcaseService: TestcaseService,
     public themeService: ThemeService,
-    private notificationsService: NotificationsService
+    private toastNotificationsService: NotificationsService
   ) { }
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class TestcaseCreateComponent implements OnInit {
     this.testcaseService.createTestcase(this.testcase).subscribe(
       response => {
         if (response === 201) {
-          this.showNotification('Testcase ' + this.testcase.title, 'created successfully!');
+          this.toastNotificationsService.success('Testcase ' + this.testcase.title, 'created successfully!');
 
           this.router.navigate(['./testcases']);
         }
@@ -51,18 +51,4 @@ export class TestcaseCreateComponent implements OnInit {
     );
   }
 
-  showNotification(title, description) {
-
-    this.notificationsService.success(
-      title,
-      description,
-      {
-        timeOut: 5000,
-        showProgressBar: false,
-        pauseOnHover: false,
-        clickToClose: false,
-        maxLength: 30
-      }
-    );
-  }
 }
