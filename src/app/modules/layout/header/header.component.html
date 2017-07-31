@@ -21,7 +21,7 @@
 
 
       <li class="link dropdown-item" [clickOut]="shown === 'SETTINGS'" (clickOutEvent)="closeDropdown()">
-        <a class="dropbtn" (click)="shown !== 'SETTINGS' ? shown = 'SETTINGS' : shown = ''">{{ user.firstName }} {{ user.lastName }} <span class="fa fa-angle-down" [class.chevron-rotated]="shown === 'SETTINGS'"></span></a>
+        <a class="dropbtn" id="header-person" (click)="shown !== 'SETTINGS' ? shown = 'SETTINGS' : shown = ''">{{ user.firstName }} {{ user.lastName }} <span class="fa fa-angle-down" [class.chevron-rotated]="shown === 'SETTINGS'"></span></a>
 
         <div class="dropdown-content" [class.show]="shown === 'SETTINGS'">
           <ul>

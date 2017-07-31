@@ -1,8 +1,8 @@
-import { browser, element, by} from 'protractor';
+import { browser, element, by } from 'protractor';
 import { Helpers } from '../helpers/Helpers';
 
 export class LoginPage extends Helpers {
-    
+
     // Locators
 
     loginInput = element(by.name('username'));
@@ -10,6 +10,10 @@ export class LoginPage extends Helpers {
     loginButton = element(by.css('.btn-primary'));
 
     // Methods
+
+    navigateTo() {
+        return browser.get('/auth', 30000);
+    }
 
     typeLogin(login: string) {
         super.waitForPresenceOf(this.loginInput);
@@ -26,7 +30,6 @@ export class LoginPage extends Helpers {
     submitLoginButton() {
         super.waitForClickable(this.loginButton);
         this.loginButton.click();
-       // return new HomePage();
+        // return new HomePage();
     }
-
 }

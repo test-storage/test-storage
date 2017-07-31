@@ -24,7 +24,7 @@
     "test:backend": "./node_modules/.bin/_mocha ./test/server/**/*.spec.ts --compilers ts:ts-node/register --recursive --check-leaks -t 50000",
     "test:coverage": "ng test --code-coverage",
     "pree2e": "webdriver-manager update",
-    "e2e": "ng e2e",
+    "e2e": "ng e2e --proxy-config proxy.conf.json",
     "build": "npm run client:build && npm run server:build",
     "server:build": "tsc -p ./server",
     "client:build": "ng build --prod --aot",

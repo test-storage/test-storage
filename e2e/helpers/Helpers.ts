@@ -9,4 +9,8 @@ export class Helpers {
      waitForClickable(element: any) {
         browser.wait(ExpectedConditions.elementToBeClickable(element));
     }
+
+    waitForAngular() {
+        browser.waitForAngular();
+    }
 }
