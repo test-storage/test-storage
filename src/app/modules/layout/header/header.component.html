@@ -26,7 +26,7 @@
         <div class="dropdown-content" [class.show]="shown === 'SETTINGS'">
           <ul>
             <li><a routerLink="/profile"><i class="fa fa-user"></i> {{ 'HEADER.USER_PROFILE' | translate }}</a></li>
-            <li><a (click)="logout()" (clickOutEvent)="closeDropdown()"><i class="fa fa-power-off"></i> {{ 'HEADER.LOGOUT' | translate }}</a></li>
+            <li><a id="logout" (click)="logout()" (clickOutEvent)="closeDropdown()"><i class="fa fa-power-off"></i> {{ 'HEADER.LOGOUT' | translate }}</a></li>
           </ul>
         </div>
       </li>

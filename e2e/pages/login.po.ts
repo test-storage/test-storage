@@ -32,4 +32,13 @@ export class LoginPage extends Helpers {
         this.loginButton.click();
         // return new HomePage();
     }
+
+    isLoginPage(): boolean {
+        super.waitForPresenceOf(this.loginInput);
+        if (this.loginInput.isDisplayed) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
