@@ -1,4 +1,4 @@
-import { browser, element, by, ExpectedConditions } from 'protractor';
+import { browser, ExpectedConditions } from 'protractor';
 
 export class Helpers {
 
