@@ -28,7 +28,7 @@ async function connectToDB() {
 
 async function connectToMockDB() {
   mockgoose.prepareStorage().then(() => {
-    mongoose.connect('mongodb://foobar/baz');
+    mongoose.connect('mongodb://foobar/baz', { useMongoClient: true });
     mongoose.connection.on('connected', () => {
       console.log('db connection is now open');
     });
