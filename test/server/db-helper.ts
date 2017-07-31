@@ -2,7 +2,7 @@ import * as config from 'config';
 import * as mongoose from 'mongoose';
 import { Mockgoose } from 'mockgoose';
 
-let mockgoose: Mockgoose = new Mockgoose(mongoose);
+const mockgoose: Mockgoose = new Mockgoose(mongoose);
 mongoose.Promise = global.Promise;
 
 /**
