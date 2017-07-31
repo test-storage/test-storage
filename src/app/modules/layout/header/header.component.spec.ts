@@ -22,6 +22,35 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
+  // Mock localStorage
+  beforeEach(async(() => {
+    let store = {};
+
+    store = {
+      'currentUser': {
+        'firstName': 'John',
+        'lastName': 'Doe',
+        'token': '32ea5456456456ea',
+        'username': 'myname',
+        'title': 'admin'
+      }
+    };
+
+    spyOn(localStorage, 'getItem').and.callFake((key: string): string => {
+      return JSON.stringify(store[key]) || null;
+    });
+    spyOn(localStorage, 'removeItem').and.callFake((key: string): void => {
+      delete store[key];
+    });
+    spyOn(localStorage, 'setItem').and.callFake((key: string, value: string): string => {
+      return store[key] = <string>value;
+    });
+    spyOn(localStorage, 'clear').and.callFake(() => {
+      store = {};
+    });
+  }));
+
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -63,7 +92,7 @@ describe('HeaderComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
