@@ -12,7 +12,7 @@ import { modelFixture, modelFixtureEdited } from './attachments.fixtures';
 let token = '';
 let entityId = '';
 
-before(function (done: DoneFn) {
+before(function () {
 
     it('login', function (done: DoneFn) {
         authenticate(function (accessToken: string) {
@@ -20,7 +20,6 @@ before(function (done: DoneFn) {
             done();
         });
     });
-    done();
 });
 
 describe('/attachments', function () {
