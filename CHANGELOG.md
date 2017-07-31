@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.24.1 (July 31, 2017)
+- e2e tests added: ([@pumano](https://github.com/pumano) in [#56](https://github.com/test-storage/test-storage/pull/56))
+- Backend integrations tests (small refactoring)
+- Mongo model tests rewritten with db helper and moved to ts
+- Fresh tslint styles added
+- Minor UI improvements
+
 ## 0.24.0 (July 19, 2017)
 - UI improvements: ([@pumano](https://github.com/pumano) in [#53](https://github.com/test-storage/test-storage/pull/53))
 - Testcases: Possibility to create testcases
