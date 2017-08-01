@@ -7,30 +7,33 @@ const expect = chai.expect;
 
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
-import { testsuiteFixture, editedTestsuiteFixture } from './testsuites.fixtures';
 
-let token = '';
-let entityId = '';
+import { MockFactory } from '../mocks/mock.factory';
 
-before(function () {
+const mockFactory = new MockFactory();
 
-    it('login', function (done: DoneFn) {
+
+describe('/testsuites', function () {
+
+    const testsuiteMock = mockFactory.createTestsuite();
+    const testsuiteMockEdited = mockFactory.createTestsuite();
+
+    let token = '';
+    let entityId = '';
+
+     before('login', function (done: DoneFn) {
         authenticate(function (accessToken: string) {
             token = accessToken;
             done();
         });
     });
 
-});
-
-describe('/testsuites', function () {
-
     it('POST /testsuites respond with status 201 and JSON', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/testsuites')
             .set('x-access-token', token)
-            .send(testsuiteFixture)
+            .send(testsuiteMock)
             .end(function (err, res) {
                 expect(res.status).to.equal(201);
                 expect(res.body).to.be.an('object');
@@ -53,13 +56,10 @@ describe('/testsuites', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('parentId', testsuiteFixture.parentId);
-                expect(res.body).to.have.deep.property('prerequisites', testsuiteFixture.prerequisites);
-                expect(res.body).to.have.deep.property('enabled', testsuiteFixture.enabled);
-                expect(res.body).to.have.deep.property('name', testsuiteFixture.name);
-                expect(res.body).to.have.deep.property('description', testsuiteFixture.description);
-                expect(res.body).to.have.deep.property('environment', testsuiteFixture.environment);
-                expect(res.body).to.have.deep.property('testcases', testsuiteFixture.testcases);
+                expect(res.body).to.have.deep.property('parentId', testsuiteMock.parentId);
+                expect(res.body).to.have.deep.property('enabled', testsuiteMock.enabled);
+                expect(res.body).to.have.deep.property('name', testsuiteMock.name);
+                expect(res.body).to.have.deep.property('description', testsuiteMock.description);
                 done();
             });
     });
@@ -92,19 +92,16 @@ describe('/testsuites', function () {
         request(app)
             .put('/api/v1/testsuites/' + entityId)
             .set('x-access-token', token)
-            .send(editedTestsuiteFixture)
+            .send(testsuiteMockEdited)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('parentId', editedTestsuiteFixture.parentId);
-                expect(res.body).to.have.deep.property('prerequisites', editedTestsuiteFixture.prerequisites);
-                expect(res.body).to.have.deep.property('enabled', editedTestsuiteFixture.enabled);
-                expect(res.body).to.have.deep.property('name', editedTestsuiteFixture.name);
-                expect(res.body).to.have.deep.property('description', editedTestsuiteFixture.description);
-                expect(res.body).to.have.deep.property('environment', editedTestsuiteFixture.environment);
-                expect(res.body).to.have.deep.property('testcases', editedTestsuiteFixture.testcases);
+                expect(res.body).to.have.deep.property('parentId', testsuiteMockEdited.parentId);
+                expect(res.body).to.have.deep.property('enabled', testsuiteMockEdited.enabled);
+                expect(res.body).to.have.deep.property('name', testsuiteMockEdited.name);
+                expect(res.body).to.have.deep.property('description', testsuiteMockEdited.description);
                 done();
             });
     });

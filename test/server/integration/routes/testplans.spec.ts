@@ -4,33 +4,38 @@ import chaiHttp = require('chai-http');
 
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
-import { testplanFixture, editedTestplanFixture } from './testplans.fixtures';
+
+import { MockFactory } from '../mocks/mock.factory';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-let token = '';
-let entityId = '';
+const mockFactory = new MockFactory();
 
-before(function () {
 
-    it('login', function (done: DoneFn) {
+describe('/testplans', function () {
+
+    const testplanMock = mockFactory.createTestPlan();
+    const testplanMockEdited = mockFactory.createTestPlan();
+
+    let token = '';
+    let entityId = '';
+
+
+    before('login', function (done: DoneFn) {
         authenticate(function (accessToken: string) {
             token = accessToken;
             done();
         });
     });
 
-});
-
-describe('/testplans', function () {
 
     it('POST /testplans respond with status 201 and JSON', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/testplans')
             .set('x-access-token', token)
-            .send(testplanFixture)
+            .send(testplanMock)
             .end(function (err, res) {
                 expect(res.status).to.equal(201);
                 expect(res.body).to.be.an('object');
@@ -52,11 +57,10 @@ describe('/testplans', function () {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.deep.property('name', testplanFixture.name);
-                expect(res.body).to.have.deep.property('description', testplanFixture.description);
-                expect(res.body).to.have.deep.property('builds', testplanFixture.builds);
-                expect(res.body).to.have.deep.property('environments', testplanFixture.environments);
-                expect(res.body).to.have.deep.property('testruns', testplanFixture.testruns);
+                expect(res.body).to.have.deep.property('name', testplanMock.name);
+                expect(res.body).to.have.deep.property('description', testplanMock.description);
+                expect(res.body).to.have.deep.property('builds', testplanMock.builds);
+                expect(res.body).to.have.deep.property('environments', testplanMock.environments);
                 done();
             });
     });
@@ -75,7 +79,6 @@ describe('/testplans', function () {
                 expect(res.body[0]).to.have.deep.property('description');
                 expect(res.body[0]).to.have.deep.property('builds');
                 expect(res.body[0]).to.have.deep.property('environments');
-                expect(res.body[0]).to.have.deep.property('testruns');
                 done();
             });
     });
@@ -85,17 +88,16 @@ describe('/testplans', function () {
         request(app)
             .put('/api/v1/testplans/' + entityId)
             .set('x-access-token', token)
-            .send(editedTestplanFixture)
+            .send(testplanMockEdited)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('name', editedTestplanFixture.name);
-                expect(res.body).to.have.deep.property('description', editedTestplanFixture.description);
-                expect(res.body).to.have.deep.property('builds', editedTestplanFixture.builds);
-                expect(res.body).to.have.deep.property('environments', editedTestplanFixture.environments);
-                expect(res.body).to.have.deep.property('testruns', editedTestplanFixture.testruns);
+                expect(res.body).to.have.deep.property('name', testplanMockEdited.name);
+                expect(res.body).to.have.deep.property('description', testplanMockEdited.description);
+                expect(res.body).to.have.deep.property('builds', testplanMockEdited.builds);
+                expect(res.body).to.have.deep.property('environments', testplanMockEdited.environments);
                 done();
             });
     });

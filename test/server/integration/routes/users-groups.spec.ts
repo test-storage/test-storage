@@ -2,35 +2,41 @@ import * as request from 'supertest';
 import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
+import { server as app } from '../../../../server/server';
+import { authenticate } from '../../auth-helper';
+
+import { MockFactory } from '../mocks/mock.factory';
+
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-import { server as app } from '../../../../server/server';
-import { authenticate } from '../../auth-helper';
-import { modelFixture, modelFixtureEdited } from './users-groups.fixtures';
+const mockFactory = new MockFactory();
 
-let token = '';
-let entityId = '';
 
-before(function () {
+describe('/users/groups', function () {
 
-    it('login', function (done: DoneFn) {
+    const userGroupMock = mockFactory.createUserGroup();
+    const userGroupMockEdited = mockFactory.createUserGroup();
+
+    let token = '';
+    let entityId = '';
+
+
+    before('login', function (done: DoneFn) {
         authenticate(function (accessToken: string) {
             token = accessToken;
             done();
         });
     });
 
-});
 
-describe('/users/groups', function () {
 
     it('POST /users/groups respond with status 201 and JSON', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/users/groups')
             .set('x-access-token', token)
-            .send(modelFixture)
+            .send(userGroupMock)
             .end(function (err, res) {
                 expect(res.status).to.equal(201);
                 expect(res.body).to.be.an('object');
@@ -52,13 +58,10 @@ describe('/users/groups', function () {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.deep.property('name', modelFixture.name);
-                expect(res.body).to.have.deep.property('description', modelFixture.description);
-                expect(res.body).to.have.deep.property('enabled', modelFixture.enabled);
-                expect(res.body).to.have.deep.property('scope');
-                expect(res.body.scope).to.have.deep.property('testcases', modelFixture.scope.testcases);
-                expect(res.body.scope).to.have.deep.property('testsuites', modelFixture.scope.testsuites);
-                expect(res.body).to.have.deep.property('users', modelFixture.users);
+                expect(res.body).to.have.deep.property('name', userGroupMock.name);
+                expect(res.body).to.have.deep.property('description', userGroupMock.description);
+                expect(res.body).to.have.deep.property('enabled', userGroupMock.enabled);
+                expect(res.body).to.have.deep.property('scope', userGroupMock.scope);
                 done();
             });
     });
@@ -77,11 +80,8 @@ describe('/users/groups', function () {
                     'name',
                     'description',
                     'enabled',
-                    'scope',
-                    'users'
+                    'scope'
                 );
-                expect(res.body[0].scope).to.have.property('testcases');
-                expect(res.body[0].scope).to.have.property('testsuites');
                 done();
             });
     });
@@ -91,19 +91,16 @@ describe('/users/groups', function () {
         request(app)
             .put('/api/v1/users/groups/' + entityId)
             .set('x-access-token', token)
-            .send(modelFixtureEdited)
+            .send(userGroupMockEdited)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('name', modelFixtureEdited.name);
-                expect(res.body).to.have.deep.property('description', modelFixtureEdited.description);
-                expect(res.body).to.have.deep.property('enabled', modelFixtureEdited.enabled);
-                expect(res.body).to.have.deep.property('scope');
-                expect(res.body.scope).to.have.deep.property('testcases', modelFixtureEdited.scope.testcases);
-                expect(res.body.scope).to.have.deep.property('testsuites', modelFixtureEdited.scope.testsuites);
-                expect(res.body).to.have.deep.property('users', modelFixtureEdited.users);
+                expect(res.body).to.have.deep.property('name', userGroupMockEdited.name);
+                expect(res.body).to.have.deep.property('description', userGroupMockEdited.description);
+                expect(res.body).to.have.deep.property('enabled', userGroupMockEdited.enabled);
+                expect(res.body).to.have.deep.property('scope', userGroupMockEdited.scope);
                 done();
             });
     });

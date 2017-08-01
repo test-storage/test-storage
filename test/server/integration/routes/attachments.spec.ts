@@ -2,34 +2,38 @@ import * as request from 'supertest';
 import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
+import { server as app } from '../../../../server/server';
+import { authenticate } from '../../auth-helper';
+
+import { MockFactory } from '../mocks/mock.factory';
+
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-import { server as app } from '../../../../server/server';
-import { authenticate } from '../../auth-helper';
-import { modelFixture, modelFixtureEdited } from './attachments.fixtures';
+const mockFactory = new MockFactory();
 
-let token = '';
-let entityId = '';
 
-before(function () {
+describe('/attachments', function () {
 
-    it('login', function (done: DoneFn) {
+    const attachmentMock = mockFactory.createAttachment();
+    const attachmentMockEdited = mockFactory.createAttachment();
+
+    let token = '';
+    let entityId = '';
+
+    before('login', function (done: DoneFn) {
         authenticate(function (accessToken: string) {
             token = accessToken;
             done();
         });
     });
-});
-
-describe('/attachments', function () {
 
     it('POST /attachments respond with status 201 and JSON', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/attachments')
             .set('x-access-token', token)
-            .send(modelFixture)
+            .send(attachmentMock)
             .end(function (err, res) {
                 expect(res.status).to.equal(201);
                 expect(res.body).to.be.an('object');
@@ -51,8 +55,8 @@ describe('/attachments', function () {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.deep.property('name', 'Dummy attachment');
-                expect(res.body).to.have.deep.property('description', 'Dummy attachment file');
+                expect(res.body).to.have.deep.property('name', attachmentMock.name);
+                expect(res.body).to.have.deep.property('description', attachmentMock.description);
                 done();
             });
     });
@@ -80,14 +84,14 @@ describe('/attachments', function () {
         request(app)
             .put('/api/v1/attachments/' + entityId)
             .set('x-access-token', token)
-            .send(modelFixtureEdited)
+            .send(attachmentMockEdited)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('name', 'Dummy attachment edited');
-                expect(res.body).to.have.deep.property('description', 'Dummy attachment file edited');
+                expect(res.body).to.have.deep.property('name', attachmentMockEdited.name);
+                expect(res.body).to.have.deep.property('description', attachmentMockEdited.description);
                 done();
             });
     });

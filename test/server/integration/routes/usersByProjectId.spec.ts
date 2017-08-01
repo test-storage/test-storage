@@ -1,91 +1,15 @@
 import * as request from 'supertest';
 import * as chai from 'chai';
 import chaiHttp = require('chai-http');
-import * as faker from 'faker';
-
-chai.use(chaiHttp);
-const expect = chai.expect;
 
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
 
-import { modelFixture, modelFixtureEdited } from './users2.fixtures';
-import { fixture, changedFixture } from './projects.fixtures';
+import { MockFactory } from '../mocks/mock.factory';
 
-
-let token = '';
-let projectId = '';
-let firstUserId = '';
-let secondUserId = '';
-
-
-before(function (done: DoneFn) {
-
-    it('login', function (done: DoneFn) {
-        authenticate(function (accessToken) {
-            token = accessToken;
-            done();
-        });
-    });
-
-    it('Before: Project created', function (done: DoneFn) {
-
-        request(app)
-            .post('/api/v1/projects')
-            .set('x-access-token', token)
-            .send(fixture)
-            .end(function (err, res) {
-                expect(res.status).to.equal(201);
-                expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('_id');
-                expect(res).to.have.header('content-type', /json/);
-                expect(res).to.have.header('Location', '/api/v1/projects/' + res.body._id);
-                projectId = res.body._id;
-                modelFixture.projects[0] = projectId;
-                modelFixtureEdited.projects[0] = projectId;
-                done();
-            });
-    });
-
-    it('Before: User created', function (done: DoneFn) {
-
-
-
-        request(app)
-            .post('/api/v1/users')
-            .set('x-access-token', token)
-            .send(modelFixture)
-            .end(function (err, res) {
-                expect(res.status).to.equal(201);
-                expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('_id');
-                expect(res).to.have.header('content-type', /json/);
-                expect(res).to.have.header('Location', '/api/v1/users/' + res.body._id);
-                firstUserId = res.body._id;
-                done();
-            });
-    });
-
-    it('Before: User created', function (done: DoneFn) {
-
-        request(app)
-            .post('/api/v1/users')
-            .set('x-access-token', token)
-            .send(modelFixtureEdited)
-            .end(function (err, res) {
-                expect(res.status).to.equal(201);
-                expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('_id');
-                expect(res).to.have.header('content-type', /json/);
-                expect(res).to.have.header('Location', '/api/v1/users/' + res.body._id);
-                secondUserId = res.body._id;
-                done();
-            });
-    });
-
-    done();
-});
-
+chai.use(chaiHttp);
+const expect = chai.expect;
+const mockFactory = new MockFactory();
 
 describe('/projects/:id/users', function () {
 
@@ -97,6 +21,79 @@ describe('/projects/:id/users', function () {
     // cleanup:
     // delete project
     // delete users
+
+    const projectMock = mockFactory.createProject();
+    const userMock1 = mockFactory.createUser();
+    const userMock2 = mockFactory.createUser();
+
+    let token = '';
+    let projectId = '';
+    let firstUserId = '';
+    let secondUserId = '';
+
+
+    before('login', function (done: DoneFn) {
+
+        authenticate(function (accessToken) {
+            token = accessToken;
+            done();
+        });
+    });
+
+    before('Before: Project created', function (done: DoneFn) {
+
+        request(app)
+            .post('/api/v1/projects')
+            .set('x-access-token', token)
+            .send(projectMock)
+            .end(function (err, res) {
+                expect(res.status).to.equal(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('_id');
+                expect(res).to.have.header('content-type', /json/);
+                expect(res).to.have.header('Location', '/api/v1/projects/' + res.body._id);
+                projectId = res.body._id;
+                userMock1.projects[0] = projectId;
+                userMock2.projects[0] = projectId;
+                done();
+            });
+    });
+
+    before('Before: User created', function (done: DoneFn) {
+
+        request(app)
+            .post('/api/v1/users')
+            .set('x-access-token', token)
+            .send(userMock1)
+            .end(function (err, res) {
+                expect(res.status).to.equal(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('_id');
+                expect(res).to.have.header('content-type', /json/);
+                expect(res).to.have.header('Location', '/api/v1/users/' + res.body._id);
+                firstUserId = res.body._id;
+                done();
+            });
+    });
+
+    before('Before: User created', function (done: DoneFn) {
+
+        request(app)
+            .post('/api/v1/users')
+            .set('x-access-token', token)
+            .send(userMock2)
+            .end(function (err, res) {
+                expect(res.status).to.equal(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('_id');
+                expect(res).to.have.header('content-type', /json/);
+                expect(res).to.have.header('Location', '/api/v1/users/' + res.body._id);
+                secondUserId = res.body._id;
+                done();
+            });
+    });
+
+    // ============= Tests ================
 
     it('GET /projects/:id/users should respond with status 200 and with list of users by project id', function (done: DoneFn) {
 
@@ -116,8 +113,7 @@ describe('/projects/:id/users', function () {
                     'firstName',
                     'lastName',
                     'email',
-                    'work',
-                    'title',
+                    'workInfo',
                     'userGroups',
                     'projects'
                 );
@@ -126,12 +122,10 @@ describe('/projects/:id/users', function () {
     });
 
 
+    // =====================================
 
-});
 
-after(function (done: DoneFn) {
-
-    it('After: Delete Project', function (done: DoneFn) {
+    after('After: Delete Project', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/projects/' + projectId)
@@ -142,7 +136,7 @@ after(function (done: DoneFn) {
             });
     });
 
-    it('After: Delete first User', function (done: DoneFn) {
+    after('After: Delete first User', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/users/' + firstUserId)
@@ -153,7 +147,7 @@ after(function (done: DoneFn) {
             });
     });
 
-    it('After: Delete second User', function (done: DoneFn) {
+    after('After: Delete second User', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/users/' + secondUserId)
@@ -164,6 +158,6 @@ after(function (done: DoneFn) {
             });
     });
 
-    done();
 });
+
 

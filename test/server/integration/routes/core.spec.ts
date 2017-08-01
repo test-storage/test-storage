@@ -8,19 +8,20 @@ import { authenticate } from '../../auth-helper';
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-let token = '';
 
-before(function () {
 
-    it('login', function (done: DoneFn) {
+
+describe('Core Tests', function () {
+
+    let token = '';
+
+
+    before('login', function (done: DoneFn) {
         authenticate(function (accessToken: string) {
             token = accessToken;
             done();
         });
     });
-});
-
-describe('Core Tests', function () {
 
     it('GET /projects respond with Content-Encoding: gzip', function (done: DoneFn) {
         request(app)

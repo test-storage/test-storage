@@ -2,35 +2,39 @@ import * as request from 'supertest';
 import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
+import { server as app } from '../../../../server/server';
+import { authenticate } from '../../auth-helper';
+
+import { MockFactory } from '../mocks/mock.factory';
+
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-import { server as app } from '../../../../server/server';
-import { authenticate } from '../../auth-helper';
-import { modelFixture, modelFixtureEdited } from './users.fixtures';
+const mockFactory = new MockFactory();
 
-let token = '';
-let entityId = '';
 
-before(function () {
+describe('/users', function () {
 
-    it('login', function (done: DoneFn) {
+    const userMock = mockFactory.createUser();
+    const userMockEdited = mockFactory.createUser();
+
+    let token = '';
+    let entityId = '';
+
+    before('login', function (done: DoneFn) {
         authenticate(function (accessToken: string) {
             token = accessToken;
             done();
         });
     });
 
-});
-
-describe('/users', function () {
 
     it('POST /users respond with status 201 and JSON', function (done: DoneFn) {
 
         request(app)
             .post('/api/v1/users')
             .set('x-access-token', token)
-            .send(modelFixture)
+            .send(userMock)
             .end(function (err, res) {
                 expect(res.status).to.equal(201);
                 expect(res.body).to.be.an('object');
@@ -53,14 +57,14 @@ describe('/users', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('firstName', modelFixture.firstName);
-                expect(res.body).to.have.deep.property('lastName', modelFixture.lastName);
-                expect(res.body).to.have.deep.property('email', modelFixture.email);
+                expect(res.body).to.have.deep.property('firstName', userMock.firstName);
+                expect(res.body).to.have.deep.property('lastName', userMock.lastName);
+                expect(res.body).to.have.deep.property('email', userMock.email);
                 expect(res.body).to.not.have.deep.property('password');
-                expect(res.body).to.have.deep.property('work', modelFixture.work);
-                expect(res.body).to.have.deep.property('social', modelFixture.social);
-                expect(res.body).to.have.deep.property('userGroups', modelFixture.userGroups);
-                expect(res.body).to.have.deep.property('projects', modelFixture.projects);
+                expect(res.body).to.have.deep.property('workInfo', userMock.workInfo);
+                expect(res.body).to.have.deep.property('social', userMock.social);
+                expect(res.body).to.have.deep.property('userGroups', userMock.userGroups);
+                expect(res.body).to.have.deep.property('projects', userMock.projects);
                 done();
             });
     });
@@ -95,20 +99,20 @@ describe('/users', function () {
         request(app)
             .put('/api/v1/users/' + entityId)
             .set('x-access-token', token)
-            .send(modelFixtureEdited)
+            .send(userMockEdited)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.deep.property('_id');
-                expect(res.body).to.have.deep.property('firstName', modelFixtureEdited.firstName);
-                expect(res.body).to.have.deep.property('lastName', modelFixtureEdited.lastName);
-                expect(res.body).to.have.deep.property('email', modelFixtureEdited.email);
+                expect(res.body).to.have.deep.property('firstName', userMockEdited.firstName);
+                expect(res.body).to.have.deep.property('lastName', userMockEdited.lastName);
+                expect(res.body).to.have.deep.property('email', userMockEdited.email);
                 expect(res.body).to.not.have.deep.property('password');
-                expect(res.body).to.have.deep.property('work', modelFixtureEdited.work);
-                expect(res.body).to.have.deep.property('social', modelFixtureEdited.social);
-                expect(res.body).to.have.deep.property('userGroups', modelFixtureEdited.userGroups);
-                expect(res.body).to.have.deep.property('projects', modelFixtureEdited.projects);
+                expect(res.body).to.have.deep.property('workInfo', userMockEdited.workInfo);
+                expect(res.body).to.have.deep.property('social', userMockEdited.social);
+                expect(res.body).to.have.deep.property('userGroups', userMockEdited.userGroups);
+                expect(res.body).to.have.deep.property('projects', userMockEdited.projects);
                 done();
             });
     });
@@ -142,7 +146,7 @@ describe('/users', function () {
                     'firstName',
                     'lastName',
                     'email',
-                    'work',
+                    'workInfo',
                     'title',
                     'userGroups',
                     'projects'

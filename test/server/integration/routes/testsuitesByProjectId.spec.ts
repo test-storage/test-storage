@@ -2,86 +2,14 @@ import * as request from 'supertest';
 import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
-chai.use(chaiHttp);
-const expect = chai.expect;
-
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
 
-import { testsuiteFixture, editedTestsuiteFixture } from './testsuites.fixtures';
-import { fixture, changedFixture } from './projects.fixtures';
+import { MockFactory } from '../mocks/mock.factory';
 
-
-let token = '';
-let projectId = '';
-let firstTestsuiteId = '';
-let secondTestsuiteId = '';
-
-
-before(function (done: DoneFn) {
-
-    it('login', function (done: DoneFn) {
-        authenticate(function (accessToken: string) {
-            token = accessToken;
-            done();
-        });
-    });
-
-    it('Before: Project created', function (done: DoneFn) {
-
-        request(app)
-            .post('/api/v1/projects')
-            .set('x-access-token', token)
-            .send(fixture)
-            .end(function (err, res) {
-                expect(res.status).to.equal(201);
-                expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('_id');
-                expect(res).to.have.header('content-type', /json/);
-                expect(res).to.have.header('Location', '/api/v1/projects/' + res.body._id);
-                projectId = res.body._id;
-                testsuiteFixture.projectId = projectId;
-                editedTestsuiteFixture.projectId = projectId;
-                done();
-            });
-    });
-
-    it('Before: Testsuite created', function (done: DoneFn) {
-
-        request(app)
-            .post('/api/v1/testsuites')
-            .set('x-access-token', token)
-            .send(testsuiteFixture)
-            .end(function (err, res) {
-                expect(res.status).to.equal(201);
-                expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('_id');
-                expect(res).to.have.header('content-type', /json/);
-                expect(res).to.have.header('Location', '/api/v1/testsuites/' + res.body._id);
-                firstTestsuiteId = res.body._id;
-                done();
-            });
-    });
-
-    it('Before: Testsuite created', function (done: DoneFn) {
-
-        request(app)
-            .post('/api/v1/testsuites')
-            .set('x-access-token', token)
-            .send(editedTestsuiteFixture)
-            .end(function (err, res) {
-                expect(res.status).to.equal(201);
-                expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('_id');
-                expect(res).to.have.header('content-type', /json/);
-                expect(res).to.have.header('Location', '/api/v1/testsuites/' + res.body._id);
-                secondTestsuiteId = res.body._id;
-                done();
-            });
-    });
-
-    done();
-});
+chai.use(chaiHttp);
+const expect = chai.expect;
+const mockFactory = new MockFactory();
 
 
 describe('/projects/:id/testsuites', function () {
@@ -94,6 +22,76 @@ describe('/projects/:id/testsuites', function () {
     // cleanup:
     // delete project
     // delete testsuites
+
+    const projectMock = mockFactory.createProject();
+    const testsuiteMock1 = mockFactory.createTestsuite();
+    const testsuiteMock2 = mockFactory.createTestsuite();
+
+    let token = '';
+    let projectId = '';
+    let firstTestsuiteId = '';
+    let secondTestsuiteId = '';
+
+
+    before('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
+            done();
+        });
+    });
+
+    before('Before: Project created', function (done: DoneFn) {
+
+        request(app)
+            .post('/api/v1/projects')
+            .set('x-access-token', token)
+            .send(projectMock)
+            .end(function (err, res) {
+                expect(res.status).to.equal(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('_id');
+                expect(res).to.have.header('content-type', /json/);
+                expect(res).to.have.header('Location', '/api/v1/projects/' + res.body._id);
+                projectId = res.body._id;
+                testsuiteMock1.projectId = projectId;
+                testsuiteMock2.projectId = projectId;
+                done();
+            });
+    });
+
+    before('Before: Testsuite created', function (done: DoneFn) {
+
+        request(app)
+            .post('/api/v1/testsuites')
+            .set('x-access-token', token)
+            .send(testsuiteMock1)
+            .end(function (err, res) {
+                expect(res.status).to.equal(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('_id');
+                expect(res).to.have.header('content-type', /json/);
+                expect(res).to.have.header('Location', '/api/v1/testsuites/' + res.body._id);
+                firstTestsuiteId = res.body._id;
+                done();
+            });
+    });
+
+    before('Before: Testsuite created', function (done: DoneFn) {
+
+        request(app)
+            .post('/api/v1/testsuites')
+            .set('x-access-token', token)
+            .send(testsuiteMock2)
+            .end(function (err, res) {
+                expect(res.status).to.equal(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('_id');
+                expect(res).to.have.header('content-type', /json/);
+                expect(res).to.have.header('Location', '/api/v1/testsuites/' + res.body._id);
+                secondTestsuiteId = res.body._id;
+                done();
+            });
+    });
 
     it('GET /projects/:id/testsuites should respond with status 200 and with list of testsuites by project id', function (done: DoneFn) {
 
@@ -112,9 +110,7 @@ describe('/projects/:id/testsuites', function () {
                     'projectId',
                     'enabled',
                     'name',
-                    'description',
-                    'environment',
-                    'testcases'
+                    'description'
                 );
                 done();
             });
@@ -122,11 +118,7 @@ describe('/projects/:id/testsuites', function () {
 
 
 
-});
-
-after(function (done: DoneFn) {
-
-    it('After: Delete Project', function (done: DoneFn) {
+    after('After: Delete Project', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/projects/' + projectId)
@@ -137,7 +129,7 @@ after(function (done: DoneFn) {
             });
     });
 
-    it('After: Delete first Testsuite', function (done: DoneFn) {
+    after('After: Delete first Testsuite', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/testsuites/' + firstTestsuiteId)
@@ -148,7 +140,7 @@ after(function (done: DoneFn) {
             });
     });
 
-    it('After: Delete second Testsuite', function (done: DoneFn) {
+    after('After: Delete second Testsuite', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/testsuites/' + secondTestsuiteId)
@@ -158,7 +150,7 @@ after(function (done: DoneFn) {
                 done();
             });
     });
-
-    done();
 });
+
+
 
