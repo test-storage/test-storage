@@ -127,9 +127,8 @@ export class Testplans {
         testplan.name = req.body.name;
         testplan.description = req.body.description;
         testplan.builds = req.body.builds;
-        //   testplan.configurations = req.body.configurations;
         testplan.environments = req.body.environments;
-        testplan.testruns = req.body.testruns;
+
         testplan.updated = Date.now();
         // TODO testplan.updatedBy = currentUser;
 

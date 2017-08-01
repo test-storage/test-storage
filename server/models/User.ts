@@ -28,10 +28,10 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     photo: String,
-    work: {
-        title: { type: String, required: true },
-        phone: String,
-        company: String
+    workInfo: {
+        jobTitle: { type: String, required: true },
+        phoneNumber: String,
+        companyName: String
     },
     social: {
         skype: String,

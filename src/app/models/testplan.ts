@@ -4,7 +4,6 @@ export class Testplan {
     description: string;
     builds: Array<string>;
     environments: Array<string>;
-    testruns?: Array<string>;
     created?: string;
     updated?: string;
     createdBy?: string;

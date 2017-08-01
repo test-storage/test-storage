@@ -51,7 +51,7 @@ class Routes {
         // route to display API versions
         this.router.get('/api', function (req, res) {
             res.json(API_VERSIONS);
-        })
+        });
 
         /*
          * Routes that can be accessed only by autheticated users

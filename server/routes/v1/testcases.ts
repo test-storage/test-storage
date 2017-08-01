@@ -176,6 +176,9 @@ export class Testcases {
         testcase.postConditions = req.body.postConditions;
         testcase.tags = req.body.tags;
         testcase.estimate = req.body.estimate;
+        testcase.enabled = req.body.enabled;
+        testcase.isAutomated = req.body.isAutomated;
+        testcase.status = req.body.status;
         if (req.body.status) {
           // TODO add checks
           // also "Approved"

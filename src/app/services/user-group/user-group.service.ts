@@ -5,10 +5,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { AuthenticationService, contentHeaders } from '../auth/index';
-import { Group } from '../../models/group';
+import { UserGroup } from '../../models/usergroup';
 
 @Injectable()
-export class GroupService {
+export class UserGroupService {
 
   apiPath = '/api/v1/groups';
 
@@ -17,7 +17,7 @@ export class GroupService {
     private authenticationService: AuthenticationService) {
   }
 
-  public getGroups(): Observable<Group[]> {
+  public getUserGroups(): Observable<UserGroup[]> {
     contentHeaders.set('x-access-token', this.authenticationService.token);
     const options = new RequestOptions({ headers: contentHeaders });
 

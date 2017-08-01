@@ -3,14 +3,14 @@ import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from 
 import { MockBackend } from '@angular/http/testing';
 
 import { AuthenticationService } from '../auth/authentication.service';
-import { GroupService } from './group.service';
+import { UserGroupService } from './user-group.service';
 
-describe('GroupService', () => {
+describe('UserGroupService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         AuthenticationService,
-        GroupService,
+        UserGroupService,
         MockBackend,
         BaseRequestOptions,
         {
@@ -23,7 +23,7 @@ describe('GroupService', () => {
     });
   });
 
-  it('should ...', inject([GroupService], (service: GroupService) => {
+  it('should ...', inject([UserGroupService], (service: UserGroupService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -1,13 +1,9 @@
-export class Attachment {
+export class UserGroup {
     _id?: string;
     name: string;
     description: string;
-    modified?: string;
-    size?: string;
-    mimeType?: string;
-    revision?: string;
-    path?: string;
-    icon?: string;
+    enabled?: boolean;
+    scope: Array<string>;
     created?: string;
     updated?: string;
     createdBy?: string;
