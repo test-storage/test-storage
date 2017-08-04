@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { TreeModule } from 'angular-tree-component';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
@@ -34,7 +35,8 @@ const testcasesRoutes: Routes = [
   imports: [
     RouterModule.forChild(testcasesRoutes),
     CommonModule,
-    FormsModule
+    FormsModule,
+    TreeModule
   ],
   declarations: [
     TestcasesComponent,

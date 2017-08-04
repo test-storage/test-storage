@@ -1,6 +1,6 @@
 export class Testsuite {
-    _id?: number;
-    parentId: number;
+    _id?: string;
+    parentId: string;
     projectId: string;
     enabled?: boolean;
     name: string;
@@ -9,4 +9,5 @@ export class Testsuite {
     updated?: string;
     createdBy?: string;
     updatedBy?: string;
+    children?: any;
 }

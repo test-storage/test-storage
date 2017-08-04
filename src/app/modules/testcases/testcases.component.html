@@ -1,4 +1,5 @@
 <div id="wrapper" [class.dark-theme]="themeService.theme">
+  <app-testsuites-tree></app-testsuites-tree>
   <div *ngIf="testcases">
 
     <div *ngIf="testcases.length > 0; then existTestcases else noExistTestcases"></div>

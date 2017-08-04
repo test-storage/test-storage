@@ -1,12 +1,31 @@
 <div id="treeComponent">
+  <!--
+  <ul class="directory">
+    <li class="folder">app
+      <ul>
+        <li class="folder">commands</li>
+        <li class="folder">config
+          <ul>
+            <li class="folder">local
+              <ul>
+                <li class="file">app.php</li>
+                <li class="file">database.php</li>
+              </ul>
+            </li>
+            <li class="file">packages</li>
+            <li class="file">app.php</li>
+          </ul>
+        </li>
+        <li class="folder">controllers</li>
+        <li class="file">filters.php</li>
+        <li class="file">routes.php</li>
+      </ul>
+    </li>
+    <li class="file">composer.json</li>
+  </ul>
+  -->
+  <button (click)="buildTree();" class="btn btn-primary">Create tree</button>
 
-  <div class="col-lg-3">
-    <div class="panel panel-info">
-      <div class="panel-body">
-        <!--<app-testsuites-tree></app-testsuites-tree>-->
-        <!--[nodes]="nodes"-->
-      </div>
-    </div>
-  </div>
+  <tree-root *ngIf="testsuitesArray" [focused]="true" [nodes]="testsuitesArray"></tree-root>
 
 </div>
