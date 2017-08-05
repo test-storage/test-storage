@@ -1,6 +1,6 @@
 <div id="wrapper" [class.dark-theme]="themeService.theme">
-  <app-testsuites-tree></app-testsuites-tree>
-  <div *ngIf="testcases">
+
+  <div id="testcases-wrapper" *ngIf="testcases">
 
     <div *ngIf="testcases.length > 0; then existTestcases else noExistTestcases"></div>
 
@@ -60,4 +60,5 @@
 
 
   </div>
+  <app-testsuites-tree></app-testsuites-tree>
 </div>

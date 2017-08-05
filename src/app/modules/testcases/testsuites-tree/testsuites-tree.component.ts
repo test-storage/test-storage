@@ -1,8 +1,13 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { TreeComponent } from 'angular-tree-component';
+
 import { Testsuite } from '../../../models/testsuite';
+import { Testcase } from '../../../models/testcase';
 import { TestsuiteViewModel } from '../../../models/testsuite.viewmodel';
 
-import { TreeComponent } from 'angular-tree-component';
+import { TestsuiteService } from '../../../services/testsuite/testsuite.service';
+
+
 
 @Component({
   selector: 'app-testsuites-tree',
@@ -19,12 +24,14 @@ export class TestsuitesTreeComponent implements OnInit {
   @ViewChild(TreeComponent)
   private tree: TreeComponent;
 
-  constructor() {
+  constructor(
+    private testsuiteService: TestsuiteService
+  ) {
 
   }
 
   ngOnInit() {
-
+    /*
     this.testsuites = [
       {
         '_id': 'root',
@@ -50,7 +57,7 @@ export class TestsuitesTreeComponent implements OnInit {
         'createdBy': 'Admin',
         'updatedBy': 'Admin'
       }
-    ];
+    ]; */
 
     this.testsuitesViewModel = [
       {
@@ -59,12 +66,23 @@ export class TestsuitesTreeComponent implements OnInit {
         'parentId': null,
         'projectId': 'projectId',
         'enabled': true,
-        'name': 'First Test suite',
-        'description': 'First testsuite description'
+        'name': 'Root Test suite',
+        'description': 'Root testsuite description'
       }
     ];
 
-    this.buildTree();
+    this.getTestsuites();
+    if (this.testsuites.length > 0) {
+      this.buildTree();
+    }
+
+  }
+
+  getTestsuites() {
+    this.testsuiteService.getTestsuites().subscribe(
+      testsuites => this.testsuites = testsuites,
+      error => console.log(error)
+    );
   }
 
 

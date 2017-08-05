@@ -8,6 +8,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { TestcasesComponent } from './testcases.component';
 import { TestcaseService } from '../../services/testcase/testcase.service';
+import { TestsuiteService } from '../../services/testsuite/testsuite.service';
 
 import { TestsuitesTreeComponent } from './testsuites-tree/testsuites-tree.component';
 import { TestcaseDetailsComponent } from './testcase-details/testcase-details.component';
@@ -45,7 +46,8 @@ const testcasesRoutes: Routes = [
     TestcaseCreateComponent
   ],
   providers: [
-    TestcaseService
+    TestcaseService,
+    TestsuiteService
   ]
 })
 export class TestcasesModule { }

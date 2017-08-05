@@ -12,8 +12,10 @@ import { NotificationsService } from 'angular2-notifications';
 
 import { AuthenticationService } from '../../services/auth/authentication.service';
 
-import { TestcasesComponent } from './testcases.component';
 import { TestcaseService } from '../../services/testcase/testcase.service';
+import { TestsuiteService } from '../../services/testsuite/testsuite.service';
+
+import { TestcasesComponent } from './testcases.component';
 import { Testcase } from '../../models/testcase';
 import { MockedTestcases } from '../../models/testcases.mock';
 
@@ -35,12 +37,13 @@ describe('TestcasesComponent', () => {
       ],
       declarations: [TestcasesComponent, TestsuitesTreeComponent],
       providers: [
+        TestsuiteService,
+        TestcaseService,
         NotificationsService,
         ThemeService,
         Http,
         AuthenticationService,
         MockBackend,
-        TestcaseService,
         BaseRequestOptions,
         {
           provide: Http,

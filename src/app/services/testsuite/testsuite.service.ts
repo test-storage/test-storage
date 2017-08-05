@@ -17,12 +17,32 @@ export class TestsuiteService {
     private authenticationService: AuthenticationService) {
   }
 
-  public getTestplans(): Observable<Testsuite[]> {
+  public getTestsuites(): Observable<Testsuite[]> {
     contentHeaders.set('x-access-token', this.authenticationService.token);
     const options = new RequestOptions({ headers: contentHeaders });
 
     return this.http.get(this.apiPath, options)
       .map((response: Response) => response.json())
+      .catch(this.handleError);
+  }
+
+  public createTestsuite(testsuite: Testsuite): Observable<Number> {
+    const body = JSON.stringify(testsuite);
+
+    contentHeaders.set('x-access-token', this.authenticationService.token);
+    const options = new RequestOptions({ headers: contentHeaders });
+
+    return this.http.post(this.apiPath, body, options)
+      .map((response: Response) => response.status) // response.json())
+      .catch(this.handleError);
+  }
+
+  public deleteTestsuite(id: string): Observable<Number> {
+    contentHeaders.set('x-access-token', this.authenticationService.token);
+    const options = new RequestOptions({ headers: contentHeaders });
+
+    return this.http.delete(this.apiPath + '/' + id, options)
+      .map((response: Response) => response.status)
       .catch(this.handleError);
   }
 
