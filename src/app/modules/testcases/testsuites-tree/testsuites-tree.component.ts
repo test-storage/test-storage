@@ -5,7 +5,7 @@ import { TestsuiteViewModel } from '../../../models/testsuite.viewmodel';
 
 import { TestsuiteService } from '../../../services/testsuite/testsuite.service';
 
-import { MockFactory } from '../../../../../test/server/integration/mocks/mock.factory';
+// import { MockFactory } from '../../../../../test/server/integration/mocks/mock.factory';
 
 
 @Component({
@@ -83,8 +83,8 @@ export class TestsuitesTreeComponent implements OnInit {
 
   createNewTestsuite() {
 
-    const mockFactory = new MockFactory();
-    this.testsuite = mockFactory.createTestsuite();
+    // const mockFactory = new MockFactory();
+    // this.testsuite = mockFactory.createTestsuite();
     this.testsuite.parentId = '9d04b25ccdcbd9f71cf87ffc28dfe98f';
 
     this.testsuiteService.createTestsuite(this.testsuite).subscribe(
