@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Testsuite } from '../../../models/testsuite';
+import { TestsuiteViewModel } from '../../../models/testsuite.viewmodel';
+
+import { TreeComponent } from 'angular-tree-component';
 
 @Component({
   selector: 'app-testsuites-tree',
@@ -9,7 +12,12 @@ import { Testsuite } from '../../../models/testsuite';
 export class TestsuitesTreeComponent implements OnInit {
 
   testsuites: Testsuite[] = [];
-  testsuitesArray: Testsuite[];
+  testsuitesViewModel: TestsuiteViewModel[];
+
+  options = { idField: '_id' };
+
+  @ViewChild(TreeComponent)
+  private tree: TreeComponent;
 
   constructor() {
 
@@ -44,31 +52,51 @@ export class TestsuitesTreeComponent implements OnInit {
       }
     ];
 
+    this.testsuitesViewModel = [
+      {
+        'hasChildren': true,
+        '_id': 'root',
+        'parentId': null,
+        'projectId': 'projectId',
+        'enabled': true,
+        'name': 'First Test suite',
+        'description': 'First testsuite description'
+      }
+    ];
+
+    this.buildTree();
   }
 
 
   buildTree() {
 
     const idToNodeMap = {};
-    let root = null;
+    const root = [];
     let parentNode;
 
     for (let i = 0; i < this.testsuites.length; i++) {
 
-      let node = this.testsuites[i];
+      const node = this.testsuites[i];
       node['children'] = [];
       idToNodeMap[node._id] = node;
 
       if (node.parentId === null) {
-        root = node;
+        root[0] = node;
       } else {
         parentNode = idToNodeMap[node.parentId];
         parentNode.children.push(node);
       }
     }
 
-    this.testsuitesArray = root;
-    console.log(JSON.stringify(root));
+    this.testsuitesViewModel = [...root];
+    // console.log(JSON.stringify(this.testsuites));
+    // this.updateTreeModel();
+  }
+
+  updateTreeModel() {
+
+    // this.nodes.push({ name: 'another node' });
+    // this.tree.treeModel.update();
   }
 
 }

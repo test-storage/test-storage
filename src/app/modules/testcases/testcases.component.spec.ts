@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
+import { TreeModule } from 'angular-tree-component';
+
 import { ThemeService } from '../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -28,7 +30,8 @@ describe('TestcasesComponent', () => {
       imports: [
         RouterModule,
         BrowserAnimationsModule,
-        FormsModule
+        FormsModule,
+        TreeModule
       ],
       declarations: [TestcasesComponent, TestsuitesTreeComponent],
       providers: [

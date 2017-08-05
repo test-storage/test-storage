@@ -26,6 +26,6 @@
   -->
   <button (click)="buildTree();" class="btn btn-primary">Create tree</button>
 
-  <tree-root *ngIf="testsuitesArray" [focused]="true" [nodes]="testsuitesArray"></tree-root>
+  <tree-root *ngIf="testsuitesViewModel" #tree [options]="options" [nodes]="testsuitesViewModel"></tree-root>
 
 </div>
