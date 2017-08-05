@@ -1,5 +1,6 @@
 <div id="wrapper" [class.dark-theme]="themeService.theme">
 
+  <!-- TODO @Input testsuite from testsuite tree component and show testsuite data -->
   <div id="testcases-wrapper" *ngIf="testcases">
 
     <div *ngIf="testcases.length > 0; then existTestcases else noExistTestcases"></div>
@@ -60,5 +61,6 @@
 
 
   </div>
+  <!-- TODO notify from testsuites tree to testcase list with @Output testsuite -->
   <app-testsuites-tree></app-testsuites-tree>
 </div>

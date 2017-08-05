@@ -21,7 +21,7 @@ describe('/testsuites', function () {
     let token = '';
     let entityId = '';
 
-     before('login', function (done: DoneFn) {
+    before('login', function (done: DoneFn) {
         authenticate(function (accessToken: string) {
             token = accessToken;
             done();
@@ -75,13 +75,10 @@ describe('/testsuites', function () {
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('array');
                 expect(res.body[0]).to.have.any.keys(
-                    'prerequisites',
                     'projectId',
                     'enabled',
                     'name',
-                    'description',
-                    'environment',
-                    'testcases'
+                    'description'
                 );
                 done();
             });

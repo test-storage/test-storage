@@ -1,28 +1,25 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { TreeComponent } from 'angular-tree-component';
 
 import { Testsuite } from '../../../models/testsuite';
-import { Testcase } from '../../../models/testcase';
 import { TestsuiteViewModel } from '../../../models/testsuite.viewmodel';
 
 import { TestsuiteService } from '../../../services/testsuite/testsuite.service';
 
+import { MockFactory } from '../../../../../test/server/integration/mocks/mock.factory';
 
 
 @Component({
   selector: 'app-testsuites-tree',
   templateUrl: './testsuites-tree.component.html',
-  styleUrls: ['./testsuites-tree.component.css', './directory.css']
+  styleUrls: ['./testsuites-tree.component.css']
 })
 export class TestsuitesTreeComponent implements OnInit {
 
+  testsuite: Testsuite = new Testsuite();
   testsuites: Testsuite[] = [];
   testsuitesViewModel: TestsuiteViewModel[];
 
   options = { idField: '_id' };
-
-  @ViewChild(TreeComponent)
-  private tree: TreeComponent;
 
   constructor(
     private testsuiteService: TestsuiteService
@@ -31,33 +28,6 @@ export class TestsuitesTreeComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*
-    this.testsuites = [
-      {
-        '_id': 'root',
-        'parentId': null,
-        'projectId': 'projectId',
-        'enabled': true,
-        'name': 'First Test suite',
-        'description': 'First testsuite description',
-        'created': '10.05.2017',
-        'updated': '10.05.2017',
-        'createdBy': 'Admin',
-        'updatedBy': 'Admin'
-      },
-      {
-        '_id': 'second',
-        'parentId': 'root',
-        'projectId': 'projectId2',
-        'enabled': true,
-        'name': 'Second Test suite',
-        'description': 'Second testsuite description',
-        'created': '10.05.2017',
-        'updated': '10.05.2017',
-        'createdBy': 'Admin',
-        'updatedBy': 'Admin'
-      }
-    ]; */
 
     this.testsuitesViewModel = [
       {
@@ -72,15 +42,16 @@ export class TestsuitesTreeComponent implements OnInit {
     ];
 
     this.getTestsuites();
-    if (this.testsuites.length > 0) {
-      this.buildTree();
-    }
-
   }
 
   getTestsuites() {
     this.testsuiteService.getTestsuites().subscribe(
-      testsuites => this.testsuites = testsuites,
+      testsuites => {
+        this.testsuites = testsuites;
+        if (this.testsuites.length > 0) {
+          this.buildTree();
+        }
+      },
       error => console.log(error)
     );
   }
@@ -108,13 +79,24 @@ export class TestsuitesTreeComponent implements OnInit {
 
     this.testsuitesViewModel = [...root];
     // console.log(JSON.stringify(this.testsuites));
-    // this.updateTreeModel();
   }
 
-  updateTreeModel() {
+  createNewTestsuite() {
 
-    // this.nodes.push({ name: 'another node' });
-    // this.tree.treeModel.update();
+    const mockFactory = new MockFactory();
+    this.testsuite = mockFactory.createTestsuite();
+    this.testsuite.parentId = '9d04b25ccdcbd9f71cf87ffc28dfe98f';
+
+    this.testsuiteService.createTestsuite(this.testsuite).subscribe(
+      response => {
+        if (response === 201) {
+          // this.toastNotificationsService.success('Testsuite ' + this.testcase.title, 'created successfully!');
+
+          // this.router.navigate(['./testcases']);
+        }
+      },
+      error => console.log(error)
+    );
   }
 
 }
