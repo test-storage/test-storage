@@ -63,7 +63,7 @@ describe('/testruns', function () {
                 expect(res.body).to.have.deep.property('builds', testrunMock.builds);
                 expect(res.body).to.have.deep.property('environments', testrunMock.environments);
                 expect(res.body).to.have.deep.property('platforms', testrunMock.platforms);
-                expect(res.body).to.have.deep.property('testcaseSuiteId', testrunMock.testcaseSuiteId);
+                expect(res.body).to.have.deep.property('testcases', testrunMock.testcases);
                 expect(res.body).to.have.deep.property('startDate', testrunMock.startDate);
                 expect(res.body).to.have.deep.property('endDate', testrunMock.endDate);
                 done();
@@ -86,7 +86,7 @@ describe('/testruns', function () {
                 expect(res.body[0]).to.have.deep.property('builds');
                 expect(res.body[0]).to.have.deep.property('environments');
                 expect(res.body[0]).to.have.deep.property('platforms');
-                expect(res.body[0]).to.have.deep.property('testcaseSuiteId');
+                expect(res.body[0]).to.have.deep.property('testcases');
                 expect(res.body[0]).to.have.deep.property('startDate');
                 expect(res.body[0]).to.have.deep.property('endDate');
                 done();
@@ -110,7 +110,7 @@ describe('/testruns', function () {
                 expect(res.body).to.have.deep.property('builds', testrunMockEdited.builds);
                 expect(res.body).to.have.deep.property('environments', testrunMockEdited.environments);
                 expect(res.body).to.have.deep.property('platforms', testrunMockEdited.platforms);
-                expect(res.body).to.have.deep.property('testcaseSuiteId', testrunMockEdited.testcaseSuiteId);
+                expect(res.body).to.have.deep.property('testcases', testrunMockEdited.testcases);
                 expect(res.body).to.have.deep.property('startDate', testrunMockEdited.startDate);
                 expect(res.body).to.have.deep.property('endDate', testrunMockEdited.endDate);
                 done();

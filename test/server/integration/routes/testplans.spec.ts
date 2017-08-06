@@ -63,7 +63,7 @@ describe('/testplans', function () {
                 expect(res.body).to.have.deep.property('builds', testplanMock.builds);
                 expect(res.body).to.have.deep.property('environments', testplanMock.environments);
                 expect(res.body).to.have.deep.property('platforms', testplanMock.platforms);
-                expect(res.body).to.have.deep.property('testcaseSuiteId', testplanMock.testcaseSuiteId);
+                expect(res.body).to.have.deep.property('testcases', testplanMock.testcases);
                 expect(res.body).to.have.deep.property('startDate', testplanMock.startDate);
                 expect(res.body).to.have.deep.property('endDate', testplanMock.endDate);
                 done();
@@ -86,7 +86,7 @@ describe('/testplans', function () {
                 expect(res.body[0]).to.have.deep.property('builds');
                 expect(res.body[0]).to.have.deep.property('environments');
                 expect(res.body[0]).to.have.deep.property('platforms');
-                expect(res.body[0]).to.have.deep.property('testcaseSuiteId');
+                expect(res.body[0]).to.have.deep.property('testcases');
                 expect(res.body[0]).to.have.deep.property('startDate');
                 expect(res.body[0]).to.have.deep.property('endDate');
                 done();
@@ -110,7 +110,7 @@ describe('/testplans', function () {
                 expect(res.body).to.have.deep.property('builds', testplanMockEdited.builds);
                 expect(res.body).to.have.deep.property('environments', testplanMockEdited.environments);
                 expect(res.body).to.have.deep.property('platforms', testplanMockEdited.platforms);
-                expect(res.body).to.have.deep.property('testcaseSuiteId', testplanMockEdited.testcaseSuiteId);
+                expect(res.body).to.have.deep.property('testcases', testplanMockEdited.testcases);
                 expect(res.body).to.have.deep.property('startDate', testplanMockEdited.startDate);
                 expect(res.body).to.have.deep.property('endDate', testplanMockEdited.endDate);
                 done();

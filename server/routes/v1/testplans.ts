@@ -130,7 +130,7 @@ export class Testplans {
         testplan.builds = req.body.builds;
         testplan.environments = req.body.environments;
         testplan.platforms = req.body.platforms;
-        testplan.testcaseSuiteId = req.body.testcaseSuiteId;
+        testplan.testcases = req.body.testcases;
         testplan.startDate = req.body.startDate;
         testplan.endDate = req.body.endDate;
 

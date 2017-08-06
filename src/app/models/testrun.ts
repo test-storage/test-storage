@@ -7,7 +7,7 @@ export class Testrun {
     environments?: Array<string>;
     platforms?: Array<string>;
     testplanId?: string;
-    testcaseSuiteId?: string;
+    testcases: Array<string>;
     startDate?: string;
     endDate?: string;
     created?: string;

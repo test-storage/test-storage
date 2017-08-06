@@ -18,7 +18,7 @@ const TestplanSchema = new mongoose.Schema({
   builds: Array,
   environments: Array,
   platforms: Array,
-  testcaseSuiteId: String,
+  testcases: Array,
   startDate: { type: Date },
   endDate: { type: Date },
   created: { type: Date, required: true, default: Date.now },

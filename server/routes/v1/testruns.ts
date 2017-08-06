@@ -130,7 +130,7 @@ export class Testruns {
         testrun.builds = req.body.builds;
         testrun.environments = req.body.environments;
         testrun.platforms = req.body.platforms;
-        testrun.testcaseSuiteId = req.body.testcaseSuiteId;
+        testrun.testcases = req.body.testcases;
         testrun.startDate = req.body.startDate;
         testrun.endDate = req.body.endDate;
 
