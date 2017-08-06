@@ -8,8 +8,8 @@ export class Testrun {
     platforms?: Array<string>;
     testplanId?: string;
     testcaseSuiteId?: string;
-    startDate?: Date;
-    endDate?: Date;
+    startDate?: string;
+    endDate?: string;
     created?: string;
     updated?: string;
     createdBy?: string;

@@ -7,8 +7,8 @@ export class Testplan {
     environments: Array<string>;
     platforms: Array<string>;
     testcaseSuiteId: string;
-    startDate: Date;
-    endDate: Date;
+    startDate?: string;
+    endDate?: string;
     created?: string;
     updated?: string;
     createdBy?: string;
