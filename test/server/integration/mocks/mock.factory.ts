@@ -92,9 +92,8 @@ export class MockFactory {
         testplan.environments = ['Dev', 'Stage', 'Production'];
         testplan.platforms = ['iOS'];
         testplan.testcaseSuiteId = faker.random.uuid();
-        testplan.testcaseSuiteId = faker.random.uuid();
-        testplan.startDate = faker.date.recent();
-        testplan.endDate = faker.date.future();
+        testplan.startDate = faker.date.recent().toISOString();
+        testplan.endDate = faker.date.future().toISOString();
         return testplan;
     }
 
@@ -107,8 +106,8 @@ export class MockFactory {
         testrun.environments = ['Dev', 'Stage', 'Production'];
         testrun.platforms = ['Android'];
         testrun.testcaseSuiteId = faker.random.uuid();
-        testrun.startDate = faker.date.recent();
-        testrun.endDate = faker.date.future();
+        testrun.startDate = faker.date.recent().toISOString();
+        testrun.endDate = faker.date.future().toISOString();
         return testrun;
     }
 
