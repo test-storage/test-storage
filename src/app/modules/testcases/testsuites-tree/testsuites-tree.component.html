@@ -26,6 +26,6 @@
   -->
   <!--<button (click)="createNewTestsuite();" class="btn btn-primary">Create testsuite</button>-->
 
-  <tree-root *ngIf="testsuitesViewModel" #tree [options]="options" [nodes]="testsuitesViewModel"></tree-root>
+  <tree-root *ngIf="testsuitesViewModel.length > 0" [options]="options" [nodes]="testsuitesViewModel" (activate)="selectedNode($event)"></tree-root>
 
 </div>

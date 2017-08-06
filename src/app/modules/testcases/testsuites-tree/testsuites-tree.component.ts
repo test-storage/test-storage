@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 
 import { Testsuite } from '../../../models/testsuite';
 import { TestsuiteViewModel } from '../../../models/testsuite.viewmodel';
@@ -19,7 +19,12 @@ export class TestsuitesTreeComponent implements OnInit {
   testsuites: Testsuite[] = [];
   testsuitesViewModel: TestsuiteViewModel[];
 
-  options = { idField: '_id' };
+  @Output() selectedTestsuite: EventEmitter<string> = new EventEmitter<string>();
+
+  options = {
+    idField: '_id',
+    allowDrag: true
+  };
 
   constructor(
     private testsuiteService: TestsuiteService
@@ -79,6 +84,15 @@ export class TestsuitesTreeComponent implements OnInit {
 
     this.testsuitesViewModel = [...root];
     // console.log(JSON.stringify(this.testsuites));
+  }
+
+
+
+  selectedNode($event): void {
+    // TODO think about node name?
+    // for testcase filtering in parent component by provided name (caching)
+    this.selectedTestsuite.emit($event.node.data._id);
+    console.log($event.node.data._id);
   }
 
   createNewTestsuite() {
