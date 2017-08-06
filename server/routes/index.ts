@@ -8,6 +8,7 @@ import { Projects } from './v1/projects';
 import { Testcases } from './v1/testcases';
 import { Testsuites } from './v1/testsuites';
 import { Testplans } from './v1/testplans';
+import { Testruns } from './v1/testruns';
 import { UserGroups } from './v1/users-groups';
 import { Users } from './v1/users';
 
@@ -23,6 +24,7 @@ class Routes {
     private testcases: Testcases;
     private testsuites: Testsuites;
     private testplans: Testplans;
+    private testruns: Testruns;
     private usergroups: UserGroups;
     private users: Users;
 
@@ -36,6 +38,7 @@ class Routes {
         this.testcases = new Testcases();
         this.testsuites = new Testsuites();
         this.testplans = new Testplans();
+        this.testruns = new Testruns();
         this.usergroups = new UserGroups();
         this.users = new Users();
 
@@ -95,6 +98,12 @@ class Routes {
         this.router.post('/api/v1/testplans/', this.testplans.create.bind(this.testplans));
         this.router.put('/api/v1/testplans/:id', this.testplans.update.bind(this.testplans));
         this.router.delete('/api/v1/testplans/:id', this.testplans.delete.bind(this.testplans));
+
+        this.router.get('/api/v1/testruns', this.testruns.getAll.bind(this.testruns));
+        this.router.get('/api/v1/testruns/:id', this.testruns.getOne.bind(this.testruns));
+        this.router.post('/api/v1/testruns/', this.testruns.create.bind(this.testruns));
+        this.router.put('/api/v1/testruns/:id', this.testruns.update.bind(this.testruns));
+        this.router.delete('/api/v1/testruns/:id', this.testruns.delete.bind(this.testruns));
 
         this.router.get('/api/v1/users/groups', this.usergroups.getAll.bind(this.usergroups));
         this.router.get('/api/v1/users/groups/:id', this.usergroups.getOne.bind(this.usergroups));

@@ -9,6 +9,7 @@ import { Project } from '../../../../src/app/models/project';
 import { Testsuite } from '../../../../src/app/models/testsuite';
 import { Testcase } from '../../../../src/app/models/testcase';
 import { Testplan } from '../../../../src/app/models/testplan';
+import { Testrun } from '../../../../src/app/models/testrun';
 import { Notification } from '../../../../src/app/models/notification';
 import { Attachment } from '../../../../src/app/models/attachment';
 
@@ -86,9 +87,29 @@ export class MockFactory {
         const testplan: Testplan = new Testplan();
         testplan.name = faker.commerce.productName();
         testplan.description = faker.commerce.productAdjective();
+        testplan.projectId = faker.random.uuid();
         testplan.builds = ['2.4.0', '4.3.5', '1.0.3-RC5', '2.5-beta', '1.0.0.244', '2.0.0'];
         testplan.environments = ['Dev', 'Stage', 'Production'];
+        testplan.platforms = ['iOS'];
+        testplan.testcaseSuiteId = faker.random.uuid();
+        testplan.testcaseSuiteId = faker.random.uuid();
+        testplan.startDate = faker.date.recent();
+        testplan.endDate = faker.date.future();
         return testplan;
+    }
+
+    createTestRun(): Testrun {
+        const testrun: Testrun = new Testrun();
+        testrun.name = faker.commerce.productName();
+        testrun.description = faker.commerce.productAdjective();
+        testrun.projectId = faker.random.uuid();
+        testrun.builds = ['2.4.0', '4.3.5', '1.0.3-RC5', '2.5-beta', '1.0.0.244', '2.0.0'];
+        testrun.environments = ['Dev', 'Stage', 'Production'];
+        testrun.platforms = ['Android'];
+        testrun.testcaseSuiteId = faker.random.uuid();
+        testrun.startDate = faker.date.recent();
+        testrun.endDate = faker.date.future();
+        return testrun;
     }
 
     createNotification(): Notification {
