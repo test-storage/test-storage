@@ -14,8 +14,13 @@ const TestplanSchema = new mongoose.Schema({
     required: true
   },
   description: String,
+  projectId: String,
   builds: Array,
   environments: Array,
+  platforms: Array,
+  testcaseSuiteId: String,
+  startDate: { type: Date },
+  endDate: { type: Date },
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: String,
