@@ -217,5 +217,5 @@ export class UserGroups {
         }
       });
   }
-};
+}
 

@@ -198,4 +198,4 @@ export class Notifications {
                 }
             });
     }
-};
+}

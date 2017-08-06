@@ -26,7 +26,7 @@ export class Attachments {
                 cb(null, file.fieldname + '-' + datetimestamp + '.' +
                     file.originalname.split('.')[file.originalname.split('.').length - 1]);
             }
-        })
+        });
 
         var upload = multer({
             storage: storage
@@ -206,4 +206,4 @@ export class Attachments {
         });
 
     }
-};
+}

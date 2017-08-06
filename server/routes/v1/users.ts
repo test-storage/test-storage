@@ -321,4 +321,4 @@ export class Users {
                 }
             });
     }
-};
+}

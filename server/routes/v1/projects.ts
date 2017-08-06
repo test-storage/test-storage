@@ -191,4 +191,4 @@ export class Projects {
         }
       });
   }
-};
+}
