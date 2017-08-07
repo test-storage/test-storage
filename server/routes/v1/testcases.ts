@@ -280,4 +280,4 @@ export class Testcases {
         }
       });
   }
-};
+}

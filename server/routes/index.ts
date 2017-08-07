@@ -11,6 +11,8 @@ import { Testplans } from './v1/testplans';
 import { Testruns } from './v1/testruns';
 import { UserGroups } from './v1/users-groups';
 import { Users } from './v1/users';
+import { UserSettings } from './v1/usersettings';
+import { ProjectSettings } from './v1/projectsettings';
 
 
 
@@ -27,6 +29,8 @@ class Routes {
     private testruns: Testruns;
     private usergroups: UserGroups;
     private users: Users;
+    private usersettings: UserSettings;
+    private projectsettings: ProjectSettings;
 
     constructor() {
 
@@ -41,6 +45,8 @@ class Routes {
         this.testruns = new Testruns();
         this.usergroups = new UserGroups();
         this.users = new Users();
+        this.usersettings = new UserSettings();
+        this.projectsettings = new ProjectSettings();
 
         // define the API versions
         const API_VERSIONS = { 'Version 1': '/v1' };
@@ -81,6 +87,11 @@ class Routes {
         this.router.put('/api/v1/projects/:id', this.projects.update.bind(this.projects));
         this.router.delete('/api/v1/projects/:id', this.projects.delete.bind(this.projects));
 
+        this.router.get('/api/v1/projects/:id/settings', this.projectsettings.getOne.bind(this.projectsettings));
+        this.router.post('/api/v1/projects/:id/settings', this.projectsettings.create.bind(this.projectsettings));
+        this.router.put('/api/v1/projects/:id/settings/:settingsId', this.projectsettings.update.bind(this.projectsettings));
+        this.router.delete('/api/v1/projects/:id/settings/:settingsId', this.projectsettings.delete.bind(this.projectsettings));
+
         this.router.get('/api/v1/testcases', this.testcases.getAll.bind(this.testcases));
         this.router.get('/api/v1/testcases/:id', this.testcases.getOne.bind(this.testcases));
         this.router.post('/api/v1/testcases/', this.testcases.create.bind(this.testcases));
@@ -118,6 +129,10 @@ class Routes {
         this.router.put('/api/v1/users/:id', this.users.update.bind(this.users));
         this.router.delete('/api/v1/users/:id', this.users.delete.bind(this.users));
 
+        this.router.get('/api/v1/users/:id/settings', this.usersettings.getOne.bind(this.usersettings));
+        this.router.post('/api/v1/users/:id/settings', this.usersettings.create.bind(this.usersettings));
+        this.router.put('/api/v1/users/:id/settings/:settingsId', this.usersettings.update.bind(this.usersettings));
+        this.router.delete('/api/v1/users/:id/settings/:settingsId', this.usersettings.delete.bind(this.usersettings));
 
 
         /*
