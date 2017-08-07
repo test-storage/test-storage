@@ -89,8 +89,8 @@ class Routes {
 
         this.router.get('/api/v1/projects/:id/settings', this.projectsettings.getOne.bind(this.projectsettings));
         this.router.post('/api/v1/projects/:id/settings', this.projectsettings.create.bind(this.projectsettings));
-        this.router.put('/api/v1/projects/:id/settings/:settingsId', this.projectsettings.update.bind(this.projectsettings));
-        this.router.delete('/api/v1/projects/:id/settings/:settingsId', this.projectsettings.delete.bind(this.projectsettings));
+        this.router.put('/api/v1/projects/:id/settings', this.projectsettings.update.bind(this.projectsettings));
+        this.router.delete('/api/v1/projects/:id/settings', this.projectsettings.delete.bind(this.projectsettings));
 
         this.router.get('/api/v1/testcases', this.testcases.getAll.bind(this.testcases));
         this.router.get('/api/v1/testcases/:id', this.testcases.getOne.bind(this.testcases));
@@ -131,8 +131,8 @@ class Routes {
 
         this.router.get('/api/v1/users/:id/settings', this.usersettings.getOne.bind(this.usersettings));
         this.router.post('/api/v1/users/:id/settings', this.usersettings.create.bind(this.usersettings));
-        this.router.put('/api/v1/users/:id/settings/:settingsId', this.usersettings.update.bind(this.usersettings));
-        this.router.delete('/api/v1/users/:id/settings/:settingsId', this.usersettings.delete.bind(this.usersettings));
+        this.router.put('/api/v1/users/:id/settings', this.usersettings.update.bind(this.usersettings));
+        this.router.delete('/api/v1/users/:id/settings', this.usersettings.delete.bind(this.usersettings));
 
 
         /*

@@ -26,7 +26,7 @@ export class UserSettings {
     // TODO add sanitizers
 
     UserSetting.
-      findOne({ '_id': req.params.id }).
+      findOne({ 'userId': req.params.id }).
       select(fields).
       exec(
       function (err, usersettings) {
@@ -71,7 +71,7 @@ export class UserSettings {
           res.
             set('Content-Type', 'application/json').
             status(201).
-            location('/api/v1/users/' + req.params.id + '/settings/' + usersettings._id).
+            location('/api/v1/users/' + req.params.id + '/settings').
             json(usersettings);
         }
       });
@@ -88,11 +88,12 @@ export class UserSettings {
 
     // TODO need security check (user input) for update
     UserSetting.
-      findOne({ '_id': req.params.id }).
+      findOne({ 'userId': req.params.id }).
       exec(
       function (err, usersettings) {
 
-        usersettings.settings = req.body.settings;
+        usersettings.theme = req.body.theme;
+        usersettings.language = req.body.language;
 
         usersettings.updated = Date.now();
         // TODO usersettings.updatedBy = currentUser;
@@ -127,7 +128,7 @@ export class UserSettings {
     this.validator.isPathValid(req, res);
 
     UserSetting.
-      findOneAndRemove({ '_id': req.params.id }).
+      findOneAndRemove({ 'userId': req.params.id }).
       exec(
       function (err, usersettings) {
         if (err) {

@@ -13,6 +13,9 @@ import { Testrun } from '../../../../src/app/models/testrun';
 import { Notification } from '../../../../src/app/models/notification';
 import { Attachment } from '../../../../src/app/models/attachment';
 
+import { ProjectSettings } from '../../../../src/app/models/projectsettings.model';
+import { UserSettings } from '../../../../src/app/models/usersettings.model';
+
 export class MockFactory {
 
     createUser(): User {
@@ -105,6 +108,7 @@ export class MockFactory {
         testrun.builds = ['2.4.0', '4.3.5', '1.0.3-RC5', '2.5-beta', '1.0.0.244', '2.0.0'];
         testrun.environments = ['Dev', 'Stage', 'Production'];
         testrun.platforms = ['Android'];
+        testrun.testplanId = faker.random.uuid();
         testrun.testcases = [faker.random.uuid(), faker.random.uuid(), faker.random.uuid()];
         testrun.startDate = faker.date.recent().toISOString();
         testrun.endDate = faker.date.future().toISOString();
@@ -129,6 +133,20 @@ export class MockFactory {
         userGroup.enabled = true;
         userGroup.scope = ['testcases:read', 'testsuites:read'];
         return userGroup;
+    }
+
+    createProjectSettings(): ProjectSettings {
+        const projectSettings: ProjectSettings = new ProjectSettings();
+        projectSettings.projectId = faker.random.uuid();
+        return projectSettings;
+    }
+
+    createUserSettings(): UserSettings {
+        const userSettings: UserSettings = new UserSettings();
+        userSettings.userId = faker.random.uuid();
+        userSettings.theme = 'BRIGHT';
+        userSettings.language = 'EN';
+        return userSettings;
     }
 
 

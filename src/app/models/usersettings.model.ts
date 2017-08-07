@@ -1,5 +1,6 @@
 export class UserSettings {
     _id?: string;
     userId: string;
-    settings: object;
+    theme: string;
+    language: string;
 }

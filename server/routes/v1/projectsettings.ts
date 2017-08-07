@@ -25,7 +25,7 @@ export class ProjectSettings {
     // TODO add sanitizers
 
     ProjectSetting.
-      findOne({ '_id': req.params.id }).
+      findOne({ 'projectId': req.params.id }).
       select(fields).
       exec(
       function (err, projectsettings) {
@@ -70,7 +70,7 @@ export class ProjectSettings {
           res.
             set('Content-Type', 'application/json').
             status(201).
-            location('/api/v1/users/' + req.params.id + '/settings/' + projectsettings._id).
+            location('/api/v1/projects/' + req.params.id + '/settings').
             json(projectsettings);
         }
       });
@@ -87,11 +87,11 @@ export class ProjectSettings {
 
     // TODO need security check (user input) for update
     ProjectSetting.
-      findOne({ '_id': req.params.settingsId }).
+      findOne({ 'projectId': req.params.id }).
       exec(
       function (err, projectsettings) {
 
-        projectsettings.settings = req.body.settings;
+        // TODO
 
         projectsettings.updated = Date.now();
         // TODO projectsettings.updatedBy = currentUser;
@@ -126,7 +126,7 @@ export class ProjectSettings {
     this.validator.isPathValid(req, res);
 
     ProjectSetting.
-      findOneAndRemove({ '_id': req.params.settingsId }).
+      findOneAndRemove({ 'projectId': req.params.id }).
       exec(
       function (err, projectsettings) {
         if (err) {

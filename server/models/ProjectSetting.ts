@@ -8,7 +8,7 @@ const ProjectSettingSchema = new mongoose.Schema({
             return crypto.randomBytes(16).toString('hex');
         }
     },
-    settings: { type: Object, required: true },
+    projectId: String,
     created: { type: Date, required: true, default: Date.now },
     updated: { type: Date, required: true, default: Date.now },
     createdBy: String,
