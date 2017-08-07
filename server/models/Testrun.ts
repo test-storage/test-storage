@@ -9,15 +9,16 @@ const TestrunSchema = new mongoose.Schema({
       return crypto.randomBytes(16).toString('hex');
     }
   },
-  name: {
-    type: String,
-    required: true
-  },
+  name: { type: String, required: true },
   description: String,
+  projectId: String,
   builds: Array,
-  configurations: Array,
   environments: Array,
+  platforms: Array,
+  testplanId: String,
   testcases: Array,
+  startDate: { type: Date },
+  endDate: { type: Date },
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: String,

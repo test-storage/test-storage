@@ -4,32 +4,36 @@ import chaiHttp = require('chai-http');
 
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
-import { fixture, changedFixture } from './projects.fixtures';
+
+import { MockFactory } from '../mocks/mock.factory';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-let token = '';
-let entityId = '';
+const mockFactory = new MockFactory();
 
-before(function () {
 
-    it('login', function (done: DoneFn) {
+describe('/projects', function () {
+
+    const projectMock = mockFactory.createProject();
+    const projectMockEdited = mockFactory.createProject();
+
+    let token = '';
+    let entityId = '';
+
+    before('login', function (done: DoneFn) {
         authenticate(function (accessToken: string) {
             token = accessToken;
             done();
         });
     });
 
-});
-
-describe('/projects', function () {
 
     it('POST /projects respond with status 201 and JSON', function (done: DoneFn) {
         chai.request(app)
             .post('/api/v1/projects')
             .set('x-access-token', token)
-            .send(fixture)
+            .send(projectMock)
             .end(function (err, res) {
                 expect(res.status).to.equal(201);
                 expect(res.body).to.be.an('object');
@@ -50,9 +54,9 @@ describe('/projects', function () {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.deep.property('name', fixture.name);
-                expect(res.body).to.have.deep.property('description', fixture.description);
-                expect(res.body).to.have.deep.property('enabled', true);
+                expect(res.body).to.have.deep.property('name', projectMock.name);
+                expect(res.body).to.have.deep.property('description', projectMock.description);
+                expect(res.body).to.have.deep.property('enabled', projectMock.enabled);
                 expect(res.body).to.have.deep.property('created');
                 expect(res.body).to.have.deep.property('updated');
                 done();
@@ -83,14 +87,14 @@ describe('/projects', function () {
         request(app)
             .put('/api/v1/projects/' + entityId)
             .set('x-access-token', token)
-            .send(changedFixture)
+            .send(projectMockEdited)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.deep.property('name', changedFixture.name);
-                expect(res.body).to.have.deep.property('description', changedFixture.description);
-                expect(res.body).to.have.deep.property('enabled', false);
+                expect(res.body).to.have.deep.property('name', projectMockEdited.name);
+                expect(res.body).to.have.deep.property('description', projectMockEdited.description);
+                expect(res.body).to.have.deep.property('enabled', projectMockEdited.enabled);
                 expect(res.body).to.have.deep.property('created');
                 expect(res.body).to.have.deep.property('updated');
                 done();

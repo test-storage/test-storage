@@ -16,14 +16,16 @@
           <p class="card-text">{{ project.description }}</p>
         </div>
         <a [routerLink]="['./', project._id]" class="btn btn-primary edit-button">Edit</a>
+
       </div>
 
 
       <div class="project-card card create-card">
         <div class="card-block">
-          <h1><i class="fa fa-3x fa-plus"></i></h1>
+          <a [routerLink]="['./create']">
+            <h1><i class="fa fa-3x fa-plus"></i></h1>
+          </a>
         </div>
-        <a [routerLink]="['./create']" class="btn btn-primary create-button">Create Project</a>
       </div>
 
 

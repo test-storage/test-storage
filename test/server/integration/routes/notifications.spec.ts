@@ -4,32 +4,37 @@ import chaiHttp = require('chai-http');
 
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
-import { fixture, changedFixture } from './notifications.fixtures';
+
+import { MockFactory } from '../mocks/mock.factory';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-let token = '';
-let entityId = '';
+const mockFactory = new MockFactory();
 
-before(function () {
 
-    it('login', function (done: DoneFn) {
+
+describe('/notifications', function () {
+
+    const notificationMock = mockFactory.createNotification();
+    const notificationMockEdited = mockFactory.createNotification();
+
+    let token = '';
+    let entityId = '';
+
+
+    before('login', function (done: DoneFn) {
         authenticate(function (accessToken: string) {
             token = accessToken;
             done();
         });
     });
 
-});
-
-describe('/notifications', function () {
-
     it('POST /notifications respond with status 201 and JSON', function (done: DoneFn) {
         chai.request(app)
             .post('/api/v1/notifications')
             .set('x-access-token', token)
-            .send(fixture)
+            .send(notificationMock)
             .end(function (err, res) {
                 expect(res.status).to.equal(201);
                 expect(res.body).to.be.an('object');
@@ -50,12 +55,12 @@ describe('/notifications', function () {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.deep.property('title', fixture.title);
-                expect(res.body).to.have.deep.property('description', fixture.description);
-                expect(res.body).to.have.deep.property('entity', fixture.entity);
-                expect(res.body).to.have.deep.property('action', fixture.action);
-                expect(res.body).to.have.deep.property('senderId', fixture.senderId);
-                expect(res.body).to.have.deep.property('recipientId', fixture.recipientId);
+                expect(res.body).to.have.deep.property('title', notificationMock.title);
+                expect(res.body).to.have.deep.property('description', notificationMock.description);
+                expect(res.body).to.have.deep.property('entity', notificationMock.entity);
+                expect(res.body).to.have.deep.property('action', notificationMock.action);
+                expect(res.body).to.have.deep.property('senderId', notificationMock.senderId);
+                expect(res.body).to.have.deep.property('recipientId', notificationMock.recipientId);
                 expect(res.body).to.have.deep.property('created');
                 expect(res.body).to.have.deep.property('updated');
                 done();
@@ -89,17 +94,17 @@ describe('/notifications', function () {
         request(app)
             .put('/api/v1/notifications/' + entityId)
             .set('x-access-token', token)
-            .send(changedFixture)
+            .send(notificationMockEdited)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.deep.property('title', changedFixture.title);
-                expect(res.body).to.have.deep.property('description', changedFixture.description);
-                expect(res.body).to.have.deep.property('entity', changedFixture.entity);
-                expect(res.body).to.have.deep.property('action', changedFixture.action);
-                expect(res.body).to.have.deep.property('senderId', changedFixture.senderId);
-                expect(res.body).to.have.deep.property('recipientId', changedFixture.recipientId);
+                expect(res.body).to.have.deep.property('title', notificationMockEdited.title);
+                expect(res.body).to.have.deep.property('description', notificationMockEdited.description);
+                expect(res.body).to.have.deep.property('entity', notificationMockEdited.entity);
+                expect(res.body).to.have.deep.property('action', notificationMockEdited.action);
+                expect(res.body).to.have.deep.property('senderId', notificationMockEdited.senderId);
+                expect(res.body).to.have.deep.property('recipientId', notificationMockEdited.recipientId);
                 expect(res.body).to.have.deep.property('created');
                 expect(res.body).to.have.deep.property('updated');
                 done();

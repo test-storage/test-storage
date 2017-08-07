@@ -8,7 +8,7 @@ const TestsuiteSchema = new mongoose.Schema({
       return crypto.randomBytes(16).toString('hex');
     }
   },
-  parentId: Number,
+  parentId: String,
   projectId: String,
   enabled: Boolean, // TODO delete
   /* TODO
@@ -18,11 +18,6 @@ const TestsuiteSchema = new mongoose.Schema({
   */
   name: { type: String, required: true },
   description: String,
-  /* TODO delete if not needed */
-  prerequisites: String,
-  environment: String,
-  testcases: Array,
-  /* end */
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: String,

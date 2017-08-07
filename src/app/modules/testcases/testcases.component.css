@@ -8,11 +8,17 @@
     min-height: 740px;
     background-color: #FFF;
     padding: 20px;
+    display: flex;
 }
 
 #wrapper.dark-theme {
     background-color: #283242;
     color: #FFF;
+}
+
+#testcases-wrapper {
+    width: 1100px;
+    overflow: hidden;
 }
 
 .noexist-wrapper {

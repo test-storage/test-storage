@@ -22,7 +22,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private notificationsService: NotificationsService,
+    private toastNotificationsService: NotificationsService,
     public themeService: ThemeService,
   ) { }
 
@@ -56,6 +56,8 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     this.projectService.deleteProject(id).subscribe(
       response => {
         if (response === 204) {
+          this.toastNotificationsService.success('Project ' + this.project.name, 'deleted successfully!');
+
           this.router.navigate(['./projects']);
         }
       },

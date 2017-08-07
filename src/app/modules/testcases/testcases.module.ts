@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { TreeModule } from 'angular-tree-component';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { TestcasesComponent } from './testcases.component';
 import { TestcaseService } from '../../services/testcase/testcase.service';
+import { TestsuiteService } from '../../services/testsuite/testsuite.service';
 
 import { TestsuitesTreeComponent } from './testsuites-tree/testsuites-tree.component';
 import { TestcaseDetailsComponent } from './testcase-details/testcase-details.component';
@@ -34,7 +36,8 @@ const testcasesRoutes: Routes = [
   imports: [
     RouterModule.forChild(testcasesRoutes),
     CommonModule,
-    FormsModule
+    FormsModule,
+    TreeModule
   ],
   declarations: [
     TestcasesComponent,
@@ -43,7 +46,8 @@ const testcasesRoutes: Routes = [
     TestcaseCreateComponent
   ],
   providers: [
-    TestcaseService
+    TestcaseService,
+    TestsuiteService
   ]
 })
 export class TestcasesModule { }

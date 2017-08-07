@@ -7,6 +7,8 @@ import { NotificationsService } from 'angular2-notifications';
 import { Testcase } from '../../models/testcase';
 import { TestcaseService } from '../../services/testcase/testcase.service';
 
+import { TestsuitesTreeComponent } from './testsuites-tree/testsuites-tree.component';
+
 @Component({
   selector: 'app-testcases',
   templateUrl: './testcases.component.html',

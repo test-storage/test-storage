@@ -158,7 +158,7 @@ export class Users {
                 user.lastName = req.body.lastName;
                 user.email = req.body.email;
                 user.password = req.body.password;
-                user.work = req.body.work;
+                user.workInfo = req.body.workInfo;
                 user.social = req.body.social;
                 user.userGroups = req.body.userGroups;
                 user.projects = req.body.projects;
@@ -321,4 +321,4 @@ export class Users {
                 }
             });
     }
-};
+}

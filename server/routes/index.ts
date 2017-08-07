@@ -8,8 +8,12 @@ import { Projects } from './v1/projects';
 import { Testcases } from './v1/testcases';
 import { Testsuites } from './v1/testsuites';
 import { Testplans } from './v1/testplans';
+import { Testruns } from './v1/testruns';
+import { TestResults } from './v1/testresults';
 import { UserGroups } from './v1/users-groups';
 import { Users } from './v1/users';
+import { UserSettings } from './v1/usersettings';
+import { ProjectSettings } from './v1/projectsettings';
 
 
 
@@ -23,8 +27,12 @@ class Routes {
     private testcases: Testcases;
     private testsuites: Testsuites;
     private testplans: Testplans;
+    private testruns: Testruns;
+    private testresults: TestResults;
     private usergroups: UserGroups;
     private users: Users;
+    private usersettings: UserSettings;
+    private projectsettings: ProjectSettings;
 
     constructor() {
 
@@ -36,8 +44,12 @@ class Routes {
         this.testcases = new Testcases();
         this.testsuites = new Testsuites();
         this.testplans = new Testplans();
+        this.testruns = new Testruns();
+        this.testresults = new TestResults();
         this.usergroups = new UserGroups();
         this.users = new Users();
+        this.usersettings = new UserSettings();
+        this.projectsettings = new ProjectSettings();
 
         // define the API versions
         const API_VERSIONS = { 'Version 1': '/v1' };
@@ -51,7 +63,7 @@ class Routes {
         // route to display API versions
         this.router.get('/api', function (req, res) {
             res.json(API_VERSIONS);
-        })
+        });
 
         /*
          * Routes that can be accessed only by autheticated users
@@ -78,6 +90,11 @@ class Routes {
         this.router.put('/api/v1/projects/:id', this.projects.update.bind(this.projects));
         this.router.delete('/api/v1/projects/:id', this.projects.delete.bind(this.projects));
 
+        this.router.get('/api/v1/projects/:id/settings', this.projectsettings.getOne.bind(this.projectsettings));
+        this.router.post('/api/v1/projects/:id/settings', this.projectsettings.create.bind(this.projectsettings));
+        this.router.put('/api/v1/projects/:id/settings', this.projectsettings.update.bind(this.projectsettings));
+        this.router.delete('/api/v1/projects/:id/settings', this.projectsettings.delete.bind(this.projectsettings));
+
         this.router.get('/api/v1/testcases', this.testcases.getAll.bind(this.testcases));
         this.router.get('/api/v1/testcases/:id', this.testcases.getOne.bind(this.testcases));
         this.router.post('/api/v1/testcases/', this.testcases.create.bind(this.testcases));
@@ -96,6 +113,18 @@ class Routes {
         this.router.put('/api/v1/testplans/:id', this.testplans.update.bind(this.testplans));
         this.router.delete('/api/v1/testplans/:id', this.testplans.delete.bind(this.testplans));
 
+        this.router.get('/api/v1/testruns', this.testruns.getAll.bind(this.testruns));
+        this.router.get('/api/v1/testruns/:id', this.testruns.getOne.bind(this.testruns));
+        this.router.post('/api/v1/testruns/', this.testruns.create.bind(this.testruns));
+        this.router.put('/api/v1/testruns/:id', this.testruns.update.bind(this.testruns));
+        this.router.delete('/api/v1/testruns/:id', this.testruns.delete.bind(this.testruns));
+
+        this.router.get('/api/v1/testresults', this.testresults.getAll.bind(this.testresults));
+        this.router.get('/api/v1/testresults/:id', this.testresults.getOne.bind(this.testresults));
+        this.router.post('/api/v1/testresults/', this.testresults.create.bind(this.testresults));
+        this.router.put('/api/v1/testresults/:id', this.testresults.update.bind(this.testresults));
+        this.router.delete('/api/v1/testresults/:id', this.testresults.delete.bind(this.testresults));
+
         this.router.get('/api/v1/users/groups', this.usergroups.getAll.bind(this.usergroups));
         this.router.get('/api/v1/users/groups/:id', this.usergroups.getOne.bind(this.usergroups));
         this.router.post('/api/v1/users/groups/', this.usergroups.create.bind(this.usergroups));
@@ -109,6 +138,10 @@ class Routes {
         this.router.put('/api/v1/users/:id', this.users.update.bind(this.users));
         this.router.delete('/api/v1/users/:id', this.users.delete.bind(this.users));
 
+        this.router.get('/api/v1/users/:id/settings', this.usersettings.getOne.bind(this.usersettings));
+        this.router.post('/api/v1/users/:id/settings', this.usersettings.create.bind(this.usersettings));
+        this.router.put('/api/v1/users/:id/settings', this.usersettings.update.bind(this.usersettings));
+        this.router.delete('/api/v1/users/:id/settings', this.usersettings.delete.bind(this.usersettings));
 
 
         /*

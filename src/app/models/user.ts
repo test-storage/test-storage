@@ -1,3 +1,6 @@
+import { Social } from './social.model';
+import { WorkInfo } from './work.model';
+
 export class User {
   _id?: string;
   email: string;
@@ -5,20 +8,8 @@ export class User {
   firstName: string;
   lastName: string;
   photo?: string;
-  work: {
-    title: string;
-    phone?: string;
-    company?: string;
-  };
-  social?: {
-    skype?: string,
-    github?: string,
-    facebook?: string,
-    twitter?: string,
-    linkedin?: string,
-    instagram?: string,
-    vk?: string
-  };
+  workInfo?: WorkInfo;
+  social?: Social;
   userGroups?: Array<string>;
   projects?: Array<string>;
   created?: string;

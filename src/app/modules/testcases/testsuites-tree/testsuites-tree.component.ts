@@ -1,5 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+
 import { Testsuite } from '../../../models/testsuite';
+import { TestsuiteViewModel } from '../../../models/testsuite.viewmodel';
+
+import { TestsuiteService } from '../../../services/testsuite/testsuite.service';
+
+// import { MockFactory } from '../../../../../test/server/integration/mocks/mock.factory';
+
 
 @Component({
   selector: 'app-testsuites-tree',
@@ -8,43 +15,102 @@ import { Testsuite } from '../../../models/testsuite';
 })
 export class TestsuitesTreeComponent implements OnInit {
 
-  nodes: Testsuite[] = [];
+  testsuite: Testsuite = new Testsuite();
+  testsuites: Testsuite[] = [];
+  testsuitesViewModel: TestsuiteViewModel[];
 
-  constructor() {
+  @Output() selectedTestsuite: EventEmitter<string> = new EventEmitter<string>();
+
+  options = {
+    idField: '_id',
+    allowDrag: true
+  };
+
+  constructor(
+    private testsuiteService: TestsuiteService
+  ) {
 
   }
 
   ngOnInit() {
 
-    this.nodes = [
+    this.testsuitesViewModel = [
       {
-        '_id': 1,
-        'parentId': 1,
+        'hasChildren': true,
+        '_id': 'root',
+        'parentId': null,
         'projectId': 'projectId',
         'enabled': true,
-        'name': 'First Test suite',
-        'description': 'First testsuite description',
-        'testcases': [],
-        'created': '10.05.2017',
-        'updated': '10.05.2017',
-        'createdBy': 'Admin',
-        'updatedBy': 'Admin'
-      },
-      {
-        '_id': 2,
-        'parentId': 1,
-        'projectId': 'projectId2',
-        'enabled': true,
-        'name': 'First Test suite',
-        'description': 'First testsuite description',
-        'testcases': [],
-        'created': '10.05.2017',
-        'updated': '10.05.2017',
-        'createdBy': 'Admin',
-        'updatedBy': 'Admin'
+        'name': 'Root Test suite',
+        'description': 'Root testsuite description'
       }
     ];
 
+    this.getTestsuites();
+  }
+
+  getTestsuites() {
+    this.testsuiteService.getTestsuites().subscribe(
+      testsuites => {
+        this.testsuites = testsuites;
+        if (this.testsuites.length > 0) {
+          this.buildTree();
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+
+  buildTree() {
+
+    const idToNodeMap = {};
+    const root = [];
+    let parentNode;
+
+    for (let i = 0; i < this.testsuites.length; i++) {
+
+      const node = this.testsuites[i];
+      node['children'] = [];
+      idToNodeMap[node._id] = node;
+
+      if (node.parentId === null) {
+        root[0] = node;
+      } else {
+        parentNode = idToNodeMap[node.parentId];
+        parentNode.children.push(node);
+      }
+    }
+
+    this.testsuitesViewModel = [...root];
+    // console.log(JSON.stringify(this.testsuites));
+  }
+
+
+
+  selectedNode($event): void {
+    // TODO think about node name?
+    // for testcase filtering in parent component by provided name (caching)
+    this.selectedTestsuite.emit($event.node.data._id);
+    console.log($event.node.data._id);
+  }
+
+  createNewTestsuite() {
+
+    // const mockFactory = new MockFactory();
+    // this.testsuite = mockFactory.createTestsuite();
+    this.testsuite.parentId = '9d04b25ccdcbd9f71cf87ffc28dfe98f';
+
+    this.testsuiteService.createTestsuite(this.testsuite).subscribe(
+      response => {
+        if (response === 201) {
+          // this.toastNotificationsService.success('Testsuite ' + this.testcase.title, 'created successfully!');
+
+          // this.router.navigate(['./testcases']);
+        }
+      },
+      error => console.log(error)
+    );
   }
 
 }

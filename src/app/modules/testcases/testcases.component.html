@@ -1,44 +1,22 @@
 <div id="wrapper" [class.dark-theme]="themeService.theme">
-  <div *ngIf="testcases">
+
+  <!-- TODO @Input testsuite from testsuite tree component and show testsuite data -->
+  <div id="testcases-wrapper" *ngIf="testcases">
 
     <div *ngIf="testcases.length > 0; then existTestcases else noExistTestcases"></div>
 
     <ng-template #existTestcases>
-      <a [routerLink]="['./create']" class="btn btn-primary">Create New Testcase</a>
-      <table *ngIf="testcases.length > 0;" class="table table-striped">
+      <!--<a [routerLink]="['./create']" class="btn btn-primary">Create New Testcase</a>-->
+      <table *ngIf="testcases.length > 0;" class="table">
         <thead>
           <tr>
             <th>Testcase Title</th>
-            <th>Description</th>
-            <th>Preconditions</th>
-            <th>Steps</th>
-            <th>Test Data</th>
-            <th>Expected Result</th>
-            <th>Postconditions</th>
-            <th></th>
+
           </tr>
         </thead>
         <tr *ngFor="let testcase of testcases">
           <td><a [routerLink]="['./', testcase._id]">{{ testcase.title }}</a></td>
-          <td>{{ testcase.description }}</td>
-          <td>{{ testcase.preConditions }}</td>
-          <td>
-            <ul *ngFor="let step of testcase.steps">
-              <li>{{ step }}</li>
-            </ul>
-          </td>
-          <td>
-            <ul *ngFor="let testData of testcase.testData">
-              <li>{{ testData }}</li>
-            </ul>
-          </td>
-          <td>
-            <ul *ngFor="let expected of testcase.expected">
-              <li>{{ expected }}</li>
-            </ul>
-          </td>
-          <td>{{ testcase.postConditions }}</td>
-          <td><a (click)="deleteTestcase(testcase._id);">Delete</a>
+          <!--<td><a (click)="deleteTestcase(testcase._id);">X</a>-->
         </tr>
       </table>
       <!--<app-testsuites-tree></app-testsuites-tree>-->
@@ -59,4 +37,6 @@
 
 
   </div>
+  <!-- TODO notify from testsuites tree to testcase list with @Output testsuite -->
+  <app-testsuites-tree></app-testsuites-tree>
 </div>

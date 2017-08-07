@@ -22,7 +22,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
-    private notificationsService: NotificationsService,
+    private toastNotificationsService: NotificationsService,
     public themeService: ThemeService
   ) { }
 
@@ -56,6 +56,8 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     this.userService.deleteUser(id).subscribe(
       response => {
         if (response === 204) {
+          this.toastNotificationsService.success('User ' + this.user.lastName + ' ' + this.user.firstName, 'deleted successfully!');
+
           this.router.navigate(['./users']);
         }
       },

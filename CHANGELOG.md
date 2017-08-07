@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.25.0 (August 07, 2017)
+- Test runs added: ([@pumano](https://github.com/pumano) in [#57](https://github.com/test-storage/test-storage/pull/57))
+- Test result added
+- Test plans update
+- Test suites tree component implemented
+- Minor UI improvements
+
 ## 0.24.1 (July 31, 2017)
 - e2e tests added: ([@pumano](https://github.com/pumano) in [#56](https://github.com/test-storage/test-storage/pull/56))
 - Backend integrations tests (small refactoring)

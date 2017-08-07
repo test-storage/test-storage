@@ -1,13 +1,13 @@
 export class Testsuite {
-    _id: number;
-    parentId: number;
+    _id?: string;
+    parentId: string;
     projectId: string;
-    enabled: boolean;
+    enabled?: boolean;
     name: string;
     description: string;
-    testcases: Array<string>;
-    created: string;
-    updated: string;
-    createdBy: string;
-    updatedBy: string;
+    created?: string;
+    updated?: string;
+    createdBy?: string;
+    updatedBy?: string;
+    children?: any;
 }

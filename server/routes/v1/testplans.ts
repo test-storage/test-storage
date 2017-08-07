@@ -126,10 +126,14 @@ export class Testplans {
 
         testplan.name = req.body.name;
         testplan.description = req.body.description;
+        testplan.projectId = req.body.projectId;
         testplan.builds = req.body.builds;
-        //   testplan.configurations = req.body.configurations;
         testplan.environments = req.body.environments;
-        testplan.testruns = req.body.testruns;
+        testplan.platforms = req.body.platforms;
+        testplan.testcases = req.body.testcases;
+        testplan.startDate = req.body.startDate;
+        testplan.endDate = req.body.endDate;
+
         testplan.updated = Date.now();
         // TODO testplan.updatedBy = currentUser;
 
@@ -183,4 +187,4 @@ export class Testplans {
         }
       });
   }
-};
+}

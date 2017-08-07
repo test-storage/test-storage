@@ -2,86 +2,16 @@ import * as request from 'supertest';
 import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
-chai.use(chaiHttp);
-const expect = chai.expect;
-
 import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
 
-import { testcaseFixture, editedTestCaseFixture } from './testcases.fixtures';
-import { fixture, changedFixture } from './projects.fixtures';
+import { MockFactory } from '../mocks/mock.factory';
+
+chai.use(chaiHttp);
+const expect = chai.expect;
+const mockFactory = new MockFactory();
 
 
-let token = '';
-let projectId = '';
-let firstTestcaseId = '';
-let secondTestcaseId = '';
-
-
-before(function (done) {
-
-    it('login', function (done: DoneFn) {
-        authenticate(function (accessToken: string) {
-            token = accessToken;
-            done();
-        });
-    });
-
-    it('Before: Project created', function (done: DoneFn) {
-
-        request(app)
-            .post('/api/v1/projects')
-            .set('x-access-token', token)
-            .send(fixture)
-            .end(function (err, res) {
-                expect(res.status).to.equal(201);
-                expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('_id');
-                expect(res).to.have.header('content-type', /json/);
-                expect(res).to.have.header('Location', '/api/v1/projects/' + res.body._id);
-                projectId = res.body._id;
-                testcaseFixture.projectId = projectId;
-                editedTestCaseFixture.projectId = projectId;
-                done();
-            });
-    });
-
-    it('Before: Testcase created', function (done: DoneFn) {
-
-        request(app)
-            .post('/api/v1/testcases')
-            .set('x-access-token', token)
-            .send(testcaseFixture)
-            .end(function (err, res) {
-                expect(res.status).to.equal(201);
-                expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('_id');
-                expect(res).to.have.header('content-type', /json/);
-                expect(res).to.have.header('Location', '/api/v1/testcases/' + res.body._id);
-                firstTestcaseId = res.body._id;
-                done();
-            });
-    });
-
-    it('Before: Testcase created', function (done: DoneFn) {
-
-        request(app)
-            .post('/api/v1/testcases')
-            .set('x-access-token', token)
-            .send(editedTestCaseFixture)
-            .end(function (err, res) {
-                expect(res.status).to.equal(201);
-                expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('_id');
-                expect(res).to.have.header('content-type', /json/);
-                expect(res).to.have.header('Location', '/api/v1/testcases/' + res.body._id);
-                secondTestcaseId = res.body._id;
-                done();
-            });
-    });
-
-    done();
-});
 
 describe('/projects/:id/testcases', function () {
 
@@ -93,6 +23,78 @@ describe('/projects/:id/testcases', function () {
     // cleanup:
     // delete project
     // delete testcases
+
+    const projectMock = mockFactory.createProject();
+    const testcaseMock1 = mockFactory.createTestcase();
+    const testcaseMock2 = mockFactory.createTestcase();
+
+    let token = '';
+    let projectId = '';
+    let firstTestcaseId = '';
+    let secondTestcaseId = '';
+
+
+    before('login', function (done: DoneFn) {
+        authenticate(function (accessToken: string) {
+            token = accessToken;
+            done();
+        });
+    });
+
+    before('Before: Project created', function (done: DoneFn) {
+
+        request(app)
+            .post('/api/v1/projects')
+            .set('x-access-token', token)
+            .send(projectMock)
+            .end(function (err, res) {
+                expect(res.status).to.equal(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('_id');
+                expect(res).to.have.header('content-type', /json/);
+                expect(res).to.have.header('Location', '/api/v1/projects/' + res.body._id);
+                projectId = res.body._id;
+                testcaseMock1.projectId = projectId;
+                testcaseMock2.projectId = projectId;
+                done();
+            });
+    });
+
+    before('Before: Testcase created', function (done: DoneFn) {
+
+        request(app)
+            .post('/api/v1/testcases')
+            .set('x-access-token', token)
+            .send(testcaseMock1)
+            .end(function (err, res) {
+                expect(res.status).to.equal(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('_id');
+                expect(res).to.have.header('content-type', /json/);
+                expect(res).to.have.header('Location', '/api/v1/testcases/' + res.body._id);
+                firstTestcaseId = res.body._id;
+                done();
+            });
+    });
+
+    before('Before: Testcase created', function (done: DoneFn) {
+
+        request(app)
+            .post('/api/v1/testcases')
+            .set('x-access-token', token)
+            .send(testcaseMock2)
+            .end(function (err, res) {
+                expect(res.status).to.equal(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('_id');
+                expect(res).to.have.header('content-type', /json/);
+                expect(res).to.have.header('Location', '/api/v1/testcases/' + res.body._id);
+                secondTestcaseId = res.body._id;
+                done();
+            });
+    });
+
+
 
     it('GET /projects/:id/testcases should respond with status 200 and with list of testcases by project id', function (done) {
 
@@ -130,11 +132,11 @@ describe('/projects/:id/testcases', function () {
                 done();
             });
     });
-});
 
-after('Cleanup', function (done: DoneFn) {
 
-    it('After: Delete Project', function (done: DoneFn) {
+
+
+    after('After: Delete Project', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/projects/' + projectId)
@@ -145,7 +147,7 @@ after('Cleanup', function (done: DoneFn) {
             });
     });
 
-    it('After: Delete first Testcase', function (done: DoneFn) {
+    after('After: Delete first Testcase', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/testcases/' + firstTestcaseId)
@@ -156,7 +158,7 @@ after('Cleanup', function (done: DoneFn) {
             });
     });
 
-    it('After: Delete second Testcase', function (done: DoneFn) {
+    after('After: Delete second Testcase', function (done: DoneFn) {
 
         request(app)
             .delete('/api/v1/testcases/' + secondTestcaseId)
@@ -167,5 +169,7 @@ after('Cleanup', function (done: DoneFn) {
             });
     });
 
-    done();
 });
+
+
+

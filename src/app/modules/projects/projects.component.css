@@ -68,7 +68,20 @@
     display: flex;
 }
 
+.project-card:hover>.edit-button {
+    visibility: visible;
+}
+
+.project-card:hover>.overlap {
+    opacity: 0.9;
+}
+
+.overlap {
+    opacity: 1;
+}
+
 .edit-button {
+    visibility: hidden;
     margin: 10px;
     background-color: #999;
     border-color: #777;
@@ -78,8 +91,8 @@
     background-color: #2d3035;
 }
 
-.project-card:hover>a,
-#wrapper.dark-theme .project-card:hover>a {
+.project-card:hover>.edit-button,
+#wrapper.dark-theme .project-card:hover>.edit-button {
     background-color: #0275d8;
     border-color: #0275d8;
 }
@@ -91,8 +104,11 @@
 
 .create-card {
     display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
+    justify-content: center;
+    flex-direction: row;
+    border: 2px dashed #999;
+    box-shadow: 0 0 0;
+    background: inherit;
 }
 
 .create-card .card-block {
