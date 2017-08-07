@@ -131,6 +131,7 @@ export class Testplans {
         testplan.environments = req.body.environments;
         testplan.platforms = req.body.platforms;
         testplan.testcases = req.body.testcases;
+        testplan.status = req.body.status;
         testplan.startDate = req.body.startDate;
         testplan.endDate = req.body.endDate;
 
