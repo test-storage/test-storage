@@ -10,6 +10,7 @@ import { Testsuite } from '../../../../src/app/models/testsuite';
 import { Testcase } from '../../../../src/app/models/testcase';
 import { Testplan } from '../../../../src/app/models/testplan';
 import { Testrun } from '../../../../src/app/models/testrun';
+import { TestResult } from '../../../../src/app/models/testresult.model';
 import { Notification } from '../../../../src/app/models/notification';
 import { Attachment } from '../../../../src/app/models/attachment';
 
@@ -113,6 +114,15 @@ export class MockFactory {
         testrun.startDate = faker.date.recent().toISOString();
         testrun.endDate = faker.date.future().toISOString();
         return testrun;
+    }
+
+    createTestResult(): TestResult {
+        const testresult: TestResult = new TestResult();
+        testresult.testcaseId = faker.random.uuid();
+        testresult.testrunId = faker.random.uuid();
+        testresult.testplanId = faker.random.uuid();
+        testresult.status = 'PASSED';
+        return testresult;
     }
 
     createNotification(): Notification {
