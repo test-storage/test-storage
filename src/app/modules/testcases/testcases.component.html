@@ -6,20 +6,26 @@
     <div *ngIf="testcases.length > 0; then existTestcases else noExistTestcases"></div>
 
     <ng-template #existTestcases>
-      <!--<a [routerLink]="['./create']" class="btn btn-primary">Create New Testcase</a>-->
-      <table *ngIf="testcases.length > 0;" class="table">
-        <thead>
-          <tr>
-            <th>Testcase Title</th>
+      <div id="template-wrapper">
+        <div id="testcases">
+          <!--<a [routerLink]="['./create']" class="btn btn-primary">Create New Testcase</a>-->
+          <table *ngIf="testcases.length > 0;" class="table">
+            <thead>
+              <tr>
+                <th>Testcase Title</th>
 
-          </tr>
-        </thead>
-        <tr *ngFor="let testcase of testcases">
-          <td><a [routerLink]="['./', testcase._id]">{{ testcase.title }}</a></td>
-          <!--<td><a (click)="deleteTestcase(testcase._id);">X</a>-->
-        </tr>
-      </table>
-      <!--<app-testsuites-tree></app-testsuites-tree>-->
+              </tr>
+            </thead>
+            <tr *ngFor="let testcase of testcases">
+              <td><a [routerLink]="['./', testcase._id]">{{ testcase.title }}</a></td>
+              <!--<td><a (click)="deleteTestcase(testcase._id);">X</a>-->
+            </tr>
+          </table>
+        </div>
+
+        <!-- TODO notify from testsuites tree to testcase list with @Output testsuite -->
+        <app-testsuites-tree *ngIf="testcases.length > 0"></app-testsuites-tree>
+      </div>
     </ng-template>
 
 
@@ -34,9 +40,6 @@
       </div>
     </ng-template>
 
-
-
   </div>
-  <!-- TODO notify from testsuites tree to testcase list with @Output testsuite -->
-  <app-testsuites-tree></app-testsuites-tree>
+
 </div>

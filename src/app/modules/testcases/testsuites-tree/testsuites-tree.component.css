@@ -1,9 +1,10 @@
-#treeComponent {
+#tree-component {
+    display: flex;
+    align-self: flex-end;
     border: 1px solid #CACACA;
     width: 300px;
     height: auto;
     min-height: 916px;
-    float: right;
 }
 
 
