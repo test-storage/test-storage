@@ -7,7 +7,7 @@
     <span class="project-label">{{ 'PROJECT_DETAILSPAGE.CREATED_BY' | translate }}: Romario Tracia</span>
     <span class="project-label">{{ 'PROJECT_DETAILSPAGE.UPDATED_BY' | translate }}: Valentino Galerro</span>
     <span class="project-label edit-button"><button class="btn btn-primary"><i class="fa fa-edit"></i> {{ 'PROJECT_DETAILSPAGE.EDIT' | translate }}</button></span>
-    <span class="project-label delete-button"><button class="btn btn-primary"><i class="fa fa-trash"></i> {{ 'PROJECT_DETAILSPAGE.DELETE' | translate }}</button></span>
+    <span class="project-label delete-button"><button class="btn btn-primary" (click)="deleteProject(project._id);"><i class="fa fa-trash"></i> {{ 'PROJECT_DETAILSPAGE.DELETE' | translate }}</button></span>
     <br><br>
     <b>{{ 'PROJECT_DETAILSPAGE.DESCRIPTION' | translate }}</b>
     <div>Amore non è guardarci l'un l'altro, ma guardare insieme nella stessa direzione. (Antoine de Saint Exupéry)</div>
@@ -33,7 +33,7 @@
         <td>{{ project.updated }}</td>
         <td>{{ project.createdBy }}</td>
         <td>{{ project.updatedBy }}</td>
-        <td><a (click)="deleteProject(project._id);">Delete</a>
+        <td><a (click)="deleteProject(project._id);">Delete</a></td>
       </tr>
     </table>
     -->
