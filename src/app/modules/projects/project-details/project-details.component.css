@@ -37,3 +37,11 @@
 #wrapper.dark-theme .project-label-value {
     color: #FFF;
 }
+
+.table td {
+    vertical-align: center !important;
+}
+
+.btn-secondary {
+    font-size: 13px;
+}
