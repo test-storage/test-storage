@@ -32,6 +32,24 @@
         "REMEMBER_ME": "Запомнить меня",
         "FORGOT_PASSWORD": "Восстановить пароль"
     },
+    "PROJECTSPAGE": {
+        "VIEW": "Просмотр",
+        "EDIT": "Редактировать"
+    },
+    "PROJECT_DETAILSPAGE": {
+        "DESCRIPTION": "Описание",
+        "EDIT": "Редактировать",
+        "DELETE": "Удалить",
+        "LAST_EDITED": "Последние изменения",
+        "STATUS": "Статус",
+        "CREATED_BY": "Создано",
+        "UPDATED_BY": "Отредактировано",
+        "EDIT_MEMBERS": "Редактировать участников",
+        "NAME": "Имя",
+        "ROLE": "Роль",
+        "ACTION": "Действие",
+        "REMOVE_MEMBER": "Удалить участника"
+    },
     "USERPROFILEPAGE": {
         "REGISTERED": "Зарегистрирован",
         "EMAIL": "Email",

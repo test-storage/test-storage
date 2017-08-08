@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { ProjectsComponent } from './projects.component';
@@ -37,7 +38,8 @@ const projectsRoutes: Routes = [
     RouterModule.forChild(projectsRoutes),
     CommonModule,
     FormsModule,
-    SimpleNotificationsModule
+    SimpleNotificationsModule,
+    TranslateModule
   ],
   declarations: [
     ProjectsComponent,

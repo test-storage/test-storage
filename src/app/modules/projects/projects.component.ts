@@ -1,8 +1,10 @@
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { pageTransition } from '../../animations';
 
-import { ThemeService } from '../../services/theme/theme.service';
+import { TranslateService } from '@ngx-translate/core';
 import { NotificationsService } from 'angular2-notifications';
+
+import { ThemeService } from '../../services/theme/theme.service';
 
 import { Project } from '../../models/project';
 import { ProjectService } from '../../services/project/project.service';
@@ -28,7 +30,8 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   constructor(
     private projectService: ProjectService,
     private notificationsService: NotificationsService,
-    public themeService: ThemeService
+    public themeService: ThemeService,
+    public translate: TranslateService
   ) { }
 
   ngOnInit() {

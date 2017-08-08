@@ -32,6 +32,24 @@
         "REMEMBER_ME": "Remember me",
         "FORGOT_PASSWORD": "Forgot password"
     },
+    "PROJECTSPAGE": {
+        "VIEW": "View",
+        "EDIT": "Edit"
+    },
+    "PROJECT_DETAILSPAGE": {
+        "DESCRIPTION": "Description",
+        "EDIT": "Edit",
+        "DELETE": "Delete",
+        "LAST_EDITED": "Last edited",
+        "STATUS": "Status",
+        "CREATED_BY": "Created by",
+        "UPDATED_BY": "Updated by",
+        "EDIT_MEMBERS": "Edit Members",
+        "NAME": "Name",
+        "ROLE": "Role",
+        "ACTION": "Action",
+        "REMOVE_MEMBER": "Remove member"
+    },
     "USERPROFILEPAGE": {
         "REGISTERED": "Registered",
         "EMAIL": "Email",
