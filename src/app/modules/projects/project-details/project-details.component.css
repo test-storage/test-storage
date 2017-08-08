@@ -29,3 +29,11 @@
 .align-end {
     text-align: end;
 }
+
+.project-label-value {
+    color: #333;
+}
+
+#wrapper.dark-theme .project-label-value {
+    color: #FFF;
+}

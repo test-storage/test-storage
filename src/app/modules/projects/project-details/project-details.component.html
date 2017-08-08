@@ -3,9 +3,9 @@
     <h4>{{ project.name }}</h4>
     <br>
     <span class="project-label">{{ 'PROJECT_DETAILSPAGE.STATUS' | translate }}: <span class="badge badge-success">Active</span></span>
-    <span class="project-label">{{ 'PROJECT_DETAILSPAGE.LAST_EDITED' | translate }}: {{ project.updated | date: 'dd/MM/yyyy' }}</span>
-    <span class="project-label">{{ 'PROJECT_DETAILSPAGE.CREATED_BY' | translate }}: Romario Tracia</span>
-    <span class="project-label">{{ 'PROJECT_DETAILSPAGE.UPDATED_BY' | translate }}: Valentino Galerro</span>
+    <span class="project-label">{{ 'PROJECT_DETAILSPAGE.LAST_EDITED' | translate }}: <span class="project-label-value">{{ project.updated | date: 'dd/MM/yyyy' }}</span></span>
+    <span class="project-label">{{ 'PROJECT_DETAILSPAGE.CREATED_BY' | translate }}: <span class="project-label-value">Romario Tracia</span></span>
+    <span class="project-label">{{ 'PROJECT_DETAILSPAGE.UPDATED_BY' | translate }}: <span class="project-label-value">Valentino Galerro</span></span>
     <span class="project-label edit-button"><button class="btn btn-primary"><i class="fa fa-edit"></i> {{ 'PROJECT_DETAILSPAGE.EDIT' | translate }}</button></span>
     <span class="project-label delete-button"><button class="btn btn-primary" (click)="deleteProject(project._id);"><i class="fa fa-trash"></i> {{ 'PROJECT_DETAILSPAGE.DELETE' | translate }}</button></span>
     <br><br>
