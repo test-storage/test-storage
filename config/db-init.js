@@ -23,10 +23,10 @@ db.users.insertOne(
         password: "$2a$06$pr4OHqWj1HIqkd2i.SduP.st7Fx2uk2Pc3vBLLeQc7pbnZgKT8qVa",
         firstName: "John",
         lastName: "Doe",
-        work: {
-            title: "Administrator",
-            phone: "+7 (495) 123-45-67",
-            company: "Example LLC"
+        workInfo: {
+            jobTitle: "Administrator",
+            phoneNumber: "+7 (495) 123-45-67",
+            companyName: "Example LLC"
         },
         social: {
             skype: "#",

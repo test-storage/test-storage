@@ -69,14 +69,14 @@
 
 .profile-jobtitle {
     padding: 5px;
-    color: #C5C5C5;
+    color: #999;
     font-size: 15px;
     align-self: center;
 }
 
 .profile-register-date {
     padding: 5px;
-    color: #C5C5C5;
+    color: #999;
     font-size: 15px;
     align-self: center;
 }
@@ -118,7 +118,7 @@
 .profile-work td,
 .profile-personal h6,
 .profile-personal td {
-    color: #C5C5C5;
+    color: #999;
 }
 
 .profile-work {
