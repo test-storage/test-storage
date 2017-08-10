@@ -18,6 +18,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   id: string;
   private subscription;
   project: Project;
+  public loading = false;
 
   constructor(
     private router: Router,
@@ -55,6 +56,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   }
 
   deleteProject(id: string) {
+    this.loading = true;
     this.projectService.deleteProject(id).subscribe(
       response => {
         if (response === 204) {
