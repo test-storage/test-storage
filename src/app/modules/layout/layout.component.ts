@@ -19,7 +19,7 @@ export class LayoutComponent implements OnInit {
         timeOut: 5000,
         showProgressBar: false,
         pauseOnHover: false,
-        clickToClose: false,
+        clickToClose: true,
         maxLength: 30
     };
 
