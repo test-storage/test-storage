@@ -43,19 +43,26 @@
         </div>
       </div>
 
-      <div ngModelGroup="work">
+      <div ngModelGroup="workInfo">
 
         <div class="form-group row">
-          <label for="title" class="col-2 col-form-label">Job Title</label>
+          <label for="jobTitle" class="col-2 col-form-label">Job Title</label>
           <div class="col-6">
-            <input class="form-control" type="text" name="title" placeholder="Job title" id="title" ngModel required>
+            <input class="form-control" type="text" name="jobTitle" placeholder="Job title" id="jobTitle" ngModel required>
           </div>
         </div>
 
         <div class="form-group row">
-          <label for="company" class="col-2 col-form-label">Company</label>
+          <label for="phoneNumber" class="col-2 col-form-label">Phone</label>
           <div class="col-6">
-            <input class="form-control" type="text" name="company" placeholder="Company" id="company" ngModel>
+            <input class="form-control" type="text" name="phoneNumber" placeholder="Phone" id="phoneNumber" ngModel>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="companyName" class="col-2 col-form-label">Company</label>
+          <div class="col-6">
+            <input class="form-control" type="text" name="companyName" placeholder="Company" id="companyName" ngModel>
           </div>
         </div>
       </div>
