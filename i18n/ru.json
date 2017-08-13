@@ -1,5 +1,6 @@
 {
     "SETTINGS": {
+        "TITLE": "Настройки",
         "CHOOSE_LANGUAGE": "Выберите язык",
         "THEME": "Тема",
         "THEME_BRIGHT": "Светлая",

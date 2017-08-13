@@ -1,5 +1,6 @@
 {
     "SETTINGS": {
+        "TITLE": "Settings",
         "CHOOSE_LANGUAGE": "Choose language",
         "THEME": "Theme",
         "THEME_BRIGHT": "Bright",
