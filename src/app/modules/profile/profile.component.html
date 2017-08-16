@@ -1,5 +1,5 @@
 <div id="wrapper" [class.dark-theme]="themeService.theme">
-  <div id="profile" *ngIf="profile">
+  <div id="profile" *ngIf="profile.firstName">
     <div class="profile-data">
       <div class="avatar-image" *ngIf="profile.photo;else no_image">
         <img src="{{ profile.photo }}">
@@ -16,7 +16,7 @@
           {{ profile.firstName }} {{ profile.lastName }}
         </div>
         <div class="profile-jobtitle">
-          {{ profile.work.title }}
+          {{ profile.workInfo.jobTitle }}
         </div>
         <div class="profile-register-date">
           {{ 'USERPROFILEPAGE.REGISTERED' | translate }}: {{ profile.created | date: 'dd/MM/yyyy' }}
@@ -50,8 +50,8 @@
           <tbody>
             <tr>
               <td>{{ profile.email }}</td>
-              <td>{{ profile.work.phone }}</td>
-              <td>{{ profile.work.company }}</td>
+              <td>{{ profile.workInfo.phoneNumber }}</td>
+              <td>{{ profile.workInfo.companyName }}</td>
             </tr>
           </tbody>
         </table>

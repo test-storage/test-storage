@@ -5,6 +5,7 @@ export class Project {
     enabled?: boolean;
     created?: string;
     updated?: string;
+    // manager?: string; point to user
     createdBy?: string;
     updatedBy?: string;
 }

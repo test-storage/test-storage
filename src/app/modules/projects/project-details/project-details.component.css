@@ -10,3 +10,38 @@
     background-color: #283242;
     color: #FFF;
 }
+
+.project-label {
+    color: gray;
+    margin-right: 50px;
+}
+
+.edit-button {
+    position: absolute;
+    right: 120px;
+}
+
+.delete-button {
+    position: absolute;
+    right: 0;
+}
+
+.align-end {
+    text-align: end;
+}
+
+.project-label-value {
+    color: #333;
+}
+
+#wrapper.dark-theme .project-label-value {
+    color: #FFF;
+}
+
+.table td {
+    vertical-align: center !important;
+}
+
+.btn-secondary {
+    font-size: 13px;
+}

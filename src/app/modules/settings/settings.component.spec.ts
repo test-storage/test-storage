@@ -23,8 +23,7 @@ describe('SettingsComponent', () => {
       providers: [
         NotificationsService,
         ThemeService,
-        TranslateService,
-        TranslateModule
+        TranslateService
       ]
     })
       .compileComponents();

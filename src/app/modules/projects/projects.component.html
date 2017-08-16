@@ -15,7 +15,7 @@
           <h4 class="card-title">{{ project.name }}</h4>
           <p class="card-text">{{ project.description }}</p>
         </div>
-        <a [routerLink]="['./', project._id]" class="btn btn-primary edit-button">Edit</a>
+        <a [routerLink]="['./', project._id]" class="btn btn-primary edit-button">{{ 'PROJECTSPAGE.VIEW' | translate }}</a>
 
       </div>
 

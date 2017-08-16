@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { TranslateService } from '@ngx-translate/core';
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -17,6 +18,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   id: string;
   private subscription;
   project: Project;
+  public loading = false;
 
   constructor(
     private router: Router,
@@ -24,6 +26,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     private projectService: ProjectService,
     private toastNotificationsService: NotificationsService,
     public themeService: ThemeService,
+    public translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -53,6 +56,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   }
 
   deleteProject(id: string) {
+    this.loading = true;
     this.projectService.deleteProject(id).subscribe(
       response => {
         if (response === 204) {

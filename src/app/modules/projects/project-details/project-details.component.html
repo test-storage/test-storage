@@ -1,5 +1,17 @@
 <div id="wrapper" [class.dark-theme]="themeService.theme">
   <div *ngIf="project">
+    <h4>{{ project.name }}</h4>
+    <br>
+    <span class="project-label">{{ 'PROJECT_DETAILSPAGE.STATUS' | translate }}: <span class="badge badge-success">Active</span></span>
+    <span class="project-label">{{ 'PROJECT_DETAILSPAGE.LAST_EDITED' | translate }}: <span class="project-label-value">{{ project.updated | date: 'dd/MM/yyyy' }}</span></span>
+    <span class="project-label">{{ 'PROJECT_DETAILSPAGE.CREATED_BY' | translate }}: <span class="project-label-value">Romario Tracia</span></span>
+    <span class="project-label">{{ 'PROJECT_DETAILSPAGE.UPDATED_BY' | translate }}: <span class="project-label-value">Valentino Galerro</span></span>
+    <span class="project-label edit-button"><button class="btn btn-primary"><i class="fa fa-edit"></i> {{ 'PROJECT_DETAILSPAGE.EDIT' | translate }}</button></span>
+    <span class="project-label delete-button"><button [disabled]="loading" class="btn btn-primary" (click)="deleteProject(project._id);"><i class="fa fa-trash"></i> {{ 'PROJECT_DETAILSPAGE.DELETE' | translate }}</button></span>
+    <br><br>
+    <b>{{ 'PROJECT_DETAILSPAGE.DESCRIPTION' | translate }}</b>
+    <div>Amore non è guardarci l'un l'altro, ma guardare insieme nella stessa direzione. (Antoine de Saint Exupéry)</div>
+    <!--
     <table class="table">
       <thead>
         <tr>
@@ -21,8 +33,48 @@
         <td>{{ project.updated }}</td>
         <td>{{ project.createdBy }}</td>
         <td>{{ project.updatedBy }}</td>
-        <td><a (click)="deleteProject(project._id);">Delete</a>
+        <td><a (click)="deleteProject(project._id);">Delete</a></td>
       </tr>
+    </table>
+    -->
+    <br>
+    <span class="project-label delete-button"><button class="btn btn-primary">{{ 'PROJECT_DETAILSPAGE.EDIT_MEMBERS' | translate }}</button></span>
+    <br><br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>{{ 'PROJECT_DETAILSPAGE.NAME' | translate }}</th>
+          <th>{{ 'PROJECT_DETAILSPAGE.ROLE' | translate }}</th>
+          <th class="align-end">{{ 'PROJECT_DETAILSPAGE.ACTION' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Antonio Del Piero</td>
+          <td>Tester</td>
+          <td class="align-end"><a class="btn btn-secondary">{{ 'PROJECT_DETAILSPAGE.REMOVE_MEMBER' | translate }}</a></td>
+        </tr>
+        <tr>
+          <td>Valentino Galerro</td>
+          <td>Senior Tester</td>
+          <td class="align-end"><a class="btn btn-secondary">{{ 'PROJECT_DETAILSPAGE.REMOVE_MEMBER' | translate }}</a></td>
+        </tr>
+        <tr>
+          <td>Marco Garcia</td>
+          <td>Senior Tester</td>
+          <td class="align-end"><a class="btn btn-secondary">{{ 'PROJECT_DETAILSPAGE.REMOVE_MEMBER' | translate }}</a></td>
+        </tr>
+        <tr>
+          <td>Alesandro Bellagio</td>
+          <td>Project Manager</td>
+          <td class="align-end"><a class="btn btn-secondary">{{ 'PROJECT_DETAILSPAGE.REMOVE_MEMBER' | translate }}</a></td>
+        </tr>
+        <tr>
+          <td>Romario Tracia</td>
+          <td>Lead Tester</td>
+          <td class="align-end"><a class="btn btn-secondary">{{ 'PROJECT_DETAILSPAGE.REMOVE_MEMBER' | translate }}</a></td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

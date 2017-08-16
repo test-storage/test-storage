@@ -4,6 +4,7 @@ import { pageTransition } from '../../animations';
 import { TranslateService } from '@ngx-translate/core';
 
 import { User } from '../../models/user';
+
 import { UserService } from '../../services/user/user.service';
 import { ThemeService } from '../../services/theme/theme.service';
 
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   private subscription;
-  profile: User;
+  profile: User = new User();
 
   constructor(
     public themeService: ThemeService,

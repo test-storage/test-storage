@@ -1,5 +1,6 @@
 {
     "SETTINGS": {
+        "TITLE": "Настройки",
         "CHOOSE_LANGUAGE": "Выберите язык",
         "THEME": "Тема",
         "THEME_BRIGHT": "Светлая",
@@ -31,6 +32,46 @@
         "INVALID_CREDENTIALS": "Логин или пароль не верный",
         "REMEMBER_ME": "Запомнить меня",
         "FORGOT_PASSWORD": "Восстановить пароль"
+    },
+    "PROJECTSPAGE": {
+        "VIEW": "Просмотр",
+        "EDIT": "Редактировать"
+    },
+    "PROJECT_DETAILSPAGE": {
+        "DESCRIPTION": "Описание",
+        "EDIT": "Редактировать",
+        "DELETE": "Удалить",
+        "LAST_EDITED": "Последние изменения",
+        "STATUS": "Статус",
+        "CREATED_BY": "Создано",
+        "UPDATED_BY": "Отредактировано",
+        "EDIT_MEMBERS": "Редактировать участников",
+        "NAME": "Имя",
+        "ROLE": "Роль",
+        "ACTION": "Действие",
+        "REMOVE_MEMBER": "Удалить участника"
+    },
+    "USERCREATEPAGE": {
+        "EMAIL": "Email",
+        "EMAIL_PLACEHOLDER": "email@example.com",
+        "EMAIL_REQUIRED": "Email - обязательное поле",
+        "LASTNAME": "Фамилия",
+        "LASTNAME_PLACEHOLDER": "Иванов",
+        "LASTNAME_REQUIRED": "Фамилия - обязательное поле",
+        "FIRSTNAME": "Имя",
+        "FIRSTNAME_PLACEHOLDER": "Иван",
+        "FIRSTNAME_REQUIRED": "Имя - обязательное поле",
+        "JOBTITLE": "Должность",
+        "JOBTITLE_PLACEHOLDER": "Старший Тестировщик",
+        "PHONE_NUMBER": "Телефонный номер",
+        "PHONE_NUMBER_PLACEHOLDER": "+74951234567",
+        "COMPANY": "Компания",
+        "COMPANY_PLACEHOLDER": "Example LLC",
+        "PASSWORD": "Пароль",
+        "PASSWORD_REQUIRED": "Пароль - обязательное поле",
+        "CONFIRMPASSWORD": "Повторить пароль",
+        "CONFIRMPASSWORD_REQUIRED": "Повторить пароль - обязательное поле",
+        "CREATE_USER": "Создать Пользователя"
     },
     "USERPROFILEPAGE": {
         "REGISTERED": "Зарегистрирован",

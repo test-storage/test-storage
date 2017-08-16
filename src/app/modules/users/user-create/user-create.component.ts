@@ -2,6 +2,8 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { pageTransition } from '../../../animations';
 
+import { TranslateService } from '@ngx-translate/core';
+
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -29,7 +31,8 @@ export class UserCreateComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private notificationsService: NotificationsService,
-    public themeService: ThemeService
+    public themeService: ThemeService,
+    public translate: TranslateService
   ) { }
 
   ngOnInit() {

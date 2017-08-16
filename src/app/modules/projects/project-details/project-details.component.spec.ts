@@ -5,6 +5,8 @@ import { MockBackend } from '@angular/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
+import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
+
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -26,6 +28,7 @@ describe('ProjectDetailsComponent', () => {
       providers: [
         NotificationsService,
         ThemeService,
+        TranslateService,
         ProjectService,
         AuthenticationService,
         MockBackend,
@@ -47,7 +50,10 @@ describe('ProjectDetailsComponent', () => {
         }
       ],
       imports: [
-        HttpModule
+        HttpModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+        })
       ]
     })
       .compileComponents();

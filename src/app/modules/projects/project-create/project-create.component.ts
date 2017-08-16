@@ -27,6 +27,7 @@ export class ProjectCreateComponent implements OnInit {
   }
 
   public project: Project = new Project();
+  public loading = false;
 
   constructor(
     private router: Router,
@@ -39,6 +40,7 @@ export class ProjectCreateComponent implements OnInit {
   }
 
   createNewProject() {
+    this.loading = true;
     this.projectService.createProject(this.project).subscribe(
       response => {
         if (response === 201) {

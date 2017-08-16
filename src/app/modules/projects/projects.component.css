@@ -161,3 +161,7 @@
 #wrapper.dark-theme .card {
     background: inherit;
 }
+
+#wrapper.dark-theme div.create-card {
+    background: none;
+}

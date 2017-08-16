@@ -17,6 +17,11 @@ const TestrunSchema = new mongoose.Schema({
   platforms: Array,
   testplanId: String,
   testcases: Array,
+  status: {
+    type: String,
+    enum: ['OPEN', 'COMPLETED'],
+    default: 'OPEN'
+  },
   startDate: { type: Date },
   endDate: { type: Date },
   created: { type: Date, required: true, default: Date.now },
