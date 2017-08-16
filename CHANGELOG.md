@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.26.0 (August 16, 2017)
+- Project Details UI: ([@pumano](https://github.com/pumano) in [#73](https://github.com/test-storage/test-storage/pull/73))
+- Translations for few pages
+- Bugfixes
+- Minor UI improvements
+
 ## 0.25.0 (August 07, 2017)
 - Test runs added: ([@pumano](https://github.com/pumano) in [#57](https://github.com/test-storage/test-storage/pull/57))
 - Test result added
