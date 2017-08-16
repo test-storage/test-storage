@@ -51,6 +51,28 @@
         "ACTION": "Действие",
         "REMOVE_MEMBER": "Удалить участника"
     },
+    "USERCREATEPAGE": {
+        "EMAIL": "Email",
+        "EMAIL_PLACEHOLDER": "email@example.com",
+        "EMAIL_REQUIRED": "Email - обязательное поле",
+        "LASTNAME": "Фамилия",
+        "LASTNAME_PLACEHOLDER": "Иванов",
+        "LASTNAME_REQUIRED": "Фамилия - обязательное поле",
+        "FIRSTNAME": "Имя",
+        "FIRSTNAME_PLACEHOLDER": "Иван",
+        "FIRSTNAME_REQUIRED": "Имя - обязательное поле",
+        "JOBTITLE": "Должность",
+        "JOBTITLE_PLACEHOLDER": "Старший Тестировщик",
+        "PHONE_NUMBER": "Телефонный номер",
+        "PHONE_NUMBER_PLACEHOLDER": "+74951234567",
+        "COMPANY": "Компания",
+        "COMPANY_PLACEHOLDER": "Example LLC",
+        "PASSWORD": "Пароль",
+        "PASSWORD_REQUIRED": "Пароль - обязательное поле",
+        "CONFIRMPASSWORD": "Повторить пароль",
+        "CONFIRMPASSWORD_REQUIRED": "Повторить пароль - обязательное поле",
+        "CREATE_USER": "Создать Пользователя"
+    },
     "USERPROFILEPAGE": {
         "REGISTERED": "Зарегистрирован",
         "EMAIL": "Email",

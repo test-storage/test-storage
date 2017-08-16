@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 import { UsersComponent } from './users.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserService } from '../../services/user/user.service';
@@ -30,7 +32,8 @@ const usersRoutes: Routes = [
   imports: [
     RouterModule.forChild(usersRoutes),
     CommonModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ],
   declarations: [
     UsersComponent,
