@@ -8,7 +8,10 @@
     <ng-template #existTestcases>
       <div id="template-wrapper">
         <div id="testcases">
-          <!--<a [routerLink]="['./create']" class="btn btn-primary">Create New Testcase</a>-->
+          <div class="button-row">
+            <a routerLink="create" class="create-button btn btn-primary">Create New Testcase</a>
+          </div>
+
           <table *ngIf="testcases.length > 0;" class="table">
             <thead>
               <tr>

@@ -14,3 +14,12 @@
     background-color: #283242;
     color: #FFF;
 }
+
+.button-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.create-button {
+    align-self: flex-end;
+}
