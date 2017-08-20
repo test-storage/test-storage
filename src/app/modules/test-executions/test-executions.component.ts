@@ -16,6 +16,13 @@ export class TestExecutionsComponent implements OnInit {
     return true;
   }
 
+  public testExecutions = [
+    {
+      name: 'Website regression testplan',
+      description: 'Regression plan for website portal'
+    }
+  ];
+
   constructor(
     private notificationsService: NotificationsService,
     public themeService: ThemeService

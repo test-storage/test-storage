@@ -1,5 +1,68 @@
-<div id="wrapper" [class.dark-theme]="themeService.theme">
-  <p>
-    test-executions works!
-  </p>
+<div *ngIf="testExecutions" id="wrapper" [class.dark-theme]="themeService.theme">
+
+  <div *ngIf="testExecutions.length > 0; then existTestExecutions else noExistTestExecutions"></div>
+
+  <ng-template #existTestExecutions>
+    <div class="testexecutions-wrapper" *ngIf="testExecutions.length > 0;">
+
+
+      <div class="execution-card card" *ngFor="let testExecution of testExecutions">
+
+        <i class="edit-icon fa fa-cog"></i>
+
+        <div class="card-block">
+          <h5 class="card-title">{{ testExecution.name }}</h5>
+          <p class="card-text" style="margin-top: 15px; color: #999;">{{ testExecution.description }}</p>
+
+          <div style="display:flex; margin: 30px 0 10px 0;">
+            <div class="progress" style="height: 7px; width: 210px;">
+              <div class="progress-bar bg-success" role="progressbar" style="height: 7px; width: 75%"></div>
+            </div>
+            <span style="position:relative; left: 20px; bottom: 10px; color: #999;">75%</span>
+          </div>
+          <div>
+            <img src="./assets/users.png" style="width: 150px;" />
+          </div>
+        </div>
+
+        <!--
+        <a [routerLink]="['./', testExecution._id]" class="btn btn-primary edit-button">{{ 'TESEXECUTIONSSPAGE.VIEW' | translate }}</a>
+        -->
+
+      </div>
+
+
+      <div class="execution-card card create-card">
+        <div class="card-block">
+          <a [routerLink]="['./create']">
+            <h1><i class="fa fa-3x fa-plus"></i></h1>
+          </a>
+        </div>
+      </div>
+
+
+
+    </div>
+  </ng-template>
+
+
+
+
+
+
+
+  <ng-template #noExistTestExecutions>
+    <div class="noexist-wrapper">
+      <div class="no-execution">
+        <i class="fa fa-5x fa-history"></i>
+        <h4>You have not created Test Executions yet.</h4>
+        <p class="tips">Tap the 'Create Test Execution' button to get started</p>
+        <a routerLink="create" class="btn btn-primary">Create Test Execution</a>
+      </div>
+    </div>
+  </ng-template>
+
+
+
+
 </div>
