@@ -14,7 +14,7 @@
         <div class="card-block">
           <h5 class="card-title">{{ project.name }}</h5>
           <p class="card-text">{{ project.description }}</p>
-          <img class="users" src="./assets/users.png" style="margin-top: 5px; width: 150px;" />
+          <img class="users" src="./assets/users.png" />
         </div>
         <a [routerLink]="['./', project._id]" class="btn btn-primary edit-button">{{ 'PROJECTSPAGE.VIEW' | translate }}</a>
 
