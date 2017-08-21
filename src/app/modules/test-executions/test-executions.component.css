@@ -60,12 +60,12 @@
 
 .progress {
     height: 7px;
-    width: 210px;
+    width: 200px;
 }
 
 .progress-bar-status-value {
     position: relative;
-    bottom: 10px;
+    bottom: 9px;
     color: #999;
 }
 
