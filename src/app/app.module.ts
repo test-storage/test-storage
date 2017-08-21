@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { LayoutModule } from './modules/layout/layout.module';
@@ -42,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RouterModule.forRoot(routes),
     FormsModule,
     LayoutModule,
+    ModalModule.forRoot(),
     BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
