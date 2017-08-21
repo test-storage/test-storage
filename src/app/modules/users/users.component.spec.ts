@@ -5,9 +5,14 @@ import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from 
 import { MockBackend } from '@angular/http/testing';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 import { UsersComponent } from './users.component';
 import { UserService } from '../../services/user/user.service';
+
 import { ThemeService } from '../../services/theme/theme.service';
+import { NotificationsService } from 'angular2-notifications';
+
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -18,6 +23,7 @@ describe('UsersComponent', () => {
       declarations: [UsersComponent],
       providers: [
         ThemeService,
+        NotificationsService,
         AuthenticationService,
         UserService,
         MockBackend,
@@ -31,7 +37,8 @@ describe('UsersComponent', () => {
       imports: [
         HttpModule,
         BrowserAnimationsModule,
-        RouterTestingModule
+        RouterTestingModule,
+        ModalModule.forRoot()
       ]
     })
       .compileComponents();
