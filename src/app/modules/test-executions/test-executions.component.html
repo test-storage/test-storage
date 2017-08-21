@@ -12,17 +12,22 @@
 
         <div class="card-block">
           <h5 class="card-title">{{ testExecution.name }}</h5>
-          <p class="card-description">{{ testExecution.description }}</p>
+          <p *ngIf="testExecution.description.length > 0;" class="card-description">{{ testExecution.description }}</p>
 
           <div class="details">
+            <hr>
             <div class="progress-bar-container">
               <div class="progress">
                 <div class="progress-bar bg-success" role="progressbar" style="height: 7px;" [style.width]="testExecution.progress + '%'"></div>
               </div>
               <span class="progress-bar-status-value">{{ testExecution.progress }}%</span>
             </div>
+
             <div class="card-bottom">
-              <img class="users" src="./assets/users.png" />
+              <!--<img class="users" src="./assets/users.png" />-->
+              <span class="platform">
+                <i *ngFor="let platform of testExecution.platform" class="fa" [ngClass]="{'fa-apple': platform === 'iOS', 'fa-android': platform === 'Android', 'fa-globe': platform === 'web'}"></i>
+              </span>
               <span class="status badge" [ngClass]="{'badge-success': testExecution.status === 'Completed', 'badge-warning': testExecution.status === 'In Progress', 'badge-default': testExecution.status === 'Open'}">{{ testExecution.status }}</span>
             </div>
           </div>

@@ -116,6 +116,15 @@
     border-color: #1B2531;
 }
 
+.platform {
+    color: #999;
+    width: 150px;
+}
+
+.platform .fa {
+    margin-right: 15px;
+}
+
 .users {
     position: relative;
     width: 150px;

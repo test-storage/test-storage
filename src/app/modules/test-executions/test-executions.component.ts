@@ -21,13 +21,15 @@ export class TestExecutionsComponent implements OnInit {
       name: 'Website regression testplan',
       description: 'Regression plan for website portal',
       status: 'In Progress',
-      progress: 75
+      progress: 75,
+      platform: ['web']
     },
     {
-      name: 'Mobile Application regstration feature testplan',
+      name: 'Mobile Application registration feature testplan',
       description: 'Test registration scenario for iOS',
       status: 'Completed',
-      progress: 100
+      progress: 100,
+      platform: ['iOS', 'Android']
     }
   ];
 
