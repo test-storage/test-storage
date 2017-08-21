@@ -19,7 +19,15 @@ export class TestExecutionsComponent implements OnInit {
   public testExecutions = [
     {
       name: 'Website regression testplan',
-      description: 'Regression plan for website portal'
+      description: 'Regression plan for website portal',
+      status: 'In Progress',
+      progress: 75
+    },
+    {
+      name: 'Mobile Application regstration feature testplan',
+      description: 'Test registration scenario for iOS',
+      status: 'Completed',
+      progress: 100
     }
   ];
 
