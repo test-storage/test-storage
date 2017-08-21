@@ -7,36 +7,11 @@
     <span class="project-label">{{ 'PROJECT_DETAILSPAGE.CREATED_BY' | translate }}: <span class="project-label-value">Romario Tracia</span></span>
     <span class="project-label">{{ 'PROJECT_DETAILSPAGE.UPDATED_BY' | translate }}: <span class="project-label-value">Valentino Galerro</span></span>
     <span class="project-label edit-button"><button class="btn btn-primary"><i class="fa fa-edit"></i> {{ 'PROJECT_DETAILSPAGE.EDIT' | translate }}</button></span>
-    <span class="project-label delete-button"><button [disabled]="loading" class="btn btn-primary" (click)="deleteProject(project._id);"><i class="fa fa-trash"></i> {{ 'PROJECT_DETAILSPAGE.DELETE' | translate }}</button></span>
+    <span class="project-label delete-button"><button [disabled]="loading" class="btn btn-primary" (click)="selectedProject = project; openModal(template)"><i class="fa fa-trash"></i> {{ 'PROJECT_DETAILSPAGE.DELETE' | translate }}</button></span>
     <br><br>
     <b>{{ 'PROJECT_DETAILSPAGE.DESCRIPTION' | translate }}</b>
     <div>Amore non è guardarci l'un l'altro, ma guardare insieme nella stessa direzione. (Antoine de Saint Exupéry)</div>
-    <!--
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Project Name</th>
-          <th>Description</th>
-          <th>Enabled</th>
-          <th>Created</th>
-          <th>Updated</th>
-          <th>Created By</th>
-          <th>Updated By</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tr>
-        <td>{{ project.name }}</td>
-        <td>{{ project.description }}</td>
-        <td>{{ project.enabled }}</td>
-        <td>{{ project.created }}</td>
-        <td>{{ project.updated }}</td>
-        <td>{{ project.createdBy }}</td>
-        <td>{{ project.updatedBy }}</td>
-        <td><a (click)="deleteProject(project._id);">Delete</a></td>
-      </tr>
-    </table>
-    -->
+
     <br>
     <span class="project-label delete-button"><button class="btn btn-primary">{{ 'PROJECT_DETAILSPAGE.EDIT_MEMBERS' | translate }}</button></span>
     <br><br>
@@ -76,5 +51,25 @@
         </tr>
       </tbody>
     </table>
+
+
+    <!-- Modal -->
+    <ng-template #template>
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+      </div>
+      <div class="modal-body">
+        Are you sure to delete project?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="deleteProject(selectedProject._id); modalRef.hide()">Delete Project</button>
+      </div>
+
+    </ng-template>
   </div>
 </div>

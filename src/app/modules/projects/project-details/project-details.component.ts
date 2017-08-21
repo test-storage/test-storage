@@ -1,5 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 import { TranslateService } from '@ngx-translate/core';
 import { ThemeService } from '../../../services/theme/theme.service';
@@ -20,13 +23,18 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   project: Project;
   public loading = false;
 
+  public selectedProject: Project;
+
+  public modalRef: BsModalRef;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private projectService: ProjectService,
     private toastNotificationsService: NotificationsService,
     public themeService: ThemeService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
@@ -67,6 +75,10 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
       },
       error => console.log(error)
     );
+  }
+
+  public openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
 }
