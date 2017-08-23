@@ -23,7 +23,7 @@
         <td>{{ user.created | date: 'dd/MM/yyyy' }}</td>
         <td>{{ user.updated | date: 'dd/MM/yyyy' }}</td>
 
-        <td class="align-end"><button class="btn btn-secondary" [disabled]="user.email === 'admin'" (click)="selectedUser = user; openModal(template)">Delete</button>
+        <td class="align-end"><button class="btn btn-outline-secondary" [disabled]="user.email === 'admin'" (click)="selectedUser = user; openModal(template)">Delete</button>
       </tr>
     </table>
 
