@@ -86,6 +86,7 @@
     margin: 10px;
     background-color: #999;
     border-color: #777;
+    margin-top: auto;
 }
 
 #wrapper.dark-theme div.project-card {
