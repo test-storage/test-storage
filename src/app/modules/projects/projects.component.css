@@ -3,10 +3,14 @@
 }
 
 #wrapper {
-    padding: 20px;
+    padding: 20px 0px 50px;
+    margin: 0 auto;
 }
 
 .projects-wrapper {
+    margin: 0 auto;
+    max-width: 1300px;
+    /* TODO via @media for all screens */
     display: flex;
     flex-wrap: wrap;
 }
@@ -30,7 +34,7 @@
 }
 
 .project-card {
-    margin: 25px;
+    margin: 10px;
     width: 300px;
     box-sizing: border-box;
     /*box-shadow: 0 1px 0px #dfe2e7;*/
