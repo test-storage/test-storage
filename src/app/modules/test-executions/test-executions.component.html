@@ -11,8 +11,14 @@
         <i class="edit-icon fa fa-cog"></i>
 
         <div class="card-block">
-          <h5 class="card-title">{{ testExecution.name }}</h5>
-          <p *ngIf="testExecution.description.length > 0;" class="card-description">{{ testExecution.description }}</p>
+
+          <div class="card-title">
+            <h5>{{ testExecution.name }}</h5>
+          </div>
+
+          <div class="card-description">
+            <p *ngIf="testExecution.description.length > 0;">{{ testExecution.description }}</p>
+          </div>
 
           <div class="details">
             <hr>
@@ -30,6 +36,7 @@
               </span>
               <span class="status badge" [ngClass]="{'badge-success': testExecution.status === 'Completed', 'badge-warning': testExecution.status === 'In Progress', 'badge-default': testExecution.status === 'Open'}">{{ testExecution.status }}</span>
             </div>
+
           </div>
         </div>
 

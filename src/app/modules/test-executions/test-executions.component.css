@@ -36,15 +36,26 @@
 .card-block {
     padding: 1.25rem;
     display: flex;
-    flex-flow: column nowrap;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card-block h1 {
     text-align: center;
 }
 
+.cart-title {
+    flex-grow: 1;
+}
+
 .card-description {
-    margin-top: 15px;
+    /*padding-top: 15px;*/
+    margin-bottom: auto;
+    flex-grow: 1;
+}
+
+.card-description p {
     color: #999;
 }
 
