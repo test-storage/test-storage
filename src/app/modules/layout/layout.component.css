@@ -10,7 +10,7 @@ body {
 #main {
     z-index: 1;
     flex: 1;
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
     width: 100%;
 }
@@ -26,14 +26,13 @@ body {
 #content-wrapper {
     border: 1px solid transparent;
     background-color: #EAEAEA;
-    overflow: hidden;
     height: 100%;
+    overflow: scroll;
 }
 
 #content {
     margin: 20px;
     height: 100%;
-    overflow: hidden;
     min-height: 740px;
 }
 
