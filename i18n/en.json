@@ -72,6 +72,7 @@
         "PASSWORD_REQUIRED": "Password required",
         "CONFIRMPASSWORD": "Confirm Password",
         "CONFIRMPASSWORD_REQUIRED": "Confirm password required",
+        "PASSWORDSMATCH": "Password and Confirm Password should be equal",
         "CREATE_USER": "Create User"
     },
     "USERPROFILEPAGE": {
