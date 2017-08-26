@@ -8,7 +8,7 @@
         <label for="email" class="col-2 col-form-label">{{ 'USERCREATEPAGE.EMAIL' | translate }}</label>
         <div class="col-6">
           <input class="form-control" type="email" name="email" id="email" placeholder="{{ 'USERCREATEPAGE.EMAIL_PLACEHOLDER' | translate }}"
-            ngModel #email="ngModel" required pattern="^[a-zA-Z0–9_.+-]+@[a-zA-Z0–9-]+.[a-zA-Z0–9-.]+" minlength="4">
+            ngModel #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="4">
 
 
           <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
