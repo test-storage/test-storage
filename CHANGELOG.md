@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.27.0 (August 28, 2017)
+- User list UI: ([@pumano](https://github.com/pumano) in [#74](https://github.com/test-storage/test-storage/pull/74))
+- Test Execution cards UI
+- Small changes in Project Card list
+- Minor UI improvements
+- Popups on delete projects and users
+- Layout: sticky header
+- Scroll to top on navigate fix
+- Align to bottom in cards fix
+
 ## 0.26.0 (August 16, 2017)
 - Project Details UI: ([@pumano](https://github.com/pumano) in [#73](https://github.com/test-storage/test-storage/pull/73))
 - Translations for few pages
