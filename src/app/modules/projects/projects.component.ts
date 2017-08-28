@@ -46,14 +46,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   getProjects() {
     this.subscription = this.projectService.getProjects().subscribe(
       data => this.projects = data,
-      error => this.notificationsService.error(error, '', {
-        timeOut: 5000,
-        showProgressBar: false,
-        pauseOnHover: false,
-        clickToClose: false,
-        maxLength: 10
-      })
-    );
+      error => this.notificationsService.error(error, ''));
   }
 
 }

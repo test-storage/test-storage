@@ -28,11 +28,14 @@ export class LayoutComponent implements OnInit {
         private authenticationService: AuthenticationService) { }
 
     ngOnInit() {
-
     }
 
     onNotify(sidebarCollapsed: boolean): void {
         this.sidebarCollapsed = sidebarCollapsed;
+    }
+
+    onDeactivate() {
+        document.getElementById('content-wrapper').scrollTop = 0;
     }
 
 }

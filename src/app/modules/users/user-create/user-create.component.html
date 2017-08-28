@@ -8,14 +8,14 @@
         <label for="email" class="col-2 col-form-label">{{ 'USERCREATEPAGE.EMAIL' | translate }}</label>
         <div class="col-6">
           <input class="form-control" type="email" name="email" id="email" placeholder="{{ 'USERCREATEPAGE.EMAIL_PLACEHOLDER' | translate }}"
-            ngModel #email="ngModel" required>
+            ngModel #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="4">
 
 
           <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
             <div [hidden]="!email.errors.required">
               <li><small>{{ 'USERCREATEPAGE.EMAIL_REQUIRED' | translate }}</small></li>
             </div>
-            <div [hidden]="email.errors.valid || (email.pristine && !f.submitted)">
+            <div [hidden]="!email.hasErrors('pattern') || (email.touched || email.pristine && !f.submitted)">
               <li><small>Email must contain @ and dot symbols. Example: 'email@example.com'</small></li>
             </div>
             <div [hidden]="!email.errors.minlength">
@@ -110,7 +110,13 @@
               <li><small>{{ 'USERCREATEPAGE.CONFIRMPASSWORD_REQUIRED' | translate }}</small></li>
             </div>
           </div>
+          <div *ngIf="password != confirmPassword && (password.dirty || password.touched)" class="alert alert-danger">
+            <div [hidden]="password != confirmPassword">
+              <li><small>{{ 'USERCREATEPAGE.PASSWORDSMATCH' | translate }}</small></li>
+            </div>
+          </div>
         </div>
+
       </div>
 
 

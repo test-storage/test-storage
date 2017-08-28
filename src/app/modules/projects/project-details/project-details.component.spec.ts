@@ -10,6 +10,8 @@ import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 import { AuthenticationService } from '../../../services/auth/authentication.service';
 
 import { ProjectService } from '../../../services/project/project.service';
@@ -50,6 +52,7 @@ describe('ProjectDetailsComponent', () => {
         }
       ],
       imports: [
+        ModalModule.forRoot(),
         HttpModule,
         TranslateModule.forRoot({
           loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }

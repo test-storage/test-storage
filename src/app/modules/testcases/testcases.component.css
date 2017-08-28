@@ -64,6 +64,15 @@
     margin: 10px;
 }
 
+.button-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.create-button {
+    align-self: flex-end;
+}
+
 
 /* DARK THEME */
 

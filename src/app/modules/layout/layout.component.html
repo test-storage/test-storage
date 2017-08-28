@@ -9,7 +9,7 @@
         <section id="content-wrapper">
 
             <div id="content">
-                <router-outlet></router-outlet>
+                <router-outlet (deactivate)="onDeactivate()"></router-outlet>
             </div>
 
         </section>

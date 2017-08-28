@@ -71,6 +71,7 @@
         "PASSWORD_REQUIRED": "Пароль - обязательное поле",
         "CONFIRMPASSWORD": "Повторить пароль",
         "CONFIRMPASSWORD_REQUIRED": "Повторить пароль - обязательное поле",
+        "PASSWORDSMATCH": "Оба пароля должны быть одинаковы",
         "CREATE_USER": "Создать Пользователя"
     },
     "USERPROFILEPAGE": {

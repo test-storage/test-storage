@@ -61,21 +61,8 @@ export class ProjectService {
 
   private handleError(error: Response) {
     console.error(error);
-    this.alert(error.json().status, error.json().message || 'Server error');
+    this.notificationsService.alert(error.json().status, error.json().message || 'Server error');
     return Observable.throw(error.json().status + ' ' + error.json().message || 'Server error');
   }
 
-  alert(title, description) {
-    this.notificationsService.error(
-      title,
-      description,
-      {
-        timeOut: 5000,
-        showProgressBar: true,
-        pauseOnHover: false,
-        clickToClose: false,
-        maxLength: 30
-      }
-    );
-  }
 }

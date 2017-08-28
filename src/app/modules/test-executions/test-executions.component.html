@@ -1,5 +1,83 @@
-<div id="wrapper" [class.dark-theme]="themeService.theme">
-  <p>
-    test-executions works!
-  </p>
+<div *ngIf="testExecutions" id="wrapper" [class.dark-theme]="themeService.theme">
+
+  <div *ngIf="testExecutions.length > 0; then existTestExecutions else noExistTestExecutions"></div>
+
+  <ng-template #existTestExecutions>
+    <div class="testexecutions-wrapper" *ngIf="testExecutions.length > 0;">
+
+
+      <div class="execution-card card" *ngFor="let testExecution of testExecutions">
+
+        <i class="edit-icon fa fa-cog"></i>
+
+        <div class="card-block">
+
+          <div class="card-title">
+            <h5>{{ testExecution.name }}</h5>
+          </div>
+
+          <div class="card-description">
+            <p *ngIf="testExecution.description.length > 0;">{{ testExecution.description }}</p>
+          </div>
+
+          <div class="details">
+            <hr>
+            <div class="progress-bar-container">
+              <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="height: 7px;" [style.width]="testExecution.progress + '%'"></div>
+              </div>
+              <span class="progress-bar-status-value">{{ testExecution.progress }}%</span>
+            </div>
+
+            <div class="card-bottom">
+              <!--<img class="users" src="./assets/users.png" />-->
+              <span class="platform">
+                <i *ngFor="let platform of testExecution.platform" class="fa" [ngClass]="{'fa-apple': platform === 'iOS', 'fa-android': platform === 'Android', 'fa-globe': platform === 'web'}"></i>
+              </span>
+              <span class="status badge" [ngClass]="{'badge-success': testExecution.status === 'Completed', 'badge-warning': testExecution.status === 'In Progress', 'badge-default': testExecution.status === 'Open'}">{{ testExecution.status }}</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!--
+        <a [routerLink]="['./', testExecution._id]" class="btn btn-primary edit-button">{{ 'TESEXECUTIONSSPAGE.VIEW' | translate }}</a>
+        -->
+
+      </div>
+
+
+      <div class="execution-card card create-card">
+        <div class="card-block">
+          <a [routerLink]="['./create']">
+            <h1><i class="fa fa-3x fa-plus"></i></h1>
+          </a>
+        </div>
+      </div>
+
+
+
+    </div>
+  </ng-template>
+
+
+
+
+
+
+
+  <ng-template #noExistTestExecutions>
+    <div class="noexist-wrapper">
+      <div class="no-execution">
+        <i class="fa fa-5x fa-history"></i>
+        <h4>You have not created Test Executions yet.</h4>
+        <p class="tips">Tap the 'Create Test Execution' button to get started</p>
+        <a routerLink="create" class="btn btn-primary">Create Test Execution</a>
+      </div>
+    </div>
+  </ng-template>
+
+
+
+
 </div>

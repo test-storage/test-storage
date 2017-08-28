@@ -35,7 +35,4 @@ test_script:
   # Run tests
   - npm test
 
-cache:
-  - node_modules
-  - "%LOCALAPPDATA%\\Yarn"
 

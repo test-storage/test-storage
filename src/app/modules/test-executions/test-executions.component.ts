@@ -16,6 +16,23 @@ export class TestExecutionsComponent implements OnInit {
     return true;
   }
 
+  public testExecutions = [
+    {
+      name: 'Website regression testplan',
+      description: 'Regression plan for website portal',
+      status: 'In Progress',
+      progress: 75,
+      platform: ['web']
+    },
+    {
+      name: 'Mobile Application registration feature testplan',
+      description: 'Test registration scenario for iOS',
+      status: 'Completed',
+      progress: 100,
+      platform: ['iOS', 'Android']
+    }
+  ];
+
   constructor(
     private notificationsService: NotificationsService,
     public themeService: ThemeService

@@ -1,5 +1,10 @@
-import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
+import { Component, OnInit, HostBinding, OnDestroy, TemplateRef } from '@angular/core';
 import { pageTransition } from '../../animations';
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+
+import { NotificationsService } from 'angular2-notifications';
 
 import { User } from '../../models/user';
 import { UserService } from '../../services/user/user.service';
@@ -19,10 +24,15 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   private subscription;
   public users: User[];
+  public selectedUser: User;
+
+  public modalRef: BsModalRef;
 
   constructor(
     public themeService: ThemeService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private toastNotificationsService: NotificationsService,
+    private modalService: BsModalService) { }
 
   ngOnInit() {
     this.getUsers();
@@ -40,18 +50,24 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
 
-  deleteUser(id: string) {
+  deleteUser(user: User) {
     // TODO ask user about "You are want to delete this user?"
     // TODO delete by object not by ID
-    this.userService.deleteUser(id).subscribe(
+    this.userService.deleteUser(user._id).subscribe(
       response => {
         if (response === 204) {
           console.log('User deleted successfully'); // TODO modal success
-          this.users = this.users.filter(user => user._id !== id);
+          this.toastNotificationsService.success('User ' + user.lastName + ' ' + user.firstName, 'deleted successfully!');
+
+          this.users = this.users.filter(usr => usr._id !== user._id);
         }
       },
       error => console.log(error)
     );
+  }
+
+  public openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
 }

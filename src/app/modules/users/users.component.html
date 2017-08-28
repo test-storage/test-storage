@@ -1,33 +1,50 @@
 <div id="wrapper" [class.dark-theme]="themeService.theme">
 
   <div *ngIf="users">
-    <a routerLink="create" class="btn btn-primary">Create New User</a>
+    <div class="button-row">
+      <a routerLink="create" class="create-button btn btn-primary">Create New User</a>
+    </div>
 
     <table *ngIf="users.length > 0;" class="table">
       <thead>
         <tr>
           <th>User name</th>
           <th>email</th>
-          <th>Projects</th>
-          <th>Created</th>
+          <!--<th>Projects</th>-->
+          <th>Registered</th>
           <th>Updated</th>
-          <th>Created By</th>
-          <th>Updated By</th>
-          <th></th>
+          <th class="align-end">Action</th>
         </tr>
       </thead>
       <tr *ngFor="let user of users">
         <td><a [routerLink]="['./', user._id]">{{ user.lastName }} {{ user.firstName }}</a></td>
         <td>{{ user.email }}</td>
-        <td>{{ user.projects }}</td>
-        <td>{{ user.created }}</td>
-        <td>{{ user.updated }}</td>
-        <td>{{ user.createdBy }}</td>
-        <td>{{ user.updatedBy }}</td>
-        <td><a *ngIf="user.email != 'admin';" (click)="deleteUser(user._id);">Delete</a>
+        <!--<td>{{ user.projects }}</td>-->
+        <td>{{ user.created | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ user.updated | date: 'dd/MM/yyyy' }}</td>
+
+        <td class="align-end"><button class="btn btn-outline-secondary" [disabled]="user.email === 'admin'" (click)="selectedUser = user; openModal(template)">Delete</button>
       </tr>
     </table>
 
+    <!-- Modal -->
+    <ng-template #template>
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+      </div>
+      <div class="modal-body">
+        Are you sure to delete user?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="deleteUser(selectedUser); modalRef.hide()">Delete User</button>
+      </div>
+
+    </ng-template>
   </div>
 
 </div>

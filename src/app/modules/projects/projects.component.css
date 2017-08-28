@@ -3,10 +3,14 @@
 }
 
 #wrapper {
-    padding: 20px;
+    padding: 20px 0px 50px;
+    margin: 0 auto;
 }
 
 .projects-wrapper {
+    margin: 0 auto;
+    max-width: 1300px;
+    /* TODO via @media for all screens */
     display: flex;
     flex-wrap: wrap;
 }
@@ -30,7 +34,7 @@
 }
 
 .project-card {
-    margin: 25px;
+    margin: 10px;
     width: 300px;
     box-sizing: border-box;
     /*box-shadow: 0 1px 0px #dfe2e7;*/
@@ -48,6 +52,7 @@
 
 .card-block {
     padding: 1.25rem;
+    display: flex;
     flex-direction: column;
 }
 
@@ -85,6 +90,7 @@
     margin: 10px;
     background-color: #999;
     border-color: #777;
+    margin-top: auto;
 }
 
 #wrapper.dark-theme div.project-card {
@@ -148,13 +154,18 @@
     margin-bottom: 20px;
 }
 
+.users {
+    margin-top: auto;
+    width: 150px;
+}
+
 
 /* DARK THEME */
 
 
 /* TODO WHITE ICON */
 
-#wrapper.dark-theme .no-project h4 {
+#wrapper.dark-theme .no-project h5 {
     color: #FFF;
 }
 
