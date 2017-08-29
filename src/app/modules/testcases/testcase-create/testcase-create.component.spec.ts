@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 
+import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -22,10 +23,14 @@ describe('TestcaseCreateComponent', () => {
         BrowserAnimationsModule,
         FormsModule,
         HttpModule,
-        RouterTestingModule
+        RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+        })
       ],
       declarations: [TestcaseCreateComponent],
       providers: [
+        TranslateService,
         ThemeService,
         NotificationsService,
         TestcaseService,

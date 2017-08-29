@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TreeModule } from 'angular-tree-component';
 
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { TestcasesComponent } from './testcases.component';
@@ -37,7 +38,8 @@ const testcasesRoutes: Routes = [
     RouterModule.forChild(testcasesRoutes),
     CommonModule,
     FormsModule,
-    TreeModule
+    TreeModule,
+    TranslateModule
   ],
   declarations: [
     TestcasesComponent,

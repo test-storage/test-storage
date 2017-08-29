@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 import { TreeModule } from 'angular-tree-component';
 
+import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 import { ThemeService } from '../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -33,7 +34,10 @@ describe('TestcasesComponent', () => {
         RouterModule,
         BrowserAnimationsModule,
         FormsModule,
-        TreeModule
+        TreeModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+        })
       ],
       declarations: [TestcasesComponent, TestsuitesTreeComponent],
       providers: [
@@ -41,6 +45,7 @@ describe('TestcasesComponent', () => {
         TestcaseService,
         NotificationsService,
         ThemeService,
+        TranslateService,
         Http,
         AuthenticationService,
         MockBackend,

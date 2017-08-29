@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { pageTransition } from '../../animations';
 
+import { TranslateService } from '@ngx-translate/core';
 import { ThemeService } from '../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -29,7 +30,8 @@ export class TestcasesComponent implements OnInit {
   constructor(
     private testcaseService: TestcaseService,
     private notificationsService: NotificationsService,
-    public themeService: ThemeService
+    public themeService: ThemeService,
+    public translate: TranslateService
   ) { }
 
   ngOnInit() {

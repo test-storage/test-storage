@@ -34,5 +34,6 @@
         <td>{{ testcase.postConditions }}</td>
       </tr>
     </table>
+    <span class="project-label delete-button"><button [disabled]="loading" class="btn btn-primary" (click)="deleteTestcase(testcase._id);"><i class="fa fa-trash"></i> {{ 'TESTCASE_DETAILSPAGE.DELETE' | translate }}</button></span>
   </div>
 </div>
