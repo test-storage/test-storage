@@ -60,7 +60,7 @@
     "angular-tree-component": "^4.1.0",
     "angular2-jwt": "^0.2.3",
     "angular2-notifications": "^0.7.7",
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "bootstrap": "^4.0.0-beta",
     "compression": "^1.7.0",
