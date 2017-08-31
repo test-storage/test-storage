@@ -6,6 +6,7 @@ import { Attachments } from './v1/attachments';
 import { Notifications } from './v1/notifications';
 import { Projects } from './v1/projects';
 import { Testcases } from './v1/testcases';
+import { TestcaseSteps } from './v1/testcasesteps';
 import { Testsuites } from './v1/testsuites';
 import { Testplans } from './v1/testplans';
 import { Testruns } from './v1/testruns';
@@ -20,23 +21,25 @@ import { ProjectSettings } from './v1/projectsettings';
 class Routes {
 
     public router: express.Router;
-    protected auth: Auth;
-    private attachments: Attachments;
-    public notifications: Notifications;
-    public projects: Projects;
-    private testcases: Testcases;
-    private testsuites: Testsuites;
-    private testplans: Testplans;
-    private testruns: Testruns;
-    private testresults: TestResults;
-    private usergroups: UserGroups;
-    private users: Users;
-    private usersettings: UserSettings;
-    private projectsettings: ProjectSettings;
+    protected auth: Auth = new Auth();
+    private attachments: Attachments = new Attachments();
+    public notifications: Notifications = new Notifications();
+    private projects: Projects = new Projects();
+    private testcases: Testcases = new Testcases();
+    private testcaseSteps: TestcaseSteps = new TestcaseSteps();
+    private testsuites: Testsuites = new Testsuites();
+    private testplans: Testplans = new Testplans();
+    private testruns: Testruns = new Testruns();
+    private testresults: TestResults = new TestResults();
+    private usergroups: UserGroups = new UserGroups();
+    private users: Users = new Users();
+    private usersettings: UserSettings = new UserSettings();
+    private projectsettings: ProjectSettings = new ProjectSettings();
 
     constructor() {
 
         this.router = express.Router();
+        /*
         this.auth = new Auth();
         this.attachments = new Attachments();
         this.notifications = new Notifications();
@@ -50,6 +53,7 @@ class Routes {
         this.users = new Users();
         this.usersettings = new UserSettings();
         this.projectsettings = new ProjectSettings();
+        */
 
         // define the API versions
         const API_VERSIONS = { 'Version 1': '/v1' };
@@ -100,6 +104,13 @@ class Routes {
         this.router.post('/api/v1/testcases/', this.testcases.create.bind(this.testcases));
         this.router.put('/api/v1/testcases/:id', this.testcases.update.bind(this.testcases));
         this.router.delete('/api/v1/testcases/:id', this.testcases.delete.bind(this.testcases));
+
+        this.router.get('/api/v1/steps', this.testcaseSteps.getAll.bind(this.testcaseSteps));
+        this.router.get('/api/v1/steps/:id', this.testcaseSteps.getOne.bind(this.testcaseSteps));
+        this.router.post('/api/v1/steps/', this.testcaseSteps.create.bind(this.testcaseSteps));
+        this.router.put('/api/v1/steps/:id', this.testcaseSteps.update.bind(this.testcaseSteps));
+        this.router.delete('/api/v1/steps/:id', this.testcaseSteps.delete.bind(this.testcaseSteps));
+        this.router.get('/api/v1/testcases/:id/steps', this.testcaseSteps.getAllTestcaseStepsByTestcaseId.bind(this.testcaseSteps));
 
         this.router.get('/api/v1/testsuites', this.testsuites.getAll.bind(this.testsuites));
         this.router.get('/api/v1/testsuites/:id', this.testsuites.getOne.bind(this.testsuites));
