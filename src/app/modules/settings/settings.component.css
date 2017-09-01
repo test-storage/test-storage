@@ -16,5 +16,6 @@
 }
 
 #wrapper.dark-theme select {
-    color: #333;
+    background-color: #212529;
+    color: #fff;
 }
