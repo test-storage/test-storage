@@ -1,22 +1,40 @@
 import { TestBed, async, inject } from '@angular/core/testing';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
-import { Router } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthGuard, AuthenticationService } from './index';
+import { Router } from '@angular/router'; // TODO remove
+import { FormsModule } from '@angular/forms';
+
+import { AuthGuard, AuthenticationService, LocalStorageService } from './index';
+
 import { LoginComponent } from '../../components/login/login.component';
+
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { TranslateStore } from '@ngx-translate/core/src/translate.store';
-import { FormsModule } from '@angular/forms';
+
 
 describe('AuthenticationService', () => {
 
-  let subject: AuthenticationService = null;
-  let backend: MockBackend = null;
+  beforeEach(() => {
+    let store = {};
+
+    spyOn(localStorage, 'getItem').and.callFake((key: string): string => {
+      return JSON.stringify(store[key]) || null;
+    });
+    spyOn(localStorage, 'removeItem').and.callFake((key: string): void => {
+      delete store[key];
+    });
+    spyOn(localStorage, 'setItem').and.callFake((key: string, value: string): string => {
+      return store[key] = <string>value;
+    });
+    spyOn(localStorage, 'clear').and.callFake(() => {
+      store = {};
+    });
+  });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         FormsModule,
         TranslateModule,
         RouterTestingModule.withRoutes([
@@ -32,27 +50,15 @@ describe('AuthenticationService', () => {
       providers: [
         AuthGuard,
         AuthenticationService,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backendInstance, defaultOptions);
-          },
-          deps: [MockBackend, BaseRequestOptions]
-        },
-        MockBackend
+        LocalStorageService
       ]
     });
   });
-  beforeEach(inject([AuthenticationService, MockBackend], (authenticationService: AuthenticationService, mockBackend: MockBackend) => {
-    subject = authenticationService;
-    backend = mockBackend;
-  }));
-
 
   it('should ...', inject([AuthenticationService], (service: AuthenticationService) => {
     expect(service).toBeTruthy();
   }));
+
 
   it('checks Auth Guard: if a user is valid',
 
@@ -68,4 +74,5 @@ describe('AuthenticationService', () => {
       expect(router.navigate).toHaveBeenCalledWith(['/auth']);
     })
     ));
+
 });

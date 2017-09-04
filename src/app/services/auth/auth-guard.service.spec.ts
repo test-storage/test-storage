@@ -1,31 +1,54 @@
 import { TestBed, async, inject } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
-import { AuthGuard } from './auth-guard.service';
-import { AuthenticationService } from './authentication.service';
+import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
+
+import { LoginComponent } from '../../components/login/login.component';
+
+// import { Router } from '@angular/router'; // TODO remove
+
+import { AuthGuard, AuthenticationService, LocalStorageService } from './index';
 
 describe('AuthGuardService', () => {
 
     beforeEach(() => {
-        TestBed.configureTestingModule({
-            providers: [AuthGuard,
-                AuthenticationService,
-                BaseRequestOptions,
-                {
-                    provide: Http,
-                    useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
-                        return new Http(backendInstance, defaultOptions);
-                    },
-                    deps: [MockBackend, BaseRequestOptions]
-                },
-                MockBackend
-            ],
-            imports: [RouterTestingModule]
+        let store = {};
+
+        spyOn(localStorage, 'getItem').and.callFake((key: string): string => {
+            return JSON.stringify(store[key]) || null;
+        });
+        spyOn(localStorage, 'removeItem').and.callFake((key: string): void => {
+            delete store[key];
+        });
+        spyOn(localStorage, 'setItem').and.callFake((key: string, value: string): string => {
+            return store[key] = <string>value;
+        });
+        spyOn(localStorage, 'clear').and.callFake(() => {
+            store = {};
         });
     });
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                FormsModule,
+                HttpClientTestingModule,
+                RouterTestingModule,
+                TranslateModule.forRoot({
+                    loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+                })
+            ],
+            declarations: [LoginComponent],
+            providers: [AuthGuard,
+                AuthenticationService,
+                LocalStorageService
+            ]
+        });
+    });
+
 
     it('checks if a user is valid',
 
@@ -40,4 +63,5 @@ describe('AuthGuardService', () => {
             expect(router.navigate).toHaveBeenCalledWith(['/auth']);
         }))
     );
+
 });

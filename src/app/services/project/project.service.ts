@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -15,54 +15,37 @@ export class ProjectService {
 
   constructor(
     private notificationsService: NotificationsService,
-    private http: Http,
+    private http: HttpClient,
     private authenticationService: AuthenticationService) {
   }
 
   public getProjects(): Observable<Project[]> {
-    contentHeaders.set('x-access-token', this.authenticationService.token);
-    const options = new RequestOptions({ headers: contentHeaders });
-
-    return this.http.get(this.apiPath, options)
-      .map((response: Response) => response.json())
-      .catch(this.handleError);
+    return this.http.get<Project[]>(this.apiPath);
   }
 
   public getProject(id: string): Observable<Project> {
-    contentHeaders.set('x-access-token', this.authenticationService.token);
-    const options = new RequestOptions({ headers: contentHeaders });
-
-    return this.http.get(this.apiPath + '/' + id, options)
-      .map((response: Response) => response.json())
-      .catch(this.handleError);
+    let headers = contentHeaders;
+    headers = contentHeaders.set('x-access-token', this.authenticationService.token);
+    return this.http.get<Project>(this.apiPath + '/' + id, { headers: headers });
   }
 
-  public createProject(project: Project): Observable<Number> {
+  public createProject(project: Project): Observable<Object> {
     const body = JSON.stringify(project);
-
     contentHeaders.set('x-access-token', this.authenticationService.token);
-    const options = new RequestOptions({ headers: contentHeaders });
-
-    return this.http.post(this.apiPath, body, options)
-      .map((response: Response) => response.status)
-      .catch(this.handleError);
+    return this.http.post(this.apiPath, body, { headers: contentHeaders });
   }
 
-  public deleteProject(id: string): Observable<Number> {
+  public deleteProject(id: string): Observable<Object> {
     contentHeaders.set('x-access-token', this.authenticationService.token);
-    const options = new RequestOptions({ headers: contentHeaders });
-
-    return this.http.delete(this.apiPath + '/' + id, options)
-      .map((response: Response) => response.status)
-      .catch(this.handleError);
+    return this.http.delete(this.apiPath + '/' + id, { headers: contentHeaders });
   }
 
 
-
-  private handleError(error: Response) {
-    console.error(error);
-    this.notificationsService.alert(error.json().status, error.json().message || 'Server error');
-    return Observable.throw(error.json().status + ' ' + error.json().message || 'Server error');
-  }
-
+  /*
+    private handleError(error: Response) {
+      console.error(error);
+      this.notificationsService.alert(error.json().status, error.json().message || 'Server error');
+      return Observable.throw(error.json().status + ' ' + error.json().message || 'Server error');
+    }
+   */
 }

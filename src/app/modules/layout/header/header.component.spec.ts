@@ -1,10 +1,8 @@
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
 
 import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 import { ClickOutDirective } from 'ngx-clickout';
@@ -14,7 +12,7 @@ import { NotificationsService } from 'angular2-notifications';
 
 import { NotificationsComponent } from '../notifications/notifications.component';
 
-import { AuthenticationService } from '../../../services/auth/authentication.service';
+import { AuthenticationService, LocalStorageService } from '../../../services/auth/index';
 import { AuthGuard } from '../../../services/auth/auth-guard.service';
 import { HeaderComponent } from './header.component';
 
@@ -27,12 +25,14 @@ describe('HeaderComponent', () => {
     let store = {};
 
     store = {
-      'currentUser': {
+      'authUser': {
         'firstName': 'John',
         'lastName': 'Doe',
-        'token': '32ea5456456456ea',
         'username': 'myname',
         'title': 'admin'
+      },
+      'authToken': {
+        'token': '32ea5456456456ea',
       }
     };
 
@@ -54,9 +54,10 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
         BrowserAnimationsModule,
         FormsModule,
-        RouterTestingModule,
         TranslateModule.forRoot({
           loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
         })
@@ -69,18 +70,10 @@ describe('HeaderComponent', () => {
       providers: [
         AuthenticationService,
         AuthGuard,
+        LocalStorageService,
         NotificationsService,
         ThemeService,
-        TranslateService,
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backendInstance, defaultOptions);
-          },
-          deps: [MockBackend, BaseRequestOptions]
-        },
+        TranslateService
       ]
     })
       .compileComponents();

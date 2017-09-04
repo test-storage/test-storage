@@ -1,24 +1,23 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { AuthenticationService, LocalStorageService } from '../auth/index';
-import { TestsuiteService } from './testsuite.service';
+import { LocalStorageService } from './local-storage.service';
+import { AuthInterceptor } from './auth.interceptor';
 
-describe('TestsuiteService', () => {
+describe('AuthInterceptor', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule
       ],
       providers: [
-        AuthenticationService,
-        LocalStorageService,
-        TestsuiteService
+        AuthInterceptor,
+        LocalStorageService
       ]
     });
   });
 
-  it('should ...', inject([TestsuiteService], (service: TestsuiteService) => {
+  it('should be created', inject([AuthInterceptor], (service: AuthInterceptor) => {
     expect(service).toBeTruthy();
   }));
 });

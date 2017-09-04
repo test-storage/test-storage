@@ -9,6 +9,8 @@ class Auth {
 
   async login(req, res) {
 
+    // TODO proper response with request without content-type
+
     const username: string = req.body.username || '';
     const password: string = req.body.password || '';
 

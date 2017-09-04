@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth/auth.interceptor';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
+
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { LayoutModule } from './modules/layout/layout.module';
 
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
-import { AuthGuard } from './services/auth/auth-guard.service';
-import { AuthenticationService } from './services/auth/authentication.service';
+import { AuthGuard, AuthenticationService, LocalStorageService } from './services/auth/index';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -38,7 +38,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   imports: [
     BrowserModule,
-    HttpModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     FormsModule,
@@ -59,8 +58,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotFoundComponent
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     AuthGuard,
-    AuthenticationService
+    AuthenticationService,
+    LocalStorageService
   ],
   bootstrap: [AppComponent],
 })

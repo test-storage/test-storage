@@ -1,24 +1,19 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { AuthenticationService } from '../auth/authentication.service';
+import { AuthenticationService, LocalStorageService } from '../auth/index';
 import { UserGroupService } from './user-group.service';
 
 describe('UserGroupService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule
+      ],
       providers: [
         AuthenticationService,
-        UserGroupService,
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          useFactory: (backend, options) => new Http(backend, options),
-          deps: [MockBackend, BaseRequestOptions]
-        }
-
+        LocalStorageService,
+        UserGroupService
       ]
     });
   });

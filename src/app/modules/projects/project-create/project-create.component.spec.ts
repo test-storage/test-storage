@@ -1,14 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
-import { AuthenticationService } from '../../../services/auth/authentication.service';
+import { AuthenticationService, LocalStorageService } from '../../../services/auth/index';
 import { ProjectService } from '../../../services/project/project.service';
 import { ProjectCreateComponent } from './project-create.component';
 
@@ -19,10 +18,10 @@ describe('ProjectCreateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
         BrowserAnimationsModule,
-        FormsModule,
-        HttpModule,
-        RouterTestingModule
+        FormsModule
       ],
       declarations: [ProjectCreateComponent],
       providers: [
@@ -30,13 +29,7 @@ describe('ProjectCreateComponent', () => {
         NotificationsService,
         ProjectService,
         AuthenticationService,
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          useFactory: (backend, options) => new Http(backend, options),
-          deps: [MockBackend, BaseRequestOptions]
-        }
+        LocalStorageService
       ]
     })
       .compileComponents();

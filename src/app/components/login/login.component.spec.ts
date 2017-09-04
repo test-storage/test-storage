@@ -1,16 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
 import { ThemeService } from '../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
-import { AuthenticationService } from '../../services/auth/authentication.service';
+import { AuthenticationService, LocalStorageService } from '../../services/auth/index';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
@@ -20,9 +19,10 @@ describe('LoginComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
         BrowserAnimationsModule,
         FormsModule,
-        RouterTestingModule,
         TranslateModule.forRoot({
           loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
         })
@@ -30,16 +30,10 @@ describe('LoginComponent', () => {
       declarations: [LoginComponent],
       providers: [
         AuthenticationService,
+        LocalStorageService,
         NotificationsService,
         ThemeService,
-        TranslateService,
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          useFactory: (backend, options) => new Http(backend, options),
-          deps: [MockBackend, BaseRequestOptions]
-        }
+        TranslateService
       ]
     })
       .compileComponents();
