@@ -43,7 +43,7 @@ export class TestcaseCreateComponent implements OnInit {
   createNewTestcase() {
     this.testcaseService.createTestcase(this.testcase).subscribe(
       response => {
-        if (response === 201) {
+        if (response.status === 201) {
           this.toastNotificationsService.success('Testcase ' + this.testcase.title, 'created successfully!');
 
           this.router.navigate(['./testcases']);

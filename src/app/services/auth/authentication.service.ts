@@ -48,7 +48,6 @@ export class AuthenticationService {
             }, () => {
                 this.loggedIn$.next(false);
             });
-        // .catch(this.handleError);
 
     }
 
@@ -68,18 +67,4 @@ export class AuthenticationService {
         this.loggedIn$.next(false);
     }
 
-    /*
-    private handleError(error: Response) {
-        console.error(error);
-        if (error.status === 401) {
-            const errorMessage = 'LOGINPAGE.INVALID_CREDENTIALS'; // translation key
-            return Observable.throw(errorMessage);
-        } else {
-            // TODO add translation for server error via ERROR.SERVER_ERROR
-            const serverError = 'Server error';
-            return Observable.throw(error.json().status + ' ' + error.json().message || 'Server error');
-        }
-
-    }
- */
 }

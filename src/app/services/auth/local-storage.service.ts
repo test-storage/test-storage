@@ -75,7 +75,7 @@ export class LocalStorageService {
       username: userObject.email,
       firstName: userObject.firstName,
       lastName: userObject.lastName,
-      title: userObject.workInfo.jobTitle
+      title: userObject.work.title
     }));
   }
 

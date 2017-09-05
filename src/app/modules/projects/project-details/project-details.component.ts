@@ -67,7 +67,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.projectService.deleteProject(id).subscribe(
       response => {
-        if (response === 204) {
+        if (response.status === 204) {
           this.toastNotificationsService.success('Project ' + this.project.name, 'deleted successfully!');
 
           this.router.navigate(['./projects']);

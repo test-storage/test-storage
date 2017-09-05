@@ -60,7 +60,7 @@ export class TestcaseDetailsComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.testcaseService.deleteTestcase(id).subscribe(
       response => {
-        if (response === 204) {
+        if (response.status === 204) {
           this.toastNotificationsService.success('Testcase ' + this.testcase.title, ' deleted successfully!');
 
           this.router.navigate(['./testcases']);

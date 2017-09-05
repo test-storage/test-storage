@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 
-import { AuthenticationService, contentHeaders } from '../auth/index';
+import { AuthenticationService } from '../auth/index';
 import { Testsuite } from '../../models/testsuite';
 
 @Injectable()
@@ -18,32 +16,15 @@ export class TestsuiteService {
   }
 
   public getTestsuites(): Observable<Testsuite[]> {
-    contentHeaders.set('x-access-token', this.authenticationService.token);
-    return this.http.get<Testsuite[]>(this.apiPath, { headers: contentHeaders });
-    // .map((response: Response) => response.json())
-    // .catch(this.handleError);
+    return this.http.get<Testsuite[]>(this.apiPath);
   }
 
-  public createTestsuite(testsuite: Testsuite): Observable<Number> {
-    const body = JSON.stringify(testsuite);
-    contentHeaders.set('x-access-token', this.authenticationService.token);
-    return this.http.post(this.apiPath, body, { headers: contentHeaders })
-      .map((response: Response) => response.status);
-    // .catch(this.handleError);
+  public createTestsuite(testsuite: Testsuite) {
+    return this.http.post(this.apiPath, testsuite, { observe: 'response' });
   }
 
-  public deleteTestsuite(id: string): Observable<Number> {
-    contentHeaders.set('x-access-token', this.authenticationService.token);
-    return this.http.delete(this.apiPath + '/' + id, { headers: contentHeaders })
-      .map((response: Response) => response.status);
-    //  .catch(this.handleError);
+  public deleteTestsuite(id: string) {
+    return this.http.delete(this.apiPath + '/' + id, { observe: 'response' });
   }
 
-  /*
-    private handleError(error: Response) {
-      console.error(error);
-      return Observable.throw(error.json().status + ' ' + error.json().message || 'Server error');
-    }
-
-    */
 }

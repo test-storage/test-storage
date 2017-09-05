@@ -43,7 +43,7 @@ export class ProjectCreateComponent implements OnInit {
     this.loading = true;
     this.projectService.createProject(this.project).subscribe(
       response => {
-        if (response === 201) {
+        if (response.status === 201) {
           this.toastNotificationsService.success('Project ' + this.project.name, 'created successfully!');
 
           this.router.navigate(['./projects']);

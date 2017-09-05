@@ -55,7 +55,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   deleteUser(id: string) {
     this.userService.deleteUser(id).subscribe(
       response => {
-        if (response === 204) {
+        if (response.status === 204) {
           this.toastNotificationsService.success('User ' + this.user.lastName + ' ' + this.user.firstName, 'deleted successfully!');
 
           this.router.navigate(['./users']);

@@ -49,7 +49,7 @@ export class TestcasesComponent implements OnInit {
     // TODO delete by object not by ID
     this.testcaseService.deleteTestcase(id).subscribe(
       response => {
-        if (response === 204) {
+        if (response.status === 204) {
           console.log('Testcase deleted successfully');
           this.testcases = this.testcases.filter(testcase => testcase._id !== id);
         }

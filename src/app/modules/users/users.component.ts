@@ -55,7 +55,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     // TODO delete by object not by ID
     this.userService.deleteUser(user._id).subscribe(
       response => {
-        if (response === 204) {
+        if (response.status === 204) {
           console.log('User deleted successfully'); // TODO modal success
           this.toastNotificationsService.success('User ' + user.lastName + ' ' + user.firstName, 'deleted successfully!');
 

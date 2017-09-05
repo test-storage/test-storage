@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 
-import { AuthenticationService, contentHeaders } from '../auth/index';
+import { AuthenticationService } from '../auth/index';
 import { User } from '../../models/user';
 
 @Injectable()
@@ -18,40 +16,23 @@ export class UserService {
     }
 
     getUsers(): Observable<User[]> {
-        contentHeaders.set('x-access-token', this.authenticationService.token);
-        return this.http.get<User[]>(this.apiPath, { headers: contentHeaders });
+        return this.http.get<User[]>(this.apiPath);
     }
 
     getUser(id: string): Observable<User> {
-        contentHeaders.set('x-access-token', this.authenticationService.token);
-        return this.http.get<User>(this.apiPath + '/' + id, { headers: contentHeaders });
+        return this.http.get<User>(this.apiPath + '/' + id);
     }
 
     getUsersMe(): Observable<User> {
-        contentHeaders.set('x-access-token', this.authenticationService.token);
-        return this.http.get<User>(this.apiPath + '/' + 'me', { headers: contentHeaders });
+        return this.http.get<User>(this.apiPath + '/' + 'me');
     }
 
-    public createUser(user: User): Observable<Number> {
-        const body = JSON.stringify(user);
-        contentHeaders.set('x-access-token', this.authenticationService.token);
-        return this.http.post(this.apiPath, body, { headers: contentHeaders })
-            .map((response: Response) => response.status);
-        //   .catch(this.handleError);
+    public createUser(user: User) {
+        return this.http.post(this.apiPath, user, { observe: 'response' });
     }
 
-    public deleteUser(id: string): Observable<Number> {
-        contentHeaders.set('x-access-token', this.authenticationService.token);
-        return this.http.delete(this.apiPath + '/' + id, { headers: contentHeaders })
-            .map((response: Response) => response.status);
-        //  .catch(this.handleError);
+    public deleteUser(id: string) {
+        return this.http.delete(this.apiPath + '/' + id, { observe: 'response' });
     }
 
-
-    /*
-        private handleError(error: Response) {
-            console.error(error);
-            return Observable.throw(error.json().status + ' ' + error.json().message || 'Server error');
-        }
-        */
 }

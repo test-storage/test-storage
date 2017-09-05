@@ -103,7 +103,7 @@ export class TestsuitesTreeComponent implements OnInit {
 
     this.testsuiteService.createTestsuite(this.testsuite).subscribe(
       response => {
-        if (response === 201) {
+        if (response.status === 201) {
           // this.toastNotificationsService.success('Testsuite ' + this.testcase.title, 'created successfully!');
 
           // this.router.navigate(['./testcases']);
