@@ -1,7 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { AuthenticationService, LocalStorageService } from '../auth/index';
 import { TestplanService } from './testplan.service';
 
 describe('TestplanService', () => {
@@ -11,8 +10,6 @@ describe('TestplanService', () => {
         HttpClientTestingModule
       ],
       providers: [
-        AuthenticationService,
-        LocalStorageService,
         TestplanService
       ]
     });

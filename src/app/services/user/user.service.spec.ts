@@ -3,7 +3,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { UserService } from './user.service';
 import { User } from '../../models/user';
-import { AuthenticationService, LocalStorageService } from '../auth/index';
 
 describe('UserService', () => {
 
@@ -13,9 +12,7 @@ describe('UserService', () => {
         HttpClientTestingModule
       ],
       providers: [
-        UserService,
-        AuthenticationService,
-        LocalStorageService
+        UserService
       ]
     });
   });

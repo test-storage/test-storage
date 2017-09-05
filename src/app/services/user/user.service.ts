@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthenticationService } from '../auth/index';
@@ -10,10 +10,7 @@ export class UserService {
 
     apiPath = '/api/v1/users';
 
-    constructor(
-        private http: HttpClient,
-        private authenticationService: AuthenticationService) {
-    }
+    constructor(private http: HttpClient) { }
 
     getUsers(): Observable<User[]> {
         return this.http.get<User[]>(this.apiPath);

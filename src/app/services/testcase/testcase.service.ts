@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { AuthenticationService } from '../auth/index';
 import { Testcase } from '../../models/testcase';
 
 @Injectable()
@@ -10,10 +9,7 @@ export class TestcaseService {
 
   apiPath = '/api/v1/testcases';
 
-  constructor(
-    private http: HttpClient,
-    private authenticationService: AuthenticationService) {
-  }
+  constructor(private http: HttpClient) { }
 
   public getTestcases(): Observable<Testcase[]> {
     return this.http.get<Testcase[]>(this.apiPath);

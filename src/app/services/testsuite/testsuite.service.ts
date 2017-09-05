@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { AuthenticationService } from '../auth/index';
 import { Testsuite } from '../../models/testsuite';
 
 @Injectable()
@@ -10,10 +9,7 @@ export class TestsuiteService {
 
   apiPath = '/api/v1/testsuites';
 
-  constructor(
-    private http: HttpClient,
-    private authenticationService: AuthenticationService) {
-  }
+  constructor(private http: HttpClient) { }
 
   public getTestsuites(): Observable<Testsuite[]> {
     return this.http.get<Testsuite[]>(this.apiPath);

@@ -3,7 +3,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { NotificationsService } from 'angular2-notifications';
 
-import { AuthenticationService, LocalStorageService } from '../auth/index';
 import { ProjectService } from './project.service';
 
 describe('ProjectService', () => {
@@ -14,8 +13,6 @@ describe('ProjectService', () => {
       ],
       providers: [
         NotificationsService,
-        AuthenticationService,
-        LocalStorageService,
         ProjectService
       ]
     });

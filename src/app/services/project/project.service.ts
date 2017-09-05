@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { AuthenticationService } from '../auth/index';
 import { Project } from '../../models/project';
 
 @Injectable()
@@ -10,10 +9,7 @@ export class ProjectService {
 
   apiPath = '/api/v1/projects';
 
-  constructor(
-    private http: HttpClient,
-    private authenticationService: AuthenticationService) {
-  }
+  constructor(private http: HttpClient) { }
 
   public getProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(this.apiPath);
