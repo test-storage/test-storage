@@ -19,8 +19,7 @@ export class AuthenticationService {
         private storage: LocalStorageService
     ) {
         // set token if saved in local storage
-        const authToken = JSON.parse(localStorage.getItem('authToken'));
-        this.token = authToken && authToken.token;
+        this.token = this.storage.getToken();
     }
 
     login(username, password): void {
