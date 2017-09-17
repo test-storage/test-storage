@@ -51,9 +51,9 @@ describe('AuthInterceptor', () => {
         }
       );
 
-      const req = httpMock.expectOne(req =>
-        req.headers.has('x-access-token') &&
-        req.headers.get('x-access-token') === `${mockLocalStorageService.getToken()}`);
+      const req = httpMock.expectOne(request =>
+        request.headers.has('x-access-token') &&
+        request.headers.get('x-access-token') === `${mockLocalStorageService.getToken()}`);
 
       expect(req.request.method).toEqual('GET');
 
@@ -71,7 +71,7 @@ describe('AuthInterceptor', () => {
           }
         );
 
-        const req = httpMock.expectOne(req => !req.headers.has('x-access-token'));
+        const req = httpMock.expectOne(request => !request.headers.has('x-access-token'));
 
         expect(req.request.method).toEqual('POST');
 
