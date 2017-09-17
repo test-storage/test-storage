@@ -15,23 +15,6 @@ import { TranslateStore } from '@ngx-translate/core/src/translate.store';
 describe('AuthenticationService', () => {
 
   beforeEach(() => {
-    let store = {};
-
-    spyOn(localStorage, 'getItem').and.callFake((key: string): string => {
-      return JSON.stringify(store[key]) || null;
-    });
-    spyOn(localStorage, 'removeItem').and.callFake((key: string): void => {
-      delete store[key];
-    });
-    spyOn(localStorage, 'setItem').and.callFake((key: string, value: string): string => {
-      return store[key] = <string>value;
-    });
-    spyOn(localStorage, 'clear').and.callFake(() => {
-      store = {};
-    });
-  });
-
-  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
@@ -69,7 +52,6 @@ describe('AuthenticationService', () => {
       spyOn(router, 'navigate');
 
       expect(authGuard.canActivate()).toBeFalsy();
-      expect(router.navigate).toHaveBeenCalled();
       expect(router.navigate).toHaveBeenCalled();
       expect(router.navigate).toHaveBeenCalledWith(['/auth']);
     })

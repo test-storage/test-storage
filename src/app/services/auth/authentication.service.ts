@@ -50,10 +50,6 @@ export class AuthenticationService {
 
     }
 
-    getToken(): string {
-        return this.storage.getToken();
-    }
-
     isLoggedIn(): BehaviorSubject<boolean> {
         return this.loggedIn$;
     }
