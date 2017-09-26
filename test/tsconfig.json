@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "module": "es2015",
+    "target": "es2017",
+    "module": "es2017",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
@@ -12,7 +12,7 @@
     "strictNullChecks": false,
     "suppressImplicitAnyIndexErrors": true,
     "lib": [
-      "es2015",
+      "es2017",
       "dom"
     ],
     "typeRoots": [
