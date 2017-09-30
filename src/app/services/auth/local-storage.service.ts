@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { tokenNotExpired } from 'angular2-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class LocalStorageService {
 
-  constructor() {
+  constructor(private jwtHelper: JwtHelperService) {
   }
 
   private token = '';
@@ -23,8 +23,8 @@ export class LocalStorageService {
   private getTokenFromStorage() {
     if (localStorage.getItem('authToken')) {
 
-      const currentUser = JSON.parse(localStorage.getItem('authToken'));
-      const token = currentUser && currentUser.token;
+      const authToken = JSON.parse(localStorage.getItem('authToken'));
+      const token = authToken && authToken.token;
 
       if (token) {
         this.token = token;
@@ -36,20 +36,19 @@ export class LocalStorageService {
     }
   }
 
-  tokenNotExpired(): boolean {
-    const token = this.getToken();
+  tokenNotExpired(token: string): boolean {
 
     if (token) {
       // if token not expired return true
-      const notExpired = tokenNotExpired(null, token);
-
+      const notExpired = this.jwtHelper.isTokenExpired(token); // this.jwtHelper.(null, token);
       if (notExpired === true) {
         return true;
       } else {
         return false;
       }
     } else {
-      throw new Error('Token not provided.');
+      console.error('Token not provided.');
+      return false;
     }
   }
 
@@ -58,6 +57,7 @@ export class LocalStorageService {
     localStorage.setItem('authToken', JSON.stringify({
       token: token
     }));
+    this.token = token;
   }
 
   removeToken(): void {
@@ -75,7 +75,7 @@ export class LocalStorageService {
       username: userObject.email,
       firstName: userObject.firstName,
       lastName: userObject.lastName,
-      title: userObject.work.title
+      title: userObject.title
     }));
   }
 

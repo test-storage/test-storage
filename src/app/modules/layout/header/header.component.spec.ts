@@ -12,6 +12,8 @@ import { NotificationsService } from 'angular2-notifications';
 
 import { NotificationsComponent } from '../notifications/notifications.component';
 
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+
 import { AuthenticationService, LocalStorageService } from '../../../services/auth/index';
 import { AuthGuard } from '../../../services/auth/auth-guard.service';
 import { HeaderComponent } from './header.component';
@@ -73,7 +75,12 @@ describe('HeaderComponent', () => {
         LocalStorageService,
         NotificationsService,
         ThemeService,
-        TranslateService
+        TranslateService,
+        JwtHelperService,
+        {
+          provide: JWT_OPTIONS,
+          useValue: {}
+        }
       ]
     })
       .compileComponents();

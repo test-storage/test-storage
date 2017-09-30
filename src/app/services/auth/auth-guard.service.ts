@@ -30,11 +30,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   private checkIfLoggedIn(): boolean {
 
     // if token exist
-    if (!this.loggedIn || !this.storage.tokenNotExpired) {
+    if (this.loggedIn && this.storage.tokenNotExpired(this.authService.token)) {
+      return true;
+    } else {
       this.router.navigate(['/auth']);
-      return this.loggedIn;
+      return false;
     }
-    return this.loggedIn;
   }
 
 }

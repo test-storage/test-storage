@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
@@ -65,7 +67,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     },
     AuthGuard,
     AuthenticationService,
-    LocalStorageService
+    LocalStorageService,
+    JwtHelperService,
+    {
+      provide: JWT_OPTIONS,
+      useValue: {}
+    }
   ],
   bootstrap: [AppComponent],
 })

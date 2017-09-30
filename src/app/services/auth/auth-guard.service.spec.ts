@@ -4,6 +4,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+
 import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
 import { LoginComponent } from '../../components/login/login.component';
@@ -44,7 +46,12 @@ describe('AuthGuardService', () => {
             declarations: [LoginComponent],
             providers: [AuthGuard,
                 AuthenticationService,
-                LocalStorageService
+                LocalStorageService,
+                JwtHelperService,
+                {
+                    provide: JWT_OPTIONS,
+                    useValue: {}
+                }
             ]
         });
     });
