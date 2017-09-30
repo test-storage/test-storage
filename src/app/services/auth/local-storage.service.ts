@@ -40,11 +40,11 @@ export class LocalStorageService {
 
     if (token) {
       // if token not expired return true
-      const notExpired = this.jwtHelper.isTokenExpired(token); // this.jwtHelper.(null, token);
-      if (notExpired === true) {
-        return true;
-      } else {
+      const isExpired = this.jwtHelper.isTokenExpired(token); // this.jwtHelper.(null, token);
+      if (isExpired === true) {
         return false;
+      } else {
+        return true;
       }
     } else {
       console.error('Token not provided.');
