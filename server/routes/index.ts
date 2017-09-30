@@ -39,32 +39,17 @@ class Routes {
     constructor() {
 
         this.router = express.Router();
-        /*
-        this.auth = new Auth();
-        this.attachments = new Attachments();
-        this.notifications = new Notifications();
-        this.projects = new Projects();
-        this.testcases = new Testcases();
-        this.testsuites = new Testsuites();
-        this.testplans = new Testplans();
-        this.testruns = new Testruns();
-        this.testresults = new TestResults();
-        this.usergroups = new UserGroups();
-        this.users = new Users();
-        this.usersettings = new UserSettings();
-        this.projectsettings = new ProjectSettings();
-        */
-
-        // define the API versions
-        const API_VERSIONS = { 'Version 1': '/v1' };
 
         /*
          * Routes that can be accessed by any one
          */
-        this.router.post('/login', this.auth.login.bind(this.auth));
+        this.router.post('/authentication/login', this.auth.login.bind(this.auth));
+        this.router.post('/authentication/refresh', this.auth.refresh.bind(this.auth));
 
 
         // route to display API versions
+        const API_VERSIONS = { 'Version 1': '/v1' };
+
         this.router.get('/api', function (req, res) {
             res.json(API_VERSIONS);
         });

@@ -9,14 +9,14 @@ import { server } from '../../server/server';
  */
 function authenticate(callback) {
   request(server)
-    .post('/login')
+    .post('/authentication/login')
     .send({ username: 'admin', password: 'admin' })
     .end(function (err, res) {
       if (err) {
         console.log('' + err);
       }
-      return callback(res.body.token);
+      return callback(res.body.accessToken);
     });
-};
+}
 
 export { authenticate };
