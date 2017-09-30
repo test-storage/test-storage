@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ThemeService } from '../../services/theme/theme.service';
 
-import { AuthenticationService } from '../../services/auth/authentication.service';
+import { AuthenticationService } from '../../services/auth/index';
 
 @Component({
     selector: 'app-login',
@@ -21,27 +21,19 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService,
         protected translateService: TranslateService
-    ) { }
+    ) {
+        this.authenticationService.isLoggedIn().subscribe((loggedIn: boolean) => {
+            if (loggedIn) {
+                this.router.navigateByUrl('');
+            }
+        });
+    }
 
     ngOnInit() {
-        // reset login status
-        // this.authenticationService.logout();
     }
 
     login() {
         this.loading = true;
-        this.authenticationService.login(this.model.username, this.model.password).subscribe(
-            result => {
-                if (result === true) {
-                    this.router.navigate(['/']);
-                }
-            },
-            error => {
-                this.translateService.get(error).subscribe((err: string) => {
-                    this.error = err;
-                });
-                this.loading = false;
-            }
-        );
+        this.authenticationService.login(this.model.username, this.model.password);
     }
 }

@@ -1,14 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+
+import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
-import { AuthenticationService } from '../../../services/auth/authentication.service';
+import { AuthenticationService, LocalStorageService } from '../../../services/auth/index';
 import { TestcaseService } from '../../../services/testcase/testcase.service';
 import { TestcaseCreateComponent } from './testcase-create.component';
 
@@ -19,24 +20,22 @@ describe('TestcaseCreateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
         BrowserAnimationsModule,
         FormsModule,
-        HttpModule,
-        RouterTestingModule
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+        })
       ],
       declarations: [TestcaseCreateComponent],
       providers: [
+        TranslateService,
         ThemeService,
         NotificationsService,
         TestcaseService,
         AuthenticationService,
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          useFactory: (backend, options) => new Http(backend, options),
-          deps: [MockBackend, BaseRequestOptions]
-        }
+        LocalStorageService
       ]
     })
       .compileComponents();

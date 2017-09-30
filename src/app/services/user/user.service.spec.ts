@@ -1,26 +1,18 @@
 import { TestBed, async, inject } from '@angular/core/testing';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 import { UserService } from './user.service';
 import { User } from '../../models/user';
-import { AuthenticationService } from '../auth/index';
 
 describe('UserService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule
+      ],
       providers: [
-        UserService,
-        AuthenticationService,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backendInstance, defaultOptions);
-          },
-          deps: [MockBackend, BaseRequestOptions]
-        },
-        MockBackend
+        UserService
       ]
     });
   });

@@ -21,6 +21,7 @@
 }
 
 .execution-card {
+    background-color: inherit;
     margin: 25px;
     width: 300px;
     box-sizing: border-box;

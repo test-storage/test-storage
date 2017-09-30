@@ -1,11 +1,11 @@
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+
 import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 import { ThemeService } from '../../services/theme/theme.service';
 
-import { AuthenticationService } from '../../services/auth/authentication.service';
+import { AuthenticationService, LocalStorageService } from '../../services/auth/index';
 import { ProfileComponent } from './profile.component';
 import { UserService } from '../../services/user/user.service';
 
@@ -16,7 +16,7 @@ describe('ProfileComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpModule,
+        HttpClientTestingModule,
         BrowserAnimationsModule,
         TranslateModule.forRoot({
           loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
@@ -27,14 +27,8 @@ describe('ProfileComponent', () => {
         TranslateService,
         TranslateModule,
         AuthenticationService,
-        UserService,
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          useFactory: (backend, options) => new Http(backend, options),
-          deps: [MockBackend, BaseRequestOptions]
-        }
+        LocalStorageService,
+        UserService
       ],
       declarations: [ProfileComponent]
     })

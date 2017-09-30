@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthGuard, AuthenticationService } from './../../../services/auth/index';
+
+import { AuthGuard, AuthenticationService, LocalStorageService } from './../../../services/auth/index';
+
 import { ThemeService } from './../../../services/theme/theme.service';
 import { ClickOutDirective } from 'ngx-clickout';
 
@@ -20,7 +22,8 @@ export class HeaderComponent implements OnInit {
         public themeService: ThemeService,
         private router: Router,
         private authGuard: AuthGuard,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private storage: LocalStorageService
     ) { }
 
     ngOnInit() {
@@ -29,9 +32,14 @@ export class HeaderComponent implements OnInit {
 
 
     private loadUserData() {
-        const data = JSON.parse(localStorage.getItem('currentUser'));
-        this.user.firstName = data.firstName;
-        this.user.lastName = data.lastName;
+        const data = this.storage.getUser();
+        if (data) {
+            this.user.firstName = data.firstName;
+            this.user.lastName = data.lastName;
+        } else {
+            this.user.firstName = '';
+            this.user.lastName = '';
+        }
     }
 
     collapseToggle() {

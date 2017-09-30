@@ -8,6 +8,7 @@ import { UserGroup } from '../../../../src/app/models/usergroup';
 import { Project } from '../../../../src/app/models/project';
 import { Testsuite } from '../../../../src/app/models/testsuite';
 import { Testcase } from '../../../../src/app/models/testcase';
+import { TestcaseStep } from '../../../../src/app/models/testcasestep';
 import { Testplan } from '../../../../src/app/models/testplan';
 import { Testrun } from '../../../../src/app/models/testrun';
 import { TestResult } from '../../../../src/app/models/testresult.model';
@@ -78,6 +79,18 @@ export class MockFactory {
         testcase.enabled = faker.random.boolean();
         testcase.isAutomated = faker.random.boolean();
         return testcase;
+    }
+
+    createTestcaseStep(): TestcaseStep {
+        const testcaseStep: TestcaseStep = new TestcaseStep();
+        testcaseStep.testcaseId = faker.random.uuid();
+        testcaseStep.order = faker.random.number(30);
+        testcaseStep.action = faker.lorem.text();
+        testcaseStep.testData = faker.internet.userName();
+        testcaseStep.expected = faker.lorem.text();
+        testcaseStep.executionType = 'MANUAL';
+        testcaseStep.enabled = true;
+        return testcaseStep;
     }
 
     createAttachment(): Attachment {

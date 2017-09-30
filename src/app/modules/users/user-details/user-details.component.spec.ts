@@ -1,14 +1,13 @@
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router'; // TODO remove
 import { Observable } from 'rxjs/Rx';
 
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
-import { AuthenticationService } from '../../../services/auth/authentication.service';
+import { AuthenticationService, LocalStorageService } from '../../../services/auth/index';
 
 import { UserService } from '../../../services/user/user.service';
 import { UserDetailsComponent } from './user-details.component';
@@ -23,19 +22,16 @@ describe('UserDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule
+      ],
       declarations: [UserDetailsComponent],
       providers: [
         NotificationsService,
         ThemeService,
         UserService,
         AuthenticationService,
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          useFactory: (backend, options) => new Http(backend, options),
-          deps: [MockBackend, BaseRequestOptions]
-        },
+        LocalStorageService,
         {
           provide: Router,
           useValue: mockRouter
@@ -46,9 +42,6 @@ describe('UserDetailsComponent', () => {
             params: Observable.of({ id: 123 })
           }
         }
-      ],
-      imports: [
-        HttpModule
       ]
     })
       .compileComponents();

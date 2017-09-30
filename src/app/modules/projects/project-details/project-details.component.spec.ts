@@ -1,7 +1,6 @@
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BaseRequestOptions, Http, HttpModule, Response, ResponseOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
@@ -12,7 +11,7 @@ import { NotificationsService } from 'angular2-notifications';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
 
-import { AuthenticationService } from '../../../services/auth/authentication.service';
+import { AuthenticationService, LocalStorageService } from '../../../services/auth/index';
 
 import { ProjectService } from '../../../services/project/project.service';
 import { ProjectDetailsComponent } from './project-details.component';
@@ -26,6 +25,13 @@ describe('ProjectDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        ModalModule.forRoot(),
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+        })
+      ],
       declarations: [ProjectDetailsComponent],
       providers: [
         NotificationsService,
@@ -33,13 +39,7 @@ describe('ProjectDetailsComponent', () => {
         TranslateService,
         ProjectService,
         AuthenticationService,
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          useFactory: (backend, options) => new Http(backend, options),
-          deps: [MockBackend, BaseRequestOptions]
-        },
+        LocalStorageService,
         {
           provide: Router,
           useValue: mockRouter
@@ -50,13 +50,6 @@ describe('ProjectDetailsComponent', () => {
             params: Observable.of({ id: 123 })
           }
         }
-      ],
-      imports: [
-        ModalModule.forRoot(),
-        HttpModule,
-        TranslateModule.forRoot({
-          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
-        })
       ]
     })
       .compileComponents();

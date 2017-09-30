@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
+import { TranslateService } from '@ngx-translate/core';
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -17,12 +18,15 @@ export class TestcaseDetailsComponent implements OnInit, OnDestroy {
   id: string;
   private subscription;
   testcase: Testcase;
+  public loading = false;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private testcaseService: TestcaseService,
     public themeService: ThemeService,
-    private notificationsService: NotificationsService
+    private toastNotificationsService: NotificationsService,
+    public translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -47,6 +51,21 @@ export class TestcaseDetailsComponent implements OnInit, OnDestroy {
   createNewTestcase() {
     this.testcaseService.createTestcase(this.testcase).subscribe(
       data => console.log('data: ' + JSON.stringify(data)), // this.project = data,
+      error => console.log(error)
+    );
+  }
+
+  deleteTestcase(id: string) {
+    // TODO delete by object not by ID
+    this.loading = true;
+    this.testcaseService.deleteTestcase(id).subscribe(
+      response => {
+        if (response.status === 204) {
+          this.toastNotificationsService.success('Testcase ' + this.testcase.title, ' deleted successfully!');
+
+          this.router.navigate(['./testcases']);
+        }
+      },
       error => console.log(error)
     );
   }

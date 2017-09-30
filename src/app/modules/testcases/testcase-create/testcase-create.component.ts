@@ -2,6 +2,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { pageTransition } from '../../../animations';
 
+import { TranslateService } from '@ngx-translate/core';
 import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -32,7 +33,8 @@ export class TestcaseCreateComponent implements OnInit {
     private router: Router,
     private testcaseService: TestcaseService,
     public themeService: ThemeService,
-    private toastNotificationsService: NotificationsService
+    private toastNotificationsService: NotificationsService,
+    public translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -41,7 +43,7 @@ export class TestcaseCreateComponent implements OnInit {
   createNewTestcase() {
     this.testcaseService.createTestcase(this.testcase).subscribe(
       response => {
-        if (response === 201) {
+        if (response.status === 201) {
           this.toastNotificationsService.success('Testcase ' + this.testcase.title, 'created successfully!');
 
           this.router.navigate(['./testcases']);

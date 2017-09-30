@@ -30,7 +30,7 @@ export class UserCreateComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private notificationsService: NotificationsService,
+    private toastNotificationsService: NotificationsService,
     public themeService: ThemeService,
     public translate: TranslateService
   ) { }
@@ -43,7 +43,10 @@ export class UserCreateComponent implements OnInit {
 
     this.userService.createUser(this.user).subscribe(
       response => {
-        if (response === 201) {
+        if (response.status === 201) {
+          this.toastNotificationsService.success(
+            'User ' + this.user.firstName + ' ' + this.user.lastName, ' created successfully!');
+
           this.router.navigate(['./users']);
         }
       },

@@ -1,22 +1,28 @@
 import { TestBed, async, inject } from '@angular/core/testing';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
-import { Router } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthGuard, AuthenticationService } from './index';
+import { Router } from '@angular/router'; // TODO remove
+import { FormsModule } from '@angular/forms';
+
+import { AuthGuard, AuthenticationService, LocalStorageService } from './index';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+
 import { LoginComponent } from '../../components/login/login.component';
+
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { TranslateStore } from '@ngx-translate/core/src/translate.store';
-import { FormsModule } from '@angular/forms';
+
 
 describe('AuthenticationService', () => {
 
-  let subject: AuthenticationService = null;
-  let backend: MockBackend = null;
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
+    '.eyJ1c2VybmFtZSI6ImFkbWluIiwidXNlcklkIjoiM2ViYmNlNjk2ZDNlMTllMzIzYmM1NDBmYjRhMzRmYjQiLCJpYXQiOjE1MDU2NzYwMTEsImV4cCI6MTUwNTc2MjQxMX0' +
+    '.DLfWHNWUZn29c7iz2aTxt_Y8BwE1qvzLIAW6FpHO-uI';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         FormsModule,
         TranslateModule,
         RouterTestingModule.withRoutes([
@@ -32,27 +38,40 @@ describe('AuthenticationService', () => {
       providers: [
         AuthGuard,
         AuthenticationService,
-        BaseRequestOptions,
+        LocalStorageService,
+        JwtHelperService,
         {
-          provide: Http,
-          useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backendInstance, defaultOptions);
-          },
-          deps: [MockBackend, BaseRequestOptions]
-        },
-        MockBackend
+          provide: JWT_OPTIONS,
+          useValue: {}
+        }
       ]
     });
   });
-  beforeEach(inject([AuthenticationService, MockBackend], (authenticationService: AuthenticationService, mockBackend: MockBackend) => {
-    subject = authenticationService;
-    backend = mockBackend;
-  }));
 
 
   it('should ...', inject([AuthenticationService], (service: AuthenticationService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should be false if valid token expired', inject([AuthenticationService, LocalStorageService],
+    (service: AuthenticationService, storage: LocalStorageService) => {
+      storage.setToken(token);
+
+      expect(storage.tokenNotExpired('')).toBeFalsy();
+      storage.removeToken();
+    }));
+
+  it('should throw Error if invalid token provided', inject([AuthenticationService, LocalStorageService],
+    (service: AuthenticationService, storage: LocalStorageService) => {
+      storage.setToken('token');
+
+      expect(() => { storage.tokenNotExpired('token'); }).toThrow(
+        new Error(
+          'The inspected token doesn\'t appear to be a JWT. Check to make sure it has three parts and see https://jwt.io for more.'
+        ));
+      storage.removeToken();
+    }));
+
 
   it('checks Auth Guard: if a user is valid',
 
@@ -64,8 +83,8 @@ describe('AuthenticationService', () => {
 
       expect(authGuard.canActivate()).toBeFalsy();
       expect(router.navigate).toHaveBeenCalled();
-      expect(router.navigate).toHaveBeenCalled();
       expect(router.navigate).toHaveBeenCalledWith(['/auth']);
     })
     ));
+
 });

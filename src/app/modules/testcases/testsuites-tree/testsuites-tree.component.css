@@ -1,10 +1,14 @@
 #tree-component {
-    display: flex;
+    /* display: flex; */
     align-self: flex-end;
     border: 1px solid #CACACA;
     width: 300px;
     height: auto;
     min-height: 916px;
+}
+
+.create {
+    margin: 20px 0px;
 }
 
 
