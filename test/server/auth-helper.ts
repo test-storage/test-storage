@@ -1,5 +1,5 @@
 import * as request from 'supertest';
-import { server } from '../../server/server';
+import { server } from '../../server/index';
 
 /**
  * Authenticate a test user.

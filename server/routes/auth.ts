@@ -24,7 +24,7 @@ class Auth {
       return;
     }
 
-    // Fire a query to your DB and check if the credentials are valid
+    // Fire a query to DB and check if the credentials are valid
     const dbUserObj: object = await this.validate(username, password);
 
     if (!dbUserObj) { // If authentication fails, we send a 401 back
@@ -63,7 +63,7 @@ class Auth {
           return;
         }
 
-        // Authorize the user to see if s/he can access our resources
+        // Authorize the user to see if s/he can access resources
         const dbUser = await this.validateUser(decoded.username); // The db user would be the logged in user's username
         if (!dbUser) {
           // No user with this name exists, respond back with a 401
