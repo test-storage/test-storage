@@ -29,11 +29,6 @@ export class Server {
     this.mountRoutes();
   }
 
-  public bootstrap() {
-    return new Server().app;
-  }
-
-
   public configure() {
 
     if (config.get('app.enableGzipCompression') === true) {

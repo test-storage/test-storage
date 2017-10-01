@@ -5,7 +5,7 @@ import * as config from 'config';
 
 import { Server } from './Server';
 
-const app = new Server().bootstrap();
+const app = new Server().app;
 let server;
 
 if (config.get('app.httpsEnabled') === false) {
