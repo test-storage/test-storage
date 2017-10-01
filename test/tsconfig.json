@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -17,13 +17,12 @@
     ],
     "typeRoots": [
       "../node_modules/@types"
+    ],
+    "types": [
+      "node"
     ]
   },
-  "types": [
-    "node"
-  ],
   "exclude": [
-    "./client",
     "../node_modules",
     "./dist",
     "**/*.d.ts"
