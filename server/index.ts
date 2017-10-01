@@ -18,7 +18,7 @@ function setupHttpServer() {
     app.set('port', process.env.PORT || config.get('app.port.http'));
 
     server = app.listen(app.get('port'), function () {
-        console.log(`HTTPS server listening on port ${server.address().port} in ${app.settings.env} mode`);
+        console.log(`HTTP server listening on port ${server.address().port} in ${app.settings.env} mode`);
     });
 }
 
