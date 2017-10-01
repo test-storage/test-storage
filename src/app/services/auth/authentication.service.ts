@@ -26,30 +26,42 @@ export class AuthenticationService {
 
         this.http.post('/authentication/login', { username: username, password: password }, { headers: contentHeaders })
             .subscribe((response: any) => {
-
-                // login successful if there's a jwt token in the response
-                const accessToken = response && response.accessToken;
-                const refreshToken = response && response.refreshToken;
-
-                if (accessToken) {
-                    // set token property
-                    this.token = accessToken;
-
-                    // store username and jwt token in local storage to keep user logged in between page refreshes
-                    this.storage.setToken(accessToken);
-                    this.storage.setRefreshToken(refreshToken);
-                    this.storage.setUser(response.user);
-
-                    // return true to indicate successful login
-                    this.loggedIn$.next(true);
-                } else {
-                    // return false to indicate failed login
-                    this.loggedIn$.next(false);
-                }
+                this.setTokens(response);
             }, () => {
                 this.loggedIn$.next(false);
             });
 
+    }
+
+    refreshToken() {
+        this.http.post('/authentication/refresh', { headers: contentHeaders })
+            .subscribe((response: any) => {
+                this.setTokens(response);
+            }, () => {
+                this.loggedIn$.next(false);
+            });
+    }
+
+    setTokens(response: any) {
+        // login successful if there's a jwt token in the response
+        const accessToken = response && response.accessToken;
+        const refreshToken = response && response.refreshToken;
+
+        if (accessToken) {
+            // set token property
+            this.token = accessToken;
+
+            // store username and jwt token in local storage to keep user logged in between page refreshes
+            this.storage.setToken(accessToken);
+            this.storage.setRefreshToken(refreshToken);
+            this.storage.setUser(response.user);
+
+            // return true to indicate successful login
+            this.loggedIn$.next(true);
+        } else {
+            // return false to indicate failed login
+            this.loggedIn$.next(false);
+        }
     }
 
     isLoggedIn(): BehaviorSubject<boolean> {
