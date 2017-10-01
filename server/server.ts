@@ -13,7 +13,7 @@ import { ValidateRequest } from './middlewares/validateRequest';
 
 import expressValidator = require('express-validator');
 
-class Server {
+export class Server {
 
   public app: express.Application;
 
@@ -27,6 +27,10 @@ class Server {
     this.establishDatabaseConnection();
     // routes
     this.mountRoutes();
+  }
+
+  public bootstrap() {
+    return new Server().app;
   }
 
 
@@ -122,6 +126,5 @@ class Server {
   }
 }
 
-export default new Server().app;
 
 

@@ -3,8 +3,9 @@ import * as http from 'http';
 import * as https from 'https';
 import * as config from 'config';
 
-import app from './Server';
+import { Server } from './Server';
 
+const app = new Server().bootstrap();
 let server;
 
 if (config.get('app.httpsEnabled') === false) {
