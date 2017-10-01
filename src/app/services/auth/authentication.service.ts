@@ -24,18 +24,20 @@ export class AuthenticationService {
 
     login(username, password): void {
 
-        this.http.post('/login', { username: username, password: password }, { headers: contentHeaders })
+        this.http.post('/authentication/login', { username: username, password: password }, { headers: contentHeaders })
             .subscribe((response: any) => {
 
                 // login successful if there's a jwt token in the response
-                const token = response && response.token;
+                const accessToken = response && response.accessToken;
+                const refreshToken = response && response.refreshToken;
 
-                if (token) {
+                if (accessToken) {
                     // set token property
-                    this.token = token;
+                    this.token = accessToken;
 
                     // store username and jwt token in local storage to keep user logged in between page refreshes
-                    this.storage.setToken(token);
+                    this.storage.setToken(accessToken);
+                    this.storage.setRefreshToken(refreshToken);
                     this.storage.setUser(response.user);
 
                     // return true to indicate successful login
@@ -57,7 +59,7 @@ export class AuthenticationService {
     logout(): void {
         // clear token remove user from local storage to log user out
         this.token = '';
-        this.storage.removeToken();
+        this.storage.removeTokens();
         this.storage.removeUser();
         this.loggedIn$.next(false);
     }

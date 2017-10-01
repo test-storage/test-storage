@@ -3,7 +3,7 @@
         "target": "http://localhost:3000",
         "secure": false
     },
-    "/login": {
+    "/authentication/*": {
         "target": "http://localhost:3000",
         "secure": false
     },

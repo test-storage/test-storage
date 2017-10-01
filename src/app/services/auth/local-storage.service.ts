@@ -60,7 +60,18 @@ export class LocalStorageService {
     this.token = token;
   }
 
-  removeToken(): void {
+  getRefreshToken() {
+    return JSON.parse(localStorage.getItem('refreshToken'));
+  }
+
+  setRefreshToken(token: string) {
+    // store jwt token in local sotrage to keep user logged in between page refreshes
+    localStorage.setItem('refreshToken', JSON.stringify({
+      token: token
+    }));
+  }
+
+  removeTokens(): void {
     localStorage.removeItem('authToken');
   }
 
