@@ -9,6 +9,7 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "target": "es5",
+    "module": "commonjs",
     "typeRoots": [
       "node_modules/@types"
     ],
