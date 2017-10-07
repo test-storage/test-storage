@@ -65,6 +65,7 @@ class Auth {
 
         // Authorize the user to see if s/he can access resources
         const dbUser = await this.validateUser(decoded.username); // The db user would be the logged in user's username
+
         if (!dbUser) {
           // No user with this name exists, respond back with a 401
           res.status(401);
@@ -162,7 +163,7 @@ class Auth {
 
     if (refreshToken.length > 0) {
       // compare tokens
-      if (token === refreshToken.token) {
+      if (token.token === refreshToken.token) {
         return true;
       } else {
         console.log('Refresh tokens not match!');
@@ -197,10 +198,10 @@ class Auth {
   private async genToken(user) {
     // const expires = await this.expiresIn(1); // 1 days
 
-    const accessToken = jwt.sign({ username: user.email, userId: user._id }, secret(), { expiresIn: '30m' });
-    const refreshToken = jwt.sign({ username: user.email, userId: user._id }, secret(), { expiresIn: '60d' });
+    const accessToken = await jwt.sign({ username: user.email, userId: user._id }, secret(), { expiresIn: '1m' });
+    const refreshToken = await jwt.sign({ username: user.email, userId: user._id }, secret(), { expiresIn: '60d' });
 
-    const updateToken = await RefreshToken.update({ 'userId': user._id }, { 'token': refreshToken });
+    await RefreshToken.update({ 'userId': user._id }, { 'token': refreshToken }, { upsert: true });
 
     return {
       accessToken: accessToken,

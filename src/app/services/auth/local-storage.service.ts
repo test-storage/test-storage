@@ -61,7 +61,14 @@ export class LocalStorageService {
   }
 
   getRefreshToken() {
-    return JSON.parse(localStorage.getItem('refreshToken'));
+    const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
+    const token = refreshToken && refreshToken.token;
+
+    if (token) {
+      return token;
+    } else {
+      return '';
+    }
   }
 
   setRefreshToken(token: string) {
@@ -73,6 +80,7 @@ export class LocalStorageService {
 
   removeTokens(): void {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('refreshToken');
   }
 
 

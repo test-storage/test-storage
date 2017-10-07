@@ -5,7 +5,7 @@ import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
 import { RefreshTokenInterceptor } from './refresh-token.interceptor';
 
-describe('RefhreshTokenInterceptor', () => {
+describe('RefreshTokenInterceptor', () => {
 
   const mockLocalStorageService = {
     getRefreshToken() {
