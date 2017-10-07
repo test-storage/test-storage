@@ -5,8 +5,8 @@
         "noImplicitAny": false,
         "sourceMap": true,
         "moduleResolution": "node",
-        "outDir": "../dist/server",
-        "mapRoot": "../dist/server",
+        "outDir": "../dist/out-tsc/server",
+        "mapRoot": "../dist/out-tsc/server",
         "skipLibCheck": true,
         "typeRoots": [
             "../node_modules/@types"

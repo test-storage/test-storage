@@ -8,5 +8,5 @@
         "node_modules/**/node_modules",
         "server/**/*.spec.ts"
     ],
-    "exec": "ts-node server/index.ts"
+    "exec": "ts-node ./server/index.ts"
 }

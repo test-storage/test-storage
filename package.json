@@ -14,7 +14,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "set NODE_ENV=production && ts-node server/index.ts",
+    "start": "set NODE_ENV=production && node app.js",
     "heroku-prebuild": "npm i -g @angular/cli ts-node",
     "heroku-postbuild": "ng build --prod --aot --no-progress",
     "server:run": "nodemon",
