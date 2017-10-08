@@ -198,7 +198,7 @@ class Auth {
   private async genToken(user) {
     // const expires = await this.expiresIn(1); // 1 days
 
-    const accessToken = await jwt.sign({ username: user.email, userId: user._id }, secret(), { expiresIn: '1m' });
+    const accessToken = await jwt.sign({ username: user.email, userId: user._id }, secret(), { expiresIn: '30m' });
     const refreshToken = await jwt.sign({ username: user.email, userId: user._id }, secret(), { expiresIn: '60d' });
 
     await RefreshToken.update({ 'userId': user._id }, { 'token': refreshToken }, { upsert: true });
