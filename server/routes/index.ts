@@ -2,23 +2,25 @@ import * as express from 'express';
 
 import { Auth } from './auth';
 
-import { Attachments } from './v1/attachments';
-import { Notifications } from './v1/notifications';
-import { Projects } from './v1/projects';
-import { Testcases } from './v1/testcases';
-import { TestcaseSteps } from './v1/testcasesteps';
-import { Testsuites } from './v1/testsuites';
-import { Testplans } from './v1/testplans';
-import { Testruns } from './v1/testruns';
-import { TestResults } from './v1/testresults';
-import { UserGroups } from './v1/users-groups';
-import { Users } from './v1/users';
-import { UserSettings } from './v1/usersettings';
-import { ProjectSettings } from './v1/projectsettings';
+import {
+    Attachments,
+    Notifications,
+    Projects,
+    ProjectSettings,
+    Testcases,
+    TestcaseSteps,
+    Testsuites,
+    Testplans,
+    Testruns,
+    TestResults,
+    Users,
+    UserGroups,
+    UserSettings
+} from './v1/index';
 
 
 
-class Routes {
+export class Routes {
 
     public router: express.Router;
     protected auth: Auth = new Auth();
@@ -37,9 +39,11 @@ class Routes {
     private projectsettings: ProjectSettings = new ProjectSettings();
 
     constructor() {
-
         this.router = express.Router();
+        this.initRoutes();
+    }
 
+    private initRoutes() {
         /*
          * Routes that can be accessed by any one
          */
@@ -150,4 +154,3 @@ class Routes {
         this.router.delete('/api/v1/admin/users/:id', this.users.delete.bind(this.users));
     }
 }
-export { Routes };
