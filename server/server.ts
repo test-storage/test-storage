@@ -19,17 +19,14 @@ export class Server {
 
   constructor() {
     this.app = express();
-    // configure application
-    this.configure();
-    // mount static
+
+    this.configureMiddlewares();
     this.mountStatic();
-    // database
     this.establishDatabaseConnection();
-    // routes
     this.mountRoutes();
   }
 
-  public configure() {
+  private configureMiddlewares() {
 
     if (config.get('app.enableGzipCompression') === true) {
       // compress all responses
@@ -37,8 +34,6 @@ export class Server {
         threshold: 0
       }));
     }
-
-    this.app.disable('x-powered-by'); // security
 
     if ('development' === this.app.get('env') || 'test' === this.app.get('env')) {
       // only use in development (stack traces/errors and etc)
@@ -53,40 +48,29 @@ export class Server {
   }
 
 
-  public mountStatic() {
+  private mountStatic() {
     // Point static path to dist
     this.app.use(express.static(path.join(__dirname, '../dist')));
-
     // i18n for frontend
     this.app.use('/i18n', express.static(path.join('./i18n')));
   }
 
 
-  public establishDatabaseConnection() {
+  private establishDatabaseConnection() {
     // Use native Node promises
     mongoose.Promise = global.Promise;
 
     const connectionString = config.get('db.scheme') + config.get('db.user') + ':' + config.get('db.password') + '@' +
       config.get('db.host') + '/' + config.get('db.name');
 
-    const connectionOptions = {
-      useMongoClient: true
-    };
-
-    if (process.env.MONGOLAB_URI) {
-      mongoose.connect(process.env.MONGOLAB_URI)
-        .then(() => console.log('MongoDB connection successful'))
-        .catch((err) => console.error(err));
-    } else {
-      mongoose.connect(connectionString, connectionOptions)
-        .then(() => console.log('MongoDB connection successful'))
-        .catch((err) => console.error(err));
-    }
+    mongoose.connect(process.env.MONGOLAB_URI || connectionString, { useMongoClient: true })
+      .then(() => console.log('MongoDB connection successful'))
+      .catch((err) => console.error(err));
   }
 
 
-  public mountRoutes() {
-
+  private mountRoutes() {
+    // CORS Middleware
     this.app.all('/*', function (req, res, next) {
       // CORS headers
       res.header('Access-Control-Allow-Origin', '*'); // restrict it to the required domain
