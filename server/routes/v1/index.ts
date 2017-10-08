@@ -7,7 +7,7 @@ import { Testsuites } from './testsuites';
 import { Testplans } from './testplans';
 import { Testruns } from './testruns';
 import { TestResults } from './testresults';
-import { UserGroups } from './users-groups';
+import { UserGroups } from './usersgroups';
 import { Users } from './users';
 import { UserSettings } from './usersettings';
 import { ProjectSettings } from './projectsettings';

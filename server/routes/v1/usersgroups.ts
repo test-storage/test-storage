@@ -1,18 +1,18 @@
 import * as util from 'util';
 import { Validator } from '../../middlewares/validate';
 
-import { TestrunsCollection } from './database/testruns';
+import { UserGroupsCollection } from './database/usergroups';
 
-export class Testruns {
+export class UserGroups {
 
   private validator: Validator = new Validator();
-  private db: TestrunsCollection = new TestrunsCollection();
+  private db: UserGroupsCollection = new UserGroupsCollection();
+
 
   /*
-   * Get all testruns / GET
+   * Get all user groups
    *
    */
-
   getAll(req, res) {
 
     // check limit, offset, fields param
@@ -20,7 +20,7 @@ export class Testruns {
     const fields = this.validator.validateFields(req, res);
     const offset = this.validator.validateOffset(req, res);
 
-    this.db.getAll(limit, fields, offset, function (err, testruns) {
+    this.db.getAll(limit, fields, offset, function (err, groups) {
       if (err) {
         console.log(err);
         res.
@@ -34,13 +34,13 @@ export class Testruns {
         res.
           set('Content-Type', 'application/json').
           status(200).
-          json(testruns);
+          json(groups);
       }
     });
   }
 
   /*
-   * Get single testrun / GET :id
+   * Get single user group
    *
    */
 
@@ -51,7 +51,7 @@ export class Testruns {
     this.validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    this.db.getOne(req.params.id, fields, function (err, testrun) {
+    this.db.getOne(req.params.id, fields, function (err, group) {
       if (err) {
         console.log(err);
         res.
@@ -65,19 +65,19 @@ export class Testruns {
         res.
           set('Content-Type', 'application/json').
           status(200).
-          json(testrun);
+          json(group);
       }
     });
   }
 
   /*
-   * Create testrun / POST
+   * Create user group
    *
    */
 
   create(req, res) {
-    // TODO testrun.createdBy = currentUser;
-    this.db.create(req.body, function (err, testrun) {
+    // TODO create body check
+    this.db.create(req.body, function (err, group) {
       if (err) {
         console.log(err);
         res.
@@ -91,23 +91,50 @@ export class Testruns {
         res.
           set('Content-Type', 'application/json').
           status(201).
-          location('/api/v1/testruns/' + testrun._id).
-          json(testrun);
+          location('/api/v1/groups/' + group._id).
+          json(group);
       }
     });
   }
 
   /*
-   * Update testrun / PUT
+   * Update user group
    *
    */
 
   update(req, res) {
     // check :id param
     this.validator.isPathValid(req, res);
+    /*
+        // check body
+        req.checkBody({
+          'name': {
+            notEmpty: true,
+            errorMessage: 'Name required'
+          },
+          'description': {
+            notEmpty: true,
+            errorMessage: 'Name required' // Error message for the parameter
+          },
+          'scope.testcases':{
+              optional: true
+          },
+          'scope.testsuites':{
+              optional: true
+          },
+          'users': { //
+            optional: true, // won't validate if field is empty
+            errorMessage: 'Invalid users'
+          }
+        });
 
+        var errors = req.validationErrors();
+        if (errors) {
+          res.status(400).json('There have been validation errors: ' + util.inspect(errors));
+          return;
+        } */
     // TODO need security check (user input) for update
-    this.db.update(req.body, req.params.id, function (err, testrun) {
+    this.db.update(req.body, req.params.id, function (err, group) {
       if (err) {
         console.log(err);
         res.
@@ -121,13 +148,13 @@ export class Testruns {
         res.
           set('Content-Type', 'application/json').
           status(200).
-          json(testrun);
+          json(group);
       }
     });
   }
 
   /*
-   * delete testrun
+   * delete user group
    *
    */
 
@@ -135,7 +162,7 @@ export class Testruns {
     // check :id param
     this.validator.isPathValid(req, res);
 
-    this.db.delete(req.params.id, function (err, testrun) {
+    this.db.delete(req.params.id, function (err, group) {
       if (err) {
         console.log(err);
         res.
@@ -154,3 +181,4 @@ export class Testruns {
     });
   }
 }
+

@@ -1,7 +1,7 @@
-import * as mongoose from 'mongoose';
-import { Attachment } from '../../models/Attachment';
-
+import { Request, Response, NextFunction } from 'express';
 import * as multer from 'multer';
+
+import { AttachmentsCollection } from './database/attachments';
 
 import * as util from 'util';
 import { Validator } from '../../middlewares/validate';
@@ -9,12 +9,10 @@ import { Validator } from '../../middlewares/validate';
 
 export class Attachments {
 
-    private validator: Validator;
+    private validator: Validator = new Validator();
+    private db: AttachmentsCollection = new AttachmentsCollection();
 
     constructor() {
-        this.validator = new Validator();
-
-
         // Storage init
         var storage = multer.diskStorage({
             destination: function (req, file, cb) {
@@ -37,38 +35,32 @@ export class Attachments {
      * Get all attachments
      *
      */
-    getAll(req, res) {
+    public getAll(req: Request, res: Response, next?: NextFunction) {
 
         // check limit, offset, fields param
         const limit = this.validator.validateLimit(req, res);
         const fields = this.validator.validateFields(req, res);
         const offset = this.validator.validateOffset(req, res);
 
-        Attachment.
-            find({}).
-            limit(limit).
-            select(fields).
-            skip(offset).
-            exec(
-            function (err, attachments) {
-
-                if (err) {
-                    console.log(err);
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(500).
-                        json({
-                            'status': 500,
-                            'message': 'Error occured. ' + err
-                        });
-                } else {
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(200).
-                        json(attachments);
-                }
-            });
+        this.db.getAll(limit, fields, offset, function (err, attachments) {
+            if (err) {
+                console.log(err);
+                res.
+                    set('Content-Type', 'application/json').
+                    status(500).
+                    json({
+                        'status': 500,
+                        'message': 'Error occured. ' + err
+                    });
+            } else {
+                res.
+                    set('Content-Type', 'application/json').
+                    status(200).
+                    json(attachments);
+            }
+        });
     }
+
 
 
     /*
@@ -76,35 +68,30 @@ export class Attachments {
      *
      */
 
-    getOne(req, res) {
+    public getOne(req: Request, res: Response, next?: NextFunction) {
 
         // check 'fields' and ':id' params
         const fields = this.validator.validateFields(req, res);
         this.validator.isPathValid(req, res);
         // TODO add sanitizers
 
-        Attachment.
-            findOne({ '_id': req.params.id }).
-            select(fields).
-            exec(
-            function (err, attachment) {
-
-                if (err) {
-                    console.log(err);
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(500).
-                        json({
-                            'status': 500,
-                            'message': 'Error occured. ' + err
-                        });
-                } else {
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(200).
-                        json(attachment);
-                }
-            });
+        this.db.getOne(req.params.id, fields, function (err, attachment) {
+            if (err) {
+                console.log(err);
+                res.
+                    set('Content-Type', 'application/json').
+                    status(500).
+                    json({
+                        'status': 500,
+                        'message': 'Error occured. ' + err
+                    });
+            } else {
+                res.
+                    set('Content-Type', 'application/json').
+                    status(200).
+                    json(attachment);
+            }
+        });
     }
 
     /*
@@ -112,8 +99,9 @@ export class Attachments {
        *
        */
 
-    create(req, res) {
-        Attachment.create(req.body, function (err, attachment) {
+    create(req: Request, res: Response, next?: NextFunction) {
+
+        this.db.create(req.body, function (err, attachment) {
             if (err) {
                 console.log(err);
                 res.
@@ -148,33 +136,27 @@ export class Attachments {
      *
      */
 
-    update(req, res) {
+    update(req: Request, res: Response, next?: NextFunction) {
         // path validation
         this.validator.isPathValid(req, res);
         // TODO need security check (user input) for update
-        Attachment.findOne({ '_id': req.params.id }, function (err, attachment) {
+        this.db.update(req.body, req.params.id, function (err, attachment) {
 
-            attachment.name = req.body.name;
-            attachment.description = req.body.description;
-            attachment.updated = Date.now();
-
-            attachment.save(function (err, attachment, count) {
-                if (err) {
-                    console.log(err);
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(500).
-                        json({
-                            'status': 500,
-                            'message': 'Error occured. ' + err
-                        });
-                } else {
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(200).
-                        json(attachment);
-                }
-            });
+            if (err) {
+                console.log(err);
+                res.
+                    set('Content-Type', 'application/json').
+                    status(500).
+                    json({
+                        'status': 500,
+                        'message': 'Error occured. ' + err
+                    });
+            } else {
+                res.
+                    set('Content-Type', 'application/json').
+                    status(200).
+                    json(attachment);
+            }
         });
     }
 
@@ -183,11 +165,11 @@ export class Attachments {
      *
      */
 
-    delete(req, res) {
+    delete(req: Request, res: Response, next?: NextFunction) {
         // check :id param
         this.validator.isPathValid(req, res);
 
-        Attachment.findOneAndRemove({ '_id': req.params.id }, function (err, group) {
+        this.db.delete(req.params.id, function (err, group) {
             if (err) {
                 console.log(err);
                 res.
