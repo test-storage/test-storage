@@ -3,7 +3,7 @@ import * as http from 'http';
 import * as https from 'https';
 import * as config from 'config';
 
-import { Server } from './Server';
+import { Server } from './server';
 
 const app = new Server().app;
 let server;
