@@ -2,7 +2,7 @@ import * as request from 'supertest';
 import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
-import { server as app } from '../../../../server/server';
+import { server as app } from '../../../../server/index';
 import { authenticate } from '../../auth-helper';
 
 chai.use(chaiHttp);

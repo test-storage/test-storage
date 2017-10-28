@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.28.0 (October 28, 2017)
+- Refactoring: server ([@pumano](https://github.com/pumano) in [#76](https://github.com/test-storage/test-storage/pull/76))
+- Authentication: add refresh tokens, strong JWT secret, refactoring
+
+## 0.27.1 (September 30, 2017)
+- Refactoring: ([@pumano](https://github.com/pumano) in [#75](https://github.com/test-storage/test-storage/pull/75))
+- Test Steps
+
 ## 0.27.0 (August 28, 2017)
 - User list UI: ([@pumano](https://github.com/pumano) in [#74](https://github.com/test-storage/test-storage/pull/74))
 - Test Execution cards UI

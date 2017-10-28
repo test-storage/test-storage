@@ -58,7 +58,7 @@ describe('AuthenticationService', () => {
       storage.setToken(token);
 
       expect(storage.tokenNotExpired('')).toBeFalsy();
-      storage.removeToken();
+      storage.removeTokens();
     }));
 
   it('should throw Error if invalid token provided', inject([AuthenticationService, LocalStorageService],
@@ -69,7 +69,7 @@ describe('AuthenticationService', () => {
         new Error(
           'The inspected token doesn\'t appear to be a JWT. Check to make sure it has three parts and see https://jwt.io for more.'
         ));
-      storage.removeToken();
+      storage.removeTokens();
     }));
 
 

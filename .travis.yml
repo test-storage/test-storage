@@ -27,7 +27,7 @@ before_script:
 
 script:
   # Output useful info for debugging.
-  - node --version && npm --version
+  - node --version && npm --version && ng --version
   # linting
   - npm run lint
   # Run tests

@@ -1,16 +1,13 @@
-import * as mongoose from 'mongoose';
-import { Notification } from '../../models/Notification';
-
 import * as util from 'util';
 import { Validator } from '../../middlewares/validate';
 
+import { NotificationsCollection } from './database/notifications';
+
 export class Notifications {
 
-    private validator: Validator;
+    private validator: Validator = new Validator();
+    private db: NotificationsCollection = new NotificationsCollection();
 
-    constructor() {
-        this.validator = new Validator();
-    }
     /*
      * Get all notifications
      *
@@ -22,30 +19,23 @@ export class Notifications {
         const fields = this.validator.validateFields(req, res);
         const offset = this.validator.validateOffset(req, res);
 
-        Notification.
-            find({}).
-            limit(limit).
-            select(fields).
-            skip(offset).
-            exec(
-            function (err, notifications) {
-
-                if (err) {
-                    console.log(err);
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(500).
-                        json({
-                            'status': 500,
-                            'message': 'Error occured. ' + err
-                        });
-                } else {
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(200).
-                        json(notifications);
-                }
-            });
+        this.db.getAll(limit, fields, offset, function (err, notifications) {
+            if (err) {
+                console.log(err);
+                res.
+                    set('Content-Type', 'application/json').
+                    status(500).
+                    json({
+                        'status': 500,
+                        'message': 'Error occured. ' + err
+                    });
+            } else {
+                res.
+                    set('Content-Type', 'application/json').
+                    status(200).
+                    json(notifications);
+            }
+        });
     }
 
     /*
@@ -60,28 +50,23 @@ export class Notifications {
         this.validator.isPathValid(req, res);
         // TODO add sanitizers
 
-        Notification.
-            findOne({ '_id': req.params.id }).
-            select(fields).
-            exec(
-            function (err, notification) {
-
-                if (err) {
-                    console.log(err);
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(500).
-                        json({
-                            'status': 500,
-                            'message': 'Error occured. ' + err
-                        });
-                } else {
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(200).
-                        json(notification);
-                }
-            });
+        this.db.getOne(req.params.id, fields, function (err, notification) {
+            if (err) {
+                console.log(err);
+                res.
+                    set('Content-Type', 'application/json').
+                    status(500).
+                    json({
+                        'status': 500,
+                        'message': 'Error occured. ' + err
+                    });
+            } else {
+                res.
+                    set('Content-Type', 'application/json').
+                    status(200).
+                    json(notification);
+            }
+        });
     }
 
     /*
@@ -92,27 +77,24 @@ export class Notifications {
     create(req, res) {
         // TODO add validation
 
-        Notification.
-            create(req.body,
-            function (err, notification) {
-
-                if (err) {
-                    console.log(err);
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(500).
-                        json({
-                            'status': 500,
-                            'message': 'Error occured. ' + err
-                        });
-                } else {
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(201).
-                        location('/api/v1/notifications/' + notification._id).
-                        json(notification);
-                }
-            });
+        this.db.create(req.body, function (err, notification) {
+            if (err) {
+                console.log(err);
+                res.
+                    set('Content-Type', 'application/json').
+                    status(500).
+                    json({
+                        'status': 500,
+                        'message': 'Error occured. ' + err
+                    });
+            } else {
+                res.
+                    set('Content-Type', 'application/json').
+                    status(201).
+                    location('/api/v1/notifications/' + notification._id).
+                    json(notification);
+            }
+        });
     }
 
     /*
@@ -128,42 +110,24 @@ export class Notifications {
 
         // TODO check body
 
-        Notification.
-            findOne({ '_id': req.params.id }).
-            exec(
-            function (err, notification) {
-                if (!req.body.id) {
-                    // TODO creation logic
-                    // + add id, created, createdBy and etc
-                }
+        this.db.update(req.body, req.param.id, function (err, notification, count) {
 
-                notification.title = req.body.title;
-                notification.description = req.body.description;
-                notification.entity = req.body.entity;
-                notification.action = req.body.action;
-                notification.senderId = req.body.senderId;
-                notification.recipientId = req.body.recipientId;
-                notification.updated = Date.now();
-
-                notification.save(function (err, notification, count) {
-
-                    if (err) {
-                        console.log(err);
-                        res.
-                            set('Content-Type', 'application/json').
-                            status(500).
-                            json({
-                                'status': 500,
-                                'message': 'Error occured. ' + err
-                            });
-                    } else {
-                        res.
-                            set('Content-Type', 'application/json').
-                            status(200).
-                            json(notification);
-                    }
-                });
-            });
+            if (err) {
+                console.log(err);
+                res.
+                    set('Content-Type', 'application/json').
+                    status(500).
+                    json({
+                        'status': 500,
+                        'message': 'Error occured. ' + err
+                    });
+            } else {
+                res.
+                    set('Content-Type', 'application/json').
+                    status(200).
+                    json(notification);
+            }
+        });
     }
 
     /*
@@ -176,26 +140,22 @@ export class Notifications {
         // check :id param
         this.validator.isPathValid(req, res);
 
-        Notification.
-            findOneAndRemove({ '_id': req.params.id }).
-            exec(
-            function (err, notification) {
-
-                if (err) {
-                    console.log(err);
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(500).
-                        json({
-                            'status': 500,
-                            'message': 'Error occured. ' + err
-                        });
-                } else {
-                    res.
-                        set('Content-Type', 'application/json').
-                        status(204)
-                        .json(true);
-                }
-            });
+        this.db.delete(req.params.id, function (err, notification) {
+            if (err) {
+                console.log(err);
+                res.
+                    set('Content-Type', 'application/json').
+                    status(500).
+                    json({
+                        'status': 500,
+                        'message': 'Error occured. ' + err
+                    });
+            } else {
+                res.
+                    set('Content-Type', 'application/json').
+                    status(204)
+                    .json(true);
+            }
+        });
     }
 }

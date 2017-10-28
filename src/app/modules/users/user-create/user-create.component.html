@@ -1,22 +1,29 @@
 <div id="wrapper" [class.dark-theme]="themeService.theme">
 
+  <h2>{{ 'USERCREATEPAGE.TITLE' | translate }}</h2>
   <div class="create-form">
 
     <form name="form" (ngSubmit)="f.form.valid && createNewUser(f.value)" #f="ngForm" novalidate>
 
+      <hr>
+
       <div class="form-group row">
         <label for="email" class="col-2 col-form-label">{{ 'USERCREATEPAGE.EMAIL' | translate }}</label>
-        <div class="col-6">
+        <div class="col-4">
           <input class="form-control" type="email" name="email" id="email" placeholder="{{ 'USERCREATEPAGE.EMAIL_PLACEHOLDER' | translate }}"
             ngModel #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="4">
 
 
           <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
             <div [hidden]="!email.errors.required">
-              <li><small>{{ 'USERCREATEPAGE.EMAIL_REQUIRED' | translate }}</small></li>
+              <li>
+                <small>{{ 'USERCREATEPAGE.EMAIL_REQUIRED' | translate }}</small>
+              </li>
             </div>
             <div [hidden]="!email.hasErrors('pattern') || (email.touched || email.pristine && !f.submitted)">
-              <li><small>Email must contain @ and dot symbols. Example: 'email@example.com'</small></li>
+              <li>
+                <small>Email must contain @ and dot symbols. Example: 'email@example.com'</small>
+              </li>
             </div>
             <div [hidden]="!email.errors.minlength">
               Email must be at least 4 characters long.
@@ -32,13 +39,15 @@
 
       <div class="form-group row">
         <label for="last-name" class="col-2 col-form-label">{{ 'USERCREATEPAGE.LASTNAME' | translate }}</label>
-        <div class="col-6">
+        <div class="col-4">
           <input class="form-control" type="text" name="lastName" placeholder="{{ 'USERCREATEPAGE.LASTNAME_PLACEHOLDER' | translate }}"
             id="last-name" ngModel #lastName="ngModel" required>
 
           <div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)" class="alert alert-danger">
             <div [hidden]="!lastName.errors.required">
-              <li><small>{{ 'USERCREATEPAGE.LASTNAME_REQUIRED' | translate }}</small></li>
+              <li>
+                <small>{{ 'USERCREATEPAGE.LASTNAME_REQUIRED' | translate }}</small>
+              </li>
             </div>
           </div>
         </div>
@@ -46,54 +55,36 @@
 
       <div class="form-group row">
         <label for="first-name" class="col-2 col-form-label">{{ 'USERCREATEPAGE.FIRSTNAME' | translate }}</label>
-        <div class="col-6">
+        <div class="col-4">
           <input class="form-control" type="text" name="firstName" placeholder="{{ 'USERCREATEPAGE.FIRSTNAME_PLACEHOLDER' | translate }}"
             id="first-name" ngModel #firstName="ngModel" required>
 
           <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
             <div [hidden]="!firstName.errors.required">
-              <li><small>{{ 'USERCREATEPAGE.FIRSTNAME_REQUIRED' | translate }}</small></li>
+              <li>
+                <small>{{ 'USERCREATEPAGE.FIRSTNAME_REQUIRED' | translate }}</small>
+              </li>
             </div>
           </div>
         </div>
       </div>
 
-      <div ngModelGroup="workInfo">
-
-        <div class="form-group row">
-          <label for="jobTitle" class="col-2 col-form-label">{{ 'USERCREATEPAGE.JOBTITLE' | translate }}</label>
-          <div class="col-6">
-            <input class="form-control" type="text" name="jobTitle" placeholder="{{ 'USERCREATEPAGE.JOBTITLE_PLACEHOLDER' | translate }}"
-              id="jobTitle" ngModel required>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="phoneNumber" class="col-2 col-form-label">{{ 'USERCREATEPAGE.PHONE_NUMBER' | translate }}</label>
-          <div class="col-6">
-            <input class="form-control" type="text" name="phoneNumber" placeholder="{{ 'USERCREATEPAGE.PHONE_NUMBER_PLACEHOLDER' | translate }}"
-              id="phoneNumber" ngModel>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="companyName" class="col-2 col-form-label">{{ 'USERCREATEPAGE.COMPANY' | translate }}</label>
-          <div class="col-6">
-            <input class="form-control" type="text" name="companyName" placeholder="{{ 'USERCREATEPAGE.COMPANY_PLACEHOLDER' | translate }}"
-              id="companyName" ngModel>
-          </div>
-        </div>
-      </div>
+      <br>
+      <br>
+      <h6>{{ 'USERCREATEPAGE.PASSWORD' | translate }}</h6>
+      <hr>
 
       <div class="form-group row">
         <label for="password" class="col-2 col-form-label">{{ 'USERCREATEPAGE.PASSWORD' | translate }}</label>
-        <div class="col-6">
-          <input class="form-control" type="text" name="password" placeholder="" id="password" [(ngModel)]="user.password" #password="ngModel"
+        <div class="col-4">
+          <input class="form-control" type="password" name="password" placeholder="" id="password" [(ngModel)]="user.password" #password="ngModel"
             required>
 
           <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
             <div [hidden]="!password.errors.required">
-              <li><small>{{ 'USERCREATEPAGE.PASSWORD_REQUIRED' | translate }}</small></li>
+              <li>
+                <small>{{ 'USERCREATEPAGE.PASSWORD_REQUIRED' | translate }}</small>
+              </li>
             </div>
           </div>
         </div>
@@ -102,32 +93,71 @@
 
       <div class="form-group row">
         <label for="confirmPassword" class="col-2 col-form-label">{{ 'USERCREATEPAGE.CONFIRMPASSWORD' | translate }}</label>
-        <div class="col-6">
-          <input class="form-control" type="text" name="confirmPassword" placeholder="" id="confirmPassword" #confirmPassword required>
+        <div class="col-4">
+          <input class="form-control" type="password" name="confirmPassword" placeholder="" id="confirmPassword" #confirmPassword required>
 
           <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
             <div [hidden]="!password.errors.required">
-              <li><small>{{ 'USERCREATEPAGE.CONFIRMPASSWORD_REQUIRED' | translate }}</small></li>
+              <li>
+                <small>{{ 'USERCREATEPAGE.CONFIRMPASSWORD_REQUIRED' | translate }}</small>
+              </li>
             </div>
           </div>
           <div *ngIf="password != confirmPassword && (password.dirty || password.touched)" class="alert alert-danger">
             <div [hidden]="password != confirmPassword">
-              <li><small>{{ 'USERCREATEPAGE.PASSWORDSMATCH' | translate }}</small></li>
+              <li>
+                <small>{{ 'USERCREATEPAGE.PASSWORDSMATCH' | translate }}</small>
+              </li>
             </div>
           </div>
         </div>
 
       </div>
 
+      <br>
+      <br>
+      <h6>{{ 'USERCREATEPAGE.SECTION_ADDITIONAL' | translate }}</h6>
+      <hr>
+
+      <div ngModelGroup="workInfo">
+
+        <div class="form-group row">
+          <label for="jobTitle" class="col-2 col-form-label">{{ 'USERCREATEPAGE.JOBTITLE' | translate }}</label>
+          <div class="col-4">
+            <input class="form-control" type="text" name="jobTitle" placeholder="{{ 'USERCREATEPAGE.JOBTITLE_PLACEHOLDER' | translate }}"
+              id="jobTitle" ngModel required>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="phoneNumber" class="col-2 col-form-label">{{ 'USERCREATEPAGE.PHONE_NUMBER' | translate }}</label>
+          <div class="col-4">
+            <input class="form-control" type="text" name="phoneNumber" placeholder="{{ 'USERCREATEPAGE.PHONE_NUMBER_PLACEHOLDER' | translate }}"
+              id="phoneNumber" ngModel>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="companyName" class="col-2 col-form-label">{{ 'USERCREATEPAGE.COMPANY' | translate }}</label>
+          <div class="col-4">
+            <input class="form-control" type="text" name="companyName" placeholder="{{ 'USERCREATEPAGE.COMPANY_PLACEHOLDER' | translate }}"
+              id="companyName" ngModel>
+          </div>
+        </div>
+      </div>
 
 
-      <div class="form-group row">
-        <div class="offset-sm-2 col-sm-10">
+
+      <div class="text-right">
+        <div class="col-6">
           <button type="submit" class="btn btn-primary">{{ 'USERCREATEPAGE.CREATE_USER' | translate }}</button>
         </div>
       </div>
 
     </form>
+
+    <br>
+    <br>
 
   </div>
 

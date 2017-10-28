@@ -90,6 +90,7 @@
         "CREATE_TESTCASE": "Создать Тесткейс"
     },
     "USERCREATEPAGE": {
+        "TITLE": "Создать профиль пользователя",
         "EMAIL": "Email",
         "EMAIL_PLACEHOLDER": "email@example.com",
         "EMAIL_REQUIRED": "Email - обязательное поле",
@@ -110,7 +111,8 @@
         "CONFIRMPASSWORD": "Повторить пароль",
         "CONFIRMPASSWORD_REQUIRED": "Повторить пароль - обязательное поле",
         "PASSWORDSMATCH": "Оба пароля должны быть одинаковы",
-        "CREATE_USER": "Создать Пользователя"
+        "CREATE_USER": "Создать Пользователя",
+        "SECTION_ADDITIONAL": "Дополнительная Информация"
     },
     "USERPROFILEPAGE": {
         "REGISTERED": "Зарегистрирован",

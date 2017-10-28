@@ -1,16 +1,13 @@
-import * as mongoose from 'mongoose';
-import { Testplan } from '../../models/Testplan';
-
 import * as util from 'util';
 import { Validator } from '../../middlewares/validate';
 
+import { TestplansCollection } from './database/testplans';
+
 export class Testplans {
 
-  private validator: Validator;
+  private validator: Validator = new Validator();
+  private db: TestplansCollection = new TestplansCollection();
 
-  constructor() {
-    this.validator = new Validator();
-  }
   /*
    * Get all testplans / GET
    *
@@ -23,26 +20,23 @@ export class Testplans {
     const fields = this.validator.validateFields(req, res);
     const offset = this.validator.validateOffset(req, res);
 
-    Testplan.
-      find({}).
-      exec(
-      function (err, testplans) {
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(200).
-            json(testplans);
-        }
-      });
+    this.db.getAll(limit, fields, offset, function (err, testplans) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(200).
+          json(testplans);
+      }
+    });
   }
 
   /*
@@ -57,27 +51,23 @@ export class Testplans {
     this.validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Testplan.
-      findOne({ '_id': req.params.id }).
-      select(fields).
-      exec(
-      function (err, testplan) {
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(200).
-            json(testplan);
-        }
-      });
+    this.db.getOne(req.params.id, fields, function (err, testplan) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(200).
+          json(testplan);
+      }
+    });
   }
 
   /*
@@ -87,26 +77,24 @@ export class Testplans {
 
   create(req, res) {
     // TODO testplan.createdBy = currentUser;
-    Testplan.
-      create(req.body,
-      function (err, testplan) {
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(201).
-            location('/api/v1/testplans/' + testplan._id).
-            json(testplan);
-        }
-      });
+    this.db.create(req.body, function (err, testplan) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(201).
+          location('/api/v1/testplans/' + testplan._id).
+          json(testplan);
+      }
+    });
   }
 
   /*
@@ -119,43 +107,23 @@ export class Testplans {
     this.validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
-    Testplan.
-      findOne({ '_id': req.params.id }).
-      exec(
-      function (err, testplan) {
-
-        testplan.name = req.body.name;
-        testplan.description = req.body.description;
-        testplan.projectId = req.body.projectId;
-        testplan.builds = req.body.builds;
-        testplan.environments = req.body.environments;
-        testplan.platforms = req.body.platforms;
-        testplan.testcases = req.body.testcases;
-        testplan.status = req.body.status;
-        testplan.startDate = req.body.startDate;
-        testplan.endDate = req.body.endDate;
-
-        testplan.updated = Date.now();
-        // TODO testplan.updatedBy = currentUser;
-
-        testplan.save(function (err, testplan, count) {
-          if (err) {
-            console.log(err);
-            res.
-              set('Content-Type', 'application/json').
-              status(500).
-              json({
-                'status': 500,
-                'message': 'Error occured. ' + err
-              });
-          } else {
-            res.
-              set('Content-Type', 'application/json').
-              status(200).
-              json(testplan);
-          }
-        });
-      });
+    this.db.update(req.body, req.params.id, function (err, testplan) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(200).
+          json(testplan);
+      }
+    });
   }
 
   /*
@@ -167,25 +135,22 @@ export class Testplans {
     // check :id param
     this.validator.isPathValid(req, res);
 
-    Testplan.
-      findOneAndRemove({ '_id': req.params.id }).
-      exec(
-      function (err, testplan) {
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(204).
-            json(true);
-        }
-      });
+    this.db.delete(req.params.id, function (err, testplan) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(204).
+          json(true);
+      }
+    });
   }
 }
