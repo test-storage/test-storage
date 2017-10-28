@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "es2017",
+    "target": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
@@ -17,10 +17,12 @@
     ],
     "typeRoots": [
       "../node_modules/@types"
+    ],
+    "types": [
+      "node"
     ]
   },
   "exclude": [
-    "./client",
     "../node_modules",
     "./dist",
     "**/*.d.ts"

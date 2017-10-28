@@ -1,21 +1,14 @@
-import * as mongoose from 'mongoose';
-import { Project } from '../../models/Project';
-
 import * as util from 'util';
 import { Validator } from '../../middlewares/validate';
 import { Auth } from '../auth';
 
+import { ProjectsCollection } from './database/projects';
+
 export class Projects {
 
-  public validator: Validator;
-  private auth: Auth;
-
-  constructor() {
-    // TODO thinking about DI
-    this.validator = new Validator();
-    this.auth = new Auth();
-  }
-
+  public validator: Validator = new Validator();
+  private auth: Auth = new Auth();
+  private db: ProjectsCollection = new ProjectsCollection();
   /*
    * Get all projects
    *
@@ -28,29 +21,24 @@ export class Projects {
     const fields: number = this.validator.validateFields(req, res);
     const offset: number = this.validator.validateOffset(req, res);
 
-    Project.
-      find({}).
-      limit(limit).
-      select(fields).
-      skip(offset).
-      exec(
-      function (err, projects) {
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(200).
-            json(projects);
-        }
-      });
+
+    this.db.getAll(limit, fields, offset, function (err, projects) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(200).
+          json(projects);
+      }
+    });
   }
 
   /*
@@ -64,27 +52,24 @@ export class Projects {
     this.validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Project.
-      findOne({ '_id': req.params.id }).
-      select(fields).
-      exec(
-      function (err, project) {
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(200).
-            json(project);
-        }
-      });
+
+    this.db.getOne(req.params.id, fields, function (err, project) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(200).
+          json(project);
+      }
+    });
   }
 
   /*
@@ -98,26 +83,24 @@ export class Projects {
     body.createdBy = this.auth.getUserId(req, res);
 
     // TODO req.body validation
-    Project.
-      create(req.body,
-      function (err, project) {
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(201).
-            location('/api/v1/projects/' + project._id).
-            json(project);
-        }
-      });
+    this.db.create(req.body, function (err, project) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(201).
+          location('/api/v1/projects/' + project._id).
+          json(project);
+      }
+    });
   }
 
   /*
@@ -130,35 +113,23 @@ export class Projects {
     this.validator.isPathValid(req, res);
 
     // TODO need security check (user input) for update
-    Project
-      .findOne({ '_id': req.params.id })
-      .exec(
-      function (err, project) {
-        project.name = req.body.name;
-        project.description = req.body.description;
-        project.enabled = req.body.enabled;
-        project.testcases = req.body.testcases;
-        project.updated = Date.now();
-        project.updatedBy = () => { this.auth.getUserId(req, res); }
-
-        project.save(function (err, project, count) {
-          if (err) {
-            console.log(err);
-            res.
-              set('Content-Type', 'application/json').
-              status(500).
-              json({
-                'status': 500,
-                'message': 'Error occured. ' + err
-              });
-          } else {
-            res.
-              set('Content-Type', 'application/json').
-              status(200).
-              json(project);
-          }
-        });
-      });
+    this.db.update(req.body, req.params.id, function (err, project) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(200).
+          json(project);
+      }
+    });
   }
 
   /*
@@ -170,26 +141,23 @@ export class Projects {
     // check :id param
     this.validator.isPathValid(req, res);
 
-    Project
-      .findOneAndRemove({ '_id': req.params.id })
-      .exec(
-      function (err, project) {
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(204).
-            json(true);
-        }
-      });
+    this.db.delete(req.params.id, function (err, project) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(204).
+          json(true);
+      }
+    });
   }
 
 }

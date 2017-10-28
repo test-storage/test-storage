@@ -2,7 +2,7 @@ import * as request from 'supertest';
 import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
-import { server as app } from '../../../../server/server';
+import { server as app } from '../../../../server/index';
 import { authenticate } from '../../auth-helper';
 
 import { MockFactory } from '../mocks/mock.factory';
@@ -133,7 +133,7 @@ describe('/testcases', function () {
                 expect(res.body).to.have.deep.property('preConditions', testcaseMockEdited.preConditions);
                 expect(res.body).to.have.deep.property('title', testcaseMockEdited.title);
                 expect(res.body).to.have.deep.property('description', testcaseMockEdited.description);
-                expect(res.body).to.have.deep.property('steps',  testcaseMockEdited.steps);
+                expect(res.body).to.have.deep.property('steps', testcaseMockEdited.steps);
                 expect(res.body).to.have.deep.property('testData', testcaseMockEdited.testData);
                 expect(res.body).to.have.deep.property('expected', testcaseMockEdited.expected);
                 expect(res.body).to.have.deep.property('postConditions', testcaseMockEdited.postConditions);

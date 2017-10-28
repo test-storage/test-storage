@@ -90,6 +90,7 @@
         "CREATE_TESTCASE": "Create Testcase"
     },
     "USERCREATEPAGE": {
+        "TITLE": "Create User Profile",
         "EMAIL": "Email",
         "EMAIL_PLACEHOLDER": "email@example.com",
         "EMAIL_REQUIRED": "Email is required",
@@ -111,7 +112,8 @@
         "CONFIRMPASSWORD": "Confirm Password",
         "CONFIRMPASSWORD_REQUIRED": "Confirm password required",
         "PASSWORDSMATCH": "Password and Confirm Password should be equal",
-        "CREATE_USER": "Create User"
+        "CREATE_USER": "Create User",
+        "SECTION_ADDITIONAL": "Additional Information"
     },
     "USERPROFILEPAGE": {
         "REGISTERED": "Registered",

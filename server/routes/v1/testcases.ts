@@ -1,16 +1,13 @@
-import * as mongoose from 'mongoose';
-import { Testcase } from '../../models/Testcase';
-
 import * as util from 'util';
 import { Validator } from '../../middlewares/validate';
 
+import { TestcasesCollection } from './database/testcases';
+
 export class Testcases {
 
-  private validator: Validator;
+  private validator: Validator = new Validator();
+  private db: TestcasesCollection = new TestcasesCollection();
 
-  constructor() {
-    this.validator = new Validator();
-  }
   /*
    * Get all testcases
    *
@@ -22,30 +19,23 @@ export class Testcases {
     const fields = this.validator.validateFields(req, res);
     const offset = this.validator.validateOffset(req, res);
 
-    Testcase.
-      find({}).
-      limit(limit).
-      select(fields).
-      skip(offset).
-      exec(
-      function (err, testcases) {
-
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(200).
-            json(testcases);
-        }
-      });
+    this.db.getAll(limit, fields, offset, function (err, testcases) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(200).
+          json(testcases);
+      }
+    });
   }
 
   /*
@@ -60,28 +50,23 @@ export class Testcases {
     this.validator.isPathValid(req, res);
     // TODO add sanitizers
 
-    Testcase.
-      findOne({ '_id': req.params.id }).
-      select(fields).
-      exec(
-      function (err, testcase) {
-
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(200).
-            json(testcase);
-        }
-      });
+    this.db.getOne(req.params.id, fields, function (err, testcase) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(200).
+          json(testcase);
+      }
+    });
   }
 
   /*
@@ -91,28 +76,24 @@ export class Testcases {
 
   create(req, res) {
     // TODO add validation
-
-    Testcase.
-      create(req.body,
-      function (err, testcase) {
-
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(201).
-            location('/api/v1/testcases/' + testcase._id).
-            json(testcase);
-        }
-      });
+    this.db.create(req.body, function (err, testcase) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(201).
+          location('/api/v1/testcases/' + testcase._id).
+          json(testcase);
+      }
+    });
   }
 
   /*
@@ -155,56 +136,23 @@ export class Testcases {
       return;
     }
 
-    Testcase.
-      findOne({ '_id': req.params.id }).
-      exec(
-      function (err, testcase) {
-        if (!req.body.id) {
-          // TODO creation logic
-          // + add id, created, createdBy and etc
-        }
-        testcase.projectId = req.body.projectId;
-        testcase.testSuiteId = req.body.testSuiteId;
-        testcase.priority = req.body.priority;
-        testcase.order = req.body.order;
-        testcase.title = req.body.title;
-        testcase.description = req.body.description;
-        testcase.preConditions = req.body.preConditions;
-        testcase.steps = req.body.steps;
-        testcase.testData = req.body.testData;
-        testcase.expected = req.body.expected;
-        testcase.postConditions = req.body.postConditions;
-        testcase.tags = req.body.tags;
-        testcase.estimate = req.body.estimate;
-        testcase.enabled = req.body.enabled;
-        testcase.isAutomated = req.body.isAutomated;
-        testcase.status = req.body.status;
-        if (req.body.status) {
-          // TODO add checks
-          // also "Approved"
-          testcase.status = req.body.status;
-        }
-        testcase.updated = Date.now();
-
-        testcase.save(function (err, testcase, count) {
-
-          if (err) {
-            console.log(err);
-            res.
-              set('Content-Type', 'application/json').
-              status(500).
-              json({
-                'status': 500,
-                'message': 'Error occured. ' + err
-              });
-          } else {
-            res.
-              set('Content-Type', 'application/json').
-              status(200).
-              json(testcase);
-          }
-        });
-      });
+    this.db.update(req.body, req.params.id, function (err, testcase) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(200).
+          json(testcase);
+      }
+    });
   }
 
   /*
@@ -217,27 +165,23 @@ export class Testcases {
     // check :id param
     this.validator.isPathValid(req, res);
 
-    Testcase.
-      findOneAndRemove({ '_id': req.params.id }).
-      exec(
-      function (err, testcase) {
-
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(204)
-            .json(true);
-        }
-      });
+    this.db.delete(req.params.id, function (err, testcase) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(204)
+          .json(true);
+      }
+    });
   }
 
 
@@ -255,29 +199,22 @@ export class Testcases {
     // check :id param
     this.validator.isPathValid(req, res);
 
-    Testcase.
-      find({ 'projectId': req.params.id }).
-      limit(limit).
-      select(fields).
-      skip(offset).
-      exec(
-      function (err, testcases) {
-
-        if (err) {
-          console.log(err);
-          res.
-            set('Content-Type', 'application/json').
-            status(500).
-            json({
-              'status': 500,
-              'message': 'Error occured. ' + err
-            });
-        } else {
-          res.
-            set('Content-Type', 'application/json').
-            status(200).
-            json(testcases);
-        }
-      });
+    this.db.getTestcasesByProjectId(limit, fields, offset, req.params.id, function (err, testcases) {
+      if (err) {
+        console.log(err);
+        res.
+          set('Content-Type', 'application/json').
+          status(500).
+          json({
+            'status': 500,
+            'message': 'Error occured. ' + err
+          });
+      } else {
+        res.
+          set('Content-Type', 'application/json').
+          status(200).
+          json(testcases);
+      }
+    });
   }
 }
