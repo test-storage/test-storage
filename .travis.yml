@@ -22,7 +22,7 @@ before_install:
 
 before_script:
   - sleep 5
-  - mongo test-storage config/db-init.js
+  - mongo test-storage install/db-init.js
 
 script:
   # Output useful info for debugging.
