@@ -23,7 +23,7 @@ import { MockedTestcases } from '../../models/testcases.mock';
 import { TestsuitesTreeComponent } from './testsuites-tree/testsuites-tree.component';
 
 
-describe('TestcasesComponent', () => {
+xdescribe('TestcasesComponent', () => {
   let component: TestcasesComponent;
   let fixture: ComponentFixture<TestcasesComponent>;
 

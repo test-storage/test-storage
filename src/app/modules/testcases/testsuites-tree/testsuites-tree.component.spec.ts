@@ -13,7 +13,7 @@ import { TestsuiteService } from '../../../services/testsuite/testsuite.service'
 import { TestsuitesTreeComponent } from './testsuites-tree.component';
 
 
-describe('TestsuitesTreeComponent', () => {
+xdescribe('TestsuitesTreeComponent', () => {
   let component: TestsuitesTreeComponent;
   let fixture: ComponentFixture<TestsuitesTreeComponent>;
 
