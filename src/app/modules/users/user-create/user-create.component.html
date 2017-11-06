@@ -20,10 +20,9 @@
             <div [hidden]="!email.errors.required">
               <small>{{ 'USERCREATEPAGE.EMAIL_REQUIRED' | translate }}</small>
             </div>
-            <!--
-            <div [hidden]="!email.hasErrors('pattern') || (email.touched || email.pristine && !f.submitted)">
+            <div [hidden]="!email.errors.pattern">
               <small>Email must contain @ and dot symbols. Example: 'email@example.com'</small>
-            </div>-->
+            </div>
             <div [hidden]="!email.errors.minlength">
               <small>Email must be at least 4 characters long.</small>
             </div>
@@ -73,11 +72,14 @@
         <label for="password" class="col-2 offset-1 col-form-label">{{ 'USERCREATEPAGE.PASSWORD' | translate }}</label>
         <div class="col-4">
           <input class="form-control" type="password" name="password" placeholder="" id="password" [(ngModel)]="user.password" #password="ngModel"
-            required>
+            required minlength="6">
 
           <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
             <div [hidden]="!password.errors.required">
               <small>{{ 'USERCREATEPAGE.PASSWORD_REQUIRED' | translate }}</small>
+            </div>
+            <div [hidden]="!password.errors.minlength">
+              <small>Password must be at least 6 characters long.</small>
             </div>
           </div>
         </div>
@@ -87,7 +89,8 @@
       <div class="form-group row">
         <label for="confirmPassword" class="col-2 offset-1 col-form-label">{{ 'USERCREATEPAGE.CONFIRMPASSWORD' | translate }}</label>
         <div class="col-4">
-          <input class="form-control" type="password" name="confirmPassword" placeholder="" id="confirmPassword" #confirmPassword required>
+          <input class="form-control" type="password" name="confirmPassword" placeholder="" id="confirmPassword" #confirmPassword required
+            minlength="6">
 
           <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
             <div [hidden]="!password.errors.required">
@@ -97,6 +100,9 @@
           <div *ngIf="password != confirmPassword && (password.dirty || password.touched)" class="alert alert-danger">
             <div [hidden]="password != confirmPassword">
               <small>{{ 'USERCREATEPAGE.PASSWORDSMATCH' | translate }}</small>
+            </div>
+            <div [hidden]="!confirmPassword.errors.minlength">
+              <small>Confirm Password must be at least 6 characters long.</small>
             </div>
           </div>
         </div>
