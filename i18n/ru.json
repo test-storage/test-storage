@@ -91,6 +91,7 @@
     },
     "USERCREATEPAGE": {
         "TITLE": "Создать профиль пользователя",
+        "SECTION_GENERAL": "Основные",
         "EMAIL": "Email",
         "EMAIL_PLACEHOLDER": "email@example.com",
         "EMAIL_REQUIRED": "Email - обязательное поле",
