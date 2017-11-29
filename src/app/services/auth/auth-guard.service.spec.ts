@@ -8,7 +8,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
-import { LoginComponent } from '../../components/login/login.component';
+import { LoginComponent } from '../../modules/auth/login/login.component';
 
 // import { Router } from '@angular/router'; // TODO remove
 

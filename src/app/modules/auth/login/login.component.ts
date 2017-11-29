@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { ThemeService } from '../../services/theme/theme.service';
+import { ThemeService } from '../../../services/theme/theme.service';
 
-import { AuthenticationService } from '../../services/auth/index';
+import { AuthenticationService } from '../../../services/auth/index';
 
 @Component({
     selector: 'app-login',

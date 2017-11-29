@@ -1,0 +1,25 @@
+<div class="navbar navbar-inverse navbar-fixed-left" [class.navbar-mini]="sidebarCollapsed">
+  <a class="navbar-brand" routerLink="/">
+    <span class="logo-strong">Test</span>
+    <span class="logo-text">Storage</span>
+  </a>
+  <ul class="nav navbar-nav">
+    <li [class.active]=""><a routerLink="/dashboard"><i class="fa fa-dashboard"></i><span class="sidebar-title">{{ 'SIDEBAR.DASHBOARD' | translate }}</span><!--<span class="fa fa-chevron-down"></span>--></a>
+      <!-- <li class="dropdown" class="dropdown-toggle" data-toggle="dropdown">-->
+      <!--
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Sub Menu1</a></li>
+        <li><a href="#">Sub Menu2</a></li>
+        <li><a href="#">Sub Menu3</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Sub Menu4</a></li>
+        <li><a href="#">Sub Menu5</a></li>
+      </ul>
+      -->
+    </li>
+    <li><a routerLink="/projects"><i class="fa fa-folder-o"></i><span class="sidebar-title">{{ 'SIDEBAR.PROJECTS' | translate }}</span></a></li>
+    <li><a routerLink="/testcases"><i class="fa fa-inbox"></i><span class="sidebar-title">{{ 'SIDEBAR.TESTCASES' | translate }}</span><span class="label label-primary">1234</span></a></li>
+    <li><a routerLink="/executions"><i class="fa fa-history"></i><span class="sidebar-title">{{ 'SIDEBAR.TEST_EXECUTIONS' | translate }}</span></a></li>
+    <li><a routerLink="/reports"><i class="fa fa-bar-chart-o"></i><span class="sidebar-title">{{ 'SIDEBAR.REPORTS' | translate }}</span></a></li>
+  </ul>
+</div>

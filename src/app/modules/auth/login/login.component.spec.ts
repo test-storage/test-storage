@@ -6,12 +6,12 @@ import { FormsModule } from '@angular/forms';
 
 import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
-import { ThemeService } from '../../services/theme/theme.service';
+import { ThemeService } from '../../../services/theme/theme.service';
 import { NotificationsService } from 'angular2-notifications';
 
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
-import { AuthenticationService, LocalStorageService } from '../../services/auth/index';
+import { AuthenticationService, LocalStorageService } from '../../../services/auth/index';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
