@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthGuard, AuthenticationService, LocalStorageService } from './index';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
-import { LoginComponent } from '../../components/login/login.component';
+import { LoginComponent } from '../../modules/auth/login/login.component';
 
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { TranslateStore } from '@ngx-translate/core/src/translate.store';
