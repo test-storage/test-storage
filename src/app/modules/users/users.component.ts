@@ -1,8 +1,8 @@
 import { Component, OnInit, HostBinding, OnDestroy, TemplateRef } from '@angular/core';
 import { pageTransition } from '../../animations';
 
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { BsModalService } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import { NotificationsService } from 'angular2-notifications';
 
