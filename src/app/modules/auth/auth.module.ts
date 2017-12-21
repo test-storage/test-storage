@@ -16,6 +16,7 @@ import { AuthGuard, AuthenticationService, LocalStorageService } from '../../ser
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ThemeService } from '../../services/theme/theme.service';
+import { AuthComponent } from './auth.component';
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { ThemeService } from '../../services/theme/theme.service';
   ],
   declarations: [
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AuthComponent
   ]
 })
 export class AuthModule { }
