@@ -24,7 +24,7 @@ export class TestcasesService {
     return await this.testcaseModel.findOne({ '_id': id }).exec();
   }
 
-  async update(id): Promise<Testcase> {
+  async update(id, testcase: Testcase): Promise<Testcase> {
     return await this.testcaseModel.findOneAndUpdate({ '_id': id }).exec();
   }
 
