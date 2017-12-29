@@ -1,9 +1,10 @@
 import { Get, Post, Put, Delete, Controller, Body, Param } from '@nestjs/common';
 
-import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { ValidationPipe } from '../common/pipes/validation.pipe';
+import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
 
 import { TestsuitesService } from './testsuites.service';
+
 import { Testsuite } from './interfaces/testsuite.interface';
 import { CreateTestsuiteDto } from './dto/create-testsuite.dto';
 
@@ -23,18 +24,19 @@ export class TestsuitesController {
   }
 
   @Get(':id')
-  findOne( @Param('id', new ParseIntPipe()) id): Promise<Testsuite> {
-    // logic
+  findOne( @Param('id', new ParameterValidationPipe()) id): Promise<Testsuite> {
     return this.testsuitesService.findOne(id);
   }
 
   @Put(':id')
-  findOneAndUpdate( @Param('id', new ParseIntPipe()) id) {
-    // logic
+  findOneAndUpdate(
+    @Body(new ValidationPipe()) createTestsuiteDto: CreateTestsuiteDto,
+    @Param('id', new ParameterValidationPipe()) id) {
+    return this.testsuitesService.update(id, createTestsuiteDto);
   }
 
   @Delete(':id')
-  delete( @Param('id', new ParseIntPipe()) id) {
-    // logic
+  delete( @Param('id', new ParameterValidationPipe()) id) {
+    return this.testsuitesService.delete(id);
   }
 }

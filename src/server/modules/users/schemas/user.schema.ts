@@ -4,7 +4,6 @@ import * as crypto from 'crypto';
 export const UserSchema = new mongoose.Schema({
     _id: {
         type: String,
-        unique: true,
         default: function () {
             return crypto.randomBytes(16).toString('hex');
         }

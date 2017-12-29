@@ -9,7 +9,7 @@ export class UsersService {
 
   constructor( @Inject('UserModelToken') private readonly userModel: Model<User>) { }
 
-  async create(user: User): Promise<User> {
+  async create(user: CreateUserDto): Promise<User> {
     const createdUser = new this.userModel(user);
     return await createdUser.save();
   }
@@ -26,8 +26,8 @@ export class UsersService {
     return await this.userModel.findOne({ 'email': username }).exec();
   }
 
-  async update(id): Promise<User> {
-    return await this.userModel.findOneAndUpdate({ '_id': id }).exec();
+  async update(id, user: CreateUserDto): Promise<User> {
+    return await this.userModel.findOneAndUpdate({ '_id': id }, user).exec();
   }
 
   async delete(id): Promise<void> {

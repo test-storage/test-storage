@@ -1,8 +1,10 @@
 import { Get, Post, Put, Delete, Controller, Body, Param } from '@nestjs/common';
 
-import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
+import { ValidationPipe } from '../common/pipes/validation.pipe';
+import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
 
 import { RolesService } from './roles.service';
+
 import { Role } from './interfaces/role.interface';
 import { CreateRoleDto } from './dto/create-role.dto';
 
@@ -22,18 +24,18 @@ export class RolesController {
   }
 
   @Get(':id')
-  findOne( @Param('id', new ParseIntPipe()) id): Promise<Role> {
-    // logic
+  findOne( @Param('id', new ParameterValidationPipe()) id): Promise<Role> {
     return this.rolesService.findOne(id);
   }
 
   @Put(':id')
-  findOneAndUpdate( @Param('id', new ParseIntPipe()) id) {
-    // logic
+  findOneAndUpdate( @Body(new ValidationPipe()) createRoleDto: CreateRoleDto,
+    @Param('id', new ParameterValidationPipe()) id) {
+    return this.rolesService.update(id, createRoleDto);
   }
 
   @Delete(':id')
-  delete( @Param('id', new ParseIntPipe()) id) {
-    // logic
+  delete( @Param('id', new ParameterValidationPipe()) id) {
+    return this.rolesService.delete(id);
   }
 }

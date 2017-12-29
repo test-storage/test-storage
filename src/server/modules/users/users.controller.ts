@@ -1,9 +1,10 @@
 import { Get, Post, Put, Delete, Controller, Body, Param } from '@nestjs/common';
 
-import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { ValidationPipe } from '../common/pipes/validation.pipe';
+import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
 
 import { UsersService } from './users.service';
+
 import { User } from './interfaces/user.interface';
 import { CreateUserDto } from './dto/create-user.dto';
 
@@ -23,18 +24,20 @@ export class UsersController {
   }
 
   @Get(':id')
-  findOne( @Param('id', new ParseIntPipe()) id): Promise<User> {
+  findOne( @Param('id', new ParameterValidationPipe()) id): Promise<User> {
     // logic
     return this.usersService.findOne(id);
   }
 
   @Put(':id')
-  findOneAndUpdate( @Param('id', new ParseIntPipe()) id) {
-    // logic
+  findOneAndUpdate(
+    @Body(new ValidationPipe()) createUserDto: CreateUserDto,
+    @Param('id', new ParameterValidationPipe()) id) {
+    return this.usersService.update(id, createUserDto);
   }
 
   @Delete(':id')
-  delete( @Param('id', new ParseIntPipe()) id) {
-    // logic
+  delete( @Param('id', new ParameterValidationPipe()) id) {
+    return this.usersService.delete(id);
   }
 }
