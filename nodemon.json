@@ -8,5 +8,5 @@
         "node_modules/**/node_modules",
         "src/**/*.spec.ts"
     ],
-    "exec": "ts-node ./src/server/server.ts --project server.tsconfig.json"
+    "exec": "ts-node --require ./src/server/server.ts --project server.tsconfig.json "
 }
