@@ -2,16 +2,15 @@ import { Model } from 'mongoose';
 import { Component, Inject } from '@nestjs/common';
 
 import { CreateRoleDto } from './dto/create-role.dto';
-
 import { Role } from './interfaces/role.interface';
-import { RolesModule } from './roles.module';
+
 
 @Component()
 export class RolesService {
 
   constructor( @Inject('RoleModelToken') private readonly roleModel: Model<Role>) { }
 
-  async create(role: Role): Promise<Role> {
+  async create(role: CreateRoleDto): Promise<Role> {
     const createdRole = new this.roleModel(role);
     return await createdRole.save();
   }
@@ -24,8 +23,8 @@ export class RolesService {
     return await this.roleModel.findOne({ '_id': id }).exec();
   }
 
-  async update(id): Promise<Role> {
-    return await this.roleModel.findOneAndUpdate({ '_id': id }).exec();
+  async update(id, role: CreateRoleDto): Promise<Role> {
+    return await this.roleModel.findOneAndUpdate({ '_id': id }, role).exec();
   }
 
   async delete(id): Promise<void> {

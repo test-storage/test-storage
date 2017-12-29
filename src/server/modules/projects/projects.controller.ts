@@ -4,6 +4,7 @@ import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
 
 import { ProjectsService } from './projects.service';
+
 import { Project } from './interfaces/project.interface';
 import { CreateProjectDto } from './dto/create-project.dto';
 
@@ -30,12 +31,13 @@ export class ProjectsController {
   }
 
   @Put(':id')
-  findOneAndUpdate( @Body(new ValidationPipe()) createProjectDto: CreateProjectDto) {
-    // logic
+  findOneAndUpdate( @Body(new ValidationPipe()) createProjectDto: CreateProjectDto,
+    @Param('id', new ParameterValidationPipe()) id) {
+    return this.projectsService.update(id, createProjectDto);
   }
 
   @Delete(':id')
   delete( @Param('id', new ParameterValidationPipe()) id) {
-    // logic
+    return this.projectsService.delete(id);
   }
 }

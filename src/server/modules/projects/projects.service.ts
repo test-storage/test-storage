@@ -24,9 +24,9 @@ export class ProjectsService {
     return await this.projectModel.findOne({ '_id': id }).exec();
   }
 
-  async update(project: Project, id): Promise<Project> {
+  async update(id, project: Project): Promise<Project> {
     const createdOrUpdatedProject = new this.projectModel(project);
-    return await this.projectModel.findOneAndUpdate(project, { '_id': id }).exec();
+    return await this.projectModel.findOneAndUpdate({ '_id': id }, project).exec();
   }
 
   async delete(id): Promise<void> {

@@ -3,7 +3,7 @@ import * as crypto from 'crypto';
 
 export const TestsuiteSchema = new mongoose.Schema({
   _id: {
-    type: String, unique: true,
+    type: String,
     default: function () {
       return crypto.randomBytes(16).toString('hex');
     }

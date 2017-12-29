@@ -4,6 +4,7 @@ import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
 
 import { TestcasesService } from './testcases.service';
+
 import { Testcase } from './interfaces/testcase.interface';
 import { CreateTestcaseDto } from './dto/create-testcase.dto';
 
@@ -24,7 +25,6 @@ export class TestcasesController {
 
   @Get(':id')
   findOne( @Param('id', new ParameterValidationPipe()) id): Promise<Testcase> {
-    // logic
     return this.testcasesService.findOne(id);
   }
 
@@ -37,6 +37,6 @@ export class TestcasesController {
 
   @Delete(':id')
   delete( @Param('id', new ParameterValidationPipe()) id) {
-    // logic
+    return this.testcasesService.delete(id);
   }
 }
