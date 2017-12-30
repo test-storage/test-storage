@@ -11,7 +11,7 @@ import { NotFoundExceptionFilter } from './modules/common/filters/not-found-exce
 
 import * as config from 'config';
 
-const server = express();
+export const server = express();
 
 async function bootstrap() {
 
