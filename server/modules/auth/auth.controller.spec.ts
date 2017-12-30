@@ -25,8 +25,8 @@ describe('AuthController', () => {
         password: 'password'
       };
       const result = {
-        expires_in: 3600,
-        access_token: 'data'
+        expiresIn: 3600,
+        accessToken: 'data'
       };
 
       spyOn(authService, 'getAccessToken').and.returnValue(result);

@@ -23,7 +23,7 @@ describe('UsersController', () => {
     it('should return an array of users', async () => {
 
       const result: User[] = [
-        { email: 'User', password: 'fff', lastName: 'ff', firstName: 'ff' }
+        { email: 'User', password: 'pass', lastName: 'lastname', firstName: 'firstname' }
       ];
 
       spyOn(usersService, 'findAll').and.returnValue(result);
