@@ -12,9 +12,8 @@ mongoose.Promise = global.Promise;
 
 async function connectToDB() {
 
-  const connectionString = config.get('db.scheme') +
-    config.get('db.user') + ':' + config.get('db.password') + '@' +
-    config.get('db.host') + '/' + config.get('db.name');
+  const connectionString = `mongodb://${config.get('db.user')}:${config.get('db.password')}@${config.get('db.host')}`;
+
 
   const connectionOptions = {
     useMongoClient: true

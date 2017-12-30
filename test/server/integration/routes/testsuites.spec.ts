@@ -5,7 +5,7 @@ import chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-import { server as app } from '../../../../server/index';
+import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
 
 import { MockFactory } from '../mocks/mock.factory';
