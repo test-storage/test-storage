@@ -11,10 +11,10 @@
         "target": "es6"
     },
     "include": [
-        "src/server/modules/**/*",
-        "src/server/server.ts"
+        "server/modules/**/*",
+        "server/server.ts"
     ],
     "exclude": [
-        "src/server/**/*.spec.ts"
+        "server/**/*.spec.ts"
     ]
 }

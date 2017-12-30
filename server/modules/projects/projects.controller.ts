@@ -31,7 +31,8 @@ export class ProjectsController {
   }
 
   @Put(':id')
-  findOneAndUpdate( @Body(new ValidationPipe()) createProjectDto: CreateProjectDto,
+  findOneAndUpdate(
+    @Body(new ValidationPipe()) createProjectDto: CreateProjectDto,
     @Param('id', new ParameterValidationPipe()) id) {
     return this.projectsService.update(id, createProjectDto);
   }

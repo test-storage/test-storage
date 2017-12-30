@@ -1,12 +1,12 @@
 {
     "watch": [
-        "src/server/*"
+        "server/*"
     ],
     "ext": "ts",
     "ignore": [
         ".git",
         "node_modules/**/node_modules",
-        "src/**/*.spec.ts"
+        "**/*.spec.ts"
     ],
-    "exec": "ts-node --require ./src/server/server.ts --project server.tsconfig.json "
+    "exec": "ts-node --require ./server/server.ts --project server.tsconfig.json "
 }
