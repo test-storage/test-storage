@@ -27,7 +27,7 @@ describe('Core Tests', function () {
         request(app)
             .get('/api/v1/projects')
             .set('Accept', 'application/json')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);

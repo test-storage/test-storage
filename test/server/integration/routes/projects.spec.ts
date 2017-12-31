@@ -32,7 +32,7 @@ describe('/projects', function () {
     it('POST /projects respond with status 201 and JSON', function (done: DoneFn) {
         chai.request(app)
             .post('/api/v1/projects')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .send(projectMock)
             .end(function (err, res) {
                 expect(res.status).to.equal(201);
@@ -49,7 +49,7 @@ describe('/projects', function () {
         request(app)
             .get('/api/v1/projects/' + entityId)
             .set('Accept', 'application/json')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
@@ -67,7 +67,7 @@ describe('/projects', function () {
         request(app)
             .get('/api/v1/projects')
             .set('Accept', 'application/json')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
@@ -86,7 +86,7 @@ describe('/projects', function () {
     it('PUT /projects respond with status 200 and JSON', function (done: DoneFn) {
         request(app)
             .put('/api/v1/projects/' + entityId)
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .send(projectMockEdited)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
@@ -106,7 +106,7 @@ describe('/projects', function () {
         request(app)
             .delete('/api/v1/projects/' + entityId)
             .set('Accept', 'application/json')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(204);
                 done();

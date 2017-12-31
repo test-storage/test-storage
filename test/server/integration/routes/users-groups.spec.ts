@@ -35,7 +35,7 @@ describe('/users/groups', function () {
 
         request(app)
             .post('/api/v1/users/groups')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .send(userGroupMock)
             .end(function (err, res) {
                 expect(res.status).to.equal(201);
@@ -53,7 +53,7 @@ describe('/users/groups', function () {
         request(app)
             .get('/api/v1/users/groups/' + entityId)
             .set('Accept', 'application/json')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
@@ -71,7 +71,7 @@ describe('/users/groups', function () {
         request(app)
             .get('/api/v1/users/groups')
             .set('Accept', 'application/json')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
@@ -90,7 +90,7 @@ describe('/users/groups', function () {
 
         request(app)
             .put('/api/v1/users/groups/' + entityId)
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .send(userGroupMockEdited)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
@@ -111,7 +111,7 @@ describe('/users/groups', function () {
         request(app)
             .delete('/api/v1/users/groups/' + entityId)
             .set('Accept', 'application/json')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(204);
                 done();
