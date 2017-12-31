@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import * as express from 'express';
 import * as path from 'path';
 import * as morgan from 'morgan';
+import * as compression from 'compression';
 
 import { NestFactory } from '@nestjs/core';
 import { ApplicationModule } from './modules/app.module';
@@ -11,12 +12,16 @@ import { NotFoundExceptionFilter } from './modules/common/filters/not-found-exce
 
 import * as config from 'config';
 
-export const server = express();
+const expressServer = express();
+let server;
 
 async function bootstrap() {
 
-  const app = await NestFactory.create(ApplicationModule, server);
+  const app = await NestFactory.create(ApplicationModule, expressServer);
   app.useGlobalFilters(new NotFoundExceptionFilter());
+  if (config.get('app.enableGzipCompression') === true) {
+    app.use(compression());
+  }
   app.use(morgan('dev'));
   // Point static path to dist
   app.use(express.static(path.join(__dirname, '../../dist')));
@@ -26,7 +31,7 @@ async function bootstrap() {
 
   if (config.get('app.httpsEnabled') === false) {
 
-    http.createServer(server).listen(3000);
+    server = http.createServer(expressServer).listen(3000);
 
   } else {
 
@@ -35,8 +40,9 @@ async function bootstrap() {
       cert: fs.readFileSync(config.get('https.certificate'), 'utf8')
     };
 
-    https.createServer(httpsOptions, server).listen(443);
+    server = https.createServer(httpsOptions, expressServer).listen(443);
 
   }
 }
 bootstrap();
+export { server };
