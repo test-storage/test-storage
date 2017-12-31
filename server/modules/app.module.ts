@@ -1,4 +1,5 @@
 import { Module, NestModule, MiddlewaresConsumer, RequestMethod } from '@nestjs/common';
+
 import { AuthModule } from './auth/auth.module';
 import { CORSMiddleware } from './common/middlewares/cors.middleware';
 
@@ -9,7 +10,7 @@ import { ProjectsModule } from './projects/projects.module';
 import { TestsuitesModule } from './testsuites/testsuites.module';
 
 @Module({
-  modules: [
+  imports: [
     AuthModule,
     ProjectsModule,
     TestcasesModule,

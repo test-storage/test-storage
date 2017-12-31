@@ -34,7 +34,7 @@ describe('/testruns', function () {
 
         request(app)
             .post('/api/v1/testruns')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .send(testrunMock)
             .end(function (err, res) {
                 expect(res.status).to.equal(201);
@@ -52,7 +52,7 @@ describe('/testruns', function () {
         request(app)
             .get('/api/v1/testruns/' + entityId)
             .set('Accept', 'application/json')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
@@ -76,7 +76,7 @@ describe('/testruns', function () {
         request(app)
             .get('/api/v1/testruns')
             .set('Accept', 'application/json')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
@@ -99,7 +99,7 @@ describe('/testruns', function () {
 
         request(app)
             .put('/api/v1/testruns/' + entityId)
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .send(testrunMockEdited)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
@@ -126,7 +126,7 @@ describe('/testruns', function () {
         request(app)
             .delete('/api/v1/testruns/' + entityId)
             .set('Accept', 'application/json')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(204);
                 done();
