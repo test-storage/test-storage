@@ -14,7 +14,8 @@ export class ProjectsLayoutComponent implements OnInit {
     showProgressBar: false,
     pauseOnHover: false,
     clickToClose: true,
-    maxLength: 30
+    maxLength: 30,
+    preventDuplicates: true
   };
 
   constructor() { }

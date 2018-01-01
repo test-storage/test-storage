@@ -6,14 +6,10 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { ThemeService } from './../../services/theme/theme.service';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { HeaderComponent } from '../layout/header/header.component';
-import { NotificationsComponent } from '../layout/notifications/notifications.component';
+import { HeaderModule } from '../layout/header/header.module';
 
 import { ProjectsLayoutRoutingModule } from './projects-layout-routing.module';
 import { ProjectsLayoutComponent } from './projects-layout.component';
-
-import { ClickOutModule } from 'ngx-clickout';
-import { NotificationComponent } from 'angular2-notifications';
 
 import { SharedModule } from '../../shared/shared.module';
 
@@ -22,14 +18,12 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     ProjectsLayoutRoutingModule,
     FormsModule,
-    ClickOutModule,
     SimpleNotificationsModule.forRoot(),
     TranslateModule,
+    HeaderModule,
     SharedModule
   ],
   declarations: [
-    HeaderComponent,
-    NotificationsComponent,
     ProjectsLayoutComponent
   ]
 })
