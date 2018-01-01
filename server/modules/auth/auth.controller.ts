@@ -15,4 +15,10 @@ export class AuthController {
     return await this.authService.getAccessToken(userDto);
   }
 
+  @HttpCode(200)
+  @Post('refresh')
+  public async refresh() {
+    return await this.authService.getRefreshToken();
+  }
+
 }

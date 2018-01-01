@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
       // Set content headers
       let headers = contentHeaders;
-      headers = contentHeaders.set('x-access-token', authToken);
+      headers = contentHeaders.set('Authorization', `Bearer ${authToken}`);
 
       // Clone the request to add the new header.
       const authReq = req.clone({ headers: headers });
