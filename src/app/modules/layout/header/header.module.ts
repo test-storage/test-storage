@@ -3,23 +3,28 @@ import { CommonModule } from '@angular/common';
 
 import { ThemeService } from './../../../services/theme/theme.service';
 
-import { HeaderComponent } from './header.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { ClickOutModule } from 'ngx-clickout';
 
+import { HeaderComponent } from './header.component';
 import { NotificationsComponent } from '../notifications/notifications.component';
 
 @NgModule({
-    imports: [
-        CommonModule
-    ],
-    exports: [
-        HeaderModule
-    ],
-    declarations: [
-        HeaderComponent,
-        NotificationsComponent
-    ],
-    providers: [
-        ThemeService
-    ]
+  imports: [
+    CommonModule,
+    TranslateModule,
+    ClickOutModule
+  ],
+  declarations: [
+    HeaderComponent,
+    NotificationsComponent
+  ],
+  providers: [
+    ThemeService
+  ],
+  exports: [
+    HeaderComponent,
+    NotificationsComponent
+  ]
 })
 export class HeaderModule { }

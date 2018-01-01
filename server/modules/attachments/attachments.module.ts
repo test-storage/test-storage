@@ -22,6 +22,6 @@ export class AttachmentsModule {
     ]).forRoutes({
       method: RequestMethod.POST,
       path: 'attachments/upload',
-    })
+    });
   }
 }
