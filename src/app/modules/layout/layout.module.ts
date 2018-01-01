@@ -6,17 +6,22 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { ThemeService } from './../../services/theme/theme.service';
 
-import { LayoutComponent } from './layout.component';
+import { HeaderModule } from './header/header.module';
 import { HeaderComponent } from './header/header.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+
+import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
-import { NotificationsComponent } from './notifications/notifications.component';
+
+
 
 @NgModule({
   imports: [
     LayoutRoutingModule,
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    HeaderModule
   ],
   exports: [
     LayoutComponent
