@@ -9,7 +9,7 @@ describe('RefreshTokenInterceptor', () => {
 
   const mockLocalStorageService = {
     getRefreshToken() {
-      return 'fakeToken';
+      return 'Refresh fakeToken';
     }
   };
 
@@ -53,8 +53,8 @@ describe('RefreshTokenInterceptor', () => {
         );
 
         const req = httpMock.expectOne(request =>
-          request.headers.has('x-refresh-token') &&
-          request.headers.get('x-refresh-token') === `${mockLocalStorageService.getRefreshToken()}`);
+          request.headers.has('Authorization') &&
+          request.headers.get('Authorization') === `Refresh ${mockLocalStorageService.getRefreshToken()}`);
 
         expect(req.request.method).toEqual('POST');
 

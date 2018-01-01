@@ -5,23 +5,23 @@ import { AuthService } from '../auth.service';
 import { jwtSecret } from './jwt.secret';
 
 @Component()
-export class JwtStrategy extends Strategy {
+export class JwtRefreshStrategy extends Strategy {
   constructor(private readonly authService: AuthService) {
     super(
       {
-        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+        jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Refresh'),
         passReqToCallback: true,
         secretOrKey: jwtSecret(),
       },
       async (req, payload, next) => await this.verify(req, payload, next)
     );
-    console.log('JwtStrategy');
+    console.log('JwtRefreshStrategy');
     passport.use(this);
   }
 
   public async verify(req, payload, done) {
-    console.log('JwtStrategy verify');
-    const isValid = await this.authService.validateUser(payload);
+    console.log('JwtRefreshStrategy verify');
+    const isValid = await this.authService.validateRefreshToken(payload);
     if (!isValid) {
       return done('Unauthorized', false);
     }

@@ -19,7 +19,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
 
       // Set content headers
       let headers = contentHeaders;
-      headers = contentHeaders.set('x-refresh-token', refreshToken);
+      headers = contentHeaders.set('Authorization', `Refresh ${refreshToken}`);
 
       // Clone the request to add the new header.
       const refreshReq = req.clone({ headers: headers });

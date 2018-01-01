@@ -9,7 +9,7 @@ describe('AuthInterceptor', () => {
 
   const mockLocalStorageService = {
     getToken() {
-      return 'fakeToken';
+      return 'Bearer fakeToken';
     }
   };
 
@@ -52,8 +52,8 @@ describe('AuthInterceptor', () => {
       );
 
       const req = httpMock.expectOne(request =>
-        request.headers.has('x-access-token') &&
-        request.headers.get('x-access-token') === `${mockLocalStorageService.getToken()}`);
+        request.headers.has('Authorization') &&
+        request.headers.get('Authorization') === `Bearer ${mockLocalStorageService.getToken()}`);
 
       expect(req.request.method).toEqual('GET');
 
@@ -71,7 +71,7 @@ describe('AuthInterceptor', () => {
           }
         );
 
-        const req = httpMock.expectOne(request => !request.headers.has('x-access-token'));
+        const req = httpMock.expectOne(request => !request.headers.has('Authorization'));
 
         expect(req.request.method).toEqual('POST');
 

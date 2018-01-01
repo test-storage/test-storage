@@ -18,9 +18,11 @@ export class AuthService {
     const expiresIn = 60 * 60, secretOrKey = jwtSecret();
     const user = { email: this.authorizedUser.email };
     const token = jwt.sign(user, secretOrKey, { expiresIn });
+    const refreshToken = jwt.sign(user, secretOrKey, { expiresIn });
     return {
       expiresIn: expiresIn,
       accessToken: token,
+      refreshToken: refreshToken
     };
   }
 
@@ -33,7 +35,17 @@ export class AuthService {
     }
   }
 
+  async getRefreshToken() {
+    return await this.createToken();
+  }
+
   async validateUser(signedUser): Promise<boolean> {
+    // put some validation logic here
+    // for example query user by id / email / username
+    return true;
+  }
+
+  async validateRefreshToken(signedUser): Promise<boolean> {
     // put some validation logic here
     // for example query user by id / email / username
     return true;
