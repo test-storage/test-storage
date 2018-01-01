@@ -11,7 +11,7 @@ import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
 
 @Module({
-  modules: [UsersModule],
+  imports: [UsersModule],
   components: [
     AuthService,
     JwtStrategy

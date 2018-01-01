@@ -7,7 +7,7 @@ import { TestsuitesController } from './testsuites.controller';
 import { TestsuitesService } from './testsuites.service';
 
 @Module({
-  modules: [DatabaseModule],
+  imports: [DatabaseModule],
   controllers: [TestsuitesController],
   components: [
     TestsuitesService,

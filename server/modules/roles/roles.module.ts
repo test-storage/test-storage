@@ -7,7 +7,7 @@ import { RolesController } from './roles.controller';
 import { RolesService } from './roles.service';
 
 @Module({
-  modules: [DatabaseModule],
+  imports: [DatabaseModule],
   controllers: [RolesController],
   components: [
     RolesService,

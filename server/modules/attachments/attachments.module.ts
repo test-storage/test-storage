@@ -9,7 +9,7 @@ import { AttachmentsService } from './attachments.service';
 import { FileUploadMiddleware } from '../common/middlewares/file-upload.middleware';
 
 @Module({
-  modules: [
+  imports: [
     DatabaseModule,
   ],
   controllers: [AttachmentsController],
