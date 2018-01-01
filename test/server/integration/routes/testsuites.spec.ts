@@ -109,7 +109,7 @@ describe('/testsuites', function () {
         request(app)
             .delete('/api/v1/testsuites/' + entityId)
             .set('Accept', 'application/json')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(204);
                 done();
