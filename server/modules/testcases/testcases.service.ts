@@ -12,22 +12,24 @@ export class TestcasesService {
 
   async create(testcase: CreateTestcaseDto): Promise<Testcase> {
     const createdTestcase = new this.testcaseModel(testcase);
-    return await createdTestcase.save();
+    return await createdTestcase.save((err, testcase) => {
+      return testcase;
+    });
   }
 
   async findAll(): Promise<Testcase[]> {
     return await this.testcaseModel.find().exec();
   }
 
-  async findOne(id): Promise<Testcase> {
+  async findOne(id: string): Promise<Testcase> {
     return await this.testcaseModel.findOne({ '_id': id }).exec();
   }
 
-  async update(id, testcase: CreateTestcaseDto): Promise<Testcase> {
+  async update(id: string, testcase: CreateTestcaseDto): Promise<Testcase> {
     return await this.testcaseModel.findOneAndUpdate({ '_id': id }, testcase).exec();
   }
 
-  async delete(id): Promise<void> {
+  async delete(id: string): Promise<void> {
     return await this.testcaseModel.findOneAndDelete({ '_id': id }).exec();
   }
 }

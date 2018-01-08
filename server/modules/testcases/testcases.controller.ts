@@ -24,19 +24,19 @@ export class TestcasesController {
   }
 
   @Get(':id')
-  findOne( @Param('id', new ParameterValidationPipe()) id): Promise<Testcase> {
+  async findOne( @Param('id', new ParameterValidationPipe()) id: string): Promise<Testcase> {
     return this.testcasesService.findOne(id);
   }
 
   @Put(':id')
-  findOneAndUpdate(
+  async findOneAndUpdate(
     @Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto,
-    @Param('id', new ParameterValidationPipe()) id) {
+    @Param('id', new ParameterValidationPipe()) id: string) {
     return this.testcasesService.update(id, createTestcaseDto);
   }
 
   @Delete(':id')
-  delete( @Param('id', new ParameterValidationPipe()) id) {
+  async delete( @Param('id', new ParameterValidationPipe()) id: string) {
     return this.testcasesService.delete(id);
   }
 }

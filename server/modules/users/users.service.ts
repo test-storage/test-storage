@@ -11,26 +11,28 @@ export class UsersService {
 
   async create(user: CreateUserDto): Promise<User> {
     const createdUser = new this.userModel(user);
-    return await createdUser.save();
+    return await createdUser.save((err, user) => {
+      return user;
+    });
   }
 
   async findAll(): Promise<User[]> {
     return await this.userModel.find().exec();
   }
 
-  async findOne(id): Promise<User> {
+  async findOne(id: string): Promise<User> {
     return await this.userModel.findOne({ '_id': id }).exec();
   }
 
-  async findOneByUsername(username): Promise<User> {
+  async findOneByUsername(username: string): Promise<User> {
     return await this.userModel.findOne({ 'email': username }).exec();
   }
 
-  async update(id, user: CreateUserDto): Promise<User> {
+  async update(id: string, user: CreateUserDto): Promise<User> {
     return await this.userModel.findOneAndUpdate({ '_id': id }, user).exec();
   }
 
-  async delete(id): Promise<void> {
+  async delete(id: string): Promise<void> {
     return await this.userModel.findOneAndDelete({ '_id': id }).exec();
   }
 }

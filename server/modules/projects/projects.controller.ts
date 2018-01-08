@@ -15,8 +15,8 @@ export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) { }
 
   @Post()
-  async create( @Body(new ValidationPipe()) createProjectDto: CreateProjectDto) {
-    this.projectsService.create(createProjectDto);
+  async create( @Body(new ValidationPipe()) createProjectDto: CreateProjectDto): Promise<Project> {
+    return this.projectsService.create(createProjectDto);
   }
 
   @Get()
@@ -25,20 +25,19 @@ export class ProjectsController {
   }
 
   @Get(':id')
-  findOne( @Param('id', new ParameterValidationPipe()) id): Promise<Project> {
-    // logic
+  async findOne( @Param('id', new ParameterValidationPipe()) id: string): Promise<Project> {
     return this.projectsService.findOne(id);
   }
 
   @Put(':id')
-  findOneAndUpdate(
+  async findOneAndUpdate(
     @Body(new ValidationPipe()) createProjectDto: CreateProjectDto,
-    @Param('id', new ParameterValidationPipe()) id) {
+    @Param('id', new ParameterValidationPipe()) id: string) {
     return this.projectsService.update(id, createProjectDto);
   }
 
   @Delete(':id')
-  delete( @Param('id', new ParameterValidationPipe()) id) {
+  async delete( @Param('id', new ParameterValidationPipe()) id: string) {
     return this.projectsService.delete(id);
   }
 }

@@ -24,20 +24,19 @@ export class UsersController {
   }
 
   @Get(':id')
-  findOne( @Param('id', new ParameterValidationPipe()) id): Promise<User> {
-    // logic
+  async findOne( @Param('id', new ParameterValidationPipe()) id: string): Promise<User> {
     return this.usersService.findOne(id);
   }
 
   @Put(':id')
-  findOneAndUpdate(
+  async findOneAndUpdate(
     @Body(new ValidationPipe()) createUserDto: CreateUserDto,
-    @Param('id', new ParameterValidationPipe()) id) {
+    @Param('id', new ParameterValidationPipe()) id: string) {
     return this.usersService.update(id, createUserDto);
   }
 
   @Delete(':id')
-  delete( @Param('id', new ParameterValidationPipe()) id) {
+  async delete( @Param('id', new ParameterValidationPipe()) id: string) {
     return this.usersService.delete(id);
   }
 }
