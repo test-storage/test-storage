@@ -2,7 +2,7 @@ import { IsString, IsInt, IsNotEmpty, IsBoolean } from 'class-validator';
 
 export class CreateProjectDto {
 
-  @IsString()
+  // @IsString()
   readonly _id?: string;
 
   @IsString()
@@ -13,16 +13,16 @@ export class CreateProjectDto {
   @IsNotEmpty()
   readonly description: string;
 
-  @IsBoolean()
+  // @IsBoolean()
   readonly enabled?: boolean;
 
   readonly created?: string;
   readonly updated?: string;
   // manager?: string; point to user
 
-  @IsString()
+  // @IsString()
   readonly createdBy?: string;
 
-  @IsString()
+  // @IsString()
   readonly updatedBy?: string;
 }

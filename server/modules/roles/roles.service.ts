@@ -12,22 +12,24 @@ export class RolesService {
 
   async create(role: CreateRoleDto): Promise<Role> {
     const createdRole = new this.roleModel(role);
-    return await createdRole.save();
+    return await createdRole.save((err, role) => {
+      return role;
+    });
   }
 
   async findAll(): Promise<Role[]> {
     return await this.roleModel.find().exec();
   }
 
-  async findOne(id): Promise<Role> {
+  async findOne(id: string): Promise<Role> {
     return await this.roleModel.findOne({ '_id': id }).exec();
   }
 
-  async update(id, role: CreateRoleDto): Promise<Role> {
+  async update(id: string, role: CreateRoleDto): Promise<Role> {
     return await this.roleModel.findOneAndUpdate({ '_id': id }, role).exec();
   }
 
-  async delete(id): Promise<void> {
+  async delete(id: string): Promise<void> {
     return await this.roleModel.findOneAndDelete({ '_id': id }).exec();
   }
 }

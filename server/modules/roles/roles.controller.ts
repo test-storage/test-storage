@@ -24,18 +24,18 @@ export class RolesController {
   }
 
   @Get(':id')
-  findOne( @Param('id', new ParameterValidationPipe()) id): Promise<Role> {
+  async findOne( @Param('id', new ParameterValidationPipe()) id: string): Promise<Role> {
     return this.rolesService.findOne(id);
   }
 
   @Put(':id')
-  findOneAndUpdate( @Body(new ValidationPipe()) createRoleDto: CreateRoleDto,
-    @Param('id', new ParameterValidationPipe()) id) {
+  async findOneAndUpdate( @Body(new ValidationPipe()) createRoleDto: CreateRoleDto,
+    @Param('id', new ParameterValidationPipe()) id: string) {
     return this.rolesService.update(id, createRoleDto);
   }
 
   @Delete(':id')
-  delete( @Param('id', new ParameterValidationPipe()) id) {
+  async delete( @Param('id', new ParameterValidationPipe()) id: string) {
     return this.rolesService.delete(id);
   }
 }

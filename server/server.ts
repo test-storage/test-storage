@@ -31,7 +31,7 @@ async function bootstrap() {
 
   if (config.get('app.httpsEnabled') === false) {
 
-    server = http.createServer(expressServer).listen(3000);
+    server = await http.createServer(expressServer).listen(3000);
 
   } else {
 
@@ -40,7 +40,7 @@ async function bootstrap() {
       cert: fs.readFileSync(config.get('https.certificate'), 'utf8')
     };
 
-    server = https.createServer(httpsOptions, expressServer).listen(443);
+    server = await https.createServer(httpsOptions, expressServer).listen(443);
 
   }
 }

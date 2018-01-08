@@ -13,22 +13,24 @@ export class AttachmentsService {
 
   async create(attachment: Attachment): Promise<Attachment> {
     const createdAttachment = new this.attachmentModel(attachment);
-    return await createdAttachment.save();
+    return await createdAttachment.save((err, attachment) => {
+      return attachment;
+    });
   }
 
   async findAll(): Promise<Attachment[]> {
     return await this.attachmentModel.find().exec();
   }
 
-  async findOne(id): Promise<Attachment> {
+  async findOne(id: string): Promise<Attachment> {
     return await this.attachmentModel.findOne({ '_id': id }).exec();
   }
 
-  async update(id): Promise<Attachment> {
+  async update(id: string): Promise<Attachment> {
     return await this.attachmentModel.findOneAndUpdate({ '_id': id }).exec();
   }
 
-  async delete(id): Promise<void> {
+  async delete(id: string): Promise<void> {
     return await this.attachmentModel.findOneAndDelete({ '_id': id }).exec();
   }
 }
