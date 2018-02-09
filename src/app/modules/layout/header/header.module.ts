@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ThemeService } from './../../../services/theme/theme.service';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { ClickOutModule } from 'ngx-clickout';
 
 import { HeaderComponent } from './header.component';
 import { NotificationsComponent } from '../notifications/notifications.component';
@@ -12,8 +11,7 @@ import { NotificationsComponent } from '../notifications/notifications.component
 @NgModule({
   imports: [
     CommonModule,
-    TranslateModule,
-    ClickOutModule
+    TranslateModule
   ],
   declarations: [
     HeaderComponent,
