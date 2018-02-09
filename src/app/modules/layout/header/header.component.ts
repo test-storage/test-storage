@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { AuthGuard, AuthenticationService, LocalStorageService } from './../../../services/auth/index';
 
 import { ThemeService } from './../../../services/theme/theme.service';
-import { ClickOutDirective } from 'ngx-clickout';
 
 @Component({
     selector: 'app-header',
