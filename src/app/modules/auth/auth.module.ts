@@ -10,7 +10,6 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 import { AuthInterceptor } from '../../services/auth/auth.interceptor';
-import { RefreshTokenInterceptor } from '../../services/auth/refresh-token.interceptor';
 import { AuthGuard, AuthenticationService, LocalStorageService } from '../../services/auth/index';
 
 import { LoginComponent } from './login/login.component';
@@ -29,11 +28,6 @@ import { AuthComponent } from './auth.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RefreshTokenInterceptor,
       multi: true
     },
     AuthGuard,
