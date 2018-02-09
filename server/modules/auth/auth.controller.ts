@@ -16,9 +16,9 @@ export class AuthController {
   }
 
   @HttpCode(200)
-  @Post('refresh')
-  public async refresh() {
-    return await this.authService.getRefreshToken();
+  @Post('revoke')
+  public async revokeToken() {
+    // TODO
   }
 
 }
