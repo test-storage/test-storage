@@ -40,7 +40,7 @@ export class LocalStorageService {
 
     if (token) {
       // if token not expired return true
-      const isExpired = this.jwtHelper.isTokenExpired(token); // this.jwtHelper.(null, token);
+      const isExpired = this.jwtHelper.isTokenExpired(token);
       if (isExpired === true) {
         return false;
       } else {
@@ -53,7 +53,7 @@ export class LocalStorageService {
   }
 
   setToken(token: string) {
-    // store jwt token in local sotrage to keep user logged in between page refreshes
+    // store jwt token in local storage to keep user logged in between page refreshes
     localStorage.setItem('authToken', JSON.stringify({
       token: token
     }));

@@ -19,11 +19,9 @@ export class AuthService {
     const expiresIn = 60 * 60, secretOrKey = jwtSecret();
     const user = { email: this.authorizedUser.email };
     const token = jwt.sign(user, secretOrKey, { expiresIn });
-    const refreshToken = jwt.sign(user, secretOrKey, { expiresIn });
     return {
       expiresIn: expiresIn,
-      accessToken: token,
-      refreshToken: refreshToken
+      accessToken: token
     };
   }
 
