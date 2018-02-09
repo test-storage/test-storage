@@ -10,8 +10,6 @@ import { TranslateModule, TranslateService, TranslateLoader, TranslateFakeLoader
 
 import { LoginComponent } from '../../modules/auth/login/login.component';
 
-// import { Router } from '@angular/router'; // TODO remove
-
 import { AuthGuard, AuthenticationService, LocalStorageService } from './index';
 
 describe('AuthGuardService', () => {

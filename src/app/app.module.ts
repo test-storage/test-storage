@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
-import { RefreshTokenInterceptor } from './services/auth/refresh-token.interceptor';
 import { LocalStorageService } from './services/auth/index';
 
 import { SharedModule } from './shared/shared.module';
@@ -40,11 +39,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RefreshTokenInterceptor,
       multi: true
     },
     LocalStorageService,
