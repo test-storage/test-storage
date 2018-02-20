@@ -7,6 +7,7 @@ import * as morgan from 'morgan';
 import * as compression from 'compression';
 
 import { NestFactory } from '@nestjs/core';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { HttpsOptions } from '@nestjs/common/interfaces/https-options.interface';
 import { ApplicationModule } from './modules/app.module';
 import { NotFoundExceptionFilter } from './modules/common/filters/not-found-exception.filter';
@@ -30,8 +31,11 @@ async function bootstrap() {
 
   setMiddlewares();
 
-  await app.init();
+  if (process.env.NODE_ENV !== 'production') {
+    await initSwagger();
+  }
 
+  await app.init();
 }
 
 async function setMiddlewares() {
@@ -48,6 +52,16 @@ async function setMiddlewares() {
   app.use(express.static(path.join(__dirname, '../../dist')));
   app.use('/i18n', express.static(path.join('./i18n')));
 
+}
+
+function initSwagger() {
+  const options = new DocumentBuilder()
+    .setTitle('Test Storage API')
+    .setDescription('The Test Storage API')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('/api', app, document);
 }
 
 bootstrap();
