@@ -8,7 +8,7 @@ import * as compression from 'compression';
 
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { HttpsOptions } from '@nestjs/common/interfaces/https-options.interface';
+
 import { ApplicationModule } from './modules/app.module';
 import { NotFoundExceptionFilter } from './modules/common/filters/not-found-exception.filter';
 
@@ -22,11 +22,11 @@ async function bootstrap() {
   if (config.get('app.httpsEnabled') === false) {
     app = await NestFactory.create(ApplicationModule, expressServer);
   } else {
-    const httpsOptions: HttpsOptions = {
+    const httpsOptions = {
       key: fs.readFileSync(config.get('https.privateKey'), 'utf8'),
       cert: fs.readFileSync(config.get('https.certificate'), 'utf8')
     };
-    app = await NestFactory.create(ApplicationModule, expressServer, httpsOptions);
+    app = await NestFactory.create(ApplicationModule, expressServer, { httpsOptions: httpsOptions });
   }
 
   setMiddlewares();
@@ -35,7 +35,7 @@ async function bootstrap() {
     await initSwagger();
   }
 
-  await app.init();
+  await app.listen(3000);
 }
 
 async function setMiddlewares() {

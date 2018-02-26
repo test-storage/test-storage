@@ -24,10 +24,8 @@ export class ProjectsController {
 
   @Post()
   @ApiOperation({ title: 'Create Project' })
-  @ApiResponse({
-    status: 201,
-    description: 'The record has been successfully created.',
-  })
+  @ApiResponse({ status: 201, description: 'The record has been successfully created.' })
+  @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create( @Body(new ValidationPipe()) createProjectDto: CreateProjectDto): Promise<Project> {
     return this.projectsService.create(createProjectDto);
@@ -35,10 +33,7 @@ export class ProjectsController {
 
   @Get()
   @ApiOperation({ title: 'Get All Projects' })
-  @ApiResponse({
-    status: 200,
-    description: 'The records has been successfully retrieved.',
-  })
+  @ApiResponse({ status: 200, description: 'The records has been successfully retrieved.'})
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findAll(): Promise<Project[]> {
     return this.projectsService.findAll();
@@ -46,10 +41,8 @@ export class ProjectsController {
 
   @Get(':id')
   @ApiOperation({ title: 'Get Single Project by id' })
-  @ApiResponse({
-    status: 200,
-    description: 'The single record has been successfully retrieved.',
-  })
+  @ApiResponse({ status: 200, description: 'The single record has been successfully retrieved.' })
+  @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findOne( @Param('id', new ParameterValidationPipe()) id: string): Promise<Project> {
     return this.projectsService.findOne(id);
@@ -57,10 +50,8 @@ export class ProjectsController {
 
   @Put(':id')
   @ApiOperation({ title: 'Update Single Project by id' })
-  @ApiResponse({
-    status: 200,
-    description: 'The single record has been successfully updated.',
-  })
+  @ApiResponse({ status: 200, description: 'The single record has been successfully updated.' })
+  @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findOneAndUpdate(
     @Body(new ValidationPipe()) createProjectDto: CreateProjectDto,
@@ -70,10 +61,8 @@ export class ProjectsController {
 
   @Delete(':id')
   @ApiOperation({ title: 'Delete Single Project by id' })
-  @ApiResponse({
-    status: 200,
-    description: 'The single record has been successfully deleted.',
-  })
+  @ApiResponse({ status: 200, description: 'The single record has been successfully deleted.'})
+  @ApiResponse({ status: 400, description: 'Validation failed'})
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async delete( @Param('id', new ParameterValidationPipe()) id: string) {
     return this.projectsService.delete(id);
