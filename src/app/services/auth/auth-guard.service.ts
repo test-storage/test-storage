@@ -33,12 +33,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     if (this.loggedIn && this.storage.tokenNotExpired(this.authService.token)) {
       return true;
     } else {
-      if (this.storage.getRefreshToken() && this.storage.tokenNotExpired(this.storage.getRefreshToken())) {
-        this.authService.refreshToken();
-      } else {
-        this.router.navigate(['/auth']);
-        return false;
-      }
+      this.router.navigate(['/auth']);
+      return false;
     }
   }
 

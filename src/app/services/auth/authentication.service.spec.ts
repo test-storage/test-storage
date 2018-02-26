@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthGuard, AuthenticationService, LocalStorageService } from './index';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
-import { LoginComponent } from '../../components/login/login.component';
+import { LoginComponent } from '../../modules/auth/login/login.component';
 
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { TranslateStore } from '@ngx-translate/core/src/translate.store';
@@ -58,7 +58,7 @@ describe('AuthenticationService', () => {
       storage.setToken(token);
 
       expect(storage.tokenNotExpired('')).toBeFalsy();
-      storage.removeTokens();
+      storage.removeToken();
     }));
 
   it('should throw Error if invalid token provided', inject([AuthenticationService, LocalStorageService],
@@ -69,7 +69,7 @@ describe('AuthenticationService', () => {
         new Error(
           'The inspected token doesn\'t appear to be a JWT. Check to make sure it has three parts and see https://jwt.io for more.'
         ));
-      storage.removeTokens();
+      storage.removeToken();
     }));
 
 

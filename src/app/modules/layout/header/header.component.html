@@ -7,8 +7,7 @@
     </div>
     <div class="right" [class.show-right]="sidebarCollapsed">
 
-      <a class="icon-info link dropbtn" (click)="shown !== 'NOTIFICATIONS' ? shown = 'NOTIFICATIONS' : shown = ''" [clickOut]="shown === 'NOTIFICATIONS'"
-        (clickOutEvent)="closeDropdown()"><i class="fa fa-bell" aria-hidden="true"></i>
+      <a class="icon-info link dropbtn" (click)="shown !== 'NOTIFICATIONS' ? shown = 'NOTIFICATIONS' : shown = ''"><i class="fa fa-bell" aria-hidden="true"></i>
         <span class="notifications-alarm"></span>
       </a>
       <div class="dropdown-content" [class.show]="shown === 'NOTIFICATIONS'">
@@ -20,13 +19,13 @@
 
 
 
-      <li class="link dropdown-item" [clickOut]="shown === 'SETTINGS'" (clickOutEvent)="closeDropdown()">
+      <li class="link dropdown-item">
         <a class="dropbtn" id="header-person" (click)="shown !== 'SETTINGS' ? shown = 'SETTINGS' : shown = ''">{{ user.firstName }} {{ user.lastName }} <span class="fa fa-angle-down" [class.chevron-rotated]="shown === 'SETTINGS'"></span></a>
 
         <div class="dropdown-content" [class.show]="shown === 'SETTINGS'">
           <ul>
             <li><a routerLink="/profile"><i class="fa fa-user"></i> {{ 'HEADER.USER_PROFILE' | translate }}</a></li>
-            <li><a id="logout" (click)="logout()" (clickOutEvent)="closeDropdown()"><i class="fa fa-power-off"></i> {{ 'HEADER.LOGOUT' | translate }}</a></li>
+            <li><a id="logout" (click)="logout()"><i class="fa fa-power-off"></i> {{ 'HEADER.LOGOUT' | translate }}</a></li>
           </ul>
         </div>
       </li>

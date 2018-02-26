@@ -2,18 +2,18 @@
     "env": "development",
     "app": {
         "enableGzipCompression": true,
-        "port": {
-            "http": 3000,
-            "https": 8443
-        },
-        "httpsEnabled": false,
+        "httpsEnabled": false
+    },
+    "http": {
+        "port": 3000
+    },
+    "https": {
+        "port": 8443,
         "privateKey": "certs/server.key",
         "certificate": "certs/server.crt"
     },
     "db": {
-        "scheme": "mongodb://",
-        "name": "test-storage",
-        "host": "localhost",
+        "host": "localhost/test-storage",
         "user": "admin",
         "password": "admin"
     },

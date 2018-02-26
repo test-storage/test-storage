@@ -7,7 +7,6 @@ version: "{build}"
 # Test against this version of Node.js
 environment:
   matrix:
-    - nodejs_version: "6.11"
     - nodejs_version: "8"
 
 build: off
@@ -25,7 +24,7 @@ services:
 
 before_test:
   - sleep 10
-  - C:\mongodb\bin\mongo test-storage config/db-init.js
+  - C:\mongodb\bin\mongo test-storage install/db-init.js
 
 test_script:
   # Output useful info for debugging.
