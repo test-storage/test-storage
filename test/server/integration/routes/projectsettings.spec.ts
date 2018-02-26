@@ -2,7 +2,7 @@ import * as request from 'supertest';
 import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
-import { server as app } from '../../../../server/index';
+import { server as app } from '../../../../server/server';
 import { authenticate } from '../../auth-helper';
 
 import { MockFactory } from '../mocks/mock.factory';
@@ -44,7 +44,7 @@ describe('/projects/:id/settings', function () {
 
         request(app)
             .post('/api/v1/projects')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .send(projectMock)
             .end(function (err, res) {
                 expect(res.status).to.equal(201);
@@ -62,7 +62,7 @@ describe('/projects/:id/settings', function () {
 
         request(app)
             .post('/api/v1/projects/' + projectId + '/settings')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .send(settingsMock)
             .end(function (err, res) {
                 expect(res.status).to.equal(201);
@@ -81,7 +81,7 @@ describe('/projects/:id/settings', function () {
 
         request(app)
             .get('/api/v1/projects/' + projectId + '/settings')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
                 expect(res).to.have.header('content-type', /json/);
@@ -97,7 +97,7 @@ describe('/projects/:id/settings', function () {
 
         request(app)
             .put('/api/v1/projects/' + projectId + '/settings')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .send(settingsMockEdited)
             .end(function (err, res) {
                 expect(res.status).to.equal(200);
@@ -115,7 +115,7 @@ describe('/projects/:id/settings', function () {
 
         request(app)
             .delete('/api/v1/projects/' + projectId + '/settings')
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(204);
                 done();
@@ -128,7 +128,7 @@ describe('/projects/:id/settings', function () {
 
         request(app)
             .delete('/api/v1/projects/' + projectId)
-            .set('x-access-token', token)
+            .set('Authorization', `Bearer ${token}`)
             .end(function (err, res) {
                 expect(res.status).to.equal(204);
                 done();

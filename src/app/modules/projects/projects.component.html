@@ -1,5 +1,4 @@
 <div *ngIf="projects" id="wrapper" [class.dark-theme]="themeService.theme">
-
   <div *ngIf="projects.length > 0; then existProjects else noExistProjects"></div>
 
   <ng-template #existProjects>
@@ -24,7 +23,9 @@
       <div class="project-card card create-card">
         <div class="card-block">
           <a [routerLink]="['./create']">
-            <h1><i class="fa fa-3x fa-plus"></i></h1>
+            <h1>
+              <i class="fa fa-3x fa-plus"></i>
+            </h1>
           </a>
         </div>
       </div>

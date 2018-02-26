@@ -1,29 +1,23 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es2015",
-        "noImplicitAny": false,
-        "sourceMap": true,
-        "moduleResolution": "node",
-        "outDir": "../dist/server",
-        "mapRoot": "../dist/server",
-        "skipLibCheck": true,
-        "typeRoots": [
-            "../node_modules/@types"
-        ],
-        "types": [
-            "node"
-        ],
-        "lib": [
-            "es2015",
-            "dom"
-        ]
-    },
-    "include": [
-        "./**/*"
-    ],
-    "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
-    ]
+  "compileOnSave": false,
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "../dist/server",
+    "mapRoot": "../dist/server",
+    "sourceMap": false,
+    "declaration": false,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6"
+  },
+  "include": [
+    "modules/**/*",
+    "main.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }

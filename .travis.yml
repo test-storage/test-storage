@@ -3,7 +3,6 @@ dist: trusty
 group: edge
 language: node_js
 node_js:
-  - "6.11"
   - "8"
 
 services:
@@ -22,8 +21,8 @@ before_install:
   - sleep 5
 
 before_script:
-  - sleep 5
-  - mongo test-storage config/db-init.js
+  - sleep 15
+  - mongo test-storage install/db-init.js
 
 script:
   # Output useful info for debugging.

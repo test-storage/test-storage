@@ -91,6 +91,7 @@
     },
     "USERCREATEPAGE": {
         "TITLE": "Create User Profile",
+        "SECTION_GENERAL": "General",
         "EMAIL": "Email",
         "EMAIL_PLACEHOLDER": "email@example.com",
         "EMAIL_REQUIRED": "Email is required",

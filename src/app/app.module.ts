@@ -1,37 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './services/auth/auth.interceptor';
-import { RefreshTokenInterceptor } from './services/auth/refresh-token.interceptor';
-
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
 
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { AuthInterceptor } from './services/auth/auth.interceptor';
+import { LocalStorageService } from './services/auth/index';
 
+import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LayoutModule } from './modules/layout/layout.module';
-
-import { AuthGuard, AuthenticationService, LocalStorageService } from './services/auth/index';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-import { LoginComponent } from './components/login/login.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-
-// App routes
-const routes: Routes = [
-  { path: 'auth', component: LoginComponent },
-  {
-    path: '', loadChildren: './modules/layout/layout.module#LayoutModule'
-  },
-  // otherwise redirect to 404 page
-  { path: '**', component: NotFoundComponent }
-];
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -40,13 +21,11 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   imports: [
+    AppRoutingModule,
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
-    FormsModule,
-    LayoutModule,
-    ModalModule.forRoot(),
     BrowserAnimationsModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -55,24 +34,13 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    NotFoundComponent
-  ],
+  declarations: [AppComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RefreshTokenInterceptor,
-      multi: true
-    },
-    AuthGuard,
-    AuthenticationService,
     LocalStorageService,
     JwtHelperService,
     {

@@ -1,12 +1,12 @@
 {
-    "watch": [
-        "server/"
-    ],
-    "ext": "ts",
-    "ignore": [
-        ".git",
-        "node_modules/**/node_modules",
-        "server/**/*.spec.ts"
-    ],
-    "exec": "ts-node ./server/index.ts"
+  "watch": [
+    "server/*"
+  ],
+  "ext": "ts",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "**/*.spec.ts"
+  ],
+  "exec": "ts-node --project ./server/tsconfig.json ./server/main.ts"
 }
