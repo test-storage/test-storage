@@ -8,6 +8,15 @@ import { RolesService } from './roles.service';
 import { Role } from './interfaces/role.interface';
 import { CreateRoleDto } from './dto/create-role.dto';
 
+import {
+  ApiUseTags,
+  ApiBearerAuth,
+  ApiResponse,
+  ApiOperation,
+} from '@nestjs/swagger';
+
+@ApiBearerAuth()
+@ApiUseTags('Roles')
 @Controller('api/v1/roles')
 export class RolesController {
 
