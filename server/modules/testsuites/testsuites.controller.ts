@@ -8,6 +8,15 @@ import { TestsuitesService } from './testsuites.service';
 import { Testsuite } from './interfaces/testsuite.interface';
 import { CreateTestsuiteDto } from './dto/create-testsuite.dto';
 
+import {
+  ApiUseTags,
+  ApiBearerAuth,
+  ApiResponse,
+  ApiOperation,
+} from '@nestjs/swagger';
+
+@ApiBearerAuth()
+@ApiUseTags('Testsuites')
 @Controller('api/v1/testsuites')
 export class TestsuitesController {
 

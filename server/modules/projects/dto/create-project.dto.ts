@@ -1,10 +1,11 @@
-import { ApiModelProperty } from '@nestjs/swagger';
-import { IsString, IsInt, IsNotEmpty, IsBoolean } from 'class-validator';
+import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
+import { IsString, IsInt, IsNotEmpty, IsBoolean, IsOptional } from 'class-validator';
 
 export class CreateProjectDto {
 
-  @ApiModelProperty({ type: String })
-  // @IsString()
+  @ApiModelPropertyOptional({ type: String})
+  @IsOptional()
+  @IsString()
   readonly _id?: string;
 
   @ApiModelProperty({ type: String })
@@ -17,21 +18,21 @@ export class CreateProjectDto {
   @IsNotEmpty()
   readonly description: string;
 
-  @ApiModelProperty({ type: Boolean })
+  @ApiModelPropertyOptional({ type: Boolean})
   // @IsBoolean()
   readonly enabled?: boolean;
 
-  @ApiModelProperty({ type: String })
+  @ApiModelPropertyOptional({ type: String})
   readonly created?: string;
-  @ApiModelProperty({ type: String })
+  @ApiModelPropertyOptional({ type: String})
   readonly updated?: string;
   // manager?: string; point to user
 
-  @ApiModelProperty({ type: String })
+  @ApiModelPropertyOptional({ type: String})
   // @IsString()
   readonly createdBy?: string;
 
-  @ApiModelProperty({ type: String })
+  @ApiModelPropertyOptional({ type: String})
   // @IsString()
   readonly updatedBy?: string;
 }
