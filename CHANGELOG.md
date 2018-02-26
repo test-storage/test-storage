@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.30.0 (February 26, 2018)
+- Refactoring: server ([@pumano](https://github.com/pumano) in [#79](https://github.com/test-storage/test-storage/pull/79))
+- Migrate backend from pure express to NestJS
+- Add Swagger documentation in dev mode
+- Remove refresh tokens
+- Migrate tests according to NestJS (WIP)
+- UI improvements
+- Drop bootstrap and use Clarity UI
+- Remove unused dependecies
+
 ## 0.28.0 (October 28, 2017)
 - Refactoring: server ([@pumano](https://github.com/pumano) in [#76](https://github.com/test-storage/test-storage/pull/76))
 - Authentication: add refresh tokens, strong JWT secret, refactoring
