@@ -1,5 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
+
 import { Component, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { jwtSecret } from './passport/jwt.secret';
 
@@ -17,12 +18,10 @@ export class AuthService {
   private async createToken() {
     const expiresIn = 60 * 60, secretOrKey = jwtSecret();
     const user = { email: this.authorizedUser.email };
-    const token = jwt.sign(user, secretOrKey, { expiresIn, algorithm: 'HS256' });
-    const refreshToken = jwt.sign(user, secretOrKey, { expiresIn });
+    const token = jwt.sign(user, secretOrKey, { expiresIn });
     return {
       expiresIn: expiresIn,
-      accessToken: token,
-      refreshToken: refreshToken
+      accessToken: token
     };
   }
 
@@ -35,17 +34,7 @@ export class AuthService {
     }
   }
 
-  async getRefreshToken() {
-    return await this.createToken();
-  }
-
   async validateUser(signedUser): Promise<boolean> {
-    // put some validation logic here
-    // for example query user by id / email / username
-    return true;
-  }
-
-  async validateRefreshToken(signedUser): Promise<boolean> {
     // put some validation logic here
     // for example query user by id / email / username
     return true;

@@ -2,6 +2,7 @@ import { Test } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UsersModule } from '../users/users.module';
+import { UserDto } from './dto/user.dto';
 
 describe('AuthController', () => {
   let authController: AuthController;
@@ -18,12 +19,14 @@ describe('AuthController', () => {
     authController = module.get<AuthController>(AuthController);
   });
 
-  describe('getToken', () => {
+  describe('Get Access Token via valid login and password ', () => {
     it('should return an object with token', async () => {
-      const user = {
+
+      const user: UserDto = {
         username: 'admin',
         password: 'password'
       };
+
       const result = {
         expiresIn: 3600,
         accessToken: 'data'

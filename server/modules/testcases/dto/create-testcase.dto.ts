@@ -1,17 +1,21 @@
+import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
 import { IsString, IsInt, IsNotEmpty, IsArray, IsBoolean, IsNumber } from 'class-validator';
 
 export class CreateTestcaseDto {
 
+  @ApiModelPropertyOptional({ type: String})
   @IsString()
   readonly _id?: string;
 
   @IsString()
   readonly key?: string;
 
+  @ApiModelProperty({ type: String })
   @IsString()
   @IsNotEmpty()
   readonly projectId: string;
 
+  @ApiModelProperty({ type: String })
   @IsString()
   @IsNotEmpty()
   readonly testSuiteId: string;
@@ -22,6 +26,7 @@ export class CreateTestcaseDto {
   @IsNumber()
   readonly order?: number;
 
+  @ApiModelProperty({ type: String })
   @IsString()
   @IsNotEmpty()
   readonly title: string;
