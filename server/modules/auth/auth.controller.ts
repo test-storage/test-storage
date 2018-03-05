@@ -5,6 +5,15 @@ import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { AuthService } from './auth.service';
 import { UserDto } from './dto/user.dto';
 
+import {
+  ApiUseTags,
+  ApiBearerAuth,
+  ApiResponse,
+  ApiOperation,
+} from '@nestjs/swagger';
+
+@ApiBearerAuth()
+@ApiUseTags('Authentication')
 @Controller('authentication')
 export class AuthController {
   constructor(private readonly authService: AuthService) { }
@@ -16,9 +25,9 @@ export class AuthController {
   }
 
   @HttpCode(200)
-  @Post('refresh')
-  public async refresh() {
-    return await this.authService.getRefreshToken();
+  @Post('revoke')
+  public async revokeToken() {
+    // TODO
   }
 
 }

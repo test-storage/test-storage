@@ -14,12 +14,7 @@ async function connectToDB() {
 
   const connectionString = `mongodb://${config.get('db.user')}:${config.get('db.password')}@${config.get('db.host')}`;
 
-
-  const connectionOptions = {
-    useMongoClient: true
-  };
-
-  await mongoose.connect(connectionString, connectionOptions)
+  await mongoose.connect(connectionString)
     .then(() => console.log('MongoDB connection successful'))
     .catch((err) => console.error(err));
 
@@ -27,7 +22,7 @@ async function connectToDB() {
 
 async function connectToMockDB() {
   mockgoose.prepareStorage().then(() => {
-    mongoose.connect('mongodb://foobar/baz', { useMongoClient: true });
+    mongoose.connect('mongodb://foobar/baz');
     mongoose.connection.on('connected', () => {
       console.log('db connection is now open');
     });

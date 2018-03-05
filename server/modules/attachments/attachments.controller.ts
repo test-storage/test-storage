@@ -4,8 +4,16 @@ import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 
 import { AttachmentsService } from './attachments.service';
 
+import {
+  ApiUseTags,
+  ApiBearerAuth,
+  ApiResponse,
+  ApiOperation,
+} from '@nestjs/swagger';
 
-@Controller('attachments')
+@ApiBearerAuth()
+@ApiUseTags('Attachments')
+@Controller('api/v1/attachments')
 export class AttachmentsController {
 
   constructor(private readonly attachmentsService: AttachmentsService) { }
