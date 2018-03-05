@@ -1,37 +1,42 @@
-import { trigger, transition, animate, style, state } from '@angular/animations';
+import { animate, AnimationEntryMetadata, state, style, transition, trigger } from '@angular/core';
 
-export function pageTransition() {
-    return trigger('routeAnimation', [
-        state('*',
-            style({
-                opacity: 1,
-                transform: 'translateY(0)'
-            })
-        ),
-        transition('void => *', [
-            style({
-                opacity: 0,
-                transform: 'translateX(5%)'
-            }),
-            animate('0.6s ease-in-out')
-        ])
-    ]);
-}
+// Component transition animations
+export const slideInDownAnimation: AnimationEntryMetadata =
+  trigger('routeAnimation', [
+    state('*',
+      style({
+        opacity: 1,
+        transform: 'translateX(0)'
+      })
+    ),
+    transition(':enter', [
+      style({
+        opacity: 0,
+        transform: 'translateX(-100%)'
+      }),
+      animate('0.2s ease-in')
+    ]),
+    transition(':leave', [
+      animate('0.5s ease-out', style({
+        opacity: 0,
+        transform: 'translateY(100%)'
+      }))
+    ])
+  ]);
 
-export function fadeInAnimation() {
-    // trigger name for attaching this animation to an element using the [@triggerName] syntax
-    trigger('fadeInAnimation', [
-
-        // route 'enter' transition
-        transition(':enter', [
-
-            // css styles at start of transition
-            style({ opacity: 0 }),
-
-            // animation and styles at end of transition
-            animate('.3s', style({ opacity: 1 }))
-        ]),
-    ]);
-}
-
-
+export const pageTransition: AnimationEntryMetadata =
+  trigger('routeAnimation', [
+    state('*',
+      style({
+        opacity: 1,
+        transform: 'translateY(0)'
+      })
+    ),
+    transition('void => *', [
+      style({
+        opacity: 0,
+        transform: 'translateX(5%)'
+      }),
+      animate('0.6s ease-in-out')
+    ])
+  ]);

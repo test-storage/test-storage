@@ -17,7 +17,7 @@ export class AuthService {
   private async createToken() {
     const expiresIn = 60 * 60, secretOrKey = jwtSecret();
     const user = { email: this.authorizedUser.email };
-    const token = jwt.sign(user, secretOrKey, { expiresIn });
+    const token = jwt.sign(user, secretOrKey, { expiresIn, algorithm: 'HS256' });
     const refreshToken = jwt.sign(user, secretOrKey, { expiresIn });
     return {
       expiresIn: expiresIn,

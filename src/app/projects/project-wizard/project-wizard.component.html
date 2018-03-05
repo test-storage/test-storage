@@ -1,0 +1,77 @@
+<!--<button class="btn btn-primary" (click)="projectWizard = !projectWizard;">Open</button>-->
+
+<clr-wizard #wizardxl [(clrWizardOpen)]="projectWizard">
+  <clr-wizard-title>Project Creation Wizard</clr-wizard-title>
+
+  <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
+  <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+  <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
+  <clr-wizard-button [type]="'finish'">Finish</clr-wizard-button>
+
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Project Details</ng-template>
+    <form>
+      <section class="form-block">
+        <label>Enter Project name and description</label>
+        <div class="form-group">
+          <label class="required">Project name</label>
+          <input type="text" id="requiredInput">
+        </div>
+        <div class="form-group">
+          <label>Project description</label>
+          <input type="text" id="requiredInput">
+        </div>
+      </section>
+    </form>
+  </clr-wizard-page>
+
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Users</ng-template>
+    <!--Choose users for project-->
+    <clr-tabs>
+      <clr-tab>
+        <button clrTabLink>Invite Members</button>
+        <clr-tab-content *clrIfActive="true">
+          <form>
+            <section class="form-block">
+              <label>Enter email addresses for sending invite to project</label>
+              <div class="form-group">
+                <label class="required">email</label>
+                <input type="email" id="requiredInput">
+              </div>
+            </section>
+          </form>
+
+          <section class="form-block">
+            <label>Members who receive invite:</label>
+            <div class="form-group">
+              <a class="label label-blue" href="javascript://">
+                james.marwin@test.com
+                <clr-icon shape="close">
+                </clr-icon>
+              </a>
+              <a class="label label-blue" href="javascript://">
+                donald.duck@test.com
+                <clr-icon shape="close">
+                </clr-icon>
+              </a>
+
+            </div>
+          </section>
+        </clr-tab-content>
+      </clr-tab>
+      <clr-tab>
+        <button clrTabLink id="link1">Add Users</button>
+        <clr-tab-content id="content1" *clrIfActive>
+          ...
+        </clr-tab-content>
+      </clr-tab>
+
+    </clr-tabs>
+  </clr-wizard-page>
+
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Finish</ng-template>
+    ...
+  </clr-wizard-page>
+</clr-wizard>

@@ -1,0 +1,12 @@
+<div class="main-container">
+  <div class="content-container">
+
+    <clr-vertical-nav [clr-nav-level]="1" class="sidenav nav-trigger--bottom" [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
+      <app-sidebar></app-sidebar>
+    </clr-vertical-nav>
+
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
