@@ -4,7 +4,6 @@ import { Component, Inject } from '@nestjs/common';
 import { CreateAttachmentDto } from './dto/create-attachment.dto';
 
 import { Attachment } from './interfaces/attachment.interface';
-import { AttachmentsModule } from './attachments.module';
 
 @Component()
 export class AttachmentsService {

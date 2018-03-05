@@ -15,12 +15,10 @@ export class JwtRefreshStrategy extends Strategy {
       },
       async (req, payload, next) => await this.verify(req, payload, next)
     );
-    console.log('JwtRefreshStrategy');
     passport.use(this);
   }
 
   public async verify(req, payload, done) {
-    console.log('JwtRefreshStrategy verify');
     const isValid = await this.authService.validateRefreshToken(payload);
     if (!isValid) {
       return done('Unauthorized', false);

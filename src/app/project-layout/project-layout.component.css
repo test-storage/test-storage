@@ -1,0 +1,7 @@
+.main-container {
+    height: calc(100vh - 60px);
+}
+
+.sidenav {
+    z-index: 9999 !important;
+}
