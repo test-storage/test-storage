@@ -1,17 +1,19 @@
 import { Model } from 'mongoose';
-import { Component, Inject } from '@nestjs/common';
+import { Component } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 
-import { CreateTestsuiteDto } from './dto/create-testsuite.dto';
-import { Testsuite } from './interfaces/testsuite.interface';
+import { TestsuiteSchema } from './testsuite.schema';
+import { CreateTestsuiteDto } from './create-testsuite.dto';
+import { Testsuite } from './testsuite.interface';
 
 
 @Component()
 export class TestsuitesService {
 
-  constructor( @Inject('TestsuiteModelToken') private readonly testsuiteModel: Model<Testsuite>) { }
+  constructor( @InjectModel(TestsuiteSchema) private readonly testsuiteModel: Model<Testsuite>) { }
 
-  async create(testsuite: CreateTestsuiteDto): Promise<Testsuite> {
-    const createdTestsuite = new this.testsuiteModel(testsuite);
+  async create(testsuiteDto: CreateTestsuiteDto): Promise<Testsuite> {
+    const createdTestsuite = new this.testsuiteModel(testsuiteDto);
     return await createdTestsuite.save((err, testsuite) => {
       return testsuite;
     });

@@ -1,16 +1,18 @@
 import { Model } from 'mongoose';
-import { Component, Inject } from '@nestjs/common';
+import { Component } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 
-import { CreateUserDto } from './dto/create-user.dto';
-import { User } from './interfaces/user.interface';
+import { UserSchema } from './user.schema';
+import { CreateUserDto } from './create-user.dto';
+import { User } from './user.interface';
 
 @Component()
 export class UsersService {
 
-  constructor( @Inject('UserModelToken') private readonly userModel: Model<User>) { }
+  constructor( @InjectModel(UserSchema) private readonly userModel: Model<User>) { }
 
-  async create(user: CreateUserDto): Promise<User> {
-    const createdUser = new this.userModel(user);
+  async create(userDto: CreateUserDto): Promise<User> {
+    const createdUser = new this.userModel(userDto);
     return await createdUser.save((err, user) => {
       return user;
     });
