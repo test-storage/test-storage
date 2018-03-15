@@ -12,8 +12,8 @@ import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pi
 
 import { ProjectsService } from './projects.service';
 
-import { Project } from './interfaces/project.interface';
-import { CreateProjectDto } from './dto/create-project.dto';
+import { Project } from './project.interface';
+import { CreateProjectDto } from './create-project.dto';
 
 @ApiBearerAuth()
 @ApiUseTags('Projects')

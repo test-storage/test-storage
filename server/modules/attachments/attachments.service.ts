@@ -1,17 +1,19 @@
 import { Model } from 'mongoose';
-import { Component, Inject } from '@nestjs/common';
+import { Component } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 
-import { CreateAttachmentDto } from './dto/create-attachment.dto';
 
-import { Attachment } from './interfaces/attachment.interface';
+import { AttachmentSchema } from './attachment.schema';
+import { CreateAttachmentDto } from './create-attachment.dto';
+import { Attachment } from './attachment.interface';
 
 @Component()
 export class AttachmentsService {
 
-  constructor( @Inject('AttachmentModelToken') private readonly attachmentModel: Model<Attachment>) { }
+  constructor( @InjectModel(AttachmentSchema) private readonly attachmentModel: Model<Attachment>) { }
 
-  async create(attachment: Attachment): Promise<Attachment> {
-    const createdAttachment = new this.attachmentModel(attachment);
+  async create(attachmentDto: Attachment): Promise<Attachment> {
+    const createdAttachment = new this.attachmentModel(attachmentDto);
     return await createdAttachment.save((err, attachment) => {
       return attachment;
     });
