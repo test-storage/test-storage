@@ -1,12 +1,12 @@
 import { Test } from '@nestjs/testing';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
-import { usersProviders } from './users.providers';
-import { User } from './interfaces/user.interface';
+import { User } from './user.interface';
 
 describe('UsersController', () => {
   let usersController: UsersController;
   let usersService: UsersService;
+
   const connectionProvider = { provide: 'UserModelToken', useFactory: null, inject: ['DbConnectionToken'] };
 
   beforeEach(async () => {

@@ -1,7 +1,9 @@
 import { Module, RequestMethod } from '@nestjs/common';
 import { MiddlewaresConsumer } from '@nestjs/common/interfaces/middlewares';
 
-import { DatabaseModule } from '../database/database.module';
+import { MongooseModule } from '@nestjs/mongoose';
+
+import { AttachmentSchema } from './attachment.schema';
 
 import { AttachmentsController } from './attachments.controller';
 import { AttachmentsService } from './attachments.service';
@@ -10,7 +12,7 @@ import { FileUploadMiddleware } from '../common/middlewares/file-upload.middlewa
 
 @Module({
   imports: [
-    DatabaseModule,
+    MongooseModule.forFeature([{ name: 'Attachment', schema: AttachmentSchema }])
   ],
   controllers: [AttachmentsController],
   components: [AttachmentsService]

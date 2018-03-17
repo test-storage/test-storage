@@ -1,5 +1,8 @@
 import { Module, NestModule, MiddlewaresConsumer, RequestMethod } from '@nestjs/common';
 
+import * as config from 'config';
+
+import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { CORSMiddleware } from './common/middlewares/cors.middleware';
 
@@ -9,8 +12,11 @@ import { RolesModule } from './roles/roles.module';
 import { ProjectsModule } from './projects/projects.module';
 import { TestsuitesModule } from './testsuites/testsuites.module';
 
+const connectionString = `mongodb://${config.get('db.user')}:${config.get('db.password')}@${config.get('db.host')}`;
+
 @Module({
   imports: [
+    MongooseModule.forRoot(process.env.MONGOLAB_URI || connectionString),
     AuthModule,
     ProjectsModule,
     TestcasesModule,

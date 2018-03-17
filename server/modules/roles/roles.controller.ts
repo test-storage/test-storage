@@ -5,8 +5,8 @@ import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pi
 
 import { RolesService } from './roles.service';
 
-import { Role } from './interfaces/role.interface';
-import { CreateRoleDto } from './dto/create-role.dto';
+import { Role } from './role.interface';
+import { CreateRoleDto } from './create-role.dto';
 
 import {
   ApiUseTags,

@@ -1,17 +1,16 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 
-import { DatabaseModule } from '../database/database.module';
-import { testcasesProviders } from './testcases.providers';
+import { TestcaseSchema } from './testcase.schema';
 
 import { TestcasesController } from './testcases.controller';
 import { TestcasesService } from './testcases.service';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [MongooseModule.forFeature([{ name: 'Testcase', schema: TestcaseSchema }])],
   controllers: [TestcasesController],
   components: [
-    TestcasesService,
-    ...testcasesProviders
+    TestcasesService
   ],
 })
 export class TestcasesModule { }

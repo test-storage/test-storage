@@ -4,8 +4,8 @@ import * as bcrypt from 'bcrypt';
 import { Component, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { jwtSecret } from './passport/jwt.secret';
 
-import { UserDto } from './dto/user.dto';
-import { User } from '../users/interfaces/user.interface';
+import { UserDto } from './user.dto';
+import { User } from '../users/user.interface';
 import { UsersService } from '../users/users.service';
 
 @Component()

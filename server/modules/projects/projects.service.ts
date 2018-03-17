@@ -1,18 +1,18 @@
 import { Model } from 'mongoose';
-import { Component, Inject } from '@nestjs/common';
+import { Component } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 
-import { CreateProjectDto } from './dto/create-project.dto';
-
-import { Project } from './interfaces/project.interface';
-import { ProjectsModule } from './projects.module';
+import { CreateProjectDto } from './create-project.dto';
+import { ProjectSchema } from './project.schema';
+import { Project } from './project.interface';
 
 @Component()
 export class ProjectsService {
 
-  constructor( @Inject('ProjectModelToken') private readonly projectModel: Model<Project>) { }
+  constructor( @InjectModel(ProjectSchema) private readonly projectModel: Model<Project>) { }
 
-  async create(project: Project): Promise<Project> {
-    const createdProject = new this.projectModel(project);
+  async create(projectDto: Project): Promise<Project> {
+    const createdProject = new this.projectModel(projectDto);
     return await createdProject.save((err, project) => {
       return project;
     });
