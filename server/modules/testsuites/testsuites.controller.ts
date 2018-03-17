@@ -5,8 +5,8 @@ import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pi
 
 import { TestsuitesService } from './testsuites.service';
 
-import { Testsuite } from './interfaces/testsuite.interface';
-import { CreateTestsuiteDto } from './dto/create-testsuite.dto';
+import { Testsuite } from './testsuite.interface';
+import { CreateTestsuiteDto } from './create-testsuite.dto';
 
 import {
   ApiUseTags,

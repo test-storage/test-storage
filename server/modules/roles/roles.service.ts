@@ -1,17 +1,19 @@
 import { Model } from 'mongoose';
-import { Component, Inject } from '@nestjs/common';
+import { Component } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 
-import { CreateRoleDto } from './dto/create-role.dto';
-import { Role } from './interfaces/role.interface';
+import { RoleSchema } from './role.schema';
+import { CreateRoleDto } from './create-role.dto';
+import { Role } from './role.interface';
 
 
 @Component()
 export class RolesService {
 
-  constructor( @Inject('RoleModelToken') private readonly roleModel: Model<Role>) { }
+  constructor( @InjectModel(RoleSchema) private readonly roleModel: Model<Role>) { }
 
-  async create(role: CreateRoleDto): Promise<Role> {
-    const createdRole = new this.roleModel(role);
+  async create(roleDto: CreateRoleDto): Promise<Role> {
+    const createdRole = new this.roleModel(roleDto);
     return await createdRole.save((err, role) => {
       return role;
     });

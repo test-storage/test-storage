@@ -5,8 +5,8 @@ import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pi
 
 import { UsersService } from './users.service';
 
-import { User } from './interfaces/user.interface';
-import { CreateUserDto } from './dto/create-user.dto';
+import { User } from './user.interface';
+import { CreateUserDto } from './create-user.dto';
 
 import {
   ApiUseTags,

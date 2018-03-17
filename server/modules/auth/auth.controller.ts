@@ -3,7 +3,7 @@ import { Controller, Post, HttpStatus, HttpCode, HttpException, Body } from '@ne
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 
 import { AuthService } from './auth.service';
-import { UserDto } from './dto/user.dto';
+import { UserDto } from './user.dto';
 
 import {
   ApiUseTags,
