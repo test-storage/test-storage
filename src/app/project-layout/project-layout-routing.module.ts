@@ -8,6 +8,7 @@ import { TestExecutionsModule } from '../test-executions/test-executions.module'
 const routes: Routes = [
   {
     path: '', component: ProjectLayoutComponent, children: [
+      { path: '', redirectTo: 'test-management' },
       { path: 'test-management', loadChildren: '../test-management/test-management.module#TestManagementModule' },
       { path: 'test-executions', loadChildren: '../test-executions/test-executions.module#TestExecutionsModule' }
     ]
