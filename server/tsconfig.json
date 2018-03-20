@@ -4,7 +4,7 @@
     "module": "commonjs",
     "outDir": "../dist/server",
     "mapRoot": "../dist/server",
-    "sourceMap": false,
+    "sourceMap": true,
     "declaration": false,
     "skipLibCheck": true,
     "moduleResolution": "node",
