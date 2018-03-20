@@ -6,6 +6,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 import { LayoutModule } from './layout/layout.module';
 
+import { AuthInterceptor } from './login/auth.interceptor';
+import { AuthGuard } from './login/auth.guard';
+import { AuthenticationService } from './login/authentication.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LocalStorageService } from './login/local-storage.service';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+
 const routes: Routes = [
   { path: 'auth', component: LoginComponent },
   { path: '', loadChildren: './layout/layout.module#LayoutModule' },
@@ -13,7 +20,21 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), HttpClientModule],
+  providers: [
+    AuthenticationService,
+    AuthGuard,
+    LocalStorageService,
+    JwtHelperService,
+    {
+      provide: JWT_OPTIONS,
+      useValue: {}
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
