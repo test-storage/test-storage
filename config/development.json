@@ -13,7 +13,8 @@
         "certificate": "certs/server.crt"
     },
     "db": {
-        "host": "localhost/test-storage",
+        "host": "localhost",
+        "name": "test-storage",
         "user": "admin",
         "password": "admin"
     },

@@ -12,8 +12,9 @@ import { RolesModule } from './roles/roles.module';
 import { ProjectsModule } from './projects/projects.module';
 import { TestsuitesModule } from './testsuites/testsuites.module';
 
-const connectionString = `mongodb://${config.get('db.user')}:${config.get('db.password')}@${config.get('db.host')}`;
-
+console.log(process.env.DOCKERIZED);
+const connectionString = `mongodb://${config.get('db.user')}:${config.get('db.password')}@${process.env.DOCKERIZED ? 'mongodb' : config.get('db.host')}/${config.get('db.name')}?authSource=admin`;
+console.log(connectionString);
 @Module({
   imports: [
     MongooseModule.forRoot(process.env.MONGOLAB_URI || connectionString),
