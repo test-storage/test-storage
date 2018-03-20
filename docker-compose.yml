@@ -20,20 +20,16 @@ services:
     command: mongod --auth
     volumes:
       - dbdata:/data/db
-      - ./install/db-init.js:/docker-entrypoint-initdb.d
+      - ./install:/docker-entrypoint-initdb.d
     ports:
       - '27017:27017'
     environment:
       - AUTH=yes
-      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=admin
       - MONGO_INITDB_DATABASE=test-storage
-      - MONGODB_APPLICATION_DATABASE=test-storage
-      - MONGODB_APPLICATION_USER=admin
-      - MONGODB_APPLICATION_PASS=admin
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/logs
 
 volumes:
   dbdata:
-  mongoinit:
