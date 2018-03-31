@@ -40,24 +40,26 @@ export class AuthService {
     return true;
   }
 
-  async validateLogin(userDto: UserDto): Promise<boolean> {
-    const existedUser = await this.usersService.findOneByUsername(userDto.username);
+
+  async validateLogin(user: UserDto): Promise<boolean> {
+    const existedUser = await this.usersService.findOneByUsername(user.username);
 
     if (existedUser) {
-      const passwordIsMatch = await bcrypt.compareSync(userDto.password, existedUser.password);
-
-      if (passwordIsMatch) {
-        this.authorizedUser = existedUser;
-        return true;
-      } else {
-        // TODO log('user password not match');
-        // TODO invalid login attempts counter++
-        return false;
-      }
+      return await bcrypt.compare(user.password, existedUser.password).then(passwordIsMatch => {
+        if (passwordIsMatch) {
+          this.authorizedUser = existedUser;
+          return true;
+        } else {
+          // TODO log('user password not match');
+          // TODO invalid login attempts counter++
+          return false;
+        }
+      });
     } else {
       // TODO log('user not exist');
       // TODO invalid login attempts counter++
       return false;
     }
   }
+
 }
