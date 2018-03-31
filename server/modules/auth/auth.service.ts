@@ -35,9 +35,12 @@ export class AuthService {
   }
 
   async validateUser(signedUser): Promise<boolean> {
-    // put some validation logic here
-    // for example query user by id / email / username
-    return true;
+    const existedUser = await this.usersService.findOneByUsername(signedUser.email);
+    if (existedUser) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 
