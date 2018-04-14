@@ -3,36 +3,28 @@
     <button clrTabLink id="link1">Active</button>
     <clr-tab-content id="content1" *clrIfActive="true">
       <div class="content-area">
+
+        <button class="btn btn-primary">
+          <clr-icon shape="plus"></clr-icon>
+          Add
+        </button>
+
         <div class="row">
-          <div class="col-xs-12 col-sm-4">
-            <div class="card">
+          <div *ngFor="let testSuite of testSuites" class="col-xs-12 col-sm-3">
+            <a routerLink="./1" class="card clickable">
               <div class="card-block">
-                <h4 class="card-title">Android Regression Suite</h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem.</p>
+                <h4 class="card-title">{{ testSuite.title }}</h4>
+                <p class="card-text">{{ testSuite.description }}</p>
               </div>
               <div class="card-footer">
                 <div class="progress labeled success">
-                  <progress value="30" max="100" data-displayval="0%"></progress>
+                  <progress value="{{ testSuite.completed }}" max="100" data-displayval="0%"></progress>
                 </div>
-                <a class="btn btn-sm btn-link">Run</a>
-                <span></span>
+                <clr-icon shape="clock" class="has-alert"></clr-icon> 30.04.2018
               </div>
-            </div>
+            </a>
           </div>
-          <div class="col-xs-12 col-sm-4">
-            <div class="card">
-              <div class="card-block">
-                <h4 class="card-title">iOS Login Feature Suite</h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem..</p>
-              </div>
-              <div class="card-footer">
-                <div class="progress labeled success">
-                  <progress value="70" max="100" data-displayval="10%"></progress>
-                </div>
-                <a class="btn btn-sm btn-link">Run</a>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </clr-tab-content>
