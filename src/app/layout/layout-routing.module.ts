@@ -3,12 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProjectsModule } from '../projects/projects.module';
 import { LayoutComponent } from './layout.component';
+import { AuthGuard } from '../login/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    // TODO AuthGuard
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
