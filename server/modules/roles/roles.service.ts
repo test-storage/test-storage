@@ -32,6 +32,6 @@ export class RolesService {
   }
 
   async delete(id: string): Promise<void> {
-    return await this.roleModel.findOneAndDelete({ '_id': id }).exec();
+    return await this.roleModel.findOneAndRemove({ '_id': id }).exec();
   }
 }
