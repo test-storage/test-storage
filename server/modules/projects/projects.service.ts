@@ -9,9 +9,9 @@ import { Project } from './project.interface';
 @Component()
 export class ProjectsService {
 
-  constructor( @InjectModel(ProjectSchema) private readonly projectModel: Model<Project>) { }
+  constructor(@InjectModel(ProjectSchema) private readonly projectModel: Model<Project>) { }
 
-  async create(projectDto: Project): Promise<Project> {
+  async create(projectDto: CreateProjectDto): Promise<Project> {
     const createdProject = new this.projectModel(projectDto);
     return await createdProject.save((err, project) => {
       return project;
