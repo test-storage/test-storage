@@ -32,6 +32,6 @@ export class ProjectsService {
   }
 
   async delete(id): Promise<void> {
-    return await this.projectModel.findOneAndDelete({ '_id': id }).exec();
+    return await this.projectModel.findOneAndRemove({ '_id': id }).exec();
   }
 }

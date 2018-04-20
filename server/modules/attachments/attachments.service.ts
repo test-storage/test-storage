@@ -32,6 +32,6 @@ export class AttachmentsService {
   }
 
   async delete(id: string): Promise<void> {
-    return await this.attachmentModel.findOneAndDelete({ '_id': id }).exec();
+    return await this.attachmentModel.findOneAndRemove({ '_id': id }).exec();
   }
 }

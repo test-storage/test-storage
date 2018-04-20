@@ -32,6 +32,6 @@ export class TestcasesService {
   }
 
   async delete(id: string): Promise<void> {
-    return await this.testcaseModel.findOneAndDelete({ '_id': id }).exec();
+    return await this.testcaseModel.findOneAndRemove({ '_id': id }).exec();
   }
 }
