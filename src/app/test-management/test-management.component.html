@@ -55,7 +55,7 @@
         </clr-dg-column>
       -->
 
-        <clr-dg-row *ngFor="let user of users">
+        <clr-dg-row *ngFor="let testcase of testcases">
           <!--
         <clr-dg-cell style="display: flex;">
             <clr-checkbox></clr-checkbox>
@@ -63,7 +63,7 @@
         </clr-dg-cell>
       -->
           <clr-dg-cell>
-            {{user.name}}
+            {{testcase.name}}
           </clr-dg-cell>
 
           <!--
@@ -87,7 +87,7 @@
       -->
         </clr-dg-row>
 
-        <!--<clr-dg-footer>{{users.length}}</clr-dg-footer>-->
+        <clr-dg-footer>{{testcases.length}}</clr-dg-footer>
       </clr-datagrid>
 
 
@@ -108,7 +108,7 @@
       </clr-dg-column>-->
 
 
-        <clr-dg-row *ngFor="let user of users">
+        <clr-dg-row *ngFor="let testcase of testcases">
           <!--
         <clr-dg-cell style="display: flex;">
             <clr-checkbox></clr-checkbox>
@@ -116,7 +116,7 @@
         </clr-dg-cell>
       -->
           <clr-dg-cell>
-            {{user.name}}
+            {{testcase.name}}
           </clr-dg-cell>
           <!--
         <clr-dg-cell>
@@ -138,21 +138,22 @@
       -->
         </clr-dg-row>
 
-        <!--<clr-dg-footer>{{users.length}}</clr-dg-footer>-->
+        <!-- TODO passed / failed / etc testcases in percents and progress bar -->
+        <clr-dg-footer>{{testcases.length}}</clr-dg-footer>
       </clr-datagrid>
 
     </div>
 
 
     <div class="col-sm-12 col-md-4 col-lg-2">
-      <clr-tree-node *ngFor="let directory of rootDirectory">
-        <clr-icon [attr.shape]="directory.icon"></clr-icon>
-        {{directory.name}}
-        <ng-template [(clrIfExpanded)]="directory.expanded">
-          <clr-tree-node *ngFor="let file of directory.files">
-            <button (click)="openFile(directory.name, file.name)" class="clr-treenode-link" [class.active]="file.active">
-              <clr-icon [attr.shape]="file.icon"></clr-icon>
-              {{file.name}}
+      <clr-tree-node *ngFor="let testSuite of testSuitesTree">
+        <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
+        {{testSuite.name}}
+        <ng-template [(clrIfExpanded)]="testSuite.expanded">
+          <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
+            <button (click)="openTestSuite(testsuite.name, subTestSuite.name)" class="clr-treenode-link" [class.active]="subTestSuite.active">
+              <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
+              {{subTestSuite.name}}
             </button>
           </clr-tree-node>
         </ng-template>

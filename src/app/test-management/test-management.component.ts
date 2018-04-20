@@ -12,7 +12,7 @@ export class TestManagementComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  public users = [
+  public testcases = [
     {
       name: 'Импорт валидных геозон из файла'
     },
@@ -28,12 +28,12 @@ export class TestManagementComponent implements OnInit {
 
   ];
 
-  rootDirectory: any[] = [
+  testSuitesTree: any[] = [
     {
       name: 'Main Features',
       icon: 'folder',
       expanded: true,
-      files: [
+      children: [
         {
           icon: 'folder',
           name: 'Authentication',
@@ -60,7 +60,7 @@ export class TestManagementComponent implements OnInit {
       name: 'REST API',
       icon: 'folder',
       expanded: false,
-      files: [
+      children: [
         {
           icon: 'folder',
           name: 'Authentication',
@@ -72,7 +72,7 @@ export class TestManagementComponent implements OnInit {
       name: 'Non-functional',
       icon: 'folder',
       expanded: false,
-      files: [
+      children: [
         {
           icon: 'folder',
           name: 'Messaging',
@@ -82,7 +82,7 @@ export class TestManagementComponent implements OnInit {
     }
   ];
 
-  openFile(directoryName: string, fileName: string) {
+  openTestSuite(testSuiteName: string, child: string) {
 
   }
 
