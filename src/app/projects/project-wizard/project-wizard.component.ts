@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { ClrWizard } from '@clr/angular';
 
@@ -11,11 +11,12 @@ export class ProjectWizardComponent implements OnInit {
 
   @ViewChild('wizardxl') wizardExtraLarge: ClrWizard;
 
-  projectWizard: boolean = true;
+  @Input() opened = false;
 
   constructor() { }
 
   ngOnInit() {
+    // TODO delete project data if exists
   }
 
 }
