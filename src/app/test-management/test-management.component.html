@@ -1,6 +1,6 @@
-<div class="container">
+
   <div class="row">
-    <div class="col-sm-12 col-md-9">
+    <div class="col-sm-12 col-md-8 col-lg-10">
       <!--
     <clr-stack-view>
 
@@ -144,7 +144,7 @@
     </div>
 
 
-    <div class="col-sm-12 col-md-3">
+    <div class="col-sm-12 col-md-4 col-lg-2">
       <clr-tree-node *ngFor="let directory of rootDirectory">
         <clr-icon [attr.shape]="directory.icon"></clr-icon>
         {{directory.name}}
@@ -157,6 +157,8 @@
           </clr-tree-node>
         </ng-template>
       </clr-tree-node>
+
+
     </div>
   </div>
-</div>
+
