@@ -1,9 +1,6 @@
 .main-container {
     height: calc(100vh - 60px);
-}
-
-.content-area {
-  width: calc(100vw - 240px);
+    width: 100vw;
 }
 
 .sidenav {
