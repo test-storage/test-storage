@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { ProjectWizardComponent } from './project-wizard/project-wizard.component';
 import { SystemWizardComponent } from '../system-wizard/system-wizard.component';
+import { ProjectsService } from './projects.service';
 
 @NgModule({
   imports: [
@@ -18,6 +19,9 @@ import { SystemWizardComponent } from '../system-wizard/system-wizard.component'
     ProjectsComponent,
     ProjectWizardComponent,
     SystemWizardComponent
+  ],
+  providers: [
+    ProjectsService
   ]
 })
 export class ProjectsModule { }

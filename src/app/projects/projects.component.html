@@ -7,104 +7,20 @@
   <div *ngIf="projects.length > 0; then existProjects else noExistProjects"></div>
   <ng-template #existProjects>
     <div class="row">
-      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-
+      <div *ngFor="let project of projects" class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
 
         <a routerLink="./1" class="card clickable">
           <div class="card-img">
-            <img src="https://vmware.github.io/clarity/assets/images/documentation/cards/placeholder_350x150.png" alt="..." />
+            <img src="assets/placeholder_350x150.png" alt="..." />
           </div>
           <div class="card-block">
-            <p class="card-text">
-
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem. Ipsam maiores incidunt
-              eum quasi enim! Corporis sunt nisi totam molestias quam commodi maxime mollitia.
-
-            </p>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-        <a routerLink="./2" class="card clickable">
-          <div class="card-img">
-            <img src="https://vmware.github.io/clarity/assets/images/documentation/cards/placeholder_350x150.png" alt="..." />
-          </div>
-          <div class="card-block">
-            <p class="card-text">
-
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem. Ipsam maiores incidunt
-              eum quasi enim! Corporis sunt nisi totam molestias quam commodi maxime mollitia.
-
-            </p>
+            <p class="card-title">{{ project.name }}</p>
+            <p class="card-text">{{ project.description }}</p>
           </div>
         </a>
       </div>
 
-      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-        <a routerLink="./3" class="card clickable">
-          <div class="card-img">
-            <img src="https://vmware.github.io/clarity/assets/images/documentation/cards/placeholder_350x150.png" alt="..." />
-          </div>
-          <div class="card-block">
-            <p class="card-text">
-
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem. Ipsam maiores incidunt
-              eum quasi enim! Corporis sunt nisi totam molestias quam commodi maxime mollitia.
-
-            </p>
-          </div>
-        </a>
-      </div>
     </div>
-
-    <div class="row">
-      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-        <a href="..." class="card clickable">
-          <div class="card-img">
-            <img src="https://vmware.github.io/clarity/assets/images/documentation/cards/placeholder_350x150.png" alt="..." />
-          </div>
-          <div class="card-block">
-            <p class="card-text">
-
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem. Ipsam maiores incidunt
-              eum quasi enim! Corporis sunt nisi totam molestias quam commodi maxime mollitia.
-
-            </p>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-        <a href="..." class="card clickable">
-          <div class="card-img">
-            <img src="https://vmware.github.io/clarity/assets/images/documentation/cards/placeholder_350x150.png" alt="..." />
-          </div>
-          <div class="card-block">
-            <p class="card-text">
-
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem. Ipsam maiores incidunt
-              eum quasi enim! Corporis sunt nisi totam molestias quam commodi maxime mollitia.
-
-            </p>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-        <a href="..." class="card clickable">
-          <div class="card-img">
-            <img src="https://vmware.github.io/clarity/assets/images/documentation/cards/placeholder_350x150.png" alt="..." />
-          </div>
-          <div class="card-block">
-            <p class="card-text">
-
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem. Ipsam maiores incidunt
-              eum quasi enim! Corporis sunt nisi totam molestias quam commodi maxime mollitia.
-
-            </p>
-          </div>
-        </a>
-      </div>
-    </div>
-
   </ng-template>
 
 

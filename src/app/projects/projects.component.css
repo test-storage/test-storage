@@ -1,4 +1,5 @@
 .content-area {
+  width: 100vw;
   height: calc(100vh - 60px);
 }
 
@@ -22,4 +23,10 @@
 
 .no-project h4 {
   color: #616161;
+}
+
+.tips {
+  font-size: 14px;
+  color: #a2acb3;
+  margin-bottom: 20px;
 }

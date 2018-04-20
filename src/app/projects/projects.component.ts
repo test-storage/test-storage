@@ -2,6 +2,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { pageTransition } from '../animations';
 
 import { Project } from './project';
+import { ProjectsService } from './projects.service';
 
 @Component({
   selector: 'app-projects',
@@ -16,12 +17,23 @@ export class ProjectsComponent implements OnInit {
   @HostBinding('style.position') position = 'absolute';
 
 
-  projects: Project[] = [];
+  private subscription;
+  projects: Project[];
+
   projectWizardOpened = false;
 
-  constructor() { }
+  constructor(
+    private projectsService: ProjectsService
+  ) { }
 
   ngOnInit() {
+    this.loadProjects();
+  }
+
+  loadProjects() {
+    this.subscription = this.projectsService.getProjects().subscribe(
+      data => this.projects = data,
+      error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
   create() {
