@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RequirementsComponent } from './requirements.component';
+import { ProjectSettingsComponent } from './project-settings.component';
 
 const routes: Routes = [
-  { path: '', component: RequirementsComponent }
+  { path: '', component: ProjectSettingsComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RequirementsRoutingModule { }
+export class ProjectSettingsRoutingModule { }

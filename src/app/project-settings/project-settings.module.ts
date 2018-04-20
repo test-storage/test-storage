@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectSettingsComponent } from './project-settings.component';
+import { ProjectSettingsRoutingModule } from './project-settings-routing.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ProjectSettingsRoutingModule
   ],
   declarations: [ProjectSettingsComponent]
 })
