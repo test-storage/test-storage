@@ -11,7 +11,7 @@ export class SystemWizardComponent implements OnInit {
 
   @ViewChild('wizardxl') wizardExtraLarge: ClrWizard;
 
-  systemWizard: boolean = false;
+  systemWizard = false;
 
   constructor() { }
 

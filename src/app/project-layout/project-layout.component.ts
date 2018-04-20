@@ -12,7 +12,7 @@ export class ProjectLayoutComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  collapsed: boolean = false;
+  collapsed = false;
 
   constructor() { }
 
