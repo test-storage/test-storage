@@ -1,4 +1,4 @@
-<div class="content-area">
+<div *ngIf="projects" class="content-area">
 
   <app-project-wizard [opened]="projectWizardOpened"></app-project-wizard>
   <!--
@@ -6,14 +6,14 @@
   -->
   <div *ngIf="projects.length > 0; then existProjects else noExistProjects"></div>
   <ng-template #existProjects>
-    <button class="btn btn-primary">
+    <a (click)="create();" class="btn btn-primary">
       <clr-icon shape="plus"></clr-icon>
-      Add
-    </button>
+      Create Project
+    </a>
+
     <div class="row">
 
-
-      <div *ngFor="let project of projects" class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+      <div *ngFor="let project of projects" class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 
         <a routerLink="./1" class="card clickable">
           <div class="card-img">
@@ -27,6 +27,7 @@
       </div>
 
     </div>
+
   </ng-template>
 
 

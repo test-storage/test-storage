@@ -2,7 +2,3 @@
     height: calc(100vh - 60px);
     width: 100vw;
 }
-
-.sidenav {
-    z-index: 9999 !important;
-}
