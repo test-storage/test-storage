@@ -1,15 +1,23 @@
-<div class="content-area">
-  <h1>
-    Settings
-  </h1>
+<div class="content-container">
 
-  <app-users></app-users>
+  <clr-vertical-nav [clr-nav-level]="1" class="sidenav nav-trigger--bottom" [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
+    <div class="nav-content">
 
-  <p>Work In Progress</p>
-  <ul>
-    <li>User Management</li>
-    <li>Roles / Access Rights Management</li>
-    <li>Themes</li>
-    <li>Languages</li>
-  </ul>
+      <a clrVerticalNavLink routerLink="./main" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="cog"></clr-icon>
+        Main Settings
+      </a>
+
+      <a clrVerticalNavLink routerLink="./users" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="user"></clr-icon>
+        Users
+      </a>
+
+    </div>
+
+  </clr-vertical-nav>
+
+  <div class="content-area">
+    <router-outlet></router-outlet>
+  </div>
 </div>

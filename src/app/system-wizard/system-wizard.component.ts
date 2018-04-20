@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { ClrWizard } from '@clr/angular';
 
@@ -11,7 +11,7 @@ export class SystemWizardComponent implements OnInit {
 
   @ViewChild('wizardxl') wizardExtraLarge: ClrWizard;
 
-  systemWizard = false;
+  @Input() opened = false;
 
   constructor() { }
 
