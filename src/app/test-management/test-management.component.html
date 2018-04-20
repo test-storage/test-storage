@@ -1,7 +1,6 @@
-
-  <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-10">
-      <!--
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-10">
+    <!--
     <clr-stack-view>
 
       <clr-stack-block [clrSbExpanded]="true">
@@ -33,40 +32,40 @@
       </clr-stack-block>
     </clr-stack-view>
     -->
-      <button class="btn btn-primary">
-        <clr-icon shape="plus"></clr-icon>
-        Add
-      </button>
+    <button class="btn btn-primary">
+      <clr-icon shape="plus"></clr-icon>
+      Add
+    </button>
 
-      <h4>Geo zones</h4>
-      <clr-datagrid>
-        <!--
+    <h4>Geo zones</h4>
+    <clr-datagrid>
+      <!--
         <clr-dg-action-bar>
           <button class="btn btn-sm btn-secondary" type="button">
             <clr-icon shape="plus"></clr-icon> Add</button>
         </clr-dg-action-bar>
       -->
-        <!-- [(clrDgSelected)]="users" -->
-        <clr-dg-column>Title
-        </clr-dg-column>
-        <!--
+      <!-- [(clrDgSelected)]="users" -->
+      <clr-dg-column>Title
+      </clr-dg-column>
+      <!--
         <clr-dg-column>
           Status
         </clr-dg-column>
       -->
 
-        <clr-dg-row *ngFor="let testcase of testcases">
-          <!--
+      <clr-dg-row *ngFor="let testcase of testcases">
+        <!--
         <clr-dg-cell style="display: flex;">
             <clr-checkbox></clr-checkbox>
           <span style="align-self: center;">{{user.name}}</span>
         </clr-dg-cell>
       -->
-          <clr-dg-cell>
-            {{testcase.name}}
-          </clr-dg-cell>
+        <clr-dg-cell>
+          {{testcase.name}}
+        </clr-dg-cell>
 
-          <!--
+        <!--
           <clr-dg-cell>
             <div class="select">
               <select id="selects_1">
@@ -79,46 +78,46 @@
             </div>
           </clr-dg-cell>
         -->
-          <!--
+        <!--
         <clr-dg-action-overflow>
           <button class="action-item" (click)="users">Edit</button>
           <button class="action-item" (click)="users">Delete</button>
         </clr-dg-action-overflow>
       -->
-        </clr-dg-row>
+      </clr-dg-row>
 
-        <clr-dg-footer>{{testcases.length}}</clr-dg-footer>
-      </clr-datagrid>
+      <clr-dg-footer>{{testcases.length}}</clr-dg-footer>
+    </clr-datagrid>
 
 
-      <h4>Geo zones</h4>
-      <clr-datagrid>
-        <!--
+    <h4>Geo zones</h4>
+    <clr-datagrid>
+      <!--
         <clr-dg-action-bar>
           <button class="btn btn-sm btn-secondary" type="button">
             <clr-icon shape="plus"></clr-icon> Add</button>
         </clr-dg-action-bar>
       -->
-        <!-- [(clrDgSelected)]="users" -->
-        <clr-dg-column>Title
-        </clr-dg-column>
-        <!--
+      <!-- [(clrDgSelected)]="users" -->
+      <clr-dg-column>Title
+      </clr-dg-column>
+      <!--
       <clr-dg-column>
         Status
       </clr-dg-column>-->
 
 
-        <clr-dg-row *ngFor="let testcase of testcases">
-          <!--
+      <clr-dg-row *ngFor="let testcase of testcases">
+        <!--
         <clr-dg-cell style="display: flex;">
             <clr-checkbox></clr-checkbox>
           <span style="align-self: center;">{{user.name}}</span>
         </clr-dg-cell>
       -->
-          <clr-dg-cell>
-            {{testcase.name}}
-          </clr-dg-cell>
-          <!--
+        <clr-dg-cell>
+          {{testcase.name}}
+        </clr-dg-cell>
+        <!--
         <clr-dg-cell>
           <div class="select">
             <select id="selects_1">
@@ -130,36 +129,35 @@
             </select>
           </div>
         </clr-dg-cell>-->
-          <!--
+        <!--
         <clr-dg-action-overflow>
           <button class="action-item" (click)="users">Edit</button>
           <button class="action-item" (click)="users">Delete</button>
         </clr-dg-action-overflow>
       -->
-        </clr-dg-row>
+      </clr-dg-row>
 
-        <!-- TODO passed / failed / etc testcases in percents and progress bar -->
-        <clr-dg-footer>{{testcases.length}}</clr-dg-footer>
-      </clr-datagrid>
+      <!-- TODO passed / failed / etc testcases in percents and progress bar -->
+      <clr-dg-footer>{{testcases.length}}</clr-dg-footer>
+    </clr-datagrid>
 
-    </div>
-
-
-    <div class="col-sm-12 col-md-4 col-lg-2">
-      <clr-tree-node *ngFor="let testSuite of testSuitesTree">
-        <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
-        {{testSuite.name}}
-        <ng-template [(clrIfExpanded)]="testSuite.expanded">
-          <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
-            <button (click)="openTestSuite(testsuite.name, subTestSuite.name)" class="clr-treenode-link" [class.active]="subTestSuite.active">
-              <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
-              {{subTestSuite.name}}
-            </button>
-          </clr-tree-node>
-        </ng-template>
-      </clr-tree-node>
-
-
-    </div>
   </div>
 
+
+  <div class="col-sm-12 col-md-12 col-lg-2">
+    <clr-tree-node *ngFor="let testSuite of testSuitesTree">
+      <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
+      {{testSuite.name}}
+      <ng-template [(clrIfExpanded)]="testSuite.expanded">
+        <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
+          <button (click)="openTestSuite(testSuite.name, subTestSuite.name)" class="clr-treenode-link" [class.active]="subTestSuite.active">
+            <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
+            {{subTestSuite.name}}
+          </button>
+        </clr-tree-node>
+      </ng-template>
+    </clr-tree-node>
+
+
+  </div>
+</div>

@@ -1,32 +1,27 @@
-.content-area {
-  width: 100vw;
-  height: calc(100vh - 60px);
-}
-
 .noexist-wrapper {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
 }
 
 .no-project {
-  align-self: center;
-  justify-content: center;
-  text-align: center;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .no-project img {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .no-project h4 {
-  color: #616161;
+    color: #616161;
 }
 
 .tips {
-  font-size: 14px;
-  color: #a2acb3;
-  margin-bottom: 20px;
+    font-size: 14px;
+    color: #a2acb3;
+    margin-bottom: 20px;
 }

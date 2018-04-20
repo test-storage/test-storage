@@ -6,7 +6,13 @@
   -->
   <div *ngIf="projects.length > 0; then existProjects else noExistProjects"></div>
   <ng-template #existProjects>
+    <button class="btn btn-primary">
+      <clr-icon shape="plus"></clr-icon>
+      Add
+    </button>
     <div class="row">
+
+
       <div *ngFor="let project of projects" class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
 
         <a routerLink="./1" class="card clickable">
