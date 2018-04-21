@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProjectsModule } from '../projects/projects.module';
 import { SettingsModule } from '../settings/settings.module';
+import { UserProfileModule } from '../user-profile/user-profile.module';
 import { LayoutComponent } from './layout.component';
 import { AuthGuard } from '../login/auth.guard';
 
@@ -21,7 +22,10 @@ const routes: Routes = [
         path: 'projects', loadChildren: '../projects/projects.module#ProjectsModule'
       },
       {
-        path: 'settings', loadChildren: '../settings/settings.module#SettingsModule'
+        path: 'profile', loadChildren: '../user-profile/user-profile.module#UserProfileModule', pathMatch: 'full'
+      },
+      {
+        path: 'settings', loadChildren: '../settings/settings.module#SettingsModule', pathMatch: 'full'
       }
     ]
   }
