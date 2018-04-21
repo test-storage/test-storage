@@ -10,16 +10,16 @@
     "SERVER_ERROR": "Server Error"
   },
   "HEADER": {
-    "USER_PROFILE": "User Profile",
+    "PROFILE": "Profile",
+    "SETTINGS": "Settings",
     "LOGOUT": "Logout"
   },
   "SIDEBAR": {
     "DASHBOARD": "Dashboard",
-    "PROJECTS": "Projects",
-    "TESTCASES": "Test Cases",
+    "REQUIREMENTS": "Requirements",
+    "TEST_MANAGEMENT": "Test Cases",
     "TEST_EXECUTIONS": "Test Executions",
     "REPORTS": "Reports",
-    "USERS": "Users",
     "PROJECT_SETTINGS": "Project Settings"
   },
   "LOGINPAGE": {
@@ -36,6 +36,7 @@
     "FORGOT_PASSWORD": "Forgot password"
   },
   "PROJECTSPAGE": {
+    "CREATE": "Create",
     "VIEW": "View",
     "EDIT": "Edit"
   },
@@ -52,6 +53,15 @@
     "ROLE": "Role",
     "ACTION": "Action",
     "REMOVE_MEMBER": "Remove member"
+  },
+  "TESTMANAGEMENTPAGE": {
+    "ADD": "Add",
+    "TITLE": "Title"
+  },
+  "TESTEXECUTIONPAGE": {
+    "ADD": "Add",
+    "ACTIVE": "Active",
+    "ARCHIEVED": "Archieved"
   },
   "TESTCASE_DETAILSPAGE": {
     "DESCRIPTION": "Description",
@@ -125,5 +135,10 @@
     "COMPANY": "Company",
     "WORK_INFORMATION": "Work Information",
     "PERSONAL_INFORMATION": "Personal Information"
+  },
+  "404": {
+    "ERROR_TITLE": "404 Not Found",
+    "ERROR_DESCRIPTION": "Sorry, an error has occured, Requested page not found!",
+    "HOME_BUTTON": "Take Me Home"
   }
 }

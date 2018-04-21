@@ -6,15 +6,14 @@
           <img src="/assets/404.png">
         </div>
         <div class="error-template">
-          <h2>
-            404 Not Found</h2>
+          <h2>{{ '404.ERROR_TITLE' | translate }}</h2>
           <div class="error-details">
-            Sorry, an error has occured, Requested page not found!
+            {{ '404.ERROR_DESCRIPTION' | translate }}
           </div>
           <div class="error-actions">
             <a routerLink="/" class="btn btn-primary btn-lg">
               <span class="fa fa-home"></span>
-              Take Me Home
+              {{ '404.HOME_BUTTON' | translate }}
             </a>
           </div>
         </div>

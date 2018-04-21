@@ -1,5 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { pageTransition } from '../animations';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-test-executions',
@@ -14,7 +15,7 @@ export class TestExecutionsComponent implements OnInit {
 
   public testSuites = [];
 
-  constructor() { }
+  constructor(protected translateService: TranslateService) { }
 
   ngOnInit() {
     this.testSuites = [

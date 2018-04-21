@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProjectLayoutComponent } from './project-layout.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -13,7 +14,8 @@ import { ProjectLayoutComponent } from './project-layout.component';
   imports: [
     CommonModule,
     ProjectLayoutRoutingModule,
-    SharedModule
+    SharedModule,
+    TranslateModule.forChild()
   ],
   declarations: [
     SidebarComponent,

@@ -1,12 +1,12 @@
 <clr-tabs>
   <clr-tab>
-    <button clrTabLink id="link1">Active</button>
+    <button clrTabLink id="link1">{{ 'TESTEXECUTIONPAGE.ACTIVE' | translate }}</button>
     <clr-tab-content id="content1" *clrIfActive="true">
       <div class="content-area">
 
         <button class="btn btn-primary">
           <clr-icon shape="plus"></clr-icon>
-          Add
+          {{ 'TESTEXECUTIONPAGE.ADD' | translate }}
         </button>
 
         <div class="row">
@@ -30,7 +30,7 @@
     </clr-tab-content>
   </clr-tab>
   <clr-tab>
-    <button clrTabLink>Archieved</button>
+    <button clrTabLink>{{ 'TESTEXECUTIONPAGE.ARCHIEVED' | translate }}</button>
     <clr-tab-content *clrIfActive>
       <div class="content-area">
         <div class="row">
