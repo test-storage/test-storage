@@ -1,14 +1,14 @@
 <div *ngIf="projects" class="content-area">
 
-  <app-project-wizard [opened]="projectWizardOpened"></app-project-wizard>
-  <!--
+  <app-project-wizard [opened]="projectWizardOpened" (changed)="projectWizardOpened"></app-project-wizard>
+
   <app-system-wizard></app-system-wizard>
-  -->
+
   <div *ngIf="projects.length > 0; then existProjects else noExistProjects"></div>
   <ng-template #existProjects>
     <a (click)="create();" class="btn btn-primary">
       <clr-icon shape="plus"></clr-icon>
-      Create Project
+      {{ 'PROJECTSPAGE.CREATE' | translate }}
     </a>
 
     <div class="row">

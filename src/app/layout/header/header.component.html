@@ -17,11 +17,11 @@
         <clr-icon shape="caret down"></clr-icon>
       </button>
       <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-        <a routerLink="/profile" clrDropdownItem>Profile</a>
+        <a routerLink="/profile" clrDropdownItem>{{ 'HEADER.PROFILE' | translate }}</a>
         <div class="dropdown-divider"></div>
-        <a routerLink="/settings" clrDropdownItem>Settings</a>
+        <a routerLink="/settings" clrDropdownItem>{{ 'HEADER.SETTINGS' | translate }}</a>
         <div class="dropdown-divider"></div>
-        <a (click)="logout()" clrDropdownItem>Log out</a>
+        <a (click)="logout()" clrDropdownItem>{{ 'HEADER.LOGOUT' | translate }}</a>
       </clr-dropdown-menu>
     </clr-dropdown>
   </div>

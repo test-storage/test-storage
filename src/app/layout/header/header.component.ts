@@ -1,6 +1,7 @@
 import { AuthGuard } from './../../login/auth.guard';
 import { AuthenticationService } from './../../login/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authGuard: AuthGuard,
-    private authService: AuthenticationService) { }
+    private authService: AuthenticationService,
+    protected translateService: TranslateService
+  ) { }
 
   ngOnInit() {
   }

@@ -10,16 +10,16 @@
     "SERVER_ERROR": "Ошибка Сервера"
   },
   "HEADER": {
-    "USER_PROFILE": "Профиль пользователя",
+    "PROFILE": "Профиль",
+    "SETTINGS": "Настройки",
     "LOGOUT": "Выйти"
   },
   "SIDEBAR": {
     "DASHBOARD": "Главная",
-    "PROJECTS": "Проекты",
-    "TESTCASES": "Тест Кейсы",
+    "REQUIREMENTS": "Требования",
+    "TEST_MANAGEMENT": "Тест Менеджмент",
     "TEST_EXECUTIONS": "Тест Прогоны",
     "REPORTS": "Отчеты",
-    "USERS": "Пользователи",
     "PROJECT_SETTINGS": "Настройки Проекта"
   },
   "LOGINPAGE": {
@@ -36,6 +36,7 @@
     "FORGOT_PASSWORD": "Восстановить пароль"
   },
   "PROJECTSPAGE": {
+    "CREATE": "Создать",
     "VIEW": "Просмотр",
     "EDIT": "Редактировать"
   },
@@ -52,6 +53,15 @@
     "ROLE": "Роль",
     "ACTION": "Действие",
     "REMOVE_MEMBER": "Удалить участника"
+  },
+  "TESTMANAGEMENTPAGE": {
+    "ADD": "Добавить",
+    "TITLE": "Название"
+  },
+  "TESTEXECUTIONPAGE": {
+    "ADD": "Добавить",
+    "ACTIVE": "Активные",
+    "ARCHIEVED": "Архивные"
   },
   "TESTCASE_DETAILSPAGE": {
     "DESCRIPTION": "Описание",
@@ -124,5 +134,10 @@
     "COMPANY": "Компания",
     "WORK_INFORMATION": "Рабочая Информация",
     "PERSONAL_INFORMATION": "Персональная Информация"
+  },
+  "404": {
+    "ERROR_TITLE": "404 Не Найдено",
+    "ERROR_DESCRIPTION": "Приносим извинения, произошла ошибка, Запрашиваемая страница не найдена!",
+    "HOME_BUTTON": "Отправьте меня на главную"
   }
 }

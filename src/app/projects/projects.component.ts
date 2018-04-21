@@ -3,6 +3,7 @@ import { pageTransition } from '../animations';
 
 import { Project } from './project';
 import { ProjectsService } from './projects.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-projects',
@@ -23,7 +24,8 @@ export class ProjectsComponent implements OnInit {
   projectWizardOpened = false;
 
   constructor(
-    private projectsService: ProjectsService
+    private projectsService: ProjectsService,
+    protected translateService: TranslateService
   ) { }
 
   ngOnInit() {
@@ -38,7 +40,12 @@ export class ProjectsComponent implements OnInit {
 
   create() {
     this.projectWizardOpened = true;
+    setTimeout(this.refresh(), 13000);
     // TODO create project wizard
+  }
+
+  refresh() {
+    // this.projectWizardOpened = false;
   }
 
 }
