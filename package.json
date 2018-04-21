@@ -50,7 +50,7 @@
     "@nestjs/mongoose": "^3.0.1",
     "@nestjs/swagger": "^1.2.2",
     "@nestjs/testing": "^4.6.6",
-    "@ngx-translate/core": "10.0.1",
+    "@ngx-translate/core": "9.1.1",
     "@ngx-translate/http-loader": "3.0.1",
     "@webcomponents/custom-elements": "^1.1.0",
     "angular2-notifications": "^1.0.1",
