@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from './authentication.service';
 import { User } from './user';
 
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    protected translateService: TranslateService
   ) {
     this.authenticationService.isLoggedIn().subscribe((loggedIn: boolean) => {
       if (loggedIn) {
