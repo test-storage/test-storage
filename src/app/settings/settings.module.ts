@@ -8,6 +8,9 @@ import { SharedModule } from '../shared/shared.module';
 import { UsersComponent } from './users/users.component';
 import { RolesComponent } from './roles/roles.component';
 import { MainSettingsComponent } from './main-settings/main-settings.component';
+import { UsersService } from './users/users.service';
+import { InventoryComponent } from './inventory/inventory.component';
+import { InventoryService } from './inventory/inventory.service';
 
 @NgModule({
   imports: [
@@ -19,7 +22,12 @@ import { MainSettingsComponent } from './main-settings/main-settings.component';
     SettingsComponent,
     UsersComponent,
     RolesComponent,
-    MainSettingsComponent
+    MainSettingsComponent,
+    InventoryComponent
+  ],
+  providers: [
+    UsersService,
+    InventoryService
   ]
 })
 export class SettingsModule { }
