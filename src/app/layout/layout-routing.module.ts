@@ -22,10 +22,10 @@ const routes: Routes = [
         path: 'projects', loadChildren: '../projects/projects.module#ProjectsModule'
       },
       {
-        path: 'profile', loadChildren: '../user-profile/user-profile.module#UserProfileModule', pathMatch: 'full'
+        path: 'profile', loadChildren: '../user-profile/user-profile.module#UserProfileModule'
       },
       {
-        path: 'settings', loadChildren: '../settings/settings.module#SettingsModule', pathMatch: 'full'
+        path: 'settings', loadChildren: '../settings/settings.module#SettingsModule'
       }
     ]
   }
