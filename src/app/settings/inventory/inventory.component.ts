@@ -1,13 +1,19 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
+import { pageTransition } from '../../animations';
+
 import { Device } from './device';
 import { InventoryService } from './inventory.service';
 
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
-  styleUrls: ['./inventory.component.css']
+  styleUrls: ['./inventory.component.css'],
+  animations: [pageTransition]
 })
 export class InventoryComponent implements OnInit, OnDestroy {
+
+  @HostBinding('@routeAnimation') routeAnimation = true;
+  @HostBinding('style.display') display = 'block';
 
   subscription;
   devices: Device[];
