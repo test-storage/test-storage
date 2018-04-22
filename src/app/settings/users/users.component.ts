@@ -1,5 +1,8 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { pageTransition } from '../../animations';
+
+import { UsersService } from './users.service';
+import { User } from './user';
 
 @Component({
   selector: 'app-users',
@@ -7,14 +10,16 @@ import { pageTransition } from '../../animations';
   styleUrls: ['./users.component.css'],
   animations: [pageTransition]
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
 
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
   @HostBinding('style.position') position = 'absolute';
 
   selected = [];
-
+  subscription;
+  users: User[];
+  /*
   public users = [
     {
       id: '44kijtj55iig',
@@ -44,10 +49,22 @@ export class UsersComponent implements OnInit {
       avatar: 'path/to/file'
     }
   ];
+  */
 
-  constructor() { }
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
+    this.loadUsers();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  loadUsers() {
+    this.subscription = this.usersService.getUsers().subscribe(
+      data => this.users = data,
+      error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
   onAdd() {
