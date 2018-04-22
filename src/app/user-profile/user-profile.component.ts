@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { pageTransition } from '../animations';
 
-import { User } from './user';
+import { User } from '../settings/users/user';
 import { UserProfileService } from './user-profile.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   constructor(private userProfileService: UserProfileService) { }
 
   ngOnInit() {
-    // this.getProfile();
+    this.getProfile();
   }
 
   ngOnDestroy() {

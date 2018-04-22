@@ -7,21 +7,24 @@
         <label>User</label>
 
         <div class="form-group">
-          <label for="firstname">First name</label>
-          <input type="text" id="firstname" name="firstName" placeholder="John" size="45">
+          <label class="required" for="firstname">First name</label>
+          <input type="text" id="firstname" name="firstName" [(ngModel)]="profile.firstName" #firstname="ngModel" required placeholder="John"
+            size="45">
         </div>
 
         <div class="form-group">
-          <label for="lastname">Last name</label>
-          <input type="text" id="lastname" name="lastName" placeholder="Doe" size="35">
+          <label class="required" for="lastname">Last name</label>
+          <input type="text" id="lastname" name="lastName" [(ngModel)]="profile.lastName" #lastname="ngModel" required placeholder="Doe"
+            size="35">
         </div>
 
         <br>
         <label>Company Details</label>
 
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="text" id="email" name="email" placeholder="johndoe@example.com" size="35">
+          <label class="required" for="email">Email</label>
+          <input type="text" id="email" name="email" [(ngModel)]="profile.email" #email="ngModel" required placeholder="johndoe@example.com"
+            size="35">
         </div>
 
         <div class="form-group">
