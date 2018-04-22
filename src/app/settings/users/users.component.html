@@ -1,4 +1,4 @@
-<clr-datagrid [(clrDgSelected)]="selected" [clDgRowSelection]="true">
+<clr-datagrid *ngIf="users" [(clrDgSelected)]="selected" [clDgRowSelection]="true">
   <clr-dg-action-bar>
     <div class="btn-group">
       <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
@@ -19,8 +19,11 @@
     <clr-dg-cell>{{user.lastName}} {{user.firstName}}</clr-dg-cell>
     <clr-dg-cell>{{user.email}}</clr-dg-cell>
     <clr-dg-cell>{{user.created * 1000 | date}}</clr-dg-cell>
-    <clr-dg-cell>{{user.groups}}</clr-dg-cell>
+    <clr-dg-cell></clr-dg-cell>
   </clr-dg-row>
 
   <clr-dg-footer>{{users.length}} users</clr-dg-footer>
 </clr-datagrid>
+
+<!--<app-users></app-users>-->
+<app-roles></app-roles>
