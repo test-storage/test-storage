@@ -98,7 +98,7 @@ export class TestManagementComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.getTestSuites();
+    this.getTestSuites();
   }
 
   getTestSuites() {
@@ -116,6 +116,7 @@ export class TestManagementComponent implements OnInit {
   fromFlatToTree() {
     // build tree with childs from flat list
     const idToNodeMap = {};
+    let rootNodes = 0;
     const root = [];
     let parentNode;
 
@@ -123,10 +124,17 @@ export class TestManagementComponent implements OnInit {
 
       const node = this.testSuites[i];
       node['children'] = [];
+      // View Model
+      node['icon'] = 'folder';
+      node['active'] = false;
+      node['expanded'] = false;
+
       idToNodeMap[node._id] = node;
 
       if (node.parentId === 'root') {
-        root[0] = node;
+        node['expanded'] = true;
+        root[rootNodes] = node;
+        rootNodes++;
       } else {
         parentNode = idToNodeMap[node.parentId];
         parentNode.children.push(node);
