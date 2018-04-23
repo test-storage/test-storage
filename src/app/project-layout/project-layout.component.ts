@@ -1,5 +1,9 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { pageTransition } from '../animations';
+
+import { ProjectsService } from './../projects/projects.service';
+import { Project } from '../projects/project';
 
 @Component({
   selector: 'app-project-layout',
@@ -14,9 +18,28 @@ export class ProjectLayoutComponent implements OnInit {
 
   collapsed = false;
 
-  constructor() { }
+  id: string;
+  private subscription;
+  project: Project;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private projectsService: ProjectsService
+  ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.loadProject(this.id);
+    });
+  }
+
+
+  loadProject(id: string) {
+    this.subscription = this.projectsService.getProject(id).subscribe(
+      data => this.project = data,
+      error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
 }
