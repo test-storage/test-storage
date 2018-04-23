@@ -144,9 +144,12 @@
   </div>
 
 
-  <div class="col-sm-12 col-md-12 col-lg-3">
+  <div *ngIf="testSuitesViewModel.length > 0" class="col-sm-12 col-md-12 col-lg-3">
     <!-- TODO move to testsuites tree component -->
-    <clr-tree-node *ngFor="let testSuite of testSuites">
+    <!--<pre>
+      {{ testSuitesViewModel | json }}
+    </pre>-->
+    <clr-tree-node *ngFor="let testSuite of testSuitesViewModel">
       <button class="clr-treenode-link"><clr-icon [attr.shape]="testSuite.icon"></clr-icon>
       {{testSuite.name}}
       </button>
