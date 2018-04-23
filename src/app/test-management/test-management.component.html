@@ -145,9 +145,11 @@
 
 
   <div class="col-sm-12 col-md-12 col-lg-3">
-    <clr-tree-node *ngFor="let testSuite of testSuitesTree">
-      <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
+    <!-- TODO move to testsuites tree component -->
+    <clr-tree-node *ngFor="let testSuite of testSuites">
+      <button class="clr-treenode-link"><clr-icon [attr.shape]="testSuite.icon"></clr-icon>
       {{testSuite.name}}
+      </button>
       <ng-template [(clrIfExpanded)]="testSuite.expanded">
         <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
           <button (click)="openTestSuite(testSuite.name, subTestSuite.name)" class="clr-treenode-link" [class.active]="subTestSuite.active">

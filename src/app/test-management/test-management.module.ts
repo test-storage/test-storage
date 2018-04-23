@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 
 import { TestManagementRoutingModule } from './test-management-routing.module';
 import { TestManagementComponent } from './test-management.component';
-import { TranslateModule } from '@ngx-translate/core';
+
+import { TestCaseService } from './test-case.service';
+import { TestSuiteService } from './test-suite.service';
 
 @NgModule({
   imports: [
@@ -14,6 +17,10 @@ import { TranslateModule } from '@ngx-translate/core';
     SharedModule,
     TranslateModule.forChild()
   ],
-  declarations: [TestManagementComponent]
+  declarations: [TestManagementComponent],
+  providers: [
+    TestSuiteService,
+    TestCaseService
+  ]
 })
 export class TestManagementModule { }
