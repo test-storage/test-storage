@@ -5,6 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { TestCaseService } from './test-case.service';
 import { TestSuiteService } from './test-suite.service';
 
+import { TestCase } from './test-case';
+import { TestSuite } from './test-suite';
+
 @Component({
   selector: 'app-test-management',
   templateUrl: './test-management.component.html',
@@ -16,79 +19,15 @@ export class TestManagementComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  public testcases = [
-    {
-      name: 'Импорт валидных геозон из файла'
-    },
-    {
-      name: 'Экспорт валидных геозон'
-    },
-    {
-      name: 'Валидация геозон'
-    },
-    {
-      name: 'Удаление геозон'
-    }
-
-  ];
-
+  public testCases: TestCase[] = [];
   testSuitesViewModel = [];
-  testSuites: any[] = [
-    {
-      name: 'Main Features',
-      icon: 'folder',
-      expanded: true,
-      children: [
-        {
-          icon: 'folder',
-          name: 'Authentication',
-          active: false
-        },
-        {
-          icon: 'folder',
-          name: 'Messaging',
-          active: false
-        },
-        {
-          icon: 'folder',
-          name: 'Dashboard',
-          active: false
-        },
-        {
-          icon: 'folder',
-          name: 'Maps',
-          active: true
-        }
-      ]
-    },
-    {
-      name: 'REST API',
-      icon: 'folder',
-      expanded: false,
-      children: [
-        {
-          icon: 'folder',
-          name: 'Authentication',
-          active: false
-        }
-      ]
-    },
-    {
-      name: 'Non-functional',
-      icon: 'folder',
-      expanded: false,
-      children: [
-        {
-          icon: 'folder',
-          name: 'Messaging',
-          active: false
-        }
-      ]
-    }
-  ];
+  testSuites: TestSuite[] = [];
 
-  openTestSuite(testSuiteName: string, child: string) {
+  openTestSuite(testSuiteId: string) {
     // TODO event emitter with suite id
+    console.log(testSuiteId);
+    this.getTestCasesForTestSuite(testSuiteId);
+
   }
 
   constructor(
@@ -99,6 +38,12 @@ export class TestManagementComponent implements OnInit {
 
   ngOnInit() {
     this.getTestSuites();
+  }
+
+  getTestCasesForTestSuite(id: string) {
+    this.testCaseService.getTestCasesBySuiteId(id).subscribe(
+      data => this.testCases = data,
+      error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
   getTestSuites() {
