@@ -1,0 +1,35 @@
+version: "2"
+
+services:
+  app:
+    container_name: application_container
+    build: .
+    command: npm start
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    container_name: mongodb_container
+    image: mongo:latest
+    command: mongod --auth
+    volumes:
+      - dbdata:/data/db
+      - ./install:/docker-entrypoint-initdb.d
+    ports:
+      - '27017:27017'
+    environment:
+      - AUTH=yes
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=test-storage
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/logs
+
+volumes:
+  dbdata:

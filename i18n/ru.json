@@ -1,126 +1,143 @@
 {
-    "SETTINGS": {
-        "TITLE": "Настройки",
-        "CHOOSE_LANGUAGE": "Выберите язык",
-        "THEME": "Тема",
-        "THEME_BRIGHT": "Светлая",
-        "THEME_DARK": "Темная"
-    },
-    "ERROR": {
-        "SERVER_ERROR": "Ошибка Сервера"
-    },
-    "HEADER": {
-        "USER_PROFILE": "Профиль пользователя",
-        "LOGOUT": "Выйти"
-    },
-    "SIDEBAR": {
-        "DASHBOARD": "Главная",
-        "PROJECTS": "Проекты",
-        "TESTCASES": "Тест Кейсы",
-        "TEST_EXECUTIONS": "Тест Прогоны",
-        "REPORTS": "Отчеты",
-        "USERS": "Пользователи",
-        "PROJECT_SETTINGS": "Настройки Проекта"
-    },
-    "LOGINPAGE": {
-        "LOGIN": "Вход",
-        "USERNAME": "Пользователь",
-        "PASSWORD": "Пароль",
-        "LOGIN_REQUIRED": "Обязательное поле Пользователь",
-        "PASSWORD_REQUIRED": "Обязательное поле Пароль",
-        "LOGIN_BUTTON": "Войти",
-        "INVALID_CREDENTIALS": "Логин или пароль не верный",
-        "REMEMBER_ME": "Запомнить меня",
-        "FORGOT_PASSWORD": "Восстановить пароль"
-    },
-    "PROJECTSPAGE": {
-        "VIEW": "Просмотр",
-        "EDIT": "Редактировать"
-    },
-    "PROJECT_DETAILSPAGE": {
-        "DESCRIPTION": "Описание",
-        "EDIT": "Редактировать",
-        "DELETE": "Удалить",
-        "LAST_EDITED": "Последние изменения",
-        "STATUS": "Статус",
-        "CREATED_BY": "Создано",
-        "UPDATED_BY": "Отредактировано",
-        "EDIT_MEMBERS": "Редактировать участников",
-        "NAME": "Имя",
-        "ROLE": "Роль",
-        "ACTION": "Действие",
-        "REMOVE_MEMBER": "Удалить участника"
-    },
-    "TESTCASE_DETAILSPAGE": {
-        "DESCRIPTION": "Описание",
-        "EDIT": "Редактировать",
-        "DELETE": "Удалить",
-        "LAST_EDITED": "Последние изменения",
-        "STATUS": "Статус",
-        "CREATED_BY": "Создано",
-        "UPDATED_BY": "Отредактировано",
-        "EDIT_MEMBERS": "Редактировать участников",
-        "NAME": "Имя",
-        "ROLE": "Роль",
-        "ACTION": "Действие",
-        "REMOVE_MEMBER": "Удалить участника"
-    },
-    "TESTCASECREATEPAGE": {
-        "TITLE": "Заголовок",
-        "TITLE_PLACEHOLDER": "Заголовок",
-        "TITLE_REQUIRED": "Заголовок - обязательное поле",
-        "DESCRIPTION": "Описание",
-        "DESCRIPTION_PLACEHOLDER": "Описание",
-        "DESCRIPTION_REQUIRED": "Описание - обязательное поле",
-        "PRECONDITIONS": "Предусловия",
-        "PRECONDITIONS_PLACEHOLDER": "Предусловия",
-        "PRECONDITIONS_REQUIRED": "Предусловия - обязательное поле",
-        "STEPS": "Шаги",
-        "STEPS_ACTION_PLACEHOLDER": "Действие",
-        "STEPS_ACTION_REQUIRED": "Действие - обязательное поле",
-        "TESTDATA": "Тестовые данные",
-        "TESTDATA_PLACEHOLDER": "Тестовые данные",
-        "TESTDATA_REQUIRED": "Тестовые данные - обязательное поле",
-        "EXPECTED": "Ожидаемый Результат",
-        "EXPECTED_PLACEHOLDER": "Ожидаемый результат",
-        "EXPECTED_REQUIRED": "Ожидаемый результат - обязательное поле",
-        "POSTCONDITIONS": "Постусловия",
-        "POSTCONDITIONS_PLACEHOLDER": "Постусловия",
-        "POSTCONDITIONS_REQUIRED": "Постусловия - обязательное поле",
-        "CREATE_TESTCASE": "Создать Тесткейс"
-    },
-    "USERCREATEPAGE": {
-        "TITLE": "Создать профиль пользователя",
-        "SECTION_GENERAL": "Основные",
-        "EMAIL": "Email",
-        "EMAIL_PLACEHOLDER": "email@example.com",
-        "EMAIL_REQUIRED": "Email - обязательное поле",
-        "LASTNAME": "Фамилия",
-        "LASTNAME_PLACEHOLDER": "Иванов",
-        "LASTNAME_REQUIRED": "Фамилия - обязательное поле",
-        "FIRSTNAME": "Имя",
-        "FIRSTNAME_PLACEHOLDER": "Иван",
-        "FIRSTNAME_REQUIRED": "Имя - обязательное поле",
-        "JOBTITLE": "Должность",
-        "JOBTITLE_PLACEHOLDER": "Старший Тестировщик",
-        "PHONE_NUMBER": "Телефонный номер",
-        "PHONE_NUMBER_PLACEHOLDER": "+74951234567",
-        "COMPANY": "Компания",
-        "COMPANY_PLACEHOLDER": "Example LLC",
-        "PASSWORD": "Пароль",
-        "PASSWORD_REQUIRED": "Пароль - обязательное поле",
-        "CONFIRMPASSWORD": "Повторить пароль",
-        "CONFIRMPASSWORD_REQUIRED": "Повторить пароль - обязательное поле",
-        "PASSWORDSMATCH": "Оба пароля должны быть одинаковы",
-        "CREATE_USER": "Создать Пользователя",
-        "SECTION_ADDITIONAL": "Дополнительная Информация"
-    },
-    "USERPROFILEPAGE": {
-        "REGISTERED": "Зарегистрирован",
-        "EMAIL": "Email",
-        "PHONE_NUMBER": "Телефонный Номер",
-        "COMPANY": "Компания",
-        "WORK_INFORMATION": "Рабочая Информация",
-        "PERSONAL_INFORMATION": "Персональная Информация"
-    }
+  "SETTINGS": {
+    "TITLE": "Настройки",
+    "CHOOSE_LANGUAGE": "Выберите язык",
+    "THEME": "Тема",
+    "THEME_BRIGHT": "Светлая",
+    "THEME_DARK": "Темная"
+  },
+  "ERROR": {
+    "SERVER_ERROR": "Ошибка Сервера"
+  },
+  "HEADER": {
+    "PROFILE": "Профиль",
+    "SETTINGS": "Настройки",
+    "LOGOUT": "Выйти"
+  },
+  "SIDEBAR": {
+    "DASHBOARD": "Главная",
+    "REQUIREMENTS": "Требования",
+    "TEST_MANAGEMENT": "Тест Менеджмент",
+    "TEST_EXECUTIONS": "Тест Прогоны",
+    "REPORTS": "Отчеты",
+    "PROJECT_SETTINGS": "Настройки Проекта"
+  },
+  "LOGINPAGE": {
+    "WELCOME": "Добро пожаловать в",
+    "LOGIN": "Вход",
+    "USERNAME": "Пользователь",
+    "PASSWORD": "Пароль",
+    "LOGIN_REQUIRED": "Обязательное поле Пользователь",
+    "PASSWORD_REQUIRED": "Обязательное поле Пароль",
+    "LOGIN_BUTTON": "Войти",
+    "REGISTER_BUTTON": "Зарегистрироваться",
+    "INVALID_CREDENTIALS": "Логин или пароль не верный",
+    "REMEMBER_ME": "Запомнить меня",
+    "FORGOT_PASSWORD": "Восстановить пароль"
+  },
+  "PROJECTSPAGE": {
+    "CREATE": "Создать",
+    "VIEW": "Просмотр",
+    "EDIT": "Редактировать"
+  },
+  "PROJECT_DETAILSPAGE": {
+    "DESCRIPTION": "Описание",
+    "EDIT": "Редактировать",
+    "DELETE": "Удалить",
+    "LAST_EDITED": "Последние изменения",
+    "STATUS": "Статус",
+    "CREATED_BY": "Создано",
+    "UPDATED_BY": "Отредактировано",
+    "EDIT_MEMBERS": "Редактировать участников",
+    "NAME": "Имя",
+    "ROLE": "Роль",
+    "ACTION": "Действие",
+    "REMOVE_MEMBER": "Удалить участника"
+  },
+  "TESTMANAGEMENTPAGE": {
+    "ADD": "Добавить",
+    "TITLE": "Название"
+  },
+  "TESTEXECUTIONPAGE": {
+    "ADD": "Добавить",
+    "ACTIVE": "Активные",
+    "ARCHIEVED": "Архивные"
+  },
+  "TESTCASE_DETAILSPAGE": {
+    "DESCRIPTION": "Описание",
+    "EDIT": "Редактировать",
+    "DELETE": "Удалить",
+    "LAST_EDITED": "Последние изменения",
+    "STATUS": "Статус",
+    "CREATED_BY": "Создано",
+    "UPDATED_BY": "Отредактировано",
+    "EDIT_MEMBERS": "Редактировать участников",
+    "NAME": "Имя",
+    "ROLE": "Роль",
+    "ACTION": "Действие",
+    "REMOVE_MEMBER": "Удалить участника"
+  },
+  "TESTCASECREATEPAGE": {
+    "TITLE": "Заголовок",
+    "TITLE_PLACEHOLDER": "Заголовок",
+    "TITLE_REQUIRED": "Заголовок - обязательное поле",
+    "DESCRIPTION": "Описание",
+    "DESCRIPTION_PLACEHOLDER": "Описание",
+    "DESCRIPTION_REQUIRED": "Описание - обязательное поле",
+    "PRECONDITIONS": "Предусловия",
+    "PRECONDITIONS_PLACEHOLDER": "Предусловия",
+    "PRECONDITIONS_REQUIRED": "Предусловия - обязательное поле",
+    "STEPS": "Шаги",
+    "STEPS_ACTION_PLACEHOLDER": "Действие",
+    "STEPS_ACTION_REQUIRED": "Действие - обязательное поле",
+    "TESTDATA": "Тестовые данные",
+    "TESTDATA_PLACEHOLDER": "Тестовые данные",
+    "TESTDATA_REQUIRED": "Тестовые данные - обязательное поле",
+    "EXPECTED": "Ожидаемый Результат",
+    "EXPECTED_PLACEHOLDER": "Ожидаемый результат",
+    "EXPECTED_REQUIRED": "Ожидаемый результат - обязательное поле",
+    "POSTCONDITIONS": "Постусловия",
+    "POSTCONDITIONS_PLACEHOLDER": "Постусловия",
+    "POSTCONDITIONS_REQUIRED": "Постусловия - обязательное поле",
+    "CREATE_TESTCASE": "Создать Тесткейс"
+  },
+  "USERCREATEPAGE": {
+    "TITLE": "Создать профиль пользователя",
+    "SECTION_GENERAL": "Основные",
+    "EMAIL": "Email",
+    "EMAIL_PLACEHOLDER": "email@example.com",
+    "EMAIL_REQUIRED": "Email - обязательное поле",
+    "LASTNAME": "Фамилия",
+    "LASTNAME_PLACEHOLDER": "Иванов",
+    "LASTNAME_REQUIRED": "Фамилия - обязательное поле",
+    "FIRSTNAME": "Имя",
+    "FIRSTNAME_PLACEHOLDER": "Иван",
+    "FIRSTNAME_REQUIRED": "Имя - обязательное поле",
+    "JOBTITLE": "Должность",
+    "JOBTITLE_PLACEHOLDER": "Старший Тестировщик",
+    "PHONE_NUMBER": "Телефонный номер",
+    "PHONE_NUMBER_PLACEHOLDER": "+74951234567",
+    "COMPANY": "Компания",
+    "COMPANY_PLACEHOLDER": "Example LLC",
+    "PASSWORD": "Пароль",
+    "PASSWORD_REQUIRED": "Пароль - обязательное поле",
+    "CONFIRMPASSWORD": "Повторить пароль",
+    "CONFIRMPASSWORD_REQUIRED": "Повторить пароль - обязательное поле",
+    "PASSWORDSMATCH": "Оба пароля должны быть одинаковы",
+    "CREATE_USER": "Создать Пользователя",
+    "SECTION_ADDITIONAL": "Дополнительная Информация"
+  },
+  "USERPROFILEPAGE": {
+    "REGISTERED": "Зарегистрирован",
+    "EMAIL": "Email",
+    "PHONE_NUMBER": "Телефонный Номер",
+    "COMPANY": "Компания",
+    "WORK_INFORMATION": "Рабочая Информация",
+    "PERSONAL_INFORMATION": "Персональная Информация"
+  },
+  "404": {
+    "ERROR_TITLE": "404 Не Найдено",
+    "ERROR_DESCRIPTION": "Приносим извинения, произошла ошибка, Запрашиваемая страница не найдена!",
+    "HOME_BUTTON": "Отправьте меня на главную"
+  }
 }

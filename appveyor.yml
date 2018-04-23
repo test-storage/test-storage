@@ -32,6 +32,6 @@ test_script:
   # linting
   - npm run lint
   # Run tests
-  - npm test
+  # npm test
 
 

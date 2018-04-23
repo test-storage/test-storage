@@ -1,0 +1,69 @@
+<clr-tabs>
+  <clr-tab>
+    <button clrTabLink id="link1">{{ 'TESTEXECUTIONPAGE.ACTIVE' | translate }}</button>
+    <clr-tab-content id="content1" *clrIfActive="true">
+      <div class="content-area">
+
+        <button class="btn btn-primary">
+          <clr-icon shape="plus"></clr-icon>
+          {{ 'TESTEXECUTIONPAGE.ADD' | translate }}
+        </button>
+
+        <div class="row">
+          <div *ngFor="let testSuite of testSuites" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <a routerLink="./1" class="card clickable">
+              <div class="card-block">
+                <h4 class="card-title">{{ testSuite.title }}</h4>
+                <p class="card-text">{{ testSuite.description }}</p>
+              </div>
+              <div class="card-footer">
+                <div class="progress labeled success">
+                  <progress value="{{ testSuite.completed }}" max="100" data-displayval="0%"></progress>
+                </div>
+                <clr-icon shape="clock" class="has-alert"></clr-icon> 30.04.2018
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>{{ 'TESTEXECUTIONPAGE.ARCHIEVED' | translate }}</button>
+    <clr-tab-content *clrIfActive>
+      <div class="content-area">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card">
+              <div class="card-block">
+                <h4 class="card-title">Corporate Portal Regression Suite</h4>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem.</p>
+              </div>
+              <div class="card-footer">
+                <div class="progress labeled success">
+                  <progress value="100" max="100" data-displayval="0%"></progress>
+                </div>
+                <a class="btn btn-sm btn-link">Edit</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <div class="card">
+              <div class="card-block">
+                <h4 class="card-title">iOS User Profile Feature Suite</h4>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem..</p>
+              </div>
+              <div class="card-footer">
+                <div class="progress labeled success">
+                  <progress value="100" max="100" data-displayval="10%"></progress>
+                </div>
+                <a class="btn btn-sm btn-link">Edit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </clr-tab-content>
+  </clr-tab>
+</clr-tabs>

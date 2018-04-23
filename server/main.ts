@@ -19,8 +19,10 @@ let app;
 
 async function bootstrap() {
 
+  expressServer.disable('x-powered-by');
+
   if (config.get('app.httpsEnabled') === false) {
-    app = await NestFactory.create(ApplicationModule, expressServer);
+    app = await NestFactory.create(ApplicationModule, expressServer, {});
   } else {
     const httpsOptions = {
       key: fs.readFileSync(config.get('https.privateKey'), 'utf8'),
@@ -61,7 +63,7 @@ function initSwagger() {
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('/api', app, document);
+  SwaggerModule.setup('/apidocs', app, document);
 }
 
 bootstrap();

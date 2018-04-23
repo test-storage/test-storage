@@ -1,0 +1,45 @@
+<div class="row">
+  <input type="text" id="search" name="search" placeholder="search...">
+</div>
+<div class="row">
+
+  <table *ngIf="devices" class="table">
+    <thead>
+      <tr>
+        <th style="width: 50px;">Type</th>
+        <th class="left">Name</th>
+        <th style="width: 200px;">OS</th>
+        <th style="width: 200px;">OS Version</th>
+        <th style="width: 200px;">User</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let device of devices">
+        <td [ngSwitch]="device.type">
+          <clr-icon *ngSwitchCase="0" shape="mobile"></clr-icon>
+          <clr-icon *ngSwitchCase="1" shape="tablet"></clr-icon>
+          <clr-icon *ngSwitchCase="2" shape="host"></clr-icon>
+          <clr-icon *ngSwitchCase="3" shape="hard-disk"></clr-icon>
+          <clr-icon *ngSwitchCase="4" shape="vm"></clr-icon>
+          <clr-icon *ngSwitchCase="5" shape="deploy"></clr-icon>
+        </td>
+        <td class="left">{{ device.manufacturer }} {{ device.model }}</td>
+        <td>{{ device.os }}</td>
+        <td>{{ device.osVersion }}</td>
+        <td>
+          <div class="form-group">
+            <label for="selects_1"></label>
+            <div class="select">
+              <select id="selects_1">
+                <option>John Doe</option>
+                <option>Alice Work</option>
+                <option>Thomas Marken</option>
+                <option>Andreas Brandson</option>
+              </select>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

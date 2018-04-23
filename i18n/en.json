@@ -1,127 +1,144 @@
 {
-    "SETTINGS": {
-        "TITLE": "Settings",
-        "CHOOSE_LANGUAGE": "Choose language",
-        "THEME": "Theme",
-        "THEME_BRIGHT": "Bright",
-        "THEME_DARK": "Dark"
-    },
-    "ERROR": {
-        "SERVER_ERROR": "Server Error"
-    },
-    "HEADER": {
-        "USER_PROFILE": "User Profile",
-        "LOGOUT": "Logout"
-    },
-    "SIDEBAR": {
-        "DASHBOARD": "Dashboard",
-        "PROJECTS": "Projects",
-        "TESTCASES": "Test Cases",
-        "TEST_EXECUTIONS": "Test Executions",
-        "REPORTS": "Reports",
-        "USERS": "Users",
-        "PROJECT_SETTINGS": "Project Settings"
-    },
-    "LOGINPAGE": {
-        "LOGIN": "Login",
-        "USERNAME": "Username",
-        "PASSWORD": "Password",
-        "LOGIN_REQUIRED": "Username is required",
-        "PASSWORD_REQUIRED": "Password is required",
-        "LOGIN_BUTTON": "Login",
-        "INVALID_CREDENTIALS": "Username or password is incorrect",
-        "REMEMBER_ME": "Remember me",
-        "FORGOT_PASSWORD": "Forgot password"
-    },
-    "PROJECTSPAGE": {
-        "VIEW": "View",
-        "EDIT": "Edit"
-    },
-    "PROJECT_DETAILSPAGE": {
-        "DESCRIPTION": "Description",
-        "EDIT": "Edit",
-        "DELETE": "Delete",
-        "LAST_EDITED": "Last edited",
-        "STATUS": "Status",
-        "CREATED_BY": "Created by",
-        "UPDATED_BY": "Updated by",
-        "EDIT_MEMBERS": "Edit Members",
-        "NAME": "Name",
-        "ROLE": "Role",
-        "ACTION": "Action",
-        "REMOVE_MEMBER": "Remove member"
-    },
-    "TESTCASE_DETAILSPAGE": {
-        "DESCRIPTION": "Description",
-        "EDIT": "Edit",
-        "DELETE": "Delete",
-        "LAST_EDITED": "Last edited",
-        "STATUS": "Status",
-        "CREATED_BY": "Created by",
-        "UPDATED_BY": "Updated by",
-        "EDIT_MEMBERS": "Edit Members",
-        "NAME": "Name",
-        "ROLE": "Role",
-        "ACTION": "Action",
-        "REMOVE_MEMBER": "Remove member"
-    },
-    "TESTCASECREATEPAGE": {
-        "TITLE": "Title",
-        "TITLE_PLACEHOLDER": "Title",
-        "TITLE_REQUIRED": "Title is required",
-        "DESCRIPTION": "Description",
-        "DESCRIPTION_PLACEHOLDER": "Description",
-        "DESCRIPTION_REQUIRED": "Description required",
-        "PRECONDITIONS": "Preconditions",
-        "PRECONDITIONS_PLACEHOLDER": "Preconditions",
-        "PRECONDITIONS_REQUIRED": "Preconditions required",
-        "STEPS": "Steps",
-        "STEPS_ACTION_PLACEHOLDER": "Action",
-        "STEPS_ACTION_REQUIRED": "Action required",
-        "TESTDATA": "Test Data",
-        "TESTDATA_PLACEHOLDER": "Test Data",
-        "TESTDATA_REQUIRED": "Test Data required",
-        "EXPECTED": "Expected Result",
-        "EXPECTED_PLACEHOLDER": "Expected result",
-        "EXPECTED_REQUIRED": "Expected result required",
-        "POSTCONDITIONS": "Postconditions",
-        "POSTCONDITIONS_PLACEHOLDER": "Postconditions",
-        "POSTCONDITIONS_REQUIRED": "Postconditions required",
-        "CREATE_TESTCASE": "Create Testcase"
-    },
-    "USERCREATEPAGE": {
-        "TITLE": "Create User Profile",
-        "SECTION_GENERAL": "General",
-        "EMAIL": "Email",
-        "EMAIL_PLACEHOLDER": "email@example.com",
-        "EMAIL_REQUIRED": "Email is required",
-        "LASTNAME": "Last name",
-        "LASTNAME_PLACEHOLDER": "Doe",
-        "LASTNAME_REQUIRED": "Last name required",
-        "FIRSTNAME": "First name",
-        "FIRSTNAME_PLACEHOLDER": "John",
-        "FIRSTNAME_REQUIRED": "First name required",
-        "JOBTITLE": "Job title",
-        "JOBTITLE_PLACEHOLDER": "Senior Tester",
-        "JOBTITLE_REQUIRED": "Job title required",
-        "PHONE_NUMBER": "Phone Number",
-        "PHONE_NUMBER_PLACEHOLDER": "+18081234567",
-        "COMPANY": "Company",
-        "COMPANY_PLACEHOLDER": "Example LLC",
-        "PASSWORD": "Password",
-        "PASSWORD_REQUIRED": "Password required",
-        "CONFIRMPASSWORD": "Confirm Password",
-        "CONFIRMPASSWORD_REQUIRED": "Confirm password required",
-        "PASSWORDSMATCH": "Password and Confirm Password should be equal",
-        "CREATE_USER": "Create User",
-        "SECTION_ADDITIONAL": "Additional Information"
-    },
-    "USERPROFILEPAGE": {
-        "REGISTERED": "Registered",
-        "EMAIL": "Email",
-        "PHONE_NUMBER": "Phone Number",
-        "COMPANY": "Company",
-        "WORK_INFORMATION": "Work Information",
-        "PERSONAL_INFORMATION": "Personal Information"
-    }
+  "SETTINGS": {
+    "TITLE": "Settings",
+    "CHOOSE_LANGUAGE": "Choose language",
+    "THEME": "Theme",
+    "THEME_BRIGHT": "Bright",
+    "THEME_DARK": "Dark"
+  },
+  "ERROR": {
+    "SERVER_ERROR": "Server Error"
+  },
+  "HEADER": {
+    "PROFILE": "Profile",
+    "SETTINGS": "Settings",
+    "LOGOUT": "Logout"
+  },
+  "SIDEBAR": {
+    "DASHBOARD": "Dashboard",
+    "REQUIREMENTS": "Requirements",
+    "TEST_MANAGEMENT": "Test Cases",
+    "TEST_EXECUTIONS": "Test Executions",
+    "REPORTS": "Reports",
+    "PROJECT_SETTINGS": "Project Settings"
+  },
+  "LOGINPAGE": {
+    "WELCOME": "Welcome to",
+    "LOGIN": "Login",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "LOGIN_REQUIRED": "Username is required",
+    "PASSWORD_REQUIRED": "Password is required",
+    "LOGIN_BUTTON": "Login",
+    "REGISTER_BUTTON": "Register",
+    "INVALID_CREDENTIALS": "Username or password is incorrect",
+    "REMEMBER_ME": "Remember me",
+    "FORGOT_PASSWORD": "Forgot password"
+  },
+  "PROJECTSPAGE": {
+    "CREATE": "Create",
+    "VIEW": "View",
+    "EDIT": "Edit"
+  },
+  "PROJECT_DETAILSPAGE": {
+    "DESCRIPTION": "Description",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "LAST_EDITED": "Last edited",
+    "STATUS": "Status",
+    "CREATED_BY": "Created by",
+    "UPDATED_BY": "Updated by",
+    "EDIT_MEMBERS": "Edit Members",
+    "NAME": "Name",
+    "ROLE": "Role",
+    "ACTION": "Action",
+    "REMOVE_MEMBER": "Remove member"
+  },
+  "TESTMANAGEMENTPAGE": {
+    "ADD": "Add",
+    "TITLE": "Title"
+  },
+  "TESTEXECUTIONPAGE": {
+    "ADD": "Add",
+    "ACTIVE": "Active",
+    "ARCHIEVED": "Archieved"
+  },
+  "TESTCASE_DETAILSPAGE": {
+    "DESCRIPTION": "Description",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "LAST_EDITED": "Last edited",
+    "STATUS": "Status",
+    "CREATED_BY": "Created by",
+    "UPDATED_BY": "Updated by",
+    "EDIT_MEMBERS": "Edit Members",
+    "NAME": "Name",
+    "ROLE": "Role",
+    "ACTION": "Action",
+    "REMOVE_MEMBER": "Remove member"
+  },
+  "TESTCASECREATEPAGE": {
+    "TITLE": "Title",
+    "TITLE_PLACEHOLDER": "Title",
+    "TITLE_REQUIRED": "Title is required",
+    "DESCRIPTION": "Description",
+    "DESCRIPTION_PLACEHOLDER": "Description",
+    "DESCRIPTION_REQUIRED": "Description required",
+    "PRECONDITIONS": "Preconditions",
+    "PRECONDITIONS_PLACEHOLDER": "Preconditions",
+    "PRECONDITIONS_REQUIRED": "Preconditions required",
+    "STEPS": "Steps",
+    "STEPS_ACTION_PLACEHOLDER": "Action",
+    "STEPS_ACTION_REQUIRED": "Action required",
+    "TESTDATA": "Test Data",
+    "TESTDATA_PLACEHOLDER": "Test Data",
+    "TESTDATA_REQUIRED": "Test Data required",
+    "EXPECTED": "Expected Result",
+    "EXPECTED_PLACEHOLDER": "Expected result",
+    "EXPECTED_REQUIRED": "Expected result required",
+    "POSTCONDITIONS": "Postconditions",
+    "POSTCONDITIONS_PLACEHOLDER": "Postconditions",
+    "POSTCONDITIONS_REQUIRED": "Postconditions required",
+    "CREATE_TESTCASE": "Create Testcase"
+  },
+  "USERCREATEPAGE": {
+    "TITLE": "Create User Profile",
+    "SECTION_GENERAL": "General",
+    "EMAIL": "Email",
+    "EMAIL_PLACEHOLDER": "email@example.com",
+    "EMAIL_REQUIRED": "Email is required",
+    "LASTNAME": "Last name",
+    "LASTNAME_PLACEHOLDER": "Doe",
+    "LASTNAME_REQUIRED": "Last name required",
+    "FIRSTNAME": "First name",
+    "FIRSTNAME_PLACEHOLDER": "John",
+    "FIRSTNAME_REQUIRED": "First name required",
+    "JOBTITLE": "Job title",
+    "JOBTITLE_PLACEHOLDER": "Senior Tester",
+    "JOBTITLE_REQUIRED": "Job title required",
+    "PHONE_NUMBER": "Phone Number",
+    "PHONE_NUMBER_PLACEHOLDER": "+18081234567",
+    "COMPANY": "Company",
+    "COMPANY_PLACEHOLDER": "Example LLC",
+    "PASSWORD": "Password",
+    "PASSWORD_REQUIRED": "Password required",
+    "CONFIRMPASSWORD": "Confirm Password",
+    "CONFIRMPASSWORD_REQUIRED": "Confirm password required",
+    "PASSWORDSMATCH": "Password and Confirm Password should be equal",
+    "CREATE_USER": "Create User",
+    "SECTION_ADDITIONAL": "Additional Information"
+  },
+  "USERPROFILEPAGE": {
+    "REGISTERED": "Registered",
+    "EMAIL": "Email",
+    "PHONE_NUMBER": "Phone Number",
+    "COMPANY": "Company",
+    "WORK_INFORMATION": "Work Information",
+    "PERSONAL_INFORMATION": "Personal Information"
+  },
+  "404": {
+    "ERROR_TITLE": "404 Not Found",
+    "ERROR_DESCRIPTION": "Sorry, an error has occured, Requested page not found!",
+    "HOME_BUTTON": "Take Me Home"
+  }
 }

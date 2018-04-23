@@ -1,17 +1,19 @@
 import { Model } from 'mongoose';
-import { Component, Inject } from '@nestjs/common';
+import { Component } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 
-import { CreateTestcaseDto } from './dto/create-testcase.dto';
-import { Testcase } from './interfaces/testcase.interface';
+import { TestcaseSchema } from './testcase.schema';
+import { CreateTestcaseDto } from './create-testcase.dto';
+import { Testcase } from './testcase.interface';
 
 
 @Component()
 export class TestcasesService {
 
-  constructor( @Inject('TestcaseModelToken') private readonly testcaseModel: Model<Testcase>) { }
+  constructor( @InjectModel(TestcaseSchema) private readonly testcaseModel: Model<Testcase>) { }
 
-  async create(testcase: CreateTestcaseDto): Promise<Testcase> {
-    const createdTestcase = new this.testcaseModel(testcase);
+  async create(testcaseDto: CreateTestcaseDto): Promise<Testcase> {
+    const createdTestcase = new this.testcaseModel(testcaseDto);
     return await createdTestcase.save((err, testcase) => {
       return testcase;
     });
@@ -30,6 +32,6 @@ export class TestcasesService {
   }
 
   async delete(id: string): Promise<void> {
-    return await this.testcaseModel.findOneAndDelete({ '_id': id }).exec();
+    return await this.testcaseModel.findOneAndRemove({ '_id': id }).exec();
   }
 }

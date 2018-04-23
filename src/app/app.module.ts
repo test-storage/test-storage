@@ -1,17 +1,18 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { AuthInterceptor } from './services/auth/auth.interceptor';
-import { LocalStorageService } from './services/auth/index';
-
-import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { LoginComponent } from './login/login.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+
+import { SharedModule } from './shared/shared.module';
+
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 // AoT requires an exported function for factories
@@ -20,34 +21,29 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    NotFoundComponent
+  ],
   imports: [
-    AppRoutingModule,
     BrowserModule,
-    HttpClientModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     SharedModule,
+    FormsModule,
+    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
+        useFactory: (HttpLoaderFactory),
         deps: [HttpClient]
       }
     })
   ],
-  declarations: [AppComponent],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-    LocalStorageService,
-    JwtHelperService,
-    {
-      provide: JWT_OPTIONS,
-      useValue: {}
-    }
+    TranslateService
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
