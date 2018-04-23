@@ -23,6 +23,10 @@ export class TestcasesService {
     return await this.testcaseModel.find().exec();
   }
 
+  async findAllByTestSuiteId(id: string): Promise<Testcase[]> {
+    return await this.testcaseModel.find().where('testSuiteId', id).exec();
+  }
+
   async findOne(id: string): Promise<Testcase> {
     return await this.testcaseModel.findOne({ '_id': id }).exec();
   }

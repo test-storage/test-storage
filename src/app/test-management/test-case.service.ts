@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { TestCase } from './test-case';
@@ -17,6 +17,11 @@ export class TestCaseService {
 
   public getTestCase(id: string): Observable<TestCase> {
     return this.http.get<TestCase>(this.apiPath + '/' + id);
+  }
+
+  public getTestCasesBySuiteId(id: string): Observable<TestCase[]> {
+    const params = new HttpParams().set('testSuiteId', id);
+    return this.http.get<TestCase[]>(this.apiPath, { params: params });
   }
 
   public createTestCase(testcase: TestCase) {
