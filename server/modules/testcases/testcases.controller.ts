@@ -2,6 +2,7 @@ import { Get, Post, Put, Delete, Controller, Body, Param, Query } from '@nestjs/
 
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
+import { QueryIdValidationPipe } from '../common/pipes/query-id-validation.pipe';
 
 import { TestcasesService } from './testcases.service';
 
@@ -13,6 +14,8 @@ import {
   ApiBearerAuth,
   ApiResponse,
   ApiOperation,
+  ApiImplicitQuery,
+  ApiImplicitParam
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
@@ -27,25 +30,22 @@ export class TestcasesController {
   @ApiResponse({ status: 201, description: 'The test case has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create( @Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto) {
+  async create(@Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto) {
     this.testcasesService.create(createTestcaseDto);
-  }
-
-  @Get()
-  @ApiOperation({ title: 'Get All Test Suites by Test Suite id' })
-  @ApiResponse({ status: 200, description: 'The list of test cates by test suite id has been successfully retrieved.' })
-  @ApiResponse({ status: 400, description: 'Validation failed' })
-  @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async findByTestSuiteId(@Query('testSuiteId', new ParameterValidationPipe()) id: string): Promise<Testcase[]> {
-    return this.testcasesService.findAllByTestSuiteId(id);
   }
 
   @Get()
   @ApiOperation({ title: 'Get All Test Cases' })
   @ApiResponse({ status: 200, description: 'The list of test cases has been successfully retrieved.' })
+  @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async findAll(): Promise<Testcase[]> {
-    return this.testcasesService.findAll();
+  @ApiImplicitQuery({ name: 'testSuiteId', description: 'filter test cases by test suite id', required: false })
+  async findAll(@Query('testSuiteId', new QueryIdValidationPipe()) id?: string): Promise<Testcase[]> {
+    if (!id) {
+      return this.testcasesService.findAll();
+    } else {
+      return this.testcasesService.findAllByTestSuiteId(id);
+    }
   }
 
   @Get(':id')
@@ -53,7 +53,8 @@ export class TestcasesController {
   @ApiResponse({ status: 200, description: 'The single test case has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async findOne( @Param('id', new ParameterValidationPipe()) id: string): Promise<Testcase> {
+  @ApiImplicitParam({ name: 'id', description: 'Test Case id' })
+  async findOne(@Param('id', new ParameterValidationPipe()) id: string): Promise<Testcase> {
     return this.testcasesService.findOne(id);
   }
 
@@ -62,6 +63,7 @@ export class TestcasesController {
   @ApiResponse({ status: 200, description: 'The single test case has been successfully updated.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiImplicitParam({ name: 'id', description: 'Test Case id' })
   async findOneAndUpdate(
     @Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto,
     @Param('id', new ParameterValidationPipe()) id: string) {
@@ -73,7 +75,8 @@ export class TestcasesController {
   @ApiResponse({ status: 200, description: 'The single test case has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async delete( @Param('id', new ParameterValidationPipe()) id: string) {
+  @ApiImplicitParam({ name: 'id', description: 'Test Case id' })
+  async delete(@Param('id', new ParameterValidationPipe()) id: string) {
     return this.testcasesService.delete(id);
   }
 }
