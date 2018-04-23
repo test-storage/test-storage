@@ -6,9 +6,9 @@
 
         <clr-dg-action-bar >
             <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()" *ngIf="selectedTestSuite != ''">
                 <clr-icon shape="plus"></clr-icon> {{ 'TESTMANAGEMENTPAGE.ADD' | translate }}</button>
-              <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()">
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedTestCases.length > 0">
                 <clr-icon shape="close"></clr-icon> {{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
               <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedTestCases.length == 1">
                 <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}</button>
@@ -42,12 +42,6 @@
             </div>
           </clr-dg-cell>
 -->
-        <!--
-        <clr-dg-action-overflow>
-          <button class="action-item" (click)="users">Edit</button>
-          <button class="action-item" (click)="users">Delete</button>
-        </clr-dg-action-overflow>
-      -->
       </clr-dg-row>
 
       <clr-dg-footer>{{testCases.length}}</clr-dg-footer>
@@ -58,15 +52,18 @@
   </div>
 
 
+  <!-- TEST SUITES TREE COMPONENT -->
+
   <div *ngIf="testSuitesViewModel.length > 0" class="col-sm-12 col-md-12 col-lg-3">
     <!-- TODO move to testsuites tree component -->
     <!--<pre>
       {{ testSuitesViewModel | json }}
     </pre>-->
     <clr-tree-node *ngFor="let testSuite of testSuitesViewModel">
-      <button (click)="openTestSuite(testSuite._id, testSuite.name)" class="clr-treenode-link"><clr-icon [attr.shape]="testSuite.icon"></clr-icon>
+      <!--<button (click)="openTestSuite(testSuite._id, testSuite.name)" class="clr-treenode-link">-->
+      <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
       {{testSuite.name}}
-      </button>
+      <!--</button>-->
       <ng-template [(clrIfExpanded)]="testSuite.expanded">
         <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
           <button (click)="openTestSuite(subTestSuite._id, subTestSuite.name)" class="clr-treenode-link" [class.active]="subTestSuite._id === selectedTestSuite">
