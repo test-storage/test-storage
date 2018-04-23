@@ -2,6 +2,9 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { pageTransition } from '../animations';
 import { TranslateService } from '@ngx-translate/core';
 
+import { TestCaseService } from './test-case.service';
+import { TestSuiteService } from './test-suite.service';
+
 @Component({
   selector: 'app-test-management',
   templateUrl: './test-management.component.html',
@@ -29,7 +32,8 @@ export class TestManagementComponent implements OnInit {
 
   ];
 
-  testSuitesTree: any[] = [
+  testSuitesViewModel = [];
+  testSuites: any[] = [
     {
       name: 'Main Features',
       icon: 'folder',
@@ -84,12 +88,57 @@ export class TestManagementComponent implements OnInit {
   ];
 
   openTestSuite(testSuiteName: string, child: string) {
-
+    // TODO event emitter with suite id
   }
 
-  constructor(protected translateService: TranslateService) { }
+  constructor(
+    private testCaseService: TestCaseService,
+    private testSuiteService: TestSuiteService,
+    protected translateService: TranslateService
+  ) { }
 
   ngOnInit() {
+    // this.getTestSuites();
+  }
+
+  getTestSuites() {
+    this.testSuiteService.getTestSuites().subscribe(
+      testsuites => {
+        this.testSuites = testsuites;
+        if (this.testSuites.length > 0) {
+          this.fromFlatToTree();
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+  fromFlatToTree() {
+    // build tree with childs from flat list
+    const idToNodeMap = {};
+    const root = [];
+    let parentNode;
+
+    for (let i = 0; i < this.testSuites.length; i++) {
+
+      const node = this.testSuites[i];
+      node['children'] = [];
+      idToNodeMap[node._id] = node;
+
+      if (node.parentId === 'root') {
+        root[0] = node;
+      } else {
+        parentNode = idToNodeMap[node.parentId];
+        parentNode.children.push(node);
+      }
+    }
+
+    this.testSuitesViewModel = [...root];
+    // console.log(JSON.stringify(this.testSuites));
+  }
+
+  fromTreeToFlat() {
+    // TODO
   }
 
 }
