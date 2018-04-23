@@ -8,6 +8,8 @@ import { TestSuiteService } from './test-suite.service';
 import { TestCase } from './test-case';
 import { TestSuite } from './test-suite';
 
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 @Component({
   selector: 'app-test-management',
   templateUrl: './test-management.component.html',
@@ -19,16 +21,11 @@ export class TestManagementComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
+  public selectedTestCases = [];
+  public selectedTestSuite = '';
   public testCases: TestCase[] = [];
   testSuitesViewModel = [];
   testSuites: TestSuite[] = [];
-
-  openTestSuite(testSuiteId: string) {
-    // TODO event emitter with suite id
-    console.log(testSuiteId);
-    this.getTestCasesForTestSuite(testSuiteId);
-
-  }
 
   constructor(
     private testCaseService: TestCaseService,
@@ -38,6 +35,13 @@ export class TestManagementComponent implements OnInit {
 
   ngOnInit() {
     this.getTestSuites();
+  }
+
+  openTestSuite(testSuiteId: string, name: string) {
+    // TODO event emitter with suite id
+    this.selectedTestSuite = name;
+    this.getTestCasesForTestSuite(testSuiteId);
+
   }
 
   getTestCasesForTestSuite(id: string) {
@@ -92,6 +96,23 @@ export class TestManagementComponent implements OnInit {
 
   fromTreeToFlat() {
     // TODO
+  }
+
+  onAdd() {
+
+  }
+
+  onEdit() {
+
+  }
+
+  onDelete() {
+    // TODO are you sure? via modal
+    this.selectedTestCases.forEach(selectedTestCase => {
+      // TODO delete via service
+      this.testCases = this.testCases.filter(testCases => testCases !== selectedTestCase);
+      // TODO Notification => successfully deleted
+    });
   }
 
 }
