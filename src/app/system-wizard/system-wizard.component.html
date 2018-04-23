@@ -1,0 +1,45 @@
+<!--<button class="btn btn-primary" (click)="projectWizard = !projectWizard;">Open</button>-->
+
+<clr-wizard #wizardxl [(clrWizardOpen)]="systemWizard">
+  <clr-wizard-title>System Wizard</clr-wizard-title>
+
+  <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
+  <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+  <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
+  <clr-wizard-button [type]="'finish'">Finish</clr-wizard-button>
+
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Test Storage Configuration</ng-template>
+    <form>
+      <section class="form-block">
+        <label>Work Type</label>
+        <div class="radio">
+          <input type="radio" name="gridRadios" id="checkrads_9" checked>
+          <label for="checkrads_9">In-house</label>
+          <a href="" role="tooltip" aria-haspopup="true" class="tooltip tooltip-lg tooltip-bottom-right">
+            <clr-icon shape="info-circle" size="24"></clr-icon>
+            <span class="tooltip-content">Development without assistance from outside an organization, internally</span>
+          </a>
+        </div>
+        <div class="radio disabled">
+          <input type="radio" name="gridRadios" id="checkrads_10" disabled>
+          <label for="checkrads_10">Outsource</label>
+          <a href="" role="tooltip" aria-haspopup="true" class="tooltip tooltip-lg">
+            <clr-icon shape="info-circle" size="24"></clr-icon>
+            <span class="tooltip-content">Development for many contactors as outsourcer</span>
+          </a>
+        </div>
+      </section>
+    </form>
+  </clr-wizard-page>
+
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Users</ng-template>
+    Choose users for project
+  </clr-wizard-page>
+
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Finish</ng-template>
+    ...
+  </clr-wizard-page>
+</clr-wizard>

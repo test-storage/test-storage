@@ -5,8 +5,8 @@ import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pi
 
 import { TestcasesService } from './testcases.service';
 
-import { Testcase } from './interfaces/testcase.interface';
-import { CreateTestcaseDto } from './dto/create-testcase.dto';
+import { Testcase } from './testcase.interface';
+import { CreateTestcaseDto } from './create-testcase.dto';
 
 import {
   ApiUseTags,

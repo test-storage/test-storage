@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.31.0 (April 23, 2018)
+- Add devices inventory ([@pumano](https://github.com/pumano) in [#80](https://github.com/test-storage/test-storage/pull/80))
+- Add Projects
+- Add Test executions
+- Add Users management
+- Add Roles management
+- Add User Profile
+- Add animations
+- Add i18n
+- Multiple UI improvements
+- Multiple bug fixes
+
 ## 0.30.0 (February 26, 2018)
 - Refactoring: server ([@pumano](https://github.com/pumano) in [#79](https://github.com/test-storage/test-storage/pull/79))
 - Migrate backend from pure express to NestJS
