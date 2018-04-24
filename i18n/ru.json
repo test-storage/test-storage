@@ -4,10 +4,12 @@
     "USERS": "Пользователи",
     "INVENTORY": "Устройства"
   },
+  "LANGUAGES": {
+    "en": "Английский",
+    "ru": "Русский"
+  },
   "MAINSETTINGS": {
     "LANGUAGE": "Язык",
-    "RUSSIAN":"Русский",
-    "ENGLISH":"Английский",
     "THEME": "Тема",
     "THEME_BRIGHT": "Светлая",
     "THEME_DARK": "Темная",

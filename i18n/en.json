@@ -4,10 +4,12 @@
     "USERS": "Users",
     "INVENTORY": "Inventory"
   },
+  "LANGUAGES": {
+    "en": "English",
+    "ru": "Russian"
+  },
   "MAINSETTINGS": {
     "LANGUAGE": "Language",
-    "RUSSIAN":"Russian",
-    "ENGLISH":"English",
     "THEME": "Theme",
     "THEME_BRIGHT": "Bright",
     "THEME_DARK": "Dark",
