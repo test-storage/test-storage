@@ -13,7 +13,7 @@ export class MainSettingsComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  constructor(protected translateService: TranslateService) { }
+  constructor(public translateService: TranslateService) { }
 
   ngOnInit() {
   }
