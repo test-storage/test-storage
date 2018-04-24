@@ -1,6 +1,8 @@
+.content-area {
+  width: 100vw;
+  height: calc(100vh - 60px);
+}
 .user-profile {
-    width: 100vw;
-    height: calc(100vh - 60px);
     display: flex;
     align-content: center;
     justify-content: center;
