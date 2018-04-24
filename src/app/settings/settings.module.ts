@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -16,7 +17,8 @@ import { InventoryService } from './inventory/inventory.service';
   imports: [
     CommonModule,
     SettingsRoutingModule,
-    SharedModule
+    SharedModule,
+    TranslateModule.forChild()
   ],
   declarations: [
     SettingsComponent,

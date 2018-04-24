@@ -1,10 +1,46 @@
 {
   "SETTINGS": {
-    "TITLE": "Settings",
-    "CHOOSE_LANGUAGE": "Choose language",
+    "MAIN_SETTINGS": "Main Settings",
+    "USERS": "Users",
+    "INVENTORY": "Inventory"
+  },
+  "MAINSETTINGS": {
+    "LANGUAGE": "Language",
+    "RUSSIAN":"Russian",
+    "ENGLISH":"English",
     "THEME": "Theme",
     "THEME_BRIGHT": "Bright",
-    "THEME_DARK": "Dark"
+    "THEME_DARK": "Dark",
+    "TITLE": "Settings"
+  },
+  "USERSSETTINGS" : {
+    "ADD": "Add",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "NAME": "Name",
+    "USERS": "users",
+    "CANCEL": "Cancel"
+  },
+  "ROLESSETTINGS" : {
+    "ADD": "Add",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "ROLE": "Role",
+    "ROLES": "roles",
+    "SEARCH": "search...",
+    "CANCEL": "Cancel"
+  },
+  "DEVICESSETTINGS" : {
+    "ADD": "Add",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "TYPE": "Type",
+    "NAME": "Name",
+    "OS": "OS",
+    "OS_VERSION": "OS version",
+    "ASSIGNED_USER": "User",
+    "DEVICES": "devices",
+    "CANCEL": "Cancel"
   },
   "ERROR": {
     "SERVER_ERROR": "Server Error"
@@ -58,7 +94,11 @@
     "ADD": "Add",
     "EDIT": "Edit",
     "DELETE": "Delete",
-    "TITLE": "Title"
+    "TITLE": "Title",
+    "CANCEL": "Cancel",
+    "SUCCESSFULLY_DELETED": "successfully deleted",
+    "MODAL_DELETE_HEADER": "Delete Test Case",
+    "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected test cases? This action is permanent and cannot be recovered."
   },
   "TESTEXECUTIONPAGE": {
     "ADD": "Add",
@@ -131,12 +171,19 @@
     "SECTION_ADDITIONAL": "Additional Information"
   },
   "USERPROFILEPAGE": {
+    "USER": "User",
+    "USER_PROFILE": "User profile",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "COMPANY_DETAILS": "Company details",
     "REGISTERED": "Registered",
     "EMAIL": "Email",
-    "PHONE_NUMBER": "Phone Number",
+    "PHONE_NUMBER": "Phone number",
     "COMPANY": "Company",
-    "WORK_INFORMATION": "Work Information",
-    "PERSONAL_INFORMATION": "Personal Information"
+    "JOB_TITLE": "Job title",
+    "WORK_INFORMATION": "Work information",
+    "PERSONAL_INFORMATION": "Personal Information",
+    "SAVE_BUTTON": "Save"
   },
   "404": {
     "ERROR_TITLE": "404 Not Found",

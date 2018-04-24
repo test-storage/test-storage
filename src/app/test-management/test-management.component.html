@@ -80,13 +80,13 @@
     </div>
   </div>
   <clr-modal [(clrModalOpen)]="popUpOpened">
-    <h3 class="modal-title">Delete Test Case</h3>
+    <h3 class="modal-title">{{ 'TESTMANAGEMENTPAGE.MODAL_DELETE_HEADER' | translate }}</h3>
     <div class="modal-body">
-      <p>Are you sure you want to delete selected test cases? This action is permanent and cannot be recovered.</p>
+      <p>{{ 'TESTMANAGEMENTPAGE.MODAL_DELETE_DESCRIPTION' | translate }}</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline" (click)="popUpOpened = false">Cancel</button>
-      <button type="button" class="btn btn-primary btn-danger" (click)="popUpOpened = false; forceDelete();">Ok</button>
+      <button type="button" class="btn btn-outline" (click)="popUpOpened = false">{{ 'TESTMANAGEMENTPAGE.CANCEL' | translate }}</button>
+      <button type="button" class="btn btn-primary btn-danger" (click)="popUpOpened = false; forceDelete();">{{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
     </div>
   </clr-modal>
 </div>

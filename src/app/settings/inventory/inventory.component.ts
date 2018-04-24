@@ -3,6 +3,7 @@ import { pageTransition } from '../../animations';
 
 import { Device } from './device';
 import { InventoryService } from './inventory.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-inventory',
@@ -18,7 +19,10 @@ export class InventoryComponent implements OnInit, OnDestroy {
   subscription;
   devices: Device[];
 
-  constructor(private inventoryService: InventoryService) { }
+  constructor(
+    private inventoryService: InventoryService,
+    protected translateService: TranslateService
+  ) { }
 
   ngOnInit() {
     this.loadDevices();

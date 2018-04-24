@@ -1,10 +1,46 @@
 {
   "SETTINGS": {
-    "TITLE": "Настройки",
-    "CHOOSE_LANGUAGE": "Выберите язык",
+    "MAIN_SETTINGS": "Основные настройки",
+    "USERS": "Пользователи",
+    "INVENTORY": "Устройства"
+  },
+  "MAINSETTINGS": {
+    "LANGUAGE": "Язык",
+    "RUSSIAN":"Русский",
+    "ENGLISH":"Английский",
     "THEME": "Тема",
     "THEME_BRIGHT": "Светлая",
-    "THEME_DARK": "Темная"
+    "THEME_DARK": "Темная",
+    "TITLE": "Настройки"
+  },
+  "USERSSETTINGS" : {
+    "ADD": "Добавить",
+    "EDIT": "Редактировать",
+    "DELETE": "Удалить",
+    "NAME": "Имя",
+    "USERS": "пользователей",
+    "CANCEL": "Отмена"
+  },
+  "DEVICESSETTINGS" : {
+    "ADD": "Добавить",
+    "EDIT": "Редактировать",
+    "DELETE": "Удалить",
+    "TYPE": "Тип",
+    "NAME": "Название",
+    "OS": "ОС",
+    "OS_VERSION": "Версия ОС",
+    "ASSIGNED_USER": "Пользователь",
+    "DEVICES": "устройств",
+    "SEARCH": "поиск...",
+    "CANCEL": "Отмена"
+  },
+  "ROLESSETTINGS" : {
+    "ADD": "Добавить",
+    "EDIT": "Редактировать",
+    "DELETE": "Удалить",
+    "ROLE": "Роль",
+    "ROLES": "ролей",
+    "CANCEL": "Отмена"
   },
   "ERROR": {
     "SERVER_ERROR": "Ошибка Сервера"
@@ -58,7 +94,11 @@
     "ADD": "Добавить",
     "EDIT": "Редактировать",
     "DELETE": "Удалить",
-    "TITLE": "Название"
+    "TITLE": "Название",
+    "CANCEL": "Отмена",
+    "SUCCESSFULLY_DELETED": "успешно удалены",
+    "MODAL_DELETE_HEADER": "Удалить Тест кейс(ы)",
+    "MODAL_DELETE_DESCRIPTION": "Вы уверены, что хотите удалить выбранные тест кейсы? Удаленные тест кейсы не смогут быть восстановлены."
   },
   "TESTEXECUTIONPAGE": {
     "ADD": "Добавить",
@@ -130,12 +170,19 @@
     "SECTION_ADDITIONAL": "Дополнительная Информация"
   },
   "USERPROFILEPAGE": {
+    "USER": "Пользователь",
+    "USER_PROFILE": "Профиль пользователя",
+    "FIRST_NAME": "Имя",
+    "LAST_NAME": "Фамилия",
+    "COMPANY_DETAILS": "Детали компании",
     "REGISTERED": "Зарегистрирован",
     "EMAIL": "Email",
     "PHONE_NUMBER": "Телефонный Номер",
     "COMPANY": "Компания",
+    "JOB_TITLE": "Должность",
     "WORK_INFORMATION": "Рабочая Информация",
-    "PERSONAL_INFORMATION": "Персональная Информация"
+    "PERSONAL_INFORMATION": "Персональная Информация",
+    "SAVE_BUTTON": "Сохранить"
   },
   "404": {
     "ERROR_TITLE": "404 Не Найдено",

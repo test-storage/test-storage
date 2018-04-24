@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { pageTransition } from '../../animations';
 
@@ -12,7 +13,7 @@ export class MainSettingsComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  constructor() { }
+  constructor(protected translateService: TranslateService) { }
 
   ngOnInit() {
   }

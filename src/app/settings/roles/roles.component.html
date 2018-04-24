@@ -2,19 +2,19 @@
   <clr-dg-action-bar>
     <div class="btn-group">
       <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
-        <clr-icon shape="plus"></clr-icon> Add Role</button>
+        <clr-icon shape="plus"></clr-icon> {{ 'ROLESSETTINGS.ADD' | translate }}</button>
       <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()">
-        <clr-icon shape="close"></clr-icon> Delete</button>
+        <clr-icon shape="close"></clr-icon> {{ 'ROLESSETTINGS.DELETE' | translate }}</button>
       <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selected.length == 1">
-        <clr-icon shape="pencil"></clr-icon> Edit</button>
+        <clr-icon shape="pencil"></clr-icon> {{ 'ROLESSETTINGS.EDIT' | translate }}</button>
     </div>
   </clr-dg-action-bar>
 
-  <clr-dg-column>Role</clr-dg-column>
+  <clr-dg-column>{{ 'ROLESSETTINGS.ROLE' | translate }}</clr-dg-column>
 
   <clr-dg-row *clrDgItems="let role of roles" [clrDgItem]="role">
     <clr-dg-cell> {{ role.name }} </clr-dg-cell>
   </clr-dg-row>
 
-  <clr-dg-footer> {{ roles.length }} roles</clr-dg-footer>
+  <clr-dg-footer> {{ roles.length }} {{ 'ROLESSETTINGS.ROLES' | translate }}</clr-dg-footer>
 </clr-datagrid>

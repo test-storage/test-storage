@@ -117,8 +117,7 @@ export class TestManagementComponent implements OnInit {
     this.selectedTestCases.forEach(selectedTestCase => {
       // TODO delete via service
       this.testCases = this.testCases.filter(testCases => testCases !== selectedTestCase);
-      this.notificationsService.success(selectedTestCase.title, 'successfully deleted');
+      this.notificationsService.success(selectedTestCase.title, this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_DELETED'));
     });
   }
-
 }

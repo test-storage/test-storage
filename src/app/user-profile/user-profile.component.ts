@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { pageTransition } from '../animations';
 
@@ -19,7 +20,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private subscription;
   public profile: User;
 
-  constructor(private userProfileService: UserProfileService) { }
+  constructor(
+    private userProfileService: UserProfileService,
+    protected translateService: TranslateService
+  ) { }
 
   ngOnInit() {
     this.getProfile();
