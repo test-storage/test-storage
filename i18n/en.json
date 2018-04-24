@@ -31,7 +31,6 @@
     "ROLE": "Role",
     "ROLES": "roles",
     "ROLES_TAB": "Roles",
-    "SEARCH": "search...",
     "CANCEL": "Cancel"
   },
   "DEVICESSETTINGS" : {
@@ -44,6 +43,7 @@
     "OS_VERSION": "OS version",
     "ASSIGNED_USER": "User",
     "DEVICES": "devices",
+    "SEARCH": "search...",
     "CANCEL": "Cancel"
   },
   "ERROR": {
