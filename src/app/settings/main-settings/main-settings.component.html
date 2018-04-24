@@ -15,7 +15,7 @@
         <label for="language">{{ 'MAINSETTINGS.LANGUAGE' | translate }}</label>
         <div class="select">
           <select id="language" #langSelect (change)="translateService.use(langSelect.value)">
-            <option *ngFor="let lang of translateService.getLangs()" [value]="lang" [selected]="lang === translateService.currentLang">{{ lang }}</option>
+            <option *ngFor="let lang of translateService.getLangs()" [value]="lang" [selected]="lang === translateService.currentLang">{{ 'LANGUAGES.' + lang | translate }}</option>
             <!--<option>{{ 'MAINSETTINGS.RUSSIAN' | translate }}</option>
             <option>{{ 'MAINSETTINGS.ENGLISH' | translate }}</option>-->
             <!--
