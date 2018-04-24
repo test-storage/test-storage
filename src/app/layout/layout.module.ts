@@ -8,13 +8,15 @@ import { HeaderComponent } from './header/header.component';
 import { AppNotificationComponent } from './app-notification/app-notification.component';
 import { SharedModule } from '../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
   imports: [
     CommonModule,
     LayoutRoutingModule,
     SharedModule,
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    SimpleNotificationsModule.forRoot()
   ],
   declarations: [
     HeaderComponent,
