@@ -19,6 +19,16 @@
     "DELETE": "Удалить",
     "NAME": "Имя",
     "USERS": "пользователей",
+    "USERS_TAB": "Пользователи",
+    "CANCEL": "Отмена"
+  },
+  "ROLESSETTINGS" : {
+    "ADD": "Добавить",
+    "EDIT": "Редактировать",
+    "DELETE": "Удалить",
+    "ROLE": "Роль",
+    "ROLES": "ролей",
+    "ROLES_TAB": "Роли",
     "CANCEL": "Отмена"
   },
   "DEVICESSETTINGS" : {
@@ -32,14 +42,6 @@
     "ASSIGNED_USER": "Пользователь",
     "DEVICES": "устройств",
     "SEARCH": "поиск...",
-    "CANCEL": "Отмена"
-  },
-  "ROLESSETTINGS" : {
-    "ADD": "Добавить",
-    "EDIT": "Редактировать",
-    "DELETE": "Удалить",
-    "ROLE": "Роль",
-    "ROLES": "ролей",
     "CANCEL": "Отмена"
   },
   "ERROR": {

@@ -19,6 +19,7 @@
     "DELETE": "Delete",
     "NAME": "Name",
     "USERS": "users",
+    "USERS_TAB": "Users",
     "CANCEL": "Cancel"
   },
   "ROLESSETTINGS" : {
@@ -27,6 +28,7 @@
     "DELETE": "Delete",
     "ROLE": "Role",
     "ROLES": "roles",
+    "ROLES_TAB": "Roles",
     "SEARCH": "search...",
     "CANCEL": "Cancel"
   },
