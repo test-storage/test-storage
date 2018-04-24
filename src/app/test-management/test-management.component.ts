@@ -9,6 +9,7 @@ import { TestCase } from './test-case';
 import { TestSuite } from './test-suite';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-test-management',
@@ -21,6 +22,7 @@ export class TestManagementComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
+  public popUpOpened = false;
   public selectedTestCases = [];
   public selectedTestSuite = '';
   public testCases: TestCase[] = [];
@@ -30,7 +32,8 @@ export class TestManagementComponent implements OnInit {
   constructor(
     private testCaseService: TestCaseService,
     private testSuiteService: TestSuiteService,
-    protected translateService: TranslateService
+    protected translateService: TranslateService,
+    private notificationsService: NotificationsService
   ) { }
 
   ngOnInit() {
@@ -107,11 +110,14 @@ export class TestManagementComponent implements OnInit {
   }
 
   onDelete() {
-    // TODO are you sure? via modal
+    this.popUpOpened = true;
+  }
+
+  forceDelete() {
     this.selectedTestCases.forEach(selectedTestCase => {
       // TODO delete via service
       this.testCases = this.testCases.filter(testCases => testCases !== selectedTestCase);
-      // TODO Notification => successfully deleted
+      this.notificationsService.success(selectedTestCase.title, 'successfully deleted');
     });
   }
 
