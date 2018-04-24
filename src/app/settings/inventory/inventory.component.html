@@ -1,16 +1,16 @@
 <div class="row">
-  <input type="text" id="search" name="search" placeholder="search...">
+  <input type="text" id="search" name="search" placeholder="{{ 'DEVICESSETTINGS.SEARCH' | translate }}">
 </div>
 <div class="row">
 
   <table *ngIf="devices" class="table">
     <thead>
       <tr>
-        <th style="width: 50px;">Type</th>
-        <th class="left">Name</th>
-        <th style="width: 200px;">OS</th>
-        <th style="width: 200px;">OS Version</th>
-        <th style="width: 200px;">User</th>
+        <th style="width: 50px;">{{ 'DEVICESSETTINGS.TYPE' | translate }}</th>
+        <th class="left">{{ 'DEVICESSETTINGS.NAME' | translate }}</th>
+        <th style="width: 200px;">{{ 'DEVICESSETTINGS.OS' | translate }}</th>
+        <th style="width: 200px;">{{ 'DEVICESSETTINGS.OS_VERSION' | translate }}</th>
+        <th style="width: 200px;">{{ 'DEVICESSETTINGS.ASSIGNED_USER' | translate }}</th>
       </tr>
     </thead>
     <tbody>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-roles',
@@ -27,7 +28,7 @@ export class RolesComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(protected translateService: TranslateService) { }
 
   ngOnInit() {
   }

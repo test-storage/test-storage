@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { pageTransition } from '../../animations';
 
@@ -18,39 +19,11 @@ export class UsersComponent implements OnInit, OnDestroy {
   selected = [];
   subscription;
   users: User[];
-  /*
-  public users = [
-    {
-      id: '44kijtj55iig',
-      lastName: 'Doe',
-      firstName: 'John',
-      email: 'johndoe@example.com',
-      created: 1523822573,
-      groups: ['admin'],
-      avatar: 'path/to/file'
-    },
-    {
-      id: '44kijtj55iig',
-      lastName: 'Doe',
-      firstName: 'John',
-      email: 'johndoe@example.com',
-      created: 1523822573,
-      groups: ['admin'],
-      avatar: 'path/to/file'
-    },
-    {
-      id: '44kijtj55iig',
-      lastName: 'Doe',
-      firstName: 'John',
-      email: 'johndoe@example.com',
-      created: 1523822573,
-      groups: ['admin'],
-      avatar: 'path/to/file'
-    }
-  ];
-  */
 
-  constructor(private usersService: UsersService) { }
+  constructor(
+    private usersService: UsersService,
+    protected translateService: TranslateService
+  ) { }
 
   ngOnInit() {
     this.loadUsers();
