@@ -14,9 +14,10 @@
       <div class="form-group">
         <label for="language">{{ 'MAINSETTINGS.LANGUAGE' | translate }}</label>
         <div class="select">
-          <select id="language">
-            <option>{{ 'MAINSETTINGS.RUSSIAN' | translate }}</option>
-            <option>{{ 'MAINSETTINGS.ENGLISH' | translate }}</option>
+          <select id="language" #langSelect (change)="translateService.use(langSelect.value)">
+            <option *ngFor="let lang of translateService.getLangs()" [value]="lang" [selected]="lang === translateService.currentLang">{{ lang }}</option>
+            <!--<option>{{ 'MAINSETTINGS.RUSSIAN' | translate }}</option>
+            <option>{{ 'MAINSETTINGS.ENGLISH' | translate }}</option>-->
             <!--
             <option>Spanish</option>
             <option>German</option>
