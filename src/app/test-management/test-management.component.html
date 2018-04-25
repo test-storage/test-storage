@@ -3,7 +3,7 @@
 
   <div class="col-sm-12 col-md-12 col-lg-9">
 
-    <h4>{{ selectedTestSuite }}</h4>
+    <h4 *ngIf="selectedTestSuite">{{ selectedTestSuite.name }}</h4>
     <clr-datagrid *ngIf="testCases" [(clrDgSelected)]="selectedTestCases" [clDgRowSelection]="true">
 
       <clr-dg-action-bar>
@@ -64,13 +64,13 @@
     <!-- TODO move to testsuites tree component -->
 
     <clr-tree-node *ngFor="let testSuite of testSuitesViewModel">
-      <!--<button (click)="openTestSuite(testSuite._id, testSuite.name)" class="clr-treenode-link">-->
+      <!--<button (click)="openTestSuite(testSuite)" class="clr-treenode-link">-->
       <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
       {{testSuite.name}}
       <!--</button>-->
       <ng-template [(clrIfExpanded)]="testSuite.expanded">
         <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
-          <button clrVerticalNavLink (click)="openTestSuite(subTestSuite._id, subTestSuite.name)" class="clr-treenode-link" [class.active]="subTestSuite._id === selectedTestSuite">
+          <button clrVerticalNavLink (click)="openTestSuite(subTestSuite)" class="clr-treenode-link" [class.active]="subTestSuite._id === selectedTestSuite">
             <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
             {{subTestSuite.name}}
           </button>
@@ -82,7 +82,7 @@
   <clr-modal *ngIf="testcase" [(clrModalOpen)]="createOpened">
     <h3 class="modal-title">Создать тест кейс</h3>
     <div class="modal-body">
-      <form (ngSubmit)="createTestCase()" id="createTestCaseForm" #createTestCaseForm="ngForm">
+      <form (ngSubmit)="createOpened = false; createTestCase()" id="createTestCaseForm" #createTestCaseForm="ngForm" (keyup.enter)="createTestCaseForm.form.valid && createTestCaseForm.ngSubmit.emit();">
         <section class="form-block">
           <label>Детали</label>
 
@@ -97,16 +97,15 @@
             <input type="text" id="description" name="description" [(ngModel)]="testcase.description" #description="ngModel"
               placeholder="Test case check login functionality" size="35">
           </div>
-
-          <button type="submit" class="btn btn-primary">Create</button>
         </section>
       </form>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline" (click)="createOpened = false">{{ 'TESTMANAGEMENTPAGE.CANCEL' | translate }}</button>
-      <button type="button" class="btn btn-primary" (click)="createOpened = false; createTestCaseForm.ngSubmit.emit();" [disabled]="!createTestCaseForm.form.valid">Create</button>
+      <button type="button" class="btn btn-primary" (click)="createTestCaseForm.ngSubmit.emit();" [disabled]="!createTestCaseForm.form.valid">Create</button>
     </div>
   </clr-modal>
+
 
   <clr-modal [(clrModalOpen)]="deleteOpened">
     <h3 class="modal-title">{{ 'TESTMANAGEMENTPAGE.MODAL_DELETE_HEADER' | translate }}</h3>
@@ -118,4 +117,5 @@
       <button type="button" class="btn btn-primary btn-danger" (click)="deleteOpened = false; forceDelete();">{{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
     </div>
   </clr-modal>
+
 </div>
