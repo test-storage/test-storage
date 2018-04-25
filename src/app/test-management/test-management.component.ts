@@ -22,12 +22,17 @@ export class TestManagementComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  public popUpOpened = false;
   public selectedTestCases = [];
+  public selectedTestSuiteId: string;
   public selectedTestSuite = '';
   public testCases: TestCase[] = [];
   testSuitesViewModel = [];
   testSuites: TestSuite[] = [];
+
+  public testcase: TestCase;
+
+  public createOpened = false;
+  public deleteOpened = false;
 
   constructor(
     private testCaseService: TestCaseService,
@@ -43,6 +48,7 @@ export class TestManagementComponent implements OnInit {
   openTestSuite(testSuiteId: string, name: string) {
     // TODO event emitter with suite id
     this.selectedTestSuite = name;
+    this.selectedTestSuiteId = testSuiteId;
     this.getTestCasesForTestSuite(testSuiteId);
 
   }
@@ -102,7 +108,8 @@ export class TestManagementComponent implements OnInit {
   }
 
   onAdd() {
-
+    this.testcase = new TestCase();
+    this.createOpened = true;
   }
 
   onEdit() {
@@ -110,7 +117,15 @@ export class TestManagementComponent implements OnInit {
   }
 
   onDelete() {
-    this.popUpOpened = true;
+    this.deleteOpened = true;
+  }
+
+
+  createTestCase() {
+    this.testcase.testSuiteId = this.selectedTestSuiteId;
+    console.log(this.testcase);
+    // TODO backend call for create testcase
+    this.testCases.push(this.testcase);
   }
 
   forceDelete() {
