@@ -8,22 +8,32 @@
   </div>
   <div class="header-actions">
 
-    <!--
-    <a class="nav-link nav-icon">
-      <clr-icon shape="bell" class="has-badge is-solid"></clr-icon>
-    </a>-->
     <clr-dropdown>
-      <button class="nav-text" clrDropdownTrigger>
-        john.doe@example.com
-        <clr-icon shape="caret down"></clr-icon>
-      </button>
-      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-        <a routerLink="/profile" clrDropdownItem>{{ 'HEADER.PROFILE' | translate }}</a>
-        <div class="dropdown-divider"></div>
-        <a routerLink="/settings" clrDropdownItem>{{ 'HEADER.SETTINGS' | translate }}</a>
-        <div class="dropdown-divider"></div>
-        <a (click)="logout()" clrDropdownItem>{{ 'HEADER.LOGOUT' | translate }}</a>
-      </clr-dropdown-menu>
+        <button class="nav-icon" clrDropdownTrigger>
+            <clr-icon shape="bell" class="has-badge is-solid"></clr-icon>
+        </button>
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+            <a routerLink="/notifications" clrDropdownItem>Regression test suite assigned to you</a>
+            <div class="dropdown-divider"></div>
+            <a routerLink="/notifications" clrDropdownItem>Test cases created</a>
+            <div class="dropdown-divider"></div>
+            <a routerLink="/notifications" clrDropdownItem>Test project created</a>
+        </clr-dropdown-menu>
+    </clr-dropdown>
+
+    <clr-dropdown>
+        <button class="nav-icon" clrDropdownTrigger>
+            <clr-icon shape="user"></clr-icon>
+            <clr-icon shape="caret down"></clr-icon>
+        </button>
+
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+            <a routerLink="/profile" clrDropdownItem>{{ 'HEADER.PROFILE' | translate }}</a>
+            <div class="dropdown-divider"></div>
+            <a routerLink="/settings" clrDropdownItem>{{ 'HEADER.SETTINGS' | translate }}</a>
+            <div class="dropdown-divider"></div>
+            <a (click)="logout()" clrDropdownItem>{{ 'HEADER.LOGOUT' | translate }}</a>
+        </clr-dropdown-menu>
     </clr-dropdown>
   </div>
 </clr-header>
