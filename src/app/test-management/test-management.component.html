@@ -1,5 +1,5 @@
-<div class="content-area">
-  <div class="row">
+<div class="wrapper">
+
 
     <div class="col-sm-12 col-md-12 col-lg-9">
 
@@ -54,31 +54,31 @@
     </div>
 
 
-    <!-- TEST SUITES TREE COMPONENT -->
-
-    <div *ngIf="testSuitesViewModel.length > 0" class="col-sm-12 col-md-12 col-lg-3">
-      <!-- TODO move to testsuites tree component -->
-      <!--<pre>
-      {{ testSuitesViewModel | json }}
-    </pre>-->
-      <clr-tree-node *ngFor="let testSuite of testSuitesViewModel">
-        <!--<button (click)="openTestSuite(testSuite._id, testSuite.name)" class="clr-treenode-link">-->
-        <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
-        {{testSuite.name}}
-        <!--</button>-->
-        <ng-template [(clrIfExpanded)]="testSuite.expanded">
-          <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
-            <button (click)="openTestSuite(subTestSuite._id, subTestSuite.name)" class="clr-treenode-link" [class.active]="subTestSuite._id === selectedTestSuite">
-              <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
-              {{subTestSuite.name}}
-            </button>
-          </clr-tree-node>
-        </ng-template>
-      </clr-tree-node>
 
 
-    </div>
+
+
+
+<!-- TEST SUITES TREE COMPONENT -->
+<div *ngIf="testSuitesViewModel.length > 0" class="sidenav" [clr-nav-level]="2">
+    <!-- TODO move to testsuites tree component -->
+
+    <clr-tree-node *ngFor="let testSuite of testSuitesViewModel">
+      <!--<button (click)="openTestSuite(testSuite._id, testSuite.name)" class="clr-treenode-link">-->
+      <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
+      {{testSuite.name}}
+      <!--</button>-->
+      <ng-template [(clrIfExpanded)]="testSuite.expanded">
+        <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
+          <button (click)="openTestSuite(subTestSuite._id, subTestSuite.name)" class="clr-treenode-link" [class.active]="subTestSuite._id === selectedTestSuite">
+            <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
+            {{subTestSuite.name}}
+          </button>
+        </clr-tree-node>
+      </ng-template>
+    </clr-tree-node>
   </div>
+
   <clr-modal [(clrModalOpen)]="popUpOpened">
     <h3 class="modal-title">{{ 'TESTMANAGEMENTPAGE.MODAL_DELETE_HEADER' | translate }}</h3>
     <div class="modal-body">
