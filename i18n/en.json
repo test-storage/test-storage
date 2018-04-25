@@ -57,7 +57,7 @@
   "SIDEBAR": {
     "DASHBOARD": "Dashboard",
     "REQUIREMENTS": "Requirements",
-    "TEST_MANAGEMENT": "Test Cases",
+    "TEST_MANAGEMENT": "Test Management",
     "TEST_EXECUTIONS": "Test Executions",
     "REPORTS": "Reports",
     "PROJECT_SETTINGS": "Project Settings"
