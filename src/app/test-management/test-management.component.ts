@@ -23,8 +23,7 @@ export class TestManagementComponent implements OnInit {
   @HostBinding('style.display') display = 'block';
 
   public selectedTestCases = [];
-  public selectedTestSuiteId: string;
-  public selectedTestSuite = '';
+  public selectedTestSuite: TestSuite;
   public testCases: TestCase[] = [];
   testSuitesViewModel = [];
   testSuites: TestSuite[] = [];
@@ -45,11 +44,10 @@ export class TestManagementComponent implements OnInit {
     this.getTestSuites();
   }
 
-  openTestSuite(testSuiteId: string, name: string) {
+  openTestSuite(testSuite: TestSuite) {
     // TODO event emitter with suite id
-    this.selectedTestSuite = name;
-    this.selectedTestSuiteId = testSuiteId;
-    this.getTestCasesForTestSuite(testSuiteId);
+    this.selectedTestSuite = testSuite;
+    this.getTestCasesForTestSuite(testSuite._id);
 
   }
 
@@ -122,17 +120,32 @@ export class TestManagementComponent implements OnInit {
 
 
   createTestCase() {
-    this.testcase.testSuiteId = this.selectedTestSuiteId;
+    this.testcase.testSuiteId = this.selectedTestSuite._id;
+    this.testcase.projectId = this.selectedTestSuite.projectId;
     console.log(this.testcase);
-    // TODO backend call for create testcase
-    this.testCases.push(this.testcase);
+    this.testCaseService.createTestCase(this.testcase).subscribe(
+      response => {
+        if (response.status === 201) {
+          this.notificationsService.success('Test Case ' + this.testcase.title, 'created successfully!');
+          this.testCases.push(this.testcase);
+        }
+      },
+      error => console.log(error)
+    );
   }
 
   forceDelete() {
     this.selectedTestCases.forEach(selectedTestCase => {
-      // TODO delete via service
-      this.testCases = this.testCases.filter(testCases => testCases !== selectedTestCase);
-      this.notificationsService.success(selectedTestCase.title, this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_DELETED'));
+      this.testCaseService.deleteTestCase(selectedTestCase._id).subscribe(
+        response => {
+          if (response.status === 200) {
+            this.notificationsService.success(
+              selectedTestCase.title, this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_DELETED'));
+            this.testCases = this.testCases.filter(testCases => testCases !== selectedTestCase);
+          }
+        },
+        error => console.log(error)
+      );
     });
   }
 }
