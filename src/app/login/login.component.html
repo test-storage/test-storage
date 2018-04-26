@@ -1,5 +1,5 @@
 <div class="login-wrapper">
-  <form class="login" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+  <form class="login" (ngSubmit)="f.form.valid && login()" #f="ngForm" (keyup.enter)="f.ngSubmit.emit()" novalidate>
     <label class="title">
       <h3 class="welcome">{{ 'LOGINPAGE.WELCOME' | translate }}</h3>
       Test Storage
