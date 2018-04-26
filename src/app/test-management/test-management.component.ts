@@ -29,6 +29,7 @@ export class TestManagementComponent implements OnInit {
   testSuites: TestSuite[] = [];
 
   public testcase: TestCase;
+  public priorities = [0, 1, 2, 3, 4];
 
   public createOpened = false;
   public deleteOpened = false;

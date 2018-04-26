@@ -84,6 +84,7 @@
     <div class="modal-body">
       <form (ngSubmit)="createOpened = false; createTestCase()" id="createTestCaseForm" #createTestCaseForm="ngForm" (keyup.enter)="createTestCaseForm.form.valid && createTestCaseForm.ngSubmit.emit();">
         <section class="form-block">
+
           <label>Детали</label>
 
           <div class="form-group">
@@ -97,6 +98,16 @@
             <input type="text" id="description" name="description" [(ngModel)]="testcase.description" #description="ngModel"
               placeholder="Test case check login functionality" size="35">
           </div>
+
+          <div class="form-group">
+              <label for="priority">Priority</label>
+              <div class="select">
+                <select id="priority" name="priority" [(ngModel)]="testcase.priority" #priority="ngModel">
+                  <option *ngFor="let prior of priorities" [value]="prior"></option>
+                </select>
+              </div>
+          </div>
+
         </section>
       </form>
     </div>
