@@ -16,7 +16,7 @@ export class TestCaseService {
   }
 
   public getTestCase(id: string): Observable<TestCase> {
-    return this.http.get<TestCase>(this.apiPath + '/' + id);
+    return this.http.get<TestCase>(`${this.apiPath}/${id}`);
   }
 
   public getTestCasesBySuiteId(id: string): Observable<TestCase[]> {
@@ -28,8 +28,16 @@ export class TestCaseService {
     return this.http.post(this.apiPath, testcase, { observe: 'response' });
   }
 
+  public updateTestCase(testcase: TestCase, id?: string) {
+    if (id !== undefined) {
+    return this.http.put(`${this.apiPath}/${id}`, testcase, { observe: 'response' });
+    } else {
+      return this.createTestCase(testcase);
+    }
+  }
+
   public deleteTestCase(id: string) {
-    return this.http.delete(this.apiPath + '/' + id, { observe: 'response' });
+    return this.http.delete(`${this.apiPath}/${id}`, { observe: 'response' });
   }
 
 }
