@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TestCaseService } from './test-case.service';
 import { TestSuiteService } from './test-suite.service';
 
-import { TestCase } from './test-case';
+import { TestCase, Priority } from './test-case';
 import { TestSuite } from './test-suite';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -29,9 +29,11 @@ export class TestManagementComponent implements OnInit {
   testSuites: TestSuite[] = [];
 
   public testcase: TestCase;
-  public priorities = [0, 1, 2, 3, 4];
+  public priorities = Priority;
+  keys; // Priority enumeration keys
 
   public createOpened = false;
+  public editOpened = false;
   public deleteOpened = false;
 
   constructor(
@@ -43,6 +45,7 @@ export class TestManagementComponent implements OnInit {
 
   ngOnInit() {
     this.getTestSuites();
+    this.keys = Object.keys(this.priorities).filter(f => !isNaN(Number(f))).map(k => parseInt(k, 10));
   }
 
   openTestSuite(testSuite: TestSuite) {
@@ -112,7 +115,8 @@ export class TestManagementComponent implements OnInit {
   }
 
   onEdit() {
-
+    this.testcase = this.selectedTestCases[0];
+    this.editOpened = true;
   }
 
   onDelete() {
@@ -129,6 +133,27 @@ export class TestManagementComponent implements OnInit {
         if (response.status === 201) {
           this.notificationsService.success('Test Case ' + this.testcase.title, 'created successfully!');
           this.testCases.push(this.testcase);
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+  updateTestCase() {
+    this.testcase.testSuiteId = this.selectedTestSuite._id;
+    this.testcase.projectId = this.selectedTestSuite.projectId;
+    console.log(this.testcase);
+    this.testCaseService.updateTestCase(this.testcase, this.testcase._id).subscribe(
+      response => {
+        if (response.status === 200) {
+          this.notificationsService.success('Test Case ' + this.testcase.title, 'updated successfully!');
+
+          // update local array of testcases
+          const foundIndex = this.testCases.findIndex(testcase => testcase._id === this.testcase._id);
+          this.testCases[foundIndex] = this.testcase;
+
+          // remove selection
+          this.selectedTestCases = [];
         }
       },
       error => console.log(error)

@@ -15,6 +15,13 @@
     "THEME_DARK": "Dark",
     "TITLE": "Settings"
   },
+  "PRIORITIES": {
+    "BLOCKER": "Blocker",
+    "CRITICAL": "Critical",
+    "MAJOR": "Major",
+    "MINOR": "Minor",
+    "TRIVIAL": "Trivial"
+  },
   "USERSSETTINGS" : {
     "ADD": "Add",
     "EDIT": "Edit",
@@ -130,6 +137,7 @@
     "DESCRIPTION": "Description",
     "DESCRIPTION_PLACEHOLDER": "Description",
     "DESCRIPTION_REQUIRED": "Description required",
+    "PRIORITY": "Priority",
     "PRECONDITIONS": "Preconditions",
     "PRECONDITIONS_PLACEHOLDER": "Preconditions",
     "PRECONDITIONS_REQUIRED": "Preconditions required",
@@ -145,7 +153,10 @@
     "POSTCONDITIONS": "Postconditions",
     "POSTCONDITIONS_PLACEHOLDER": "Postconditions",
     "POSTCONDITIONS_REQUIRED": "Postconditions required",
-    "CREATE_TESTCASE": "Create Testcase"
+    "CREATE_TESTCASE": "Create Test Case",
+    "EDIT_TESTCASE": "Edit Test Case",
+    "CREATE_BUTTON": "Create",
+    "EDIT_BUTTON": "Edit"
   },
   "USERCREATEPAGE": {
     "TITLE": "Create User Profile",

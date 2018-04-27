@@ -3,14 +3,12 @@ export class TestCase {
   key?: string;
   projectId: string;
   testSuiteId: string;
-  priority?: number;
+  priority?: Priority;
   order?: number;
   title: string;
   description?: string;
   preConditions?: string;
-  steps?: Array<string>;
-  testData?: Array<string>;
-  expected?: Array<string>;
+  steps?: Array<TestCaseStep>;
   postConditions?: string;
   tags?: Array<string>;
   created?: string;
@@ -21,4 +19,18 @@ export class TestCase {
   isAutomated?: boolean;
   estimate?: number; // TODO string
   status?: string;
+}
+
+export enum Priority {
+  BLOCKER,
+  CRITICAL,
+  MAJOR,
+  MINOR,
+  TRIVIAL
+}
+
+export class TestCaseStep {
+  stepAction?: string;
+  testData?: string;
+  expectedResult: string;
 }

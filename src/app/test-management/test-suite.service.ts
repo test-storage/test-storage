@@ -16,15 +16,23 @@ export class TestSuiteService {
   }
 
   public getTestSuite(id: string): Observable<TestSuite> {
-    return this.http.get<TestSuite>(this.apiPath + '/' + id);
+    return this.http.get<TestSuite>(`${this.apiPath}/${id}`);
   }
 
   public createTestSuite(testsuite: TestSuite) {
     return this.http.post(this.apiPath, testsuite, { observe: 'response' });
   }
 
+  public updateTestSuite(testsuite: TestSuite, id?: string) {
+    if (id !== undefined) {
+    return this.http.put(`${this.apiPath}/${id}`, testsuite, { observe: 'response' });
+    } else {
+      return this.createTestSuite(testsuite);
+    }
+  }
+
   public deleteTestSuite(id: string) {
-    return this.http.delete(this.apiPath + '/' + id, { observe: 'response' });
+    return this.http.delete(`${this.apiPath}/${id}`, { observe: 'response' });
   }
 
 }
