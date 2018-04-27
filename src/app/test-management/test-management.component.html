@@ -17,7 +17,8 @@
         </div>
       </clr-dg-action-bar>
 
-      <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}</clr-dg-column>
+      <clr-dg-column [clrDgField]="'order'" [clrDgSortOrder]="ascSort">{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}</clr-dg-column>
+      <!--<clr-dg-column >Order</clr-dg-column>-->
       <!--<clr-dg-column>Status</clr-dg-column>-->
 
       <clr-dg-row *clrDgItems="let testCase of testCases" [clrDgItem]="testCase">
@@ -30,6 +31,11 @@
         <clr-dg-cell>
           {{testCase.title}}
         </clr-dg-cell>
+        <!--
+        <clr-dg-cell>
+          {{ testCase.order}}
+        </clr-dg-cell>
+        -->
 
         <!--
           <clr-dg-cell>
@@ -172,6 +178,13 @@
               <clr-dg-cell></clr-dg-cell>
             </clr-dg-row>
           </clr-datagrid>
+
+          <!-- should be removed when drag n drop added -->
+          <div class="form-group">
+              <label for="order">{{ 'TESTCASECREATEPAGE.ORDER' | translate }}</label>
+              <input type="number" id="order" name="order" [(ngModel)]="testcase.order" #order="ngModel"
+                placeholder="{{ 'TESTCASECREATEPAGE.ORDER_PLACEHOLDER' | translate }}" size="35">
+          </div>
 
         </section>
       </form>

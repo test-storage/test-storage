@@ -11,6 +11,8 @@ import { TestSuite } from './test-suite';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { NotificationsService } from 'angular2-notifications';
 
+import {ClrDatagridSortOrder} from '@clr/angular';
+
 @Component({
   selector: 'app-test-management',
   templateUrl: './test-management.component.html',
@@ -27,6 +29,8 @@ export class TestManagementComponent implements OnInit {
   public testCases: TestCase[] = [];
   testSuitesViewModel = [];
   testSuites: TestSuite[] = [];
+
+  public ascSort = ClrDatagridSortOrder.ASC;
 
   public testcase: TestCase;
   public priorities = Priority;
@@ -127,6 +131,11 @@ export class TestManagementComponent implements OnInit {
   createTestCase() {
     this.testcase.testSuiteId = this.selectedTestSuite._id;
     this.testcase.projectId = this.selectedTestSuite.projectId;
+    if (this.testCases.length > 0) {
+      this.testcase.order = this.testCases.length + 1;
+    } else {
+      this.testcase.order = 0;
+    }
     console.log(this.testcase);
     this.testCaseService.createTestCase(this.testcase).subscribe(
       response => {
