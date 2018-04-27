@@ -6,7 +6,7 @@
       <div class="form-group">
         <label for="theme">{{ 'MAINSETTINGS.THEME' | translate }}</label>
         <div class="toggle-switch disabled">
-          <input type="checkbox" id="theme">
+          <input type="checkbox" id="theme" disabled>
           <label for="theme">{{ 'MAINSETTINGS.THEME_BRIGHT' | translate }}</label>
           <label for="theme">{{ 'MAINSETTINGS.THEME_DARK' | translate }}</label>
         </div>
@@ -14,7 +14,7 @@
       <div class="form-group">
         <label for="language">{{ 'MAINSETTINGS.LANGUAGE' | translate }}</label>
         <div class="select">
-          <select id="language" #langSelect (change)="translateService.use(langSelect.value)">
+          <select id="language" #langSelect (change)="changeLanguage(langSelect.value)">
             <option *ngFor="let lang of translateService.getLangs()" [value]="lang" [selected]="lang === translateService.currentLang">{{ 'LANGUAGES.' + lang | translate }}</option>
             <!--<option>{{ 'MAINSETTINGS.RUSSIAN' | translate }}</option>
             <option>{{ 'MAINSETTINGS.ENGLISH' | translate }}</option>-->
