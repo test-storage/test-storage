@@ -33,6 +33,11 @@ export class CreateTestsuiteDto {
   @IsNotEmpty()
   readonly description: string;
 
+  @ApiModelPropertyOptional({ type: Number})
+  @IsOptional()
+  @IsInt()
+  readonly order?: number;
+
   @ApiModelPropertyOptional({ type: String})
   @IsOptional()
   @IsString()
