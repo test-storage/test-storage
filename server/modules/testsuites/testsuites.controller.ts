@@ -1,7 +1,8 @@
-import { Get, Post, Put, Delete, Controller, Body, Param } from '@nestjs/common';
+import { Get, Post, Put, Delete, Controller, Body, Param, Query } from '@nestjs/common';
 
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
+import { QueryIdValidationPipe } from '../common/pipes/query-id-validation.pipe';
 
 import { TestsuitesService } from './testsuites.service';
 
@@ -27,7 +28,7 @@ export class TestsuitesController {
   @ApiResponse({ status: 201, description: 'The test suite has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create( @Body(new ValidationPipe()) createTestsuiteDto: CreateTestsuiteDto) {
+  async create(@Body(new ValidationPipe()) createTestsuiteDto: CreateTestsuiteDto) {
     this.testsuitesService.create(createTestsuiteDto);
   }
 
@@ -35,8 +36,12 @@ export class TestsuitesController {
   @ApiOperation({ title: 'Get All Test Suites' })
   @ApiResponse({ status: 200, description: 'The list of test suites has been successfully retrieved.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async findAll(): Promise<Testsuite[]> {
-    return this.testsuitesService.findAll();
+  async findAll(@Query('projectId', new QueryIdValidationPipe()) id?: string): Promise<Testsuite[]> {
+    if (!id) {
+      return this.testsuitesService.findAll();
+    } else {
+      return this.testsuitesService.findAllByProjectId(id);
+    }
   }
 
   @Get(':id')
@@ -44,7 +49,7 @@ export class TestsuitesController {
   @ApiResponse({ status: 200, description: 'The single test suite has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async findOne( @Param('id', new ParameterValidationPipe()) id: string): Promise<Testsuite> {
+  async findOne(@Param('id', new ParameterValidationPipe()) id: string): Promise<Testsuite> {
     return this.testsuitesService.findOne(id);
   }
 
@@ -64,7 +69,7 @@ export class TestsuitesController {
   @ApiResponse({ status: 200, description: 'The single test suite has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async delete( @Param('id', new ParameterValidationPipe()) id: string) {
+  async delete(@Param('id', new ParameterValidationPipe()) id: string) {
     return this.testsuitesService.delete(id);
   }
 }

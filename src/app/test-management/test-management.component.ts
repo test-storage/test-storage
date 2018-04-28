@@ -1,4 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { pageTransition } from '../animations';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -11,7 +12,7 @@ import { TestSuite } from './test-suite';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { NotificationsService } from 'angular2-notifications';
 
-import {ClrDatagridSortOrder} from '@clr/angular';
+import { ClrDatagridSortOrder } from '@clr/angular';
 
 @Component({
   selector: 'app-test-management',
@@ -24,6 +25,7 @@ export class TestManagementComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
+  public projectId: string;
   public selectedTestCases = [];
   public selectedTestSuite: TestSuite;
   public testCases: TestCase[] = [];
@@ -44,11 +46,17 @@ export class TestManagementComponent implements OnInit {
     private testCaseService: TestCaseService,
     private testSuiteService: TestSuiteService,
     protected translateService: TranslateService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.getTestSuites();
+    this.route.parent.params.subscribe(params => {
+      this.projectId = params['id'];
+      this.getTestSuites(this.projectId);
+    });
+
     this.keys = Object.keys(this.priorities).filter(f => !isNaN(Number(f))).map(k => parseInt(k, 10));
   }
 
@@ -65,8 +73,8 @@ export class TestManagementComponent implements OnInit {
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
-  getTestSuites() {
-    this.testSuiteService.getTestSuites().subscribe(
+  getTestSuites(projectId: string) {
+    this.testSuiteService.getTestSuitesByProjectId(projectId).subscribe(
       testsuites => {
         this.testSuites = testsuites;
         if (this.testSuites.length > 0) {
