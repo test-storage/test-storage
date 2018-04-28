@@ -10,7 +10,7 @@ import { Testsuite } from './testsuite.interface';
 @Component()
 export class TestsuitesService {
 
-  constructor( @InjectModel(TestsuiteSchema) private readonly testsuiteModel: Model<Testsuite>) { }
+  constructor(@InjectModel(TestsuiteSchema) private readonly testsuiteModel: Model<Testsuite>) { }
 
   async create(testsuiteDto: CreateTestsuiteDto): Promise<Testsuite> {
     const createdTestsuite = new this.testsuiteModel(testsuiteDto);
@@ -21,6 +21,10 @@ export class TestsuitesService {
 
   async findAll(): Promise<Testsuite[]> {
     return await this.testsuiteModel.find().exec();
+  }
+
+  async findAllByProjectId(id: string): Promise<Testsuite[]> {
+    return await this.testsuiteModel.find().where('projectId', id).exec();
   }
 
   async findOne(id: string): Promise<Testsuite> {
