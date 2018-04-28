@@ -3,10 +3,10 @@
 <clr-wizard #wizardxl [(clrWizardOpen)]="opened">
   <clr-wizard-title>Project Creation Wizard</clr-wizard-title>
 
-  <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
+  <clr-wizard-button [type]="'cancel'" (click)="setOpened(false)">Cancel</clr-wizard-button>
   <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
   <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
-  <clr-wizard-button [type]="'finish'">Finish</clr-wizard-button>
+  <clr-wizard-button [type]="'finish'" (click)="setOpened(false)">Finish</clr-wizard-button>
 
   <clr-wizard-page>
     <ng-template clrPageTitle>Project Details</ng-template>
