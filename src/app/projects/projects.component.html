@@ -1,6 +1,6 @@
 <div *ngIf="projects" class="content-area">
 
-  <app-project-wizard [opened]="projectWizardOpened" (changed)="projectWizardOpened"></app-project-wizard>
+  <app-project-wizard [(opened)]="projectWizardOpened"></app-project-wizard>
 
   <app-system-wizard></app-system-wizard>
 
