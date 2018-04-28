@@ -5,6 +5,7 @@ export class TestSuite {
   enabled?: boolean;
   name: string;
   description: string;
+  order?: number;
   created?: string;
   updated?: string;
   createdBy?: string;

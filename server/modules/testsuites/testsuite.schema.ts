@@ -16,6 +16,7 @@ export const TestsuiteSchema = new mongoose.Schema({
   },
   name: { type: String, required: true },
   description: String,
+  order: Number,
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: String,
