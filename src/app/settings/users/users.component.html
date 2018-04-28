@@ -1,41 +1,43 @@
-<clr-tabs>
-  <clr-tab>
-    <button clrTabLink id="link1">{{ 'USERSSETTINGS.USERS_TAB' | translate }}</button>
-    <clr-tab-content id="content1" *clrIfActive="true">
+<div class="wrapper">
+  <clr-tabs>
+    <clr-tab>
+      <button clrTabLink id="link1">{{ 'USERSSETTINGS.USERS_TAB' | translate }}</button>
+      <clr-tab-content id="content1" *clrIfActive="true">
 
 
-      <clr-datagrid *ngIf="users" [(clrDgSelected)]="selected" [clDgRowSelection]="true">
-        <clr-dg-action-bar>
-          <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
-              <clr-icon shape="plus"></clr-icon> {{ 'USERSSETTINGS.ADD' | translate }}</button>
-            <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()">
-              <clr-icon shape="close"></clr-icon> {{ 'USERSSETTINGS.DELETE' | translate }}</button>
-            <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selected.length == 1">
-              <clr-icon shape="pencil"></clr-icon> {{ 'USERSSETTINGS.EDIT' | translate }}</button>
-          </div>
-        </clr-dg-action-bar>
+        <clr-datagrid *ngIf="users" [(clrDgSelected)]="selectedUsers" [clDgRowSelection]="true">
+          <clr-dg-action-bar>
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
+                <clr-icon shape="plus"></clr-icon> {{ 'USERSSETTINGS.ADD' | translate }}</button>
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()">
+                <clr-icon shape="close"></clr-icon> {{ 'USERSSETTINGS.DELETE' | translate }}</button>
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedUsers.length == 1">
+                <clr-icon shape="pencil"></clr-icon> {{ 'USERSSETTINGS.EDIT' | translate }}</button>
+            </div>
+          </clr-dg-action-bar>
 
-        <clr-dg-column>{{ 'USERSSETTINGS.NAME' | translate }}</clr-dg-column>
-        <clr-dg-column>Email</clr-dg-column>
-        <!--<clr-dg-column>Creation date</clr-dg-column>-->
+          <clr-dg-column>{{ 'USERSSETTINGS.NAME' | translate }}</clr-dg-column>
+          <clr-dg-column>Email</clr-dg-column>
+          <!--<clr-dg-column>Creation date</clr-dg-column>-->
 
-        <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
-          <clr-dg-cell>{{user.lastName}} {{user.firstName}}</clr-dg-cell>
-          <clr-dg-cell>{{user.email}}</clr-dg-cell>
-          <!--<clr-dg-cell>{{user.created * 1000 | date}}</clr-dg-cell>-->
-        </clr-dg-row>
+          <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
+            <clr-dg-cell>{{user.lastName}} {{user.firstName}}</clr-dg-cell>
+            <clr-dg-cell>{{user.email}}</clr-dg-cell>
+            <!--<clr-dg-cell>{{user.created * 1000 | date}}</clr-dg-cell>-->
+          </clr-dg-row>
 
-        <clr-dg-footer>{{users.length}} {{ 'USERSSETTINGS.USERS' | translate }}</clr-dg-footer>
-      </clr-datagrid>
-    </clr-tab-content>
-  </clr-tab>
-  <clr-tab>
-    <button clrTabLink>{{ 'ROLESSETTINGS.ROLES_TAB' | translate }}</button>
-    <clr-tab-content *clrIfActive>
+          <clr-dg-footer>{{users.length}} {{ 'USERSSETTINGS.USERS' | translate }}</clr-dg-footer>
+        </clr-datagrid>
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink>{{ 'ROLESSETTINGS.ROLES_TAB' | translate }}</button>
+      <clr-tab-content *clrIfActive>
 
-      <!--<app-users></app-users>-->
-      <app-roles></app-roles>
-    </clr-tab-content>
-  </clr-tab>
-</clr-tabs>
+        <app-roles></app-roles>
+      </clr-tab-content>
+    </clr-tab>
+  </clr-tabs>
+</div>
+<app-create-user-modal [(opened)]="createOpened" (userChange)="createUser($event);"></app-create-user-modal>

@@ -16,9 +16,13 @@ export class UsersComponent implements OnInit, OnDestroy {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  selected = [];
+  selectedUsers = [];
   subscription;
   users: User[];
+
+  public createOpened = false;
+  public editOpened = false;
+  public deleteOpened = false;
 
   constructor(
     private usersService: UsersService,
@@ -40,11 +44,11 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   onAdd() {
-
+    this.createOpened = true;
   }
 
   onEdit() {
-
+    this.editOpened = true;
   }
 
   onDelete() {
@@ -54,6 +58,10 @@ export class UsersComponent implements OnInit, OnDestroy {
       this.users = this.users.filter(users => users !== selectedUser);
       // TODO Notification => successfully deleted
     });
+  }
+
+  createUser(user: User) {
+
   }
 
 }
