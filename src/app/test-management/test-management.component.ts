@@ -156,7 +156,10 @@ export class TestManagementComponent implements OnInit {
     this.testCaseService.createTestCase(this.testcase).subscribe(
       response => {
         if (response.status === 201) {
-          this.notificationsService.success('Test Case ' + this.testcase.title, 'created successfully!');
+          this.notificationsService.success(
+            this.testcase.title,
+            this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_CREATED')
+          );
           this.testCases.push(this.testcase);
         }
       },
@@ -171,7 +174,10 @@ export class TestManagementComponent implements OnInit {
     this.testCaseService.updateTestCase(this.testcase, this.testcase._id).subscribe(
       response => {
         if (response.status === 200) {
-          this.notificationsService.success('Test Case ' + this.testcase.title, 'updated successfully!');
+          this.notificationsService.success(
+            this.testcase.title,
+            this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_UPDATED')
+          );
 
           // update local array of testcases
           const foundIndex = this.testCases.findIndex(testcase => testcase._id === this.testcase._id);
@@ -191,7 +197,9 @@ export class TestManagementComponent implements OnInit {
         response => {
           if (response.status === 200) {
             this.notificationsService.success(
-              selectedTestCase.title, this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_DELETED'));
+              selectedTestCase.title,
+              this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_DELETED')
+            );
             this.testCases = this.testCases.filter(testCases => testCases !== selectedTestCase);
           }
         },
