@@ -1,70 +1,13 @@
 <div *ngIf="testSuites" class="wrapper">
 
   <div *ngIf="testSuites.length > 0; then existTestSuites else noExistTestSuites"></div>
-    <ng-template #existTestSuites>
+  <ng-template #existTestSuites>
 
-      <div class="content-wrapper">
+    <div class="content-wrapper">
+
       <div class="col-sm-12 col-md-12 col-lg-9">
-
-        <h4 *ngIf="selectedTestSuite">{{ selectedTestSuite.name }}</h4>
-        <clr-datagrid *ngIf="testCases" [(clrDgSelected)]="selectedTestCases" [clDgRowSelection]="true">
-
-          <clr-dg-action-bar>
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()" [disabled]="!selectedTestSuite">
-                <clr-icon shape="plus"></clr-icon> {{ 'TESTMANAGEMENTPAGE.ADD' | translate }}</button>
-              <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedTestCases.length > 0">
-                <clr-icon shape="close"></clr-icon> {{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
-              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedTestCases.length == 1">
-                <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}</button>
-            </div>
-          </clr-dg-action-bar>
-
-          <clr-dg-column [clrDgField]="'order'" [clrDgSortOrder]="ascSort">{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}</clr-dg-column>
-          <!--<clr-dg-column >Order</clr-dg-column>-->
-          <!--<clr-dg-column>Status</clr-dg-column>-->
-
-          <clr-dg-row *clrDgItems="let testCase of testCases" [clrDgItem]="testCase">
-            <!--
-        <clr-dg-cell style="display: flex;">
-            <clr-checkbox></clr-checkbox>
-          <span style="align-self: center;">{{user.name}}</span>
-        </clr-dg-cell>
-      -->
-            <clr-dg-cell>
-              {{testCase.title}}
-            </clr-dg-cell>
-            <!--
-        <clr-dg-cell>
-          {{ testCase.order}}
-        </clr-dg-cell>
-        -->
-
-            <!--
-          <clr-dg-cell>
-            <div class="select">
-              <select id="selects_1">
-                <option>Untested</option>
-                <option>In Progress</option>
-                <option>Passed</option>
-                <option>Failed</option>
-                <option>Skipped</option>
-              </select>
-            </div>
-          </clr-dg-cell>
--->
-          </clr-dg-row>
-
-          <clr-dg-footer>{{testCases.length}}</clr-dg-footer>
-        </clr-datagrid>
-
+        <app-test-cases [selectedTS]="selectedTestSuite"></app-test-cases>
       </div>
-
-
-
-
-
-
 
       <!-- TEST SUITES TREE COMPONENT -->
       <div *ngIf="testSuitesViewModel.length > 0" class="sidenav" [clr-nav-level]="2">
@@ -85,148 +28,23 @@
           </ng-template>
         </clr-tree-node>
       </div>
-
-      <!-- CREATE TEST CASE -->
-      <clr-modal *ngIf="testcase" [(clrModalOpen)]="createOpened">
-        <h3 class="modal-title">{{ 'TESTCASECREATEPAGE.CREATE_TESTCASE' | translate }}</h3>
-        <div class="modal-body">
-          <form (ngSubmit)="createOpened = false; createTestCase()" id="createTestCaseForm" #createTestCaseForm="ngForm" (keyup.enter)="createTestCaseForm.form.valid && createTestCaseForm.ngSubmit.emit();">
-            <section class="form-block">
-
-              <label>Детали</label>
-
-              <div class="form-group">
-                <label class="required" for="title">{{ 'TESTCASECREATEPAGE.TITLE' | translate }}</label>
-                <input type="text" id="title" name="title" [(ngModel)]="testcase.title" #title="ngModel" required placeholder="{{ 'TESTCASECREATEPAGE.TITLE_PLACEHOLDER' | translate }}"
-                  size="35">
-              </div>
-
-              <div class="form-group">
-                <label for="description">{{ 'TESTCASECREATEPAGE.DESCRIPTION' | translate }}</label>
-                <input type="text" id="description" name="description" [(ngModel)]="testcase.description" #description="ngModel" placeholder="{{ 'TESTCASECREATEPAGE.DESCRIPTION_PLACEHOLDER' | translate }}"
-                  size="35">
-              </div>
-
-              <div class="form-group">
-                <label for="priority">{{ 'TESTCASECREATEPAGE.PRIORITY' | translate }}</label>
-                <div class="select">
-                  <select id="priority" name="priority" [(ngModel)]="testcase.priority" #priority="ngModel">
-                    <option *ngFor="let key of keys" [value]="key.value">{{ 'PRIORITIES.' + priorities[key] | translate }}</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="preconditions">{{ 'TESTCASECREATEPAGE.PRECONDITIONS' | translate }}</label>
-                <input type="text" id="preconditions" name="preconditions" [(ngModel)]="testcase.preconditions" #preconditions="ngModel"
-                  placeholder="{{ 'TESTCASECREATEPAGE.PRECONDITIONS_PLACEHOLDER' | translate }}" size="35">
-              </div>
-
-              <clr-datagrid>
-                <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}</clr-dg-column>
-                <clr-dg-row *clrDgItems="let step of testcase.steps" [clrDgItem]="step">
-                  <clr-dg-cell></clr-dg-cell>
-                </clr-dg-row>
-              </clr-datagrid>
-
-            </section>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline" (click)="createOpened = false">{{ 'TESTMANAGEMENTPAGE.CANCEL' | translate }}</button>
-          <button type="button" class="btn btn-primary" (click)="createTestCaseForm.ngSubmit.emit();" [disabled]="!createTestCaseForm.form.valid">{{ 'TESTCASECREATEPAGE.CREATE_BUTTON' | translate }}</button>
-        </div>
-      </clr-modal>
-
-
-      <!-- EDIT TEST CASE -->
-      <clr-modal *ngIf="selectedTestCases.length === 1 && testcase !== undefined" [(clrModalOpen)]="editOpened">
-        <h3 class="modal-title">{{ 'TESTCASECREATEPAGE.EDIT_TESTCASE' | translate }}</h3>
-        <div class="modal-body">
-          <form (ngSubmit)="editOpened = false; updateTestCase(selectedTestCases[0])" id="editTestCaseForm" #editTestCaseForm="ngForm"
-            (keyup.enter)="editTestCaseForm.form.valid && editTestCaseForm.ngSubmit.emit();">
-            <section class="form-block">
-
-              <label>Детали</label>
-
-              <div class="form-group">
-                <label class="required" for="title">{{ 'TESTCASECREATEPAGE.TITLE' | translate }}</label>
-                <input type="text" id="title" name="title" [(ngModel)]="testcase.title" #title="ngModel" required placeholder="{{ 'TESTCASECREATEPAGE.TITLE_PLACEHOLDER' | translate }}"
-                  size="35">
-              </div>
-
-              <div class="form-group">
-                <label for="description">{{ 'TESTCASECREATEPAGE.DESCRIPTION' | translate }}</label>
-                <input type="text" id="description" name="description" [(ngModel)]="testcase.description" #description="ngModel" placeholder="{{ 'TESTCASECREATEPAGE.DESCRIPTION_PLACEHOLDER' | translate }}"
-                  size="35">
-              </div>
-
-              <div class="form-group">
-                <label for="priority">{{ 'TESTCASECREATEPAGE.PRIORITY' | translate }}</label>
-                <div class="select">
-                  <select id="priority" name="priority" [(ngModel)]="testcase.priority" #priority="ngModel">
-                    <option *ngFor="let key of keys" [value]="key.value">{{ 'PRIORITIES.' + priorities[key] | translate }}</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="preconditions">{{ 'TESTCASECREATEPAGE.PRECONDITIONS' | translate }}</label>
-                <input type="text" id="preconditions" name="preconditions" [(ngModel)]="testcase.preconditions" #preconditions="ngModel"
-                  placeholder="{{ 'TESTCASECREATEPAGE.PRECONDITIONS_PLACEHOLDER' | translate }}" size="35">
-              </div>
-
-              <clr-datagrid>
-                <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}</clr-dg-column>
-                <clr-dg-row *clrDgItems="let step of testcase.steps" [clrDgItem]="step">
-                  <clr-dg-cell></clr-dg-cell>
-                </clr-dg-row>
-              </clr-datagrid>
-
-              <!-- should be removed when drag n drop added -->
-              <div class="form-group">
-                <label for="order">{{ 'TESTCASECREATEPAGE.ORDER' | translate }}</label>
-                <input type="number" id="order" name="order" [(ngModel)]="testcase.order" #order="ngModel" placeholder="{{ 'TESTCASECREATEPAGE.ORDER_PLACEHOLDER' | translate }}"
-                  size="35">
-              </div>
-
-            </section>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline" (click)="editOpened = false">{{ 'TESTMANAGEMENTPAGE.CANCEL' | translate }}</button>
-          <button type="button" class="btn btn-primary" (click)="editTestCaseForm.ngSubmit.emit();" [disabled]="!editTestCaseForm.form.valid">{{ 'TESTCASECREATEPAGE.EDIT_BUTTON' | translate }}</button>
-        </div>
-      </clr-modal>
-
-      <!-- DELETE TEST CASE -->
-      <clr-modal [(clrModalOpen)]="deleteOpened">
-        <h3 class="modal-title">{{ 'TESTMANAGEMENTPAGE.MODAL_DELETE_HEADER' | translate }}</h3>
-        <div class="modal-body">
-          <p>{{ 'TESTMANAGEMENTPAGE.MODAL_DELETE_DESCRIPTION' | translate }}</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline" (click)="deleteOpened = false">{{ 'TESTMANAGEMENTPAGE.CANCEL' | translate }}</button>
-          <button type="button" class="btn btn-primary btn-danger" (click)="deleteOpened = false; forceDelete();">{{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
-        </div>
-      </clr-modal>
     </div>
-    </ng-template>
+  </ng-template>
 
-    <ng-template #noExistTestSuites>
-      <div class="noexist-wrapper">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <ng-template #noExistTestSuites>
+    <div class="noexist-wrapper">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-          <div class="no-testsuites">
-            <img src="assets/add-project.png">
-            <h4>{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_TITLE' | translate }}</h4>
-            <p class="tips">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_DESCRIPTION' | translate }}</p>
-            <a  class="btn btn-primary">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_CREATETESTSUITE_BUTTON' | translate }}</a>
-          </div>
-
+        <div class="no-testsuites">
+          <img src="assets/add-project.png">
+          <h4>{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_TITLE' | translate }}</h4>
+          <p class="tips">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_DESCRIPTION' | translate }}</p>
+          <a class="btn btn-primary">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_CREATETESTSUITE_BUTTON' | translate }}</a>
         </div>
-      </div>
 
-    </ng-template>
+      </div>
+    </div>
+
+  </ng-template>
 
 </div>

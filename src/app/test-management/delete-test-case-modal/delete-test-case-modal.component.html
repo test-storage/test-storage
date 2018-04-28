@@ -1,0 +1,10 @@
+<clr-modal [(clrModalOpen)]="opened">
+  <h3 class="modal-title">{{ 'TESTMANAGEMENTPAGE.MODAL_DELETE_HEADER' | translate }}</h3>
+  <div class="modal-body">
+    <p>{{ 'TESTMANAGEMENTPAGE.MODAL_DELETE_DESCRIPTION' | translate }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="setOpened(false)">{{ 'TESTMANAGEMENTPAGE.CANCEL' | translate }}</button>
+    <button type="button" class="btn btn-primary btn-danger" (click)="setOpened(false); deleteTestCase();">{{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
+  </div>
+</clr-modal>
