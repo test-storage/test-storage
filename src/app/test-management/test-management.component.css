@@ -1,8 +1,11 @@
 .wrapper {
-    height: calc(100vh - 60px);
-    display: flex;
-    justify-content: space-between;
-    width: (100vw -240px);
+  height: calc(100vh - 120px);
+  width: (100vw - 240px);
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
 .sidenav {
@@ -10,3 +13,38 @@
   border: 0px !important;
   order: 999 !important;
 }
+
+.content-area {
+  width: 100vw;
+  height: calc(100vh - 60px);
+}
+
+.noexist-wrapper {
+  display: flex;
+  width: calc(100vw- 240px);
+  height: calc(100vh - 120px);
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
+
+.no-testsuites {
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.no-testsuites img {
+  margin-bottom: 20px;
+}
+
+.no-testsuites h4 {
+  color: #616161;
+}
+
+.tips {
+  font-size: 14px;
+  color: #a2acb3;
+  margin-bottom: 20px;
+}
+
