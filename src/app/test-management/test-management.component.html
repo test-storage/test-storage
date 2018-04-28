@@ -77,7 +77,7 @@
           <!--</button>-->
           <ng-template [(clrIfExpanded)]="testSuite.expanded">
             <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
-              <button clrVerticalNavLink (click)="openTestSuite(subTestSuite)" class="clr-treenode-link" [class.active]="subTestSuite._id === selectedTestSuite">
+              <button clrVerticalNavLink (click)="openTestSuite(subTestSuite)" class="clr-treenode-link" [class.active]="subTestSuite._id === selectedTestSuite._id">
                 <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
                 {{subTestSuite.name}}
               </button>
