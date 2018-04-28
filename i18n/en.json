@@ -107,9 +107,16 @@
     "DELETE": "Delete",
     "TITLE": "Title",
     "CANCEL": "Cancel",
+    "TESTCASE": "Test Case",
+    "TESTSUITE": "Test Suite",
+    "SUCCESSFULLY_CREATED": "successfully created",
+    "SUCCESSFULLY_UPDATED": "successfully updated",
     "SUCCESSFULLY_DELETED": "successfully deleted",
     "MODAL_DELETE_HEADER": "Delete Test Case",
-    "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected test cases? This action is permanent and cannot be recovered."
+    "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected test cases? This action is permanent and cannot be recovered.",
+    "EMPTYSTATE_NOTESTSUITES_TITLE": "You have not created Test Suite yet.",
+    "EMPTYSTATE_NOTESTSUITES_DESCRIPTION": "Tap the 'Create Test Suite' button to get started",
+    "EMPTYSTATE_CREATETESTSUITE_BUTTON": "Create Test Suite"
   },
   "TESTEXECUTIONPAGE": {
     "ADD": "Add",
