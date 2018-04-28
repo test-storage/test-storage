@@ -114,6 +114,8 @@ export class TestManagementComponent implements OnInit {
     }
 
     this.testSuitesViewModel = [...root];
+    // temporary
+    this.openTestSuite(root[0].children[0]);
     // console.log(JSON.stringify(this.testSuites));
   }
 
