@@ -52,7 +52,7 @@ export class TestManagementComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.params.subscribe(params => {
+    this.route.parent.parent.params.subscribe(params => {
       this.projectId = params['id'];
       this.getTestSuites(this.projectId);
     });
