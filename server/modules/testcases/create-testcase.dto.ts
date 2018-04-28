@@ -53,16 +53,6 @@ export class CreateTestcaseDto {
   @IsArray()
   readonly steps?: Array<string>;
 
-  @ApiModelPropertyOptional({ type: Array})
-  @IsOptional()
-  @IsArray()
-  readonly testData?: Array<string>;
-
-  @ApiModelPropertyOptional({ type: Array})
-  @IsOptional()
-  @IsArray()
-  readonly expected?: Array<string>;
-
   @ApiModelPropertyOptional({ type: String})
   @IsOptional()
   @IsString()

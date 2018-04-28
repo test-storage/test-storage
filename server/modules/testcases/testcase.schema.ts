@@ -17,8 +17,6 @@ export const TestcaseSchema = new mongoose.Schema({
   description: { type: String },
   preConditions: { type: String },
   steps: Array,
-  testData: Array,
-  expected: Array,
   postConditions: { type: String },
   tags: Array,
   created: { type: Date, required: true, default: Date.now },
