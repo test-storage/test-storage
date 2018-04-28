@@ -22,15 +22,8 @@ export class AuthenticationService {
     this.token = this.storage.getToken();
   }
 
-  login(username, password): void {
-
-    this.http.post('/authentication/login', { username: username, password: password }, { headers: contentHeaders })
-      .subscribe((response: any) => {
-        this.setToken(response);
-      }, () => {
-        this.loggedIn$.next(false);
-      });
-
+  login(username, password): Observable<any> {
+    return this.http.post('/authentication/login', { username: username, password: password }, { headers: contentHeaders });
   }
 
   setToken(response: any) {
