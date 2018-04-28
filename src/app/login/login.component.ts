@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.error = undefined;
-    this.authenticationService.login(this.user.username, this.user.password).subscribe(
+    this.authenticationService.login(this.user).subscribe(
       response => this.authenticationService.setToken(response),
       error => {
         if (error.status === 401) {
