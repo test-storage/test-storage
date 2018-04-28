@@ -30,7 +30,7 @@ export class TestManagementComponent implements OnInit {
   public selectedTestSuite: TestSuite;
   public testCases: TestCase[] = [];
   testSuitesViewModel = [];
-  testSuites: TestSuite[] = [];
+  public testSuites: TestSuite[];
 
   public ascSort = ClrDatagridSortOrder.ASC;
 
@@ -134,6 +134,14 @@ export class TestManagementComponent implements OnInit {
   onDelete() {
     this.deleteOpened = true;
   }
+
+  createTestSuite() {
+
+  }
+
+
+
+
 
 
   createTestCase() {
