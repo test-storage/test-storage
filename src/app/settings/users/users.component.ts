@@ -102,18 +102,22 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   forceDelete() {
     this.selectedUsers.forEach(selectedUser => {
-      this.usersService.deleteUser(selectedUser._id).subscribe(
-        response => {
-          if (response.status === 200) {
-            this.notificationsService.success(
-              `${selectedUser.lastName} ${selectedUser.firstName}`,
-              this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
-            );
-            this.users = this.users.filter(users => users !== selectedUser);
-          }
-        },
-        error => console.log(error)
-      );
+      if (selectedUser.email === 'admin') {
+        // admin account can't be deleted
+      } else {
+        this.usersService.deleteUser(selectedUser._id).subscribe(
+          response => {
+            if (response.status === 200) {
+              this.notificationsService.success(
+                `${selectedUser.lastName} ${selectedUser.firstName}`,
+                this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
+              );
+              this.users = this.users.filter(users => users !== selectedUser);
+            }
+          },
+          error => console.log(error)
+        );
+      }
     });
   }
 
