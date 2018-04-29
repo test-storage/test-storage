@@ -1,8 +1,8 @@
-import { Directive, forwardRef, Input } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
 @Directive({
-  selector: '[validateEqual]',
+  selector: '[appValidateEqual]',
   providers: [
     {
       provide: NG_VALIDATORS,
@@ -13,7 +13,7 @@ import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 })
 export class ValidateEqualDirective implements Validator {
 
-  @Input() public validateEqual: string;
+  @Input() public appValidateEqual: string;
   @Input() public reverse: string;
 
   private get isReverse() {
@@ -24,7 +24,7 @@ export class ValidateEqualDirective implements Validator {
   }
 
   validate(control: AbstractControl): { [key: string]: any } {
-    const controlToCompare = control.parent.get(this.validateEqual);
+    const controlToCompare = control.parent.get(this.appValidateEqual);
 
     if (controlToCompare && controlToCompare.value !== control.value && !this.isReverse) {
       return { 'notEqual': true };

@@ -37,7 +37,13 @@ export class UsersService {
 
   async update(id: string, user: CreateUserDto): Promise<User> {
     // TODO check update password
-    return await this.userModel.findOneAndUpdate({ '_id': id }, user).select('-password').exec();
+    return await this.userModel.findOne({ '_id': id }).exec(function (err, usr) {
+      if (err) {
+        console.log(err);
+      }
+      Object.assign(usr, user);
+      return usr.save();
+    });
   }
 
   async delete(id: string): Promise<void> {

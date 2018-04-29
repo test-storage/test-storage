@@ -51,7 +51,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="setOpened(false)">{{ 'TESTMANAGEMENTPAGE.CANCEL' | translate }}</button>
-    <button type="button" class="btn btn-primary" (click)="editTestCaseForm.ngSubmit.emit();" [disabled]="!editTestCaseForm.form.valid">{{ 'TESTCASECREATEPAGE.EDIT_BUTTON' | translate }}</button>
+    <button type="button" class="btn btn-outline" (click)="setOpened(false)">{{ 'COMMON.CANCEL_BUTTON' | translate }}</button>
+    <button type="button" class="btn btn-primary" (click)="editTestCaseForm.ngSubmit.emit();" [disabled]="!editTestCaseForm.form.valid">{{ 'COMMON.SAVE_BUTTON' | translate }}</button>
   </div>
 </clr-modal>

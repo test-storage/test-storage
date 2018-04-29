@@ -1,4 +1,14 @@
 {
+  "COMMON": {
+    "SAVE_BUTTON": "Save",
+    "CREATE_BUTTON": "Create",
+    "EDIT_BUTTON": "Edit",
+    "DELETE_BUTTON": "Delete",
+    "CANCEL_BUTTON": "Cancel",
+    "SUCCESSFULLY_CREATED": "successfully created",
+    "SUCCESSFULLY_UPDATED": "successfully updated",
+    "SUCCESSFULLY_DELETED": "successfully deleted"
+  },
   "SETTINGS": {
     "MAIN_SETTINGS": "Main Settings",
     "USERS": "Users",
@@ -22,7 +32,7 @@
     "MINOR": "Minor",
     "TRIVIAL": "Trivial"
   },
-  "USERSSETTINGS" : {
+  "USERSSETTINGS": {
     "ADD": "Add",
     "EDIT": "Edit",
     "DELETE": "Delete",
@@ -31,7 +41,7 @@
     "USERS_TAB": "Users",
     "CANCEL": "Cancel"
   },
-  "ROLESSETTINGS" : {
+  "ROLESSETTINGS": {
     "ADD": "Add",
     "EDIT": "Edit",
     "DELETE": "Delete",
@@ -40,7 +50,7 @@
     "ROLES_TAB": "Roles",
     "CANCEL": "Cancel"
   },
-  "DEVICESSETTINGS" : {
+  "DEVICESSETTINGS": {
     "ADD": "Add",
     "EDIT": "Edit",
     "DELETE": "Delete",
@@ -190,7 +200,9 @@
     "CONFIRMPASSWORD_REQUIRED": "Confirm password required",
     "PASSWORDSMATCH": "Password and Confirm Password should be equal",
     "CREATE_USER": "Create User",
-    "SECTION_ADDITIONAL": "Additional Information"
+    "SECTION_ADDITIONAL": "Additional Information",
+    "MODAL_DELETE_HEADER": "Delete User",
+    "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected users? This action is permanent and cannot be recovered."
   },
   "USERPROFILEPAGE": {
     "USER": "User",
