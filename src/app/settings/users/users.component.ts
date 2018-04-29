@@ -4,6 +4,7 @@ import { pageTransition } from '../../animations';
 
 import { UsersService } from './users.service';
 import { User } from './user';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-users',
@@ -26,6 +27,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   constructor(
     private usersService: UsersService,
+    private notificationsService: NotificationsService,
     protected translateService: TranslateService
   ) { }
 
@@ -53,7 +55,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   onDelete() {
     // TODO are you sure? via modal
-    this.selected.forEach(selectedUser => {
+    this.selectedUsers.forEach(selectedUser => {
       // TODO delete via service
       this.users = this.users.filter(users => users !== selectedUser);
       // TODO Notification => successfully deleted
@@ -61,7 +63,21 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   createUser(user: User) {
+    // remove unused field (used only for validation)
+    delete user.confirmPassword;
 
+    this.usersService.createUser(user).subscribe(
+      response => {
+        if (response.status === 201) {
+          this.notificationsService.success(
+            `${user.lastName} ${user.firstName}`,
+            this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_CREATED')
+          );
+          this.users.push(user);
+        }
+      },
+      error => console.log(error)
+    );
   }
 
 }
