@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Component, Inject } from '@nestjs/common';
+import { Component, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { UserSchema } from './user.schema';
@@ -14,6 +14,10 @@ export class UsersService {
   async create(userDto: CreateUserDto): Promise<User> {
     const createdUser = new this.userModel(userDto);
     return await createdUser.save((err, user) => {
+      if (err) {
+        console.log(err);
+        throw new HttpException('Database error', HttpStatus.INTERNAL_SERVER_ERROR);
+      }
       return user;
     });
   }
