@@ -1,4 +1,14 @@
 {
+  "COMMON": {
+    "SAVE_BUTTON": "Сохранить",
+    "CREATE_BUTTON": "Создать",
+    "EDIT_BUTTON": "Редактировать",
+    "DELETE_BUTTON": "Удалить",
+    "CANCEL_BUTTON": "Отмена",
+    "SUCCESSFULLY_CREATED": "успешно создан",
+    "SUCCESSFULLY_UPDATED": "успешно обновлен",
+    "SUCCESSFULLY_DELETED": "успешно удален"
+  },
   "SETTINGS": {
     "MAIN_SETTINGS": "Основные настройки",
     "USERS": "Пользователи",
@@ -22,7 +32,7 @@
     "MINOR": "Минорный",
     "TRIVIAL": "Тривиальный"
   },
-  "USERSSETTINGS" : {
+  "USERSSETTINGS": {
     "ADD": "Добавить",
     "EDIT": "Редактировать",
     "DELETE": "Удалить",
@@ -31,7 +41,7 @@
     "USERS_TAB": "Пользователи",
     "CANCEL": "Отмена"
   },
-  "ROLESSETTINGS" : {
+  "ROLESSETTINGS": {
     "ADD": "Добавить",
     "EDIT": "Редактировать",
     "DELETE": "Удалить",
@@ -40,7 +50,7 @@
     "ROLES_TAB": "Роли",
     "CANCEL": "Отмена"
   },
-  "DEVICESSETTINGS" : {
+  "DEVICESSETTINGS": {
     "ADD": "Добавить",
     "EDIT": "Редактировать",
     "DELETE": "Удалить",
@@ -189,7 +199,9 @@
     "CONFIRMPASSWORD_REQUIRED": "Повторить пароль - обязательное поле",
     "PASSWORDSMATCH": "Оба пароля должны быть одинаковы",
     "CREATE_USER": "Создать Пользователя",
-    "SECTION_ADDITIONAL": "Дополнительная Информация"
+    "SECTION_ADDITIONAL": "Дополнительная Информация",
+    "MODAL_DELETE_HEADER": "Удалить Пользователя(ей)",
+    "MODAL_DELETE_DESCRIPTION": "Вы уверены, что хотите удалить выбранных пользователей? Удаленные пользователи не смогут быть восстановлены."
   },
   "USERPROFILEPAGE": {
     "USER": "Пользователь",

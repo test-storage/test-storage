@@ -1,3 +1,71 @@
-<p>
-  edit-user-modal works!
-</p>
+<clr-modal *ngIf="opened" [(clrModalOpen)]="opened">
+  <h3 class="modal-title">{{ 'USERCREATEPAGE.TITLE' | translate }}</h3>
+  <div class="modal-body">
+    <form (ngSubmit)="setOpened(false); updateUser()" id="updateUserForm" #updateUserForm="ngForm" (keyup.enter)="updateUserForm.form.valid && updateUserForm.ngSubmit.emit();">
+      <section class="form-block">
+
+        <label>{{ 'USERCREATEPAGE.SECTION_GENERAL' | translate }}</label>
+
+        <div class="form-group">
+          <label class="required" for="lastName">{{ 'USERCREATEPAGE.LASTNAME' | translate }}</label>
+          <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required placeholder="{{ 'USERCREATEPAGE.LASTNAME_PLACEHOLDER' | translate }}"
+            size="35">
+        </div>
+
+        <div class="form-group">
+          <label class="required" for="firstName">{{ 'USERCREATEPAGE.FIRSTNAME' | translate }}</label>
+          <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required placeholder="{{ 'USERCREATEPAGE.FIRSTNAME_PLACEHOLDER' | translate }}"
+            size="35">
+        </div>
+
+        <div class="form-group">
+          <label class="required" for="email">{{ 'USERCREATEPAGE.EMAIL' | translate }}</label>
+          <input type="text" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required placeholder="{{ 'USERCREATEPAGE.EMAIL_PLACEHOLDER' | translate }}"
+            size="35">
+        </div>
+
+        <div class="form-group">
+          <label class="required" for="password">{{ 'USERCREATEPAGE.PASSWORD' | translate }}</label>
+          <input type="password" id="password" name="password" placeholder="password" [(ngModel)]="user.password" #password="ngModel"
+            required size="35" appValidateEqual="confirmPassword" reverse="true">
+          <small [hidden]="password.valid || (password.pristine && !createUserForm.submitted)">
+            Password is required
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="required" for="confirmPassword">{{ 'USERCREATEPAGE.CONFIRMPASSWORD' | translate }}</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="confirm password" [(ngModel)]="user.confirmPassword"
+            #confirmPassword="ngModel" size="35" appValidateEqual="password">
+          <p *ngIf="confirmPassword?.errors?.isEqual">Passwords don't match</p>
+          <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !createUserForm.submitted)">
+            Password mismatch
+          </small>
+        </div>
+
+        <br>
+        <label>{{ 'USERPROFILEPAGE.COMPANY_DETAILS' | translate }}</label>
+
+        <div class="form-group">
+          <label for="phonenumber">{{ 'USERPROFILEPAGE.PHONE_NUMBER' | translate }}</label>
+          <input type="text" id="phonenumber" name="phoneNumber" placeholder="+7 (495) 123-45-67" size="35">
+        </div>
+
+        <div class="form-group">
+          <label for="jobtitle">{{ 'USERPROFILEPAGE.JOB_TITLE' | translate }}</label>
+          <input type="text" id="jobtitle" name="jobTitle" placeholder="Senior Test Engineer" size="35">
+        </div>
+
+        <div class="form-group">
+          <label for="company">{{ 'USERPROFILEPAGE.COMPANY' | translate }}</label>
+          <input type="text" id="company" name="company" placeholder="Example Inc." size="35">
+        </div>
+
+      </section>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="setOpened(false)">{{ 'COMMON.CANCEL_BUTTON' | translate }}</button>
+    <button type="button" class="btn btn-primary" (click)="updateUserForm.ngSubmit.emit();" [disabled]="!updateUserForm.form.valid">{{ 'COMMON.SAVE_BUTTON' | translate }}</button>
+  </div>
+</clr-modal>

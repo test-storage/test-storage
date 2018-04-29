@@ -54,12 +54,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   onDelete() {
-    // TODO are you sure? via modal
-    this.selectedUsers.forEach(selectedUser => {
-      // TODO delete via service
-      this.users = this.users.filter(users => users !== selectedUser);
-      // TODO Notification => successfully deleted
-    });
+    this.deleteOpened = true;
   }
 
   createUser(user: User) {
@@ -71,13 +66,55 @@ export class UsersComponent implements OnInit, OnDestroy {
         if (response.status === 201) {
           this.notificationsService.success(
             `${user.lastName} ${user.firstName}`,
-            this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_CREATED')
+            this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
           );
           this.users.push(user);
         }
       },
       error => console.log(error)
     );
+  }
+
+  updateUser(user: User) {
+    // TODO thinking about password change
+    // remove unused field (used only for validation)
+    delete user.confirmPassword;
+
+    this.usersService.updateUser(user, user._id).subscribe(
+      response => {
+        if (response.status === 200) {
+          this.notificationsService.success(
+            `${user.lastName} ${user.firstName}`,
+            this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
+          );
+
+          // update local array of users
+          const foundIndex = this.users.findIndex(mUser => mUser._id === user._id);
+          this.users[foundIndex] = user;
+
+          // remove selection
+          this.selectedUsers = [];
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+  forceDelete() {
+    this.selectedUsers.forEach(selectedUser => {
+      this.usersService.deleteUser(selectedUser._id).subscribe(
+        response => {
+          if (response.status === 200) {
+            this.notificationsService.success(
+              `${selectedUser.lastName} ${selectedUser.firstName}`,
+              this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
+            );
+            this.users = this.users.filter(users => users !== selectedUser);
+          }
+        },
+        error => console.log(error)
+      );
+    });
   }
 
 }

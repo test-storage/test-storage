@@ -23,6 +23,14 @@ export class UsersService {
     return this.http.post(this.apiPath, user, { observe: 'response' });
   }
 
+  public updateUser(user: User, id?: string) {
+    if (id !== undefined) {
+      return this.http.put(`${this.apiPath}/${id}`, user, { observe: 'response' });
+    } else {
+      return this.createUser(user);
+    }
+  }
+
   public deleteUser(id: string) {
     return this.http.delete(this.apiPath + '/' + id, { observe: 'response' });
   }

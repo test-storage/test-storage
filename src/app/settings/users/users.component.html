@@ -41,3 +41,5 @@
   </clr-tabs>
 </div>
 <app-create-user-modal [(opened)]="createOpened" (userChange)="createUser($event);"></app-create-user-modal>
+<app-edit-user-modal [user]="selectedUsers[0]" [(opened)]="editOpened" (userChange)="updateUser($event);"></app-edit-user-modal>
+<app-delete-user-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-user-modal>

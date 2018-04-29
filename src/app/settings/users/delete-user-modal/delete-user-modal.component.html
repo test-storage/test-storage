@@ -1,3 +1,10 @@
-<p>
-  delete-user-modal works!
-</p>
+<clr-modal [(clrModalOpen)]="opened">
+  <h3 class="modal-title">{{ 'USERCREATEPAGE.MODAL_DELETE_HEADER' | translate }}</h3>
+  <div class="modal-body">
+    <p>{{ 'USERCREATEPAGE.MODAL_DELETE_DESCRIPTION' | translate }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="setOpened(false)">{{ 'COMMON.CANCEL_BUTTON' | translate }}</button>
+    <button type="button" class="btn btn-primary btn-danger" (click)="setOpened(false); deleteUser();">{{ 'COMMON.DELETE_BUTTON' | translate }}</button>
+  </div>
+</clr-modal>
