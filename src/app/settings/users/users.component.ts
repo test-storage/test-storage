@@ -80,30 +80,40 @@ export class UsersComponent implements OnInit, OnDestroy {
     // remove unused field (used only for validation)
     delete user.confirmPassword;
 
-    this.usersService.updateUser(user, user._id).subscribe(
-      response => {
-        if (response.status === 200) {
-          this.notificationsService.success(
-            `${user.lastName} ${user.firstName}`,
-            this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
-          );
+    if (user.email === 'admin') {
+      this.notificationsService.warn(
+        '',
+        this.translateService.instant('USERCREATEPAGE.ADMIN_CANT_BE_EDITED')
+      );
+    } else {
+      this.usersService.updateUser(user, user._id).subscribe(
+        response => {
+          if (response.status === 200) {
+            this.notificationsService.success(
+              `${user.lastName} ${user.firstName}`,
+              this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
+            );
 
-          // update local array of users
-          const foundIndex = this.users.findIndex(mUser => mUser._id === user._id);
-          this.users[foundIndex] = user;
+            // update local array of users
+            const foundIndex = this.users.findIndex(mUser => mUser._id === user._id);
+            this.users[foundIndex] = user;
 
-          // remove selection
-          this.selectedUsers = [];
-        }
-      },
-      error => console.log(error)
-    );
+            // remove selection
+            this.selectedUsers = [];
+          }
+        },
+        error => console.log(error)
+      );
+    }
   }
 
   forceDelete($event) {
     this.selectedUsers.forEach(selectedUser => {
       if (selectedUser.email === 'admin') {
-        // admin account can't be deleted
+        this.notificationsService.warn(
+          '',
+          this.translateService.instant('USERCREATEPAGE.ADMIN_CANT_BE_DELETED')
+        );
       } else {
         this.usersService.deleteUser(selectedUser._id).subscribe(
           response => {

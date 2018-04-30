@@ -43,6 +43,23 @@
           </small>
         </div>
 
+        <div class="form-group">
+          <label class="required">{{ 'USERCREATEPAGE.ACTIVE' | translate }}</label>
+          <div class="checkbox">
+            <input type="checkbox" id="active" name="active" [(ngModel)]="user.active" #active="ngModel">
+            <label for="active"></label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="required" for="role">{{ 'USERCREATEPAGE.ROLE' | translate }}</label>
+          <div class="select" *ngIf="roles">
+            <select id="role" name="role" [(ngModel)]="user.role" #role="ngModel">
+              <option *ngFor="let role of roles" [value]="role._id">{{ role.name }}</option>
+            </select>
+          </div>
+        </div>
+
         <br>
         <label>{{ 'USERPROFILEPAGE.COMPANY_DETAILS' | translate }}</label>
 

@@ -47,6 +47,7 @@
     "EDIT": "Edit",
     "DELETE": "Delete",
     "ROLE": "Role",
+    "DESCRIPTION": "Description",
     "ROLES": "roles",
     "ROLES_TAB": "Roles",
     "CANCEL": "Cancel"
@@ -90,6 +91,7 @@
     "LOGIN_BUTTON": "Login",
     "REGISTER_BUTTON": "Register",
     "INVALID_CREDENTIALS": "Username or password is incorrect",
+    "USER_NOT_ACTIVATED": "User not activated",
     "REMEMBER_ME": "Remember me",
     "FORGOT_PASSWORD": "Forgot password"
   },
@@ -200,10 +202,14 @@
     "CONFIRMPASSWORD": "Confirm Password",
     "CONFIRMPASSWORD_REQUIRED": "Confirm password required",
     "PASSWORDSMATCH": "Password and Confirm Password should be equal",
+    "ACTIVE": "Active",
+    "ROLE": "Role",
     "CREATE_USER": "Create User",
     "SECTION_ADDITIONAL": "Additional Information",
     "MODAL_DELETE_HEADER": "Delete User",
-    "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected users? This action is permanent and cannot be recovered."
+    "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected users? This action is permanent and cannot be recovered.",
+    "ADMIN_CANT_BE_EDITED": "System account can't be edited",
+    "ADMIN_CANT_BE_DELETED": "System account can't be deleted"
   },
   "USERPROFILEPAGE": {
     "USER": "User",

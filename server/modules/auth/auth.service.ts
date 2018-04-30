@@ -51,7 +51,7 @@ export class AuthService {
       return await bcrypt.compare(user.password, existedUser.password).then(passwordIsMatch => {
         if (passwordIsMatch) {
           this.authorizedUser = existedUser;
-          return true;
+          return this.isUserActivated(existedUser);
         } else {
           // TODO log('user password not match');
           // TODO invalid login attempts counter++
@@ -65,4 +65,11 @@ export class AuthService {
     }
   }
 
+  isUserActivated(user) {
+    if (user.active === true) {
+      return true;
+    } else {
+      throw new HttpException('User not activated', HttpStatus.FORBIDDEN);
+    }
+  }
 }

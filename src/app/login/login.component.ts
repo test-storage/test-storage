@@ -36,8 +36,13 @@ export class LoginComponent implements OnInit {
       response => this.authenticationService.setToken(response),
       error => {
         if (error.status === 401) {
-          this.error = this.translateService.instant('LOGINPAGE.INVALID_CREDENTIALS'); }
+          this.error = this.translateService.instant('LOGINPAGE.INVALID_CREDENTIALS');
         }
+        if (error.status === 403) {
+          this.error = this.translateService.instant('LOGINPAGE.USER_NOT_ACTIVATED');
+        }
+      }
+
     );
   }
 
