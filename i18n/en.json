@@ -1,6 +1,7 @@
 {
   "COMMON": {
     "SAVE_BUTTON": "Save",
+    "ADD_BUTTON": "Add",
     "CREATE_BUTTON": "Create",
     "EDIT_BUTTON": "Edit",
     "DELETE_BUTTON": "Delete",

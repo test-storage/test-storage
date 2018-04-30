@@ -2,6 +2,7 @@
   "COMMON": {
     "SAVE_BUTTON": "Сохранить",
     "CREATE_BUTTON": "Создать",
+    "ADD_BUTTON": "Добавить",
     "EDIT_BUTTON": "Редактировать",
     "DELETE_BUTTON": "Удалить",
     "CANCEL_BUTTON": "Отмена",
