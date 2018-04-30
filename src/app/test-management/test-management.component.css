@@ -15,8 +15,15 @@
 
 .sidenav {
     height: calc(100vh -60px);
+    width: 300px;
     border: 0px !important;
     order: 999 !important;
+}
+
+@media only screen and (max-width: 1024px) {
+    .sidenav {
+        width: 240px;
+    }
 }
 
 .noexist-wrapper {
