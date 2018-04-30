@@ -100,7 +100,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     );
   }
 
-  forceDelete() {
+  forceDelete($event) {
     this.selectedUsers.forEach(selectedUser => {
       if (selectedUser.email === 'admin') {
         // admin account can't be deleted
