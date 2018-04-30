@@ -12,7 +12,8 @@ export class CreateRoleDto {
   @IsString()
   readonly name: string;
 
-  @ApiModelProperty({ type: String })
+  @ApiModelPropertyOptional({ type: String })
+  @IsOptional()
   @IsString()
-  readonly description: string;
+  readonly description?: string;
 }

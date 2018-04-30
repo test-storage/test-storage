@@ -1,4 +1,6 @@
-<clr-datagrid [(clrDgSelected)]="selected" [clDgRowSelection]="true">
+<clr-datagrid *ngIf="roles">
+  <!-- [(clrDgSelected)]="selected" [clDgRowSelection]="true" -->
+  <!--
   <clr-dg-action-bar>
     <div class="btn-group">
       <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
@@ -9,11 +11,13 @@
         <clr-icon shape="pencil"></clr-icon> {{ 'ROLESSETTINGS.EDIT' | translate }}</button>
     </div>
   </clr-dg-action-bar>
-
+-->
   <clr-dg-column>{{ 'ROLESSETTINGS.ROLE' | translate }}</clr-dg-column>
+  <clr-dg-column>{{ 'ROLESSETTINGS.DESCRIPTION' | translate }}</clr-dg-column>
 
   <clr-dg-row *clrDgItems="let role of roles" [clrDgItem]="role">
     <clr-dg-cell> {{ role.name }} </clr-dg-cell>
+    <clr-dg-cell> {{ role.description }} </clr-dg-cell>
   </clr-dg-row>
 
   <clr-dg-footer> {{ roles.length }} {{ 'ROLESSETTINGS.ROLES' | translate }}</clr-dg-footer>

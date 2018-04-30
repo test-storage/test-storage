@@ -8,6 +8,6 @@ export const RoleSchema = new mongoose.Schema({
       return crypto.randomBytes(16).toString('hex');
     }
   },
-  name: String,
+  name: { type: String, required: true },
   description: String
 });
