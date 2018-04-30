@@ -107,7 +107,7 @@ export class TestCasesComponent implements OnInit {
     );
   }
 
-  forceDelete() {
+  forceDelete($event) {
     this.selectedTestCases.forEach(selectedTestCase => {
       this.testCaseService.deleteTestCase(selectedTestCase._id).subscribe(
         response => {
