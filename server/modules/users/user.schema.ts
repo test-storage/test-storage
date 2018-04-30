@@ -26,6 +26,7 @@ export const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  active: Boolean,
   photo: String,
   workInfo: {
     jobTitle: { type: String },
@@ -41,6 +42,7 @@ export const UserSchema = new mongoose.Schema({
     instagram: String,
     vk: String
   },
+  role: String,
   userGroups: Array,
   projects: Array,
   created: { type: Date, required: true, default: Date.now },
