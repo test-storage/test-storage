@@ -16,13 +16,11 @@ export class SettingsService {
   }
 
   public setAppSettings(settings: Settings) {
-    console.log(settings);
     localStorage.setItem('appSettings', JSON.stringify(settings));
   }
 
   public getAppSettings() {
     if (this.appSettings) {
-      console.log(this.appSettings);
       return this.appSettings;
     } else {
       return undefined;
