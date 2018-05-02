@@ -178,6 +178,13 @@
     "CREATE_BUTTON": "Create",
     "EDIT_BUTTON": "Edit"
   },
+  "TESTSUITECREATEPAGE": {
+    "CREATE_TESTSUITE": "Create Test Suite",
+    "NAME": "Name",
+    "NAME_PLACEHOLDER": "Name",
+    "DESCRIPTION": "Description",
+    "DESCRIPTION_PLACEHOLDER": "Description"
+  },
   "USERCREATEPAGE": {
     "TITLE": "Create User Profile",
     "SECTION_GENERAL": "General",

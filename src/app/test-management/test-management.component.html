@@ -13,22 +13,29 @@
       <div *ngIf="testSuitesViewModel.length > 0" class="sidenav" [clr-nav-level]="2">
         <!-- TODO move to testsuites tree component -->
 
-        <clr-tree-node *ngFor="let testSuite of testSuitesViewModel">
-          <!--<button (click)="openTestSuite(testSuite)" class="clr-treenode-link">-->
-          <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
-          {{testSuite.name}}
-          <!--</button>-->
+        <clr-tree-node class="suite-node" *ngFor="let testSuite of testSuitesViewModel">
+          <button (click)="openTestSuite(testSuite)" class="clr-treenode-link">
+            <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
+            {{ testSuite.name }}
+            <clr-icon shape="plus" (click)="onAdd(testSuite);"></clr-icon>
+            <clr-icon shape="pencil" (click)="onEdit(testSuite);"></clr-icon>
+            <clr-icon shape="close" (click)="onDelete(testSuite);"></clr-icon>
+          </button>
           <ng-template [(clrIfExpanded)]="testSuite.expanded">
             <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
               <button clrVerticalNavLink (click)="openTestSuite(subTestSuite)" class="clr-treenode-link" [class.active]="subTestSuite._id === selectedTestSuite._id">
                 <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
-                {{subTestSuite.name}}
+                {{ subTestSuite.name }}
+                <clr-icon shape="plus" (click)="onAdd(subTestSuite);"></clr-icon>
+                <clr-icon shape="pencil" (click)="onEdit(subTestSuite);"></clr-icon>
+                <clr-icon shape="close" (click)="onDelete(subTestSuite);"></clr-icon>
               </button>
             </clr-tree-node>
           </ng-template>
         </clr-tree-node>
       </div>
     </div>
+
   </ng-template>
 
   <ng-template #noExistTestSuites>
@@ -39,7 +46,7 @@
           <img src="assets/add-project.png">
           <h4>{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_TITLE' | translate }}</h4>
           <p class="tips">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_DESCRIPTION' | translate }}</p>
-          <a class="btn btn-primary">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_CREATETESTSUITE_BUTTON' | translate }}</a>
+          <a class="btn btn-primary" (click)="onAdd();">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_CREATETESTSUITE_BUTTON' | translate }}</a>
         </div>
 
       </div>
@@ -47,4 +54,7 @@
 
   </ng-template>
 
+  <app-create-test-suite-modal [(opened)]="createOpened" (testsuiteChange)="createTestSuite($event);"></app-create-test-suite-modal>
+  <app-edit-test-suite-modal [testsuite]="selectedTestSuite" [(opened)]="editOpened" (testsuiteChange)="updateTestSuite($event);"></app-edit-test-suite-modal>
+  <app-delete-test-suite-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-test-suite-modal>
 </div>

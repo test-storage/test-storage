@@ -25,6 +25,10 @@ export class TestManagementComponent implements OnInit {
   public testSuites: TestSuite[];
   testSuitesViewModel = [];
 
+  createOpened = false;
+  editOpened = false;
+  deleteOpened = false;
+
   constructor(
     protected translateService: TranslateService,
     private notificationsService: NotificationsService,
@@ -86,12 +90,93 @@ export class TestManagementComponent implements OnInit {
 
     this.testSuitesViewModel = [...root];
     // temporary
-    this.openTestSuite(root[0].children[0]);
+    this.openTestSuite(root[0]);
     // console.log(JSON.stringify(this.testSuites));
   }
 
-  fromTreeToFlat() {
-    // TODO
+  onAdd(testsuite?: TestSuite) {
+    event.stopPropagation();
+    if (testsuite) {
+      this.selectedTestSuite = testsuite;
+    } else {
+      this.selectedTestSuite = new TestSuite();
+      this.selectedTestSuite.projectId = this.projectId;
+      this.selectedTestSuite._id = 'root';
+    }
+    this.createOpened = true;
   }
 
+  onEdit(testsuite: TestSuite) {
+    event.stopPropagation();
+    this.selectedTestSuite = testsuite;
+    this.editOpened = true;
+  }
+
+  onDelete(testsuite: TestSuite) {
+    event.stopPropagation();
+    this.selectedTestSuite = testsuite;
+    this.deleteOpened = true;
+  }
+
+  createTestSuite(testsuite: TestSuite) {
+    testsuite.parentId = this.selectedTestSuite._id;
+    testsuite.projectId = this.selectedTestSuite.projectId;
+    if (this.testSuites.length > 0) {
+      testsuite.order = this.testSuites.length + 1;
+    } else {
+      testsuite.order = 0;
+    }
+
+    this.testSuiteService.createTestSuite(testsuite).subscribe(
+      response => {
+        if (response.status === 201) {
+          this.notificationsService.success(
+            testsuite.name,
+            this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
+          );
+          this.testSuites.push(testsuite);
+          this.fromFlatToTree();
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+  updateTestSuite(testsuite: TestSuite) {
+    // testsuite.parentId = this.selectedTestSuite._id;
+    testsuite.projectId = this.selectedTestSuite.projectId;
+
+    this.testSuiteService.updateTestSuite(testsuite, testsuite._id).subscribe(
+      response => {
+        if (response.status === 200) {
+          this.notificationsService.success(
+            testsuite.name,
+            this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
+          );
+
+          // update local array of testsuites
+          const foundIndex = this.testSuites.findIndex(mTestsuite => mTestsuite._id === testsuite._id);
+          this.testSuites[foundIndex] = testsuite;
+          this.fromFlatToTree();
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+  forceDelete($event) {
+    this.testSuiteService.deleteTestSuite(this.selectedTestSuite._id).subscribe(
+      response => {
+        if (response.status === 200) {
+          this.notificationsService.success(
+            this.selectedTestSuite.name,
+            this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
+          );
+          this.testSuites = this.testSuites.filter(testSuites => testSuites._id !== this.selectedTestSuite._id);
+          this.fromFlatToTree();
+        }
+      },
+      error => console.log(error)
+    );
+  }
 }
