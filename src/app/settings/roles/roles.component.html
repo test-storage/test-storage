@@ -1,13 +1,13 @@
 <clr-datagrid *ngIf="roles">
-  <!-- [(clrDgSelected)]="selected" [clDgRowSelection]="true" -->
+  <!-- [(clrDgSelected)]="selectedRoles" [clDgRowSelection]="true" -->
   <!--
   <clr-dg-action-bar>
     <div class="btn-group">
       <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
         <clr-icon shape="plus"></clr-icon> {{ 'ROLESSETTINGS.ADD' | translate }}</button>
-      <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()">
+      <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedRoles.length > 0">
         <clr-icon shape="close"></clr-icon> {{ 'ROLESSETTINGS.DELETE' | translate }}</button>
-      <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selected.length == 1">
+      <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedRoles.length == 1">
         <clr-icon shape="pencil"></clr-icon> {{ 'ROLESSETTINGS.EDIT' | translate }}</button>
     </div>
   </clr-dg-action-bar>

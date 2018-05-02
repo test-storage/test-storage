@@ -12,7 +12,7 @@ import { Role } from './role';
 export class RolesComponent implements OnInit, OnDestroy {
 
   subscription;
-  selected = [];
+  selectedRoles = [];
   public roles: Role[];
 
   constructor(
