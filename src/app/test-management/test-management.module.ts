@@ -14,6 +14,9 @@ import { CreateTestCaseModalComponent } from './create-test-case-modal/create-te
 import { EditTestCaseModalComponent } from './edit-test-case-modal/edit-test-case-modal.component';
 import { DeleteTestCaseModalComponent } from './delete-test-case-modal/delete-test-case-modal.component';
 import { TestCasesComponent } from './test-cases/test-cases.component';
+import { CreateTestSuiteModalComponent } from './create-test-suite-modal/create-test-suite-modal.component';
+import { EditTestSuiteModalComponent } from './edit-test-suite-modal/edit-test-suite-modal.component';
+import { DeleteTestSuiteModalComponent } from './delete-test-suite-modal/delete-test-suite-modal.component';
 
 @NgModule({
   imports: [
@@ -28,7 +31,10 @@ import { TestCasesComponent } from './test-cases/test-cases.component';
     CreateTestCaseModalComponent,
     EditTestCaseModalComponent,
     DeleteTestCaseModalComponent,
-    TestCasesComponent
+    TestCasesComponent,
+    CreateTestSuiteModalComponent,
+    EditTestSuiteModalComponent,
+    DeleteTestSuiteModalComponent
   ],
   providers: [
     TestSuiteService,

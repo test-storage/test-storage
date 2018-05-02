@@ -20,6 +20,41 @@
     order: 999 !important;
 }
 
+.sidenav clr-tree-node.suite-node clr-icon[shape="plus"],
+.sidenav clr-tree-node.suite-node clr-icon[shape="pencil"],
+.sidenav clr-tree-node.suite-node clr-icon[shape="close"] {
+    visibility: hidden;
+    position: relative;
+}
+
+.sidenav clr-tree-node.suite-node :hover clr-icon[shape="plus"],
+.sidenav clr-tree-node.suite-node :hover clr-icon[shape="pencil"],
+.sidenav clr-tree-node.suite-node :hover clr-icon[shape="close"] {
+    visibility: visible;
+    left: 5px;
+}
+
+clr-icon[shape="plus"] {
+    width: 20px;
+    height: 20px;
+}
+
+clr-icon[shape="plus"],
+clr-icon[shape="pencil"],
+clr-icon[shape="close"] {
+    color: #777;
+}
+
+clr-icon[shape="plus"]:hover,
+clr-icon[shape="pencil"]:hover,
+clr-icon[shape="close"]:hover {
+    color: #000;
+}
+
+.sidenav clr-icon[shape="plus"].add-show {
+    visibility: visible;
+}
+
 @media only screen and (max-width: 1024px) {
     .sidenav {
         width: 240px;

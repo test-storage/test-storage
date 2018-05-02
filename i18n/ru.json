@@ -178,6 +178,13 @@
     "CREATE_BUTTON": "Создать",
     "EDIT_BUTTON": "Редактировать"
   },
+  "TESTSUITECREATEPAGE": {
+    "CREATE_TESTSUITE": "Создать Тестовый Набор",
+    "NAME": "Название",
+    "NAME_PLACEHOLDER": "Название",
+    "DESCRIPTION": "Описание",
+    "DESCRIPTION_PLACEHOLDER": "Описание"
+  },
   "USERCREATEPAGE": {
     "TITLE": "Создать профиль пользователя",
     "SECTION_GENERAL": "Основные",

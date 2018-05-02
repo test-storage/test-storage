@@ -6,7 +6,7 @@ export interface Testsuite extends Document {
   readonly projectId: string;
   readonly status?: string;
   readonly name: string;
-  readonly description: string;
+  readonly description?: string;
   readonly order?: number;
   readonly created?: string;
   readonly updated?: string;

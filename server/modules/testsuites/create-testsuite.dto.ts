@@ -3,7 +3,7 @@ import { IsString, IsInt, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateTestsuiteDto {
 
-  @ApiModelPropertyOptional({ type: String})
+  @ApiModelPropertyOptional({ type: String })
   @IsOptional()
   @IsString()
   readonly _id?: string;
@@ -18,7 +18,7 @@ export class CreateTestsuiteDto {
   @IsNotEmpty()
   readonly projectId: string;
 
-  @ApiModelPropertyOptional({ type: String})
+  @ApiModelPropertyOptional({ type: String })
   @IsOptional()
   @IsString()
   readonly status?: string;
@@ -28,31 +28,31 @@ export class CreateTestsuiteDto {
   @IsNotEmpty()
   readonly name: string;
 
-  @ApiModelProperty({ type: String })
+  @ApiModelPropertyOptional({ type: String })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  readonly description: string;
+  readonly description?: string;
 
-  @ApiModelPropertyOptional({ type: Number})
+  @ApiModelPropertyOptional({ type: Number })
   @IsOptional()
   @IsInt()
   readonly order?: number;
 
-  @ApiModelPropertyOptional({ type: String})
+  @ApiModelPropertyOptional({ type: String })
   @IsOptional()
   @IsString()
   readonly created?: string;
-  @ApiModelPropertyOptional({ type: String})
+  @ApiModelPropertyOptional({ type: String })
   @IsOptional()
   @IsString()
   readonly updated?: string;
 
-  @ApiModelPropertyOptional({ type: String})
+  @ApiModelPropertyOptional({ type: String })
   @IsOptional()
   @IsString()
   readonly createdBy?: string;
 
-  @ApiModelPropertyOptional({ type: String})
+  @ApiModelPropertyOptional({ type: String })
   @IsOptional()
   @IsString()
   readonly updatedBy?: string;
