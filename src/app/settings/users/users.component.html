@@ -10,7 +10,7 @@
             <div class="btn-group">
               <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
                 <clr-icon shape="plus"></clr-icon> {{ 'USERSSETTINGS.ADD' | translate }}</button>
-              <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()">
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedUsers.length > 0">
                 <clr-icon shape="close"></clr-icon> {{ 'USERSSETTINGS.DELETE' | translate }}</button>
               <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedUsers.length == 1">
                 <clr-icon shape="pencil"></clr-icon> {{ 'USERSSETTINGS.EDIT' | translate }}</button>

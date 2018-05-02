@@ -10,7 +10,7 @@
       <div class="btn-group">
         <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
           <clr-icon shape="plus"></clr-icon> {{ 'COMMON.ADD_BUTTON' | translate }}</button>
-        <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()">
+        <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedDevices.length > 0">
           <clr-icon shape="close"></clr-icon> {{ 'COMMON.DELETE_BUTTON' | translate }}</button>
         <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedDevices.length == 1">
           <clr-icon shape="pencil"></clr-icon> {{ 'COMMON.EDIT_BUTTON' | translate }}</button>
