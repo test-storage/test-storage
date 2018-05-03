@@ -6,3 +6,9 @@
     justify-content: center;
     height: 100vh;
 }
+
+/* hack for fix backdrop over all layout */
+.header-backdrop {
+  z-index: 0 !important;
+}
+

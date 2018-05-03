@@ -1,29 +1,45 @@
-<clr-datagrid *ngIf="users" [(clrDgSelected)]="selected" [clDgRowSelection]="true">
-  <clr-dg-action-bar>
-    <div class="btn-group">
-      <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
-        <clr-icon shape="plus"></clr-icon> Add User</button>
-      <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()">
-        <clr-icon shape="close"></clr-icon> Delete</button>
-      <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selected.length == 1">
-        <clr-icon shape="pencil"></clr-icon> Edit</button>
-    </div>
-  </clr-dg-action-bar>
+<div class="wrapper">
+  <clr-tabs>
+    <clr-tab>
+      <button clrTabLink id="link1">{{ 'USERSSETTINGS.USERS_TAB' | translate }}</button>
+      <clr-tab-content id="content1" *clrIfActive="true">
 
-  <clr-dg-column>Name</clr-dg-column>
-  <clr-dg-column>Email</clr-dg-column>
-  <clr-dg-column>Creation date</clr-dg-column>
-  <clr-dg-column>User groups</clr-dg-column>
 
-  <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
-    <clr-dg-cell>{{user.lastName}} {{user.firstName}}</clr-dg-cell>
-    <clr-dg-cell>{{user.email}}</clr-dg-cell>
-    <clr-dg-cell>{{user.created * 1000 | date}}</clr-dg-cell>
-    <clr-dg-cell></clr-dg-cell>
-  </clr-dg-row>
+        <clr-datagrid *ngIf="users" [(clrDgSelected)]="selectedUsers" [clDgRowSelection]="true">
+          <clr-dg-action-bar>
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
+                <clr-icon shape="plus"></clr-icon> {{ 'USERSSETTINGS.ADD' | translate }}</button>
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedUsers.length > 0">
+                <clr-icon shape="close"></clr-icon> {{ 'USERSSETTINGS.DELETE' | translate }}</button>
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedUsers.length == 1">
+                <clr-icon shape="pencil"></clr-icon> {{ 'USERSSETTINGS.EDIT' | translate }}</button>
+            </div>
+          </clr-dg-action-bar>
 
-  <clr-dg-footer>{{users.length}} users</clr-dg-footer>
-</clr-datagrid>
+          <clr-dg-column>{{ 'USERSSETTINGS.NAME' | translate }}</clr-dg-column>
+          <clr-dg-column>Email</clr-dg-column>
+          <!--<clr-dg-column>Creation date</clr-dg-column>-->
 
-<!--<app-users></app-users>-->
-<app-roles></app-roles>
+          <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
+            <clr-dg-cell>{{user.lastName}} {{user.firstName}}</clr-dg-cell>
+            <clr-dg-cell>{{user.email}}</clr-dg-cell>
+            <!--<clr-dg-cell>{{user.created * 1000 | date}}</clr-dg-cell>-->
+          </clr-dg-row>
+
+          <clr-dg-footer>{{users.length}} {{ 'USERSSETTINGS.USERS' | translate }}</clr-dg-footer>
+        </clr-datagrid>
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink>{{ 'ROLESSETTINGS.ROLES_TAB' | translate }}</button>
+      <clr-tab-content *clrIfActive>
+
+        <app-roles></app-roles>
+      </clr-tab-content>
+    </clr-tab>
+  </clr-tabs>
+</div>
+<app-create-user-modal [(opened)]="createOpened" (userChange)="createUser($event);"></app-create-user-modal>
+<app-edit-user-modal [user]="selectedUsers[0]" [(opened)]="editOpened" (userChange)="updateUser($event);"></app-edit-user-modal>
+<app-delete-user-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-user-modal>

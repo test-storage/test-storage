@@ -1,0 +1,15 @@
+<clr-modal [(clrModalOpen)]="opened">
+  <div class="modal-header">
+    <button (click)="setOpened(false)" aria-label="Close" class="close" type="button">
+      <clr-icon aria-hidden="true" shape="close"></clr-icon>
+    </button>
+    <h3 class="modal-title">{{ 'TESTMANAGEMENTPAGE.MODAL_DELETE_HEADER' | translate }}</h3>
+  </div>
+  <div class="modal-body">
+    <p>{{ 'TESTMANAGEMENTPAGE.MODAL_DELETE_DESCRIPTION' | translate }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="setOpened(false)">{{ 'COMMON.CANCEL_BUTTON' | translate }}</button>
+    <button type="button" class="btn btn-primary btn-danger" (click)="setOpened(false); deleteTestSuite();">{{ 'COMMON.DELETE_BUTTON' | translate }}</button>
+  </div>
+</clr-modal>

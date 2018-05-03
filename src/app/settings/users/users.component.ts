@@ -1,8 +1,10 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { pageTransition } from '../../animations';
 
 import { UsersService } from './users.service';
 import { User } from './user';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-users',
@@ -15,42 +17,19 @@ export class UsersComponent implements OnInit, OnDestroy {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  selected = [];
+  selectedUsers = [];
   subscription;
   users: User[];
-  /*
-  public users = [
-    {
-      id: '44kijtj55iig',
-      lastName: 'Doe',
-      firstName: 'John',
-      email: 'johndoe@example.com',
-      created: 1523822573,
-      groups: ['admin'],
-      avatar: 'path/to/file'
-    },
-    {
-      id: '44kijtj55iig',
-      lastName: 'Doe',
-      firstName: 'John',
-      email: 'johndoe@example.com',
-      created: 1523822573,
-      groups: ['admin'],
-      avatar: 'path/to/file'
-    },
-    {
-      id: '44kijtj55iig',
-      lastName: 'Doe',
-      firstName: 'John',
-      email: 'johndoe@example.com',
-      created: 1523822573,
-      groups: ['admin'],
-      avatar: 'path/to/file'
-    }
-  ];
-  */
 
-  constructor(private usersService: UsersService) { }
+  public createOpened = false;
+  public editOpened = false;
+  public deleteOpened = false;
+
+  constructor(
+    private usersService: UsersService,
+    private notificationsService: NotificationsService,
+    protected translateService: TranslateService
+  ) { }
 
   ngOnInit() {
     this.loadUsers();
@@ -67,19 +46,88 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   onAdd() {
-
+    this.createOpened = true;
   }
 
   onEdit() {
-
+    this.editOpened = true;
   }
 
   onDelete() {
-    // TODO are you sure? via modal
-    this.selected.forEach(selectedUser => {
-      // TODO delete via service
-      this.users = this.users.filter(users => users !== selectedUser);
-      // TODO Notification => successfully deleted
+    this.deleteOpened = true;
+  }
+
+  createUser(user: User) {
+    // remove unused field (used only for validation)
+    delete user.confirmPassword;
+
+    this.usersService.createUser(user).subscribe(
+      response => {
+        if (response.status === 201) {
+          this.notificationsService.success(
+            `${user.lastName} ${user.firstName}`,
+            this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
+          );
+          this.users.push(user);
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+  updateUser(user: User) {
+    // TODO thinking about password change
+    // remove unused field (used only for validation)
+    delete user.confirmPassword;
+
+    if (user.email === 'admin') {
+      this.notificationsService.warn(
+        '',
+        this.translateService.instant('USERCREATEPAGE.ADMIN_CANT_BE_EDITED')
+      );
+    } else {
+      this.usersService.updateUser(user, user._id).subscribe(
+        response => {
+          if (response.status === 200) {
+            this.notificationsService.success(
+              `${user.lastName} ${user.firstName}`,
+              this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
+            );
+
+            // update local array of users
+            const foundIndex = this.users.findIndex(mUser => mUser._id === user._id);
+            this.users[foundIndex] = user;
+
+            // remove selection
+            this.selectedUsers = [];
+          }
+        },
+        error => console.log(error)
+      );
+    }
+  }
+
+  forceDelete($event) {
+    this.selectedUsers.forEach(selectedUser => {
+      if (selectedUser.email === 'admin') {
+        this.notificationsService.warn(
+          '',
+          this.translateService.instant('USERCREATEPAGE.ADMIN_CANT_BE_DELETED')
+        );
+      } else {
+        this.usersService.deleteUser(selectedUser._id).subscribe(
+          response => {
+            if (response.status === 200) {
+              this.notificationsService.success(
+                `${selectedUser.lastName} ${selectedUser.firstName}`,
+                this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
+              );
+              this.users = this.users.filter(users => users !== selectedUser);
+            }
+          },
+          error => console.log(error)
+        );
+      }
     });
   }
 

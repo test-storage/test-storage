@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthenticationService } from './authentication.service';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanActivateChild {
 
   private loggedIn = false;
 
@@ -21,6 +21,12 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(
+    next?: ActivatedRouteSnapshot,
+    state?: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return this.checkIfLoggedIn();
+  }
+
+  canActivateChild(
     next?: ActivatedRouteSnapshot,
     state?: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return this.checkIfLoggedIn();

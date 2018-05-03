@@ -23,7 +23,7 @@ export class RolesController {
   constructor(private readonly rolesService: RolesService) { }
 
   @Post()
-  async create( @Body() createRoleDto: CreateRoleDto) {
+  async create(@Body() createRoleDto: CreateRoleDto) {
     this.rolesService.create(createRoleDto);
   }
 
@@ -33,18 +33,18 @@ export class RolesController {
   }
 
   @Get(':id')
-  async findOne( @Param('id', new ParameterValidationPipe()) id: string): Promise<Role> {
+  async findOne(@Param('id', new ParameterValidationPipe()) id: string): Promise<Role> {
     return this.rolesService.findOne(id);
   }
 
   @Put(':id')
-  async findOneAndUpdate( @Body(new ValidationPipe()) createRoleDto: CreateRoleDto,
+  async findOneAndUpdate(@Body(new ValidationPipe()) createRoleDto: CreateRoleDto,
     @Param('id', new ParameterValidationPipe()) id: string) {
     return this.rolesService.update(id, createRoleDto);
   }
 
   @Delete(':id')
-  async delete( @Param('id', new ParameterValidationPipe()) id: string) {
+  async delete(@Param('id', new ParameterValidationPipe()) id: string) {
     return this.rolesService.delete(id);
   }
 }

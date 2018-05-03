@@ -1,163 +1,60 @@
-<div class="row">
-  <div class="col-sm-12 col-md-12 col-lg-9">
-    <!--
-    <clr-stack-view>
+<div *ngIf="testSuites" class="wrapper">
 
-      <clr-stack-block [clrSbExpanded]="true">
-        <clr-stack-label>Terminal Checklist</clr-stack-label>
-        <clr-stack-content></clr-stack-content>
-        <clr-stack-block>
-          <clr-stack-content>Импорт валидных геозон из файла</clr-stack-content>
-        </clr-stack-block>
-        <clr-stack-block>
-          Экспорт валидных геозон
-        </clr-stack-block>
-        <clr-stack-block>
+  <div *ngIf="testSuites.length > 0; then existTestSuites else noExistTestSuites"></div>
+  <ng-template #existTestSuites>
 
+    <div class="content-wrapper">
 
-        </clr-stack-block>
-      </clr-stack-block>
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <app-test-cases [selectedTS]="selectedTestSuite"></app-test-cases>
+      </div>
 
-      <clr-stack-block [clrSbExpanded]="true">
-        <clr-stack-label>LLD Checklist</clr-stack-label>
-        <clr-stack-content></clr-stack-content>
-        <clr-stack-block>
-          <clr-stack-label>Sub-label 4</clr-stack-label>
-          <clr-stack-content>Sub-content 4</clr-stack-content>
-        </clr-stack-block>
-        <clr-stack-block>
-          <clr-stack-label>Sub-label 5</clr-stack-label>
-          <clr-stack-content>Sub-content 5</clr-stack-content>
-        </clr-stack-block>
-      </clr-stack-block>
-    </clr-stack-view>
-    -->
-    <button class="btn btn-primary">
-      <clr-icon shape="plus"></clr-icon>
-      {{ 'TESTMANAGEMENTPAGE.ADD' | translate }}
-    </button>
+      <!-- TEST SUITES TREE COMPONENT -->
+      <div *ngIf="testSuitesViewModel.length > 0" class="sidenav" [clr-nav-level]="2">
+        <!-- TODO move to testsuites tree component -->
 
-    <h4>Geo zones</h4>
-    <clr-datagrid>
-      <!--
-        <clr-dg-action-bar>
-          <button class="btn btn-sm btn-secondary" type="button">
-            <clr-icon shape="plus"></clr-icon> Add</button>
-        </clr-dg-action-bar>
-      -->
-      <!-- [(clrDgSelected)]="users" -->
-      <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}
-      </clr-dg-column>
-      <!--
-        <clr-dg-column>
-          Status
-        </clr-dg-column>
-      -->
-
-      <clr-dg-row *ngFor="let testcase of testcases">
-        <!--
-        <clr-dg-cell style="display: flex;">
-            <clr-checkbox></clr-checkbox>
-          <span style="align-self: center;">{{user.name}}</span>
-        </clr-dg-cell>
-      -->
-        <clr-dg-cell>
-          {{testcase.name}}
-        </clr-dg-cell>
-
-        <!--
-          <clr-dg-cell>
-            <div class="select">
-              <select id="selects_1">
-                <option>Untested</option>
-                <option>In Progress</option>
-                <option>Passed</option>
-                <option>Failed</option>
-                <option>Skipped</option>
-              </select>
-            </div>
-          </clr-dg-cell>
-        -->
-        <!--
-        <clr-dg-action-overflow>
-          <button class="action-item" (click)="users">Edit</button>
-          <button class="action-item" (click)="users">Delete</button>
-        </clr-dg-action-overflow>
-      -->
-      </clr-dg-row>
-
-      <clr-dg-footer>{{testcases.length}}</clr-dg-footer>
-    </clr-datagrid>
-
-
-    <h4>Geo zones</h4>
-    <clr-datagrid>
-      <!--
-        <clr-dg-action-bar>
-          <button class="btn btn-sm btn-secondary" type="button">
-            <clr-icon shape="plus"></clr-icon> Add</button>
-        </clr-dg-action-bar>
-      -->
-      <!-- [(clrDgSelected)]="users" -->
-      <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}
-      </clr-dg-column>
-      <!--
-      <clr-dg-column>
-        Status
-      </clr-dg-column>-->
-
-
-      <clr-dg-row *ngFor="let testcase of testcases">
-        <!--
-        <clr-dg-cell style="display: flex;">
-            <clr-checkbox></clr-checkbox>
-          <span style="align-self: center;">{{user.name}}</span>
-        </clr-dg-cell>
-      -->
-        <clr-dg-cell>
-          {{testcase.name}}
-        </clr-dg-cell>
-        <!--
-        <clr-dg-cell>
-          <div class="select">
-            <select id="selects_1">
-              <option>Untested</option>
-              <option>In Progress</option>
-              <option>Passed</option>
-              <option>Failed</option>
-              <option>Skipped</option>
-            </select>
-          </div>
-        </clr-dg-cell>-->
-        <!--
-        <clr-dg-action-overflow>
-          <button class="action-item" (click)="users">Edit</button>
-          <button class="action-item" (click)="users">Delete</button>
-        </clr-dg-action-overflow>
-      -->
-      </clr-dg-row>
-
-      <!-- TODO passed / failed / etc testcases in percents and progress bar -->
-      <clr-dg-footer>{{testcases.length}}</clr-dg-footer>
-    </clr-datagrid>
-
-  </div>
-
-
-  <div class="col-sm-12 col-md-12 col-lg-3">
-    <clr-tree-node *ngFor="let testSuite of testSuitesTree">
-      <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
-      {{testSuite.name}}
-      <ng-template [(clrIfExpanded)]="testSuite.expanded">
-        <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
-          <button (click)="openTestSuite(testSuite.name, subTestSuite.name)" class="clr-treenode-link" [class.active]="subTestSuite.active">
-            <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
-            {{subTestSuite.name}}
+        <clr-tree-node class="suite-node" *ngFor="let testSuite of testSuitesViewModel">
+          <button clrVerticalNavLink (click)="openTestSuite(testSuite)" class="clr-treenode-link">
+            <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
+            {{ testSuite.name }}
+            <clr-icon shape="plus" (click)="onAdd(testSuite);"></clr-icon>
+            <clr-icon shape="pencil" (click)="onEdit(testSuite);"></clr-icon>
+            <clr-icon shape="close" (click)="onDelete(testSuite);"></clr-icon>
           </button>
+          <ng-template [(clrIfExpanded)]="testSuite.expanded">
+            <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
+              <button clrVerticalNavLink (click)="openTestSuite(subTestSuite)" class="clr-treenode-link" [class.active]="subTestSuite._id === selectedTestSuite._id">
+                <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
+                {{ subTestSuite.name }}
+                <clr-icon shape="plus" (click)="onAdd(subTestSuite);"></clr-icon>
+                <clr-icon shape="pencil" (click)="onEdit(subTestSuite);"></clr-icon>
+                <clr-icon shape="close" (click)="onDelete(subTestSuite);"></clr-icon>
+              </button>
+            </clr-tree-node>
+          </ng-template>
         </clr-tree-node>
-      </ng-template>
-    </clr-tree-node>
+      </div>
+    </div>
 
+  </ng-template>
 
-  </div>
+  <ng-template #noExistTestSuites>
+    <div class="noexist-wrapper">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        <div class="no-testsuites">
+          <img src="assets/add-project.png">
+          <h4>{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_TITLE' | translate }}</h4>
+          <p class="tips">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_DESCRIPTION' | translate }}</p>
+          <a class="btn btn-primary" (click)="onAdd();">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_CREATETESTSUITE_BUTTON' | translate }}</a>
+        </div>
+
+      </div>
+    </div>
+
+  </ng-template>
+
+  <app-create-test-suite-modal [(opened)]="createOpened" (testsuiteChange)="createTestSuite($event);"></app-create-test-suite-modal>
+  <app-edit-test-suite-modal [testsuite]="selectedTestSuite" [(opened)]="editOpened" (testsuiteChange)="updateTestSuite($event);"></app-edit-test-suite-modal>
+  <app-delete-test-suite-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-test-suite-modal>
 </div>

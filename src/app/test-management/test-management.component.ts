@@ -1,6 +1,13 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { pageTransition } from '../animations';
+
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { TranslateService } from '@ngx-translate/core';
+import { NotificationsService } from 'angular2-notifications';
+
+import { TestSuite } from './test-suite';
+import { TestSuiteService } from './test-suite.service';
 
 @Component({
   selector: 'app-test-management',
@@ -13,83 +20,163 @@ export class TestManagementComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  public testcases = [
-    {
-      name: 'Импорт валидных геозон из файла'
-    },
-    {
-      name: 'Экспорт валидных геозон'
-    },
-    {
-      name: 'Валидация геозон'
-    },
-    {
-      name: 'Удаление геозон'
-    }
+  public projectId: string;
+  selectedTestSuite: TestSuite;
+  public testSuites: TestSuite[];
+  testSuitesViewModel = [];
 
-  ];
+  createOpened = false;
+  editOpened = false;
+  deleteOpened = false;
 
-  testSuitesTree: any[] = [
-    {
-      name: 'Main Features',
-      icon: 'folder',
-      expanded: true,
-      children: [
-        {
-          icon: 'folder',
-          name: 'Authentication',
-          active: false
-        },
-        {
-          icon: 'folder',
-          name: 'Messaging',
-          active: false
-        },
-        {
-          icon: 'folder',
-          name: 'Dashboard',
-          active: false
-        },
-        {
-          icon: 'folder',
-          name: 'Maps',
-          active: true
-        }
-      ]
-    },
-    {
-      name: 'REST API',
-      icon: 'folder',
-      expanded: false,
-      children: [
-        {
-          icon: 'folder',
-          name: 'Authentication',
-          active: false
-        }
-      ]
-    },
-    {
-      name: 'Non-functional',
-      icon: 'folder',
-      expanded: false,
-      children: [
-        {
-          icon: 'folder',
-          name: 'Messaging',
-          active: false
-        }
-      ]
-    }
-  ];
-
-  openTestSuite(testSuiteName: string, child: string) {
-
-  }
-
-  constructor(protected translateService: TranslateService) { }
+  constructor(
+    protected translateService: TranslateService,
+    private notificationsService: NotificationsService,
+    private testSuiteService: TestSuiteService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.route.parent.parent.params.subscribe(params => {
+      this.projectId = params['id'];
+      this.getTestSuites(this.projectId);
+    });
   }
 
+  getTestSuites(projectId: string) {
+    this.testSuiteService.getTestSuitesByProjectId(projectId).subscribe(
+      testsuites => {
+        this.testSuites = testsuites;
+        if (this.testSuites.length > 0) {
+          this.fromFlatToTree();
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+  openTestSuite(testSuite: TestSuite) {
+    this.selectedTestSuite = testSuite;
+  }
+
+  fromFlatToTree() {
+    // build tree with childs from flat list
+    const idToNodeMap = {};
+    let rootNodes = 0;
+    const root = [];
+    let parentNode;
+
+    for (let i = 0; i < this.testSuites.length; i++) {
+
+      const node = this.testSuites[i];
+      node['children'] = [];
+      // View Model
+      node['icon'] = 'folder';
+      node['active'] = false;
+      node['expanded'] = false;
+
+      idToNodeMap[node._id] = node;
+
+      if (node.parentId === 'root') {
+        node['expanded'] = true;
+        root[rootNodes] = node;
+        rootNodes++;
+      } else {
+        parentNode = idToNodeMap[node.parentId];
+        parentNode.children.push(node);
+      }
+    }
+
+    this.testSuitesViewModel = [...root];
+    // temporary
+    this.openTestSuite(root[0]);
+    // console.log(JSON.stringify(this.testSuites));
+  }
+
+  onAdd(testsuite?: TestSuite) {
+    event.stopPropagation();
+    if (testsuite) {
+      this.selectedTestSuite = testsuite;
+    } else {
+      this.selectedTestSuite = new TestSuite();
+      this.selectedTestSuite.projectId = this.projectId;
+      this.selectedTestSuite._id = 'root';
+    }
+    this.createOpened = true;
+  }
+
+  onEdit(testsuite: TestSuite) {
+    event.stopPropagation();
+    this.selectedTestSuite = testsuite;
+    this.editOpened = true;
+  }
+
+  onDelete(testsuite: TestSuite) {
+    event.stopPropagation();
+    this.selectedTestSuite = testsuite;
+    this.deleteOpened = true;
+  }
+
+  createTestSuite(testsuite: TestSuite) {
+    testsuite.parentId = this.selectedTestSuite._id;
+    testsuite.projectId = this.selectedTestSuite.projectId;
+    if (this.testSuites.length > 0) {
+      testsuite.order = this.testSuites.length + 1;
+    } else {
+      testsuite.order = 0;
+    }
+
+    this.testSuiteService.createTestSuite(testsuite).subscribe(
+      response => {
+        if (response.status === 201) {
+          this.notificationsService.success(
+            testsuite.name,
+            this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
+          );
+          this.testSuites.push(testsuite);
+          this.fromFlatToTree();
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+  updateTestSuite(testsuite: TestSuite) {
+    // testsuite.parentId = this.selectedTestSuite._id;
+    testsuite.projectId = this.selectedTestSuite.projectId;
+
+    this.testSuiteService.updateTestSuite(testsuite, testsuite._id).subscribe(
+      response => {
+        if (response.status === 200) {
+          this.notificationsService.success(
+            testsuite.name,
+            this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
+          );
+
+          // update local array of testsuites
+          const foundIndex = this.testSuites.findIndex(mTestsuite => mTestsuite._id === testsuite._id);
+          this.testSuites[foundIndex] = testsuite;
+          this.fromFlatToTree();
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+  forceDelete($event) {
+    this.testSuiteService.deleteTestSuite(this.selectedTestSuite._id).subscribe(
+      response => {
+        if (response.status === 200) {
+          this.notificationsService.success(
+            this.selectedTestSuite.name,
+            this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
+          );
+          this.testSuites = this.testSuites.filter(testSuites => testSuites._id !== this.selectedTestSuite._id);
+          this.fromFlatToTree();
+        }
+      },
+      error => console.log(error)
+    );
+  }
 }

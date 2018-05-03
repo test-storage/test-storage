@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.32.0 (May 03, 2018)
+- Add create / edit / delete devices inventory ([@pumano](https://github.com/pumano) in [#81](https://github.com/test-storage/test-storage/pull/81))
+- Add test cases management
+- Add test suites management
+- Add Empty state screens
+- Add create / edit / delete Users management
+- Add create / edit / delete Roles management
+- Add Language switch with saving settings to local storage
+- Multiple changes for proper Continuous Delivery to Heroku
+- Multiple UI improvements
+- Multiple bug fixes
+
 ## 0.31.0 (April 23, 2018)
 - Add devices inventory ([@pumano](https://github.com/pumano) in [#80](https://github.com/test-storage/test-storage/pull/80))
 - Add Projects
@@ -134,7 +146,7 @@
 - Moved to Angular 4.0.0: ([@pumano](https://github.com/pumano) in [1f1e003e36928d3098bcd92b7c5b0229b8f65617](https://github.com/test-storage/test-storage/commit/1f1e003e36928d3098bcd92b7c5b0229b8f65617))
 - Testcase tags added: ([@pumano](https://github.com/pumano) in [d67145728c61b115f567a50436b310ff54a6dc1e](https://github.com/test-storage/test-storage/commit/d67145728c61b115f567a50436b310ff54a6dc1e))
 
-## 0.4.40 (March 1, 2017)
+## 0.4.40 (March 01, 2017)
 - Moved to Angular 4.0.0-rc.1: ([@pumano](https://github.com/pumano) in [ece0ed4276e6939ce1818e30f4f4d5cfad6f2df9](https://github.com/test-storage/test-storage/commit/ece0ed4276e6939ce1818e30f4f4d5cfad6f2df9))
 - Test plans added
 - Few changes in test-cases and other entities

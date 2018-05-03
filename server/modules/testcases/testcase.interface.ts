@@ -11,8 +11,6 @@ export interface Testcase extends Document {
   readonly description?: string;
   readonly preConditions?: string;
   readonly steps?: Array<string>;
-  readonly testData?: Array<string>;
-  readonly expected?: Array<string>;
   readonly postConditions?: string;
   readonly tags?: Array<string>;
   readonly created?: string;
