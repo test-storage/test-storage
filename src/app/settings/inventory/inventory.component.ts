@@ -3,6 +3,7 @@ import { pageTransition } from '../../animations';
 
 import { Device } from './device';
 import { InventoryService } from './inventory.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-inventory',
@@ -16,9 +17,13 @@ export class InventoryComponent implements OnInit, OnDestroy {
   @HostBinding('style.display') display = 'block';
 
   subscription;
-  devices: Device[];
+  selectedDevices = [];
+  public devices: Device[];
 
-  constructor(private inventoryService: InventoryService) { }
+  constructor(
+    private inventoryService: InventoryService,
+    protected translateService: TranslateService
+  ) { }
 
   ngOnInit() {
     this.loadDevices();
@@ -32,6 +37,18 @@ export class InventoryComponent implements OnInit, OnDestroy {
     this.subscription = this.inventoryService.getDevices().subscribe(
       data => this.devices = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
+  }
+
+  onAdd() {
+
+  }
+
+  onEdit() {
+
+  }
+
+  onDelete() {
+
   }
 
 }

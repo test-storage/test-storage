@@ -6,9 +6,11 @@ export interface User extends Document {
   readonly password: string;
   readonly firstName: string;
   readonly lastName: string;
+  readonly active: boolean;
   readonly photo?: string;
   readonly workInfo?: any;
   readonly social?: any;
+  readonly role: string;
   readonly userGroups?: Array<string>;
   readonly projects?: Array<string>;
   readonly created?: string;

@@ -1,21 +1,21 @@
 <div class="content-container">
 
-  <clr-vertical-nav class="sidenav nav-trigger--bottom" [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
+  <clr-vertical-nav class="sidenav nav-trigger--bottom" [clr-nav-level]="1" [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
     <div class="nav-content">
 
       <a clrVerticalNavLink routerLink="./main" routerLinkActive="active">
         <clr-icon clrVerticalNavIcon shape="cog"></clr-icon>
-        Main Settings
+        {{ 'SETTINGS.MAIN_SETTINGS' | translate }}
       </a>
 
       <a clrVerticalNavLink routerLink="./users" routerLinkActive="active">
         <clr-icon clrVerticalNavIcon shape="users"></clr-icon>
-        Users
+        {{ 'SETTINGS.USERS' | translate }}
       </a>
 
       <a clrVerticalNavLink routerLink="./inventory" routerLinkActive="active">
         <clr-icon clrVerticalNavIcon shape="devices"></clr-icon>
-        Inventory
+        {{ 'SETTINGS.INVENTORY' | translate }}
       </a>
 
     </div>

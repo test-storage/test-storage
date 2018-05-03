@@ -1,6 +1,13 @@
 import * as mongoose from 'mongoose';
+import * as crypto from 'crypto';
 
 export const RoleSchema = new mongoose.Schema({
-  name: String,
+  _id: {
+    type: String,
+    default: function () {
+      return crypto.randomBytes(16).toString('hex');
+    }
+  },
+  name: { type: String, required: true },
   description: String
 });

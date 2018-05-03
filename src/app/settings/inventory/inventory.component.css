@@ -1,3 +1,7 @@
 td clr-icon {
     color: #777;
 }
+
+.wrapper {
+    height: calc(100vh - 110px);
+}

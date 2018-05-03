@@ -1,5 +1,5 @@
 <div class="login-wrapper">
-  <form class="login" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+  <form class="login" (ngSubmit)="f.form.valid && login()" #f="ngForm" (keyup.enter)="f.ngSubmit.emit()" novalidate>
     <label class="title">
       <h3 class="welcome">{{ 'LOGINPAGE.WELCOME' | translate }}</h3>
       Test Storage
@@ -15,9 +15,21 @@
           {{ 'LOGINPAGE.REMEMBER_ME' | translate }}
         </label>
       </div>
+      <div *ngIf="f.form.valid && (username.dirty || username.touched || password.dirty || password.touched)">
       <div *ngIf="error" class="error active">
-        {{ error }}
+          {{ error }}
+        </div>
       </div>
+      <div *ngIf="username.invalid && (username.dirty || username.touched)">
+      <div *ngIf="username.errors.required" class="error active">
+          {{ 'LOGINPAGE.LOGIN_REQUIRED' | translate }}
+      </div>
+      </div>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div *ngIf="password.errors.required" class="error active">
+          {{ 'LOGINPAGE.PASSWORD_REQUIRED' | translate }}
+      </div>
+    </div>
       <button type="submit" class="btn btn-primary">{{ 'LOGINPAGE.LOGIN_BUTTON' | translate }}</button>
       <a href="javascript://" class="signup">{{ 'LOGINPAGE.REGISTER_BUTTON' | translate }}</a>
     </div>

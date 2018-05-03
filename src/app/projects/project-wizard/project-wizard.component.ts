@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 
 import { ClrWizard } from '@clr/angular';
 
@@ -12,6 +12,12 @@ export class ProjectWizardComponent implements OnInit {
   @ViewChild('wizardxl') wizardExtraLarge: ClrWizard;
 
   @Input() opened = false;
+  @Output() openedChange = new EventEmitter<boolean>();
+
+  setOpened(val) {
+    this.opened = val;
+    this.openedChange.emit(this.opened);
+  }
 
   constructor() { }
 

@@ -1,35 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
+import { RolesService } from './roles.service';
+import { Role } from './role';
 
 @Component({
   selector: 'app-roles',
   templateUrl: './roles.component.html',
   styleUrls: ['./roles.component.css']
 })
-export class RolesComponent implements OnInit {
+export class RolesComponent implements OnInit, OnDestroy {
 
-  selected = [];
+  subscription;
+  selectedRoles = [];
+  public roles: Role[];
 
-  public roles = [
-    {
-      id: '44kijtj55iig',
-      name: 'User',
-      created: 1523822573
-    },
-    {
-      id: '44kijtj55iig',
-      name: 'Admin',
-      created: 1523822573
-    },
-    {
-      id: '44kijtj55iig',
-      name: 'Read Only',
-      created: 1523822573
-    }
-  ];
-
-  constructor() { }
+  constructor(
+    private rolesService: RolesService,
+    protected translateService: TranslateService
+  ) { }
 
   ngOnInit() {
+    this.loadRoles();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  loadRoles() {
+    this.subscription = this.rolesService.getRoles().subscribe(
+      data => this.roles = data,
+      error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
   onAdd() {
@@ -41,11 +43,6 @@ export class RolesComponent implements OnInit {
   }
 
   onDelete() {
-    // TODO are you sure? via modal
-    this.selected.forEach(selectedRole => {
-      // TODO delete via service
-      this.roles = this.roles.filter(roles => roles !== selectedRole);
-      // TODO Notification => successfully deleted
-    });
+
   }
 }

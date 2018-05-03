@@ -1,10 +1,69 @@
 {
+  "COMMON": {
+    "SAVE_BUTTON": "Сохранить",
+    "CREATE_BUTTON": "Создать",
+    "ADD_BUTTON": "Добавить",
+    "EDIT_BUTTON": "Редактировать",
+    "DELETE_BUTTON": "Удалить",
+    "CANCEL_BUTTON": "Отмена",
+    "SUCCESSFULLY_CREATED": "успешно создан",
+    "SUCCESSFULLY_UPDATED": "успешно обновлен",
+    "SUCCESSFULLY_DELETED": "успешно удален"
+  },
   "SETTINGS": {
-    "TITLE": "Настройки",
-    "CHOOSE_LANGUAGE": "Выберите язык",
+    "MAIN_SETTINGS": "Основные настройки",
+    "USERS": "Пользователи",
+    "INVENTORY": "Устройства"
+  },
+  "LANGUAGES": {
+    "en": "Английский",
+    "ru": "Русский"
+  },
+  "MAINSETTINGS": {
+    "LANGUAGE": "Язык",
     "THEME": "Тема",
     "THEME_BRIGHT": "Светлая",
-    "THEME_DARK": "Темная"
+    "THEME_DARK": "Темная",
+    "TITLE": "Настройки"
+  },
+  "PRIORITIES": {
+    "BLOCKER": "Блокер",
+    "CRITICAL": "Критичный",
+    "MAJOR": "Мажорный",
+    "MINOR": "Минорный",
+    "TRIVIAL": "Тривиальный"
+  },
+  "USERSSETTINGS": {
+    "ADD": "Добавить",
+    "EDIT": "Редактировать",
+    "DELETE": "Удалить",
+    "NAME": "Имя",
+    "USERS": "пользователей",
+    "USERS_TAB": "Пользователи",
+    "CANCEL": "Отмена"
+  },
+  "ROLESSETTINGS": {
+    "ADD": "Добавить",
+    "EDIT": "Редактировать",
+    "DELETE": "Удалить",
+    "ROLE": "Роль",
+    "DESCRIPTION": "Описание",
+    "ROLES": "ролей",
+    "ROLES_TAB": "Роли",
+    "CANCEL": "Отмена"
+  },
+  "DEVICESSETTINGS": {
+    "ADD": "Добавить",
+    "EDIT": "Редактировать",
+    "DELETE": "Удалить",
+    "TYPE": "Тип",
+    "NAME": "Название",
+    "OS": "ОС",
+    "OS_VERSION": "Версия ОС",
+    "ASSIGNED_USER": "Пользователь",
+    "DEVICES": "устройств",
+    "SEARCH": "поиск...",
+    "CANCEL": "Отмена"
   },
   "ERROR": {
     "SERVER_ERROR": "Ошибка Сервера"
@@ -32,6 +91,7 @@
     "LOGIN_BUTTON": "Войти",
     "REGISTER_BUTTON": "Зарегистрироваться",
     "INVALID_CREDENTIALS": "Логин или пароль не верный",
+    "USER_NOT_ACTIVATED": "Пользователь не активирован",
     "REMEMBER_ME": "Запомнить меня",
     "FORGOT_PASSWORD": "Восстановить пароль"
   },
@@ -56,7 +116,20 @@
   },
   "TESTMANAGEMENTPAGE": {
     "ADD": "Добавить",
-    "TITLE": "Название"
+    "EDIT": "Редактировать",
+    "DELETE": "Удалить",
+    "TITLE": "Название",
+    "CANCEL": "Отмена",
+    "TESTCASE": "Тест Кейс",
+    "TESTSUITE": "Тестовый Набор",
+    "SUCCESSFULLY_CREATED": "успешно создан",
+    "SUCCESSFULLY_UPDATED": "успешно обновлен",
+    "SUCCESSFULLY_DELETED": "успешно удален",
+    "MODAL_DELETE_HEADER": "Удалить Тест кейс(ы)",
+    "MODAL_DELETE_DESCRIPTION": "Вы уверены, что хотите удалить выбранные тест кейсы? Удаленные тест кейсы не смогут быть восстановлены.",
+    "EMPTYSTATE_NOTESTSUITES_TITLE": "У вас нет ни одного Тестового Набора.",
+    "EMPTYSTATE_NOTESTSUITES_DESCRIPTION": "Нажмите на кнопку 'Создать Тестовый Набор' для создания",
+    "EMPTYSTATE_CREATETESTSUITE_BUTTON": "Создать Тестовый Набор"
   },
   "TESTEXECUTIONPAGE": {
     "ADD": "Добавить",
@@ -84,6 +157,7 @@
     "DESCRIPTION": "Описание",
     "DESCRIPTION_PLACEHOLDER": "Описание",
     "DESCRIPTION_REQUIRED": "Описание - обязательное поле",
+    "PRIORITY": "Приоритет",
     "PRECONDITIONS": "Предусловия",
     "PRECONDITIONS_PLACEHOLDER": "Предусловия",
     "PRECONDITIONS_REQUIRED": "Предусловия - обязательное поле",
@@ -99,7 +173,17 @@
     "POSTCONDITIONS": "Постусловия",
     "POSTCONDITIONS_PLACEHOLDER": "Постусловия",
     "POSTCONDITIONS_REQUIRED": "Постусловия - обязательное поле",
-    "CREATE_TESTCASE": "Создать Тесткейс"
+    "CREATE_TESTCASE": "Создать Тест кейс",
+    "EDIT_TESTCASE": "Редактировать Тест кейс",
+    "CREATE_BUTTON": "Создать",
+    "EDIT_BUTTON": "Редактировать"
+  },
+  "TESTSUITECREATEPAGE": {
+    "CREATE_TESTSUITE": "Создать Тестовый Набор",
+    "NAME": "Название",
+    "NAME_PLACEHOLDER": "Название",
+    "DESCRIPTION": "Описание",
+    "DESCRIPTION_PLACEHOLDER": "Описание"
   },
   "USERCREATEPAGE": {
     "TITLE": "Создать профиль пользователя",
@@ -124,16 +208,29 @@
     "CONFIRMPASSWORD": "Повторить пароль",
     "CONFIRMPASSWORD_REQUIRED": "Повторить пароль - обязательное поле",
     "PASSWORDSMATCH": "Оба пароля должны быть одинаковы",
+    "ACTIVE": "Активирован",
+    "ROLE": "Роль",
     "CREATE_USER": "Создать Пользователя",
-    "SECTION_ADDITIONAL": "Дополнительная Информация"
+    "SECTION_ADDITIONAL": "Дополнительная Информация",
+    "MODAL_DELETE_HEADER": "Удалить Пользователя(ей)",
+    "MODAL_DELETE_DESCRIPTION": "Вы уверены, что хотите удалить выбранных пользователей? Удаленные пользователи не смогут быть восстановлены.",
+    "ADMIN_CANT_BE_EDITED": "Системный аккаунт не может быть изменён",
+    "ADMIN_CANT_BE_DELETED": "Системный аккаунт не может быть удален"
   },
   "USERPROFILEPAGE": {
+    "USER": "Пользователь",
+    "USER_PROFILE": "Профиль пользователя",
+    "FIRST_NAME": "Имя",
+    "LAST_NAME": "Фамилия",
+    "COMPANY_DETAILS": "Детали компании",
     "REGISTERED": "Зарегистрирован",
     "EMAIL": "Email",
     "PHONE_NUMBER": "Телефонный Номер",
     "COMPANY": "Компания",
+    "JOB_TITLE": "Должность",
     "WORK_INFORMATION": "Рабочая Информация",
-    "PERSONAL_INFORMATION": "Персональная Информация"
+    "PERSONAL_INFORMATION": "Персональная Информация",
+    "SAVE_BUTTON": "Сохранить"
   },
   "404": {
     "ERROR_TITLE": "404 Не Найдено",

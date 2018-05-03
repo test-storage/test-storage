@@ -13,7 +13,7 @@ import { User } from './user';
 export class LoginComponent implements OnInit {
 
   public user: User = new User();
-  public error = '';
+  public error;
 
   constructor(
     private router: Router,
@@ -31,7 +31,19 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authenticationService.login(this.user.username, this.user.password);
+    this.error = undefined;
+    this.authenticationService.login(this.user).subscribe(
+      response => this.authenticationService.setToken(response),
+      error => {
+        if (error.status === 401) {
+          this.error = this.translateService.instant('LOGINPAGE.INVALID_CREDENTIALS');
+        }
+        if (error.status === 403) {
+          this.error = this.translateService.instant('LOGINPAGE.USER_NOT_ACTIVATED');
+        }
+      }
+
+    );
   }
 
 }

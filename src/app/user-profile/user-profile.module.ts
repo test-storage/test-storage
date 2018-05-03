@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +14,8 @@ import { UserProfileRoutingModule } from './user-profile-routing.module';
     CommonModule,
     UserProfileRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    TranslateModule.forChild()
   ],
   declarations: [
     UserProfileComponent

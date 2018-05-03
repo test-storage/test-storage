@@ -14,6 +14,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SettingsService } from './settings/settings.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -42,7 +43,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
-    TranslateService
+    TranslateService,
+    SettingsService
   ],
   bootstrap: [AppComponent]
 })

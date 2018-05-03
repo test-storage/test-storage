@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Component, Inject } from '@nestjs/common';
+import { Component, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { UserSchema } from './user.schema';
@@ -14,6 +14,10 @@ export class UsersService {
   async create(userDto: CreateUserDto): Promise<User> {
     const createdUser = new this.userModel(userDto);
     return await createdUser.save((err, user) => {
+      if (err) {
+        console.log(err);
+        throw new HttpException('Database error', HttpStatus.INTERNAL_SERVER_ERROR);
+      }
       return user;
     });
   }
@@ -33,7 +37,13 @@ export class UsersService {
 
   async update(id: string, user: CreateUserDto): Promise<User> {
     // TODO check update password
-    return await this.userModel.findOneAndUpdate({ '_id': id }, user).select('-password').exec();
+    return await this.userModel.findOne({ '_id': id }).exec(function (err, usr) {
+      if (err) {
+        console.log(err);
+      }
+      Object.assign(usr, user);
+      return usr.save();
+    });
   }
 
   async delete(id: string): Promise<void> {
