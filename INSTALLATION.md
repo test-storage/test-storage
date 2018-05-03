@@ -18,7 +18,6 @@ __note:__ `mongo` and `mongod` should be accessible via command line interface
 $ npm install -g test-storage
 ```
 
-## Start
 ```
 $ cd test-storage
 ```
@@ -37,10 +36,25 @@ __note:__ to change database user/password for application check config/producti
 $ mongod --auth
 ```
 
-3. Start test-storage
+## Start
+1. build test-storage
 
+```bash
+$ npm run build
+```
+2. Start test-storage
 ```bash
 $ npm start
 ```
 
-__note:__ Docker image will be provided soon.
+## Start using Docker
+1. build test-storage image
+
+```bash
+$ docker-compose build
+```
+2. run containters
+
+```bash
+$ docker-compose up
+```
