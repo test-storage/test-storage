@@ -16,7 +16,8 @@ export class AuthService {
   constructor(private usersService: UsersService) { }
 
   private async createToken() {
-    const expiresIn = 60 * 60, secretOrKey = jwtSecret();
+    const expiresIn = 600 * 600;
+    const secretOrKey = jwtSecret();
     const user = { email: this.authorizedUser.email };
     const token = jwt.sign(user, secretOrKey, { expiresIn });
     return {
