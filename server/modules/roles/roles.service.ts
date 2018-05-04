@@ -14,9 +14,7 @@ export class RolesService {
 
   async create(roleDto: CreateRoleDto): Promise<Role> {
     const createdRole = new this.roleModel(roleDto);
-    return await createdRole.save((err, role) => {
-      return role;
-    });
+    return await createdRole.save();
   }
 
   async findAll(): Promise<Role[]> {

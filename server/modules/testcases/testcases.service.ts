@@ -14,9 +14,7 @@ export class TestcasesService {
 
   async create(testcaseDto: CreateTestcaseDto): Promise<Testcase> {
     const createdTestcase = new this.testcaseModel(testcaseDto);
-    return await createdTestcase.save((err, testcase) => {
-      return testcase;
-    });
+    return await createdTestcase.save();
   }
 
   async findAll(): Promise<Testcase[]> {
