@@ -30,8 +30,8 @@ export class TestcasesController {
   @ApiResponse({ status: 201, description: 'The test case has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create(@Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto) {
-    this.testcasesService.create(createTestcaseDto);
+  async create(@Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto): Promise<Testcase> {
+    return await this.testcasesService.create(createTestcaseDto);
   }
 
   @Get()

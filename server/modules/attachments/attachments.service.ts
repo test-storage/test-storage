@@ -14,9 +14,7 @@ export class AttachmentsService {
 
   async create(attachmentDto: Attachment): Promise<Attachment> {
     const createdAttachment = new this.attachmentModel(attachmentDto);
-    return await createdAttachment.save((err, attachment) => {
-      return attachment;
-    });
+    return await createdAttachment.save();
   }
 
   async findAll(): Promise<Attachment[]> {

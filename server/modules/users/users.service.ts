@@ -13,13 +13,7 @@ export class UsersService {
 
   async create(userDto: CreateUserDto): Promise<User> {
     const createdUser = new this.userModel(userDto);
-    return await createdUser.save((err, user) => {
-      if (err) {
-        console.log(err);
-        throw new HttpException('Database error', HttpStatus.INTERNAL_SERVER_ERROR);
-      }
-      return user;
-    });
+    return await createdUser.save();
   }
 
   async findAll(): Promise<User[]> {
