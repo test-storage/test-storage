@@ -98,7 +98,26 @@
   "PROJECTSPAGE": {
     "CREATE": "Создать",
     "VIEW": "Просмотр",
-    "EDIT": "Редактировать"
+    "EDIT": "Редактировать",
+    "EMPTYSTATE_NOPROJECTS_TITLE": "У вас нет ни одного Проекта.",
+    "EMPTYSTATE_NOPROJECTS_DESCRIPTION": "Нажмите на кнопку 'Создать Проект' для создания",
+    "EMPTYSTATE_CREATEPROJECT_BUTTON": "Создать Проект"
+  },
+  "PROJECTCREATEPAGE": {
+    "WIZARD_TITLE": "Мастер Создания Проекта",
+    "PROJECT_DETAILS": "Детали Проекта",
+    "NAME": "Название",
+    "DESCRIPTION": "Описание",
+    "EDIT": "Редактировать",
+    "DELETE": "Удалить",
+    "LAST_EDITED": "Последние изменения",
+    "STATUS": "Статус",
+    "CREATED_BY": "Создано",
+    "UPDATED_BY": "Отредактировано",
+    "EDIT_MEMBERS": "Редактировать участников",
+    "ROLE": "Роль",
+    "ACTION": "Действие",
+    "REMOVE_MEMBER": "Удалить участника"
   },
   "PROJECT_DETAILSPAGE": {
     "DESCRIPTION": "Описание",
