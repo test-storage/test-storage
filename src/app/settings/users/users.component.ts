@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { pageTransition } from '../../animations';
@@ -62,12 +63,13 @@ export class UsersComponent implements OnInit, OnDestroy {
     delete user.confirmPassword;
 
     this.usersService.createUser(user).subscribe(
-      response => {
+      (response: HttpResponse<User>) => {
         if (response.status === 201) {
           this.notificationsService.success(
             `${user.lastName} ${user.firstName}`,
             this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
           );
+          user._id = response.body._id;
           this.users.push(user);
         }
       },

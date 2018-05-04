@@ -1,4 +1,5 @@
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
 import { pageTransition } from '../animations';
 
 import { Project } from './project';
@@ -52,12 +53,13 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   createProject(project: Project) {
     this.projectsService.createProject(project).subscribe(
-      response => {
+      (response: HttpResponse<Project>) => {
         if (response.status === 201) {
           this.notificationsService.success(
             `${project.name}`,
             this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
           );
+          project._id = response.body._id;
           this.projects.push(project);
         }
       },

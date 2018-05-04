@@ -28,6 +28,7 @@ export class CreateTestCaseModalComponent implements OnInit {
 
   createTestCase() {
     this.testcaseChange.emit(this.testcase);
+    this.testcase = new TestCase();
   }
 
   ngOnInit() {

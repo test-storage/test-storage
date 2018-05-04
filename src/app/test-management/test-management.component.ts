@@ -1,4 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
 import { pageTransition } from '../animations';
 
 import { Router, ActivatedRoute } from '@angular/router';
@@ -128,12 +129,13 @@ export class TestManagementComponent implements OnInit {
     }
 
     this.testSuiteService.createTestSuite(testsuite).subscribe(
-      response => {
+      (response: HttpResponse<TestSuite>) => {
         if (response.status === 201) {
           this.notificationsService.success(
             testsuite.name,
             this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
           );
+          testsuite._id = response.body._id;
           this.testSuites.push(testsuite);
           this.fromFlatToTree();
         }
