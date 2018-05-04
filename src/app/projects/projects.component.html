@@ -42,9 +42,9 @@
 
         <div class="no-project">
           <img src="assets/add-project.png">
-          <h4>You have not created Projects yet.</h4>
-          <p class="tips">Tap the 'Create Project' button to get started</p>
-          <a (click)="create();" class="btn btn-primary">Create Project</a>
+          <h4>{{ 'PROJECTSPAGE.EMPTYSTATE_NOPROJECTS_TITLE' | translate }}</h4>
+          <p class="tips">{{ 'PROJECTSPAGE.EMPTYSTATE_NOPROJECTS_DESCRIPTION' | translate }}</p>
+          <a (click)="create();" class="btn btn-primary">{{ 'PROJECTSPAGE.EMPTYSTATE_CREATEPROJECT_BUTTON' | translate }}</a>
         </div>
 
       </div>
