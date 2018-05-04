@@ -4,6 +4,7 @@ import { pageTransition } from '../animations';
 import { Project } from './project';
 import { ProjectsService } from './projects.service';
 import { TranslateService } from '@ngx-translate/core';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-projects',
@@ -23,7 +24,8 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   constructor(
     private projectsService: ProjectsService,
-    protected translateService: TranslateService
+    protected translateService: TranslateService,
+    private notificationsService: NotificationsService
   ) { }
 
   ngOnInit() {
@@ -42,12 +44,25 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   create() {
     this.projectWizardOpened = true;
-    setTimeout(this.refresh(), 13000);
-    // TODO create project wizard
   }
 
   refresh() {
     // this.projectWizardOpened = false;
+  }
+
+  createProject(project: Project) {
+    this.projectsService.createProject(project).subscribe(
+      response => {
+        if (response.status === 201) {
+          this.notificationsService.success(
+            `${project.name}`,
+            this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
+          );
+          this.projects.push(project);
+        }
+      },
+      error => console.log(error)
+    );
   }
 
 }
