@@ -26,6 +26,7 @@ export class ProjectWizardComponent implements OnInit {
 
   createProject() {
     this.projectChange.emit(this.project);
+    this.project = new Project();
   }
 
   constructor() {

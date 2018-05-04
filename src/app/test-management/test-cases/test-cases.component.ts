@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
 
 import { TestCase, Priority } from './test-case';
 import { TestSuite } from '../test-suite';
@@ -70,12 +71,13 @@ export class TestCasesComponent implements OnInit {
     }
 
     this.testCaseService.createTestCase(testcase).subscribe(
-      response => {
+      (response: HttpResponse<TestCase>) => {
         if (response.status === 201) {
           this.notificationsService.success(
             testcase.title,
             this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_CREATED')
           );
+          testcase._id = response.body._id;
           this.testCases.push(testcase);
         }
       },
