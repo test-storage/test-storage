@@ -1,33 +1,34 @@
 <!--<button class="btn btn-primary" (click)="projectWizard = !projectWizard;">Open</button>-->
 
-<clr-wizard #wizardxl [(clrWizardOpen)]="opened">
+<clr-wizard #wizardlg [(clrWizardOpen)]="opened">
   <clr-wizard-title>Project Creation Wizard</clr-wizard-title>
 
   <clr-wizard-button [type]="'cancel'" (click)="setOpened(false)">Cancel</clr-wizard-button>
   <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
   <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
-  <clr-wizard-button [type]="'finish'" (click)="setOpened(false)">Finish</clr-wizard-button>
+  <clr-wizard-button [type]="'finish'" (click)="setOpened(false); createProject(project);">Finish</clr-wizard-button>
 
-  <clr-wizard-page>
+  <clr-wizard-page [clrWizardPageNextDisabled]="name.pristine || !createProjectForm.valid">
     <ng-template clrPageTitle>Project Details</ng-template>
-    <form>
+    <form #createProjectForm="ngForm">
       <section class="form-block">
         <label>Enter Project name and description</label>
         <div class="form-group">
-          <label class="required">Project name</label>
-          <input type="text" id="requiredInput">
+          <label for="name" class="required">Project name</label>
+          <input type="text" id="name" name="name" [(ngModel)]="project.name" #name="ngModel" required minlength="2">
         </div>
         <div class="form-group">
-          <label>Project description</label>
-          <input type="text" id="requiredInput">
+          <label for="description" class="required">Project description</label>
+          <input type="text" id="description" name="description" [(ngModel)]="project.description" #description="ngModel" required>
         </div>
       </section>
     </form>
   </clr-wizard-page>
 
+  <!--Choose users for project-->
+  <!--
   <clr-wizard-page>
     <ng-template clrPageTitle>Users</ng-template>
-    <!--Choose users for project-->
     <clr-tabs>
       <clr-tab>
         <button clrTabLink>Invite Members</button>
@@ -69,9 +70,11 @@
 
     </clr-tabs>
   </clr-wizard-page>
-
+-->
   <clr-wizard-page>
     <ng-template clrPageTitle>Finish</ng-template>
-    ...
+    <div class="finish-wrapper">
+      <clr-icon shape="check-circle" size="148" style="color: #62A420;"></clr-icon>
+    </div>
   </clr-wizard-page>
 </clr-wizard>

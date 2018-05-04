@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angu
 
 import { ClrWizard } from '@clr/angular';
 
+import { Project } from '../project';
+
 @Component({
   selector: 'app-project-wizard',
   templateUrl: './project-wizard.component.html',
@@ -9,17 +11,26 @@ import { ClrWizard } from '@clr/angular';
 })
 export class ProjectWizardComponent implements OnInit {
 
-  @ViewChild('wizardxl') wizardExtraLarge: ClrWizard;
+  @ViewChild('wizardlg') wizardLarge: ClrWizard;
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
+  @Output() projectChange = new EventEmitter<Project>();
+
+  project: Project;
 
   setOpened(val) {
     this.opened = val;
     this.openedChange.emit(this.opened);
   }
 
-  constructor() { }
+  createProject() {
+    this.projectChange.emit(this.project);
+  }
+
+  constructor() {
+    this.project = new Project();
+  }
 
   ngOnInit() {
     // TODO delete project data if exists
