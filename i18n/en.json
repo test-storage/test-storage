@@ -13,7 +13,8 @@
   "SETTINGS": {
     "MAIN_SETTINGS": "Main Settings",
     "USERS": "Users",
-    "INVENTORY": "Inventory"
+    "INVENTORY": "Inventory",
+    "INTEGRATIONS": "Integrations"
   },
   "LANGUAGES": {
     "en": "English",
@@ -148,7 +149,10 @@
     "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected test cases? This action is permanent and cannot be recovered.",
     "EMPTYSTATE_NOTESTSUITES_TITLE": "You have not created Test Suite yet.",
     "EMPTYSTATE_NOTESTSUITES_DESCRIPTION": "Tap the 'Create Test Suite' button to get started",
-    "EMPTYSTATE_CREATETESTSUITE_BUTTON": "Create Test Suite"
+    "EMPTYSTATE_CREATETESTSUITE_BUTTON": "Create Test Suite",
+    "STEP_ACTION": "Action",
+    "TEST_DATA": "Test data",
+    "EXPECTED_RESULT": "Expected result"
   },
   "TESTEXECUTIONPAGE": {
     "ADD": "Add",

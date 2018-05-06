@@ -5,6 +5,7 @@ import { SettingsComponent } from './settings.component';
 import { UsersComponent } from './users/users.component';
 import { MainSettingsComponent } from './main-settings/main-settings.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { IntegrationsComponent } from './integrations/integrations.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,9 @@ const routes: Routes = [
       },
       {
         path: 'inventory', component: InventoryComponent, pathMatch: 'full'
+      },
+      {
+        path: 'integrations', component: IntegrationsComponent, pathMatch: 'full'
       }
     ]
   }

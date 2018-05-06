@@ -17,6 +17,7 @@ import { CreateUserModalComponent } from './users/create-user-modal/create-user-
 import { EditUserModalComponent } from './users/edit-user-modal/edit-user-modal.component';
 import { DeleteUserModalComponent } from './users/delete-user-modal/delete-user-modal.component';
 import { RolesService } from './roles/roles.service';
+import { IntegrationsComponent } from './integrations/integrations.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { RolesService } from './roles/roles.service';
     SettingsComponent,
     UsersComponent,
     RolesComponent,
+    IntegrationsComponent,
     MainSettingsComponent,
     InventoryComponent,
     CreateUserModalComponent,

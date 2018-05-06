@@ -13,7 +13,8 @@
   "SETTINGS": {
     "MAIN_SETTINGS": "Основные настройки",
     "USERS": "Пользователи",
-    "INVENTORY": "Устройства"
+    "INVENTORY": "Устройства",
+    "INTEGRATIONS": "Интеграции"
   },
   "LANGUAGES": {
     "en": "Английский",
@@ -148,7 +149,10 @@
     "MODAL_DELETE_DESCRIPTION": "Вы уверены, что хотите удалить выбранные тест кейсы? Удаленные тест кейсы не смогут быть восстановлены.",
     "EMPTYSTATE_NOTESTSUITES_TITLE": "У вас нет ни одного Тестового Набора.",
     "EMPTYSTATE_NOTESTSUITES_DESCRIPTION": "Нажмите на кнопку 'Создать Тестовый Набор' для создания",
-    "EMPTYSTATE_CREATETESTSUITE_BUTTON": "Создать Тестовый Набор"
+    "EMPTYSTATE_CREATETESTSUITE_BUTTON": "Создать Тестовый Набор",
+    "STEP_ACTION": "Действие",
+    "TEST_DATA": "Тестовые данные",
+    "EXPECTED_RESULT": "Ожидаемый результат"
   },
   "TESTEXECUTIONPAGE": {
     "ADD": "Добавить",
