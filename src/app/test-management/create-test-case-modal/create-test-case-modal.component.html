@@ -1,10 +1,10 @@
-<clr-modal *ngIf="testcase" [(clrModalOpen)]="opened">
+<clr-modal *ngIf="testcase" [(clrModalOpen)]="opened" [clrModalSize]="'lg'">
   <h3 class="modal-title">{{ 'TESTCASECREATEPAGE.CREATE_TESTCASE' | translate }}</h3>
   <div class="modal-body">
     <form (ngSubmit)="setOpened(false); createTestCase()" id="createTestCaseForm" #createTestCaseForm="ngForm" (keyup.enter)="createTestCaseForm.form.valid && createTestCaseForm.ngSubmit.emit();">
       <section class="form-block">
 
-        <label>Детали</label>
+
 
         <div class="form-group">
           <label class="required" for="title">{{ 'TESTCASECREATEPAGE.TITLE' | translate }}</label>
@@ -33,11 +33,43 @@
             placeholder="{{ 'TESTCASECREATEPAGE.PRECONDITIONS_PLACEHOLDER' | translate }}" size="35">
         </div>
 
-        <clr-datagrid>
-          <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}</clr-dg-column>
-          <clr-dg-row *clrDgItems="let step of testcase.steps" [clrDgItem]="step">
-            <clr-dg-cell></clr-dg-cell>
+
+        <div class="form-group">
+          <label>Steps</label>
+        </div>
+        <br>
+        <clr-datagrid *ngIf="testCaseSteps" [(clrDgSelected)]="selectedTestSteps">
+
+          <clr-dg-action-bar>
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
+                <clr-icon shape="plus"></clr-icon> {{ 'TESTMANAGEMENTPAGE.ADD' | translate }}</button>
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedTestSteps.length > 0">
+                <clr-icon shape="close"></clr-icon> {{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="true === false;">
+                <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}</button>
+            </div>
+          </clr-dg-action-bar>
+
+          <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.STEP_ACTION' | translate }}</clr-dg-column>
+          <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TEST_DATA' | translate }}</clr-dg-column>
+          <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.EXPECTED_RESULT' | translate }}</clr-dg-column>
+          <clr-dg-placeholder>We couldn't find any test steps!</clr-dg-placeholder>
+          <clr-dg-row *clrDgItems="let step of testCaseSteps;" (clrDgItem)="step">
+            <clr-dg-cell>
+              <input type="text" class="form-control" id="stepAction" name="stepAction" [(ngModel)]="step.stepAction" placeholder="click to login button"
+                size="30" />
+            </clr-dg-cell>
+            <clr-dg-cell>
+              <input type="text" class="form-control" id="testData" name="stepData" [(ngModel)]="step.testData" #testData="ngModel" placeholder="login: login; pass: pass;"
+                size="30">
+            </clr-dg-cell>
+            <clr-dg-cell>
+              <input type="text" class="form-control" id="expectedResult" name="expectedResult" [(ngModel)]="step.expectedResult" placeholder="user should login successfully"
+                size="30">
+            </clr-dg-cell>
           </clr-dg-row>
+          <clr-dg-footer>{{ testCaseSteps.length}} steps</clr-dg-footer>
         </clr-datagrid>
 
       </section>

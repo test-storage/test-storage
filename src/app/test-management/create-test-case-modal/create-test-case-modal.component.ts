@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { TestCase, Priority } from '../test-cases/test-case';
+import { TestCase, Priority, TestCaseStep } from '../test-cases/test-case';
 
 @Component({
   selector: 'app-create-test-case-modal',
@@ -16,9 +16,13 @@ export class CreateTestCaseModalComponent implements OnInit {
   public testcase: TestCase;
   public priorities = Priority;
   keys; // Priority enumeration keys
+  testCaseSteps: TestCaseStep[] = [];
+
+  public selectedTestSteps = [];
 
   constructor() {
     this.testcase = new TestCase();
+    this.testcase.steps = [];
   }
 
   setOpened(val: boolean) {
@@ -27,8 +31,29 @@ export class CreateTestCaseModalComponent implements OnInit {
   }
 
   createTestCase() {
+    this.testcase.steps = this.testCaseSteps;
     this.testcaseChange.emit(this.testcase);
     this.testcase = new TestCase();
+    this.testcase.steps = [];
+  }
+
+  onAdd() {
+    const step = new TestCaseStep();
+    step.stepAction = '';
+    step.testData = '';
+    step.expectedResult = '';
+    this.testCaseSteps.push(step);
+    console.log(this.testCaseSteps);
+  }
+
+  onEdit() {
+
+  }
+
+  onDelete() {
+    this.selectedTestSteps.forEach(testStep => {
+      this.testcase.steps = this.testcase.steps.filter(steps => steps !== testStep);
+    });
   }
 
   ngOnInit() {
