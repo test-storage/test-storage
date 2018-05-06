@@ -27,7 +27,7 @@
         <div class="form-group">
           <label class="required" for="password">{{ 'USERCREATEPAGE.PASSWORD' | translate }}</label>
           <input type="password" id="password" name="password" placeholder="password" [(ngModel)]="user.password" #password="ngModel"
-            required size="35" validateEqual="confirmPassword" reverse="true">
+            required size="35" appValidateEqual="confirmPassword" reverse="true">
           <small [hidden]="password.valid || (password.pristine && !createUserForm.submitted)">
             Password is required
           </small>
@@ -36,7 +36,7 @@
         <div class="form-group">
           <label class="required" for="confirmPassword">{{ 'USERCREATEPAGE.CONFIRMPASSWORD' | translate }}</label>
           <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="confirm password" [(ngModel)]="user.confirmPassword"
-            #confirmPassword="ngModel" size="35" validateEqual="password">
+            #confirmPassword="ngModel" size="35" appValidateEqual="password">
           <p *ngIf="confirmPassword?.errors?.isEqual">Passwords don't match</p>
           <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !createUserForm.submitted)">
             Password mismatch
