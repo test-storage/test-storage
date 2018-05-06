@@ -16,7 +16,6 @@ import { InventoryService } from './inventory/inventory.service';
 import { CreateUserModalComponent } from './users/create-user-modal/create-user-modal.component';
 import { EditUserModalComponent } from './users/edit-user-modal/edit-user-modal.component';
 import { DeleteUserModalComponent } from './users/delete-user-modal/delete-user-modal.component';
-import { ValidateEqualDirective } from './users/validate-equal.directive';
 import { RolesService } from './roles/roles.service';
 
 @NgModule({
@@ -35,8 +34,7 @@ import { RolesService } from './roles/roles.service';
     InventoryComponent,
     CreateUserModalComponent,
     EditUserModalComponent,
-    DeleteUserModalComponent,
-    ValidateEqualDirective
+    DeleteUserModalComponent
   ],
   providers: [
     UsersService,

@@ -16,22 +16,22 @@
         </label>
       </div>
       <div *ngIf="f.form.valid && (username.dirty || username.touched || password.dirty || password.touched)">
-      <div *ngIf="error" class="error active">
+        <div *ngIf="error" class="error active">
           {{ error }}
         </div>
       </div>
       <div *ngIf="username.invalid && (username.dirty || username.touched)">
-      <div *ngIf="username.errors.required" class="error active">
+        <div *ngIf="username?.errors.required" class="error active">
           {{ 'LOGINPAGE.LOGIN_REQUIRED' | translate }}
-      </div>
+        </div>
       </div>
       <div *ngIf="password.invalid && (password.dirty || password.touched)">
-      <div *ngIf="password.errors.required" class="error active">
+        <div *ngIf="password?.errors.required" class="error active">
           {{ 'LOGINPAGE.PASSWORD_REQUIRED' | translate }}
+        </div>
       </div>
-    </div>
       <button type="submit" class="btn btn-primary">{{ 'LOGINPAGE.LOGIN_BUTTON' | translate }}</button>
-      <a href="javascript://" class="signup">{{ 'LOGINPAGE.REGISTER_BUTTON' | translate }}</a>
+      <a routerLink="/signup" class="signup">{{ 'LOGINPAGE.REGISTER_BUTTON' | translate }}</a>
     </div>
   </form>
 </div>
