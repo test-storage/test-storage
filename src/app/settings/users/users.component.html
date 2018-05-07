@@ -17,13 +17,21 @@
             </div>
           </clr-dg-action-bar>
 
+          <clr-dg-column style="width: 100px;">{{ 'USERSSETTINGS.AVATAR' | translate }}</clr-dg-column>
           <clr-dg-column>{{ 'USERSSETTINGS.NAME' | translate }}</clr-dg-column>
           <clr-dg-column>Email</clr-dg-column>
+          <!--<clr-dg-column>Role</clr-dg-column>-->
           <!--<clr-dg-column>Creation date</clr-dg-column>-->
 
           <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
+            <clr-dg-cell>
+              <div *ngIf="user.avatarColor" class="avatar" [style.backgroundColor]="getBackgroundColor(user)" [style.color]="getColor(user)">
+              <span class="avatar-name">{{ user.lastName.charAt(0).toUpperCase() }}{{ user.firstName.charAt(0).toUpperCase() }}</span>
+            </div>
+            </clr-dg-cell>
             <clr-dg-cell>{{user.lastName}} {{user.firstName}}</clr-dg-cell>
             <clr-dg-cell>{{user.email}}</clr-dg-cell>
+            <!--<clr-dg-cell>{{user.role}}</clr-dg-cell>-->
             <!--<clr-dg-cell>{{user.created * 1000 | date}}</clr-dg-cell>-->
           </clr-dg-row>
 
