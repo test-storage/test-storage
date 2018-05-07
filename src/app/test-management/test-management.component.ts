@@ -86,6 +86,7 @@ export class TestManagementComponent implements OnInit {
       } else {
         parentNode = idToNodeMap[node.parentId];
         parentNode.children.push(node);
+        parentNode['expanded'] = true;
       }
     }
 
