@@ -58,9 +58,18 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.deleteOpened = true;
   }
 
+  getBackgroundColor(user: User): string {
+    return `hsl(${user.avatarColor}, 53%, 90%)`;
+  }
+
+  getColor(user: User): string {
+    return `hsl(${user.avatarColor}, 50%, 50%)`;
+  }
+
   createUser(user: User) {
     // remove unused field (used only for validation)
     delete user.confirmPassword;
+    user.avatarColor = Math.floor(Math.random() * 360);
 
     this.usersService.createUser(user).subscribe(
       (response: HttpResponse<User>) => {
