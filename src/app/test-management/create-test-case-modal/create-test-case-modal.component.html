@@ -4,11 +4,9 @@
     <form (ngSubmit)="setOpened(false); createTestCase()" id="createTestCaseForm" #createTestCaseForm="ngForm" (keyup.enter)="createTestCaseForm.form.valid && createTestCaseForm.ngSubmit.emit();">
       <section class="form-block">
 
-
-
         <div class="form-group">
           <label class="required" for="title">{{ 'TESTCASECREATEPAGE.TITLE' | translate }}</label>
-          <input autofocus type="text" id="title" name="title" [(ngModel)]="testcase.title" #title="ngModel" required placeholder="{{ 'TESTCASECREATEPAGE.TITLE_PLACEHOLDER' | translate }}"
+          <input [appAutofocus]="opened" type="text" id="title" name="title" [(ngModel)]="testcase.title" #title="ngModel" required placeholder="{{ 'TESTCASECREATEPAGE.TITLE_PLACEHOLDER' | translate }}"
             size="35">
         </div>
 

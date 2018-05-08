@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ClarityModule } from '@clr/angular';
 import { ValidateEqualDirective } from '../settings/users/validate-equal.directive';
+import { AutofocusDirective } from './autofocus.directive';
 
 @NgModule({
   imports: [
@@ -11,10 +12,12 @@ import { ValidateEqualDirective } from '../settings/users/validate-equal.directi
   ],
   exports: [
     ClarityModule,
-    ValidateEqualDirective
+    ValidateEqualDirective,
+    AutofocusDirective
   ],
   declarations: [
-    ValidateEqualDirective
+    ValidateEqualDirective,
+    AutofocusDirective
   ]
 })
 export class SharedModule { }

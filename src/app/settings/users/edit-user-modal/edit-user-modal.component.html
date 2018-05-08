@@ -8,7 +8,7 @@
 
         <div class="form-group">
           <label class="required" for="lastName">{{ 'USERCREATEPAGE.LASTNAME' | translate }}</label>
-          <input autofocus type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required placeholder="{{ 'USERCREATEPAGE.LASTNAME_PLACEHOLDER' | translate }}"
+          <input [appAutofocus]="opened" type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required placeholder="{{ 'USERCREATEPAGE.LASTNAME_PLACEHOLDER' | translate }}"
             size="35">
         </div>
 
