@@ -79,6 +79,8 @@ export class TestCasesComponent implements OnInit {
           );
           testcase._id = response.body._id;
           this.testCases.push(testcase);
+          // remove selection
+          this.selectedTestCases = [];
         }
       },
       error => console.log(error)
@@ -119,6 +121,8 @@ export class TestCasesComponent implements OnInit {
               this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_DELETED')
             );
             this.testCases = this.testCases.filter(testCases => testCases !== selectedTestCase);
+            // remove selection
+            this.selectedTestCases = [];
           }
         },
         error => console.log(error)

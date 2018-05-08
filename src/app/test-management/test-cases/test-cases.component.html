@@ -15,6 +15,7 @@
   <clr-dg-column [clrDgField]="'order'" [clrDgSortOrder]="ascSort">{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}</clr-dg-column>
   <!--<clr-dg-column >Order</clr-dg-column>-->
   <!--<clr-dg-column>Status</clr-dg-column>-->
+  <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TAGS' | translate }}</clr-dg-column>
 
   <clr-dg-row *clrDgItems="let testCase of testCases" [clrDgItem]="testCase">
     <!--
@@ -26,6 +27,15 @@
     <clr-dg-cell>
       {{testCase.title}}
     </clr-dg-cell>
+
+    <clr-dg-cell>
+
+      <span class="label label-purple" *ngFor="let tag of testCase.tags">
+      {{ tag }}
+      </span>
+
+    </clr-dg-cell>
+
     <!--
   <clr-dg-cell>
     {{ testCase.order}}
