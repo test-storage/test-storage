@@ -62,7 +62,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "test-storage:build"
+            "browserTarget": "test-storage:build",
+            "hmrWarning": false
           },
           "configurations": {
             "hmr": {
