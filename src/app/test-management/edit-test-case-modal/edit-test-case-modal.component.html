@@ -34,6 +34,23 @@
         </div>
 
         <div class="form-group">
+            <label for="tags">{{ 'TESTCASECREATEPAGE.TAGS' | translate }}</label>
+            <input #tag type="text" id="tags" name="tags" (keyup.enter)="setTag(tag.value); tag.value = '';" placeholder="{{ 'TESTCASECREATEPAGE.TAGS_PLACEHOLDER' | translate }}"
+              size="35">
+            <button type="button" class="btn btn-sm btn-secondary" (click)="setTag(tag.value); tag.value = '';">
+              <clr-icon shape="plus"></clr-icon> Add</button>
+
+          </div>
+          <div class="form-group">
+            <label for="tag-list"></label>
+            <span *ngFor="let tag of testcase.tags" class="label">{{ tag }}
+              <a (click)="removeTag(tag);">
+                <clr-icon shape="close"></clr-icon>
+              </a>
+            </span>
+          </div>
+
+        <div class="form-group">
           <label>Steps</label>
         </div>
         <br>

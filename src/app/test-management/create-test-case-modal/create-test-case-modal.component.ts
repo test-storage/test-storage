@@ -17,6 +17,7 @@ export class CreateTestCaseModalComponent implements OnInit {
   public priorities = Priority;
   keys; // Priority enumeration keys
   testCaseSteps: TestCaseStep[] = [];
+  tags = [];
 
   public selectedTestSteps = [];
 
@@ -32,9 +33,21 @@ export class CreateTestCaseModalComponent implements OnInit {
 
   createTestCase() {
     this.testcase.steps = this.testCaseSteps;
+    this.testcase.tags = this.tags;
     this.testcaseChange.emit(this.testcase);
     this.testcase = new TestCase();
     this.testcase.steps = [];
+    this.testcase.tags = [];
+    this.tags = [];
+  }
+
+
+  setTag(tag) {
+    this.tags.push(tag);
+  }
+
+  removeTag(tag) {
+    this.tags = this.tags.filter(tags => tags !== tag);
   }
 
   onAdd() {
