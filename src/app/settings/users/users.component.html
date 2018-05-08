@@ -17,14 +17,14 @@
             </div>
           </clr-dg-action-bar>
 
-          <clr-dg-column style="width: 100px;">{{ 'USERSSETTINGS.AVATAR' | translate }}</clr-dg-column>
+          <clr-dg-column style="width: 70px;">{{ 'USERSSETTINGS.AVATAR' | translate }}</clr-dg-column>
           <clr-dg-column>{{ 'USERSSETTINGS.NAME' | translate }}</clr-dg-column>
           <clr-dg-column>Email</clr-dg-column>
           <!--<clr-dg-column>Role</clr-dg-column>-->
           <!--<clr-dg-column>Creation date</clr-dg-column>-->
 
           <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
-            <clr-dg-cell>
+            <clr-dg-cell style="padding: 5px;">
               <div *ngIf="user.avatarColor" class="avatar" [style.backgroundColor]="getBackgroundColor(user)" [style.color]="getColor(user)">
               <span class="avatar-name">{{ user.lastName.charAt(0).toUpperCase() }}{{ user.firstName.charAt(0).toUpperCase() }}</span>
             </div>
@@ -46,6 +46,13 @@
         <app-roles></app-roles>
       </clr-tab-content>
     </clr-tab>
+    <clr-tab>
+        <button clrTabLink>Organizations</button>
+        <clr-tab-content *clrIfActive>
+
+          <h4>TBD</h4>
+        </clr-tab-content>
+      </clr-tab>
   </clr-tabs>
 </div>
 <app-create-user-modal [(opened)]="createOpened" (userChange)="createUser($event);"></app-create-user-modal>
