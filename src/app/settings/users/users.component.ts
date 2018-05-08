@@ -79,6 +79,7 @@ export class UsersComponent implements OnInit, OnDestroy {
             this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
           );
           user._id = response.body._id;
+          user.created = response.body.created;
           this.users.push(user);
         }
       },
