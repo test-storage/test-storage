@@ -40,6 +40,8 @@
     "DELETE": "Delete",
     "NAME": "Name",
     "AVATAR": "Avatar",
+    "ACTIVE": "Active",
+    "CREATED": "Created date",
     "USERS": "users",
     "USERS_TAB": "Users",
     "CANCEL": "Cancel"
