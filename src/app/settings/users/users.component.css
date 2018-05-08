@@ -15,3 +15,11 @@
   top: 4px;
   font-size: 50% !important;
 }
+
+.active-user {
+  color: #62A420;
+}
+
+.inactive-user {
+  color: #C92100;
+}

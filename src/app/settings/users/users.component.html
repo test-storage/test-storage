@@ -21,7 +21,9 @@
           <clr-dg-column>{{ 'USERSSETTINGS.NAME' | translate }}</clr-dg-column>
           <clr-dg-column>Email</clr-dg-column>
           <!--<clr-dg-column>Role</clr-dg-column>-->
-          <!--<clr-dg-column>Creation date</clr-dg-column>-->
+
+          <clr-dg-column>{{ 'USERSSETTINGS.ACTIVE' | translate }}</clr-dg-column>
+          <clr-dg-column>{{ 'USERSSETTINGS.CREATED' | translate }}</clr-dg-column>
 
           <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
             <clr-dg-cell style="padding: 5px;">
@@ -32,7 +34,12 @@
             <clr-dg-cell>{{user.lastName}} {{user.firstName}}</clr-dg-cell>
             <clr-dg-cell>{{user.email}}</clr-dg-cell>
             <!--<clr-dg-cell>{{user.role}}</clr-dg-cell>-->
-            <!--<clr-dg-cell>{{user.created * 1000 | date}}</clr-dg-cell>-->
+
+            <clr-dg-cell [ngSwitch]="user.active">
+              <clr-icon *ngSwitchCase="true" class="active-user" shape="check"></clr-icon>
+              <clr-icon *ngSwitchCase="false" class="inactive-user" shape="times"></clr-icon>
+            </clr-dg-cell>
+            <clr-dg-cell>{{user.created | date}}</clr-dg-cell>
           </clr-dg-row>
 
           <clr-dg-footer>{{users.length}} {{ 'USERSSETTINGS.USERS' | translate }}</clr-dg-footer>
