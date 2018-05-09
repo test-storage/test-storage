@@ -23,8 +23,8 @@ export class RolesController {
   constructor(private readonly rolesService: RolesService) { }
 
   @Post()
-  async create(@Body() createRoleDto: CreateRoleDto) {
-    this.rolesService.create(createRoleDto);
+  async create(@Body() createRoleDto: CreateRoleDto): Promise<Role> {
+    return await this.rolesService.create(createRoleDto);
   }
 
   @Get()

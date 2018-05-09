@@ -1,29 +1,32 @@
 {
-    "env": "production",
-    "app": {
-        "enableGzipCompression": true,
-        "httpsEnabled": false
-    },
-    "http": {
-        "port": 3000
-    },
-    "https": {
-        "port": 8443,
-        "privateKey": "certs/server.key",
-        "certificate": "certs/server.crt"
-    },
-    "db": {
-        "host": "localhost",
-        "name": "test-storage",
-        "user": "admin",
-        "password": "admin"
-    },
-    "errorHandlerOptions": {
-        "dumpExceptions": true,
-        "showStack": true
-    },
-    "logger": {
-        "api": "logs/api.log",
-        "exception": "logs/exceptions.log"
-    }
+  "env": "production",
+  "app": {
+    "enableGzipCompression": true,
+    "httpsEnabled": false
+  },
+  "http": {
+    "port": 3000
+  },
+  "https": {
+    "port": 8443,
+    "privateKey": "certs/server.key",
+    "certificate": "certs/server.crt"
+  },
+  "db": {
+    "host": "localhost",
+    "name": "test-storage",
+    "user": "admin",
+    "password": "admin"
+  },
+  "errorHandlerOptions": {
+    "dumpExceptions": true,
+    "showStack": true
+  },
+  "logger": {
+    "api": "logs/api.log",
+    "exception": "logs/exceptions.log"
+  },
+  "uploadDirectory": {
+    "path": "upload/"
+  }
 }

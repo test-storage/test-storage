@@ -12,10 +12,8 @@ export class ProjectsService {
   constructor(@InjectModel(ProjectSchema) private readonly projectModel: Model<Project>) { }
 
   async create(projectDto: CreateProjectDto): Promise<Project> {
-    const createdProject = new this.projectModel(projectDto);
-    return await createdProject.save((err, project) => {
-      return project;
-    });
+    const createdProject = await new this.projectModel(projectDto);
+    return await createdProject.save();
   }
 
   async findAll(): Promise<Project[]> {

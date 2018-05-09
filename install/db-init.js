@@ -67,6 +67,7 @@ db.users.insertOne(
     firstName: "John",
     lastName: "Doe",
     active: true,
+    avatarColor: 250,
     workInfo: {
       jobTitle: "Administrator",
       phoneNumber: "+7 (495) 123-45-67",

@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { pageTransition } from '../../animations';
@@ -57,17 +58,28 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.deleteOpened = true;
   }
 
+  getBackgroundColor(user: User): string {
+    return `hsl(${user.avatarColor}, 53%, 90%)`;
+  }
+
+  getColor(user: User): string {
+    return `hsl(${user.avatarColor}, 50%, 50%)`;
+  }
+
   createUser(user: User) {
     // remove unused field (used only for validation)
     delete user.confirmPassword;
+    user.avatarColor = Math.floor(Math.random() * 360);
 
     this.usersService.createUser(user).subscribe(
-      response => {
+      (response: HttpResponse<User>) => {
         if (response.status === 201) {
           this.notificationsService.success(
             `${user.lastName} ${user.firstName}`,
             this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
           );
+          user._id = response.body._id;
+          user.created = response.body.created;
           this.users.push(user);
         }
       },

@@ -7,6 +7,7 @@ export class User {
   lastName: string;
   active: string;
   photo?: string;
+  avatarColor: number;
   workInfo?: any;
   social?: any;
   role: string;

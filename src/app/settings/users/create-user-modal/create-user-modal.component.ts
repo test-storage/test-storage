@@ -31,6 +31,7 @@ export class CreateUserModalComponent implements OnInit, OnDestroy {
 
   createUser() {
     this.userChange.emit(this.user);
+    this.user = new User();
   }
 
   ngOnInit() {
