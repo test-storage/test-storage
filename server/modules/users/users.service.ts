@@ -13,7 +13,9 @@ export class UsersService {
 
   async create(userDto: CreateUserDto): Promise<User> {
     const createdUser = new this.userModel(userDto);
-    return await createdUser.save();
+    const user = await createdUser.save();
+    user.password = undefined;
+    return user;
   }
 
   async findAll(): Promise<User[]> {
