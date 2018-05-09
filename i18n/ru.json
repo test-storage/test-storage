@@ -13,7 +13,8 @@
   "SETTINGS": {
     "MAIN_SETTINGS": "Основные настройки",
     "USERS": "Пользователи",
-    "INVENTORY": "Устройства"
+    "INVENTORY": "Устройства",
+    "INTEGRATIONS": "Интеграции"
   },
   "LANGUAGES": {
     "en": "Английский",
@@ -38,6 +39,9 @@
     "EDIT": "Редактировать",
     "DELETE": "Удалить",
     "NAME": "Имя",
+    "PHOTO": "Фото",
+    "ACTIVE": "Активирован",
+    "CREATED": "Дата регистрации",
     "USERS": "пользователей",
     "USERS_TAB": "Пользователи",
     "CANCEL": "Отмена"
@@ -98,7 +102,26 @@
   "PROJECTSPAGE": {
     "CREATE": "Создать",
     "VIEW": "Просмотр",
-    "EDIT": "Редактировать"
+    "EDIT": "Редактировать",
+    "EMPTYSTATE_NOPROJECTS_TITLE": "У вас нет ни одного Проекта.",
+    "EMPTYSTATE_NOPROJECTS_DESCRIPTION": "Нажмите на кнопку 'Создать Проект' для создания",
+    "EMPTYSTATE_CREATEPROJECT_BUTTON": "Создать Проект"
+  },
+  "PROJECTCREATEPAGE": {
+    "WIZARD_TITLE": "Мастер Создания Проекта",
+    "PROJECT_DETAILS": "Детали Проекта",
+    "NAME": "Название",
+    "DESCRIPTION": "Описание",
+    "EDIT": "Редактировать",
+    "DELETE": "Удалить",
+    "LAST_EDITED": "Последние изменения",
+    "STATUS": "Статус",
+    "CREATED_BY": "Создано",
+    "UPDATED_BY": "Отредактировано",
+    "EDIT_MEMBERS": "Редактировать участников",
+    "ROLE": "Роль",
+    "ACTION": "Действие",
+    "REMOVE_MEMBER": "Удалить участника"
   },
   "PROJECT_DETAILSPAGE": {
     "DESCRIPTION": "Описание",
@@ -119,6 +142,7 @@
     "EDIT": "Редактировать",
     "DELETE": "Удалить",
     "TITLE": "Название",
+    "TAGS": "Теги",
     "CANCEL": "Отмена",
     "TESTCASE": "Тест Кейс",
     "TESTSUITE": "Тестовый Набор",
@@ -129,7 +153,10 @@
     "MODAL_DELETE_DESCRIPTION": "Вы уверены, что хотите удалить выбранные тест кейсы? Удаленные тест кейсы не смогут быть восстановлены.",
     "EMPTYSTATE_NOTESTSUITES_TITLE": "У вас нет ни одного Тестового Набора.",
     "EMPTYSTATE_NOTESTSUITES_DESCRIPTION": "Нажмите на кнопку 'Создать Тестовый Набор' для создания",
-    "EMPTYSTATE_CREATETESTSUITE_BUTTON": "Создать Тестовый Набор"
+    "EMPTYSTATE_CREATETESTSUITE_BUTTON": "Создать Тестовый Набор",
+    "STEP_ACTION": "Действие",
+    "TEST_DATA": "Тестовые данные",
+    "EXPECTED_RESULT": "Ожидаемый результат"
   },
   "TESTEXECUTIONPAGE": {
     "ADD": "Добавить",
@@ -173,6 +200,9 @@
     "POSTCONDITIONS": "Постусловия",
     "POSTCONDITIONS_PLACEHOLDER": "Постусловия",
     "POSTCONDITIONS_REQUIRED": "Постусловия - обязательное поле",
+    "ORDER": "Порядок",
+    "TAGS": "Теги",
+    "TAGS_PLACEHOLDER": "тег",
     "CREATE_TESTCASE": "Создать Тест кейс",
     "EDIT_TESTCASE": "Редактировать Тест кейс",
     "CREATE_BUTTON": "Создать",

@@ -15,7 +15,7 @@
 
 .sidenav {
     height: calc(100vh -60px);
-    width: 300px;
+    width: 350px;
     border: 0px !important;
     order: 999 !important;
 }

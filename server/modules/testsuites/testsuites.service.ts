@@ -14,9 +14,7 @@ export class TestsuitesService {
 
   async create(testsuiteDto: CreateTestsuiteDto): Promise<Testsuite> {
     const createdTestsuite = new this.testsuiteModel(testsuiteDto);
-    return await createdTestsuite.save((err, testsuite) => {
-      return testsuite;
-    });
+    return await createdTestsuite.save();
   }
 
   async findAll(): Promise<Testsuite[]> {

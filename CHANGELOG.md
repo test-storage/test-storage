@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.33.0 (May 09, 2018)
+- Update to Angular 6 ([@pumano](https://github.com/pumano) in [#82](https://github.com/test-storage/test-storage/pull/82))
+- Add sign up page
+- Add modal autofocus
+- Add user auto generated photo placeholders
+- Multiple UI improvements
+- Multiple bug fixes
+
 ## 0.32.0 (May 03, 2018)
 - Add create / edit / delete devices inventory ([@pumano](https://github.com/pumano) in [#81](https://github.com/test-storage/test-storage/pull/81))
 - Add test cases management

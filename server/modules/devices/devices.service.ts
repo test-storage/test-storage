@@ -13,9 +13,7 @@ export class DevicesService {
 
   async create(deviceDto: CreateDeviceDto): Promise<Device> {
     const createdDevice = new this.deviceModel(deviceDto);
-    return await createdDevice.save((err, device) => {
-      return device;
-    });
+    return await createdDevice.save();
   }
 
   async findAll(): Promise<Device[]> {

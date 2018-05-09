@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { LayoutModule } from './layout/layout.module';
@@ -15,6 +16,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 const routes: Routes = [
   { path: 'auth', component: LoginComponent },
+  { path: 'signup', component: SignUpComponent },
   { path: '', loadChildren: './layout/layout.module#LayoutModule' },
   { path: '**', component: NotFoundComponent }
 ];

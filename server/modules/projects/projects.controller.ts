@@ -28,7 +28,7 @@ export class ProjectsController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create( @Body(new ValidationPipe()) createProjectDto: CreateProjectDto): Promise<Project> {
-    return this.projectsService.create(createProjectDto);
+    return await this.projectsService.create(createProjectDto);
   }
 
   @Get()

@@ -17,14 +17,30 @@
             </div>
           </clr-dg-action-bar>
 
+          <clr-dg-column style="width: 70px;">{{ 'USERSSETTINGS.PHOTO' | translate }}</clr-dg-column>
           <clr-dg-column>{{ 'USERSSETTINGS.NAME' | translate }}</clr-dg-column>
           <clr-dg-column>Email</clr-dg-column>
-          <!--<clr-dg-column>Creation date</clr-dg-column>-->
+          <!--<clr-dg-column>Role</clr-dg-column>-->
+
+          <clr-dg-column>{{ 'USERSSETTINGS.ACTIVE' | translate }}</clr-dg-column>
+          <clr-dg-column>{{ 'USERSSETTINGS.CREATED' | translate }}</clr-dg-column>
 
           <clr-dg-row *clrDgItems="let user of users" [clrDgItem]="user">
+            <clr-dg-cell style="padding: 5px;">
+              <!-- TODO ngIf else for photo / placeholder -->
+              <div *ngIf="user.avatarColor" class="avatar" [style.backgroundColor]="getBackgroundColor(user)" [style.color]="getColor(user)">
+                <span class="avatar-name">{{ user.lastName.charAt(0).toUpperCase() }}{{ user.firstName.charAt(0).toUpperCase() }}</span>
+              </div>
+            </clr-dg-cell>
             <clr-dg-cell>{{user.lastName}} {{user.firstName}}</clr-dg-cell>
             <clr-dg-cell>{{user.email}}</clr-dg-cell>
-            <!--<clr-dg-cell>{{user.created * 1000 | date}}</clr-dg-cell>-->
+            <!--<clr-dg-cell>{{user.role}}</clr-dg-cell>-->
+
+            <clr-dg-cell [ngSwitch]="user.active">
+              <clr-icon *ngSwitchCase="true" class="active-user" shape="check"></clr-icon>
+              <clr-icon *ngSwitchCase="false" class="inactive-user" shape="times"></clr-icon>
+            </clr-dg-cell>
+            <clr-dg-cell>{{user.created | date}}</clr-dg-cell>
           </clr-dg-row>
 
           <clr-dg-footer>{{users.length}} {{ 'USERSSETTINGS.USERS' | translate }}</clr-dg-footer>
@@ -36,6 +52,13 @@
       <clr-tab-content *clrIfActive>
 
         <app-roles></app-roles>
+      </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+      <button clrTabLink>Organizations</button>
+      <clr-tab-content *clrIfActive>
+
+        <h4>TBD</h4>
       </clr-tab-content>
     </clr-tab>
   </clr-tabs>

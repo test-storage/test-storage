@@ -28,7 +28,7 @@ export class DevicesController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(@Body(new ValidationPipe()) createDeviceDto: CreateDeviceDto): Promise<Device> {
-    return this.devicesService.create(createDeviceDto);
+    return await this.devicesService.create(createDeviceDto);
   }
 
   @Get()

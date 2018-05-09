@@ -13,7 +13,8 @@
   "SETTINGS": {
     "MAIN_SETTINGS": "Main Settings",
     "USERS": "Users",
-    "INVENTORY": "Inventory"
+    "INVENTORY": "Inventory",
+    "INTEGRATIONS": "Integrations"
   },
   "LANGUAGES": {
     "en": "English",
@@ -38,6 +39,9 @@
     "EDIT": "Edit",
     "DELETE": "Delete",
     "NAME": "Name",
+    "PHOTO": "Photo",
+    "ACTIVE": "Active",
+    "CREATED": "Created date",
     "USERS": "users",
     "USERS_TAB": "Users",
     "CANCEL": "Cancel"
@@ -98,7 +102,26 @@
   "PROJECTSPAGE": {
     "CREATE": "Create",
     "VIEW": "View",
-    "EDIT": "Edit"
+    "EDIT": "Edit",
+    "EMPTYSTATE_NOPROJECTS_TITLE": "You have not created Project yet.",
+    "EMPTYSTATE_NOPROJECTS_DESCRIPTION": "Tap the 'Create Project' button to get started",
+    "EMPTYSTATE_CREATEPROJECT_BUTTON": "Create Project"
+  },
+  "PROJECTCREATEPAGE": {
+    "WIZARD_TITLE": "Project Creation Wizard",
+    "PROJECT_DETAILS": "Project Details",
+    "NAME": "Name",
+    "DESCRIPTION": "Description",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "LAST_EDITED": "Last edited",
+    "STATUS": "Status",
+    "CREATED_BY": "Created by",
+    "UPDATED_BY": "Updated by",
+    "EDIT_MEMBERS": "Edit Members",
+    "ROLE": "Role",
+    "ACTION": "Action",
+    "REMOVE_MEMBER": "Remove member"
   },
   "PROJECT_DETAILSPAGE": {
     "DESCRIPTION": "Description",
@@ -119,6 +142,7 @@
     "EDIT": "Edit",
     "DELETE": "Delete",
     "TITLE": "Title",
+    "TAGS": "Tags",
     "CANCEL": "Cancel",
     "TESTCASE": "Test Case",
     "TESTSUITE": "Test Suite",
@@ -129,7 +153,10 @@
     "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected test cases? This action is permanent and cannot be recovered.",
     "EMPTYSTATE_NOTESTSUITES_TITLE": "You have not created Test Suite yet.",
     "EMPTYSTATE_NOTESTSUITES_DESCRIPTION": "Tap the 'Create Test Suite' button to get started",
-    "EMPTYSTATE_CREATETESTSUITE_BUTTON": "Create Test Suite"
+    "EMPTYSTATE_CREATETESTSUITE_BUTTON": "Create Test Suite",
+    "STEP_ACTION": "Action",
+    "TEST_DATA": "Test data",
+    "EXPECTED_RESULT": "Expected result"
   },
   "TESTEXECUTIONPAGE": {
     "ADD": "Add",
@@ -173,6 +200,9 @@
     "POSTCONDITIONS": "Postconditions",
     "POSTCONDITIONS_PLACEHOLDER": "Postconditions",
     "POSTCONDITIONS_REQUIRED": "Postconditions required",
+    "ORDER": "Order",
+    "TAGS": "Tags",
+    "TAGS_PLACEHOLDER": "tag",
     "CREATE_TESTCASE": "Create Test Case",
     "EDIT_TESTCASE": "Edit Test Case",
     "CREATE_BUTTON": "Create",

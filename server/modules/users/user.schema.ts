@@ -28,6 +28,7 @@ export const UserSchema = new mongoose.Schema({
   },
   active: Boolean,
   photo: String,
+  avatarColor: Number,
   workInfo: {
     jobTitle: { type: String },
     phoneNumber: String,

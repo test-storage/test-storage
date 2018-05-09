@@ -25,6 +25,7 @@ export class CreateTestSuiteModalComponent implements OnInit {
 
   createTestSuite() {
     this.testsuiteChange.emit(this.testsuite);
+    this.testsuite = new TestSuite();
   }
 
   ngOnInit() {

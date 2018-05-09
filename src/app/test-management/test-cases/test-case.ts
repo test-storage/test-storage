@@ -32,5 +32,5 @@ export enum Priority {
 export class TestCaseStep {
   stepAction?: string;
   testData?: string;
-  expectedResult: string;
+  expectedResult?: string;
 }
