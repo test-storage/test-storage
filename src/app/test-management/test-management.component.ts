@@ -91,7 +91,9 @@ export class TestManagementComponent implements OnInit {
     }
 
     this.testSuitesViewModel = [...root];
-    this.openTestSuite(root[0]);
+    if (!this.selectedTestSuite) {
+      this.openTestSuite(root[0]);
+    }
   }
 
   onAdd(testsuite?: TestSuite) {
