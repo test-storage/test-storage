@@ -12,6 +12,7 @@
     </div>
   </clr-dg-action-bar>
 
+  <clr-dg-column style="width: 30px !important;">{{ 'TESTMANAGEMENTPAGE.PRIORITY' | translate }}</clr-dg-column>
   <clr-dg-column [clrDgField]="'order'" [clrDgSortOrder]="ascSort">{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}</clr-dg-column>
   <!--<clr-dg-column >Order</clr-dg-column>-->
   <!--<clr-dg-column>Status</clr-dg-column>-->
@@ -25,6 +26,14 @@
     <span style="align-self: center;">{{user.name}}</span>
   </clr-dg-cell>
 -->
+
+    <clr-dg-cell [ngSwitch]="testCase.priority" style="text-align: center;">
+      <span *ngSwitchCase="'BLOCKER'" class="negative-case">{{ 'PRIORITIES.BLOCKER' | translate }}</span>
+      <span *ngSwitchCase="'CRITICAL'" class="negative-case">{{ 'PRIORITIES.CRITICAL' | translate }}</span>
+      <span *ngSwitchCase="'MAJOR'" class="positive-case">{{ 'PRIORITIES.MAJOR' | translate }}</span>
+      <span *ngSwitchCase="'MINOR'" class="positive-case">{{ 'PRIORITIES.MINOR' | translate }}</span>
+      <span *ngSwitchCase="'TRIVIAL'" class="positive-case">{{ 'PRIORITIES.TRIVIAL' | translate }}</span>
+    </clr-dg-cell>
     <clr-dg-cell>
       {{testCase.title}}
     </clr-dg-cell>
@@ -32,7 +41,7 @@
     <clr-dg-cell>
 
       <span class="label label-purple" *ngFor="let tag of testCase.tags">
-      {{ tag }}
+        {{ tag }}
       </span>
 
     </clr-dg-cell>
