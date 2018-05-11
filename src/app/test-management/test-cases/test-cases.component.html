@@ -28,11 +28,11 @@
 -->
 
     <clr-dg-cell [ngSwitch]="testCase.priority" style="text-align: center;">
-      <span *ngSwitchCase="'BLOCKER'" class="negative-case">{{ 'PRIORITIES.BLOCKER' | translate }}</span>
-      <span *ngSwitchCase="'CRITICAL'" class="negative-case">{{ 'PRIORITIES.CRITICAL' | translate }}</span>
-      <span *ngSwitchCase="'MAJOR'" class="positive-case">{{ 'PRIORITIES.MAJOR' | translate }}</span>
-      <span *ngSwitchCase="'MINOR'" class="positive-case">{{ 'PRIORITIES.MINOR' | translate }}</span>
-      <span *ngSwitchCase="'TRIVIAL'" class="positive-case">{{ 'PRIORITIES.TRIVIAL' | translate }}</span>
+      <clr-icon *ngSwitchCase="'BLOCKER'" class="blocker-color is-solid" shape="circle"></clr-icon>
+      <clr-icon *ngSwitchCase="'CRITICAL'" class="critical-color is-solid" shape="circle"></clr-icon>
+      <clr-icon *ngSwitchCase="'MAJOR'" class="major-color is-solid" shape="circle"></clr-icon>
+      <clr-icon *ngSwitchCase="'MINOR'" class="minor-color is-solid" shape="circle"></clr-icon>
+      <clr-icon *ngSwitchCase="'TRIVIAL'" class="trivial-color is-solid" shape="circle"></clr-icon>
     </clr-dg-cell>
     <clr-dg-cell>
       {{testCase.title}}
