@@ -145,6 +145,7 @@
     "ADD": "Add",
     "EDIT": "Edit",
     "DELETE": "Delete",
+    "PRIORITY": "Priority",
     "TITLE": "Title",
     "TAGS": "Tags",
     "TYPE": "Type",
