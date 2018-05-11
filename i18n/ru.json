@@ -34,6 +34,10 @@
     "MINOR": "Минорный",
     "TRIVIAL": "Тривиальный"
   },
+  "TESTCASETYPE": {
+    "POSITIVE": "Положительный",
+    "NEGATIVE": "Отрицательный"
+  },
   "USERSSETTINGS": {
     "ADD": "Добавить",
     "EDIT": "Редактировать",
@@ -185,6 +189,7 @@
     "DESCRIPTION_PLACEHOLDER": "Описание",
     "DESCRIPTION_REQUIRED": "Описание - обязательное поле",
     "PRIORITY": "Приоритет",
+    "TYPE": "Тип",
     "PRECONDITIONS": "Предусловия",
     "PRECONDITIONS_PLACEHOLDER": "Предусловия",
     "PRECONDITIONS_REQUIRED": "Предусловия - обязательное поле",

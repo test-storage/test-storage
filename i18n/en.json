@@ -34,6 +34,10 @@
     "MINOR": "Minor",
     "TRIVIAL": "Trivial"
   },
+  "TESTCASETYPE": {
+    "POSITIVE": "Positive",
+    "NEGATIVE": "Negative"
+  },
   "USERSSETTINGS": {
     "ADD": "Add",
     "EDIT": "Edit",
@@ -185,6 +189,7 @@
     "DESCRIPTION_PLACEHOLDER": "Description",
     "DESCRIPTION_REQUIRED": "Description required",
     "PRIORITY": "Priority",
+    "TYPE": "Type",
     "PRECONDITIONS": "Preconditions",
     "PRECONDITIONS_PLACEHOLDER": "Preconditions",
     "PRECONDITIONS_REQUIRED": "Preconditions required",

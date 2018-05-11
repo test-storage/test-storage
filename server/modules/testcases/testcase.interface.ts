@@ -5,10 +5,11 @@ export interface Testcase extends Document {
   readonly key?: string;
   readonly projectId: string;
   readonly testSuiteId: string;
-  readonly priority?: number;
+  readonly priority?: string;
   readonly order?: number;
   readonly title: string;
   readonly description?: string;
+  readonly type?: string;
   readonly preConditions?: string;
   readonly steps?: Array<string>;
   readonly postConditions?: string;
