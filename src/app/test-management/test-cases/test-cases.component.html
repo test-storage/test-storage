@@ -16,6 +16,7 @@
   <!--<clr-dg-column >Order</clr-dg-column>-->
   <!--<clr-dg-column>Status</clr-dg-column>-->
   <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TAGS' | translate }}</clr-dg-column>
+  <clr-dg-column style="width: 30px !important;">{{ 'TESTMANAGEMENTPAGE.TYPE' | translate }}</clr-dg-column>
 
   <clr-dg-row *clrDgItems="let testCase of testCases" [clrDgItem]="testCase">
     <!--
@@ -33,6 +34,12 @@
       <span class="label label-purple" *ngFor="let tag of testCase.tags">
       {{ tag }}
       </span>
+
+    </clr-dg-cell>
+
+    <clr-dg-cell [ngSwitch]="testCase.type" style="text-align: center;">
+      <clr-icon *ngSwitchCase="'POSITIVE'" class="positive-case" shape="happy-face"></clr-icon>
+      <clr-icon *ngSwitchCase="'NEGATIVE'" class="negative-case" shape="sad-face"></clr-icon>
 
     </clr-dg-cell>
 
