@@ -117,6 +117,8 @@ export class UsersComponent implements OnInit, OnDestroy {
         error => console.log(error)
       );
     }
+    // remove selection
+    this.selectedUsers = [];
   }
 
   forceDelete($event) {
@@ -141,6 +143,8 @@ export class UsersComponent implements OnInit, OnDestroy {
         );
       }
     });
+     // remove selection
+     this.selectedUsers = [];
   }
 
 }
