@@ -147,6 +147,7 @@
     "DELETE": "Delete",
     "TITLE": "Title",
     "TAGS": "Tags",
+    "TYPE": "Type",
     "CANCEL": "Cancel",
     "TESTCASE": "Test Case",
     "TESTSUITE": "Test Suite",
