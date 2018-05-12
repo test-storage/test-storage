@@ -31,15 +31,15 @@
                 <clr-icon shape="close" (click)="onDelete(subTestSuite);"></clr-icon>
               </button>
               <ng-template [(clrIfExpanded)]="subTestSuite.expanded">
-                  <clr-tree-node *ngFor="let thirdSubTestSuite of subTestSuite.children">
-                      <button clrVerticalNavLink (click)="openTestSuite(thirdSubTestSuite)" class="clr-treenode-link" [class.active]="thirdSubTestSuite._id === selectedTestSuite._id">
-                        <clr-icon [attr.shape]="thirdSubTestSuite.icon"></clr-icon>
-                        {{ thirdSubTestSuite.name }}
-                        <clr-icon shape="plus" (click)="onAdd(thirdSubTestSuite);"></clr-icon>
-                        <clr-icon shape="pencil" (click)="onEdit(thirdSubTestSuite);"></clr-icon>
-                        <clr-icon shape="close" (click)="onDelete(thirdSubTestSuite);"></clr-icon>
-                      </button>
-                      </clr-tree-node>
+                <clr-tree-node *ngFor="let thirdSubTestSuite of subTestSuite.children">
+                  <button clrVerticalNavLink (click)="openTestSuite(thirdSubTestSuite)" class="clr-treenode-link" [class.active]="thirdSubTestSuite._id === selectedTestSuite._id">
+                    <clr-icon [attr.shape]="thirdSubTestSuite.icon"></clr-icon>
+                    {{ thirdSubTestSuite.name }}
+                    <clr-icon shape="plus" (click)="onAdd(thirdSubTestSuite);"></clr-icon>
+                    <clr-icon shape="pencil" (click)="onEdit(thirdSubTestSuite);"></clr-icon>
+                    <clr-icon shape="close" (click)="onDelete(thirdSubTestSuite);"></clr-icon>
+                  </button>
+                </clr-tree-node>
               </ng-template>
             </clr-tree-node>
           </ng-template>
