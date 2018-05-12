@@ -1,6 +1,6 @@
 <!--<button class="btn btn-primary" (click)="projectWizard = !projectWizard;">Open</button>-->
 
-<clr-wizard #wizardlg [(clrWizardOpen)]="opened">
+<clr-wizard #wizardlg [(clrWizardOpen)]="opened" clrWizardSize="lg">
   <clr-wizard-title>{{ 'PROJECTCREATEPAGE.WIZARD_TITLE' | translate }}</clr-wizard-title>
 
   <clr-wizard-button [type]="'cancel'" (click)="setOpened(false)">Cancel</clr-wizard-button>

@@ -1,4 +1,4 @@
-<clr-modal *ngIf="testcase !== undefined" [(clrModalOpen)]="opened">
+<clr-modal *ngIf="testcase !== undefined" [(clrModalOpen)]="opened" [clrModalSize]="'lg'">
   <h3 class="modal-title">{{ 'TESTCASECREATEPAGE.EDIT_TESTCASE' | translate }}</h3>
   <div class="modal-body">
     <form (ngSubmit)="setOpened(false); updateTestCase(testcase)" id="editTestCaseForm" #editTestCaseForm="ngForm" (keyup.enter)="editTestCaseForm.form.valid && editTestCaseForm.ngSubmit.emit();">
@@ -8,8 +8,8 @@
 
         <div class="form-group">
           <label class="required" for="title">{{ 'TESTCASECREATEPAGE.TITLE' | translate }}</label>
-          <input [appAutofocus]="opened" type="text" id="title" name="title" [(ngModel)]="testcase.title" #title="ngModel" required placeholder="{{ 'TESTCASECREATEPAGE.TITLE_PLACEHOLDER' | translate }}"
-            size="35">
+          <input [appAutofocus]="opened" type="text" id="title" name="title" [(ngModel)]="testcase.title" #title="ngModel" required
+            placeholder="{{ 'TESTCASECREATEPAGE.TITLE_PLACEHOLDER' | translate }}" size="35">
         </div>
 
         <div class="form-group">
@@ -43,21 +43,21 @@
         </div>
 
         <div class="form-group">
-            <label for="tags">{{ 'TESTCASECREATEPAGE.TAGS' | translate }}</label>
-            <input #tag type="text" id="tags" name="tags" (keyup.enter)="setTag(tag.value); tag.value = '';" placeholder="{{ 'TESTCASECREATEPAGE.TAGS_PLACEHOLDER' | translate }}"
-              size="35">
-            <button type="button" class="btn btn-sm btn-secondary" (click)="setTag(tag.value); tag.value = '';">
-              <clr-icon shape="plus"></clr-icon> Add</button>
+          <label for="tags">{{ 'TESTCASECREATEPAGE.TAGS' | translate }}</label>
+          <input #tag type="text" id="tags" name="tags" (keyup.enter)="setTag(tag.value); tag.value = '';" placeholder="{{ 'TESTCASECREATEPAGE.TAGS_PLACEHOLDER' | translate }}"
+            size="35">
+          <button type="button" class="btn btn-sm btn-secondary" (click)="setTag(tag.value); tag.value = '';">
+            <clr-icon shape="plus"></clr-icon> Add</button>
 
-          </div>
-          <div class="form-group">
-            <label for="tag-list"></label>
-            <span *ngFor="let tag of testcase.tags" class="label">{{ tag }}
-              <a (click)="removeTag(tag);">
-                <clr-icon shape="close"></clr-icon>
-              </a>
-            </span>
-          </div>
+        </div>
+        <div class="form-group">
+          <label for="tag-list"></label>
+          <span *ngFor="let tag of testcase.tags" class="label">{{ tag }}
+            <a (click)="removeTag(tag);">
+              <clr-icon shape="close"></clr-icon>
+            </a>
+          </span>
+        </div>
 
         <div class="form-group">
           <label>Steps</label>
