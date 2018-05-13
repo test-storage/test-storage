@@ -10,9 +10,12 @@ export const ProjectSchema = new mongoose.Schema({
   },
   name: String,
   description: String,
+  photo: String,
+  avatarColor: Number,
   enabled: { type: Boolean, default: true },
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: String,
   updatedBy: String
 });
+

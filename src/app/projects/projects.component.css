@@ -3,6 +3,28 @@
     height: calc(100vh - 60px);
 }
 
+.edit-icon {
+    position: absolute;
+    right: 1px;
+    top: 10px;
+}
+
+.card-img {
+    height: 100px;
+}
+
+.avatar {
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.avatar-name {
+    font-size: 300%;
+    align-self: center;
+}
+
 .noexist-wrapper {
     display: flex;
     height: calc(100vh - 120px);
