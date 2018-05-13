@@ -9,7 +9,7 @@ import { TestcasesService } from './testcases.service';
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Testcase', schema: TestcaseSchema }])],
   controllers: [TestcasesController],
-  components: [
+  providers: [
     TestcasesService
   ],
 })

@@ -1,4 +1,4 @@
-import { Module, NestModule, MiddlewaresConsumer, RequestMethod } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 
 import * as config from 'config';
 
@@ -27,12 +27,12 @@ const connectionString = `mongodb://${config.get('db.user')}:${config.get('db.pa
     DevicesModule
   ],
   controllers: [],
-  components: [],
+  providers: [],
 })
 export class ApplicationModule implements NestModule {
-  configure(consumer: MiddlewaresConsumer): void {
+  configure(consumer: MiddlewareConsumer): void {
     consumer
       .apply(CORSMiddleware)
-      .forRoutes({ path: '/*', method: RequestMethod.ALL });
+      .forRoutes('/*');
   }
 }

@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Component } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { RoleSchema } from './role.schema';
@@ -7,10 +7,10 @@ import { CreateRoleDto } from './create-role.dto';
 import { Role } from './role.interface';
 
 
-@Component()
+@Injectable()
 export class RolesService {
 
-  constructor( @InjectModel(RoleSchema) private readonly roleModel: Model<Role>) { }
+  constructor(@InjectModel('Role') private readonly roleModel: Model<Role>) { }
 
   async create(roleDto: CreateRoleDto): Promise<Role> {
     const createdRole = new this.roleModel(roleDto);

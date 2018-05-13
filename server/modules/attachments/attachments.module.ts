@@ -1,10 +1,8 @@
-import { Module, RequestMethod } from '@nestjs/common';
-import { MiddlewaresConsumer } from '@nestjs/common/interfaces/middlewares';
+import { Module, RequestMethod, MiddlewareConsumer } from '@nestjs/common';
 
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { AttachmentSchema } from './attachment.schema';
-
 import { AttachmentsController } from './attachments.controller';
 import { AttachmentsService } from './attachments.service';
 
@@ -15,15 +13,10 @@ import { FileUploadMiddleware } from '../common/middlewares/file-upload.middlewa
     MongooseModule.forFeature([{ name: 'Attachment', schema: AttachmentSchema }])
   ],
   controllers: [AttachmentsController],
-  components: [AttachmentsService]
+  providers: [AttachmentsService]
 })
 export class AttachmentsModule {
-  configure(consumer: MiddlewaresConsumer) {
-    consumer.apply([
-      FileUploadMiddleware,
-    ]).forRoutes({
-      method: RequestMethod.POST,
-      path: 'attachments/upload',
-    });
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply([FileUploadMiddleware]).forRoutes('attachments/upload'); // TODO only for POST
   }
 }

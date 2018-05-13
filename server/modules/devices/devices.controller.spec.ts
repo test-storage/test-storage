@@ -10,7 +10,7 @@ describe('DevicesController', () => {
   beforeEach(async () => {
     const module = await Test.createTestingModule({
       controllers: [DevicesController],
-      components: [DevicesService],
+      providers: [DevicesService],
     }).compile();
 
     devicesService = module.get<DevicesService>(DevicesService);

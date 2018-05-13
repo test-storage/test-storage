@@ -9,7 +9,7 @@ import { RolesService } from './roles.service';
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Role', schema: RoleSchema }])],
   controllers: [RolesController],
-  components: [
+  providers: [
     RolesService
   ],
 })
