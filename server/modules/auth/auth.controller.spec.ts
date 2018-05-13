@@ -12,7 +12,7 @@ describe('AuthController', () => {
     const module = await Test.createTestingModule({
       modules: [UsersModule],
       controllers: [AuthController],
-      components: [AuthService],
+      providers: [AuthService],
     }).compile();
 
     authService = module.get<AuthService>(AuthService);

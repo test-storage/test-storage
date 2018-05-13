@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Component } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { TestsuiteSchema } from './testsuite.schema';
@@ -7,10 +7,10 @@ import { CreateTestsuiteDto } from './create-testsuite.dto';
 import { Testsuite } from './testsuite.interface';
 
 
-@Component()
+@Injectable()
 export class TestsuitesService {
 
-  constructor(@InjectModel(TestsuiteSchema) private readonly testsuiteModel: Model<Testsuite>) { }
+  constructor(@InjectModel('Testsuite') private readonly testsuiteModel: Model<Testsuite>) { }
 
   async create(testsuiteDto: CreateTestsuiteDto): Promise<Testsuite> {
     const createdTestsuite = new this.testsuiteModel(testsuiteDto);

@@ -1,12 +1,12 @@
-import { HttpException } from '@nestjs/common';
-import { PipeTransform, Pipe, ArgumentMetadata, HttpStatus } from '@nestjs/common';
+import { HttpException, Injectable, PipeTransform, Pipe, ArgumentMetadata, HttpStatus } from '@nestjs/common';
 
-@Pipe()
+@Injectable()
 export class ParameterValidationPipe implements PipeTransform<string> {
-    async transform(value: string, metadata: ArgumentMetadata) {
-        if (!value.match('^[a-f0-9]{32}$')) {
-            throw new HttpException('Validation failed', HttpStatus.BAD_REQUEST);
-        }
-        return value;
+
+  async transform(value: string, metadata: ArgumentMetadata) {
+    if (!value.match('^[a-f0-9]{32}$')) {
+      throw new HttpException('Validation failed', HttpStatus.BAD_REQUEST);
     }
+    return value;
+  }
 }

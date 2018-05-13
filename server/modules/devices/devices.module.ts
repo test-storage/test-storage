@@ -9,7 +9,7 @@ import { DevicesService } from './devices.service';
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Device', schema: DeviceSchema }])],
   controllers: [DevicesController],
-  components: [
+  providers: [
     DevicesService
   ],
 })
