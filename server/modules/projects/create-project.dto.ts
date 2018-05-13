@@ -3,7 +3,7 @@ import { IsString, IsInt, IsNotEmpty, IsBoolean, IsOptional } from 'class-valida
 
 export class CreateProjectDto {
 
-  @ApiModelPropertyOptional({ type: String})
+  @ApiModelPropertyOptional({ type: String })
   @IsOptional()
   @IsString()
   readonly _id?: string;
@@ -18,21 +18,31 @@ export class CreateProjectDto {
   @IsNotEmpty()
   readonly description: string;
 
-  @ApiModelPropertyOptional({ type: Boolean})
+  @ApiModelPropertyOptional({ type: String })
+  @IsString()
+  @IsOptional()
+  readonly image?: string;
+
+  @ApiModelProperty({ type: Number })
+  @IsInt()
+  @IsNotEmpty()
+  readonly avatarColor: number;
+
+  @ApiModelPropertyOptional({ type: Boolean })
   // @IsBoolean()
   readonly enabled?: boolean;
 
-  @ApiModelPropertyOptional({ type: String})
-  readonly created?: string;
-  @ApiModelPropertyOptional({ type: String})
-  readonly updated?: string;
+  @ApiModelPropertyOptional({ type: Date })
+  readonly created?: Date;
+  @ApiModelPropertyOptional({ type: Date })
+  readonly updated?: Date;
   // manager?: string; point to user
 
-  @ApiModelPropertyOptional({ type: String})
+  @ApiModelPropertyOptional({ type: String })
   // @IsString()
   readonly createdBy?: string;
 
-  @ApiModelPropertyOptional({ type: String})
+  @ApiModelPropertyOptional({ type: String })
   // @IsString()
   readonly updatedBy?: string;
 }

@@ -47,11 +47,29 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     this.projectWizardOpened = true;
   }
 
+  onEdit(project: Project) {
+    // TODO open edit modal
+  }
+
   refresh() {
     // this.projectWizardOpened = false;
   }
 
+  dropdown(event) {
+    event.stopPropagation();
+  }
+
+  getBackgroundColor(project: Project): string {
+    return `hsl(${project.avatarColor}, 53%, 90%)`;
+  }
+
+  getColor(project: Project): string {
+    return `hsl(${project.avatarColor}, 50%, 50%)`;
+  }
+
   createProject(project: Project) {
+    project.avatarColor = Math.floor(Math.random() * 360);
+
     this.projectsService.createProject(project).subscribe(
       (response: HttpResponse<Project>) => {
         if (response.status === 201) {
