@@ -19,8 +19,11 @@ export class EditTestCaseModalComponent implements OnInit {
   priorityKeys; // Priority enumeration keys
   typeKeys; // Type enumeration keys
   public selectedTestSteps = [];
+  public testCaseStep: TestCaseStep;
 
-  constructor() { }
+  constructor() {
+    this.testCaseStep = new TestCaseStep();
+   }
 
   setOpened(val: boolean) {
     this.opened = val;
@@ -37,6 +40,11 @@ export class EditTestCaseModalComponent implements OnInit {
 
   removeTag(tag) {
     this.testcase.tags = this.testcase.tags.filter(tags => tags !== tag);
+  }
+
+  addStep() {
+    this.testcase.steps.push(this.testCaseStep);
+    this.testCaseStep = new TestCaseStep();
   }
 
   onAdd() {
