@@ -19,12 +19,14 @@ export class CreateTestCaseModalComponent implements OnInit {
   priorityKeys; // Priority enumeration keys
   typeKeys; // Type enumeration keys
   testCaseSteps: TestCaseStep[] = [];
+  testCaseStep: TestCaseStep;
   tags = [];
 
   public selectedTestSteps = [];
 
   constructor() {
     this.testcase = new TestCase();
+    this.testCaseStep = new TestCaseStep();
     this.testcase.steps = [];
   }
 
@@ -52,13 +54,13 @@ export class CreateTestCaseModalComponent implements OnInit {
     this.tags = this.tags.filter(tags => tags !== tag);
   }
 
+  addStep() {
+    this.testcase.steps.push(this.testCaseStep);
+    this.testCaseStep = new TestCaseStep();
+  }
+
   onAdd() {
-    const step = new TestCaseStep();
-    step.stepAction = '';
-    step.testData = '';
-    step.expectedResult = '';
-    this.testCaseSteps.push(step);
-    console.log(this.testCaseSteps);
+
   }
 
   onEdit() {
