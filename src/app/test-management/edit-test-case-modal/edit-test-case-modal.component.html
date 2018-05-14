@@ -81,15 +81,15 @@
           <clr-dg-row *clrDgItems="let step of testcase.steps; let i = index;" (clrDgItem)="step">
               <clr-dg-cell>
                   <input type="text" id="stepAction" [ngModelOptions]="{standalone: true}" name="stepAction" [(ngModel)]="testcase.steps[i].stepAction" placeholder="{{ 'TESTCASECREATEPAGE.STEPS_ACTION_PLACEHOLDER' | translate }}"
-                  size="35">
+                  size="30">
               </clr-dg-cell>
               <clr-dg-cell>
                   <input type="text" id="testData" [ngModelOptions]="{standalone: true}" name="testData" [(ngModel)]="testcase.steps[i].testData" placeholder="{{ 'TESTCASECREATEPAGE.TESTDATA_PLACEHOLDER' | translate }}"
-                  size="35">
+                  size="30">
               </clr-dg-cell>
               <clr-dg-cell>
                   <input type="text" id="expectedResult" [ngModelOptions]="{standalone: true}" name="expectedResult" [(ngModel)]="testcase.steps[i].expectedResult" placeholder="{{ 'TESTCASECREATEPAGE.EXPECTED_PLACEHOLDER' | translate }}"
-                  size="35">
+                  size="30">
               </clr-dg-cell>
             </clr-dg-row>
           <clr-dg-footer>{{ testcase.steps.length}} {{ 'TESTCASECREATEPAGE.STEPS_COUNT' | translate }}</clr-dg-footer>
