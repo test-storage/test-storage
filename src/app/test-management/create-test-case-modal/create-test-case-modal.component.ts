@@ -36,7 +36,6 @@ export class CreateTestCaseModalComponent implements OnInit {
   }
 
   createTestCase() {
-    this.testcase.steps = this.testCaseSteps;
     this.testcase.tags = this.tags;
     this.testcaseChange.emit(this.testcase);
     this.testcase = new TestCase();
@@ -44,7 +43,6 @@ export class CreateTestCaseModalComponent implements OnInit {
     this.testcase.tags = [];
     this.tags = [];
   }
-
 
   setTag(tag) {
     this.tags.push(tag);
@@ -54,13 +52,9 @@ export class CreateTestCaseModalComponent implements OnInit {
     this.tags = this.tags.filter(tags => tags !== tag);
   }
 
-  addStep() {
+  onAdd() {
     this.testcase.steps.push(this.testCaseStep);
     this.testCaseStep = new TestCaseStep();
-  }
-
-  onAdd() {
-
   }
 
   onEdit() {

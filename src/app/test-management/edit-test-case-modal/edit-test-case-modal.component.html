@@ -78,46 +78,23 @@
           <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TEST_DATA' | translate }}</clr-dg-column>
           <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.EXPECTED_RESULT' | translate }}</clr-dg-column>
           <clr-dg-placeholder>{{ 'TESTCASECREATEPAGE.STEPS_EMPTY_PLACEHOLDER' | translate }}</clr-dg-placeholder>
-          <clr-dg-row *clrDgItems="let step of testcase.steps;" (clrDgItem)="step">
-            <clr-dg-cell>
-              {{ step.stepAction }}
-            </clr-dg-cell>
-            <clr-dg-cell>
-              {{ step.testData }}
-            </clr-dg-cell>
-            <clr-dg-cell>
-              {{ step.expectedResult }}
-            </clr-dg-cell>
-          </clr-dg-row>
+          <clr-dg-row *clrDgItems="let step of testcase.steps; let i = index;" (clrDgItem)="step">
+              <clr-dg-cell>
+                  <input type="text" id="stepAction" [ngModelOptions]="{standalone: true}" name="stepAction" [(ngModel)]="testcase.steps[i].stepAction" placeholder="{{ 'TESTCASECREATEPAGE.STEPS_ACTION_PLACEHOLDER' | translate }}"
+                  size="35">
+              </clr-dg-cell>
+              <clr-dg-cell>
+                  <input type="text" id="testData" [ngModelOptions]="{standalone: true}" name="testData" [(ngModel)]="testcase.steps[i].testData" placeholder="{{ 'TESTCASECREATEPAGE.TESTDATA_PLACEHOLDER' | translate }}"
+                  size="35">
+              </clr-dg-cell>
+              <clr-dg-cell>
+                  <input type="text" id="expectedResult" [ngModelOptions]="{standalone: true}" name="expectedResult" [(ngModel)]="testcase.steps[i].expectedResult" placeholder="{{ 'TESTCASECREATEPAGE.EXPECTED_PLACEHOLDER' | translate }}"
+                  size="35">
+              </clr-dg-cell>
+            </clr-dg-row>
           <clr-dg-footer>{{ testcase.steps.length}} {{ 'TESTCASECREATEPAGE.STEPS_COUNT' | translate }}</clr-dg-footer>
         </clr-datagrid>
 
-        <br>
-        <div class="form-group">
-          <label>{{ 'TESTCASECREATEPAGE.ADD_STEP' | translate }}</label>
-        </div>
-        <br>
-        <br>
-
-        <div class="form-group">
-          <label for="stepAction">{{ 'TESTCASECREATEPAGE.STEPS_ACTION_PLACEHOLDER' | translate }}</label>
-          <textarea id="stepAction" name="stepAction" [(ngModel)]="testCaseStep.stepAction" #stepAction="ngModel" placeholder="click to login button"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="testData">{{ 'TESTCASECREATEPAGE.TESTDATA' | translate }}</label>
-          <textarea id="testData" name="testData" [(ngModel)]="testCaseStep.testData" #testData="ngModel" placeholder="testdata"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="expectedResult">{{ 'TESTCASECREATEPAGE.EXPECTED' | translate }}</label>
-          <textarea id="expectedResult" name="expectedResult" [(ngModel)]="testCaseStep.expectedResult" #expectedResult="ngModel" placeholder="expected"></textarea>
-        </div>
-
-        <div class="form-group">
-          <button type="button" class="btn btn-sm btn-secondary" (click)="addStep();">
-            <clr-icon shape="plus"></clr-icon> {{ 'TESTMANAGEMENTPAGE.ADD' | translate }}</button>
-        </div>
         <!-- should be removed when drag n drop added -->
         <div class="form-group">
           <label for="order">{{ 'TESTCASECREATEPAGE.ORDER' | translate }}</label>

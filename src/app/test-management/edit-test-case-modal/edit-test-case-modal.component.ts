@@ -42,17 +42,9 @@ export class EditTestCaseModalComponent implements OnInit {
     this.testcase.tags = this.testcase.tags.filter(tags => tags !== tag);
   }
 
-  addStep() {
+  onAdd() {
     this.testcase.steps.push(this.testCaseStep);
     this.testCaseStep = new TestCaseStep();
-  }
-
-  onAdd() {
-    const step = new TestCaseStep();
-    step.stepAction = '';
-    step.testData = '';
-    step.expectedResult = '';
-    this.testcase.steps.push(step);
   }
 
   onEdit() {
