@@ -6,7 +6,7 @@ export class Testrun {
   builds?: Array<string>;
   environments?: Array<string>;
   platforms?: Array<string>;
-  testcases?: Array<string>;
+  testcases?: Array<TestCaseExecution>;
   status?: string;
   archieved?: boolean;
   startDate?: string;
@@ -15,4 +15,16 @@ export class Testrun {
   updated?: string;
   createdBy?: string;
   updatedBy?: string;
+}
+
+export class TestCaseExecution {
+  id?: string;
+  status?: TestCaseStatus;
+}
+
+export enum TestCaseStatus {
+  PASSED,
+  FAILED,
+  UNTESTED,
+  BLOCKED
 }
