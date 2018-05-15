@@ -20,6 +20,7 @@ export const TestrunSchema = new mongoose.Schema({
     enum: ['OPEN', 'COMPLETED'],
     default: 'OPEN'
   },
+  archieved: Boolean,
   startDate: { type: Date },
   endDate: { type: Date },
   created: { type: Date, required: true, default: Date.now },
