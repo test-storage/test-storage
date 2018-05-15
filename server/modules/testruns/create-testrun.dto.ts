@@ -6,9 +6,9 @@ export class CreateTestrunDto {
   builds?: Array<string>;
   environments?: Array<string>;
   platforms?: Array<string>;
-  testplanId?: string;
   testcases?: Array<string>;
   status?: string;
+  archieved?: boolean;
   startDate?: string;
   endDate?: string;
   created?: string;

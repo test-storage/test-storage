@@ -1,4 +1,4 @@
-export interface Testrun {
+export class Testrun {
   _id?: string;
   name: string;
   description?: string;
