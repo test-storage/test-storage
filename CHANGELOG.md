@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.34.0 (May 16, 2018)
+- Update backend to Nest 5 ([@pumano](https://github.com/pumano) in [#83](https://github.com/test-storage/test-storage/pull/83))
+- Add better UI for test case steps
+- Add priopity for test cases
+- Add test case type (positive / negative)
+- Multiple UI improvements
+- Multiple bug fixes
+
 ## 0.33.0 (May 09, 2018)
 - Update to Angular 6 ([@pumano](https://github.com/pumano) in [#82](https://github.com/test-storage/test-storage/pull/82))
 - Add sign up page
