@@ -34,6 +34,10 @@
     "MINOR": "Minor",
     "TRIVIAL": "Trivial"
   },
+  "TESTCASETYPE": {
+    "POSITIVE": "Positive",
+    "NEGATIVE": "Negative"
+  },
   "USERSSETTINGS": {
     "ADD": "Add",
     "EDIT": "Edit",
@@ -141,8 +145,10 @@
     "ADD": "Add",
     "EDIT": "Edit",
     "DELETE": "Delete",
+    "PRIORITY": "Priority",
     "TITLE": "Title",
     "TAGS": "Tags",
+    "TYPE": "Type",
     "CANCEL": "Cancel",
     "TESTCASE": "Test Case",
     "TESTSUITE": "Test Suite",
@@ -185,10 +191,14 @@
     "DESCRIPTION_PLACEHOLDER": "Description",
     "DESCRIPTION_REQUIRED": "Description required",
     "PRIORITY": "Priority",
+    "TYPE": "Type",
     "PRECONDITIONS": "Preconditions",
     "PRECONDITIONS_PLACEHOLDER": "Preconditions",
     "PRECONDITIONS_REQUIRED": "Preconditions required",
     "STEPS": "Steps",
+    "ADD_STEP": "Add Step",
+    "STEPS_EMPTY_PLACEHOLDER": "We couldn't find any test steps!",
+    "STEPS_COUNT": "steps",
     "STEPS_ACTION_PLACEHOLDER": "Action",
     "STEPS_ACTION_REQUIRED": "Action required",
     "TESTDATA": "Test Data",

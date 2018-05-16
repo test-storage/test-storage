@@ -1,4 +1,4 @@
-import { Module, NestModule, MiddlewaresConsumer, RequestMethod } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 
 import * as config from 'config';
 
@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { ProjectsModule } from './projects/projects.module';
 import { TestsuitesModule } from './testsuites/testsuites.module';
+import { TestrunsModule } from './testruns/testruns.module';
 import { DevicesModule } from './devices/devices.module';
 
 const connectionString = `mongodb://${config.get('db.user')}:${config.get('db.password')}@${process.env.DOCKERIZED ? 'mongodb' : config.get('db.host')}/${config.get('db.name')}`;
@@ -22,17 +23,18 @@ const connectionString = `mongodb://${config.get('db.user')}:${config.get('db.pa
     ProjectsModule,
     TestcasesModule,
     TestsuitesModule,
+    TestrunsModule,
     UsersModule,
     RolesModule,
     DevicesModule
   ],
   controllers: [],
-  components: [],
+  providers: [],
 })
 export class ApplicationModule implements NestModule {
-  configure(consumer: MiddlewaresConsumer): void {
+  configure(consumer: MiddlewareConsumer): void {
     consumer
       .apply(CORSMiddleware)
-      .forRoutes({ path: '/*', method: RequestMethod.ALL });
+      .forRoutes('/*');
   }
 }

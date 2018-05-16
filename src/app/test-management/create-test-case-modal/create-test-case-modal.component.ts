@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { TestCase, Priority, TestCaseStep } from '../test-cases/test-case';
+import { TestCase, Priority, TestCaseStep, TestCaseType } from '../test-cases/test-case';
 
 @Component({
   selector: 'app-create-test-case-modal',
@@ -15,14 +15,18 @@ export class CreateTestCaseModalComponent implements OnInit {
 
   public testcase: TestCase;
   public priorities = Priority;
-  keys; // Priority enumeration keys
+  public types = TestCaseType;
+  priorityKeys; // Priority enumeration keys
+  typeKeys; // Type enumeration keys
   testCaseSteps: TestCaseStep[] = [];
+  testCaseStep: TestCaseStep;
   tags = [];
 
   public selectedTestSteps = [];
 
   constructor() {
     this.testcase = new TestCase();
+    this.testCaseStep = new TestCaseStep();
     this.testcase.steps = [];
   }
 
@@ -32,7 +36,6 @@ export class CreateTestCaseModalComponent implements OnInit {
   }
 
   createTestCase() {
-    this.testcase.steps = this.testCaseSteps;
     this.testcase.tags = this.tags;
     this.testcaseChange.emit(this.testcase);
     this.testcase = new TestCase();
@@ -40,7 +43,6 @@ export class CreateTestCaseModalComponent implements OnInit {
     this.testcase.tags = [];
     this.tags = [];
   }
-
 
   setTag(tag) {
     this.tags.push(tag);
@@ -51,12 +53,8 @@ export class CreateTestCaseModalComponent implements OnInit {
   }
 
   onAdd() {
-    const step = new TestCaseStep();
-    step.stepAction = '';
-    step.testData = '';
-    step.expectedResult = '';
-    this.testCaseSteps.push(step);
-    console.log(this.testCaseSteps);
+    this.testcase.steps.push(this.testCaseStep);
+    this.testCaseStep = new TestCaseStep();
   }
 
   onEdit() {
@@ -70,7 +68,10 @@ export class CreateTestCaseModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.keys = Object.keys(this.priorities).filter(f => !isNaN(Number(f))).map(k => parseInt(k, 10));
+    this.priorityKeys = Object.keys(this.priorities).filter(f => !isNaN(Number(f))).map(key => (
+      { value: this.priorities[key], key: parseInt(key, 10)}));
+    this.typeKeys = Object.keys(this.types).filter(f => !isNaN(Number(f))).map(key => (
+      { value: this.types[key], key: parseInt(key, 10)}));
   }
 
 }

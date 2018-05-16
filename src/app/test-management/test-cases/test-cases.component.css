@@ -1,0 +1,27 @@
+.positive-case {
+  color: #62A420;
+}
+
+.negative-case {
+  color: #C92100;
+}
+
+.blocker-color {
+  color: #313131;
+}
+
+.critical-color {
+  color: #C92100;
+}
+
+.major-color {
+  color: #F38B00;
+}
+
+.minor-color {
+  color: #62A420;
+}
+
+.trivial-color {
+  color: #007CBB;
+}

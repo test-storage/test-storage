@@ -34,6 +34,10 @@
     "MINOR": "Минорный",
     "TRIVIAL": "Тривиальный"
   },
+  "TESTCASETYPE": {
+    "POSITIVE": "Положительный",
+    "NEGATIVE": "Отрицательный"
+  },
   "USERSSETTINGS": {
     "ADD": "Добавить",
     "EDIT": "Редактировать",
@@ -141,8 +145,10 @@
     "ADD": "Добавить",
     "EDIT": "Редактировать",
     "DELETE": "Удалить",
+    "PRIORITY": "Приоритет",
     "TITLE": "Название",
     "TAGS": "Теги",
+    "TYPE": "Тип",
     "CANCEL": "Отмена",
     "TESTCASE": "Тест Кейс",
     "TESTSUITE": "Тестовый Набор",
@@ -185,10 +191,14 @@
     "DESCRIPTION_PLACEHOLDER": "Описание",
     "DESCRIPTION_REQUIRED": "Описание - обязательное поле",
     "PRIORITY": "Приоритет",
+    "TYPE": "Тип",
     "PRECONDITIONS": "Предусловия",
     "PRECONDITIONS_PLACEHOLDER": "Предусловия",
     "PRECONDITIONS_REQUIRED": "Предусловия - обязательное поле",
     "STEPS": "Шаги",
+    "ADD_STEP": "Добавить шаг",
+    "STEPS_EMPTY_PLACEHOLDER": "Тестовые шаги отсутствуют",
+    "STEPS_COUNT": "шагов",
     "STEPS_ACTION_PLACEHOLDER": "Действие",
     "STEPS_ACTION_REQUIRED": "Действие - обязательное поле",
     "TESTDATA": "Тестовые данные",

@@ -20,7 +20,12 @@
                 <div class="progress labeled success">
                   <progress value="{{ testSuite.completed }}" max="100" data-displayval="0%"></progress>
                 </div>
-                <clr-icon shape="clock" class="has-alert"></clr-icon> 30.04.2018
+                <div>
+                  <clr-icon *ngIf="(testSuite.endDate <= tomorrow.toISOString() && testSuite.endDate >= today.toISOString())" shape="clock" class="has-alert" title="Attention"></clr-icon>
+                  <clr-icon *ngIf="testSuite.endDate < tomorrow.toISOString()" shape="clock" class="has-badge" title="Overdue"></clr-icon>
+                  <clr-icon *ngIf="testSuite.endDate > tomorrow.toISOString()" shape="clock"></clr-icon>
+                  {{ testSuite.startDate | date }} - {{ testSuite.endDate | date }}
+                </div>
               </div>
             </a>
           </div>

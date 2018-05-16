@@ -9,6 +9,7 @@ import { NotificationsService } from 'angular2-notifications';
 
 import { TestSuite } from './test-suite';
 import { TestSuiteService } from './test-suite.service';
+import { TestSuiteViewModel } from './test-suite-view-model';
 
 @Component({
   selector: 'app-test-management',
@@ -24,7 +25,7 @@ export class TestManagementComponent implements OnInit {
   public projectId: string;
   selectedTestSuite: TestSuite;
   public testSuites: TestSuite[];
-  testSuitesViewModel = [];
+  testSuitesViewModel: TestSuiteViewModel[] = [];
 
   createOpened = false;
   editOpened = false;

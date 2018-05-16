@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Component } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 
@@ -7,10 +7,10 @@ import { AttachmentSchema } from './attachment.schema';
 import { CreateAttachmentDto } from './create-attachment.dto';
 import { Attachment } from './attachment.interface';
 
-@Component()
+@Injectable()
 export class AttachmentsService {
 
-  constructor( @InjectModel(AttachmentSchema) private readonly attachmentModel: Model<Attachment>) { }
+  constructor(@InjectModel(AttachmentSchema) private readonly attachmentModel: Model<Attachment>) { }
 
   async create(attachmentDto: Attachment): Promise<Attachment> {
     const createdAttachment = new this.attachmentModel(attachmentDto);

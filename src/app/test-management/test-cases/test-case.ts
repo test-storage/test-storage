@@ -7,6 +7,7 @@ export class TestCase {
   order?: number;
   title: string;
   description?: string;
+  type?: TestCaseType;
   preConditions?: string;
   steps?: Array<TestCaseStep>;
   postConditions?: string;
@@ -33,4 +34,9 @@ export class TestCaseStep {
   stepAction?: string;
   testData?: string;
   expectedResult?: string;
+}
+
+export enum TestCaseType {
+  POSITIVE,
+  NEGATIVE
 }

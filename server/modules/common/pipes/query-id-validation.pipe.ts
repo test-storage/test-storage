@@ -1,8 +1,8 @@
-import { HttpException } from '@nestjs/common';
-import { PipeTransform, Pipe, ArgumentMetadata, HttpStatus } from '@nestjs/common';
+import { HttpException, Injectable, PipeTransform, Pipe, ArgumentMetadata, HttpStatus } from '@nestjs/common';
 
-@Pipe()
+@Injectable()
 export class QueryIdValidationPipe implements PipeTransform<string> {
+
   async transform(value: string, metadata: ArgumentMetadata) {
     if (value === undefined) {
       return;

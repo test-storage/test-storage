@@ -23,10 +23,10 @@ export class CreateTestcaseDto {
   @IsNotEmpty()
   readonly testSuiteId: string;
 
-  @ApiModelPropertyOptional({ type: Number})
+  @ApiModelPropertyOptional({ type: String})
   @IsOptional()
-  @IsNumber()
-  readonly priority?: number;
+  @IsString()
+  readonly priority?: string;
 
   @ApiModelPropertyOptional({ type: Number})
   @IsOptional()
@@ -42,6 +42,11 @@ export class CreateTestcaseDto {
   @IsOptional()
   @IsString()
   readonly description?: string;
+
+  @ApiModelPropertyOptional({ type: String})
+  @IsOptional()
+  @IsString()
+  readonly type?: string;
 
   @ApiModelPropertyOptional({ type: String})
   @IsOptional()

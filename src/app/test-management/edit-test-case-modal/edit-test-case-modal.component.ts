@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { TestCase, Priority, TestCaseStep } from '../test-cases/test-case';
+import { TestCase, Priority, TestCaseStep, TestCaseType } from '../test-cases/test-case';
 
 @Component({
   selector: 'app-edit-test-case-modal',
@@ -15,10 +15,15 @@ export class EditTestCaseModalComponent implements OnInit {
 
   @Input() testcase: TestCase;
   public priorities = Priority;
-  keys; // Priority enumeration keys
+  public types = TestCaseType;
+  priorityKeys; // Priority enumeration keys
+  typeKeys; // Type enumeration keys
   public selectedTestSteps = [];
+  public testCaseStep: TestCaseStep;
 
-  constructor() { }
+  constructor() {
+    this.testCaseStep = new TestCaseStep();
+   }
 
   setOpened(val: boolean) {
     this.opened = val;
@@ -38,11 +43,8 @@ export class EditTestCaseModalComponent implements OnInit {
   }
 
   onAdd() {
-    const step = new TestCaseStep();
-    step.stepAction = '';
-    step.testData = '';
-    step.expectedResult = '';
-    this.testcase.steps.push(step);
+    this.testcase.steps.push(this.testCaseStep);
+    this.testCaseStep = new TestCaseStep();
   }
 
   onEdit() {
@@ -56,7 +58,10 @@ export class EditTestCaseModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.keys = Object.keys(this.priorities).filter(f => !isNaN(Number(f))).map(k => parseInt(k, 10));
+    this.priorityKeys = Object.keys(this.priorities).filter(f => !isNaN(Number(f))).map(key => (
+      { value: this.priorities[key], key: parseInt(key, 10)}));
+    this.typeKeys = Object.keys(this.types).filter(f => !isNaN(Number(f))).map(key => (
+      { value: this.types[key], key: parseInt(key, 10)}));
   }
 
 }
