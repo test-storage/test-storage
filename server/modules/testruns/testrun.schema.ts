@@ -1,21 +1,30 @@
 import * as mongoose from 'mongoose';
 import * as crypto from 'crypto';
 
-export const ProjectSchema = new mongoose.Schema({
+export const TestrunSchema = new mongoose.Schema({
   _id: {
     type: String,
     default: function () {
       return crypto.randomBytes(16).toString('hex');
     }
   },
-  name: String,
+  name: { type: String, required: true },
   description: String,
-  photo: String,
-  avatarColor: Number,
-  enabled: { type: Boolean, default: true },
+  projectId: String,
+  builds: Array,
+  environments: Array,
+  platforms: Array,
+  testcases: Array,
+  status: {
+    type: String,
+    enum: ['OPEN', 'COMPLETED'],
+    default: 'OPEN'
+  },
+  archieved: Boolean,
+  startDate: { type: Date },
+  endDate: { type: Date },
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: String,
   updatedBy: String
 });
-

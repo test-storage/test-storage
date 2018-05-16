@@ -12,10 +12,12 @@
     </div>
   </clr-dg-action-bar>
 
+  <clr-dg-column style="width: 30px !important;">{{ 'TESTMANAGEMENTPAGE.PRIORITY' | translate }}</clr-dg-column>
   <clr-dg-column [clrDgField]="'order'" [clrDgSortOrder]="ascSort">{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}</clr-dg-column>
   <!--<clr-dg-column >Order</clr-dg-column>-->
   <!--<clr-dg-column>Status</clr-dg-column>-->
   <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TAGS' | translate }}</clr-dg-column>
+  <!--<clr-dg-column style="width: 30px !important;">{{ 'TESTMANAGEMENTPAGE.TYPE' | translate }}</clr-dg-column>-->
 
   <clr-dg-row *clrDgItems="let testCase of testCases" [clrDgItem]="testCase">
     <!--
@@ -24,6 +26,14 @@
     <span style="align-self: center;">{{user.name}}</span>
   </clr-dg-cell>
 -->
+
+    <clr-dg-cell [ngSwitch]="testCase.priority" style="text-align: center;">
+      <clr-icon *ngSwitchCase="'BLOCKER'" title="{{ 'PRIORITIES.BLOCKER' | translate }}" class="blocker-color is-solid" shape="circle"></clr-icon>
+      <clr-icon *ngSwitchCase="'CRITICAL'" title="{{ 'PRIORITIES.CRITICAL' | translate }}" class="critical-color is-solid" shape="circle"></clr-icon>
+      <clr-icon *ngSwitchCase="'MAJOR'" title="{{ 'PRIORITIES.MAJOR' | translate }}" class="major-color is-solid" shape="circle"></clr-icon>
+      <clr-icon *ngSwitchCase="'MINOR'" title="{{ 'PRIORITIES.MINOR' | translate }}" class="minor-color is-solid" shape="circle"></clr-icon>
+      <clr-icon *ngSwitchCase="'TRIVIAL'" title="{{ 'PRIORITIES.TRIVIAL' | translate }}" class="trivial-color is-solid" shape="circle"></clr-icon>
+    </clr-dg-cell>
     <clr-dg-cell>
       {{testCase.title}}
     </clr-dg-cell>
@@ -31,10 +41,18 @@
     <clr-dg-cell>
 
       <span class="label label-purple" *ngFor="let tag of testCase.tags">
-      {{ tag }}
+        {{ tag }}
       </span>
 
     </clr-dg-cell>
+
+    <!--
+    <clr-dg-cell [ngSwitch]="testCase.type" style="text-align: center;">
+      <clr-icon *ngSwitchCase="'POSITIVE'" class="positive-case" shape="happy-face"></clr-icon>
+      <clr-icon *ngSwitchCase="'NEGATIVE'" class="negative-case" shape="sad-face"></clr-icon>
+
+    </clr-dg-cell>
+    -->
 
     <!-- TODO for execution
     <clr-dg-row-detail *clrIfExpanded [clrDgReplace]="false">

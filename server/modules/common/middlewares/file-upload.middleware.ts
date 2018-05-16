@@ -1,9 +1,10 @@
-import { Middleware } from '@nestjs/common';
-import { NestMiddleware } from '@nestjs/common/interfaces/middlewares';
+import { Injectable, NestMiddleware } from '@nestjs/common';
+
 const multer = require('multer');
 
-@Middleware()
+@Injectable()
 export class FileUploadMiddleware implements NestMiddleware {
+
   resolve(): (req, res, next) => void {
     const upload = multer({ dest: './uploads/' });
     return upload.any();

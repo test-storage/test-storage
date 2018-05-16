@@ -1,8 +1,9 @@
-import { Middleware, NestMiddleware, ExpressMiddleware } from '@nestjs/common';
+import { Injectable, NestMiddleware, MiddlewareFunction } from '@nestjs/common';
 
-@Middleware()
+@Injectable()
 export class CORSMiddleware implements NestMiddleware {
-  resolve(name: string): ExpressMiddleware {
+
+  resolve(name: string): MiddlewareFunction {
     return (req, res, next) => {
       // CORS headers
       res.header('Access-Control-Allow-Origin', '*'); // restrict it to the required domain

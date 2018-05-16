@@ -1,15 +1,13 @@
-<clr-modal *ngIf="testcase !== undefined" [(clrModalOpen)]="opened">
+<clr-modal *ngIf="testcase !== undefined" [(clrModalOpen)]="opened" [clrModalSize]="'lg'">
   <h3 class="modal-title">{{ 'TESTCASECREATEPAGE.EDIT_TESTCASE' | translate }}</h3>
   <div class="modal-body">
     <form (ngSubmit)="setOpened(false); updateTestCase(testcase)" id="editTestCaseForm" #editTestCaseForm="ngForm" (keyup.enter)="editTestCaseForm.form.valid && editTestCaseForm.ngSubmit.emit();">
       <section class="form-block">
 
-        <label>Детали</label>
-
         <div class="form-group">
           <label class="required" for="title">{{ 'TESTCASECREATEPAGE.TITLE' | translate }}</label>
-          <input [appAutofocus]="opened" type="text" id="title" name="title" [(ngModel)]="testcase.title" #title="ngModel" required placeholder="{{ 'TESTCASECREATEPAGE.TITLE_PLACEHOLDER' | translate }}"
-            size="35">
+          <input [appAutofocus]="opened" type="text" id="title" name="title" [(ngModel)]="testcase.title" #title="ngModel" required
+            placeholder="{{ 'TESTCASECREATEPAGE.TITLE_PLACEHOLDER' | translate }}" size="35">
         </div>
 
         <div class="form-group">
@@ -22,39 +20,48 @@
           <label for="priority">{{ 'TESTCASECREATEPAGE.PRIORITY' | translate }}</label>
           <div class="select">
             <select id="priority" name="priority" [(ngModel)]="testcase.priority" #priority="ngModel">
-              <option *ngFor="let key of keys" [value]="key.value">{{ 'PRIORITIES.' + priorities[key] | translate }}</option>
+              <option *ngFor="let priority of priorityKeys" [value]="priority.value">{{ 'PRIORITIES.' + priority.value | translate }}</option>
             </select>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="preconditions">{{ 'TESTCASECREATEPAGE.PRECONDITIONS' | translate }}</label>
-          <input type="text" id="preconditions" name="preconditions" [(ngModel)]="testcase.preConditions" #preconditions="ngModel"
-            placeholder="{{ 'TESTCASECREATEPAGE.PRECONDITIONS_PLACEHOLDER' | translate }}" size="35">
+          <label for="type">{{ 'TESTCASECREATEPAGE.TYPE' | translate }}</label>
+          <div class="select">
+            <select id="type" name="type" [(ngModel)]="testcase.type" #priority="ngModel">
+              <option *ngFor="let type of typeKeys" [value]="type.value">{{ 'TESTCASETYPE.' + type.value | translate }}</option>
+            </select>
+          </div>
         </div>
 
         <div class="form-group">
-            <label for="tags">{{ 'TESTCASECREATEPAGE.TAGS' | translate }}</label>
-            <input #tag type="text" id="tags" name="tags" (keyup.enter)="setTag(tag.value); tag.value = '';" placeholder="{{ 'TESTCASECREATEPAGE.TAGS_PLACEHOLDER' | translate }}"
-              size="35">
-            <button type="button" class="btn btn-sm btn-secondary" (click)="setTag(tag.value); tag.value = '';">
-              <clr-icon shape="plus"></clr-icon> Add</button>
+          <label for="tags">{{ 'TESTCASECREATEPAGE.TAGS' | translate }}</label>
+          <input #tag type="text" id="tags" name="tags" (keyup.enter)="setTag(tag.value); tag.value = '';" placeholder="{{ 'TESTCASECREATEPAGE.TAGS_PLACEHOLDER' | translate }}"
+            size="35">
+          <button type="button" class="btn btn-sm btn-secondary" (click)="setTag(tag.value); tag.value = '';">
+            <clr-icon shape="plus"></clr-icon> Add</button>
 
-          </div>
-          <div class="form-group">
-            <label for="tag-list"></label>
-            <span *ngFor="let tag of testcase.tags" class="label">{{ tag }}
-              <a (click)="removeTag(tag);">
-                <clr-icon shape="close"></clr-icon>
-              </a>
-            </span>
-          </div>
+        </div>
+        <div class="form-group">
+          <label for="tag-list"></label>
+          <span *ngFor="let tag of testcase.tags" class="label">{{ tag }}
+            <a (click)="removeTag(tag);">
+              <clr-icon shape="close"></clr-icon>
+            </a>
+          </span>
+        </div>
 
         <div class="form-group">
-          <label>Steps</label>
+          <label for="preconditions">{{ 'TESTCASECREATEPAGE.PRECONDITIONS' | translate }}</label>
+          <textarea id="preconditions" name="preconditions" [(ngModel)]="testcase.preConditions" #preconditions="ngModel" placeholder="{{ 'TESTCASECREATEPAGE.PRECONDITIONS_PLACEHOLDER' | translate }}"
+            size="35"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>{{ 'TESTCASECREATEPAGE.STEPS' | translate }}</label>
         </div>
         <br>
-        <clr-datagrid *ngIf="testcase.steps" [(clrDgSelected)]="selectedTestSteps">
+        <clr-datagrid *ngIf="testcase.steps" [(clrDgSelected)]="selectedTestSteps" [clrDgRowSelection]="true">
 
           <clr-dg-action-bar>
             <div class="btn-group">
@@ -62,7 +69,7 @@
                 <clr-icon shape="plus"></clr-icon> {{ 'TESTMANAGEMENTPAGE.ADD' | translate }}</button>
               <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedTestSteps.length > 0">
                 <clr-icon shape="close"></clr-icon> {{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
-              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="true === false;">
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedTestSteps.length === 1">
                 <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}</button>
             </div>
           </clr-dg-action-bar>
@@ -70,22 +77,22 @@
           <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.STEP_ACTION' | translate }}</clr-dg-column>
           <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TEST_DATA' | translate }}</clr-dg-column>
           <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.EXPECTED_RESULT' | translate }}</clr-dg-column>
-          <clr-dg-placeholder>We couldn't find any test steps!</clr-dg-placeholder>
-          <clr-dg-row *clrDgItems="let step of testcase.steps; let i = index;" [clrDgItem]="step">
-            <clr-dg-cell>
-              <input type="text" class="form-control" id="stepAction" name="stepAction" [(ngModel)]="testcase.steps[i].stepAction" placeholder="click to login button"
-                value="{{ step.stepAction }}" size="30" />
-            </clr-dg-cell>
-            <clr-dg-cell>
-              <input type="text" class="form-control" id="testData" name="stepData" [(ngModel)]="testcase.steps[i].testData" placeholder="login: login; pass: pass;"
-                value="{{ step.testData }}" size="30">
-            </clr-dg-cell>
-            <clr-dg-cell>
-              <input type="text" class="form-control" id="expectedResult" name="expectedResult" [(ngModel)]="testcase.steps[i].expectedResult"
-                placeholder="user should login successfully" value="{{ step.expectedResult }}" size="30">
-            </clr-dg-cell>
-          </clr-dg-row>
-          <clr-dg-footer>{{ testcase.steps.length}} steps</clr-dg-footer>
+          <clr-dg-placeholder>{{ 'TESTCASECREATEPAGE.STEPS_EMPTY_PLACEHOLDER' | translate }}</clr-dg-placeholder>
+          <clr-dg-row *clrDgItems="let step of testcase.steps; let i = index;" (clrDgItem)="step">
+              <clr-dg-cell>
+                  <textarea type="text" id="stepAction" [ngModelOptions]="{standalone: true}" name="stepAction" [(ngModel)]="testcase.steps[i].stepAction" placeholder="{{ 'TESTCASECREATEPAGE.STEPS_ACTION_PLACEHOLDER' | translate }}"
+                  size="30"></textarea>
+              </clr-dg-cell>
+              <clr-dg-cell>
+                  <textarea type="text" id="testData" [ngModelOptions]="{standalone: true}" name="testData" [(ngModel)]="testcase.steps[i].testData" placeholder="{{ 'TESTCASECREATEPAGE.TESTDATA_PLACEHOLDER' | translate }}"
+                  size="30"></textarea>
+              </clr-dg-cell>
+              <clr-dg-cell>
+                  <textarea type="text" id="expectedResult" [ngModelOptions]="{standalone: true}" name="expectedResult" [(ngModel)]="testcase.steps[i].expectedResult" placeholder="{{ 'TESTCASECREATEPAGE.EXPECTED_PLACEHOLDER' | translate }}"
+                  size="30"></textarea>
+              </clr-dg-cell>
+            </clr-dg-row>
+          <clr-dg-footer>{{ testcase.steps.length}} {{ 'TESTCASECREATEPAGE.STEPS_COUNT' | translate }}</clr-dg-footer>
         </clr-datagrid>
 
         <!-- should be removed when drag n drop added -->

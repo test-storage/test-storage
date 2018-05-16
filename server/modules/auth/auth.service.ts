@@ -1,14 +1,14 @@
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
-import { Component, Inject, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { jwtSecret } from './passport/jwt.secret';
 
 import { UserDto } from './user.dto';
 import { User } from '../users/user.interface';
 import { UsersService } from '../users/users.service';
 
-@Component()
+@Injectable()
 export class AuthService {
 
   private authorizedUser: User;
