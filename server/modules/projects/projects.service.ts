@@ -13,6 +13,7 @@ export class ProjectsService {
 
   async create(projectDto: CreateProjectDto, userId: string): Promise<Project> {
     const createdProject = await new this.projectModel(projectDto);
+    createdProject.avatarColor = Math.floor(Math.random() * 360);
     createdProject.createdBy = userId;
     return await createdProject.save();
   }

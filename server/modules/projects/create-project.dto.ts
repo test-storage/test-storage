@@ -23,10 +23,10 @@ export class CreateProjectDto {
   @IsOptional()
   readonly image?: string;
 
-  @ApiModelProperty({ type: Number })
+  @ApiModelPropertyOptional({ type: Number })
   @IsInt()
-  @IsNotEmpty()
-  readonly avatarColor: number;
+  @IsOptional()
+  readonly avatarColor?: number;
 
   @ApiModelPropertyOptional({ type: Boolean })
   // @IsBoolean()
