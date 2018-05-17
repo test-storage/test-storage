@@ -18,7 +18,7 @@ export class AuthService {
   private async createToken() {
     const expiresIn = 600 * 600;
     const secretOrKey = jwtSecret();
-    const user = { email: this.authorizedUser.email, userId: this.authorizedUser._id };
+    const user = { email: this.authorizedUser.email, userId: this.authorizedUser._id, roles: [ this.authorizedUser.role ] };
     const token = jwt.sign(user, secretOrKey, { expiresIn });
     return {
       expiresIn: expiresIn,
