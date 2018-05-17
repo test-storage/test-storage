@@ -1,5 +1,5 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsInt, IsNotEmpty, IsBoolean, IsOptional } from 'class-validator';
+import { IsString, IsInt, IsNotEmpty, IsBoolean, IsOptional, IsDate } from 'class-validator';
 
 export class CreateProjectDto {
 
@@ -29,20 +29,27 @@ export class CreateProjectDto {
   readonly avatarColor?: number;
 
   @ApiModelPropertyOptional({ type: Boolean })
-  // @IsBoolean()
+  @IsBoolean()
+  @IsOptional()
   readonly enabled?: boolean;
 
   @ApiModelPropertyOptional({ type: Date })
+  @IsDate()
+  @IsOptional()
   readonly created?: Date;
   @ApiModelPropertyOptional({ type: Date })
+  @IsDate()
+  @IsOptional()
   readonly updated?: Date;
   // manager?: string; point to user
 
   @ApiModelPropertyOptional({ type: String })
-  // @IsString()
+  @IsString()
+  @IsOptional()
   readonly createdBy?: string;
 
   @ApiModelPropertyOptional({ type: String })
-  // @IsString()
+  @IsString()
+  @IsOptional()
   readonly updatedBy?: string;
 }
