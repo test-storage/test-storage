@@ -14,6 +14,10 @@ export interface Device extends Document {
   readonly inventoryId?: string;
   readonly sku?: string;
   readonly assignedTo: Array<string>; // User id
+  readonly created?: Date;
+  readonly updated?: Date;
+  readonly createdBy?: string;
+  readonly updatedBy?: string;
 }
 
 export enum DeviceType {

@@ -14,8 +14,8 @@ export interface User extends Document {
   readonly role: string;
   readonly userGroups?: Array<string>;
   readonly projects?: Array<string>;
-  readonly created?: string;
-  readonly updated?: string;
+  readonly created?: Date;
+  readonly updated?: Date;
   readonly createdBy?: string;
   readonly updatedBy?: string;
 }

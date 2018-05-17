@@ -1,5 +1,5 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsInt, IsNotEmpty, IsBoolean, IsOptional, IsArray } from 'class-validator';
+import { IsString, IsInt, IsNotEmpty, IsBoolean, IsOptional, IsArray, IsDate } from 'class-validator';
 
 export class CreateDeviceDto {
 
@@ -61,6 +61,26 @@ export class CreateDeviceDto {
   @ApiModelProperty({ type: Array })
   @IsArray()
   readonly assignedTo: Array<string>; // User id
+
+  @ApiModelPropertyOptional({ type: Date })
+  @IsOptional()
+  @IsDate()
+  readonly created?: Date;
+
+  @ApiModelPropertyOptional({ type: Date })
+  @IsOptional()
+  @IsDate()
+  readonly updated?: Date;
+
+  @ApiModelPropertyOptional({ type: String })
+  @IsOptional()
+  @IsString()
+  readonly createdBy?: string;
+
+  @ApiModelPropertyOptional({ type: String })
+  @IsOptional()
+  @IsString()
+  readonly updatedBy?: string;
 }
 
 export enum DeviceType {
