@@ -3,7 +3,7 @@ export class Project {
   name: string;
   description: string;
   photo?: string;
-  avatarColor: number;
+  avatarColor?: number;
   enabled?: boolean;
   created?: string;
   updated?: string;
