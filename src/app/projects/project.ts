@@ -5,8 +5,8 @@ export class Project {
   photo?: string;
   avatarColor?: number;
   enabled?: boolean;
-  created?: string;
-  updated?: string;
+  created?: Date;
+  updated?: Date;
   // manager?: string; point to user
   createdBy?: string;
   updatedBy?: string;

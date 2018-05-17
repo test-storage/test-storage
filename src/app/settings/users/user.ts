@@ -13,8 +13,8 @@ export class User {
   role: string;
   userGroups?: Array<string>;
   projects?: Array<string>;
-  created?: string;
-  updated?: string;
+  created?: Date;
+  updated?: Date;
   createdBy?: string;
   updatedBy?: string;
 }
