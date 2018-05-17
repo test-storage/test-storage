@@ -46,8 +46,7 @@ export class UsersService {
     return await this.userModel.findOneAndRemove({ '_id': id }).select('-password').exec();
   }
 
-  async findMe(email: string): Promise<User> {
-    // TODO get user id from token
-    return await this.userModel.findOne({ 'email': email }).select('-password').exec();
+  async findMe(id: string): Promise<User> {
+    return await this.userModel.findOne({ '_id': id }).select('-password').exec();
   }
 }
