@@ -1,7 +1,10 @@
 import * as jwt from 'jsonwebtoken';
 import { jwtSecret } from '../auth/passport/jwt.secret';
 
-import { Get, Post, Put, Delete, Controller, Body, Param, Headers, HttpException, HttpStatus } from '@nestjs/common';
+import { Get, Post, Put, Delete, Controller, Body, Param, Headers, HttpException, HttpStatus, UseGuards } from '@nestjs/common';
+
+import { Roles } from '../common/decorators/roles.decorator';
+import { RolesGuard } from './../common/guards/roles.guard';
 
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
@@ -82,6 +85,8 @@ export class UsersController {
   }
 
   @Delete(':id')
+  @UseGuards(RolesGuard)
+  @Roles('admin')
   @ApiOperation({ title: 'Delete Single User by id' })
   @ApiResponse({ status: 200, description: 'The single user has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })

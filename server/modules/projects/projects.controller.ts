@@ -1,14 +1,13 @@
-import { Get, Post, Put, Delete, Controller, Body, Param, Req } from '@nestjs/common';
+import { Get, Post, Put, Delete, Controller, Body, Param, UseGuards } from '@nestjs/common';
 
-import {
-  ApiUseTags,
-  ApiBearerAuth,
-  ApiResponse,
-  ApiOperation,
-} from '@nestjs/swagger';
+import { ApiUseTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
+
+import { Roles } from '../common/decorators/roles.decorator';
+import { RolesGuard } from './../common/guards/roles.guard';
 
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
+
 import { UserId } from '../common/decorators/user.decorator';
 
 import { ProjectsService } from './projects.service';
@@ -65,6 +64,8 @@ export class ProjectsController {
   }
 
   @Delete(':id')
+  @UseGuards(RolesGuard)
+  @Roles('admin')
   @ApiOperation({ title: 'Delete Single Project by id' })
   @ApiResponse({ status: 200, description: 'The single project has been successfully deleted.'})
   @ApiResponse({ status: 400, description: 'Validation failed'})
