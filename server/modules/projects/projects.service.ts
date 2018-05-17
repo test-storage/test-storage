@@ -11,8 +11,9 @@ export class ProjectsService {
 
   constructor(@InjectModel('Project') private readonly projectModel: Model<Project>) { }
 
-  async create(projectDto: CreateProjectDto): Promise<Project> {
+  async create(projectDto: CreateProjectDto, userId: string): Promise<Project> {
     const createdProject = await new this.projectModel(projectDto);
+    createdProject.createdBy = userId;
     return await createdProject.save();
   }
 
@@ -24,9 +25,10 @@ export class ProjectsService {
     return await this.projectModel.findOne({ '_id': id }).exec();
   }
 
-  async update(id, project: Project): Promise<Project> {
-    const createdOrUpdatedProject = new this.projectModel(project);
-    return await this.projectModel.findOneAndUpdate({ '_id': id }, project).exec();
+  async update(id: string, project: Project, userId: string): Promise<Project> {
+    const updatedProject = Object.assign(project);
+    updatedProject.updatedBy = userId;
+    return await this.projectModel.findOneAndUpdate({ '_id': id }, updatedProject).exec();
   }
 
   async delete(id): Promise<void> {

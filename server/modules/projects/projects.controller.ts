@@ -1,4 +1,4 @@
-import { Get, Post, Put, Delete, Controller, Body, Param } from '@nestjs/common';
+import { Get, Post, Put, Delete, Controller, Body, Param, Req } from '@nestjs/common';
 
 import {
   ApiUseTags,
@@ -9,6 +9,7 @@ import {
 
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
+import { UserId } from '../common/decorators/user.decorator';
 
 import { ProjectsService } from './projects.service';
 
@@ -27,8 +28,11 @@ export class ProjectsController {
   @ApiResponse({ status: 201, description: 'The project has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create( @Body(new ValidationPipe()) createProjectDto: CreateProjectDto): Promise<Project> {
-    return await this.projectsService.create(createProjectDto);
+  async create(
+              @UserId(new ParameterValidationPipe) userId,
+              @Body(new ValidationPipe()) createProjectDto: CreateProjectDto
+            ): Promise<Project> {
+    return await this.projectsService.create(createProjectDto, userId);
   }
 
   @Get()
@@ -54,9 +58,10 @@ export class ProjectsController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findOneAndUpdate(
+    @UserId(new ParameterValidationPipe) userId,
     @Body(new ValidationPipe()) createProjectDto: CreateProjectDto,
     @Param('id', new ParameterValidationPipe()) id: string) {
-    return this.projectsService.update(id, createProjectDto);
+    return this.projectsService.update(id, createProjectDto, userId);
   }
 
   @Delete(':id')
