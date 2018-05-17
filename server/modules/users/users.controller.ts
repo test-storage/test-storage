@@ -8,6 +8,7 @@ import { RolesGuard } from './../common/guards/roles.guard';
 
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
+import { UserId } from '../common/decorators/user.decorator';
 
 import { UsersService } from './users.service';
 
@@ -49,19 +50,8 @@ export class UsersController {
   @ApiOperation({ title: 'Get Current User' })
   @ApiResponse({ status: 200, description: 'The current user has been successfully retrieved.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async findMe(@Headers() headers): Promise<User> {
-    // TODO validation pipe for token
-    const token = headers['authorization'].split(' ')[1];
-    if (token) {
-      try {
-        const decoded = jwt.decode(token, jwtSecret());
-        if (decoded.email) {
-          return this.usersService.findMe(decoded.email);
-        }
-      } catch (e) {
-        throw new HttpException('Malformed Token', HttpStatus.FORBIDDEN);
-      }
-    }
+  async findMe(@UserId(new ParameterValidationPipe) userId): Promise<User> {
+    return this.usersService.findMe(userId);
   }
 
   @Get(':id')
