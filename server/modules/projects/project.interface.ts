@@ -5,7 +5,7 @@ export interface Project extends Document {
   readonly name: string;
   readonly description: string;
   readonly image?: string;
-  readonly avatarColor: number;
+  readonly avatarColor?: number;
   readonly enabled?: boolean;
   readonly created?: Date;
   readonly updated?: Date;

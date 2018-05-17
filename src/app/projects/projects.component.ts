@@ -68,7 +68,6 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   }
 
   createProject(project: Project) {
-    project.avatarColor = Math.floor(Math.random() * 360);
 
     this.projectsService.createProject(project).subscribe(
       (response: HttpResponse<Project>) => {
@@ -77,8 +76,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
             `${project.name}`,
             this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
           );
-          project._id = response.body._id;
-          this.projects.push(project);
+          this.projects.push(response.body);
         }
       },
       error => console.log(error)
