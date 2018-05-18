@@ -11,8 +11,10 @@ export class UsersService {
 
   constructor(@InjectModel('User') private readonly userModel: Model<User>) { }
 
-  async create(userDto: CreateUserDto): Promise<User> {
+  async create(userDto: CreateUserDto, userId: string): Promise<User> {
     const createdUser = new this.userModel(userDto);
+    createdUser.avatarColor = Math.floor(Math.random() * 360);
+    createdUser.createdBy = userId;
     const user = await createdUser.save();
     user.password = undefined;
     return user;
@@ -31,15 +33,19 @@ export class UsersService {
     return await this.userModel.findOne({ 'email': username }).exec();
   }
 
-  async update(id: string, user: CreateUserDto): Promise<User> {
+  async update(id: string, user: CreateUserDto, userId: string): Promise<User> {
     // TODO check update password
-    return await this.userModel.findOne({ '_id': id }).exec(function (err, usr) {
-      if (err) {
-        console.log(err);
-      }
+    const usr = await this.userModel.findOne({ '_id': id }).exec();
+
+    if (usr) {
       Object.assign(usr, user);
-      return usr.save();
-    });
+      usr.updatedBy = userId;
+      usr.updated = new Date().toISOString();
+      await usr.save();
+      usr.password = undefined;
+      return usr;
+    }
+
   }
 
   async delete(id: string): Promise<void> {
