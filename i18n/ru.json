@@ -8,7 +8,11 @@
     "CANCEL_BUTTON": "Отмена",
     "SUCCESSFULLY_CREATED": "успешно создан",
     "SUCCESSFULLY_UPDATED": "успешно обновлен",
-    "SUCCESSFULLY_DELETED": "успешно удален"
+    "SUCCESSFULLY_DELETED": "успешно удален",
+    "FORBIDDEN": "У вас не хватает прав",
+    "PERMISSIONS": "для выполнения этого действия",
+    "ERROR_OCCURED": "Произошла Ошибка",
+    "ERROR_ACTION": "во время выполнения данного действия"
   },
   "SETTINGS": {
     "MAIN_SETTINGS": "Основные настройки",

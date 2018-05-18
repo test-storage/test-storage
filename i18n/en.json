@@ -8,7 +8,11 @@
     "CANCEL_BUTTON": "Cancel",
     "SUCCESSFULLY_CREATED": "successfully created",
     "SUCCESSFULLY_UPDATED": "successfully updated",
-    "SUCCESSFULLY_DELETED": "successfully deleted"
+    "SUCCESSFULLY_DELETED": "successfully deleted",
+    "FORBIDDEN": "You don't have permissions",
+    "PERMISSIONS": "for perform this action",
+    "ERROR_OCCURED": "Error occured",
+    "ERROR_ACTION": "while trying to perform this action"
   },
   "SETTINGS": {
     "MAIN_SETTINGS": "Main Settings",

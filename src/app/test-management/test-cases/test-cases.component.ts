@@ -83,7 +83,20 @@ export class TestCasesComponent implements OnInit {
           this.selectedTestCases = [];
         }
       },
-      error => console.log(error)
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 403) {
+          this.notificationsService.warn(
+            this.translateService.instant('COMMON.FORBIDDEN'),
+            this.translateService.instant('COMMON.PERMISSIONS')
+          );
+        } else {
+        this.notificationsService.error(
+          this.translateService.instant('COMMON.ERROR_OCCURED'),
+          this.translateService.instant('COMMON.ERROR_ACTION')
+        );
+        }
+      }
     );
   }
 
@@ -107,7 +120,20 @@ export class TestCasesComponent implements OnInit {
           this.selectedTestCases = [];
         }
       },
-      error => console.log(error)
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 403) {
+          this.notificationsService.warn(
+            this.translateService.instant('COMMON.FORBIDDEN'),
+            this.translateService.instant('COMMON.PERMISSIONS')
+          );
+        } else {
+        this.notificationsService.error(
+          this.translateService.instant('COMMON.ERROR_OCCURED'),
+          this.translateService.instant('COMMON.ERROR_ACTION')
+        );
+        }
+      }
     );
   }
 
@@ -125,7 +151,20 @@ export class TestCasesComponent implements OnInit {
             this.selectedTestCases = [];
           }
         },
-        error => console.log(error)
+        error => {
+          console.log(error);
+          if (error.error.statusCode === 403) {
+            this.notificationsService.warn(
+              this.translateService.instant('COMMON.FORBIDDEN'),
+              this.translateService.instant('COMMON.PERMISSIONS')
+            );
+          } else {
+          this.notificationsService.error(
+            this.translateService.instant('COMMON.ERROR_OCCURED'),
+            this.translateService.instant('COMMON.ERROR_ACTION')
+          );
+          }
+        }
       );
     });
   }
