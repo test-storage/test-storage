@@ -25,6 +25,7 @@ import {
 @ApiBearerAuth()
 @ApiUseTags('Users')
 @Controller('api/v1/users')
+@UseGuards(RolesGuard)
 export class UsersController {
 
   constructor(private readonly usersService: UsersService) { }
@@ -79,8 +80,7 @@ export class UsersController {
   }
 
   @Delete(':id')
-  @UseGuards(RolesGuard)
-  @Roles('admin')
+  @Roles('administrator')
   @ApiOperation({ title: 'Delete Single User by id' })
   @ApiResponse({ status: 200, description: 'The single user has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
