@@ -1,8 +1,9 @@
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, UnauthorizedException, ForbiddenException } from '@nestjs/common';
 import { jwtSecret } from './passport/jwt.secret';
+import { JwtPayload } from './passport/jwt-payload.interface';
 
 import { UserDto } from './user.dto';
 import { User } from '../users/user.interface';
@@ -18,7 +19,7 @@ export class AuthService {
   private async createToken() {
     const expiresIn = 600 * 600;
     const secretOrKey = jwtSecret();
-    const user = { email: this.authorizedUser.email, userId: this.authorizedUser._id, roles: [ this.authorizedUser.role ] };
+    const user: JwtPayload = { email: this.authorizedUser.email, userId: this.authorizedUser._id, roles: [ this.authorizedUser.role ] };
     const token = jwt.sign(user, secretOrKey, { expiresIn });
     return {
       expiresIn: expiresIn,
@@ -31,12 +32,12 @@ export class AuthService {
     if (validUser) {
       return await this.createToken();
     } else {
-      throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
+      throw new UnauthorizedException();
     }
   }
 
-  async validateUser(signedUser): Promise<boolean> {
-    const existedUser = await this.usersService.findOneByUsername(signedUser.email);
+  async validateUser(payload: JwtPayload): Promise<boolean> {
+    const existedUser = await this.usersService.findOneByUsername(payload.email);
     if (existedUser) {
       return true;
     } else {
@@ -70,7 +71,7 @@ export class AuthService {
     if (user.active === true) {
       return true;
     } else {
-      throw new HttpException('User not activated', HttpStatus.FORBIDDEN);
+      throw new ForbiddenException('User not activated');
     }
   }
 }
