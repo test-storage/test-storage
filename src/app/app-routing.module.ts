@@ -5,8 +5,6 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './login/sign-up/sign-up.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
-import { LayoutModule } from './layout/layout.module';
-
 import { AuthInterceptor } from './login/auth.interceptor';
 import { AuthGuard } from './login/auth.guard';
 import { AuthenticationService } from './login/authentication.service';

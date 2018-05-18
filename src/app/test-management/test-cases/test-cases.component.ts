@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 
-import { TestCase, Priority } from './test-case';
+import { TestCase } from './test-case';
 import { TestSuite } from '../test-suite';
 
 import { TestCaseService } from './test-case.service';
