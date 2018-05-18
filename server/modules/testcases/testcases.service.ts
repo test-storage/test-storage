@@ -12,8 +12,9 @@ export class TestcasesService {
 
   constructor(@InjectModel('Testcase') private readonly testcaseModel: Model<Testcase>) { }
 
-  async create(testcaseDto: CreateTestcaseDto): Promise<Testcase> {
+  async create(testcaseDto: CreateTestcaseDto, userId: string): Promise<Testcase> {
     const createdTestcase = new this.testcaseModel(testcaseDto);
+    createdTestcase.createdBy = userId;
     return await createdTestcase.save();
   }
 
@@ -29,8 +30,14 @@ export class TestcasesService {
     return await this.testcaseModel.findOne({ '_id': id }).exec();
   }
 
-  async update(id: string, testcase: CreateTestcaseDto): Promise<Testcase> {
-    return await this.testcaseModel.findOneAndUpdate({ '_id': id }, testcase).exec();
+  async update(id: string, testcase: CreateTestcaseDto, userId: string): Promise<Testcase> {
+    const existedTestCase = await this.testcaseModel.findOne({ '_id': id }).exec();
+    if (existedTestCase) {
+      Object.assign(existedTestCase, testcase);
+      existedTestCase.updatedBy = userId;
+      existedTestCase.updated = new Date().toISOString();
+      return existedTestCase.save();
+    }
   }
 
   async delete(id: string): Promise<void> {

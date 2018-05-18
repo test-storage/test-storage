@@ -27,9 +27,13 @@ export class ProjectsService {
   }
 
   async update(id: string, project: Project, userId: string): Promise<Project> {
-    const updatedProject = Object.assign(project);
-    updatedProject.updatedBy = userId;
-    return await this.projectModel.findOneAndUpdate({ '_id': id }, updatedProject).exec();
+    const existedProject = await this.projectModel.findOne({ '_id': id }).exec();
+    if (existedProject) {
+      Object.assign(existedProject, project);
+      existedProject.updatedBy = userId;
+      existedProject.updated = new Date().toISOString();
+      return await existedProject.save();
+    }
   }
 
   async delete(id): Promise<void> {

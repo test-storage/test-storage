@@ -4,8 +4,9 @@ import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
 import { QueryIdValidationPipe } from '../common/pipes/query-id-validation.pipe';
 
-import { TestcasesService } from './testcases.service';
+import { UserId } from '../common/decorators/user.decorator';
 
+import { TestcasesService } from './testcases.service';
 import { Testcase } from './testcase.interface';
 import { CreateTestcaseDto } from './create-testcase.dto';
 
@@ -30,8 +31,10 @@ export class TestcasesController {
   @ApiResponse({ status: 201, description: 'The test case has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create(@Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto): Promise<Testcase> {
-    return await this.testcasesService.create(createTestcaseDto);
+  async create(
+    @UserId(new ParameterValidationPipe) userId,
+    @Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto): Promise<Testcase> {
+    return await this.testcasesService.create(createTestcaseDto, userId);
   }
 
   @Get()
@@ -65,9 +68,10 @@ export class TestcasesController {
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiImplicitParam({ name: 'id', description: 'Test Case id' })
   async findOneAndUpdate(
+    @UserId(new ParameterValidationPipe) userId,
     @Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto,
     @Param('id', new ParameterValidationPipe()) id: string) {
-    return this.testcasesService.update(id, createTestcaseDto);
+    return await this.testcasesService.update(id, createTestcaseDto, userId);
   }
 
   @Delete(':id')

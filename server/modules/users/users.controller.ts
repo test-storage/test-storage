@@ -34,8 +34,11 @@ export class UsersController {
   @ApiResponse({ status: 201, description: 'The user has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create(@Body(new ValidationPipe()) createUserDto: CreateUserDto): Promise<User> {
-    return await this.usersService.create(createUserDto);
+  async create(
+              @UserId(new ParameterValidationPipe) userId,
+              @Body(new ValidationPipe()) createUserDto: CreateUserDto
+            ): Promise<User> {
+    return await this.usersService.create(createUserDto, userId);
   }
 
   @Get()
@@ -69,9 +72,10 @@ export class UsersController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findOneAndUpdate(
+    @UserId(new ParameterValidationPipe) userId,
     @Body(new ValidationPipe()) createUserDto: CreateUserDto,
     @Param('id', new ParameterValidationPipe()) id: string) {
-    return this.usersService.update(id, createUserDto);
+    return await this.usersService.update(id, createUserDto, userId);
   }
 
   @Delete(':id')

@@ -7,7 +7,6 @@ import { RolesGuard } from './../common/guards/roles.guard';
 
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
-
 import { UserId } from '../common/decorators/user.decorator';
 
 import { ProjectsService } from './projects.service';
@@ -59,8 +58,8 @@ export class ProjectsController {
   async findOneAndUpdate(
     @UserId(new ParameterValidationPipe) userId,
     @Body(new ValidationPipe()) createProjectDto: CreateProjectDto,
-    @Param('id', new ParameterValidationPipe()) id: string) {
-    return this.projectsService.update(id, createProjectDto, userId);
+    @Param('id', new ParameterValidationPipe()) id: string): Promise<Project> {
+    return await this.projectsService.update(id, createProjectDto, userId);
   }
 
   @Delete(':id')
