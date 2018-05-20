@@ -30,6 +30,32 @@ describe('ProjectsController', () => {
     sinon.restore();
   });
 
+  describe('create', () => {
+    it('should return an entity of created project', async () => {
+
+      const project: Project = {
+        name: 'name',
+        description: 'description'
+      };
+
+      sinon.replace(projectsService, 'create', sinon.fake.returns(project));
+
+      expect(await projectsController.create({}, project)).to.be.equal(project);
+    });
+
+    it('should throw an error when validation is failed', async () => {
+
+      const project = {
+        name: 'name',
+        description: 'description'
+      };
+
+      sinon.replace(projectsService, 'create', sinon.fake.returns(project));
+
+      expect(await projectsController.create({}, project)).to.be.equal(project);
+    });
+  });
+
   describe('findAll', () => {
     it('should return an array of projects', async () => {
 
