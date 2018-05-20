@@ -53,3 +53,6 @@
     <clr-dg-footer> {{ devices?.length }} {{ 'ROLESSETTINGS.ROLES' | translate }}</clr-dg-footer>
   </clr-datagrid>
 </div>
+<app-create-device-modal [(opened)]="createOpened" (deviceChange)="createDevice($event);"></app-create-device-modal>
+<app-edit-device-modal [device]="selectedDevices[0]" [(opened)]="editOpened" (deviceChange)="updateDevice($event);"></app-edit-device-modal>
+<app-delete-device-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-device-modal>
