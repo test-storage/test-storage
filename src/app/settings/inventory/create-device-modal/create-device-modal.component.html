@@ -1,0 +1,35 @@
+<clr-modal *ngIf="opened" [(clrModalOpen)]="opened">
+  <h3 class="modal-title">{{ 'DEVICECREATEPAGE.TITLE' | translate }}</h3>
+  <div class="modal-body">
+    <form (ngSubmit)="setOpened(false); createDevice()" id="createDeviceForm" #createDeviceForm="ngForm" (keyup.enter)="createDeviceForm.form.valid && createDeviceForm.ngSubmit.emit();">
+      <section class="form-block">
+
+        <div class="form-group">
+          <label for="type">{{ 'DEVICECREATEPAGE.TYPE' | translate }}</label>
+          <div class="select">
+            <select id="type" name="type" [(ngModel)]="device.type" #type="ngModel">
+              <option *ngFor="let deviceType of typeKeys" [value]="deviceType.value">{{ 'DEVICETYPES.' + deviceType.value | translate }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="required" for="manufacturer">{{ 'DEVICECREATEPAGE.MANUFACTURER' | translate }}</label>
+          <input [appAutofocus]="opened" type="text" id="manufacturer" name="manufacturer" [(ngModel)]="device.manufacturer" #manufacturer="ngModel"
+            required placeholder="{{ 'DEVICECREATEPAGE.MANUFACTURER_PLACEHOLDER' | translate }}" size="35">
+        </div>
+
+        <div class="form-group">
+          <label class="required" for="model">{{ 'DEVICECREATEPAGE.MODEL' | translate }}</label>
+          <input type="text" id="model" name="model" [(ngModel)]="device.model" #model="ngModel" required placeholder="{{ 'DEVICECREATEPAGE.MODEL_PLACEHOLDER' | translate }}"
+            size="35">
+        </div>
+
+      </section>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="setOpened(false)">{{ 'TESTMANAGEMENTPAGE.CANCEL' | translate }}</button>
+    <button type="button" class="btn btn-primary" (click)="createDeviceForm.ngSubmit.emit();" [disabled]="!createDeviceForm.form.valid">{{ 'TESTCASECREATEPAGE.CREATE_BUTTON' | translate }}</button>
+  </div>
+</clr-modal>

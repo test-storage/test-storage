@@ -23,6 +23,14 @@ export class InventoryService {
     return this.http.post(this.apiPath, device, { observe: 'response' });
   }
 
+  public updateDevice(device: Device, id?: string) {
+    if (id !== undefined) {
+      return this.http.put(`${this.apiPath}/${id}`, device, { observe: 'response' });
+    } else {
+      return this.createDevice(device);
+    }
+  }
+
   public deleteDevice(id: string) {
     return this.http.delete(this.apiPath + '/' + id, { observe: 'response' });
   }

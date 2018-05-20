@@ -18,6 +18,9 @@ import { EditUserModalComponent } from './users/edit-user-modal/edit-user-modal.
 import { DeleteUserModalComponent } from './users/delete-user-modal/delete-user-modal.component';
 import { RolesService } from './roles/roles.service';
 import { IntegrationsComponent } from './integrations/integrations.component';
+import { CreateDeviceModalComponent } from './inventory/create-device-modal/create-device-modal.component';
+import { EditDeviceModalComponent } from './inventory/edit-device-modal/edit-device-modal.component';
+import { DeleteDeviceModalComponent } from './inventory/delete-device-modal/delete-device-modal.component';
 
 @NgModule({
   imports: [
@@ -36,7 +39,10 @@ import { IntegrationsComponent } from './integrations/integrations.component';
     InventoryComponent,
     CreateUserModalComponent,
     EditUserModalComponent,
-    DeleteUserModalComponent
+    DeleteUserModalComponent,
+    CreateDeviceModalComponent,
+    EditDeviceModalComponent,
+    DeleteDeviceModalComponent
   ],
   providers: [
     UsersService,
