@@ -29,6 +29,10 @@ xdescribe('AuthController', () => {
     authController = module.get<AuthController>(AuthController);
   });
 
+  afterEach(async () => {
+    sinon.restore();
+  });
+
   describe('Get Access Token via valid login and password ', () => {
     it('should return an object with token', async () => {
 
@@ -44,7 +48,7 @@ xdescribe('AuthController', () => {
 
       sinon.replace(authService, 'getAccessToken', sinon.fake.returns(result));
 
-      expect(authController.login(user)).to.be.equal(result);
+      expect(await authController.login(user)).to.be.equal(result);
     });
   });
 });
