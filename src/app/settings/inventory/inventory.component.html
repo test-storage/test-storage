@@ -36,6 +36,7 @@
       <clr-dg-cell>{{ device.os }}</clr-dg-cell>
       <clr-dg-cell>{{ device.osVersion }}</clr-dg-cell>
       <clr-dg-cell>
+        <!--
         <div class="form-group">
           <label for="selects_1"></label>
           <div class="select">
@@ -47,10 +48,12 @@
             </select>
           </div>
         </div>
+        -->
+        <!-- {{ device.assignedTo }} // get users list -->
       </clr-dg-cell>
     </clr-dg-row>
 
-    <clr-dg-footer> {{ devices?.length }} {{ 'ROLESSETTINGS.ROLES' | translate }}</clr-dg-footer>
+    <clr-dg-footer> {{ devices?.length }} {{ 'DEVICESSETTINGS.DEVICES' | translate }}</clr-dg-footer>
   </clr-datagrid>
 </div>
 <app-create-device-modal [(opened)]="createOpened" (deviceChange)="createDevice($event);"></app-create-device-modal>
