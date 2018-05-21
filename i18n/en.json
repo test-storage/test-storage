@@ -179,7 +179,10 @@
   "TESTEXECUTIONPAGE": {
     "ADD": "Add",
     "ACTIVE": "Active",
-    "ARCHIEVED": "Archieved"
+    "ARCHIEVED": "Archieved",
+    "EMPTYSTATE_NOTESTRUNS_TITLE": "You have not created Test runs yet.",
+    "EMPTYSTATE_NOTESTRUNS_DESCRIPTION": "Tap the 'Create Test Run' button to get started",
+    "EMPTYSTATE_CREATETESTRUN_BUTTON": "Create Test Run"
   },
   "TESTCASE_DETAILSPAGE": {
     "DESCRIPTION": "Description",
