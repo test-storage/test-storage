@@ -38,6 +38,14 @@
     "MINOR": "Минорный",
     "TRIVIAL": "Тривиальный"
   },
+  "DEVICETYPES": {
+    "MOBILE": "Мобильный телефон",
+    "TABLET": "Планшет",
+    "SERVER": "Сервер",
+    "HARDWARE": "Аппаратное оборудование",
+    "VM": "Виртуальная машина",
+    "CONTAINER": "Контейнер"
+  },
   "TESTCASETYPE": {
     "POSITIVE": "Положительный",
     "NEGATIVE": "Отрицательный"
@@ -260,6 +268,18 @@
     "MODAL_DELETE_DESCRIPTION": "Вы уверены, что хотите удалить выбранных пользователей? Удаленные пользователи не смогут быть восстановлены.",
     "ADMIN_CANT_BE_EDITED": "Системный аккаунт не может быть изменён",
     "ADMIN_CANT_BE_DELETED": "Системный аккаунт не может быть удален"
+  },
+  "DEVICECREATEPAGE": {
+    "TITLE": "Добавить устройство",
+    "MANUFACTURER": "Производитель",
+    "MANUFACTURER_PLACEHOLDER": "Производитель",
+    "MODEL": "Модель",
+    "MODEL_PLACEHOLDER": "Модель",
+    "TYPE": "Тип",
+    "OS": "ОС",
+    "OS_PLACEHOLDER": "ОС",
+    "OS_VERSION": "Версия ОС",
+    "OS_VERSION_PLACEHOLDER": "Версия ОС"
   },
   "USERPROFILEPAGE": {
     "USER": "Пользователь",

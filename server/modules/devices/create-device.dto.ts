@@ -1,5 +1,5 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsInt, IsNotEmpty, IsBoolean, IsOptional, IsArray, IsDate } from 'class-validator';
+import { IsString, IsOptional, IsArray, IsDate, IsNotEmpty } from 'class-validator';
 
 export class CreateDeviceDto {
 
@@ -10,23 +10,28 @@ export class CreateDeviceDto {
 
   @ApiModelProperty({ type: String })
   @IsString()
+  @IsNotEmpty()
   readonly manufacturer: string;
 
   @ApiModelProperty({ type: String })
   @IsString()
+  @IsNotEmpty()
   readonly model: string;
 
   @ApiModelProperty({ type: String })
   @IsString()
+  @IsNotEmpty()
   readonly os: string;
 
   @ApiModelProperty({ type: String })
   @IsString()
+  @IsNotEmpty()
   readonly osVersion: string;
 
-  @ApiModelProperty({ type: Number })
-  @IsInt()
-  readonly type: DeviceType;
+  @ApiModelProperty({ type: String })
+  @IsString()
+  @IsNotEmpty()
+  readonly type: string;
 
   @ApiModelPropertyOptional({ type: String })
   @IsOptional()
@@ -58,18 +63,19 @@ export class CreateDeviceDto {
   @IsString()
   readonly sku?: string;
 
-  @ApiModelProperty({ type: Array })
+  @ApiModelPropertyOptional({ type: Array })
+  @IsOptional()
   @IsArray()
-  readonly assignedTo: Array<string>; // User id
+  readonly assignedTo?: Array<string>; // User id
 
   @ApiModelPropertyOptional({ type: Date })
   @IsOptional()
-  @IsDate()
+  // @IsDate()
   readonly created?: Date;
 
   @ApiModelPropertyOptional({ type: Date })
   @IsOptional()
-  @IsDate()
+  // @IsDate()
   readonly updated?: Date;
 
   @ApiModelPropertyOptional({ type: String })
@@ -83,11 +89,3 @@ export class CreateDeviceDto {
   readonly updatedBy?: string;
 }
 
-export enum DeviceType {
-  MOBILE,
-  TABLET,
-  SERVER,
-  HARDWARE,
-  VM,
-  CONTAINER
-}

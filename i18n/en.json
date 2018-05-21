@@ -38,6 +38,14 @@
     "MINOR": "Minor",
     "TRIVIAL": "Trivial"
   },
+  "DEVICETYPES": {
+    "MOBILE": "Mobile phone",
+    "TABLET": "Tablet",
+    "SERVER": "Server",
+    "HARDWARE": "Hardware",
+    "VM": "Virtual Machine",
+    "CONTAINER": "Container"
+  },
   "TESTCASETYPE": {
     "POSITIVE": "Positive",
     "NEGATIVE": "Negative"
@@ -268,7 +276,11 @@
     "MANUFACTURER_PLACEHOLDER": "Manufacturer",
     "MODEL": "Model",
     "MODEL_PLACEHOLDER": "Model",
-    "TYPE": "Type"
+    "TYPE": "Type",
+    "OS": "OS",
+    "OS_PLACEHOLDER": "OS",
+    "OS_VERSION": "OS version",
+    "OS_VERSION_PLACEHOLDER": "OS version"
   },
   "USERPROFILEPAGE": {
     "USER": "User",

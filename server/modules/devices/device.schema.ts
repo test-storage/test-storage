@@ -12,7 +12,10 @@ export const DeviceSchema = new mongoose.Schema({
   model: String,
   os: String,
   osVersion: String,
-  type: Number,
+  type: {
+    type: String,
+    enum: ['MOBILE', 'TABLET', 'SERVER', 'HARDWARE', 'VM', 'CONTAINER']
+  },
   location: String,
   hostname: String,
   title: String,

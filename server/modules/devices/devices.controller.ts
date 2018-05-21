@@ -24,7 +24,7 @@ export class DevicesController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createDeviceDto: CreateDeviceDto): Promise<Device> {
     return await this.devicesService.create(createDeviceDto, userId);
   }
@@ -52,7 +52,7 @@ export class DevicesController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findOneAndUpdate(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createDeviceDto: CreateDeviceDto,
     @Param('id', new ParameterValidationPipe()) id: string) {
     return await this.devicesService.update(id, createDeviceDto, userId);
