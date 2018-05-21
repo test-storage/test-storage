@@ -179,7 +179,10 @@
   "TESTEXECUTIONPAGE": {
     "ADD": "Добавить",
     "ACTIVE": "Активные",
-    "ARCHIEVED": "Архивные"
+    "ARCHIEVED": "Архивные",
+    "EMPTYSTATE_NOTESTRUNS_TITLE": "У вас нет ни одного Тестового прогона.",
+    "EMPTYSTATE_NOTESTRUNS_DESCRIPTION": "Нажмите на кнопку 'Создать Тестовый Прогон' для создания",
+    "EMPTYSTATE_CREATETESTRUN_BUTTON": "Создать Тестовый Прогон"
   },
   "TESTCASE_DETAILSPAGE": {
     "DESCRIPTION": "Описание",
