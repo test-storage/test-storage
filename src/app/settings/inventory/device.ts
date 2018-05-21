@@ -11,7 +11,7 @@ export class Device {
   description?: string;
   inventoryId?: string;
   sku?: string;
-  assignedTo: Array<string>; // User id
+  assignedTo?: Array<string>; // User id
   created?: Date;
   updated?: Date;
   createdBy?: string;

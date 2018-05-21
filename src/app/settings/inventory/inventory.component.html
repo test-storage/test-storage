@@ -25,12 +25,12 @@
 
     <clr-dg-row *clrDgItems="let device of devices" [clrDgItem]="device">
       <clr-dg-cell [ngSwitch]="device.type">
-        <clr-icon *ngSwitchCase="0" shape="mobile"></clr-icon>
-        <clr-icon *ngSwitchCase="1" shape="tablet"></clr-icon>
-        <clr-icon *ngSwitchCase="2" shape="host"></clr-icon>
-        <clr-icon *ngSwitchCase="3" shape="hard-disk"></clr-icon>
-        <clr-icon *ngSwitchCase="4" shape="vm"></clr-icon>
-        <clr-icon *ngSwitchCase="5" shape="deploy"></clr-icon>
+        <clr-icon *ngSwitchCase="'MOBILE'" shape="mobile"></clr-icon>
+        <clr-icon *ngSwitchCase="'TABLET'" shape="tablet"></clr-icon>
+        <clr-icon *ngSwitchCase="'SERVER'" shape="host"></clr-icon>
+        <clr-icon *ngSwitchCase="'HARDWARE'" shape="hard-disk"></clr-icon>
+        <clr-icon *ngSwitchCase="'VM'" shape="vm"></clr-icon>
+        <clr-icon *ngSwitchCase="'CONTAINER'" shape="deploy"></clr-icon>
       </clr-dg-cell>
       <clr-dg-cell>{{ device.manufacturer }} {{ device.model }}</clr-dg-cell>
       <clr-dg-cell>{{ device.os }}</clr-dg-cell>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Device, DeviceType } from '../device';
 
@@ -7,14 +7,13 @@ import { Device, DeviceType } from '../device';
   templateUrl: './create-device-modal.component.html',
   styleUrls: ['./create-device-modal.component.css']
 })
-export class CreateDeviceModalComponent implements OnInit, OnDestroy {
+export class CreateDeviceModalComponent implements OnInit {
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() deviceChange = new EventEmitter<Device>();
 
   public device: Device;
-  subscription;
   public deviceTypes = DeviceType;
   typeKeys; // Type enumeration keys
 
@@ -28,6 +27,7 @@ export class CreateDeviceModalComponent implements OnInit, OnDestroy {
   }
 
   createDevice() {
+    console.log(this.device);
     this.deviceChange.emit(this.device);
     this.device = new Device();
   }
@@ -35,10 +35,6 @@ export class CreateDeviceModalComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.typeKeys = Object.keys(this.deviceTypes).filter(f => !isNaN(Number(f))).map(key => (
       { value: this.deviceTypes[key], key: parseInt(key, 10) }));
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
 }

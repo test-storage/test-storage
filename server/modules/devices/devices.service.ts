@@ -3,7 +3,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { CreateDeviceDto } from './create-device.dto';
-import { DeviceSchema } from './device.schema';
 import { Device } from './device.interface';
 
 @Injectable()
