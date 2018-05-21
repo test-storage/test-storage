@@ -2,7 +2,6 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import { TestcaseSchema } from './testcase.schema';
 import { CreateTestcaseDto } from './create-testcase.dto';
 import { Testcase } from './testcase.interface';
 

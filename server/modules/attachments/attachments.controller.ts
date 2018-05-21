@@ -1,6 +1,4 @@
-import { Post, Controller, Body, Param, Request, Response, HttpStatus } from '@nestjs/common';
-
-import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
+import { Post, Controller, Body, Request, Response, HttpStatus } from '@nestjs/common';
 
 import { AttachmentsService } from './attachments.service';
 
