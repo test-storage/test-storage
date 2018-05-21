@@ -2,7 +2,6 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import { TestrunSchema } from './testrun.schema';
 import { CreateTestrunDto } from './create-testrun.dto';
 import { Testrun } from './testrun.interface';
 
