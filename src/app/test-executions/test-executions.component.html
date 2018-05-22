@@ -96,6 +96,6 @@
   </ng-template>
 
   <app-create-test-run-modal [(opened)]="createOpened" (testrunChange)="createTestrun($event);"></app-create-test-run-modal>
-  <app-edit-test-run-modal [user]="selectedTestrun" [(opened)]="editOpened" (testrunChange)="updateTestrun($event);"></app-edit-test-run-modal>
+  <app-edit-test-run-modal [testrun]="selectedTestrun" [(opened)]="editOpened" (testrunChange)="updateTestrun($event);"></app-edit-test-run-modal>
   <app-delete-test-run-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-test-run-modal>
 </div>
