@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+import { Testrun } from './../testrun';
+
 @Component({
   selector: 'app-delete-test-run-modal',
   templateUrl: './delete-test-run-modal.component.html',

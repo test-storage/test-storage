@@ -12,8 +12,7 @@ export class EditTestRunModalComponent implements OnInit {
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() testrunChange = new EventEmitter<Testrun>();
-
-  public testrun: Testrun;
+  @Input() testrun: Testrun;
   subscription;
 
   constructor() {
