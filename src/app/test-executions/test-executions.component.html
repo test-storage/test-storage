@@ -1,4 +1,4 @@
-<div *ngIf="testruns" class="">
+<div *ngIf="testruns">
 
   <div *ngIf="testruns.length > 0; then existTestruns else noExistTestruns"></div>
   <ng-template #existTestruns>
@@ -8,25 +8,25 @@
         <clr-tab-content id="content1" *clrIfActive="true">
           <div class="content-area">
 
-            <button class="btn btn-primary">
+            <a (click)="onAdd();" class="btn btn-primary">
               <clr-icon shape="plus"></clr-icon>
               {{ 'TESTEXECUTIONPAGE.ADD' | translate }}
-            </button>
+            </a>
 
             <div class="row">
               <div *ngFor="let testrun of testruns" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <a routerLink="./1" class="card clickable">
                   <div class="card-block">
-                    <h4 class="card-title">{{ testrun.title }}</h4>
+                    <h4 class="card-title">{{ testrun.name }}</h4>
                     <p class="card-text">{{ testrun.description }}</p>
                   </div>
                   <div class="card-footer">
                     <div class="progress labeled success">
                       <progress value="{{ testrun.completed }}" max="100" data-displayval="0%"></progress>
                     </div>
-                    <div>
-                      <clr-icon *ngIf="(testrun.endDate <= tomorrow.toISOString() && testrun.endDate >= today.toISOString())" shape="clock"
-                        class="has-alert" title="Attention"></clr-icon>
+                    <div *ngIf="testrun.startDate && testrun.endDate">
+                      <clr-icon *ngIf="(testrun.endDate <= tomorrow.toISOString() && testrun.endDate >= today.toISOString())" shape="clock" class="has-alert"
+                        title="Attention"></clr-icon>
                       <clr-icon *ngIf="testrun.endDate < tomorrow.toISOString()" shape="clock" class="has-badge" title="Overdue"></clr-icon>
                       <clr-icon *ngIf="testrun.endDate > tomorrow.toISOString()" shape="clock"></clr-icon>
                       {{ testrun.startDate | date }} - {{ testrun.endDate | date }}
@@ -80,18 +80,22 @@
   </ng-template>
 
   <ng-template #noExistTestruns>
-      <div class="noexist-wrapper">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="noexist-wrapper">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-          <div class="no-testrun">
-            <img src="assets/add-project.png">
-            <h4>{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_TITLE' | translate }}</h4>
-            <p class="tips">{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_DESCRIPTION' | translate }}</p>
-            <a (click)="create();" class="btn btn-primary">{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_CREATETESTRUN_BUTTON' | translate }}</a>
-          </div>
-
+        <div class="no-testrun">
+          <img src="assets/add-project.png">
+          <h4>{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_TITLE' | translate }}</h4>
+          <p class="tips">{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_DESCRIPTION' | translate }}</p>
+          <a (click)="onAdd();" class="btn btn-primary">{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_CREATETESTRUN_BUTTON' | translate }}</a>
         </div>
-      </div>
 
-    </ng-template>
+      </div>
+    </div>
+
+  </ng-template>
+
+  <app-create-test-run-modal [(opened)]="createOpened" (testrunChange)="createTestrun($event);"></app-create-test-run-modal>
+  <app-edit-test-run-modal [user]="selectedTestrun" [(opened)]="editOpened" (testrunChange)="updateTestrun($event);"></app-edit-test-run-modal>
+  <app-delete-test-run-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-test-run-modal>
 </div>

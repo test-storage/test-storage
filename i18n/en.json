@@ -184,6 +184,15 @@
     "EMPTYSTATE_NOTESTRUNS_DESCRIPTION": "Tap the 'Create Test Run' button to get started",
     "EMPTYSTATE_CREATETESTRUN_BUTTON": "Create Test Run"
   },
+  "TESTEXECUTIONCREATEPAGE": {
+    "CREATE_TESTRUN": "Create Test Run",
+    "NAME": "Name",
+    "NAME_PLACEHOLDER": "Title",
+    "DESCRIPTION": "Description",
+    "DESCRIPTION_PLACEHOLDER": "Description",
+    "MODAL_DELETE_HEADER": "Delete Testrun",
+    "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected test run? This action is permanent and cannot be recovered."
+  },
   "TESTCASE_DETAILSPAGE": {
     "DESCRIPTION": "Description",
     "EDIT": "Edit",

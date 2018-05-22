@@ -51,12 +51,8 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     // TODO open edit modal
   }
 
-  refresh() {
-    // this.projectWizardOpened = false;
-  }
+  onDelete() {
 
-  dropdown(event) {
-    event.stopPropagation();
   }
 
   getBackgroundColor(project: Project): string {

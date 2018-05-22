@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -15,6 +16,7 @@ import { DeleteTestRunModalComponent } from './delete-test-run-modal/delete-test
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     TestExecutionsRoutingModule,
     SharedModule,
     TranslateModule.forChild()

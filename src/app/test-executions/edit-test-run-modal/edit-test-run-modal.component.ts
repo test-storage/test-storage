@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+import { Testrun } from '../testrun';
 
 @Component({
   selector: 'app-edit-test-run-modal',
@@ -7,7 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditTestRunModalComponent implements OnInit {
 
-  constructor() { }
+  @Input() opened = false;
+  @Output() openedChange = new EventEmitter<boolean>();
+  @Output() testrunChange = new EventEmitter<Testrun>();
+
+  public testrun: Testrun;
+  subscription;
+
+  constructor() {
+    this.testrun = new Testrun();
+  }
+
+  setOpened(val: boolean) {
+    this.opened = val;
+    this.openedChange.emit(this.opened);
+  }
+
+  updateTestrun() {
+    this.testrunChange.emit(this.testrun);
+    this.testrun = new Testrun();
+  }
 
   ngOnInit() {
   }

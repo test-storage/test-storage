@@ -1,7 +1,10 @@
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { pageTransition } from '../animations';
+import { HttpResponse } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
+import { NotificationsService } from 'angular2-notifications';
 
 import { TestrunsService } from './test-executions.service';
 import { Testrun } from './testrun';
@@ -19,7 +22,14 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
 
   private subscription;
 
+  createOpened = false;
+  editOpened = false;
+  deleteOpened = false;
+
+  public projectId: string;
   public testruns: Testrun[] = [];
+  public selectedTestrun: Testrun;
+
   public today: Date;
   public tomorrow: Date;
   public future: Date;
@@ -27,6 +37,8 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
 
   constructor(
     private testrunService: TestrunsService,
+    private route: ActivatedRoute,
+    private notificationsService: NotificationsService,
     protected translateService: TranslateService
   ) { }
 
@@ -39,8 +51,10 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
     this.tomorrow.setDate(this.today.getDate() + 1);
     this.yesterday.setDate(this.today.getDate() - 1);
     this.future.setDate(this.today.getDate() + 50);
-
-    this.getTestruns();
+    this.route.parent.parent.params.subscribe(params => {
+      this.projectId = params['id'];
+      this.getTestruns(this.projectId);
+    });
     /*
     this.testruns = [
       {
@@ -105,10 +119,115 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
   }
 
 
-  getTestruns() {
-    this.subscription = this.testrunService.getTestruns().subscribe(
+  getTestruns(projectId: string) {
+    this.subscription = this.testrunService.getTestrunsByProjectId(projectId).subscribe(
       data => this.testruns = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
+
+
+  onAdd() {
+    this.createOpened = true;
+  }
+
+  onEdit(testrun: Testrun) {
+    this.editOpened = true;
+    this.selectedTestrun = testrun;
+  }
+
+  onDelete(testrun: Testrun) {
+    this.deleteOpened = true;
+    this.selectedTestrun = testrun;
+  }
+
+  createTestrun(testrun: Testrun) {
+
+    testrun.projectId = this.projectId;
+
+    this.testrunService.createTestrun(testrun).subscribe(
+      (response: HttpResponse<Testrun>) => {
+        if (response.status === 201) {
+          this.notificationsService.success(
+            `${testrun.name}`,
+            this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
+          );
+          this.testruns.push(response.body);
+        }
+      },
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 403) {
+          this.notificationsService.warn(
+            this.translateService.instant('COMMON.FORBIDDEN'),
+            this.translateService.instant('COMMON.PERMISSIONS')
+          );
+        } else {
+        this.notificationsService.error(
+          this.translateService.instant('COMMON.ERROR_OCCURED'),
+          this.translateService.instant('COMMON.ERROR_ACTION')
+        );
+        }
+      }
+    );
+  }
+
+  updateTestrun(testrun: Testrun) {
+      this.testrunService.updateTestrun(testrun, testrun._id).subscribe(
+        response => {
+          if (response.status === 200) {
+            this.notificationsService.success(
+              `${testrun.name}`,
+              this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
+            );
+
+            // update local array of tesruns
+            const foundIndex = this.testruns.findIndex(mTestrun => mTestrun._id === testrun._id);
+            this.testruns[foundIndex] = testrun;
+          }
+        },
+        error => {
+          console.log(error);
+          if (error.error.statusCode === 403) {
+            this.notificationsService.warn(
+              this.translateService.instant('COMMON.FORBIDDEN'),
+              this.translateService.instant('COMMON.PERMISSIONS')
+            );
+          } else {
+          this.notificationsService.error(
+            this.translateService.instant('COMMON.ERROR_OCCURED'),
+            this.translateService.instant('COMMON.ERROR_ACTION')
+          );
+          }
+        }
+      );
+  }
+
+  forceDelete() {
+        this.testrunService.deleteTestrun(this.selectedTestrun._id).subscribe(
+          response => {
+            if (response.status === 200) {
+              this.notificationsService.success(
+                `${this.selectedTestrun.name}`,
+                this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
+              );
+              this.testruns = this.testruns.filter(testruns => testruns !== this.selectedTestrun);
+            }
+          },
+          error => {
+            console.log(error);
+            if (error.error.statusCode === 403) {
+              this.notificationsService.warn(
+                this.translateService.instant('COMMON.FORBIDDEN'),
+                this.translateService.instant('COMMON.PERMISSIONS')
+              );
+            } else {
+            this.notificationsService.error(
+              this.translateService.instant('COMMON.ERROR_OCCURED'),
+              this.translateService.instant('COMMON.ERROR_ACTION')
+            );
+            }
+          }
+        );
+      }
 
 }
