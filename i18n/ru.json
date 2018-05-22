@@ -184,6 +184,15 @@
     "EMPTYSTATE_NOTESTRUNS_DESCRIPTION": "Нажмите на кнопку 'Создать Тестовый Прогон' для создания",
     "EMPTYSTATE_CREATETESTRUN_BUTTON": "Создать Тестовый Прогон"
   },
+  "TESTEXECUTIONCREATEPAGE": {
+    "CREATE_TESTRUN": "Создать Тестовый Прогон",
+    "NAME": "Название",
+    "NAME_PLACEHOLDER": "Название",
+    "DESCRIPTION": "Описание",
+    "DESCRIPTION_PLACEHOLDER": "Описание",
+    "MODAL_DELETE_HEADER": "Удалить Тестовый Прогон",
+    "MODAL_DELETE_DESCRIPTION": "Вы уверены, что хотите удалить выбранный тестовый прогон? Удаленные тестовые прогоны не смогут быть восстановлены."
+  },
   "TESTCASE_DETAILSPAGE": {
     "DESCRIPTION": "Описание",
     "EDIT": "Редактировать",
