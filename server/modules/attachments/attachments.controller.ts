@@ -1,4 +1,4 @@
-import { Post, Controller, Body, Request, Response, HttpStatus } from '@nestjs/common';
+import { Post, Controller, UseInterceptors, FileInterceptor, UploadedFile } from '@nestjs/common';
 
 import { AttachmentsService } from './attachments.service';
 
@@ -14,13 +14,12 @@ import {
 @Controller('api/v1/attachments')
 export class AttachmentsController {
 
-  constructor(private readonly attachmentsService: AttachmentsService) { }
+  constructor(private readonly attachmentsService: AttachmentsService) {}
 
-  @Post('/upload')
-  async testUpload( @Response() res, @Request() req, @Body('data') data) {
-    console.log(req.files);
-    console.log(data);
-    res.status(HttpStatus.OK).json({ data: 'success' });
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('filename', { dest: './uploads' }))
+  testUpload(@UploadedFile() file) {
+    console.log(file);
   }
 
 }

@@ -13,6 +13,7 @@ import { ProjectsModule } from './projects/projects.module';
 import { TestsuitesModule } from './testsuites/testsuites.module';
 import { TestrunsModule } from './testruns/testruns.module';
 import { DevicesModule } from './devices/devices.module';
+import { AttachmentsModule } from './attachments/attachments.module';
 
 const connectionString = `mongodb://${config.get('db.user')}:${config.get('db.password')}@${process.env.DOCKERIZED ? 'mongodb' : config.get('db.host')}/${config.get('db.name')}`;
 
@@ -26,7 +27,8 @@ const connectionString = `mongodb://${config.get('db.user')}:${config.get('db.pa
     TestrunsModule,
     UsersModule,
     RolesModule,
-    DevicesModule
+    DevicesModule,
+    AttachmentsModule
   ],
   controllers: [],
   providers: [],
