@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 export interface Attachment extends Document {
   readonly _id?: string;
   readonly name: string;
-  readonly description: string;
+  readonly description?: string;
   readonly modified: string;
   readonly size: string;
   readonly mimeType: string;
