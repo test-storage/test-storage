@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ClarityModule } from '@clr/angular';
-import { ValidateEqualDirective } from '../settings/users/validate-equal.directive';
+import { ValidateEqualDirective } from './validate-equal.directive';
 import { AutofocusDirective } from './autofocus.directive';
 
 @NgModule({
