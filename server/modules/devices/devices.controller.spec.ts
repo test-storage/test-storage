@@ -26,13 +26,26 @@ describe('DevicesController', () => {
     devicesController = module.get<DevicesController>(DevicesController);
   });
 
+  afterEach(async () => {
+    sinon.restore();
+  });
+
   describe('findAll', () => {
     it('should return an array of devices', async () => {
       const result: Device[] = [
         {
           manufacturer: 'name',
           model: '',
-          type: 1,
+          type: 'MOBILE',
+          os: '',
+          osVersion: '',
+          description: 'description',
+          assignedTo: ['']
+        },
+        {
+          manufacturer: 'name',
+          model: '',
+          type: 'TABLET',
           os: '',
           osVersion: '',
           description: 'description',
