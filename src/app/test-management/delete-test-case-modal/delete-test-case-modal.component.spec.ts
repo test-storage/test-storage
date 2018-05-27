@@ -2,15 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeleteTestCaseModalComponent } from './delete-test-case-modal.component';
 
-describe('DeleteTestCaseModalComponent', () => {
+xdescribe('DeleteTestCaseModalComponent', () => {
   let component: DeleteTestCaseModalComponent;
   let fixture: ComponentFixture<DeleteTestCaseModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeleteTestCaseModalComponent ]
+      declarations: [DeleteTestCaseModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -2,15 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeleteDeviceModalComponent } from './delete-device-modal.component';
 
-describe('DeleteDeviceModalComponent', () => {
+xdescribe('DeleteDeviceModalComponent', () => {
   let component: DeleteDeviceModalComponent;
   let fixture: ComponentFixture<DeleteDeviceModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeleteDeviceModalComponent ]
+      declarations: [DeleteDeviceModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
