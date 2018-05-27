@@ -10,11 +10,11 @@ export class AutofocusDirective implements OnChanges {
 
   constructor(private elementRef: ElementRef) {
     this.el = this.elementRef.nativeElement;
-   }
+  }
 
-   ngOnChanges(changes: SimpleChanges) {
-     if (changes.appAutofocus.currentValue) {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.appAutofocus.currentValue) {
       setTimeout(() => this.el.focus(), 0);
-     }
-   }
+    }
+  }
 }
