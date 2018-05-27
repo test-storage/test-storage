@@ -1,11 +1,7 @@
-import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
-import { ElementRef, Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { AutofocusDirective } from './autofocus.directive';
-
-export class MockElementRef {
-  nativeElement = {};
-}
 
 @Component({
   template: `
