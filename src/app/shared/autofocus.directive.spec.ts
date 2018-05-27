@@ -10,20 +10,16 @@ export class MockElementRef {
 @Component({
   template: `
   <input type="text" [appAutofocus]=false>
-  <input type="text" [appAutofocus]=true (focus)="onFocus()">`
+  <input type="text" class="focusable" [appAutofocus]=true>`
 })
-export class TestAutoFocusComponent {
-  onFocus($event) {
-    console.log($event);
-  }
-}
+export class TestAutoFocusComponent { }
 
 describe('AutofocusDirective', () => {
 
   let component: TestAutoFocusComponent;
   let fixture: ComponentFixture<TestAutoFocusComponent>;
   let directives: DebugElement[];
-  let focused: DebugElement[];
+  let focused: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,10 +33,11 @@ describe('AutofocusDirective', () => {
     fixture = TestBed.createComponent(TestAutoFocusComponent);
     component = fixture.componentInstance;
 
+    focused = fixture.debugElement.query(By.css('input.focusable'));
+    spyOn(focused.nativeElement, 'focus');
     fixture.detectChanges();
 
     directives = fixture.debugElement.queryAll(By.directive(AutofocusDirective));
-    focused = fixture.debugElement.queryAll(By.css(':focus'));
   });
 
   it('should create', () => {
@@ -61,7 +58,12 @@ describe('AutofocusDirective', () => {
     expect(actual.appAutofocus).toBe(true);
   });
 
-  xit('should check element with :focus exist', async () => {
-    expect(focused.length).toBe(1);
+  it('should check element with :focus exist', async () => {
+    expect(focused).toBeTruthy();
+    expect(document.hasFocus());
+
+    fixture.whenStable().then(() => {
+      expect(focused.nativeElement.focus).toHaveBeenCalled();
+    });
   });
 });
