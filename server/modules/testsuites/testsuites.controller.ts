@@ -4,8 +4,9 @@ import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
 import { QueryIdValidationPipe } from '../common/pipes/query-id-validation.pipe';
 
-import { TestsuitesService } from './testsuites.service';
+import { UserId } from '../common/decorators/user.decorator';
 
+import { TestsuitesService } from './testsuites.service';
 import { Testsuite } from './testsuite.interface';
 import { CreateTestsuiteDto } from './create-testsuite.dto';
 
@@ -28,8 +29,10 @@ export class TestsuitesController {
   @ApiResponse({ status: 201, description: 'The test suite has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create(@Body(new ValidationPipe()) createTestsuiteDto: CreateTestsuiteDto): Promise<Testsuite> {
-    return await this.testsuitesService.create(createTestsuiteDto);
+  async create(
+    @UserId(new ParameterValidationPipe) userId,
+    @Body(new ValidationPipe()) createTestsuiteDto: CreateTestsuiteDto): Promise<Testsuite> {
+    return await this.testsuitesService.create(createTestsuiteDto, userId);
   }
 
   @Get()
@@ -59,9 +62,10 @@ export class TestsuitesController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findOneAndUpdate(
+    @UserId(new ParameterValidationPipe) userId,
     @Body(new ValidationPipe()) createTestsuiteDto: CreateTestsuiteDto,
     @Param('id', new ParameterValidationPipe()) id: string) {
-    return this.testsuitesService.update(id, createTestsuiteDto);
+    return await this.testsuitesService.update(id, createTestsuiteDto, userId);
   }
 
   @Delete(':id')

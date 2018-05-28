@@ -1,22 +1,36 @@
 import { Test } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { JwtStrategy } from './passport/jwt.strategy';
 import { UsersModule } from '../users/users.module';
 import { UserDto } from './user.dto';
 
-describe('AuthController', () => {
+import { getModelToken } from '@nestjs/mongoose';
+
+import * as sinon from 'sinon';
+import * as chai from 'chai';
+const expect = chai.expect;
+
+xdescribe('AuthController', () => {
   let authController: AuthController;
   let authService: AuthService;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      modules: [UsersModule],
+      imports: [UsersModule],
       controllers: [AuthController],
-      providers: [AuthService],
+      providers: [AuthService, JwtStrategy, {
+        provide: getModelToken('User'),
+        useValue: {},
+      }]
     }).compile();
 
     authService = module.get<AuthService>(AuthService);
     authController = module.get<AuthController>(AuthController);
+  });
+
+  afterEach(async () => {
+    sinon.restore();
   });
 
   describe('Get Access Token via valid login and password ', () => {
@@ -32,9 +46,9 @@ describe('AuthController', () => {
         accessToken: 'data'
       };
 
-      spyOn(authService, 'getAccessToken').and.returnValue(result);
+      sinon.replace(authService, 'getAccessToken', sinon.fake.returns(result));
 
-      expect(await authController.login(user)).toBe(result);
+      expect(await authController.login(user)).to.be.equal(result);
     });
   });
 });

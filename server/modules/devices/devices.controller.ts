@@ -1,17 +1,13 @@
 import { Get, Post, Put, Delete, Controller, Body, Param } from '@nestjs/common';
 
-import {
-  ApiUseTags,
-  ApiBearerAuth,
-  ApiResponse,
-  ApiOperation,
-} from '@nestjs/swagger';
+import { ApiUseTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
 
-import { DevicesService } from './devices.service';
+import { UserId } from '../common/decorators/user.decorator';
 
+import { DevicesService } from './devices.service';
 import { Device } from './device.interface';
 import { CreateDeviceDto } from './create-device.dto';
 
@@ -27,8 +23,10 @@ export class DevicesController {
   @ApiResponse({ status: 201, description: 'The device has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create(@Body(new ValidationPipe()) createDeviceDto: CreateDeviceDto): Promise<Device> {
-    return await this.devicesService.create(createDeviceDto);
+  async create(
+    @UserId(new ParameterValidationPipe()) userId,
+    @Body(new ValidationPipe()) createDeviceDto: CreateDeviceDto): Promise<Device> {
+    return await this.devicesService.create(createDeviceDto, userId);
   }
 
   @Get()
@@ -54,9 +52,10 @@ export class DevicesController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findOneAndUpdate(
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createDeviceDto: CreateDeviceDto,
     @Param('id', new ParameterValidationPipe()) id: string) {
-    return this.devicesService.update(id, createDeviceDto);
+    return await this.devicesService.update(id, createDeviceDto, userId);
   }
 
   @Delete(':id')

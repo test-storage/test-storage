@@ -25,17 +25,18 @@
 
     <clr-dg-row *clrDgItems="let device of devices" [clrDgItem]="device">
       <clr-dg-cell [ngSwitch]="device.type">
-        <clr-icon *ngSwitchCase="0" shape="mobile"></clr-icon>
-        <clr-icon *ngSwitchCase="1" shape="tablet"></clr-icon>
-        <clr-icon *ngSwitchCase="2" shape="host"></clr-icon>
-        <clr-icon *ngSwitchCase="3" shape="hard-disk"></clr-icon>
-        <clr-icon *ngSwitchCase="4" shape="vm"></clr-icon>
-        <clr-icon *ngSwitchCase="5" shape="deploy"></clr-icon>
+        <clr-icon *ngSwitchCase="'MOBILE'" shape="mobile"></clr-icon>
+        <clr-icon *ngSwitchCase="'TABLET'" shape="tablet"></clr-icon>
+        <clr-icon *ngSwitchCase="'SERVER'" shape="host"></clr-icon>
+        <clr-icon *ngSwitchCase="'HARDWARE'" shape="hard-disk"></clr-icon>
+        <clr-icon *ngSwitchCase="'VM'" shape="vm"></clr-icon>
+        <clr-icon *ngSwitchCase="'CONTAINER'" shape="deploy"></clr-icon>
       </clr-dg-cell>
       <clr-dg-cell>{{ device.manufacturer }} {{ device.model }}</clr-dg-cell>
       <clr-dg-cell>{{ device.os }}</clr-dg-cell>
       <clr-dg-cell>{{ device.osVersion }}</clr-dg-cell>
       <clr-dg-cell>
+        <!--
         <div class="form-group">
           <label for="selects_1"></label>
           <div class="select">
@@ -47,9 +48,14 @@
             </select>
           </div>
         </div>
+        -->
+        <!-- {{ device.assignedTo }} // get users list -->
       </clr-dg-cell>
     </clr-dg-row>
 
-    <clr-dg-footer> {{ devices?.length }} {{ 'ROLESSETTINGS.ROLES' | translate }}</clr-dg-footer>
+    <clr-dg-footer> {{ devices?.length }} {{ 'DEVICESSETTINGS.DEVICES' | translate }}</clr-dg-footer>
   </clr-datagrid>
 </div>
+<app-create-device-modal [(opened)]="createOpened" (deviceChange)="createDevice($event);"></app-create-device-modal>
+<app-edit-device-modal [device]="selectedDevices[0]" [(opened)]="editOpened" (deviceChange)="updateDevice($event);"></app-edit-device-modal>
+<app-delete-device-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-device-modal>

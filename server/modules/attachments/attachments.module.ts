@@ -1,4 +1,4 @@
-import { Module, RequestMethod, MiddlewareConsumer } from '@nestjs/common';
+import { Module, MiddlewareConsumer } from '@nestjs/common';
 
 import { MongooseModule } from '@nestjs/mongoose';
 
@@ -15,8 +15,4 @@ import { FileUploadMiddleware } from '../common/middlewares/file-upload.middlewa
   controllers: [AttachmentsController],
   providers: [AttachmentsService]
 })
-export class AttachmentsModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply([FileUploadMiddleware]).forRoutes('attachments/upload'); // TODO only for POST
-  }
-}
+export class AttachmentsModule {}

@@ -2,15 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestExecutionsDetailsComponent } from './test-executions-details.component';
 
-describe('TestExecutionsDetailsComponent', () => {
+xdescribe('TestExecutionsDetailsComponent', () => {
   let component: TestExecutionsDetailsComponent;
   let fixture: ComponentFixture<TestExecutionsDetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestExecutionsDetailsComponent ]
+      declarations: [TestExecutionsDetailsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

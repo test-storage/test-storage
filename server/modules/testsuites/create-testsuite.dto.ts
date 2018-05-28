@@ -1,5 +1,5 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsInt, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsString, IsInt, IsNotEmpty, IsOptional, IsDate } from 'class-validator';
 
 export class CreateTestsuiteDto {
 
@@ -38,14 +38,15 @@ export class CreateTestsuiteDto {
   @IsInt()
   readonly order?: number;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiModelPropertyOptional({ type: Date })
   @IsOptional()
-  @IsString()
-  readonly created?: string;
-  @ApiModelPropertyOptional({ type: String })
+  @IsDate()
+  readonly created?: Date;
+
+  @ApiModelPropertyOptional({ type: Date })
   @IsOptional()
-  @IsString()
-  readonly updated?: string;
+  @IsDate()
+  readonly updated?: Date;
 
   @ApiModelPropertyOptional({ type: String })
   @IsOptional()

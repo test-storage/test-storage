@@ -1,5 +1,5 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsInt, IsNotEmpty, IsOptional, IsBoolean, IsNumber } from 'class-validator';
+import { IsString, IsInt, IsNotEmpty, IsOptional, IsBoolean, IsNumber, IsDate } from 'class-validator';
 
 export class CreateUserDto {
 
@@ -42,12 +42,13 @@ export class CreateUserDto {
   @IsOptional()
   readonly avatarColor?: number;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiModelPropertyOptional({ type: Object })
   @IsOptional()
-  readonly workInfo?: any;
-  @ApiModelPropertyOptional({ type: String })
+  readonly workInfo?: object;
+
+  @ApiModelPropertyOptional({ type: Object })
   @IsOptional()
-  readonly social?: any;
+  readonly social?: object;
 
   @ApiModelProperty({ type: String })
   @IsString()
@@ -57,19 +58,28 @@ export class CreateUserDto {
   @ApiModelPropertyOptional({ type: String })
   @IsOptional()
   readonly userGroups?: Array<string>;
+
   @ApiModelPropertyOptional({ type: String })
   @IsOptional()
   readonly projects?: Array<string>;
-  @ApiModelPropertyOptional({ type: String })
+
+  @ApiModelPropertyOptional({ type: Date })
+  @IsDate()
   @IsOptional()
-  readonly created?: string;
-  @ApiModelPropertyOptional({ type: String })
+  readonly created?: Date;
+
+  @ApiModelPropertyOptional({ type: Date })
+  @IsDate()
   @IsOptional()
-  readonly updated?: string;
+  readonly updated?: Date;
+
   @ApiModelPropertyOptional({ type: String })
+  @IsString()
   @IsOptional()
   readonly createdBy?: string;
+
   @ApiModelPropertyOptional({ type: String })
+  @IsString()
   @IsOptional()
   readonly updatedBy?: string;
 }

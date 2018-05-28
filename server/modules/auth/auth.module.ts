@@ -1,5 +1,5 @@
 import * as passport from 'passport';
-import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 

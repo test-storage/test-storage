@@ -8,8 +8,8 @@ export interface Testsuite extends Document {
   readonly name: string;
   readonly description?: string;
   readonly order?: number;
-  readonly created?: string;
-  readonly updated?: string;
+  readonly created?: Date;
+  readonly updated?: Date;
   readonly createdBy?: string;
   readonly updatedBy?: string;
 }

@@ -1,14 +1,13 @@
-import { Get, Post, Put, Delete, Controller, Body, Param } from '@nestjs/common';
+import { Get, Post, Put, Delete, Controller, Body, Param, UseGuards } from '@nestjs/common';
 
-import {
-  ApiUseTags,
-  ApiBearerAuth,
-  ApiResponse,
-  ApiOperation,
-} from '@nestjs/swagger';
+import { ApiUseTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
+
+import { Roles } from '../common/decorators/roles.decorator';
+import { RolesGuard } from './../common/guards/roles.guard';
 
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
+import { UserId } from '../common/decorators/user.decorator';
 
 import { ProjectsService } from './projects.service';
 
@@ -27,8 +26,11 @@ export class ProjectsController {
   @ApiResponse({ status: 201, description: 'The project has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create( @Body(new ValidationPipe()) createProjectDto: CreateProjectDto): Promise<Project> {
-    return await this.projectsService.create(createProjectDto);
+  async create(
+              @UserId(new ParameterValidationPipe) userId,
+              @Body(new ValidationPipe()) createProjectDto: CreateProjectDto
+            ): Promise<Project> {
+    return await this.projectsService.create(createProjectDto, userId);
   }
 
   @Get()
@@ -54,12 +56,15 @@ export class ProjectsController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findOneAndUpdate(
+    @UserId(new ParameterValidationPipe) userId,
     @Body(new ValidationPipe()) createProjectDto: CreateProjectDto,
-    @Param('id', new ParameterValidationPipe()) id: string) {
-    return this.projectsService.update(id, createProjectDto);
+    @Param('id', new ParameterValidationPipe()) id: string): Promise<Project> {
+    return await this.projectsService.update(id, createProjectDto, userId);
   }
 
   @Delete(':id')
+  @UseGuards(RolesGuard)
+  @Roles('admin')
   @ApiOperation({ title: 'Delete Single Project by id' })
   @ApiResponse({ status: 200, description: 'The single project has been successfully deleted.'})
   @ApiResponse({ status: 400, description: 'Validation failed'})
