@@ -8,7 +8,11 @@
     "CANCEL_BUTTON": "Cancel",
     "SUCCESSFULLY_CREATED": "successfully created",
     "SUCCESSFULLY_UPDATED": "successfully updated",
-    "SUCCESSFULLY_DELETED": "successfully deleted"
+    "SUCCESSFULLY_DELETED": "successfully deleted",
+    "FORBIDDEN": "You don't have permissions",
+    "PERMISSIONS": "for perform this action",
+    "ERROR_OCCURED": "Error occured",
+    "ERROR_ACTION": "while trying to perform this action"
   },
   "SETTINGS": {
     "MAIN_SETTINGS": "Main Settings",
@@ -33,6 +37,14 @@
     "MAJOR": "Major",
     "MINOR": "Minor",
     "TRIVIAL": "Trivial"
+  },
+  "DEVICETYPES": {
+    "MOBILE": "Mobile phone",
+    "TABLET": "Tablet",
+    "SERVER": "Server",
+    "HARDWARE": "Hardware",
+    "VM": "Virtual Machine",
+    "CONTAINER": "Container"
   },
   "TESTCASETYPE": {
     "POSITIVE": "Positive",
@@ -167,7 +179,19 @@
   "TESTEXECUTIONPAGE": {
     "ADD": "Add",
     "ACTIVE": "Active",
-    "ARCHIEVED": "Archieved"
+    "ARCHIEVED": "Archieved",
+    "EMPTYSTATE_NOTESTRUNS_TITLE": "You have not created Test runs yet.",
+    "EMPTYSTATE_NOTESTRUNS_DESCRIPTION": "Tap the 'Create Test Run' button to get started",
+    "EMPTYSTATE_CREATETESTRUN_BUTTON": "Create Test Run"
+  },
+  "TESTEXECUTIONCREATEPAGE": {
+    "CREATE_TESTRUN": "Create Test Run",
+    "NAME": "Name",
+    "NAME_PLACEHOLDER": "Title",
+    "DESCRIPTION": "Description",
+    "DESCRIPTION_PLACEHOLDER": "Description",
+    "MODAL_DELETE_HEADER": "Delete Testrun",
+    "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected test run? This action is permanent and cannot be recovered."
   },
   "TESTCASE_DETAILSPAGE": {
     "DESCRIPTION": "Description",
@@ -257,6 +281,18 @@
     "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected users? This action is permanent and cannot be recovered.",
     "ADMIN_CANT_BE_EDITED": "System account can't be edited",
     "ADMIN_CANT_BE_DELETED": "System account can't be deleted"
+  },
+  "DEVICECREATEPAGE": {
+    "TITLE": "Add Device to Inventory",
+    "MANUFACTURER": "Manufacturer",
+    "MANUFACTURER_PLACEHOLDER": "Manufacturer",
+    "MODEL": "Model",
+    "MODEL_PLACEHOLDER": "Model",
+    "TYPE": "Type",
+    "OS": "OS",
+    "OS_PLACEHOLDER": "OS",
+    "OS_VERSION": "OS version",
+    "OS_VERSION_PLACEHOLDER": "OS version"
   },
   "USERPROFILEPAGE": {
     "USER": "User",

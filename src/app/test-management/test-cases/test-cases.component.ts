@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 
-import { TestCase, Priority } from './test-case';
+import { TestCase } from './test-case';
 import { TestSuite } from '../test-suite';
 
 import { TestCaseService } from './test-case.service';
@@ -83,7 +83,20 @@ export class TestCasesComponent implements OnInit {
           this.selectedTestCases = [];
         }
       },
-      error => console.log(error)
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 403) {
+          this.notificationsService.warn(
+            this.translateService.instant('COMMON.FORBIDDEN'),
+            this.translateService.instant('COMMON.PERMISSIONS')
+          );
+        } else {
+        this.notificationsService.error(
+          this.translateService.instant('COMMON.ERROR_OCCURED'),
+          this.translateService.instant('COMMON.ERROR_ACTION')
+        );
+        }
+      }
     );
   }
 
@@ -107,7 +120,20 @@ export class TestCasesComponent implements OnInit {
           this.selectedTestCases = [];
         }
       },
-      error => console.log(error)
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 403) {
+          this.notificationsService.warn(
+            this.translateService.instant('COMMON.FORBIDDEN'),
+            this.translateService.instant('COMMON.PERMISSIONS')
+          );
+        } else {
+        this.notificationsService.error(
+          this.translateService.instant('COMMON.ERROR_OCCURED'),
+          this.translateService.instant('COMMON.ERROR_ACTION')
+        );
+        }
+      }
     );
   }
 
@@ -125,7 +151,20 @@ export class TestCasesComponent implements OnInit {
             this.selectedTestCases = [];
           }
         },
-        error => console.log(error)
+        error => {
+          console.log(error);
+          if (error.error.statusCode === 403) {
+            this.notificationsService.warn(
+              this.translateService.instant('COMMON.FORBIDDEN'),
+              this.translateService.instant('COMMON.PERMISSIONS')
+            );
+          } else {
+          this.notificationsService.error(
+            this.translateService.instant('COMMON.ERROR_OCCURED'),
+            this.translateService.instant('COMMON.ERROR_ACTION')
+          );
+          }
+        }
       );
     });
   }

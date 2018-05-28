@@ -2,7 +2,6 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import { RoleSchema } from './role.schema';
 import { CreateRoleDto } from './create-role.dto';
 import { Role } from './role.interface';
 

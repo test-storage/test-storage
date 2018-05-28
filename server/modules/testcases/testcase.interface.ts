@@ -14,8 +14,8 @@ export interface Testcase extends Document {
   readonly steps?: Array<string>;
   readonly postConditions?: string;
   readonly tags?: Array<string>;
-  readonly created?: string;
-  readonly updated?: string;
+  readonly created?: Date;
+  readonly updated?: Date;
   readonly createdBy?: string;
   readonly updatedBy?: string;
   readonly enabled?: boolean;

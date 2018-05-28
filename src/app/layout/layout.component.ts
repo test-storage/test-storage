@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SimpleNotificationsComponent } from 'angular2-notifications';
 
 @Component({
   selector: 'app-layout',

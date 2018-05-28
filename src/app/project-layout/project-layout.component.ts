@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { pageTransition } from '../animations';
 
 import { ProjectsService } from './../projects/projects.service';
@@ -23,7 +23,6 @@ export class ProjectLayoutComponent implements OnInit {
   project: Project;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private projectsService: ProjectsService
   ) { }

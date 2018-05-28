@@ -78,12 +78,23 @@ export class UsersComponent implements OnInit, OnDestroy {
             `${user.lastName} ${user.firstName}`,
             this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
           );
-          user._id = response.body._id;
-          user.created = response.body.created;
-          this.users.push(user);
+          this.users.push(response.body);
         }
       },
-      error => console.log(error)
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 403) {
+          this.notificationsService.warn(
+            this.translateService.instant('COMMON.FORBIDDEN'),
+            this.translateService.instant('COMMON.PERMISSIONS')
+          );
+        } else {
+        this.notificationsService.error(
+          this.translateService.instant('COMMON.ERROR_OCCURED'),
+          this.translateService.instant('COMMON.ERROR_ACTION')
+        );
+        }
+      }
     );
   }
 
@@ -114,7 +125,20 @@ export class UsersComponent implements OnInit, OnDestroy {
             this.selectedUsers = [];
           }
         },
-        error => console.log(error)
+        error => {
+          console.log(error);
+          if (error.error.statusCode === 403) {
+            this.notificationsService.warn(
+              this.translateService.instant('COMMON.FORBIDDEN'),
+              this.translateService.instant('COMMON.PERMISSIONS')
+            );
+          } else {
+          this.notificationsService.error(
+            this.translateService.instant('COMMON.ERROR_OCCURED'),
+            this.translateService.instant('COMMON.ERROR_ACTION')
+          );
+          }
+        }
       );
     }
     // remove selection
@@ -139,7 +163,20 @@ export class UsersComponent implements OnInit, OnDestroy {
               this.users = this.users.filter(users => users !== selectedUser);
             }
           },
-          error => console.log(error)
+          error => {
+            console.log(error);
+            if (error.error.statusCode === 403) {
+              this.notificationsService.warn(
+                this.translateService.instant('COMMON.FORBIDDEN'),
+                this.translateService.instant('COMMON.PERMISSIONS')
+              );
+            } else {
+            this.notificationsService.error(
+              this.translateService.instant('COMMON.ERROR_OCCURED'),
+              this.translateService.instant('COMMON.ERROR_ACTION')
+            );
+            }
+          }
         );
       }
     });

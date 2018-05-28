@@ -1,74 +1,101 @@
-<clr-tabs>
-  <clr-tab>
-    <button clrTabLink id="link1">{{ 'TESTEXECUTIONPAGE.ACTIVE' | translate }}</button>
-    <clr-tab-content id="content1" *clrIfActive="true">
-      <div class="content-area">
+<div *ngIf="testruns">
 
-        <button class="btn btn-primary">
-          <clr-icon shape="plus"></clr-icon>
-          {{ 'TESTEXECUTIONPAGE.ADD' | translate }}
-        </button>
+  <div *ngIf="testruns.length > 0; then existTestruns else noExistTestruns"></div>
+  <ng-template #existTestruns>
+    <clr-tabs>
+      <clr-tab>
+        <button clrTabLink id="link1">{{ 'TESTEXECUTIONPAGE.ACTIVE' | translate }}</button>
+        <clr-tab-content id="content1" *clrIfActive="true">
+          <div class="content-area">
 
-        <div class="row">
-          <div *ngFor="let testSuite of testSuites" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-            <a routerLink="./1" class="card clickable">
-              <div class="card-block">
-                <h4 class="card-title">{{ testSuite.title }}</h4>
-                <p class="card-text">{{ testSuite.description }}</p>
-              </div>
-              <div class="card-footer">
-                <div class="progress labeled success">
-                  <progress value="{{ testSuite.completed }}" max="100" data-displayval="0%"></progress>
-                </div>
-                <div>
-                  <clr-icon *ngIf="(testSuite.endDate <= tomorrow.toISOString() && testSuite.endDate >= today.toISOString())" shape="clock" class="has-alert" title="Attention"></clr-icon>
-                  <clr-icon *ngIf="testSuite.endDate < tomorrow.toISOString()" shape="clock" class="has-badge" title="Overdue"></clr-icon>
-                  <clr-icon *ngIf="testSuite.endDate > tomorrow.toISOString()" shape="clock"></clr-icon>
-                  {{ testSuite.startDate | date }} - {{ testSuite.endDate | date }}
-                </div>
-              </div>
+            <a (click)="onAdd();" class="btn btn-primary">
+              <clr-icon shape="plus"></clr-icon>
+              {{ 'TESTEXECUTIONPAGE.ADD' | translate }}
             </a>
-          </div>
 
-        </div>
-      </div>
-    </clr-tab-content>
-  </clr-tab>
-  <clr-tab>
-    <button clrTabLink>{{ 'TESTEXECUTIONPAGE.ARCHIEVED' | translate }}</button>
-    <clr-tab-content *clrIfActive>
-      <div class="content-area">
-        <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card">
-              <div class="card-block">
-                <h4 class="card-title">Corporate Portal Regression Suite</h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem.</p>
+            <div class="row">
+              <div *ngFor="let testrun of testruns" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <a routerLink="./1" class="card clickable">
+                  <div class="card-block">
+                    <h4 class="card-title">{{ testrun.name }}</h4>
+                    <p class="card-text">{{ testrun.description }}</p>
+                  </div>
+                  <div class="card-footer">
+                    <div class="progress labeled success">
+                      <progress value="{{ testrun.completed }}" max="100" data-displayval="0%"></progress>
+                    </div>
+                    <div *ngIf="testrun.startDate && testrun.endDate">
+                      <clr-icon *ngIf="(testrun.endDate <= tomorrow.toISOString() && testrun.endDate >= today.toISOString())" shape="clock" class="has-alert"
+                        title="Attention"></clr-icon>
+                      <clr-icon *ngIf="testrun.endDate < tomorrow.toISOString()" shape="clock" class="has-badge" title="Overdue"></clr-icon>
+                      <clr-icon *ngIf="testrun.endDate > tomorrow.toISOString()" shape="clock"></clr-icon>
+                      {{ testrun.startDate | date }} - {{ testrun.endDate | date }}
+                    </div>
+                  </div>
+                </a>
               </div>
-              <div class="card-footer">
-                <div class="progress labeled success">
-                  <progress value="100" max="100" data-displayval="0%"></progress>
+
+            </div>
+          </div>
+        </clr-tab-content>
+      </clr-tab>
+      <clr-tab>
+        <button clrTabLink>{{ 'TESTEXECUTIONPAGE.ARCHIEVED' | translate }}</button>
+        <clr-tab-content *clrIfActive>
+          <div class="content-area">
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card">
+                  <div class="card-block">
+                    <h4 class="card-title">Corporate Portal Regression run</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem.</p>
+                  </div>
+                  <div class="card-footer">
+                    <div class="progress labeled success">
+                      <progress value="100" max="100" data-displayval="0%"></progress>
+                    </div>
+                    <a class="btn btn-sm btn-link">Edit</a>
+                  </div>
                 </div>
-                <a class="btn btn-sm btn-link">Edit</a>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <div class="card">
+                  <div class="card-block">
+                    <h4 class="card-title">iOS User Profile Feature run</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem..</p>
+                  </div>
+                  <div class="card-footer">
+                    <div class="progress labeled success">
+                      <progress value="100" max="100" data-displayval="10%"></progress>
+                    </div>
+                    <a class="btn btn-sm btn-link">Edit</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-4">
-            <div class="card">
-              <div class="card-block">
-                <h4 class="card-title">iOS User Profile Feature Suite</h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem..</p>
-              </div>
-              <div class="card-footer">
-                <div class="progress labeled success">
-                  <progress value="100" max="100" data-displayval="10%"></progress>
-                </div>
-                <a class="btn btn-sm btn-link">Edit</a>
-              </div>
-            </div>
-          </div>
+        </clr-tab-content>
+      </clr-tab>
+    </clr-tabs>
+  </ng-template>
+
+  <ng-template #noExistTestruns>
+    <div class="noexist-wrapper">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        <div class="no-testrun">
+          <img src="assets/add-project.png">
+          <h4>{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_TITLE' | translate }}</h4>
+          <p class="tips">{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_DESCRIPTION' | translate }}</p>
+          <a (click)="onAdd();" class="btn btn-primary">{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_CREATETESTRUN_BUTTON' | translate }}</a>
         </div>
+
       </div>
-    </clr-tab-content>
-  </clr-tab>
-</clr-tabs>
+    </div>
+
+  </ng-template>
+
+  <app-create-test-run-modal [(opened)]="createOpened" (testrunChange)="createTestrun($event);"></app-create-test-run-modal>
+  <app-edit-test-run-modal [testrun]="selectedTestrun" [(opened)]="editOpened" (testrunChange)="updateTestrun($event);"></app-edit-test-run-modal>
+  <app-delete-test-run-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-test-run-modal>
+</div>

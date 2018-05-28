@@ -2,15 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestManagementComponent } from './test-management.component';
 
-describe('TestManagementComponent', () => {
+xdescribe('TestManagementComponent', () => {
   let component: TestManagementComponent;
   let fixture: ComponentFixture<TestManagementComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestManagementComponent ]
+      declarations: [TestManagementComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

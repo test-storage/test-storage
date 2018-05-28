@@ -2,7 +2,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { pageTransition } from '../animations';
 
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 import { NotificationsService } from 'angular2-notifications';
@@ -35,7 +35,6 @@ export class TestManagementComponent implements OnInit {
     protected translateService: TranslateService,
     private notificationsService: NotificationsService,
     private testSuiteService: TestSuiteService,
-    private router: Router,
     private route: ActivatedRoute
   ) { }
 
@@ -142,7 +141,20 @@ export class TestManagementComponent implements OnInit {
           this.fromFlatToTree();
         }
       },
-      error => console.log(error)
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 403) {
+          this.notificationsService.warn(
+            this.translateService.instant('COMMON.FORBIDDEN'),
+            this.translateService.instant('COMMON.PERMISSIONS')
+          );
+        } else {
+        this.notificationsService.error(
+          this.translateService.instant('COMMON.ERROR_OCCURED'),
+          this.translateService.instant('COMMON.ERROR_ACTION')
+        );
+        }
+      }
     );
   }
 
@@ -164,7 +176,20 @@ export class TestManagementComponent implements OnInit {
           this.fromFlatToTree();
         }
       },
-      error => console.log(error)
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 403) {
+          this.notificationsService.warn(
+            this.translateService.instant('COMMON.FORBIDDEN'),
+            this.translateService.instant('COMMON.PERMISSIONS')
+          );
+        } else {
+        this.notificationsService.error(
+          this.translateService.instant('COMMON.ERROR_OCCURED'),
+          this.translateService.instant('COMMON.ERROR_ACTION')
+        );
+        }
+      }
     );
   }
 
@@ -180,7 +205,20 @@ export class TestManagementComponent implements OnInit {
           this.fromFlatToTree();
         }
       },
-      error => console.log(error)
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 403) {
+          this.notificationsService.warn(
+            this.translateService.instant('COMMON.FORBIDDEN'),
+            this.translateService.instant('COMMON.PERMISSIONS')
+          );
+        } else {
+        this.notificationsService.error(
+          this.translateService.instant('COMMON.ERROR_OCCURED'),
+          this.translateService.instant('COMMON.ERROR_ACTION')
+        );
+        }
+      }
     );
   }
 }

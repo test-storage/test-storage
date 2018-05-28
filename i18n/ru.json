@@ -8,7 +8,11 @@
     "CANCEL_BUTTON": "Отмена",
     "SUCCESSFULLY_CREATED": "успешно создан",
     "SUCCESSFULLY_UPDATED": "успешно обновлен",
-    "SUCCESSFULLY_DELETED": "успешно удален"
+    "SUCCESSFULLY_DELETED": "успешно удален",
+    "FORBIDDEN": "У вас не хватает прав",
+    "PERMISSIONS": "для выполнения этого действия",
+    "ERROR_OCCURED": "Произошла Ошибка",
+    "ERROR_ACTION": "во время выполнения данного действия"
   },
   "SETTINGS": {
     "MAIN_SETTINGS": "Основные настройки",
@@ -33,6 +37,14 @@
     "MAJOR": "Мажорный",
     "MINOR": "Минорный",
     "TRIVIAL": "Тривиальный"
+  },
+  "DEVICETYPES": {
+    "MOBILE": "Мобильный телефон",
+    "TABLET": "Планшет",
+    "SERVER": "Сервер",
+    "HARDWARE": "Аппаратное оборудование",
+    "VM": "Виртуальная машина",
+    "CONTAINER": "Контейнер"
   },
   "TESTCASETYPE": {
     "POSITIVE": "Положительный",
@@ -167,7 +179,19 @@
   "TESTEXECUTIONPAGE": {
     "ADD": "Добавить",
     "ACTIVE": "Активные",
-    "ARCHIEVED": "Архивные"
+    "ARCHIEVED": "Архивные",
+    "EMPTYSTATE_NOTESTRUNS_TITLE": "У вас нет ни одного Тестового прогона.",
+    "EMPTYSTATE_NOTESTRUNS_DESCRIPTION": "Нажмите на кнопку 'Создать Тестовый Прогон' для создания",
+    "EMPTYSTATE_CREATETESTRUN_BUTTON": "Создать Тестовый Прогон"
+  },
+  "TESTEXECUTIONCREATEPAGE": {
+    "CREATE_TESTRUN": "Создать Тестовый Прогон",
+    "NAME": "Название",
+    "NAME_PLACEHOLDER": "Название",
+    "DESCRIPTION": "Описание",
+    "DESCRIPTION_PLACEHOLDER": "Описание",
+    "MODAL_DELETE_HEADER": "Удалить Тестовый Прогон",
+    "MODAL_DELETE_DESCRIPTION": "Вы уверены, что хотите удалить выбранный тестовый прогон? Удаленные тестовые прогоны не смогут быть восстановлены."
   },
   "TESTCASE_DETAILSPAGE": {
     "DESCRIPTION": "Описание",
@@ -256,6 +280,18 @@
     "MODAL_DELETE_DESCRIPTION": "Вы уверены, что хотите удалить выбранных пользователей? Удаленные пользователи не смогут быть восстановлены.",
     "ADMIN_CANT_BE_EDITED": "Системный аккаунт не может быть изменён",
     "ADMIN_CANT_BE_DELETED": "Системный аккаунт не может быть удален"
+  },
+  "DEVICECREATEPAGE": {
+    "TITLE": "Добавить устройство",
+    "MANUFACTURER": "Производитель",
+    "MANUFACTURER_PLACEHOLDER": "Производитель",
+    "MODEL": "Модель",
+    "MODEL_PLACEHOLDER": "Модель",
+    "TYPE": "Тип",
+    "OS": "ОС",
+    "OS_PLACEHOLDER": "ОС",
+    "OS_VERSION": "Версия ОС",
+    "OS_VERSION_PLACEHOLDER": "Версия ОС"
   },
   "USERPROFILEPAGE": {
     "USER": "Пользователь",
