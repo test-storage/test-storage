@@ -31,6 +31,12 @@
     "heroku-postbuild": "npm run build",
     "ng": "ng"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm test",
+      "pre-push": "npm run lint && npm test"
+    }
+  },
   "dependencies": {
     "@angular/animations": "^6.0.3",
     "@angular/common": "^6.0.3",
@@ -99,6 +105,7 @@
     "codelyzer": "~4.3.0",
     "concurrently": "^3.5.1",
     "faker": "^4.1.0",
+    "husky": "^0.14.3",
     "jasmine-core": "~3.1.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.2",
