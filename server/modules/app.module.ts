@@ -19,12 +19,13 @@ import { MongoDBConnectionStringBuilder } from './connection-string.builder';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGOLAB_URI || new MongoDBConnectionStringBuilder()
-                  .setUser(config.get('db.user'))
-                  .setPassword(config.get('db.password'))
-                  .setHost(config.get('db.host'))
-                  .setDatabaseName(config.get('db.name'))
-                  .build()),
+    MongooseModule.forRoot(process.env.MONGOLAB_URI ||
+      new MongoDBConnectionStringBuilder()
+        .setUser(config.get('db.user'))
+        .setPassword(config.get('db.password'))
+        .setHost(config.get('db.host'))
+        .setDatabaseName(config.get('db.name'))
+        .build()),
     AuthModule,
     ProjectsModule,
     TestcasesModule,

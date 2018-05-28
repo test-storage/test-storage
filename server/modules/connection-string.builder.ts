@@ -5,7 +5,6 @@ export class MongoDBConnectionStringBuilder {
   private host: string;
   private port: string;
   private databaseName: string;
-  private dockerized: boolean;
 
   constructor() {
     this.uriSchema = 'mongodb://';
