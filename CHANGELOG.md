@@ -1,7 +1,7 @@
 # Change Log
 
 ## 0.35.0 (May 28, 2018)
-- Add Invetory Devices: create / edit / delete ([@pumano](https://github.com/pumano) in [#84](https://github.com/test-storage/test-storage/pull/84))
+- Add Inventory Devices: create / edit / delete ([@pumano](https://github.com/pumano) in [#84](https://github.com/test-storage/test-storage/pull/84))
 - Add Basic Test Runs CRUD
 - Refactoring
 - Attachments API for upload
