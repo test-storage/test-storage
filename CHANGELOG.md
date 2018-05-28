@@ -1,9 +1,17 @@
 # Change Log
 
+## 0.35.0 (May 28, 2018)
+- Add Invetory Devices: create / edit / delete ([@pumano](https://github.com/pumano) in [#84](https://github.com/test-storage/test-storage/pull/84))
+- Add Basic Test Runs CRUD
+- Refactoring
+- Attachments API for upload
+- Add tests for some backend and for front end directives
+- Multiple bug fixes and enhancements
+
 ## 0.34.0 (May 16, 2018)
 - Update backend to Nest 5 ([@pumano](https://github.com/pumano) in [#83](https://github.com/test-storage/test-storage/pull/83))
 - Add better UI for test case steps
-- Add priopity for test cases
+- Add priority for test cases
 - Add test case type (positive / negative)
 - Multiple UI improvements
 - Multiple bug fixes
