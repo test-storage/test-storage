@@ -14,6 +14,7 @@ import { TestsuitesModule } from './testsuites/testsuites.module';
 import { TestrunsModule } from './testruns/testruns.module';
 import { DevicesModule } from './devices/devices.module';
 import { AttachmentsModule } from './attachments/attachments.module';
+import { TestResultsModule } from './testresults/testresults.module';
 
 import { MongoDBConnectionStringBuilder } from './connection-string.builder';
 
@@ -34,7 +35,8 @@ import { MongoDBConnectionStringBuilder } from './connection-string.builder';
     UsersModule,
     RolesModule,
     DevicesModule,
-    AttachmentsModule
+    AttachmentsModule,
+    TestResultsModule
   ],
   controllers: [],
   providers: [],

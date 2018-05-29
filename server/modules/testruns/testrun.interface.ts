@@ -1,18 +1,18 @@
 export interface Testrun {
-  _id?: string;
-  name: string;
-  description?: string;
-  projectId: string;
-  builds?: Array<string>;
-  environments?: Array<string>;
-  platforms?: Array<string>;
-  testcases?: Array<string>;
-  status?: string;
-  archieved?: boolean;
-  startDate?: string;
-  endDate?: string;
-  created?: string;
-  updated?: string;
-  createdBy?: string;
-  updatedBy?: string;
+  readonly _id?: string;
+  readonly name: string;
+  readonly description?: string;
+  readonly projectId: string;
+  readonly builds?: Array<string>;
+  readonly environments?: Array<string>;
+  readonly platforms?: Array<string>;
+  readonly testcases?: Array<string>;
+  readonly status?: string;
+  readonly archieved?: boolean;
+  readonly startDate?: string;
+  readonly endDate?: string;
+  readonly created?: string;
+  readonly updated?: string;
+  readonly createdBy?: string;
+  readonly updatedBy?: string;
 }
