@@ -1,12 +1,8 @@
 <div *ngIf="projects" class="content-area">
 
-  <app-project-wizard [(opened)]="projectWizardOpened" (projectChange)="createProject($event);"></app-project-wizard>
-
-  <app-system-wizard></app-system-wizard>
-
   <div *ngIf="projects.length > 0; then existProjects else noExistProjects"></div>
   <ng-template #existProjects>
-    <a (click)="create();" class="btn btn-primary">
+    <a (click)="onAdd();" class="btn btn-primary">
       <clr-icon shape="plus"></clr-icon>
       {{ 'PROJECTSPAGE.CREATE' | translate }}
     </a>
@@ -18,7 +14,7 @@
         <a routerLink="./{{project._id}}" class="card clickable">
           <div class="card-img">
 
-            <a (click)="$event.stopPropagation(); false; onEdit(project)">
+            <a (click)="$event.stopPropagation(); selectedProject = project; onEdit(project); false;">
               <clr-icon class="edit-icon" shape="ellipsis-vertical"></clr-icon>
             </a>
             <!--
@@ -66,11 +62,21 @@
           <img src="assets/add-project.png">
           <h4>{{ 'PROJECTSPAGE.EMPTYSTATE_NOPROJECTS_TITLE' | translate }}</h4>
           <p class="tips">{{ 'PROJECTSPAGE.EMPTYSTATE_NOPROJECTS_DESCRIPTION' | translate }}</p>
-          <a (click)="create();" class="btn btn-primary">{{ 'PROJECTSPAGE.EMPTYSTATE_CREATEPROJECT_BUTTON' | translate }}</a>
+          <a (click)="onAdd();" class="btn btn-primary">{{ 'PROJECTSPAGE.EMPTYSTATE_CREATEPROJECT_BUTTON' | translate }}</a>
         </div>
 
       </div>
     </div>
 
   </ng-template>
+
+  <app-create-project-modal [(opened)]="createOpened" (projectChange)="createProject($event);"></app-create-project-modal>
+
+  <app-edit-project-modal [project]="selectedProject" [(opened)]="editOpened" (projectChange)="updateProject($event);"></app-edit-project-modal>
+
+  <app-delete-project-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-project-modal>
+
+  <app-project-wizard [(opened)]="projectWizardOpened" (projectChange)="createProject($event);"></app-project-wizard>
+
+  <app-system-wizard></app-system-wizard>
 </div>

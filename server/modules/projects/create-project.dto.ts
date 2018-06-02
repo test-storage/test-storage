@@ -34,12 +34,12 @@ export class CreateProjectDto {
   readonly enabled?: boolean;
 
   @ApiModelPropertyOptional({ type: Date })
-  @IsDate()
+  @IsString()
   @IsOptional()
   readonly created?: Date;
 
   @ApiModelPropertyOptional({ type: Date })
-  @IsDate()
+  @IsString()
   @IsOptional()
   readonly updated?: Date;
   // manager?: string; point to user
