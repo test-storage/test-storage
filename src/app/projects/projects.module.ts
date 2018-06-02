@@ -12,6 +12,10 @@ import { ProjectWizardComponent } from './project-wizard/project-wizard.componen
 import { SystemWizardComponent } from '../system-wizard/system-wizard.component';
 import { ProjectsService } from './projects.service';
 
+import { CreateProjectModalComponent } from './create-project-modal/create-project-modal.component';
+import { EditProjectModalComponent } from './edit-project-modal/edit-project-modal.component';
+import { DeleteProjectModalComponent } from './delete-project-modal/delete-project-modal.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -23,7 +27,10 @@ import { ProjectsService } from './projects.service';
   declarations: [
     ProjectsComponent,
     ProjectWizardComponent,
-    SystemWizardComponent
+    SystemWizardComponent,
+    CreateProjectModalComponent,
+    EditProjectModalComponent,
+    DeleteProjectModalComponent
   ],
   providers: [
     ProjectsService

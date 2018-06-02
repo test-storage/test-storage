@@ -124,7 +124,7 @@
     "EMPTYSTATE_CREATEPROJECT_BUTTON": "Create Project"
   },
   "PROJECTCREATEPAGE": {
-    "WIZARD_TITLE": "Project Creation Wizard",
+    "TITLE": "Create Project",
     "PROJECT_DETAILS": "Project Details",
     "NAME": "Name",
     "DESCRIPTION": "Description",
@@ -137,7 +137,9 @@
     "EDIT_MEMBERS": "Edit Members",
     "ROLE": "Role",
     "ACTION": "Action",
-    "REMOVE_MEMBER": "Remove member"
+    "REMOVE_MEMBER": "Remove member",
+    "MODAL_DELETE_HEADER": "Delete Project",
+    "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected Project? This action is permanent and cannot be recovered."
   },
   "PROJECT_DETAILSPAGE": {
     "DESCRIPTION": "Description",

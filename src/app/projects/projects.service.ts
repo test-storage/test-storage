@@ -23,6 +23,14 @@ export class ProjectsService {
     return this.http.post(this.apiPath, project, { observe: 'response' });
   }
 
+  public updateProject(project: Project, id?: string) {
+    if (id !== undefined) {
+      return this.http.put(`${this.apiPath}/${id}`, project, { observe: 'response' });
+    } else {
+      return this.createProject(project);
+    }
+  }
+
   public deleteProject(id: string) {
     return this.http.delete(this.apiPath + '/' + id, { observe: 'response' });
   }

@@ -20,8 +20,13 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   private subscription;
   projects: Project[];
+  selectedProject: Project;
 
   projectWizardOpened = false;
+
+  public createOpened = false;
+  public editOpened = false;
+  public deleteOpened = false;
 
   constructor(
     private projectsService: ProjectsService,
@@ -43,16 +48,16 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
-  create() {
-    this.projectWizardOpened = true;
+  onAdd() {
+    this.createOpened = true;
   }
 
-  onEdit(project: Project) {
-    // TODO open edit modal
+  onEdit() {
+    this.editOpened = true;
   }
 
   onDelete() {
-
+    this.deleteOpened = true;
   }
 
   getBackgroundColor(project: Project): string {
@@ -83,10 +88,71 @@ export class ProjectsComponent implements OnInit, OnDestroy {
             this.translateService.instant('COMMON.PERMISSIONS')
           );
         } else {
-        this.notificationsService.error(
-          this.translateService.instant('COMMON.ERROR_OCCURED'),
-          this.translateService.instant('COMMON.ERROR_ACTION')
-        );
+          this.notificationsService.error(
+            this.translateService.instant('COMMON.ERROR_OCCURED'),
+            this.translateService.instant('COMMON.ERROR_ACTION')
+          );
+        }
+      }
+    );
+  }
+
+  updateProject(project: Project) {
+
+    this.projectsService.updateProject(project, project._id).subscribe(
+      response => {
+        if (response.status === 200) {
+          this.notificationsService.success(
+            project.name,
+            this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
+          );
+
+          const foundIndex = this.projects.findIndex(mProject => mProject._id === project._id);
+          this.projects[foundIndex] = project;
+
+        }
+      },
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 403) {
+          this.notificationsService.warn(
+            this.translateService.instant('COMMON.FORBIDDEN'),
+            this.translateService.instant('COMMON.PERMISSIONS')
+          );
+        } else {
+          this.notificationsService.error(
+            this.translateService.instant('COMMON.ERROR_OCCURED'),
+            this.translateService.instant('COMMON.ERROR_ACTION')
+          );
+        }
+      }
+    );
+  }
+
+  forceDelete($event) {
+
+    this.projectsService.deleteProject(this.selectedProject._id).subscribe(
+      response => {
+        if (response.status === 200) {
+          this.notificationsService.success(
+            this.selectedProject.name,
+            this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
+          );
+          this.projects = this.projects.filter(projects => projects !== this.selectedProject);
+        }
+      },
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 403) {
+          this.notificationsService.warn(
+            this.translateService.instant('COMMON.FORBIDDEN'),
+            this.translateService.instant('COMMON.PERMISSIONS')
+          );
+        } else {
+          this.notificationsService.error(
+            this.translateService.instant('COMMON.ERROR_OCCURED'),
+            this.translateService.instant('COMMON.ERROR_ACTION')
+          );
         }
       }
     );
