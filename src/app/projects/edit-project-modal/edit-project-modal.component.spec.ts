@@ -2,15 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditProjectModalComponent } from './edit-project-modal.component';
 
-describe('EditProjectModalComponent', () => {
+xdescribe('EditProjectModalComponent', () => {
   let component: EditProjectModalComponent;
   let fixture: ComponentFixture<EditProjectModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditProjectModalComponent ]
+      declarations: [EditProjectModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
