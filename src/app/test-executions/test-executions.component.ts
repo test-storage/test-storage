@@ -156,8 +156,7 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
         console.log(error);
         if (error.error.statusCode === 400) {
           this.notificationsService.badRequest();
-        }
-        if (error.error.statusCode === 403) {
+        } else if (error.error.statusCode === 403) {
           this.notificationsService.forbidden();
         } else {
           this.notificationsService.commonError();
@@ -181,8 +180,7 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
         console.log(error);
         if (error.error.statusCode === 400) {
           this.notificationsService.badRequest();
-        }
-        if (error.error.statusCode === 403) {
+        } else if (error.error.statusCode === 403) {
           this.notificationsService.forbidden();
         } else {
           this.notificationsService.commonError();
@@ -204,8 +202,7 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
         console.log(error);
         if (error.error.statusCode === 400) {
           this.notificationsService.badRequest();
-        }
-        if (error.error.statusCode === 403) {
+        } else if (error.error.statusCode === 403) {
           this.notificationsService.forbidden();
         } else {
           this.notificationsService.commonError();

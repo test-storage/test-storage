@@ -64,12 +64,12 @@ export class CreateUserDto {
   readonly projects?: Array<string>;
 
   @ApiModelPropertyOptional({ type: Date })
-  @IsDate()
+  @IsString()
   @IsOptional()
   readonly created?: Date;
 
   @ApiModelPropertyOptional({ type: Date })
-  @IsDate()
+  @IsString()
   @IsOptional()
   readonly updated?: Date;
 
