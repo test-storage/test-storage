@@ -9,6 +9,7 @@
     "SUCCESSFULLY_CREATED": "успешно создан",
     "SUCCESSFULLY_UPDATED": "успешно обновлен",
     "SUCCESSFULLY_DELETED": "успешно удален",
+    "VALIDATION_FAILED": "Ошибка валидации",
     "FORBIDDEN": "У вас не хватает прав",
     "PERMISSIONS": "для выполнения этого действия",
     "ERROR_OCCURED": "Произошла Ошибка",

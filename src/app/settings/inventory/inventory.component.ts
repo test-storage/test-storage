@@ -5,7 +5,7 @@ import { pageTransition } from '../../animations';
 import { Device } from './device';
 import { InventoryService } from './inventory.service';
 import { TranslateService } from '@ngx-translate/core';
-import { NotificationsService } from 'angular2-notifications';
+import { ToastNotificationsService } from '../../shared/toast-notifications.service';
 
 @Component({
   selector: 'app-inventory',
@@ -29,7 +29,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
   constructor(
     private inventoryService: InventoryService,
     protected translateService: TranslateService,
-    private notificationsService: NotificationsService
+    private notificationsService: ToastNotificationsService
   ) { }
 
   ngOnInit() {
@@ -63,25 +63,20 @@ export class InventoryComponent implements OnInit, OnDestroy {
     this.inventoryService.createDevice(device).subscribe(
       (response: HttpResponse<Device>) => {
         if (response.status === 201) {
-          this.notificationsService.success(
-            `${device.manufacturer} ${device.model}`,
-            this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
-          );
+          this.notificationsService.successfullyCreated(`${device.manufacturer} ${device.model}`);
+
           this.devices.push(response.body);
         }
       },
       error => {
         console.log(error);
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        }
         if (error.error.statusCode === 403) {
-          this.notificationsService.warn(
-            this.translateService.instant('COMMON.FORBIDDEN'),
-            this.translateService.instant('COMMON.PERMISSIONS')
-          );
+          this.notificationsService.forbidden();
         } else {
-          this.notificationsService.error(
-            this.translateService.instant('COMMON.ERROR_OCCURED'),
-            this.translateService.instant('COMMON.ERROR_ACTION')
-          );
+          this.notificationsService.commonError();
         }
       }
     );
@@ -91,12 +86,9 @@ export class InventoryComponent implements OnInit, OnDestroy {
     this.inventoryService.updateDevice(device, device._id).subscribe(
       response => {
         if (response.status === 200) {
-          this.notificationsService.success(
-            `${device.manufacturer} ${device.model}`,
-            this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
-          );
+          this.notificationsService.successfullyUpdated(`${device.manufacturer} ${device.model}`);
 
-          // update local array of users
+          // update local array
           const foundIndex = this.devices.findIndex(mDevice => mDevice._id === device._id);
           this.devices[foundIndex] = device;
 
@@ -106,16 +98,13 @@ export class InventoryComponent implements OnInit, OnDestroy {
       },
       error => {
         console.log(error);
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        }
         if (error.error.statusCode === 403) {
-          this.notificationsService.warn(
-            this.translateService.instant('COMMON.FORBIDDEN'),
-            this.translateService.instant('COMMON.PERMISSIONS')
-          );
+          this.notificationsService.forbidden();
         } else {
-          this.notificationsService.error(
-            this.translateService.instant('COMMON.ERROR_OCCURED'),
-            this.translateService.instant('COMMON.ERROR_ACTION')
-          );
+          this.notificationsService.commonError();
         }
       }
     );
@@ -128,25 +117,19 @@ export class InventoryComponent implements OnInit, OnDestroy {
       this.inventoryService.deleteDevice(selectedDevice._id).subscribe(
         response => {
           if (response.status === 200) {
-            this.notificationsService.success(
-              `${selectedDevice.manufacturer} ${selectedDevice.model}`,
-              this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
-            );
+            this.notificationsService.successfullyDeleted(`${selectedDevice.manufacturer} ${selectedDevice.model}`);
             this.devices = this.devices.filter(devices => devices !== selectedDevice);
           }
         },
         error => {
           console.log(error);
+          if (error.error.statusCode === 400) {
+            this.notificationsService.badRequest();
+          }
           if (error.error.statusCode === 403) {
-            this.notificationsService.warn(
-              this.translateService.instant('COMMON.FORBIDDEN'),
-              this.translateService.instant('COMMON.PERMISSIONS')
-            );
+            this.notificationsService.forbidden();
           } else {
-            this.notificationsService.error(
-              this.translateService.instant('COMMON.ERROR_OCCURED'),
-              this.translateService.instant('COMMON.ERROR_ACTION')
-            );
+            this.notificationsService.commonError();
           }
         }
       );
