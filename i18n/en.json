@@ -9,6 +9,7 @@
     "SUCCESSFULLY_CREATED": "successfully created",
     "SUCCESSFULLY_UPDATED": "successfully updated",
     "SUCCESSFULLY_DELETED": "successfully deleted",
+    "VALIDATION_FAILED": "Validation failed",
     "FORBIDDEN": "You don't have permissions",
     "PERMISSIONS": "for perform this action",
     "ERROR_OCCURED": "Error occured",

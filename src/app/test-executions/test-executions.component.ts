@@ -4,7 +4,7 @@ import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
-import { NotificationsService } from 'angular2-notifications';
+import { ToastNotificationsService } from '../shared/toast-notifications.service';
 
 import { TestrunsService } from './test-executions.service';
 import { Testrun } from './testrun';
@@ -38,7 +38,7 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
   constructor(
     private testrunService: TestrunsService,
     private route: ActivatedRoute,
-    private notificationsService: NotificationsService,
+    private notificationsService: ToastNotificationsService,
     protected translateService: TranslateService
   ) { }
 
@@ -147,87 +147,71 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
     this.testrunService.createTestrun(testrun).subscribe(
       (response: HttpResponse<Testrun>) => {
         if (response.status === 201) {
-          this.notificationsService.success(
-            `${testrun.name}`,
-            this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
-          );
+          this.notificationsService.successfullyCreated(testrun.name);
+
           this.testruns.push(response.body);
         }
       },
       error => {
         console.log(error);
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        }
         if (error.error.statusCode === 403) {
-          this.notificationsService.warn(
-            this.translateService.instant('COMMON.FORBIDDEN'),
-            this.translateService.instant('COMMON.PERMISSIONS')
-          );
+          this.notificationsService.forbidden();
         } else {
-        this.notificationsService.error(
-          this.translateService.instant('COMMON.ERROR_OCCURED'),
-          this.translateService.instant('COMMON.ERROR_ACTION')
-        );
+          this.notificationsService.commonError();
         }
       }
     );
   }
 
   updateTestrun(testrun: Testrun) {
-      this.testrunService.updateTestrun(testrun, testrun._id).subscribe(
-        response => {
-          if (response.status === 200) {
-            this.notificationsService.success(
-              `${testrun.name}`,
-              this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
-            );
+    this.testrunService.updateTestrun(testrun, testrun._id).subscribe(
+      response => {
+        if (response.status === 200) {
+          this.notificationsService.successfullyUpdated(testrun.name);
 
-            // update local array of tesruns
-            const foundIndex = this.testruns.findIndex(mTestrun => mTestrun._id === testrun._id);
-            this.testruns[foundIndex] = testrun;
-          }
-        },
-        error => {
-          console.log(error);
-          if (error.error.statusCode === 403) {
-            this.notificationsService.warn(
-              this.translateService.instant('COMMON.FORBIDDEN'),
-              this.translateService.instant('COMMON.PERMISSIONS')
-            );
-          } else {
-          this.notificationsService.error(
-            this.translateService.instant('COMMON.ERROR_OCCURED'),
-            this.translateService.instant('COMMON.ERROR_ACTION')
-          );
-          }
+          // update local array of tesruns
+          const foundIndex = this.testruns.findIndex(mTestrun => mTestrun._id === testrun._id);
+          this.testruns[foundIndex] = testrun;
         }
-      );
+      },
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        }
+        if (error.error.statusCode === 403) {
+          this.notificationsService.forbidden();
+        } else {
+          this.notificationsService.commonError();
+        }
+      }
+    );
   }
 
   forceDelete() {
-        this.testrunService.deleteTestrun(this.selectedTestrun._id).subscribe(
-          response => {
-            if (response.status === 200) {
-              this.notificationsService.success(
-                `${this.selectedTestrun.name}`,
-                this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
-              );
-              this.testruns = this.testruns.filter(testruns => testruns !== this.selectedTestrun);
-            }
-          },
-          error => {
-            console.log(error);
-            if (error.error.statusCode === 403) {
-              this.notificationsService.warn(
-                this.translateService.instant('COMMON.FORBIDDEN'),
-                this.translateService.instant('COMMON.PERMISSIONS')
-              );
-            } else {
-            this.notificationsService.error(
-              this.translateService.instant('COMMON.ERROR_OCCURED'),
-              this.translateService.instant('COMMON.ERROR_ACTION')
-            );
-            }
-          }
-        );
+    this.testrunService.deleteTestrun(this.selectedTestrun._id).subscribe(
+      response => {
+        if (response.status === 200) {
+          this.notificationsService.successfullyDeleted(this.selectedTestrun.name);
+
+          this.testruns = this.testruns.filter(testruns => testruns !== this.selectedTestrun);
+        }
+      },
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        }
+        if (error.error.statusCode === 403) {
+          this.notificationsService.forbidden();
+        } else {
+          this.notificationsService.commonError();
+        }
       }
+    );
+  }
 
 }

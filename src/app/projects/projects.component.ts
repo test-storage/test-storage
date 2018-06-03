@@ -5,7 +5,7 @@ import { pageTransition } from '../animations';
 import { Project } from './project';
 import { ProjectsService } from './projects.service';
 import { TranslateService } from '@ngx-translate/core';
-import { NotificationsService } from 'angular2-notifications';
+import { ToastNotificationsService } from '../shared/toast-notifications.service';
 
 @Component({
   selector: 'app-projects',
@@ -31,7 +31,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   constructor(
     private projectsService: ProjectsService,
     protected translateService: TranslateService,
-    private notificationsService: NotificationsService
+    private notificationsService: ToastNotificationsService
   ) { }
 
   ngOnInit() {
@@ -73,25 +73,19 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     this.projectsService.createProject(project).subscribe(
       (response: HttpResponse<Project>) => {
         if (response.status === 201) {
-          this.notificationsService.success(
-            `${project.name}`,
-            this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
-          );
+          this.notificationsService.successfullyCreated(project.name);
           this.projects.push(response.body);
         }
       },
       error => {
         console.log(error);
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        }
         if (error.error.statusCode === 403) {
-          this.notificationsService.warn(
-            this.translateService.instant('COMMON.FORBIDDEN'),
-            this.translateService.instant('COMMON.PERMISSIONS')
-          );
+          this.notificationsService.forbidden();
         } else {
-          this.notificationsService.error(
-            this.translateService.instant('COMMON.ERROR_OCCURED'),
-            this.translateService.instant('COMMON.ERROR_ACTION')
-          );
+          this.notificationsService.commonError();
         }
       }
     );
@@ -102,10 +96,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     this.projectsService.updateProject(project, project._id).subscribe(
       response => {
         if (response.status === 200) {
-          this.notificationsService.success(
-            project.name,
-            this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
-          );
+          this.notificationsService.successfullyUpdated(project.name);
 
           const foundIndex = this.projects.findIndex(mProject => mProject._id === project._id);
           this.projects[foundIndex] = project;
@@ -114,19 +105,15 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       },
       error => {
         console.log(error);
-        if (error.error.statusCode === 403) {
-          this.notificationsService.warn(
-            this.translateService.instant('COMMON.FORBIDDEN'),
-            this.translateService.instant('COMMON.PERMISSIONS')
-          );
-        } else {
-          this.notificationsService.error(
-            this.translateService.instant('COMMON.ERROR_OCCURED'),
-            this.translateService.instant('COMMON.ERROR_ACTION')
-          );
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
         }
-      }
-    );
+        if (error.error.statusCode === 403) {
+          this.notificationsService.forbidden();
+        } else {
+          this.notificationsService.commonError();
+        }
+      });
   }
 
   forceDelete($event) {
@@ -134,25 +121,19 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     this.projectsService.deleteProject(this.selectedProject._id).subscribe(
       response => {
         if (response.status === 200) {
-          this.notificationsService.success(
-            this.selectedProject.name,
-            this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
-          );
+          this.notificationsService.successfullyDeleted(this.selectedProject.name);
           this.projects = this.projects.filter(projects => projects !== this.selectedProject);
         }
       },
       error => {
         console.log(error);
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        }
         if (error.error.statusCode === 403) {
-          this.notificationsService.warn(
-            this.translateService.instant('COMMON.FORBIDDEN'),
-            this.translateService.instant('COMMON.PERMISSIONS')
-          );
+          this.notificationsService.forbidden();
         } else {
-          this.notificationsService.error(
-            this.translateService.instant('COMMON.ERROR_OCCURED'),
-            this.translateService.instant('COMMON.ERROR_ACTION')
-          );
+          this.notificationsService.commonError();
         }
       }
     );

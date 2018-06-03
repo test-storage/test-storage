@@ -6,6 +6,7 @@ import { pageTransition } from '../../animations';
 import { UsersService } from './users.service';
 import { User } from './user';
 import { NotificationsService } from 'angular2-notifications';
+import { ToastNotificationsService } from '../../shared/toast-notifications.service';
 
 @Component({
   selector: 'app-users',
@@ -28,7 +29,8 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   constructor(
     private usersService: UsersService,
-    private notificationsService: NotificationsService,
+    private notificationsService: ToastNotificationsService,
+    private notifications: NotificationsService,
     protected translateService: TranslateService
   ) { }
 
@@ -74,25 +76,20 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.usersService.createUser(user).subscribe(
       (response: HttpResponse<User>) => {
         if (response.status === 201) {
-          this.notificationsService.success(
-            `${user.lastName} ${user.firstName}`,
-            this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
-          );
+          this.notificationsService.successfullyCreated(`${user.lastName} ${user.firstName}`);
+
           this.users.push(response.body);
         }
       },
       error => {
         console.log(error);
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        }
         if (error.error.statusCode === 403) {
-          this.notificationsService.warn(
-            this.translateService.instant('COMMON.FORBIDDEN'),
-            this.translateService.instant('COMMON.PERMISSIONS')
-          );
+          this.notificationsService.forbidden();
         } else {
-        this.notificationsService.error(
-          this.translateService.instant('COMMON.ERROR_OCCURED'),
-          this.translateService.instant('COMMON.ERROR_ACTION')
-        );
+          this.notificationsService.commonError();
         }
       }
     );
@@ -104,7 +101,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     delete user.confirmPassword;
 
     if (user.email === 'admin') {
-      this.notificationsService.warn(
+      this.notifications.warn(
         '',
         this.translateService.instant('USERCREATEPAGE.ADMIN_CANT_BE_EDITED')
       );
@@ -112,10 +109,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       this.usersService.updateUser(user, user._id).subscribe(
         response => {
           if (response.status === 200) {
-            this.notificationsService.success(
-              `${user.lastName} ${user.firstName}`,
-              this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
-            );
+            this.notificationsService.successfullyUpdated(`${user.lastName} ${user.firstName}`);
 
             // update local array of users
             const foundIndex = this.users.findIndex(mUser => mUser._id === user._id);
@@ -127,16 +121,13 @@ export class UsersComponent implements OnInit, OnDestroy {
         },
         error => {
           console.log(error);
+          if (error.error.statusCode === 400) {
+            this.notificationsService.badRequest();
+          }
           if (error.error.statusCode === 403) {
-            this.notificationsService.warn(
-              this.translateService.instant('COMMON.FORBIDDEN'),
-              this.translateService.instant('COMMON.PERMISSIONS')
-            );
+            this.notificationsService.forbidden();
           } else {
-          this.notificationsService.error(
-            this.translateService.instant('COMMON.ERROR_OCCURED'),
-            this.translateService.instant('COMMON.ERROR_ACTION')
-          );
+            this.notificationsService.commonError();
           }
         }
       );
@@ -148,7 +139,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   forceDelete($event) {
     this.selectedUsers.forEach(selectedUser => {
       if (selectedUser.email === 'admin') {
-        this.notificationsService.warn(
+        this.notifications.warn(
           '',
           this.translateService.instant('USERCREATEPAGE.ADMIN_CANT_BE_DELETED')
         );
@@ -156,32 +147,27 @@ export class UsersComponent implements OnInit, OnDestroy {
         this.usersService.deleteUser(selectedUser._id).subscribe(
           response => {
             if (response.status === 200) {
-              this.notificationsService.success(
-                `${selectedUser.lastName} ${selectedUser.firstName}`,
-                this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
-              );
+              this.notificationsService.successfullyDeleted(`${selectedUser.lastName} ${selectedUser.firstName}`);
+
               this.users = this.users.filter(users => users !== selectedUser);
             }
           },
           error => {
             console.log(error);
+            if (error.error.statusCode === 400) {
+              this.notificationsService.badRequest();
+            }
             if (error.error.statusCode === 403) {
-              this.notificationsService.warn(
-                this.translateService.instant('COMMON.FORBIDDEN'),
-                this.translateService.instant('COMMON.PERMISSIONS')
-              );
+              this.notificationsService.forbidden();
             } else {
-            this.notificationsService.error(
-              this.translateService.instant('COMMON.ERROR_OCCURED'),
-              this.translateService.instant('COMMON.ERROR_ACTION')
-            );
+              this.notificationsService.commonError();
             }
           }
         );
       }
     });
-     // remove selection
-     this.selectedUsers = [];
+    // remove selection
+    this.selectedUsers = [];
   }
 
 }
