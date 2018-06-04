@@ -14,24 +14,16 @@
         <a routerLink="./{{project._id}}" class="card clickable">
           <div class="card-img">
 
-            <a (click)="$event.stopPropagation(); selectedProject = project; onEdit(project); false;">
-              <clr-icon class="edit-icon" shape="ellipsis-vertical"></clr-icon>
-            </a>
-            <!--
             <clr-dropdown class="edit-icon" [clrCloseMenuOnItemClick]="false">
               <a (click)="$event.stopPropagation(); false" clrDropdownTrigger>
                 <clr-icon shape="ellipsis-vertical"></clr-icon>
               </a>
-              <clr-dropdown-menu class="edit-icon" *clrIfOpen>
-                <label class="dropdown-header">Dropdown header</label>
-                <button type="button" clrDropdownItem>Action 1</button>
-                <button type="button" clrDropdownItem>Action 2</button>
-                <div class="dropdown-divider"></div>
-                <button type="button" clrDropdownItem>Link 1</button>
-                <button type="button" clrDropdownItem>Link 2</button>
+              <clr-dropdown-menu *clrIfOpen>
+                <button type="button" (click)="$event.stopPropagation(); onEdit(project); false" clrDropdownItem>Edit</button>
+                <button type="button" (click)="$event.stopPropagation(); onDelete(project); false" clrDropdownItem>Delete</button>
               </clr-dropdown-menu>
             </clr-dropdown>
-            -->
+
             <!-- <img src="assets/placeholder_350x150.png" alt="..." /> -->
             <div *ngIf="project.avatarColor" class="avatar" [style.backgroundColor]="getBackgroundColor(project)" [style.color]="getColor(project)">
               <div class="avatar-name">{{ project.name.charAt(0).toUpperCase() }}</div>
