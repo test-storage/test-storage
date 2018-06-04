@@ -52,11 +52,13 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     this.createOpened = true;
   }
 
-  onEdit() {
+  onEdit(project: Project) {
+    this.selectedProject = project;
     this.editOpened = true;
   }
 
-  onDelete() {
+  onDelete(project: Project) {
+    this.selectedProject = project;
     this.deleteOpened = true;
   }
 
