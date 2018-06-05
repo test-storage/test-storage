@@ -20,6 +20,10 @@ export const TestrunSchema = new mongoose.Schema({
     enum: ['OPEN', 'COMPLETED'],
     default: 'OPEN'
   },
+  progress: {
+    type: Number,
+    default: 0
+  },
   archieved: Boolean,
   startDate: { type: Date },
   endDate: { type: Date },

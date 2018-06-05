@@ -8,6 +8,7 @@ export interface Testrun {
   readonly platforms?: Array<string>;
   readonly testcases?: Array<string>;
   readonly status?: string;
+  readonly progress?: number;
   readonly archieved?: boolean;
   readonly startDate?: string;
   readonly endDate?: string;

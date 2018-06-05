@@ -8,6 +8,7 @@ export class Testrun {
   platforms?: Array<string>;
   testcases?: Array<TestCaseExecution>;
   status?: string;
+  progress?: number;
   archieved?: boolean;
   startDate?: string;
   endDate?: string;
