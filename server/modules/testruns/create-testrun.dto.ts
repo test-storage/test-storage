@@ -48,6 +48,11 @@ export class CreateTestrunDto {
   @IsString()
   readonly status?: string;
 
+  @ApiModelPropertyOptional({ type: Number })
+  @IsOptional()
+  @IsInt()
+  readonly progress?: number;
+
   @ApiModelPropertyOptional({ type: Boolean })
   @IsBoolean()
   @IsOptional()
