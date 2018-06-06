@@ -9,6 +9,10 @@
     top: 10px;
 }
 
+clr-dropdown {
+    position: absolute !important;
+}
+
 .card-img {
     height: 100px;
 }
