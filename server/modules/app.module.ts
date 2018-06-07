@@ -14,17 +14,19 @@ import { TestsuitesModule } from './testsuites/testsuites.module';
 import { TestrunsModule } from './testruns/testruns.module';
 import { DevicesModule } from './devices/devices.module';
 import { AttachmentsModule } from './attachments/attachments.module';
+import { TestResultsModule } from './testresults/testresults.module';
 
 import { MongoDBConnectionStringBuilder } from './connection-string.builder';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGOLAB_URI || new MongoDBConnectionStringBuilder()
-                  .setUser(config.get('db.user'))
-                  .setPassword(config.get('db.password'))
-                  .setHost(config.get('db.host'))
-                  .setDatabaseName(config.get('db.name'))
-                  .build()),
+    MongooseModule.forRoot(process.env.MONGOLAB_URI ||
+      new MongoDBConnectionStringBuilder()
+        .setUser(config.get('db.user'))
+        .setPassword(config.get('db.password'))
+        .setHost(config.get('db.host'))
+        .setDatabaseName(config.get('db.name'))
+        .build()),
     AuthModule,
     ProjectsModule,
     TestcasesModule,
@@ -33,7 +35,8 @@ import { MongoDBConnectionStringBuilder } from './connection-string.builder';
     UsersModule,
     RolesModule,
     DevicesModule,
-    AttachmentsModule
+    AttachmentsModule,
+    TestResultsModule
   ],
   controllers: [],
   providers: [],

@@ -27,15 +27,15 @@ export class ProjectsController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(
-              @UserId(new ParameterValidationPipe) userId,
-              @Body(new ValidationPipe()) createProjectDto: CreateProjectDto
-            ): Promise<Project> {
+    @UserId(new ParameterValidationPipe) userId,
+    @Body(new ValidationPipe()) createProjectDto: CreateProjectDto
+  ): Promise<Project> {
     return await this.projectsService.create(createProjectDto, userId);
   }
 
   @Get()
   @ApiOperation({ title: 'Get All Projects' })
-  @ApiResponse({ status: 200, description: 'The list of projects has been successfully retrieved.'})
+  @ApiResponse({ status: 200, description: 'The list of projects has been successfully retrieved.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findAll(): Promise<Project[]> {
     return this.projectsService.findAll();
@@ -46,7 +46,7 @@ export class ProjectsController {
   @ApiResponse({ status: 200, description: 'The single project has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async findOne( @Param('id', new ParameterValidationPipe()) id: string): Promise<Project> {
+  async findOne(@Param('id', new ParameterValidationPipe()) id: string): Promise<Project> {
     return this.projectsService.findOne(id);
   }
 
@@ -64,12 +64,12 @@ export class ProjectsController {
 
   @Delete(':id')
   @UseGuards(RolesGuard)
-  @Roles('admin')
+  @Roles('administrator')
   @ApiOperation({ title: 'Delete Single Project by id' })
-  @ApiResponse({ status: 200, description: 'The single project has been successfully deleted.'})
-  @ApiResponse({ status: 400, description: 'Validation failed'})
+  @ApiResponse({ status: 200, description: 'The single project has been successfully deleted.' })
+  @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async delete( @Param('id', new ParameterValidationPipe()) id: string) {
+  async delete(@Param('id', new ParameterValidationPipe()) id: string) {
     return this.projectsService.delete(id);
   }
 }

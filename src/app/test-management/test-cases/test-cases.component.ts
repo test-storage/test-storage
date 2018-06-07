@@ -7,7 +7,7 @@ import { TestSuite } from '../test-suite';
 import { TestCaseService } from './test-case.service';
 
 import { ClrDatagridSortOrder } from '@clr/angular';
-import { NotificationsService } from 'angular2-notifications';
+import { ToastNotificationsService } from '../../shared/toast-notifications.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -37,7 +37,7 @@ export class TestCasesComponent implements OnInit {
   constructor(
     private testCaseService: TestCaseService,
     protected translateService: TranslateService,
-    private notificationsService: NotificationsService
+    private notificationsService: ToastNotificationsService
   ) { }
 
   ngOnInit() {
@@ -73,28 +73,21 @@ export class TestCasesComponent implements OnInit {
     this.testCaseService.createTestCase(testcase).subscribe(
       (response: HttpResponse<TestCase>) => {
         if (response.status === 201) {
-          this.notificationsService.success(
-            testcase.title,
-            this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_CREATED')
-          );
-          testcase._id = response.body._id;
-          this.testCases.push(testcase);
+          this.notificationsService.successfullyCreated(testcase.title);
+
+          this.testCases.push(response.body);
           // remove selection
           this.selectedTestCases = [];
         }
       },
       error => {
         console.log(error);
-        if (error.error.statusCode === 403) {
-          this.notificationsService.warn(
-            this.translateService.instant('COMMON.FORBIDDEN'),
-            this.translateService.instant('COMMON.PERMISSIONS')
-          );
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        } else if (error.error.statusCode === 403) {
+          this.notificationsService.forbidden();
         } else {
-        this.notificationsService.error(
-          this.translateService.instant('COMMON.ERROR_OCCURED'),
-          this.translateService.instant('COMMON.ERROR_ACTION')
-        );
+          this.notificationsService.commonError();
         }
       }
     );
@@ -107,10 +100,7 @@ export class TestCasesComponent implements OnInit {
     this.testCaseService.updateTestCase(testcase, testcase._id).subscribe(
       response => {
         if (response.status === 200) {
-          this.notificationsService.success(
-            testcase.title,
-            this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_UPDATED')
-          );
+          this.notificationsService.successfullyUpdated(testcase.title);
 
           // update local array of testcases
           const foundIndex = this.testCases.findIndex(mTestcase => mTestcase._id === testcase._id);
@@ -122,16 +112,12 @@ export class TestCasesComponent implements OnInit {
       },
       error => {
         console.log(error);
-        if (error.error.statusCode === 403) {
-          this.notificationsService.warn(
-            this.translateService.instant('COMMON.FORBIDDEN'),
-            this.translateService.instant('COMMON.PERMISSIONS')
-          );
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        } else if (error.error.statusCode === 403) {
+          this.notificationsService.forbidden();
         } else {
-        this.notificationsService.error(
-          this.translateService.instant('COMMON.ERROR_OCCURED'),
-          this.translateService.instant('COMMON.ERROR_ACTION')
-        );
+          this.notificationsService.commonError();
         }
       }
     );
@@ -142,10 +128,8 @@ export class TestCasesComponent implements OnInit {
       this.testCaseService.deleteTestCase(selectedTestCase._id).subscribe(
         response => {
           if (response.status === 200) {
-            this.notificationsService.success(
-              selectedTestCase.title,
-              this.translateService.instant('TESTMANAGEMENTPAGE.SUCCESSFULLY_DELETED')
-            );
+            this.notificationsService.successfullyDeleted(selectedTestCase.title);
+
             this.testCases = this.testCases.filter(testCases => testCases !== selectedTestCase);
             // remove selection
             this.selectedTestCases = [];
@@ -153,16 +137,12 @@ export class TestCasesComponent implements OnInit {
         },
         error => {
           console.log(error);
-          if (error.error.statusCode === 403) {
-            this.notificationsService.warn(
-              this.translateService.instant('COMMON.FORBIDDEN'),
-              this.translateService.instant('COMMON.PERMISSIONS')
-            );
+          if (error.error.statusCode === 400) {
+            this.notificationsService.badRequest();
+          } else if (error.error.statusCode === 403) {
+            this.notificationsService.forbidden();
           } else {
-          this.notificationsService.error(
-            this.translateService.instant('COMMON.ERROR_OCCURED'),
-            this.translateService.instant('COMMON.ERROR_ACTION')
-          );
+            this.notificationsService.commonError();
           }
         }
       );

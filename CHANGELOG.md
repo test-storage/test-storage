@@ -1,7 +1,13 @@
 # Change Log
 
+## 0.36.0 (June 07, 2018)
+- Add Projects: create / edit / delete ([@pumano](https://github.com/pumano) in [#85](https://github.com/test-storage/test-storage/pull/85))
+- Add some tests for backend
+- Refactoring
+- Multiple bug fixes and enhancements
+
 ## 0.35.0 (May 28, 2018)
-- Add Invetory Devices: create / edit / delete ([@pumano](https://github.com/pumano) in [#84](https://github.com/test-storage/test-storage/pull/84))
+- Add Inventory Devices: create / edit / delete ([@pumano](https://github.com/pumano) in [#84](https://github.com/test-storage/test-storage/pull/84))
 - Add Basic Test Runs CRUD
 - Refactoring
 - Attachments API for upload
