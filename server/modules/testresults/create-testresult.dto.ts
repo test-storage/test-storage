@@ -1,67 +1,52 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsInt, IsNotEmpty, IsOptional, IsBoolean, IsNumber, IsISO8601 } from 'class-validator';
+import { IsString, IsInt, IsOptional, IsNotEmpty, IsISO8601, IsBoolean, IsArray } from 'class-validator';
 
-export class CreateUserDto {
+export class CreateTestResultDto {
 
   @ApiModelPropertyOptional({ type: String })
-  @IsString()
   @IsOptional()
+  @IsString()
   readonly _id?: string;
 
   @ApiModelProperty({ type: String })
   @IsString()
   @IsNotEmpty()
-  readonly email: string;
+  readonly projectId: string;
 
   @ApiModelProperty({ type: String })
   @IsString()
   @IsNotEmpty()
-  readonly password: string;
+  readonly testrunId: string;
 
   @ApiModelProperty({ type: String })
   @IsString()
   @IsNotEmpty()
-  readonly firstName: string;
+  readonly testcaseId: string;
+
+  @ApiModelPropertyOptional({ type: Array })
+  @IsOptional()
+  @IsArray()
+  readonly builds?: Array<string>;
+
+  @ApiModelPropertyOptional({ type: Array })
+  @IsOptional()
+  @IsArray()
+  readonly platforms?: Array<string>;
 
   @ApiModelProperty({ type: String })
   @IsString()
   @IsNotEmpty()
-  readonly lastName: string;
-
-  @ApiModelProperty({ type: Boolean })
-  @IsBoolean()
-  @IsNotEmpty()
-  readonly active: boolean;
+  readonly status?: string;
 
   @ApiModelPropertyOptional({ type: String })
   @IsOptional()
-  readonly photo?: string;
-
-  @ApiModelPropertyOptional({ type: Number })
-  @IsNumber()
-  @IsOptional()
-  readonly avatarColor?: number;
-
-  @ApiModelPropertyOptional({ type: Object })
-  @IsOptional()
-  readonly workInfo?: object;
-
-  @ApiModelPropertyOptional({ type: Object })
-  @IsOptional()
-  readonly social?: object;
-
-  @ApiModelProperty({ type: String })
   @IsString()
-  @IsNotEmpty()
-  readonly role: string;
+  readonly notes?: string;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiModelPropertyOptional({ type: Array })
   @IsOptional()
-  readonly userGroups?: Array<string>;
-
-  @ApiModelPropertyOptional({ type: String })
-  @IsOptional()
-  readonly projects?: Array<string>;
+  @IsArray()
+  readonly attachments?: Array<string>;
 
   @ApiModelPropertyOptional({ type: Date })
   @IsOptional()

@@ -5,7 +5,7 @@ import { pageTransition } from '../animations';
 import { ActivatedRoute } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
-import { NotificationsService } from 'angular2-notifications';
+import { ToastNotificationsService } from '../shared/toast-notifications.service';
 
 import { TestSuite } from './test-suite';
 import { TestSuiteService } from './test-suite.service';
@@ -33,7 +33,7 @@ export class TestManagementComponent implements OnInit {
 
   constructor(
     protected translateService: TranslateService,
-    private notificationsService: NotificationsService,
+    private notificationsService: ToastNotificationsService,
     private testSuiteService: TestSuiteService,
     private route: ActivatedRoute
   ) { }
@@ -132,45 +132,34 @@ export class TestManagementComponent implements OnInit {
     this.testSuiteService.createTestSuite(testsuite).subscribe(
       (response: HttpResponse<TestSuite>) => {
         if (response.status === 201) {
-          this.notificationsService.success(
-            testsuite.name,
-            this.translateService.instant('COMMON.SUCCESSFULLY_CREATED')
-          );
-          testsuite._id = response.body._id;
-          this.testSuites.push(testsuite);
+          this.notificationsService.successfullyCreated(testsuite.name);
+
+          this.testSuites.push(response.body);
           this.fromFlatToTree();
         }
       },
       error => {
         console.log(error);
-        if (error.error.statusCode === 403) {
-          this.notificationsService.warn(
-            this.translateService.instant('COMMON.FORBIDDEN'),
-            this.translateService.instant('COMMON.PERMISSIONS')
-          );
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        } else if (error.error.statusCode === 403) {
+          this.notificationsService.forbidden();
         } else {
-        this.notificationsService.error(
-          this.translateService.instant('COMMON.ERROR_OCCURED'),
-          this.translateService.instant('COMMON.ERROR_ACTION')
-        );
+          this.notificationsService.commonError();
         }
       }
     );
   }
 
   updateTestSuite(testsuite: TestSuite) {
-    // testsuite.parentId = this.selectedTestSuite._id;
     testsuite.projectId = this.selectedTestSuite.projectId;
 
     this.testSuiteService.updateTestSuite(testsuite, testsuite._id).subscribe(
       response => {
         if (response.status === 200) {
-          this.notificationsService.success(
-            testsuite.name,
-            this.translateService.instant('COMMON.SUCCESSFULLY_UPDATED')
-          );
+          this.notificationsService.successfullyCreated(testsuite.name);
 
-          // update local array of testsuites
+          // update local array
           const foundIndex = this.testSuites.findIndex(mTestsuite => mTestsuite._id === testsuite._id);
           this.testSuites[foundIndex] = testsuite;
           this.fromFlatToTree();
@@ -178,16 +167,12 @@ export class TestManagementComponent implements OnInit {
       },
       error => {
         console.log(error);
-        if (error.error.statusCode === 403) {
-          this.notificationsService.warn(
-            this.translateService.instant('COMMON.FORBIDDEN'),
-            this.translateService.instant('COMMON.PERMISSIONS')
-          );
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        } else if (error.error.statusCode === 403) {
+          this.notificationsService.forbidden();
         } else {
-        this.notificationsService.error(
-          this.translateService.instant('COMMON.ERROR_OCCURED'),
-          this.translateService.instant('COMMON.ERROR_ACTION')
-        );
+          this.notificationsService.commonError();
         }
       }
     );
@@ -197,26 +182,20 @@ export class TestManagementComponent implements OnInit {
     this.testSuiteService.deleteTestSuite(this.selectedTestSuite._id).subscribe(
       response => {
         if (response.status === 200) {
-          this.notificationsService.success(
-            this.selectedTestSuite.name,
-            this.translateService.instant('COMMON.SUCCESSFULLY_DELETED')
-          );
+          this.notificationsService.successfullyUpdated(this.selectedTestSuite.name);
+
           this.testSuites = this.testSuites.filter(testSuites => testSuites._id !== this.selectedTestSuite._id);
           this.fromFlatToTree();
         }
       },
       error => {
         console.log(error);
-        if (error.error.statusCode === 403) {
-          this.notificationsService.warn(
-            this.translateService.instant('COMMON.FORBIDDEN'),
-            this.translateService.instant('COMMON.PERMISSIONS')
-          );
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        } else if (error.error.statusCode === 403) {
+          this.notificationsService.forbidden();
         } else {
-        this.notificationsService.error(
-          this.translateService.instant('COMMON.ERROR_OCCURED'),
-          this.translateService.instant('COMMON.ERROR_ACTION')
-        );
+          this.notificationsService.commonError();
         }
       }
     );

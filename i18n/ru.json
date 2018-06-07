@@ -9,6 +9,7 @@
     "SUCCESSFULLY_CREATED": "успешно создан",
     "SUCCESSFULLY_UPDATED": "успешно обновлен",
     "SUCCESSFULLY_DELETED": "успешно удален",
+    "VALIDATION_FAILED": "Ошибка валидации",
     "FORBIDDEN": "У вас не хватает прав",
     "PERMISSIONS": "для выполнения этого действия",
     "ERROR_OCCURED": "Произошла Ошибка",
@@ -124,7 +125,7 @@
     "EMPTYSTATE_CREATEPROJECT_BUTTON": "Создать Проект"
   },
   "PROJECTCREATEPAGE": {
-    "WIZARD_TITLE": "Мастер Создания Проекта",
+    "TITLE": "Создать Проект",
     "PROJECT_DETAILS": "Детали Проекта",
     "NAME": "Название",
     "DESCRIPTION": "Описание",
@@ -137,7 +138,9 @@
     "EDIT_MEMBERS": "Редактировать участников",
     "ROLE": "Роль",
     "ACTION": "Действие",
-    "REMOVE_MEMBER": "Удалить участника"
+    "REMOVE_MEMBER": "Удалить участника",
+    "MODAL_DELETE_HEADER": "Удалить Проект",
+    "MODAL_DELETE_DESCRIPTION": "Вы уверены, что хотите удалить выбранный проект? Удаленные проекты не смогут быть восстановлены."
   },
   "PROJECT_DETAILSPAGE": {
     "DESCRIPTION": "Описание",

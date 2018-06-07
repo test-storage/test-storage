@@ -1,5 +1,5 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsOptional, IsArray, IsDate, IsNotEmpty } from 'class-validator';
+import { IsString, IsOptional, IsArray, IsISO8601, IsNotEmpty } from 'class-validator';
 
 export class CreateDeviceDto {
 
@@ -70,12 +70,12 @@ export class CreateDeviceDto {
 
   @ApiModelPropertyOptional({ type: Date })
   @IsOptional()
-  // @IsDate()
+  @IsISO8601()
   readonly created?: Date;
 
   @ApiModelPropertyOptional({ type: Date })
   @IsOptional()
-  // @IsDate()
+  @IsISO8601()
   readonly updated?: Date;
 
   @ApiModelPropertyOptional({ type: String })
