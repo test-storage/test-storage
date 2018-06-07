@@ -43,11 +43,16 @@ export class TestResultsController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiImplicitQuery({ name: 'projectId', description: 'filter test results by project id', required: false })
-  async findAll(@Query('projectId', new QueryIdValidationPipe()) id?: string): Promise<TestResult[]> {
-    if (!id) {
+  @ApiImplicitQuery({ name: 'testrunId', description: 'filter test results by testrun id', required: false })
+  async findAll(
+    @Query('projectId', new QueryIdValidationPipe()) projectId?: string,
+    @Query('testrunId', new QueryIdValidationPipe()) testrunId?: string): Promise<TestResult[]> {
+    if (!projectId && !testrunId) {
       return this.testresultsService.findAll();
-    } else {
-      return this.testresultsService.findAllByProjectId(id);
+    } else if (projectId) {
+      return this.testresultsService.findAllByProjectId(projectId);
+    } else if (testrunId) {
+      return this.testresultsService.findAllByTestrunId(testrunId);
     }
   }
 
