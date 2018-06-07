@@ -25,6 +25,10 @@ export class TestResultsService {
     return await this.testresultModel.find().where('projectId', id).exec();
   }
 
+  async findAllByTestrunId(id: string): Promise<TestResult[]> {
+    return await this.testresultModel.find().where('testrunId', id).exec();
+  }
+
   async findOne(id: string): Promise<TestResult> {
     return await this.testresultModel.findOne({ '_id': id }).exec();
   }
