@@ -10,12 +10,7 @@ import { TestsuitesService } from './testsuites.service';
 import { Testsuite } from './testsuite.interface';
 import { CreateTestsuiteDto } from './create-testsuite.dto';
 
-import {
-  ApiUseTags,
-  ApiBearerAuth,
-  ApiResponse,
-  ApiOperation,
-} from '@nestjs/swagger';
+import { ApiUseTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
 @ApiBearerAuth()
 @ApiUseTags('Testsuites')

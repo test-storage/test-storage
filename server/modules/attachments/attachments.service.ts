@@ -10,7 +10,7 @@ export class AttachmentsService {
 
   constructor(@InjectModel('Attachment') private readonly attachmentModel: Model<Attachment>) { }
 
-  async create(attachmentDto: Attachment): Promise<Attachment> {
+  async create(attachmentDto: CreateAttachmentDto): Promise<Attachment> {
     const createdAttachment = new this.attachmentModel(attachmentDto);
     return await createdAttachment.save();
   }

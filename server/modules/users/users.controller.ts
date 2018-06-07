@@ -1,7 +1,4 @@
-import * as jwt from 'jsonwebtoken';
-import { jwtSecret } from '../auth/passport/jwt.secret';
-
-import { Get, Post, Put, Delete, Controller, Body, Param, Headers, HttpException, HttpStatus, UseGuards } from '@nestjs/common';
+import { Get, Post, Put, Delete, Controller, Body, Param, UseGuards } from '@nestjs/common';
 
 import { Roles } from '../common/decorators/roles.decorator';
 import { RolesGuard } from './../common/guards/roles.guard';
@@ -36,9 +33,9 @@ export class UsersController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(
-              @UserId(new ParameterValidationPipe) userId,
-              @Body(new ValidationPipe()) createUserDto: CreateUserDto
-            ): Promise<User> {
+    @UserId(new ParameterValidationPipe) userId,
+    @Body(new ValidationPipe()) createUserDto: CreateUserDto
+  ): Promise<User> {
     return await this.usersService.create(createUserDto, userId);
   }
 

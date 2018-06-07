@@ -1,12 +1,10 @@
-import { Module, MiddlewareConsumer } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { AttachmentSchema } from './attachment.schema';
 import { AttachmentsController } from './attachments.controller';
 import { AttachmentsService } from './attachments.service';
-
-import { FileUploadMiddleware } from '../common/middlewares/file-upload.middleware';
 
 @Module({
   imports: [
@@ -15,4 +13,4 @@ import { FileUploadMiddleware } from '../common/middlewares/file-upload.middlewa
   controllers: [AttachmentsController],
   providers: [AttachmentsService]
 })
-export class AttachmentsModule {}
+export class AttachmentsModule { }
