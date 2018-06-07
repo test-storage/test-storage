@@ -10,14 +10,7 @@ import { TestrunsService } from './testruns.service';
 import { Testrun } from './testrun.interface';
 import { CreateTestrunDto } from './create-testrun.dto';
 
-import {
-  ApiUseTags,
-  ApiBearerAuth,
-  ApiResponse,
-  ApiOperation,
-  ApiImplicitQuery,
-  ApiImplicitParam
-} from '@nestjs/swagger';
+import { ApiUseTags, ApiBearerAuth, ApiResponse, ApiOperation, ApiImplicitQuery, ApiImplicitParam } from '@nestjs/swagger';
 
 @ApiBearerAuth()
 @ApiUseTags('Testruns')
