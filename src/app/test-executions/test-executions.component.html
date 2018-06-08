@@ -17,12 +17,12 @@
               <div *ngFor="let testrun of testruns" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <a routerLink="./{{testrun._id}}" class="card clickable">
                   <div class="card-block">
-                    <h4 class="card-title">{{ testrun.name }}</h4>
+                    <h4 class="card-title">{{ testrun.name }} <span style="font-size: 12px; position: absolute; right: 15px;">Build: <strong>6.1</strong></span></h4>
                     <p class="card-text">{{ testrun.description }}</p>
                   </div>
                   <div class="card-footer">
                     <div class="progress labeled success">
-                      <progress value="{{ testrun.progress }}" max="100" data-displayval="0%"></progress>
+                      <progress value="{{ testrun.progress + 50 }}" max="100" data-displayval="0%"></progress>
                     </div>
                     <div *ngIf="testrun.startDate && testrun.endDate">
                       <clr-icon *ngIf="(testrun.endDate <= tomorrow.toISOString() && testrun.endDate >= today.toISOString())" shape="clock" class="has-alert"
