@@ -1,0 +1,53 @@
+.wrapper {
+    width: calc(100vw - 280px);
+    height: calc(100vh - 60px);
+}
+
+.chart-text {
+    transform: translateY(0.25em);
+}
+
+.chart-number {
+    font-size: 0.6em;
+    line-height: 1;
+    text-anchor: middle;
+    transform: translateY(-0.25em);
+}
+
+.chart-label {
+    font-size: 0.2em;
+    text-transform: uppercase;
+    text-anchor: middle;
+    transform: translateY(0.7em);
+}
+
+.card-title {
+    color: #999;
+    font-size: 100%;
+    text-transform: uppercase;
+}
+
+.card-description {
+    padding-top: 40px;
+    font-size: 80px;
+    text-align: center;
+    color: #007cbb;
+}
+
+.card-container {
+    height: 145px;
+}
+
+.card-container {
+    text-align: center;
+}
+
+.card-ci {
+    font-size: 20px;
+    position: relative;
+    bottom: 26px;
+}
+
+.success {
+    color: #5ea41c;
+}
