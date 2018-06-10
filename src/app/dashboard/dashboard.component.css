@@ -51,3 +51,39 @@
 .success {
     color: #5ea41c;
 }
+
+.bar {
+    fill: #aaa;
+    height: 21px;
+    transition: fill .3s ease;
+    cursor: pointer;
+    font-family: Helvetica, sans-serif;
+}
+
+.bar .text {
+    fill: #555;
+}
+
+.chart:hover .bar,
+.chart:focus .bar {
+    fill: #aaa;
+}
+
+.bar:hover,
+.bar:focus {
+    fill: red !important;
+}
+
+.bar:hover .text,
+.bar:focus .text {
+    fill: red;
+}
+
+.bar-chart {
+    background: white;
+    width: 700px;
+    height: 100px;
+    border-left: 1px dotted #555;
+    border-bottom: 1px dotted #555;
+    padding: 20px 20px 20px 0;
+}
