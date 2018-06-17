@@ -38,7 +38,7 @@ export class TestcasesController {
   }
 
   @Post('/import')
-  @ApiOperation({ title: 'Create Test Case' })
+  @ApiOperation({ title: 'Test Case Import' })
   @ApiResponse({ status: 201, description: 'The bulk test cases has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -63,7 +63,7 @@ export class TestcasesController {
   }
 
   @Get('/export')
-  @ApiOperation({ title: 'Export test cases' })
+  @ApiOperation({ title: 'Test Case Export' })
   @ApiResponse({ status: 200, description: 'The export list of test cases has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
