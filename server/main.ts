@@ -59,6 +59,7 @@ function initSwagger() {
     .setTitle('Test Storage API')
     .setDescription('The Test Storage API')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/apidocs', app, document);
