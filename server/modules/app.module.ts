@@ -26,8 +26,9 @@ import { MongoDBConnectionStringBuilder } from './connection-string.builder';
         .setUser(config.get('db.user'))
         .setPassword(config.get('db.password'))
         .setHost(config.get('db.host'))
+        .setPort(config.get('db.port'))
         .setDatabaseName(config.get('db.name'))
-        .build()),
+        .build(), { useNewUrlParser: true }),
     AuthModule,
     ProjectsModule,
     TestcasesModule,
