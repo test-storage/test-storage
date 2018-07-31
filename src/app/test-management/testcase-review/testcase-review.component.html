@@ -1,0 +1,19 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th class="left">#</th>
+            <th>Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let testCase of testCases; let i = index">
+            <td class="left">{{i + 1}}</td>
+            <td class="left">{{ testCase.title }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul >
+  <li></li>
+</ul>
+
