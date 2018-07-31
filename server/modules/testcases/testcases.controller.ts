@@ -55,10 +55,11 @@ export class TestcasesController {
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiImplicitQuery({ name: 'testSuiteId', description: 'filter test cases by test suite id', required: false })
   @ApiImplicitQuery({ name: 'projectId', description: 'filter test cases by project id', required: false })
+  @ApiImplicitQuery({ name: 'status', description: 'filter test cases by status if project id specified', required: false })
   async findAll(
     @Query('testSuiteId', new QueryIdValidationPipe()) testsuiteId?: string,
     @Query('projectId', new QueryIdValidationPipe()) projectId?: string,
-    @Query('status') status?: string
+    @Query('status') status?: string // TODO validation based on statuses enum
   ): Promise<Testcase[]> {
     if (projectId) {
       if (status) {
