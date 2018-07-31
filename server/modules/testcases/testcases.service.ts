@@ -25,8 +25,8 @@ export class TestcasesService {
     return await this.testcaseModel.find().where('testSuiteId', id).exec();
   }
 
-  async findAllByProjectId(id: string): Promise<Testcase[]> {
-    return await this.testcaseModel.find().where('projectId', id).exec();
+  async findAllByProjectId(id: string, status?: string): Promise<Testcase[]> {
+    return await this.testcaseModel.find().where('projectId', id, 'status', status).exec();
   }
 
   async findOne(id: string): Promise<Testcase> {

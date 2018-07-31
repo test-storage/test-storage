@@ -8,6 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { TestManagementRoutingModule } from './test-management-routing.module';
 import { TestManagementComponent } from './test-management.component';
 
+import { TestcaseReviewComponent } from './testcase-review/testcase-review.component';
+
 import { TestCaseService } from './test-cases/test-case.service';
 import { TestSuiteService } from './test-suite.service';
 import { CreateTestCaseModalComponent } from './create-test-case-modal/create-test-case-modal.component';
@@ -28,6 +30,7 @@ import { DeleteTestSuiteModalComponent } from './delete-test-suite-modal/delete-
   ],
   declarations: [
     TestManagementComponent,
+    TestcaseReviewComponent,
     CreateTestCaseModalComponent,
     EditTestCaseModalComponent,
     DeleteTestCaseModalComponent,
