@@ -1,18 +1,13 @@
-<div class="alert alert-app-level alert-info">
-  <div class="alert-items">
-    <div class="alert-item static">
-      <div class="alert-icon-wrapper">
-        <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+<clr-alerts>
+  <clr-alert *ngFor="let notification of notifications" [clrAlertType]="'info'" [clrAlertAppLevel]="true" [ngSwitch]="notification.entity">
+      <div *ngSwitchCase="'Testcase'" class="alert-item">
+          <span class="alert-text">
+              You have unreviewed testcases
+          </span>
+          <div class="alert-actions">
+              <button class="btn alert-action" routerLink="/projects/93766f7810fe3988a97dc51139312242/test-management/review">{{ notification.action }}</button>
+          </div>
       </div>
-      <div class="alert-text">
-        A new update is now available. Upgrade to v 1.0
-      </div>
-      <div class="alert-actions">
-        <button class="btn alert-action">Install Update</button>
-      </div>
-    </div>
-  </div>
-  <button type="button" class="close" aria-label="Close">
-    <clr-icon aria-hidden="true" shape="close"></clr-icon>
-  </button>
-</div>
+  </clr-alert>
+</clr-alerts>
+
