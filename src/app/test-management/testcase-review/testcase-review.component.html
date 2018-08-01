@@ -12,14 +12,9 @@
             <td class="left">{{ testCase.title }}</td>
             <td class="right">
               <div class="select">
-                <select>
-                  <option>Approved</option>
-                  <option>Rejected</option>
-                  <option>Automation Candidate</option>
-                  <option>Automated</option>
-                  <option>Archieved</option>
-                  <!-- change selected test case status on change -->
-                </select>
+                  <select id="status" name="status" [(ngModel)]="testCase.status" #status="ngModel">
+                      <option *ngFor="let status of statusesKeys" [value]="status.value">{{ 'TESTCASESTATUS.' + status.value | translate }}</option>
+                    </select>
               </div>
             </td>
         </tr>

@@ -1,0 +1,13 @@
+<clr-alerts>
+  <clr-alert *ngIf="isReviewAvailable" [clrAlertType]="'info'">
+    <div class="alert-item">
+      <span class="alert-text">
+        You have unreviewed testcases
+      </span>
+      <div class="alert-actions">
+
+        <button class="btn btn-sm" routerLink="./review">Review</button>
+      </div>
+    </div>
+  </clr-alert>
+</clr-alerts>

@@ -3,7 +3,10 @@
   <div *ngIf="testSuites.length > 0; then existTestSuites else noExistTestSuites"></div>
   <ng-template #existTestSuites>
 
+    <app-testcase-review-notification></app-testcase-review-notification>
     <div class="content-wrapper">
+
+
 
       <div class="col-sm-12 col-md-12 col-lg-9">
         <app-test-cases [selectedTS]="selectedTestSuite"></app-test-cases>
