@@ -36,7 +36,7 @@ export const TestcaseSchema = new mongoose.Schema({
   estimate: { type: String },
   status: {
     type: String,
-    enum: ['CREATED', 'PENDING', 'APPROVED', 'REJECTED', 'ARCHIEVED', 'AUTOMATION CANDIDATE', 'AUTOMATED'],
+    enum: ['CREATED', 'PENDING', 'APPROVED', 'REJECTED', 'ARCHIEVED', 'AUTOMATION_CANDIDATE', 'AUTOMATED'],
     default: 'CREATED'
   }
 
