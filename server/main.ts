@@ -1,5 +1,3 @@
-import * as http from 'http';
-import * as https from 'https';
 import * as fs from 'fs';
 import * as express from 'express';
 import * as path from 'path';
@@ -61,6 +59,7 @@ function initSwagger() {
     .setTitle('Test Storage API')
     .setDescription('The Test Storage API')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/apidocs', app, document);

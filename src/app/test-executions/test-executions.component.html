@@ -17,19 +17,23 @@
               <div *ngFor="let testrun of testruns" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <a routerLink="./{{testrun._id}}" class="card clickable">
                   <div class="card-block">
-                    <h4 class="card-title">{{ testrun.name }}</h4>
+                    <h4 class="card-title">{{ testrun.name }}
+                      <span class="build">Build:
+                        <strong>6.1</strong>
+                      </span>
+                    </h4>
                     <p class="card-text">{{ testrun.description }}</p>
                   </div>
                   <div class="card-footer">
                     <div class="progress labeled success">
-                      <progress value="{{ testrun.progress }}" max="100" data-displayval="0%"></progress>
+                      <progress value="{{ testrun.progress + 50 }}" max="100" data-displayval="0%"></progress>
                     </div>
                     <div *ngIf="testrun.startDate && testrun.endDate">
                       <clr-icon *ngIf="(testrun.endDate <= tomorrow.toISOString() && testrun.endDate >= today.toISOString())" shape="clock" class="has-alert"
                         title="Attention"></clr-icon>
                       <clr-icon *ngIf="testrun.endDate < tomorrow.toISOString()" shape="clock" class="has-badge" title="Overdue"></clr-icon>
                       <clr-icon *ngIf="testrun.endDate > tomorrow.toISOString()" shape="clock"></clr-icon>
-                      {{ testrun.startDate | date }} - {{ testrun.endDate | date }}
+                      <span class="date"> {{ testrun.startDate | date }} — {{ testrun.endDate | date }} </span>
                     </div>
                   </div>
                 </a>
@@ -45,7 +49,7 @@
           <div class="content-area">
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card">
+                <div class="card clickable">
                   <div class="card-block">
                     <h4 class="card-title">Corporate Portal Regression run</h4>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem.</p>
@@ -54,12 +58,12 @@
                     <div class="progress labeled success">
                       <progress value="100" max="100" data-displayval="0%"></progress>
                     </div>
-                    <a class="btn btn-sm btn-link">Edit</a>
+
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-sm-4">
-                <div class="card">
+              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card clickable">
                   <div class="card-block">
                     <h4 class="card-title">iOS User Profile Feature run</h4>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem..</p>
@@ -68,7 +72,7 @@
                     <div class="progress labeled success">
                       <progress value="100" max="100" data-displayval="10%"></progress>
                     </div>
-                    <a class="btn btn-sm btn-link">Edit</a>
+
                   </div>
                 </div>
               </div>

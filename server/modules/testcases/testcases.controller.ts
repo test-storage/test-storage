@@ -37,17 +37,54 @@ export class TestcasesController {
     return await this.testcasesService.create(createTestcaseDto, userId);
   }
 
+  @Post('/import')
+  @ApiOperation({ title: 'Test Case Import' })
+  @ApiResponse({ status: 201, description: 'The bulk test cases has been successfully created.' })
+  @ApiResponse({ status: 400, description: 'Validation failed' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  async import(
+    @UserId(new ParameterValidationPipe) userId,
+    @Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto[]): Promise<Testcase[]> {
+    return await this.testcasesService.bulkImport(createTestcaseDto, userId);
+  }
+
   @Get()
   @ApiOperation({ title: 'Get All Test Cases' })
   @ApiResponse({ status: 200, description: 'The list of test cases has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiImplicitQuery({ name: 'testSuiteId', description: 'filter test cases by test suite id', required: false })
-  async findAll(@Query('testSuiteId', new QueryIdValidationPipe()) id?: string): Promise<Testcase[]> {
+  @ApiImplicitQuery({ name: 'projectId', description: 'filter test cases by project id', required: false })
+  @ApiImplicitQuery({ name: 'status', description: 'filter test cases by status if project id specified', required: false })
+  async findAll(
+    @Query('testSuiteId', new QueryIdValidationPipe()) testsuiteId?: string,
+    @Query('projectId', new QueryIdValidationPipe()) projectId?: string,
+    @Query('status') status?: string // TODO validation based on statuses enum
+  ): Promise<Testcase[]> {
+    if (projectId) {
+      if (status) {
+        return this.testcasesService.findAllByProjectId(projectId, status);
+      } else {
+      return this.testcasesService.findAllByProjectId(projectId);
+      }
+    } else if (testsuiteId) {
+      return this.testcasesService.findAllByTestSuiteId(testsuiteId);
+    } else {
+      return this.testcasesService.findAll();
+    }
+  }
+
+  @Get('/export')
+  @ApiOperation({ title: 'Test Case Export' })
+  @ApiResponse({ status: 200, description: 'The export list of test cases has been successfully retrieved.' })
+  @ApiResponse({ status: 400, description: 'Validation failed' })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiImplicitQuery({ name: 'projectId', description: 'filter test cases by project id', required: false })
+  async export(@Query('projectId', new QueryIdValidationPipe()) id?: string): Promise<Testcase[]> {
     if (!id) {
       return this.testcasesService.findAll();
     } else {
-      return this.testcasesService.findAllByTestSuiteId(id);
+      return this.testcasesService.findAllByProjectId(id);
     }
   }
 
@@ -83,4 +120,5 @@ export class TestcasesController {
   async delete(@Param('id', new ParameterValidationPipe()) id: string) {
     return this.testcasesService.delete(id);
   }
+
 }

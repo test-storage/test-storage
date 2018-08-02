@@ -25,6 +25,10 @@ export class TestcasesService {
     return await this.testcaseModel.find().where('testSuiteId', id).exec();
   }
 
+  async findAllByProjectId(id: string, status?: string): Promise<Testcase[]> {
+    return await this.testcaseModel.find().where('projectId', id).where('status', status).exec();
+  }
+
   async findOne(id: string): Promise<Testcase> {
     return await this.testcaseModel.findOne({ '_id': id }).exec();
   }
@@ -41,5 +45,23 @@ export class TestcasesService {
 
   async delete(id: string): Promise<void> {
     return await this.testcaseModel.findOneAndRemove({ '_id': id }).exec();
+  }
+
+  async bulkImport(testcases: Testcase[], userId: string) {
+    const createdTestcases: Testcase[] = [];
+    testcases.forEach(testcase => {
+      const createdTestcase = new this.testcaseModel(testcase);
+      createdTestcase.createdBy = userId;
+      createdTestcases.push(createdTestcase);
+    });
+    return this.testcaseModel.insertMany(createdTestcases);
+  }
+
+  async bulkExport(projectId?: string): Promise<Testcase[]> {
+    if (projectId) {
+      return this.findAllByProjectId(projectId);
+    } else {
+      return await this.testcaseModel.find().exec();
+    }
   }
 }
