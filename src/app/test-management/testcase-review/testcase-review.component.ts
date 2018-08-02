@@ -5,6 +5,7 @@ import { pageTransition } from './../../animations';
 import { TestCase } from '../test-cases/test-case';
 import { TestCaseService } from './../test-cases/test-case.service';
 import { TestcaseStatus } from './testcase-status';
+import { ToastNotificationsService } from '../../shared/toast-notifications.service';
 
 @Component({
   selector: 'app-testcase-review',
@@ -24,7 +25,8 @@ export class TestcaseReviewComponent implements OnInit {
 
   constructor(
     private testCaseService: TestCaseService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private notificationsService: ToastNotificationsService) { }
 
   ngOnInit() {
     this.statusesKeys = Object.keys(this.statuses).filter(f => !isNaN(Number(f))).map(key => (
@@ -40,6 +42,31 @@ export class TestcaseReviewComponent implements OnInit {
     this.testCaseService.getTestCasesByProjectId(id, 'CREATED').subscribe(
       data => this.testCases = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
+  }
+
+  updateTestCaseStatus(testcase: TestCase) {
+    console.log(testcase);
+    this.testCaseService.updateTestCase(testcase, testcase._id).subscribe(
+      response => {
+        if (response.status === 200) {
+          this.notificationsService.successfullyUpdated(testcase.title);
+
+          // update local array of testcases
+          const foundIndex = this.testCases.findIndex(mTestcase => mTestcase._id === testcase._id);
+          this.testCases[foundIndex] = testcase;
+        }
+      },
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        } else if (error.error.statusCode === 403) {
+          this.notificationsService.forbidden();
+        } else {
+          this.notificationsService.commonError();
+        }
+      }
+    );
   }
 
 }
