@@ -24,6 +24,14 @@ export class TestCaseService {
     return this.http.get<TestCase[]>(this.apiPath, { params: params });
   }
 
+  public getTestCasesByProjectId(id: string, status?: string): Observable<TestCase[]> {
+    let params = new HttpParams().set('projectId', id);
+    if (status) {
+      params = params.set('status', status);
+    }
+    return this.http.get<TestCase[]>(this.apiPath, { params: params });
+  }
+
   public createTestCase(testcase: TestCase) {
     return this.http.post(this.apiPath, testcase, { observe: 'response' });
   }

@@ -1,0 +1,8 @@
+export enum TestcaseStatus {
+  CREATED,
+  APPROVED,
+  REJECTED,
+  AUTOMATION_CANDIDATE,
+  AUTOMATED,
+  ARCHIEVED
+}

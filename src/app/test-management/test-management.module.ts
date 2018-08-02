@@ -8,6 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { TestManagementRoutingModule } from './test-management-routing.module';
 import { TestManagementComponent } from './test-management.component';
 
+import { TestcaseReviewComponent } from './testcase-review/testcase-review.component';
+
 import { TestCaseService } from './test-cases/test-case.service';
 import { TestSuiteService } from './test-suite.service';
 import { CreateTestCaseModalComponent } from './create-test-case-modal/create-test-case-modal.component';
@@ -17,6 +19,7 @@ import { TestCasesComponent } from './test-cases/test-cases.component';
 import { CreateTestSuiteModalComponent } from './create-test-suite-modal/create-test-suite-modal.component';
 import { EditTestSuiteModalComponent } from './edit-test-suite-modal/edit-test-suite-modal.component';
 import { DeleteTestSuiteModalComponent } from './delete-test-suite-modal/delete-test-suite-modal.component';
+import { TestcaseReviewNotificationComponent } from './testcase-review-notification/testcase-review-notification.component';
 
 @NgModule({
   imports: [
@@ -28,13 +31,15 @@ import { DeleteTestSuiteModalComponent } from './delete-test-suite-modal/delete-
   ],
   declarations: [
     TestManagementComponent,
+    TestcaseReviewComponent,
     CreateTestCaseModalComponent,
     EditTestCaseModalComponent,
     DeleteTestCaseModalComponent,
     TestCasesComponent,
     CreateTestSuiteModalComponent,
     EditTestSuiteModalComponent,
-    DeleteTestSuiteModalComponent
+    DeleteTestSuiteModalComponent,
+    TestcaseReviewNotificationComponent
   ],
   providers: [
     TestSuiteService,

@@ -51,6 +51,14 @@
     "POSITIVE": "Положительный",
     "NEGATIVE": "Отрицательный"
   },
+  "TESTCASESTATUS": {
+    "CREATED": "Создан",
+    "APPROVED": "Утвержден",
+    "REJECTED": "Отклонен",
+    "AUTOMATION_CANDIDATE": "Кандидат в автоматизацию",
+    "AUTOMATED": "Автоматизирован",
+    "ARCHIEVED": "Архивный"
+  },
   "USERSSETTINGS": {
     "ADD": "Добавить",
     "EDIT": "Редактировать",

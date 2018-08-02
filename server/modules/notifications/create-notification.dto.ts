@@ -1,7 +1,7 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsInt, IsNotEmpty, IsBoolean, IsOptional, IsISO8601 } from 'class-validator';
+import { IsString, IsOptional, IsISO8601, IsNotEmpty, IsBoolean } from 'class-validator';
 
-export class CreateProjectDto {
+export class CreateNotificationDto {
 
   @ApiModelPropertyOptional({ type: String })
   @IsOptional()
@@ -11,46 +11,46 @@ export class CreateProjectDto {
   @ApiModelProperty({ type: String })
   @IsString()
   @IsNotEmpty()
-  readonly name: string;
+  readonly entity: string;
 
   @ApiModelProperty({ type: String })
   @IsString()
   @IsNotEmpty()
-  readonly description: string;
+  readonly action: string;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiModelProperty({ type: String })
   @IsString()
-  @IsOptional()
-  readonly image?: string;
+  @IsNotEmpty()
+  readonly senderId: string;
 
-  @ApiModelPropertyOptional({ type: Number })
-  @IsInt()
-  @IsOptional()
-  readonly avatarColor?: number;
+  @ApiModelProperty({ type: String })
+  @IsString()
+  @IsNotEmpty()
+  readonly recipientId: string;
 
-  @ApiModelPropertyOptional({ type: Boolean })
+  @ApiModelProperty({ type: Boolean })
   @IsBoolean()
-  @IsOptional()
-  readonly enabled?: boolean;
+  @IsNotEmpty()
+  readonly isRead: boolean;
 
   @ApiModelPropertyOptional({ type: Date })
-  @IsISO8601()
   @IsOptional()
+  @IsISO8601()
   readonly created?: Date;
 
   @ApiModelPropertyOptional({ type: Date })
-  @IsISO8601()
   @IsOptional()
+  @IsISO8601()
   readonly updated?: Date;
-  // manager?: string; point to user
 
   @ApiModelPropertyOptional({ type: String })
-  @IsString()
   @IsOptional()
+  @IsString()
   readonly createdBy?: string;
 
   @ApiModelPropertyOptional({ type: String })
-  @IsString()
   @IsOptional()
+  @IsString()
   readonly updatedBy?: string;
 }
+

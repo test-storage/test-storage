@@ -1,42 +1,58 @@
 .content-area {
-  width: 100vw;
-  height: calc(100vh - 60px);
+    width: 100vw;
+    height: calc(100vh - 60px);
 }
 
 .edit-icon {
-  position: absolute;
-  right: 1px;
-  top: 10px;
+    position: absolute;
+    right: 1px;
+    top: 10px;
 }
 
 .card-img {
-  height: 100px;
+    height: 100px;
+}
+
+.build {
+    color: #9a9a9a;
+    font-size: 12px;
+    position: absolute;
+    right: 15px;
+}
+
+.build strong {
+    color: #333;
+}
+
+.date {
+    color: #9a9a9a;
+    font-size: 90%;
 }
 
 .noexist-wrapper {
-  display: flex;
-  height: calc(100vh - 120px);
-  align-items: center;
-  align-self: center;
-  justify-content: center;
+    display: flex;
+    height: calc(100vh - 120px);
+    align-items: center;
+    align-self: center;
+    justify-content: center;
 }
 
 .no-testrun {
-  align-self: center;
-  justify-content: center;
-  text-align: center;
+    align-self: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .no-testrun img {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .no-testrun h4 {
-  color: #616161;
+    color: #616161;
 }
 
 .tips {
-  font-size: 14px;
-  color: #a2acb3;
-  margin-bottom: 20px;
+    font-size: 14px;
+    color: #a2acb3;
+    margin-bottom: 20px;
 }

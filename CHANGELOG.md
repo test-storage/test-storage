@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.37.0 (June 07, 2018)
+- bulk testcase import API ([@pumano](https://github.com/pumano) in [#87](https://github.com/test-storage/test-storage/pull/87))
+- Add testcase review
+- Swagger doc improvements 
+- Multiple bug fixes and enhancements
+
 ## 0.36.0 (June 07, 2018)
 - Add Projects: create / edit / delete ([@pumano](https://github.com/pumano) in [#85](https://github.com/test-storage/test-storage/pull/85))
 - Add some tests for backend

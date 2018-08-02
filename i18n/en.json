@@ -51,6 +51,14 @@
     "POSITIVE": "Positive",
     "NEGATIVE": "Negative"
   },
+  "TESTCASESTATUS": {
+    "CREATED": "Created",
+    "APPROVED": "Approved",
+    "REJECTED": "Rejected",
+    "AUTOMATION_CANDIDATE": "Automation Candidate",
+    "AUTOMATED": "Automated",
+    "ARCHIEVED": "Archieved"
+  },
   "USERSSETTINGS": {
     "ADD": "Add",
     "EDIT": "Edit",
