@@ -45,15 +45,13 @@ export class TestcaseReviewComponent implements OnInit {
   }
 
   updateTestCaseStatus(testcase: TestCase) {
-    console.log(testcase);
     this.testCaseService.updateTestCase(testcase, testcase._id).subscribe(
       response => {
         if (response.status === 200) {
           this.notificationsService.successfullyUpdated(testcase.title);
 
           // update local array of testcases
-          const foundIndex = this.testCases.findIndex(mTestcase => mTestcase._id === testcase._id);
-          this.testCases[foundIndex] = testcase;
+          this.testCases = this.testCases.filter(testCases => testCases !== testcase);
         }
       },
       error => {
