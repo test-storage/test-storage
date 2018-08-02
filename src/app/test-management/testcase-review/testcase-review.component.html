@@ -12,7 +12,7 @@
             <td class="left">{{ testCase.title }}</td>
             <td class="right">
               <div class="select">
-                  <select id="status" name="status" [(ngModel)]="testCase.status" #status="ngModel">
+                  <select id="status" name="status" [(ngModel)]="testCase.status" #status="ngModel" (ngModelChange)="updateTestCaseStatus(testCase)">
                       <option *ngFor="let status of statusesKeys" [value]="status.value">{{ 'TESTCASESTATUS.' + status.value | translate }}</option>
                     </select>
               </div>
