@@ -9,6 +9,8 @@
         <clr-icon shape="close"></clr-icon> {{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
       <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedTestCases.length == 1">
         <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}</button>
+      <button type="button" class="btn btn-sm btn-secondary" (click)="onCopy()" *ngIf="selectedTestCases.length == 1">
+        <clr-icon shape="copy"></clr-icon> {{ 'TESTMANAGEMENTPAGE.COPY' | translate }}</button>
     </div>
   </clr-dg-action-bar>
 
