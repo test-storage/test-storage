@@ -1,3 +1,4 @@
+import * as config from 'config';
 import { Post, Controller, UseInterceptors, FileInterceptor, UploadedFile } from '@nestjs/common';
 
 import { AttachmentsService } from './attachments.service';
@@ -16,7 +17,7 @@ export class AttachmentsController {
   @ApiResponse({ status: 201, description: 'The attachment has been successfully uploaded.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @UseInterceptors(FileInterceptor('filename', { dest: './uploads' }))
+  @UseInterceptors(FileInterceptor('filename', { dest: config.get('uploadDirectory.path') }))
   testUpload(@UploadedFile() file) {
     console.log(file);
   }
