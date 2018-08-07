@@ -130,7 +130,10 @@
     "EDIT": "Редактировать",
     "EMPTYSTATE_NOPROJECTS_TITLE": "У вас нет ни одного Проекта.",
     "EMPTYSTATE_NOPROJECTS_DESCRIPTION": "Нажмите на кнопку 'Создать Проект' для создания",
-    "EMPTYSTATE_CREATEPROJECT_BUTTON": "Создать Проект"
+    "EMPTYSTATE_CREATEPROJECT_BUTTON": "Создать Проект",
+    "NOT_REVIEWED_TESTCASES": "У вас есть не прошедшие рецензию тест кейсы",
+    "REVIEW": "Рецензировать",
+    "TESTCASE_REVIEW": "Рецензирование Тест Кейсов"
   },
   "PROJECTCREATEPAGE": {
     "TITLE": "Создать Проект",
