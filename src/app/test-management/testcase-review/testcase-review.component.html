@@ -1,3 +1,4 @@
+<h4>{{ 'PROJECTSPAGE.TESTCASE_REVIEW' | translate }}</h4>
 <clr-datagrid>
   <clr-dg-column>#</clr-dg-column>
   <clr-dg-column>{{ 'TESTCASECREATEPAGE.TITLE' | translate }}</clr-dg-column>
@@ -15,9 +16,10 @@
           </div>
     </clr-dg-cell>
     <clr-dg-row-detail *clrIfExpanded>
+      <h4>{{ 'TESTCASECREATEPAGE.DESCRIPTION' | translate }}</h4>
       <span *ngIf="testCase.description">{{ testCase.description }}</span>
       <h4>{{ 'TESTCASECREATEPAGE.PRIORITY' | translate }}</h4>
-      {{ testCase.priority }}
+      {{ 'PRIORITIES.' + testCase.priority | translate }}
       <h4>{{ 'TESTCASECREATEPAGE.STEPS' | translate }}</h4>
       <table class="table" *ngIf="testCase.steps">
           <thead>

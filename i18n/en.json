@@ -130,7 +130,10 @@
     "EDIT": "Edit",
     "EMPTYSTATE_NOPROJECTS_TITLE": "You have not created Project yet.",
     "EMPTYSTATE_NOPROJECTS_DESCRIPTION": "Tap the 'Create Project' button to get started",
-    "EMPTYSTATE_CREATEPROJECT_BUTTON": "Create Project"
+    "EMPTYSTATE_CREATEPROJECT_BUTTON": "Create Project",
+    "NOT_REVIEWED_TESTCASES": "You have unreviewed testcases",
+    "REVIEW": "Review",
+    "TESTCASE_REVIEW": "Test Case Review"
   },
   "PROJECTCREATEPAGE": {
     "TITLE": "Create Project",

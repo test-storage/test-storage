@@ -20,7 +20,7 @@
   <!--<clr-dg-column>Status</clr-dg-column>-->
   <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TAGS' | translate }}</clr-dg-column>
   <!--<clr-dg-column style="width: 30px !important;">{{ 'TESTMANAGEMENTPAGE.TYPE' | translate }}</clr-dg-column>-->
-
+  <clr-dg-column>{{ 'PROJECTCREATEPAGE.STATUS' | translate }}</clr-dg-column>
   <clr-dg-row *clrDgItems="let testCase of testCases" [clrDgItem]="testCase">
     <!--
   <clr-dg-cell style="display: flex;">
@@ -46,6 +46,9 @@
         {{ tag }}
       </span>
 
+    </clr-dg-cell>
+    <clr-dg-cell>
+      {{ 'TESTCASESTATUS.' + testCase.status | translate }}
     </clr-dg-cell>
 
     <!--
