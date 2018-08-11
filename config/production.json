@@ -28,6 +28,6 @@
     "exception": "logs/exceptions.log"
   },
   "uploadDirectory": {
-    "path": "upload/"
+    "path": "./uploads"
   }
 }

@@ -1,17 +1,27 @@
+import * as fs from 'fs';
+
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import { CreateAttachmentDto } from './create-attachment.dto';
 import { Attachment } from './attachment.interface';
+import { MulterFileMetadata } from './multer.interface';
 
 @Injectable()
 export class AttachmentsService {
 
   constructor(@InjectModel('Attachment') private readonly attachmentModel: Model<Attachment>) { }
 
-  async create(attachmentDto: CreateAttachmentDto): Promise<Attachment> {
-    const createdAttachment = new this.attachmentModel(attachmentDto);
+  async create(metadata: MulterFileMetadata, userId: string): Promise<Attachment> {
+    const attachment: Attachment = {
+      name: metadata.originalname,
+      mimeType: metadata.mimetype,
+      size: metadata.size,
+      fileName: metadata.filename,
+      path: metadata.path,
+    };
+    const createdAttachment = new this.attachmentModel(attachment);
+    createdAttachment.createdBy = userId;
     return await createdAttachment.save();
   }
 
@@ -28,6 +38,14 @@ export class AttachmentsService {
   }
 
   async delete(id: string): Promise<void> {
+    const fileMetadata: Attachment = await this.attachmentModel.findOne({ '_id': id }).exec();
+    if (fileMetadata) {
+      await fs.unlink(fileMetadata.path, (err) => {
+        if (err) {
+          throw new InternalServerErrorException('Error occured while trying to delete file from file system');
+        }
+      });
+    }
     return await this.attachmentModel.findOneAndRemove({ '_id': id }).exec();
   }
 }

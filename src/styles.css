@@ -8,7 +8,7 @@
 }
 
 /* hack for fix backdrop over all layout */
-.header-backdrop {
-  z-index: 0 !important;
-}
 
+.header-backdrop {
+    z-index: 0 !important;
+}

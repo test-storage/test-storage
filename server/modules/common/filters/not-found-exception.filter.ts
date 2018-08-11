@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { ExceptionFilter, Catch, NotFoundException, ArgumentsHost, HttpException } from '@nestjs/common';
+import { ExceptionFilter, Catch, NotFoundException, ArgumentsHost } from '@nestjs/common';
 
 @Catch(NotFoundException)
 export class NotFoundExceptionFilter implements ExceptionFilter {

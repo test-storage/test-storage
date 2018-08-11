@@ -1,6 +1,13 @@
 .content-area {
-    width: 100vw;
+    width: calc(100vw - 280px);
     height: calc(100vh - 60px);
+}
+
+@media screen and (max-width: 992px) {
+    .content-area {
+        width: 100vw;
+        height: calc(100vh - 60px);
+    }
 }
 
 .edit-icon {

@@ -1,6 +1,13 @@
-.wrapper {
+.content-area {
     width: calc(100vw - 280px);
     height: calc(100vh - 60px);
+}
+
+@media screen and (max-width: 992px) {
+    .content-area {
+        width: 100vw;
+        height: calc(100vh - 60px);
+    }
 }
 
 .chart-text {
@@ -32,6 +39,10 @@
     font-size: 80px;
     text-align: center;
     color: #007cbb;
+}
+
+.card-block {
+    overflow: hidden;
 }
 
 .card-container {
