@@ -1,16 +1,19 @@
-.wrapper {
-    height: calc(100vh - 120px);
-    width: (100vw - 240px);
+.content-area {
+    width: calc(100vw - 240px);
+    height: calc(100vh - 60px);
+}
+
+@media screen and (max-width: 992px) {
+    .content-area {
+        padding: 0 !important;
+        width: 100vw;
+        height: calc(100vh - 60px);
+    }
 }
 
 .content-wrapper {
     display: flex;
     justify-content: space-between;
-}
-
-.content-area {
-    width: 100vw;
-    height: calc(100vh - 60px);
 }
 
 .sidenav {

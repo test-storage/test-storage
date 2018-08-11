@@ -1,0 +1,11 @@
+.content-area {
+    width: calc(100vw - 240px);
+    height: calc(100vh - 60px);
+}
+
+@media screen and (max-width: 992px) {
+    .content-area {
+        width: 100vw;
+        height: calc(100vh - 60px);
+    }
+}
