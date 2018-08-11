@@ -2,11 +2,11 @@
   <clr-alert *ngIf="isReviewAvailable" [clrAlertType]="'info'">
     <div class="alert-item">
       <span class="alert-text">
-        You have unreviewed testcases
+        {{ 'PROJECTSPAGE.NOT_REVIEWED_TESTCASES' | translate }}
       </span>
       <div class="alert-actions">
 
-        <button class="btn btn-sm" routerLink="./review">Review</button>
+        <button class="btn btn-sm" routerLink="./review">{{ 'PROJECTSPAGE.REVIEW' | translate }}</button>
       </div>
     </div>
   </clr-alert>

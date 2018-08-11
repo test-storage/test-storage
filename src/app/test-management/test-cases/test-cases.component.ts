@@ -61,6 +61,37 @@ export class TestCasesComponent implements OnInit {
     this.deleteOpened = true;
   }
 
+  onCopy() {
+    const testcase: TestCase = Object.assign({}, this.selectedTestCases[0]);
+    testcase.title = `${this.selectedTestCases[0].title}(1)`;
+    delete testcase.createdBy;
+    delete testcase.updatedBy;
+    delete testcase.created;
+    delete testcase.updated;
+    delete testcase._id;
+    this.testCaseService.createTestCase(testcase).subscribe(
+      (response: HttpResponse<TestCase>) => {
+        if (response.status === 201) {
+          this.notificationsService.successfullyCreated(testcase.title);
+
+          this.testCases.push(response.body);
+          // remove selection
+          this.selectedTestCases = [];
+        }
+      },
+      error => {
+        console.log(error);
+        if (error.error.statusCode === 400) {
+          this.notificationsService.badRequest();
+        } else if (error.error.statusCode === 403) {
+          this.notificationsService.forbidden();
+        } else {
+          this.notificationsService.commonError();
+        }
+      }
+    );
+  }
+
   createTestCase(testcase: TestCase) {
     testcase.testSuiteId = this.selectedTestSuite._id;
     testcase.projectId = this.selectedTestSuite.projectId;

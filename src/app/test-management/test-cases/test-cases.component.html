@@ -9,16 +9,18 @@
         <clr-icon shape="close"></clr-icon> {{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
       <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedTestCases.length == 1">
         <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}</button>
+      <button type="button" class="btn btn-sm btn-secondary" (click)="onCopy()" *ngIf="selectedTestCases.length == 1">
+        <clr-icon shape="copy"></clr-icon> {{ 'TESTMANAGEMENTPAGE.COPY' | translate }}</button>
     </div>
   </clr-dg-action-bar>
 
-  <clr-dg-column style="width: 30px !important;">{{ 'TESTMANAGEMENTPAGE.PRIORITY' | translate }}</clr-dg-column>
+  <!--<clr-dg-column style="width: 30px !important;">{{ 'TESTMANAGEMENTPAGE.PRIORITY' | translate }}</clr-dg-column>-->
   <clr-dg-column [clrDgField]="'order'" [clrDgSortOrder]="ascSort">{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}</clr-dg-column>
   <!--<clr-dg-column >Order</clr-dg-column>-->
   <!--<clr-dg-column>Status</clr-dg-column>-->
-  <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TAGS' | translate }}</clr-dg-column>
+  <!--<clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TAGS' | translate }}</clr-dg-column>-->
   <!--<clr-dg-column style="width: 30px !important;">{{ 'TESTMANAGEMENTPAGE.TYPE' | translate }}</clr-dg-column>-->
-
+  <!--<clr-dg-column>{{ 'PROJECTCREATEPAGE.STATUS' | translate }}</clr-dg-column>-->
   <clr-dg-row *clrDgItems="let testCase of testCases" [clrDgItem]="testCase">
     <!--
   <clr-dg-cell style="display: flex;">
@@ -27,6 +29,7 @@
   </clr-dg-cell>
 -->
 
+    <!--
     <clr-dg-cell [ngSwitch]="testCase.priority" style="text-align: center;">
       <clr-icon *ngSwitchCase="'BLOCKER'" title="{{ 'PRIORITIES.BLOCKER' | translate }}" class="blocker-color is-solid" shape="circle"></clr-icon>
       <clr-icon *ngSwitchCase="'CRITICAL'" title="{{ 'PRIORITIES.CRITICAL' | translate }}" class="critical-color is-solid" shape="circle"></clr-icon>
@@ -34,9 +37,12 @@
       <clr-icon *ngSwitchCase="'MINOR'" title="{{ 'PRIORITIES.MINOR' | translate }}" class="minor-color is-solid" shape="circle"></clr-icon>
       <clr-icon *ngSwitchCase="'TRIVIAL'" title="{{ 'PRIORITIES.TRIVIAL' | translate }}" class="trivial-color is-solid" shape="circle"></clr-icon>
     </clr-dg-cell>
+    -->
     <clr-dg-cell>
       {{testCase.title}}
     </clr-dg-cell>
+
+    <!--
 
     <clr-dg-cell>
 
@@ -45,6 +51,12 @@
       </span>
 
     </clr-dg-cell>
+  -->
+    <!--
+    <clr-dg-cell>
+      {{ 'TESTCASESTATUS.' + testCase.status | translate }}
+    </clr-dg-cell>
+    -->
 
     <!--
     <clr-dg-cell [ngSwitch]="testCase.type" style="text-align: center;">
