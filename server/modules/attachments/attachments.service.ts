@@ -1,5 +1,7 @@
+import * as fs from 'fs';
+
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { Attachment } from './attachment.interface';
@@ -36,7 +38,14 @@ export class AttachmentsService {
   }
 
   async delete(id: string): Promise<void> {
-    // TODO remove file from file system
+    const fileMetadata: Attachment = await this.attachmentModel.findOne({ '_id': id }).exec();
+    if (fileMetadata) {
+      await fs.unlink(fileMetadata.path, (err) => {
+        if (err) {
+          throw new InternalServerErrorException('Error occured while trying to delete file from file system');
+        }
+      });
+    }
     return await this.attachmentModel.findOneAndRemove({ '_id': id }).exec();
   }
 }
