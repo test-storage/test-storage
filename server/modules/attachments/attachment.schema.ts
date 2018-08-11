@@ -9,9 +9,10 @@ export const AttachmentSchema = new mongoose.Schema({
     }
   },
   name: String,
-  description: String,
-  modified: String,
-  size: String,
+  fileName: String,
+  image: String,
+  thumbnail: String,
+  size: Number,
   mimeType: String,
   revision: String,
   path: String,
