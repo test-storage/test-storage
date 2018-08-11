@@ -1,6 +1,11 @@
 # Change Log
 
-## 0.37.0 (June 07, 2018)
+## 0.38.0 (August 11, 2018)
+- Attachments API ([@pumano](https://github.com/pumano) in [#89](https://github.com/test-storage/test-storage/pull/89))
+- Add testcase copy
+- Multiple bug fixes and enhancements
+
+## 0.37.0 (August 02, 2018)
 - bulk testcase import API ([@pumano](https://github.com/pumano) in [#87](https://github.com/test-storage/test-storage/pull/87))
 - Add testcase review
 - Swagger doc improvements 
