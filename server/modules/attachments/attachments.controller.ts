@@ -29,7 +29,6 @@ export class AttachmentsController {
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @UseInterceptors(FileInterceptor('filename', { dest: config.get('uploadDirectory.path') }))
   async uploadFile(@UploadedFile() file, @UserId(new ParameterValidationPipe) userId) {
-    console.log(file);
     return await this.attachmentsService.create(file, userId);
   }
 
