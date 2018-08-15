@@ -1,4 +1,4 @@
-# Create image based on the Node carbon image from dockerhub
+# Create image based on the Node image from dockerhub
 FROM node:latest
 
 # set DOCKERIZED
