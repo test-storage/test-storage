@@ -63,3 +63,4 @@ $ docker-compose build
 $ docker-compose up
 ```
 
+3. you can access application on `localhost`
