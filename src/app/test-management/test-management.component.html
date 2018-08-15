@@ -2,51 +2,52 @@
 
   <div *ngIf="testSuites.length > 0; then existTestSuites else noExistTestSuites"></div>
   <ng-template #existTestSuites>
+    <div class="wrapper">
+      <app-testcase-review-notification></app-testcase-review-notification>
+      <div class="content-wrapper">
 
-    <app-testcase-review-notification></app-testcase-review-notification>
-    <div class="content-wrapper">
 
 
+        <div class="testcases-container col-sm-12 col-md-12 col-lg-9">
+          <app-test-cases [selectedTS]="selectedTestSuite"></app-test-cases>
+        </div>
 
-      <div class="col-sm-12 col-md-12 col-lg-9">
-        <app-test-cases [selectedTS]="selectedTestSuite"></app-test-cases>
-      </div>
+        <!-- TEST SUITES TREE COMPONENT -->
+        <div *ngIf="testSuitesViewModel.length > 0" class="sidenav" [clr-nav-level]="2">
+          <!-- TODO move to testsuites tree component -->
 
-      <!-- TEST SUITES TREE COMPONENT -->
-      <div *ngIf="testSuitesViewModel.length > 0" class="sidenav" [clr-nav-level]="2">
-        <!-- TODO move to testsuites tree component -->
-
-        <clr-tree-node class="suite-node" *ngFor="let testSuite of testSuitesViewModel">
-          <button clrVerticalNavLink (click)="openTestSuite(testSuite)" class="clr-treenode-link">
-            <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
-            {{ testSuite.name }}
-            <clr-icon shape="plus" (click)="onAdd(testSuite);"></clr-icon>
-            <clr-icon shape="pencil" (click)="onEdit(testSuite);"></clr-icon>
-            <clr-icon shape="close" (click)="onDelete(testSuite);"></clr-icon>
-          </button>
-          <ng-template [(clrIfExpanded)]="testSuite.expanded">
-            <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
-              <button clrVerticalNavLink (click)="openTestSuite(subTestSuite)" class="clr-treenode-link" [class.active]="subTestSuite._id === selectedTestSuite._id">
-                <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
-                {{ subTestSuite.name }}
-                <clr-icon shape="plus" (click)="onAdd(subTestSuite);"></clr-icon>
-                <clr-icon shape="pencil" (click)="onEdit(subTestSuite);"></clr-icon>
-                <clr-icon shape="close" (click)="onDelete(subTestSuite);"></clr-icon>
-              </button>
-              <ng-template [(clrIfExpanded)]="subTestSuite.expanded">
-                <clr-tree-node *ngFor="let thirdSubTestSuite of subTestSuite.children">
-                  <button clrVerticalNavLink (click)="openTestSuite(thirdSubTestSuite)" class="clr-treenode-link" [class.active]="thirdSubTestSuite._id === selectedTestSuite._id">
-                    <clr-icon [attr.shape]="thirdSubTestSuite.icon"></clr-icon>
-                    {{ thirdSubTestSuite.name }}
-                    <clr-icon shape="plus" (click)="onAdd(thirdSubTestSuite);"></clr-icon>
-                    <clr-icon shape="pencil" (click)="onEdit(thirdSubTestSuite);"></clr-icon>
-                    <clr-icon shape="close" (click)="onDelete(thirdSubTestSuite);"></clr-icon>
-                  </button>
-                </clr-tree-node>
-              </ng-template>
-            </clr-tree-node>
-          </ng-template>
-        </clr-tree-node>
+          <clr-tree-node class="suite-node" *ngFor="let testSuite of testSuitesViewModel">
+            <button clrVerticalNavLink (click)="openTestSuite(testSuite)" class="clr-treenode-link">
+              <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
+              {{ testSuite.name }}
+              <clr-icon shape="plus" (click)="onAdd(testSuite);"></clr-icon>
+              <clr-icon shape="pencil" (click)="onEdit(testSuite);"></clr-icon>
+              <clr-icon shape="close" (click)="onDelete(testSuite);"></clr-icon>
+            </button>
+            <ng-template [(clrIfExpanded)]="testSuite.expanded">
+              <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
+                <button clrVerticalNavLink (click)="openTestSuite(subTestSuite)" class="clr-treenode-link" [class.active]="subTestSuite._id === selectedTestSuite._id">
+                  <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
+                  {{ subTestSuite.name }}
+                  <clr-icon shape="plus" (click)="onAdd(subTestSuite);"></clr-icon>
+                  <clr-icon shape="pencil" (click)="onEdit(subTestSuite);"></clr-icon>
+                  <clr-icon shape="close" (click)="onDelete(subTestSuite);"></clr-icon>
+                </button>
+                <ng-template [(clrIfExpanded)]="subTestSuite.expanded">
+                  <clr-tree-node *ngFor="let thirdSubTestSuite of subTestSuite.children">
+                    <button clrVerticalNavLink (click)="openTestSuite(thirdSubTestSuite)" class="clr-treenode-link" [class.active]="thirdSubTestSuite._id === selectedTestSuite._id">
+                      <clr-icon [attr.shape]="thirdSubTestSuite.icon"></clr-icon>
+                      {{ thirdSubTestSuite.name }}
+                      <clr-icon shape="plus" (click)="onAdd(thirdSubTestSuite);"></clr-icon>
+                      <clr-icon shape="pencil" (click)="onEdit(thirdSubTestSuite);"></clr-icon>
+                      <clr-icon shape="close" (click)="onDelete(thirdSubTestSuite);"></clr-icon>
+                    </button>
+                  </clr-tree-node>
+                </ng-template>
+              </clr-tree-node>
+            </ng-template>
+          </clr-tree-node>
+        </div>
       </div>
     </div>
 
