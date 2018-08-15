@@ -14,12 +14,14 @@ __note:__ `mongo` and `mongod` should be accessible via command line interface
 
 ## Installation
 
-```bash
-$ npm install -g test-storage
-```
+clone repo then install packages
 
 ```
 $ cd test-storage
+```
+
+```bash
+$ npm install
 ```
 
 1. run db-init.js script (script connects to test-storage db and create default user for authentication and default user for application)
@@ -47,6 +49,8 @@ $ npm run build
 $ npm start
 ```
 
+3. you can access application on `localhost`
+
 ## Start using Docker
 1. build test-storage image
 
@@ -58,3 +62,4 @@ $ docker-compose build
 ```bash
 $ docker-compose up
 ```
+
