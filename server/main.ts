@@ -11,6 +11,7 @@ import { ApplicationModule } from './modules/app.module';
 import { NotFoundExceptionFilter } from './modules/common/filters/not-found-exception.filter';
 
 import * as config from 'config';
+import { checkJWTSecret, generateJWTSecret } from './modules/jwt-init';
 
 const expressServer = express();
 let app;
@@ -19,6 +20,8 @@ let port;
 async function bootstrap() {
 
   expressServer.disable('x-powered-by');
+
+  checkFirstRun();
 
   if (config.get('app.httpsEnabled') === false) {
     app = await NestFactory.create(ApplicationModule, expressServer, {});
@@ -66,6 +69,13 @@ function initSwagger() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/apidocs', app, document);
+}
+
+function checkFirstRun() {
+  // TODO add process.env.secret
+  if (checkJWTSecret() === false) {
+    generateJWTSecret();
+  }
 }
 
 bootstrap();
