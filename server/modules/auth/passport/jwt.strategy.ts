@@ -12,7 +12,7 @@ export class JwtStrategy extends Strategy {
       {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         passReqToCallback: true,
-        secretOrKey: jwtSecret(),
+        secretOrKey: process.env.SECRET || jwtSecret(),
       },
       async (req, payload, next) => await this.verify(req, payload, next)
     );

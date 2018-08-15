@@ -11,7 +11,7 @@ import { ApplicationModule } from './modules/app.module';
 import { NotFoundExceptionFilter } from './modules/common/filters/not-found-exception.filter';
 
 import * as config from 'config';
-import { checkJWTSecret, generateJWTSecret } from './modules/jwt-init';
+import { checkJWTSecret, checkEnvSecret, generateJWTSecret } from './modules/jwt-init';
 
 const expressServer = express();
 let app;
@@ -72,8 +72,7 @@ function initSwagger() {
 }
 
 function checkFirstRun() {
-  // TODO add process.env.secret
-  if (checkJWTSecret() === false) {
+  if (!checkEnvSecret() && !checkJWTSecret()) {
     generateJWTSecret();
   }
 }

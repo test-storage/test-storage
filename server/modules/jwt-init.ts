@@ -11,6 +11,14 @@ export function checkJWTSecret() {
   }
 }
 
+export function checkEnvSecret() {
+  if (process.env.SECRET) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 export function generateJWTSecret() {
   const fileName = path.resolve(__dirname, './auth/passport/jwt.secret.ts');
 
