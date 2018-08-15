@@ -23,7 +23,7 @@ COPY . /usr/src/app
 RUN npm run build
 
 # Expose the port the app runs in
-EXPOSE 3000
+EXPOSE 80
 
 # Serve the app
 CMD ["npm", "start"]
