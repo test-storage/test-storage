@@ -1,6 +1,6 @@
 import * as crypto from 'crypto';
 import * as path from 'path';
-import { writeFileSync } from 'fs';
+import { writeFile } from 'fs';
 import { jwtSecret } from './auth/passport/jwt.secret';
 
 export function checkJWTSecret() {
@@ -29,5 +29,9 @@ export function generateJWTSecret() {
 }
 `;
 
-  writeFileSync(fileName, data);
+  writeFile(fileName, data, (err) => {
+    if (err) {
+      throw new Error(`File IO error: ${err}`);
+    }
+  });
 }
