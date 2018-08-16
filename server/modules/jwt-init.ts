@@ -20,6 +20,7 @@ export function checkEnvSecret() {
 }
 
 export function generateJWTSecret() {
+  console.log('Generating JWT key');
   const fileName = path.resolve(__dirname, './auth/passport/jwt.secret.ts');
 
   const key = crypto.randomBytes(256).toString('hex');
