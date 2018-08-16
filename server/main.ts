@@ -21,7 +21,7 @@ async function bootstrap() {
 
   expressServer.disable('x-powered-by');
 
-  checkFirstRun();
+  await checkFirstRun();
 
   if (config.get('app.httpsEnabled') === false) {
     app = await NestFactory.create(ApplicationModule, expressServer, {});
