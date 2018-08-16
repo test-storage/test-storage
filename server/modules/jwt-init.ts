@@ -19,10 +19,9 @@ export function checkEnvSecret() {
   }
 }
 
-export function generateJWTSecret() {
-  console.log('Generating JWT key');
+export async function generateJWTSecret() {
+  console.log('Generating JWT key...');
   const fileName = path.resolve(__dirname, './auth/passport/jwt.secret.ts');
-
   const key = crypto.randomBytes(256).toString('hex');
 
   const data = `export function jwtSecret() {
@@ -30,9 +29,15 @@ export function generateJWTSecret() {
 }
 `;
 
-  writeFile(fileName, data, (err) => {
+  await writeFile(fileName, data, (err) => {
     if (err) {
-      throw new Error(`File IO error: ${err}`);
+      console.error(`File IO error: ${err}`);
+    } else {
+      console.log('JWT Key successfully generated');
     }
   });
+}
+
+if (!checkEnvSecret() && !checkJWTSecret()) {
+  generateJWTSecret();
 }
