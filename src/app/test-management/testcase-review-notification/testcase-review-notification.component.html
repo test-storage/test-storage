@@ -1,13 +1,11 @@
-<clr-alerts>
-  <clr-alert *ngIf="isReviewAvailable" [clrAlertType]="'info'">
-    <div class="alert-item">
-      <span class="alert-text">
-        {{ 'PROJECTSPAGE.NOT_REVIEWED_TESTCASES' | translate }}
-      </span>
-      <div class="alert-actions">
+<clr-alert *ngIf="isReviewAvailable" [clrAlertType]="'info'">
+  <div class="alert-item">
+    <span class="alert-text">
+      {{ 'PROJECTSPAGE.NOT_REVIEWED_TESTCASES' | translate }}
+    </span>
+    <div class="alert-actions">
 
-        <button class="btn btn-sm" routerLink="./review">{{ 'PROJECTSPAGE.REVIEW' | translate }}</button>
-      </div>
+      <button class="btn btn-sm" routerLink="./review">{{ 'PROJECTSPAGE.REVIEW' | translate }}</button>
     </div>
-  </clr-alert>
-</clr-alerts>
+  </div>
+</clr-alert>
