@@ -32,5 +32,106 @@
 
 .dashboard {
   display: flex;
+  border: 1px solid salmon;
+  height: 200px;
 }
+
+
+.wrapper {
+height: calc(100vh - 120px);
+overflow: hidden;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.testcases-container {
+height: 900px;
+overflow-y: auto;
+}
+
+.sidenav {
+  width: 350px;
+  border: 0px !important;
+  order: 999 !important;
+}
+
+
+.sidenav clr-tree-node.suite-node clr-icon[shape="plus"],
+.sidenav clr-tree-node.suite-node clr-icon[shape="pencil"],
+.sidenav clr-tree-node.suite-node clr-icon[shape="close"] {
+  visibility: hidden;
+  position: relative;
+}
+
+.sidenav clr-tree-node.suite-node :hover clr-icon[shape="plus"],
+.sidenav clr-tree-node.suite-node :hover clr-icon[shape="pencil"],
+.sidenav clr-tree-node.suite-node :hover clr-icon[shape="close"] {
+  visibility: visible;
+  left: 5px;
+}
+
+clr-icon[shape="plus"] {
+  width: 20px;
+  height: 20px;
+}
+
+.sidenav clr-icon[shape="plus"],
+.sidenav clr-icon[shape="pencil"],
+.sidenav clr-icon[shape="close"] {
+  color: #777;
+}
+
+.sidenav clr-icon[shape="plus"]:hover,
+.sidenav clr-icon[shape="pencil"]:hover,
+.sidenav clr-icon[shape="close"]:hover {
+  color: #000;
+}
+
+.sidenav clr-icon[shape="plus"].add-show {
+  visibility: visible;
+}
+
+@media only screen and (max-width: 1024px) {
+  .sidenav {
+      width: 240px;
+  }
+}
+
+.noexist-wrapper {
+  display: flex;
+  width: calc(100vw- 240px);
+  height: calc(100vh - 170px);
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
+
+.no-testsuites {
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.no-testsuites img {
+  margin-bottom: 20px;
+}
+
+.no-testsuites h4 {
+  color: #616161;
+}
+
+.tips {
+  font-size: 14px;
+  color: #a2acb3;
+  margin-bottom: 20px;
+}
+
+.title-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 
