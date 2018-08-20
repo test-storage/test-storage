@@ -28,10 +28,10 @@
       </clr-checkbox>
 
       <div *ngIf="f.form.valid && (username.dirty || username.touched || password.dirty || password.touched)">
-          <div *ngIf="error" class="error active">
-            {{ error }}
-          </div>
+        <div *ngIf="error" class="error active">
+          {{ error }}
         </div>
+      </div>
 
       <button type="submit" class="btn btn-primary">{{ 'LOGINPAGE.LOGIN_BUTTON' | translate }}</button>
       <a routerLink="/signup" class="signup">{{ 'LOGINPAGE.REGISTER_BUTTON' | translate }}</a>
