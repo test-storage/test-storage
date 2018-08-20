@@ -38,7 +38,8 @@ xdescribe('AuthController', () => {
 
       const user: UserDto = {
         username: 'admin',
-        password: 'password'
+        password: 'password',
+        rememberMe: false
       };
 
       const result = {

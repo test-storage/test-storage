@@ -12,7 +12,8 @@ describe('AuthController', () => {
 
       const user: UserDto = {
         username: 'admin',
-        password: 'admin'
+        password: 'admin',
+        rememberMe: false
       };
 
       return await request('localhost:3000')
@@ -21,7 +22,26 @@ describe('AuthController', () => {
         .send(user)
         .expect(200)
         .then(response => {
-          expect(response.body.expiresIn).to.be.equal(360000);
+          expect(response.body.expiresIn).to.be.equal(86400000);
+        });
+
+    });
+
+    it('should return 200 and an object with expiresIn for a week when remember me checked', async () => {
+
+      const user: UserDto = {
+        username: 'admin',
+        password: 'admin',
+        rememberMe: true
+      };
+
+      return await request('localhost:3000')
+        .post('/authentication/login')
+        .set('Accept', 'application/json')
+        .send(user)
+        .expect(200)
+        .then(response => {
+          expect(response.body.expiresIn).to.be.equal(604800000);
         });
 
     });
@@ -30,7 +50,8 @@ describe('AuthController', () => {
 
       const user: UserDto = {
         username: 'admin',
-        password: 'admin'
+        password: 'admin',
+        rememberMe: false
       };
 
       return await request('localhost:3000')
@@ -47,7 +68,8 @@ describe('AuthController', () => {
 
       const user: UserDto = {
         username: '',
-        password: ''
+        password: '',
+        rememberMe: false
       };
 
       return await request('localhost:3000')
@@ -64,7 +86,8 @@ describe('AuthController', () => {
 
       const user: UserDto = {
         username: 'any',
-        password: 'any'
+        password: 'any',
+        rememberMe: false
       };
 
       return await request('localhost:3000')
@@ -81,7 +104,8 @@ describe('AuthController', () => {
 
       const user: UserDto = {
         username: 'admin',
-        password: 'any'
+        password: 'any',
+        rememberMe: false
       };
 
       return await request('localhost:3000')

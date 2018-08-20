@@ -13,11 +13,15 @@ import { UsersService } from '../users/users.service';
 export class AuthService {
 
   private authorizedUser: User;
+  private rememberMe: boolean;
 
   constructor(private usersService: UsersService) { }
 
   private async createToken() {
-    const expiresIn = 600 * 600;
+    let expiresIn = 24 * 3600 * 1000; // 1 day
+    if (this.rememberMe === true) {
+      expiresIn = 7 * 24 * 3600 * 1000; // 1 week
+    }
     const secretOrKey = process.env.SECRET || jwtSecret();
     const user: JwtPayload = { email: this.authorizedUser.email, userId: this.authorizedUser._id, roles: [ this.authorizedUser.role ] };
     const token = jwt.sign(user, secretOrKey, { expiresIn });
@@ -53,6 +57,7 @@ export class AuthService {
       return await bcrypt.compare(user.password, existedUser.password).then(passwordIsMatch => {
         if (passwordIsMatch) {
           this.authorizedUser = existedUser;
+          this.rememberMe = user.rememberMe;
           return this.isUserActivated(existedUser);
         } else {
           // TODO log('user password not match');
