@@ -23,7 +23,7 @@ export class AuthenticationService {
   }
 
   login(user: User): Observable<any> {
-    return this.http.post('/authentication/login', { username: user.username, password: user.password }, { headers: contentHeaders });
+    return this.http.post('/authentication/login', user, { headers: contentHeaders });
   }
 
   setToken(response: any) {

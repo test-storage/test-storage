@@ -11,7 +11,6 @@ import { ApplicationModule } from './modules/app.module';
 import { NotFoundExceptionFilter } from './modules/common/filters/not-found-exception.filter';
 
 import * as config from 'config';
-import { checkJWTSecret, checkEnvSecret, generateJWTSecret } from './modules/jwt-init';
 
 const expressServer = express();
 let app;
