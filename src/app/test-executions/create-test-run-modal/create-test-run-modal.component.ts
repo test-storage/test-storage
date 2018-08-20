@@ -18,6 +18,7 @@ export class CreateTestRunModalComponent implements OnInit {
 
   constructor() {
     this.testrun = new Testrun();
+    this.testrun.testcases = [];
   }
 
   setOpened(val: boolean) {
