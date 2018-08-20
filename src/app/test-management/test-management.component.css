@@ -1,5 +1,5 @@
 .content-area {
-    width: calc(100vw - 240px);
+    width: 100%;
     height: calc(100vh - 60px);
 }
 
