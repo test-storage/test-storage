@@ -6,11 +6,13 @@ import { map } from 'rxjs/operators';
 export class NotificationsGateway {
   @WebSocketServer() server;
 
-  @SubscribeMessage('notifications')
-  onNotificationReceived(client, data): Observable<WsResponse<number>> {
-    const event = 'notifications';
-    const response = [1, 2, 3];
+  emitEvent(event, data) {
+    this.server.emit(event, data);
+  }
 
-    return from(response).pipe(map(res => ({ event, data: res })));
+  @SubscribeMessage('notifications')
+  onEvent(client, data): WsResponse<any> {
+    const event = 'notifications';
+    return { event, data };
   }
 }

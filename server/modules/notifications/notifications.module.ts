@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { NotificationSchema } from './notification.schema';
 import { NotificationsController } from './notifications.controller';
 import { NotificationsService } from './notifications.service';
+
 import { NotificationsGateway } from './notifications.gateway';
 
 @Module({
