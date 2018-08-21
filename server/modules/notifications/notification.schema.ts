@@ -12,7 +12,7 @@ export const NotificationSchema = new mongoose.Schema({
   action: String,
   senderId: String,
   recipientId: String,
-  isRead: Boolean,
+  isRead: { type: Boolean, default: false },
   created: { type: Date, required: true, default: Date.now },
   updated: { type: Date, required: true, default: Date.now },
   createdBy: String,

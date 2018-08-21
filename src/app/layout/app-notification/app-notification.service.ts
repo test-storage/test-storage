@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 
 import { Notification } from './notification';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AppNotificationService {
 
   apiPath = '/api/v1/notifications';
