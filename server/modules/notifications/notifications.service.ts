@@ -12,7 +12,7 @@ export class NotificationsService {
 
   async create(notificationDto: CreateNotificationDto, userId: string): Promise<Notification> {
     const createdNotification = await new this.notificationModel(notificationDto);
-    createdNotification.avatarColor = Math.floor(Math.random() * 360);
+
     createdNotification.createdBy = userId;
     return await createdNotification.save();
   }
