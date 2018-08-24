@@ -10,6 +10,7 @@ import { NotificationsGateway } from './notifications.gateway';
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Notification', schema: NotificationSchema }])],
   controllers: [NotificationsController],
+  exports: [NotificationsService],
   providers: [NotificationsService, NotificationsGateway],
 })
 export class NotificationsModule { }
