@@ -1,5 +1,5 @@
-import * as crypto from 'crypto';
-import * as path from 'path';
+import { randomBytes } from 'crypto';
+import { resolve } from 'path';
 import { writeFile } from 'fs';
 import { jwtSecret } from './auth/passport/jwt.secret';
 
@@ -21,8 +21,8 @@ export function checkEnvSecret() {
 
 export async function generateJWTSecret() {
   console.log('Generating JWT key...');
-  const fileName = path.resolve(__dirname, './auth/passport/jwt.secret.ts');
-  const key = crypto.randomBytes(256).toString('hex');
+  const fileName = resolve(__dirname, './auth/passport/jwt.secret.ts');
+  const key = randomBytes(256).toString('hex');
 
   const data = `export function jwtSecret() {
     return '${key}';
