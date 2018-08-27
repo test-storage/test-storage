@@ -23,7 +23,7 @@
     "test:backend-e2e": "./node_modules/.bin/_mocha ./test/server/**/projects-.spec.ts --require ts-node/register --recursive --check-leaks -t 50000 --exit",
     "test:coverage": "ng test --code-coverage",
     "pree2e": "webdriver-manager update",
-    "e2e": "ng e2e",
+    "e2e": "ng e2e --configuration ci",
     "start": "set NODE_ENV=production&&node ./dist/server/main.js",
     "hmr": "concurrently \"nodemon \" \"ng serve --configuration hmr --progress=false\" ",
     "dev": "concurrently \"nodemon \" \"ng serve --progress=false\"  ",

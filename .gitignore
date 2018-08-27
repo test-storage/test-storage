@@ -7,7 +7,7 @@
 
 # Ignore generated js and .map files after typescript transpiling
 /server/**/*.js
-/src/**/*.js
+#/src/**/*.js
 *.map
 test/client/**/*.js
 
