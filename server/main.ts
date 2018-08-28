@@ -52,7 +52,7 @@ async function setMiddlewares() {
   app.use(morgan('dev'));
 
   // Point static path to dist
-  app.use(express.static(path.join(__dirname, '../../dist')));
+  app.use(express.static(path.join(__dirname, '../../dist/test-storage')));
   app.use('/i18n', express.static(path.join('./i18n')));
 
 }
