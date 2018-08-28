@@ -1,5 +1,5 @@
 .content-area {
-    width: calc(100vw - 280px);
+    width: 100%;
     height: calc(100vh - 60px);
 }
 
@@ -14,10 +14,6 @@
     position: absolute;
     right: 1px;
     top: 10px;
-}
-
-.card-img {
-    height: 100px;
 }
 
 .build {

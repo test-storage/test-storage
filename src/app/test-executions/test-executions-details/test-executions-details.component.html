@@ -1,46 +1,113 @@
-<h3 *ngIf="testrun">
-  {{testrun.name}}
-  <!--<a (click)="onEdit();" class="btn btn-primary">
-    <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}
-  </a>-->
-</h3><br>
-<div class="dashboard">
+<div *ngIf="testrun" class="content-area">
 
-<div style="width: 150px;">
-  <svg width="100%" height="100%" viewBox="0 0 42 42" class="donut">
-    <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#000000" stroke-opacity="0.15" stroke-width="3"></circle>
+  <div *ngIf="testrun.testcases.length > 0; then existTestCases else noExistTestCases"></div>
 
-    <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#5ea41c" stroke-width="3" stroke-dasharray="85 15" stroke-dashoffset="25"></circle>
-    <g class="chart-text">
-      <text x="50%" y="50%" class="chart-number">
-        85%
-      </text>
-      <text x="50%" y="50%" class="chart-label">
-        Completed
-      </text>
-    </g>
-  </svg>
+  <ng-template #existTestCases>
+    <h3>
+      {{testrun.name}}
+      <!--<a (click)="onEdit();" class="btn btn-primary">
+            <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}
+          </a>-->
+    </h3>
+    <br>
+
+    <div class="wrapper">
+      <!--<app-testcase-review-notification></app-testcase-review-notification>-->
+      <!-- TODO due date notifications -->
+      fdkfjdj
+    </div>
+
+  </ng-template>
+
+  <ng-template #noExistTestCases>
+    <div class="wrapper">
+        <div class="title-header">
+            <h3>
+                {{testrun.name}}
+              </h3>
+
+                  <a (click)="onEdit();" class="btn btn-primary">
+                      <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}
+                    </a>
+
+          </div>
+
+
+    <div class="noexist-wrapper">
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        <div class="no-testsuites">
+          <img src="assets/add-project.png">
+          <h4>У вас не добавлено ни одного тест кейса к Тестовому Прогону.</h4>
+          <p class="tips">Нажмите кнопку 'Добавить тест кейсы' для добавления тест кейсов к прогону</p>
+          <a class="btn btn-primary" (click)="onAdd();">Добавить тест кейсы</a>
+        </div>
+
+      </div>
+    </div>
+</div>
+  </ng-template>
+
+
 </div>
 
-<div style="width: 150px;">
-    <svg width="100%" height="100%" viewBox="0 0 42 42" class="donut">
-      <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#000000" stroke-opacity="0.15" stroke-width="3"></circle>
 
-      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#007cbb" stroke-width="3" stroke-dasharray="85 15" stroke-dashoffset="25"></circle>
-      <g class="chart-text">
-        <text x="50%" y="50%" class="chart-number">
-          85%
-        </text>
-        <text x="50%" y="50%" class="chart-label">
-          Passed
-        </text>
-      </g>
-    </svg>
-  </div>
 
-</div>
 
-<br>
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="dashboard">-->
+
+<!--
+    <div style="width: 150px;">
+      <svg width="100%" height="100%" viewBox="0 0 42 42" class="donut">
+        <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#000000" stroke-opacity="0.15"
+          stroke-width="3"></circle>
+
+        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#5ea41c" stroke-width="3"
+          stroke-dasharray="85 15" stroke-dashoffset="25"></circle>
+        <g class="chart-text">
+          <text x="50%" y="50%" class="chart-number">
+            85%
+          </text>
+          <text x="50%" y="50%" class="chart-label">
+            Completed
+          </text>
+        </g>
+      </svg>
+    </div>
+
+    <div style="width: 150px;">
+      <svg width="100%" height="100%" viewBox="0 0 42 42" class="donut">
+        <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#000000" stroke-opacity="0.15"
+          stroke-width="3"></circle>
+
+        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#007cbb" stroke-width="3"
+          stroke-dasharray="85 15" stroke-dashoffset="25"></circle>
+        <g class="chart-text">
+          <text x="50%" y="50%" class="chart-number">
+            85%
+          </text>
+          <text x="50%" y="50%" class="chart-label">
+            Passed
+          </text>
+        </g>
+      </svg>
+    </div>
+    -->
+
+<!--</div>-->
+
 <!--
 <a class="btn btn-primary">
   <clr-icon shape="plus"></clr-icon> Add testcases

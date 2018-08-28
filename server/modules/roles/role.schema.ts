@@ -1,11 +1,11 @@
-import * as mongoose from 'mongoose';
-import * as crypto from 'crypto';
+import { Schema } from 'mongoose';
+import { randomBytes } from 'crypto';
 
-export const RoleSchema = new mongoose.Schema({
+export const RoleSchema = new Schema({
   _id: {
     type: String,
     default: function () {
-      return crypto.randomBytes(16).toString('hex');
+      return randomBytes(16).toString('hex');
     }
   },
   name: { type: String, required: true },

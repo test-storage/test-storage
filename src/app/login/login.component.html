@@ -5,31 +5,34 @@
       Test Storage
     </label>
     <div class="login-group">
-      <input class="username" type="text" id="username" name="username" [(ngModel)]="user.username" #username="ngModel" required
-        placeholder="{{ 'LOGINPAGE.USERNAME' | translate }}">
-      <input class="password" type="password" id="password" name="password" [(ngModel)]="user.password" #password="ngModel" required
-        placeholder="{{ 'LOGINPAGE.PASSWORD' | translate }}">
-      <div class="checkbox">
-        <input type="checkbox" id="rememberme">
-        <label for="rememberme">
-          {{ 'LOGINPAGE.REMEMBER_ME' | translate }}
-        </label>
-      </div>
+
+      <clr-input-container>
+        <input class="clr-input" size="51" clrInput type="text" id="username" name="username" [(ngModel)]="user.username" #username="ngModel"
+          required placeholder="{{ 'LOGINPAGE.USERNAME' | translate }}" minlength="5">
+        <!--<clr-control-helper>Username should be email</clr-control-helper>-->
+        <clr-control-error *clrIfError="'required'">{{ 'LOGINPAGE.LOGIN_REQUIRED' | translate }}</clr-control-error>
+        <clr-control-error *clrIfError="'minlength'">It must be at least 5 characters!</clr-control-error>
+      </clr-input-container>
+
+      <clr-password-container>
+        <input class="clr-input" size="49" clrPassword type="password" id="password" name="password" [(ngModel)]="user.password"
+          minlength="5" #password="ngModel" required placeholder="{{ 'LOGINPAGE.PASSWORD' | translate }}">
+        <!--<clr-control-helper>Must contain at least 5 characters with at least one of them a special character like !@#$%^&*)</clr-control-helper>-->
+        <clr-control-error *clrIfError="'required'">{{ 'LOGINPAGE.PASSWORD_REQUIRED' | translate }}</clr-control-error>
+        <clr-control-error *clrIfError="'minlength'">It must be at least 5 characters!</clr-control-error>
+      </clr-password-container>
+
+      <br>
+      <clr-checkbox name="rememberMe" id="rememberMe" [(clrChecked)]="user.rememberMe">
+        {{ 'LOGINPAGE.REMEMBER_ME' | translate }}
+      </clr-checkbox>
+
       <div *ngIf="f.form.valid && (username.dirty || username.touched || password.dirty || password.touched)">
         <div *ngIf="error" class="error active">
           {{ error }}
         </div>
       </div>
-      <div *ngIf="username.invalid && (username.dirty || username.touched)">
-        <div *ngIf="username?.errors.required" class="error active">
-          {{ 'LOGINPAGE.LOGIN_REQUIRED' | translate }}
-        </div>
-      </div>
-      <div *ngIf="password.invalid && (password.dirty || password.touched)">
-        <div *ngIf="password?.errors.required" class="error active">
-          {{ 'LOGINPAGE.PASSWORD_REQUIRED' | translate }}
-        </div>
-      </div>
+
       <button type="submit" class="btn btn-primary">{{ 'LOGINPAGE.LOGIN_BUTTON' | translate }}</button>
       <a routerLink="/signup" class="signup">{{ 'LOGINPAGE.REGISTER_BUTTON' | translate }}</a>
     </div>

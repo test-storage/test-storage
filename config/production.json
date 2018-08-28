@@ -5,10 +5,10 @@
     "httpsEnabled": false
   },
   "http": {
-    "port": 3000
+    "port": 80
   },
   "https": {
-    "port": 8443,
+    "port": 443,
     "privateKey": "certs/server.key",
     "certificate": "certs/server.crt"
   },

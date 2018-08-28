@@ -13,11 +13,14 @@
             <clr-icon shape="bell" class="has-badge is-solid"></clr-icon>
         </button>
         <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+          <!--
             <a routerLink="/notifications" clrDropdownItem>Regression test suite assigned to you</a>
             <div class="dropdown-divider"></div>
             <a routerLink="/notifications" clrDropdownItem>Test cases created</a>
             <div class="dropdown-divider"></div>
             <a routerLink="/notifications" clrDropdownItem>Test project created</a>
+          -->
+          <a *ngFor="let notification of notifications" clrDropdownItem>{{ notification.name }}</a>
         </clr-dropdown-menu>
     </clr-dropdown>
 

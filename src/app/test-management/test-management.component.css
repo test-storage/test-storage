@@ -1,5 +1,5 @@
 .content-area {
-    width: calc(100vw - 240px);
+    width: 100%;
     height: calc(100vh - 60px);
 }
 
@@ -11,17 +11,27 @@
     }
 }
 
+.wrapper {
+  height: calc(100vh - 120px);
+  overflow: hidden;
+}
+
 .content-wrapper {
     display: flex;
     justify-content: space-between;
 }
 
+.testcases-container {
+  height: 900px;
+  overflow-y: auto;
+}
+
 .sidenav {
-    height: calc(100vh -60px);
     width: 350px;
     border: 0px !important;
     order: 999 !important;
 }
+
 
 .sidenav clr-tree-node.suite-node clr-icon[shape="plus"],
 .sidenav clr-tree-node.suite-node clr-icon[shape="pencil"],

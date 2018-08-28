@@ -27,6 +27,7 @@ export class EditTestRunModalComponent implements OnInit {
   updateTestrun() {
     this.testrunChange.emit(this.testrun);
     this.testrun = new Testrun();
+    // this.testrun.testcases = [];
   }
 
   ngOnInit() {

@@ -14,6 +14,7 @@ import * as config from 'config';
 
 const expressServer = express();
 let app;
+let port;
 
 async function bootstrap() {
 
@@ -21,12 +22,14 @@ async function bootstrap() {
 
   if (config.get('app.httpsEnabled') === false) {
     app = await NestFactory.create(ApplicationModule, expressServer, {});
+    port = config.get('http.port');
   } else {
     const httpsOptions = {
       key: fs.readFileSync(config.get('https.privateKey'), 'utf8'),
       cert: fs.readFileSync(config.get('https.certificate'), 'utf8')
     };
     app = await NestFactory.create(ApplicationModule, expressServer, { httpsOptions: httpsOptions });
+    port = config.get('https.port');
   }
 
   setMiddlewares();
@@ -35,7 +38,7 @@ async function bootstrap() {
     await initSwagger();
   }
 
-  await app.listen(process.env.PORT || 3000);
+  await app.listen(process.env.PORT || port || 3000);
 }
 
 async function setMiddlewares() {
@@ -49,7 +52,7 @@ async function setMiddlewares() {
   app.use(morgan('dev'));
 
   // Point static path to dist
-  app.use(express.static(path.join(__dirname, '../../dist')));
+  app.use(express.static(path.join(__dirname, '../../dist/test-storage')));
   app.use('/i18n', express.static(path.join('./i18n')));
 
 }
