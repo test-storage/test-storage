@@ -26,12 +26,12 @@ export class CreateNotificationDto {
   @ApiModelProperty({ type: String })
   @IsString()
   @IsNotEmpty()
-  readonly recipientId: string;
+  readonly recipientId?: string;
 
   @ApiModelProperty({ type: Boolean })
   @IsBoolean()
   @IsNotEmpty()
-  readonly isRead: boolean;
+  readonly isRead?: boolean;
 
   @ApiModelPropertyOptional({ type: Date })
   @IsOptional()

@@ -12,7 +12,7 @@ import { User } from './user';
 })
 export class LoginComponent implements OnInit {
 
-  public user: User = new User();
+  public user: User;
   public error;
 
   constructor(
@@ -20,14 +20,16 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService,
     protected translateService: TranslateService
   ) {
+    this.user = new User();
+    this.user.rememberMe = false;
+  }
+
+  ngOnInit() {
     this.authenticationService.isLoggedIn().subscribe((loggedIn: boolean) => {
       if (loggedIn) {
         this.router.navigateByUrl('');
       }
     });
-  }
-
-  ngOnInit() {
   }
 
   login() {
@@ -42,7 +44,6 @@ export class LoginComponent implements OnInit {
           this.error = this.translateService.instant('LOGINPAGE.USER_NOT_ACTIVATED');
         }
       }
-
     );
   }
 

@@ -1,12 +1,12 @@
-import * as mongoose from 'mongoose';
-import * as crypto from 'crypto';
-import * as bcrypt from 'bcrypt';
+import { Schema } from 'mongoose';
+import { randomBytes } from 'crypto';
+import { genSalt, hash } from 'bcrypt';
 
-export const UserSchema = new mongoose.Schema({
+export const UserSchema = new Schema({
   _id: {
     type: String,
     default: function () {
-      return crypto.randomBytes(16).toString('hex');
+      return randomBytes(16).toString('hex');
     }
   },
   email: {
@@ -55,15 +55,15 @@ export const UserSchema = new mongoose.Schema({
 UserSchema.pre('save', function (next) {
   const user = this;
   if (this.isModified('password') || this.isNew) {
-    bcrypt.genSalt(10, function (err, salt) {
+    genSalt(10, function (err, salt) {
       if (err) {
         return next(err);
       }
-      bcrypt.hash(user.password, salt, function (error, hash) {
+      hash(user.password, salt, function (error, passwordHash) {
         if (error) {
           return next(error);
         }
-        user.password = hash;
+        user.password = passwordHash;
         next();
       });
     });

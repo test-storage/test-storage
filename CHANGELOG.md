@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.39.0 (August 28, 2018)
+- Add websocket client/server for notifications ([@pumano](https://github.com/pumano) in [#90](https://github.com/test-storage/test-storage/pull/90))
+- Add jwt init on first run and possibility to set jwt key via SECRET environment variable
+- Change default ports for production http/https and for docker
+- Fix husky pre-commit hooks
+- Multiple bug fixes and enhancements
+
 ## 0.38.0 (August 11, 2018)
 - Attachments API ([@pumano](https://github.com/pumano) in [#89](https://github.com/test-storage/test-storage/pull/89))
 - Add testcase copy
