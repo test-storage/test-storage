@@ -5,20 +5,15 @@ export class HeaderComponent extends Helpers {
 
     // Locators
 
-    headerPerson = element(by.id('header-person'));
-    logoutButton = element(by.id('logout'));
+    settingsDropdown = element(by.css('[data-test-id="settings-dropdown"]'));
+    logoutButton = element(by.css('[data-test-id="logout"]'));
 
     // Methods
 
-    isUserLogged() {
-        super.waitForPresenceOf(this.headerPerson);
-        return this.headerPerson.getText();
-    }
-
     logout() {
-        super.waitForClickable(this.headerPerson);
-        this.headerPerson.click();
-        super.waitForPresenceOf(this.logoutButton);
+        this.waitForClickable(this.settingsDropdown);
+        this.settingsDropdown.click();
+        this.waitForPresenceOf(this.logoutButton);
         this.logoutButton.click();
     }
 }
