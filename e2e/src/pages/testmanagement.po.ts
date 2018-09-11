@@ -1,7 +1,7 @@
 import { browser, element, by, promise } from 'protractor';
 import { Helpers } from '../helpers/Helpers';
 
-export class DashboardPage extends Helpers {
+export class TestManagementPage extends Helpers {
 
     // Locators
 
@@ -11,7 +11,7 @@ export class DashboardPage extends Helpers {
     // Methods
 
     navigateTo() {
-        return browser.get('/dashboard');
+        return browser.get('/testmanagement');
     }
 
 }
