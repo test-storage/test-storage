@@ -9,7 +9,7 @@
   <div class="header-actions">
 
     <clr-dropdown>
-        <button class="nav-icon" clrDropdownTrigger>
+        <button class="nav-icon" data-test-id="notifications" clrDropdownTrigger>
             <clr-icon shape="bell" class="has-badge is-solid"></clr-icon>
         </button>
         <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
@@ -25,17 +25,17 @@
     </clr-dropdown>
 
     <clr-dropdown>
-        <button class="nav-icon" clrDropdownTrigger>
+        <button class="nav-icon" data-test-id="settings-dropdown" clrDropdownTrigger>
             <clr-icon shape="user"></clr-icon>
             <clr-icon shape="caret down"></clr-icon>
         </button>
 
         <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-            <a routerLink="/profile" clrDropdownItem>{{ 'HEADER.PROFILE' | translate }}</a>
+            <a routerLink="/profile" data-test-id="profile" clrDropdownItem>{{ 'HEADER.PROFILE' | translate }}</a>
             <div class="dropdown-divider"></div>
-            <a routerLink="/settings" clrDropdownItem>{{ 'HEADER.SETTINGS' | translate }}</a>
+            <a routerLink="/settings" data-test-id="settings" clrDropdownItem>{{ 'HEADER.SETTINGS' | translate }}</a>
             <div class="dropdown-divider"></div>
-            <a (click)="logout()" clrDropdownItem>{{ 'HEADER.LOGOUT' | translate }}</a>
+            <a (click)="logout()" data-test-id="logout" clrDropdownItem>{{ 'HEADER.LOGOUT' | translate }}</a>
         </clr-dropdown-menu>
     </clr-dropdown>
   </div>

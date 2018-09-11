@@ -1,16 +1,15 @@
+import { HeaderComponent } from './../pages/header.po';
 import { LoginPage } from '../pages/login.po';
-import { DashboardPage } from '../pages/dashboard.po';
 import { ProjectsPage } from '../pages/projects.po';
-import { browser, element, by } from 'protractor';
 
 describe('test-storage App', () => {
   let loginPage: LoginPage;
-  let dashboardPage: DashboardPage;
+  let headerComponent: HeaderComponent;
   let projectsPage: ProjectsPage;
 
   beforeEach(() => {
     loginPage = new LoginPage();
-    dashboardPage = new DashboardPage();
+    headerComponent = new HeaderComponent();
     projectsPage = new ProjectsPage();
   });
 
@@ -27,9 +26,9 @@ describe('test-storage App', () => {
     expect(actual).toEqual(expected);
   });
 
-  xit('should successfully redirect to login page after logout', () => {
+  it('should successfully redirect to login page after logout', () => {
 
-    dashboardPage.logout();
+    headerComponent.logout();
 
     const actual = loginPage.isLoginPage();
     const expected = true;
