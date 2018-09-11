@@ -2,7 +2,7 @@
 
   <div *ngIf="projects.length > 0; then existProjects else noExistProjects"></div>
   <ng-template #existProjects>
-    <a (click)="onAdd();" class="btn btn-primary">
+    <a (click)="onAdd();" data-test-id="create-project" class="btn btn-primary">
       <clr-icon shape="plus"></clr-icon>
       {{ 'PROJECTSPAGE.CREATE' | translate }}
     </a>
