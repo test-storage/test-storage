@@ -12,6 +12,7 @@ export interface Device extends Document {
   readonly title?: string;
   readonly description?: string;
   readonly inventoryId?: string;
+  readonly serialNumber?: string;
   readonly sku?: string;
   readonly assignedTo?: Array<string>; // User id
   readonly created?: Date;
