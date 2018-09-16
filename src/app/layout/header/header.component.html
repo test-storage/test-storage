@@ -9,34 +9,42 @@
   <div class="header-actions">
 
     <clr-dropdown>
-        <button class="nav-icon" data-test-id="notifications" clrDropdownTrigger>
-            <clr-icon shape="bell" class="has-badge is-solid"></clr-icon>
-        </button>
-        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-          <!--
+      <button class="nav-icon" data-test-id="notifications" clrDropdownTrigger>
+        <clr-icon shape="bell" class="has-badge is-solid"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <label class="dropdown-header" style="text-align: center;">Notifications</label>
+        <div class="dropdown-divider"></div>
+        <!--
             <a routerLink="/notifications" clrDropdownItem>Regression test suite assigned to you</a>
             <div class="dropdown-divider"></div>
             <a routerLink="/notifications" clrDropdownItem>Test cases created</a>
             <div class="dropdown-divider"></div>
             <a routerLink="/notifications" clrDropdownItem>Test project created</a>
           -->
-          <a *ngFor="let notification of notifications" clrDropdownItem>{{ notification.name }}</a>
-        </clr-dropdown-menu>
+        <a *ngFor="let notification of notifications" clrDropdownItem>
+          {{ notification.senderId }} {{
+          notification.action }} {{ notification.entity }}
+        </a>
+        <div class="dropdown-divider"></div>
+        <button type="button" class="dropdown-item" style="text-align: center; text-transform: uppercase;">View all</button>
+
+      </clr-dropdown-menu>
     </clr-dropdown>
 
     <clr-dropdown>
-        <button class="nav-icon" data-test-id="settings-dropdown" clrDropdownTrigger>
-            <clr-icon shape="user"></clr-icon>
-            <clr-icon shape="caret down"></clr-icon>
-        </button>
+      <button class="nav-icon" data-test-id="settings-dropdown" clrDropdownTrigger>
+        <clr-icon shape="user"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
 
-        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-            <a routerLink="/profile" data-test-id="profile" clrDropdownItem>{{ 'HEADER.PROFILE' | translate }}</a>
-            <div class="dropdown-divider"></div>
-            <a routerLink="/settings" data-test-id="settings" clrDropdownItem>{{ 'HEADER.SETTINGS' | translate }}</a>
-            <div class="dropdown-divider"></div>
-            <a (click)="logout()" data-test-id="logout" clrDropdownItem>{{ 'HEADER.LOGOUT' | translate }}</a>
-        </clr-dropdown-menu>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a routerLink="/profile" data-test-id="profile" clrDropdownItem>{{ 'HEADER.PROFILE' | translate }}</a>
+        <div class="dropdown-divider"></div>
+        <a routerLink="/settings" data-test-id="settings" clrDropdownItem>{{ 'HEADER.SETTINGS' | translate }}</a>
+        <div class="dropdown-divider"></div>
+        <a (click)="logout()" data-test-id="logout" clrDropdownItem>{{ 'HEADER.LOGOUT' | translate }}</a>
+      </clr-dropdown-menu>
     </clr-dropdown>
   </div>
 </clr-header>
