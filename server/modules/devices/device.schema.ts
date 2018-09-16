@@ -21,6 +21,7 @@ export const DeviceSchema = new Schema({
   title: String,
   description: String,
   inventoryId: String,
+  serialNumber: String,
   sku: String,
   assignedTo: Array, // User id
   /*

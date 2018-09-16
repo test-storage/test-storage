@@ -61,6 +61,11 @@ export class CreateDeviceDto {
   @ApiModelPropertyOptional({ type: String })
   @IsOptional()
   @IsString()
+  readonly serialNumber?: string;
+
+  @ApiModelPropertyOptional({ type: String })
+  @IsOptional()
+  @IsString()
   readonly sku?: string;
 
   @ApiModelPropertyOptional({ type: Array })
