@@ -13,6 +13,8 @@ import { CreateTestRunModalComponent } from './create-test-run-modal/create-test
 import { EditTestRunModalComponent } from './edit-test-run-modal/edit-test-run-modal.component';
 import { DeleteTestRunModalComponent } from './delete-test-run-modal/delete-test-run-modal.component';
 
+import { AddTestcasesComponent } from './add-testcases/add-testcases.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { DeleteTestRunModalComponent } from './delete-test-run-modal/delete-test
     TestExecutionsDetailsComponent,
     CreateTestRunModalComponent,
     EditTestRunModalComponent,
-    DeleteTestRunModalComponent
+    DeleteTestRunModalComponent,
+    AddTestcasesComponent
   ]
 })
 export class TestExecutionsModule { }
