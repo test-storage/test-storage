@@ -2,8 +2,20 @@
   width: 100vw;
   height: calc(100vh - 60px);
 }
+
+@media screen and (max-width: 992px) {
+  .content-area {
+      width: 100vw;
+      height: calc(100vh - 60px);
+  }
+}
+
 .user-profile {
     display: flex;
+    width: 100%;
+    overflow: hidden;
+    flex-direction: column;
     align-content: center;
     justify-content: center;
+    align-items: center;
 }

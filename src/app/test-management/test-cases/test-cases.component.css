@@ -27,5 +27,5 @@
 }
 
 clr-datagrid {
-    height: 21rem;
+    height: calc(100vh - 252px);
 }

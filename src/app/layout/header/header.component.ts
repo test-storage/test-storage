@@ -16,7 +16,22 @@ import { Notification } from '../app-notification/notification';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  public notifications: Notification[] = [];
+  public notifications: Notification[] = [
+    {
+      entity: 'TESTSUITE',
+      action: 'ASSIGN',
+      senderId: 'Roman Skvortsov',
+      recipientId: 'Alex Skorobogatov',
+      isRead: false
+    },
+    {
+      entity: 'TESTSUITE',
+      action: 'ASSIGN',
+      senderId: 'Andrew Emelin',
+      recipientId: 'Marina Smolskaya',
+      isRead: true
+    }
+  ];
   private websocketConnection;
 
   constructor(

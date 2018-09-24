@@ -14,15 +14,4 @@ export class DashboardPage extends Helpers {
         return browser.get('/dashboard');
     }
 
-    isUserLogged() {
-        super.waitForPresenceOf(this.headerPerson);
-        return this.headerPerson.getText();
-    }
-
-    logout() {
-        super.waitForClickable(this.headerPerson);
-        this.headerPerson.click();
-        super.waitForPresenceOf(this.logoutButton);
-        this.logoutButton.click();
-    }
 }

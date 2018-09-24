@@ -16,25 +16,25 @@ export class LoginPage extends Helpers {
     }
 
     typeLogin(login: string) {
-        super.waitForPresenceOf(this.loginInput);
+        this.waitForPresenceOf(this.loginInput);
         this.loginInput.sendKeys(login);
         return this;
     }
 
     typePassword(password: string) {
-        super.waitForPresenceOf(this.passwordInput);
+        this.waitForPresenceOf(this.passwordInput);
         this.passwordInput.sendKeys(password);
         return this;
     }
 
     submitLoginButton() {
-        super.waitForClickable(this.loginButton);
+        this.waitForClickable(this.loginButton);
         this.loginButton.click();
         // return new HomePage();
     }
 
     isLoginPage(): boolean {
-        super.waitForPresenceOf(this.loginInput);
+        this.waitForPresenceOf(this.loginInput);
         if (this.loginInput.isDisplayed) {
             return true;
         } else {

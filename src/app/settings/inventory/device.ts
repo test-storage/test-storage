@@ -10,6 +10,7 @@ export class Device {
   title?: string;
   description?: string;
   inventoryId?: string;
+  serialNumber?: string;
   sku?: string;
   assignedTo?: Array<string>; // User id
   created?: Date;

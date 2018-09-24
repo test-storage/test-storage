@@ -11,7 +11,6 @@ export class RequirementsComponent implements OnInit {
 
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
-  @HostBinding('style.position') position = 'absolute';
 
   constructor() { }
 

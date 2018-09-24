@@ -81,6 +81,7 @@ export class TestManagementComponent implements OnInit {
 
       if (node.parentId === 'root') {
         node['expanded'] = true;
+        node['active'] = true;
         root[rootNodes] = node;
         rootNodes++;
       } else {

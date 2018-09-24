@@ -187,6 +187,7 @@
     "EMPTYSTATE_NOTESTSUITES_TITLE": "У вас нет ни одного Тестового Набора.",
     "EMPTYSTATE_NOTESTSUITES_DESCRIPTION": "Нажмите на кнопку 'Создать Тестовый Набор' для создания",
     "EMPTYSTATE_CREATETESTSUITE_BUTTON": "Создать Тестовый Набор",
+    "EMPTYSTATE_NOTESTCASES_TITLE": "У вас нет ни одного Тест Кейса.",
     "STEP_ACTION": "Действие",
     "TEST_DATA": "Тестовые данные",
     "EXPECTED_RESULT": "Ожидаемый результат"
