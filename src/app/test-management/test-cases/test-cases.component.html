@@ -17,12 +17,14 @@
 
     <!--<clr-dg-column style="width: 30px !important;">{{ 'TESTMANAGEMENTPAGE.PRIORITY' | translate }}</clr-dg-column>-->
     <clr-dg-column [clrDgField]="'order'" [clrDgSortOrder]="ascSort">{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}</clr-dg-column>
+    <clr-dg-placeholder>{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTCASES_TITLE' | translate }}</clr-dg-placeholder>
     <!--<clr-dg-column >Order</clr-dg-column>-->
     <!--<clr-dg-column>Status</clr-dg-column>-->
     <!--<clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TAGS' | translate }}</clr-dg-column>-->
     <!--<clr-dg-column style="width: 30px !important;">{{ 'TESTMANAGEMENTPAGE.TYPE' | translate }}</clr-dg-column>-->
     <!--<clr-dg-column>{{ 'PROJECTCREATEPAGE.STATUS' | translate }}</clr-dg-column>-->
     <clr-dg-row *clrDgItems="let testCase of testCases" [clrDgItem]="testCase">
+
       <!--
   <clr-dg-cell style="display: flex;">
       <clr-checkbox></clr-checkbox>
