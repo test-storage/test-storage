@@ -15,7 +15,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
-  @HostBinding('style.position') position = 'absolute';
 
   private subscription;
   public profile: User;
