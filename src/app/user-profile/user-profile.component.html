@@ -1,51 +1,57 @@
 <div class="content-area">
-  <div *ngIf="profile" class="user-profile">
+  <div class="row">
+    <div *ngIf="profile" class="user-profile">
 
-    <form>
-      <h1>{{ 'USERPROFILEPAGE.USER_PROFILE' | translate }}</h1>
-      <section class="form-block">
-        <label>{{ 'USERPROFILEPAGE.USER' | translate }}</label>
 
-        <div class="form-group">
-          <label class="required" for="firstname">{{ 'USERPROFILEPAGE.FIRST_NAME' | translate }}</label>
-          <input type="text" id="firstname" name="firstName" [(ngModel)]="profile.firstName" #firstname="ngModel" required placeholder="John"
-            size="35">
-        </div>
 
-        <div class="form-group">
-          <label class="required" for="lastname">{{ 'USERPROFILEPAGE.LAST_NAME' | translate }}</label>
-          <input type="text" id="lastname" name="lastName" [(ngModel)]="profile.lastName" #lastname="ngModel" required placeholder="Doe"
-            size="35">
-        </div>
+      <form>
+        <h1>{{ 'USERPROFILEPAGE.USER_PROFILE' | translate }}</h1>
+        <section class="form-block">
+          <label>{{ 'USERPROFILEPAGE.USER' | translate }}</label>
 
-        <br>
-        <label>{{ 'USERPROFILEPAGE.COMPANY_DETAILS' | translate }}</label>
+          <div class="form-group">
+            <label class="required" for="firstname">{{ 'USERPROFILEPAGE.FIRST_NAME' | translate }}</label>
+            <input type="text" id="firstname" name="firstName" [(ngModel)]="profile.firstName" #firstname="ngModel"
+              required placeholder="John" size="35">
+          </div>
 
-        <div class="form-group">
-          <label class="required" for="email">{{ 'USERPROFILEPAGE.EMAIL' | translate }}</label>
-          <input type="text" id="email" name="email" [(ngModel)]="profile.email" #email="ngModel" required placeholder="johndoe@example.com"
-            size="35">
-        </div>
+          <div class="form-group">
+            <label class="required" for="lastname">{{ 'USERPROFILEPAGE.LAST_NAME' | translate }}</label>
+            <input type="text" id="lastname" name="lastName" [(ngModel)]="profile.lastName" #lastname="ngModel"
+              required placeholder="Doe" size="35">
+          </div>
 
-        <div class="form-group">
-          <label for="phonenumber">{{ 'USERPROFILEPAGE.PHONE_NUMBER' | translate }}</label>
-          <input type="text" id="phonenumber" name="phoneNumber" [(ngModel)]="profile.workInfo.phoneNumber" placeholder="+7 (495) 123-45-67"
-            size="35">
-        </div>
+          <br>
+          <label>{{ 'USERPROFILEPAGE.COMPANY_DETAILS' | translate }}</label>
 
-        <div class="form-group">
-          <label for="jobtitle">{{ 'USERPROFILEPAGE.JOB_TITLE' | translate }}</label>
-          <input type="text" id="jobtitle" name="jobTitle" [(ngModel)]="profile.workInfo.jobTitle" placeholder="Senior Test Engineer"
-            size="35">
-        </div>
+          <div class="form-group">
+            <label class="required" for="email">{{ 'USERPROFILEPAGE.EMAIL' | translate }}</label>
+            <input type="text" id="email" name="email" [(ngModel)]="profile.email" #email="ngModel" required
+              placeholder="johndoe@example.com" size="35">
+          </div>
 
-        <div class="form-group">
-          <label for="company">{{ 'USERPROFILEPAGE.COMPANY' | translate }}</label>
-          <input type="text" id="company" name="company" [(ngModel)]="profile.workInfo.companyName" placeholder="Example Inc." size="35">
-        </div>
+          <div class="form-group">
+            <label for="phonenumber">{{ 'USERPROFILEPAGE.PHONE_NUMBER' | translate }}</label>
+            <input type="text" id="phonenumber" name="phoneNumber" [(ngModel)]="profile.workInfo.phoneNumber"
+              placeholder="+7 (495) 123-45-67" size="35">
+          </div>
 
-        <button type="submit" class="btn btn-primary">{{ 'USERPROFILEPAGE.SAVE_BUTTON' | translate }}</button>
-      </section>
-    </form>
+          <div class="form-group">
+            <label for="jobtitle">{{ 'USERPROFILEPAGE.JOB_TITLE' | translate }}</label>
+            <input type="text" id="jobtitle" name="jobTitle" [(ngModel)]="profile.workInfo.jobTitle" placeholder="Senior Test Engineer"
+              size="35">
+          </div>
+
+          <div class="form-group">
+            <label for="company">{{ 'USERPROFILEPAGE.COMPANY' | translate }}</label>
+            <input type="text" id="company" name="company" [(ngModel)]="profile.workInfo.companyName" placeholder="Example Inc."
+              size="35">
+          </div>
+
+          <button type="submit" class="btn btn-primary">{{ 'USERPROFILEPAGE.SAVE_BUTTON' | translate }}</button>
+        </section>
+      </form>
+
+    </div>
   </div>
 </div>

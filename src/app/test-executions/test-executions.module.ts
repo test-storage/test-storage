@@ -2,16 +2,22 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TestExecutionsRoutingModule } from './test-executions-routing.module';
-import { TestExecutionsComponent } from './test-executions.component';
-import { TestExecutionsDetailsComponent } from './test-executions-details/test-executions-details.component';
-import { TestrunsService } from './test-executions.service';
 import { SharedModule } from '../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
+
+import { TestExecutionsRoutingModule } from './test-executions-routing.module';
+
+import { TestrunsService } from './test-executions.service';
+import { TestSuiteService } from './../test-management/test-suite.service';
+
+import { TestExecutionsComponent } from './test-executions.component';
+import { TestExecutionsDetailsComponent } from './test-executions-details/test-executions-details.component';
 
 import { CreateTestRunModalComponent } from './create-test-run-modal/create-test-run-modal.component';
 import { EditTestRunModalComponent } from './edit-test-run-modal/edit-test-run-modal.component';
 import { DeleteTestRunModalComponent } from './delete-test-run-modal/delete-test-run-modal.component';
+
+import { AddTestcasesComponent } from './add-testcases/add-testcases.component';
 
 @NgModule({
   imports: [
@@ -21,13 +27,14 @@ import { DeleteTestRunModalComponent } from './delete-test-run-modal/delete-test
     SharedModule,
     TranslateModule.forChild()
   ],
-  providers: [TestrunsService],
+  providers: [TestrunsService, TestSuiteService],
   declarations: [
     TestExecutionsComponent,
     TestExecutionsDetailsComponent,
     CreateTestRunModalComponent,
     EditTestRunModalComponent,
-    DeleteTestRunModalComponent
+    DeleteTestRunModalComponent,
+    AddTestcasesComponent
   ]
 })
 export class TestExecutionsModule { }

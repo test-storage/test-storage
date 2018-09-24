@@ -17,8 +17,8 @@
           <!-- TODO move to testsuites tree component -->
 
           <clr-tree-node class="suite-node" *ngFor="let testSuite of testSuitesViewModel">
-            <button clrVerticalNavLink (click)="openTestSuite(testSuite)" class="clr-treenode-link">
-              <clr-icon [attr.shape]="testSuite.icon"></clr-icon>
+            <button clrVerticalNavLink (click)="openTestSuite(testSuite)" class="clr-treenode-link" [class.active]="selectedTestSuite.active">
+              <clr-icon shape="folder"></clr-icon>
               {{ testSuite.name }}
               <clr-icon shape="plus" (click)="onAdd(testSuite);"></clr-icon>
               <clr-icon shape="pencil" (click)="onEdit(testSuite);"></clr-icon>
@@ -26,8 +26,9 @@
             </button>
             <ng-template [(clrIfExpanded)]="testSuite.expanded">
               <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
-                <button clrVerticalNavLink (click)="openTestSuite(subTestSuite)" class="clr-treenode-link" [class.active]="subTestSuite._id === selectedTestSuite._id">
-                  <clr-icon [attr.shape]="subTestSuite.icon"></clr-icon>
+                <button clrVerticalNavLink (click)="openTestSuite(subTestSuite)" class="clr-treenode-link"
+                  [class.active]="subTestSuite._id === selectedTestSuite._id">
+                  <clr-icon shape="folder"></clr-icon>
                   {{ subTestSuite.name }}
                   <clr-icon shape="plus" (click)="onAdd(subTestSuite);"></clr-icon>
                   <clr-icon shape="pencil" (click)="onEdit(subTestSuite);"></clr-icon>
@@ -35,8 +36,9 @@
                 </button>
                 <ng-template [(clrIfExpanded)]="subTestSuite.expanded">
                   <clr-tree-node *ngFor="let thirdSubTestSuite of subTestSuite.children">
-                    <button clrVerticalNavLink (click)="openTestSuite(thirdSubTestSuite)" class="clr-treenode-link" [class.active]="thirdSubTestSuite._id === selectedTestSuite._id">
-                      <clr-icon [attr.shape]="thirdSubTestSuite.icon"></clr-icon>
+                    <button clrVerticalNavLink (click)="openTestSuite(thirdSubTestSuite)" class="clr-treenode-link"
+                      [class.active]="thirdSubTestSuite._id === selectedTestSuite._id">
+                      <clr-icon shape="folder"></clr-icon>
                       {{ thirdSubTestSuite.name }}
                       <clr-icon shape="plus" (click)="onAdd(thirdSubTestSuite);"></clr-icon>
                       <clr-icon shape="pencil" (click)="onEdit(thirdSubTestSuite);"></clr-icon>
@@ -61,7 +63,8 @@
           <img src="assets/add-project.png">
           <h4>{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_TITLE' | translate }}</h4>
           <p class="tips">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_DESCRIPTION' | translate }}</p>
-          <a class="btn btn-primary" (click)="onAdd();">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_CREATETESTSUITE_BUTTON' | translate }}</a>
+          <a class="btn btn-primary" (click)="onAdd();">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_CREATETESTSUITE_BUTTON' |
+            translate }}</a>
         </div>
 
       </div>

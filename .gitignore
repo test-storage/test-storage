@@ -5,17 +5,6 @@
 /tmp
 /out-tsc
 
-# Ignore generated js and .map files after typescript transpiling
-/server/**/*.js
-#/src/**/*.js
-*.map
-test/client/**/*.js
-
-# e2e
-/e2e/*.js
-/e2e/*.map
-
-
 # dependencies
 /node_modules
 
