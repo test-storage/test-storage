@@ -28,7 +28,8 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/assets",
-              "src/assets/favicon.ico"
+              "src/assets/favicon.ico",
+              "src/manifest.json"
             ],
             "styles": [
               "node_modules/normalize.css/normalize.css",
@@ -65,7 +66,8 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "serviceWorker": true
             }
           }
         },
@@ -114,7 +116,8 @@
             ],
             "assets": [
               "src/assets",
-              "src/assets/favicon.ico"
+              "src/assets/favicon.ico",
+              "src/manifest.json"
             ]
           }
         },
