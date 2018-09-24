@@ -47,10 +47,6 @@ export class EditTestCaseModalComponent implements OnInit {
     this.testCaseStep = new TestCaseStep();
   }
 
-  onEdit() {
-
-  }
-
   onDelete() {
     this.selectedTestSteps.forEach(testStep => {
       this.testcase.steps = this.testcase.steps.filter(steps => steps !== testStep);

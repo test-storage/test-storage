@@ -1,26 +1,29 @@
 <clr-modal *ngIf="testcase !== undefined" [(clrModalOpen)]="opened" [clrModalSize]="'lg'">
   <h3 class="modal-title">{{ 'TESTCASECREATEPAGE.EDIT_TESTCASE' | translate }}</h3>
   <div class="modal-body">
-    <form (ngSubmit)="setOpened(false); updateTestCase(testcase)" id="editTestCaseForm" #editTestCaseForm="ngForm" (keyup.enter)="editTestCaseForm.form.valid && editTestCaseForm.ngSubmit.emit();">
+
+    <form (ngSubmit)="setOpened(false); updateTestCase(testcase)" id="editTestCaseForm" #editTestCaseForm="ngForm"
+      (keyup.enter)="editTestCaseForm.form.valid && editTestCaseForm.ngSubmit.emit();">
       <section class="form-block">
 
         <div class="form-group">
           <label class="required" for="title">{{ 'TESTCASECREATEPAGE.TITLE' | translate }}</label>
-          <input [appAutofocus]="opened" type="text" id="title" name="title" [(ngModel)]="testcase.title" #title="ngModel" required
-            placeholder="{{ 'TESTCASECREATEPAGE.TITLE_PLACEHOLDER' | translate }}" size="35">
+          <input [appAutofocus]="opened" type="text" id="title" name="title" [(ngModel)]="testcase.title" #title="ngModel"
+            required placeholder="{{ 'TESTCASECREATEPAGE.TITLE_PLACEHOLDER' | translate }}" size="35">
         </div>
 
         <div class="form-group">
           <label for="description">{{ 'TESTCASECREATEPAGE.DESCRIPTION' | translate }}</label>
-          <input type="text" id="description" name="description" [(ngModel)]="testcase.description" #description="ngModel" placeholder="{{ 'TESTCASECREATEPAGE.DESCRIPTION_PLACEHOLDER' | translate }}"
-            size="35">
+          <input type="text" id="description" name="description" [(ngModel)]="testcase.description" #description="ngModel"
+            placeholder="{{ 'TESTCASECREATEPAGE.DESCRIPTION_PLACEHOLDER' | translate }}" size="35">
         </div>
 
         <div class="form-group">
           <label for="priority">{{ 'TESTCASECREATEPAGE.PRIORITY' | translate }}</label>
           <div class="select">
             <select id="priority" name="priority" [(ngModel)]="testcase.priority" #priority="ngModel">
-              <option *ngFor="let priority of priorityKeys" [value]="priority.value">{{ 'PRIORITIES.' + priority.value | translate }}</option>
+              <option *ngFor="let priority of priorityKeys" [value]="priority.value">{{ 'PRIORITIES.' + priority.value
+                | translate }}</option>
             </select>
           </div>
         </div>
@@ -39,7 +42,8 @@
           <input #tag type="text" id="tags" name="tags" (keyup.enter)="setTag(tag.value); tag.value = '';" placeholder="{{ 'TESTCASECREATEPAGE.TAGS_PLACEHOLDER' | translate }}"
             size="35">
           <button type="button" class="btn btn-sm btn-secondary" (click)="setTag(tag.value); tag.value = '';">
-            <clr-icon shape="plus"></clr-icon> Add</button>
+            <clr-icon shape="plus"></clr-icon> Add
+          </button>
 
         </div>
         <div class="form-group">
@@ -53,24 +57,24 @@
 
         <div class="form-group">
           <label for="preconditions">{{ 'TESTCASECREATEPAGE.PRECONDITIONS' | translate }}</label>
-          <textarea id="preconditions" name="preconditions" [(ngModel)]="testcase.preConditions" #preconditions="ngModel" placeholder="{{ 'TESTCASECREATEPAGE.PRECONDITIONS_PLACEHOLDER' | translate }}"
-            size="35"></textarea>
+          <textarea id="preconditions" name="preconditions" [(ngModel)]="testcase.preConditions" #preconditions="ngModel"
+            placeholder="{{ 'TESTCASECREATEPAGE.PRECONDITIONS_PLACEHOLDER' | translate }}" size="35"></textarea>
         </div>
 
         <div class="form-group">
           <label>{{ 'TESTCASECREATEPAGE.STEPS' | translate }}</label>
         </div>
         <br>
-        <clr-datagrid *ngIf="testcase.steps" [(clrDgSelected)]="selectedTestSteps" [clrDgRowSelection]="true">
+        <clr-datagrid *ngIf="testcase.steps" [(clrDgSelected)]="selectedTestSteps" [clrDgRowSelection]="false">
 
           <clr-dg-action-bar>
             <div class="btn-group">
               <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
-                <clr-icon shape="plus"></clr-icon> {{ 'TESTMANAGEMENTPAGE.ADD' | translate }}</button>
+                <clr-icon shape="plus"></clr-icon> {{ 'TESTMANAGEMENTPAGE.ADD' | translate }}
+              </button>
               <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedTestSteps.length > 0">
-                <clr-icon shape="close"></clr-icon> {{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
-              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedTestSteps.length === 1">
-                <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}</button>
+                <clr-icon shape="close"></clr-icon> {{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}
+              </button>
             </div>
           </clr-dg-action-bar>
 
@@ -78,20 +82,27 @@
           <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TEST_DATA' | translate }}</clr-dg-column>
           <clr-dg-column>{{ 'TESTMANAGEMENTPAGE.EXPECTED_RESULT' | translate }}</clr-dg-column>
           <clr-dg-placeholder>{{ 'TESTCASECREATEPAGE.STEPS_EMPTY_PLACEHOLDER' | translate }}</clr-dg-placeholder>
-          <clr-dg-row *clrDgItems="let step of testcase.steps; let i = index;" (clrDgItem)="step">
-              <clr-dg-cell>
-                  <textarea type="text" id="stepAction" [ngModelOptions]="{standalone: true}" name="stepAction" [(ngModel)]="testcase.steps[i].stepAction" placeholder="{{ 'TESTCASECREATEPAGE.STEPS_ACTION_PLACEHOLDER' | translate }}"
-                  size="30"></textarea>
-              </clr-dg-cell>
-              <clr-dg-cell>
-                  <textarea type="text" id="testData" [ngModelOptions]="{standalone: true}" name="testData" [(ngModel)]="testcase.steps[i].testData" placeholder="{{ 'TESTCASECREATEPAGE.TESTDATA_PLACEHOLDER' | translate }}"
-                  size="30"></textarea>
-              </clr-dg-cell>
-              <clr-dg-cell>
-                  <textarea type="text" id="expectedResult" [ngModelOptions]="{standalone: true}" name="expectedResult" [(ngModel)]="testcase.steps[i].expectedResult" placeholder="{{ 'TESTCASECREATEPAGE.EXPECTED_PLACEHOLDER' | translate }}"
-                  size="30"></textarea>
-              </clr-dg-cell>
-            </clr-dg-row>
+
+          <clr-dg-row *clrDgItems="let step of testcase.steps; let i = index;" [clrDgItem]="step">
+
+            <clr-dg-cell>
+              <textarea type="text" id="stepAction" [ngModelOptions]="{standalone: true}" name="stepAction" [(ngModel)]="testcase.steps[i].stepAction"
+                placeholder="{{ 'TESTCASECREATEPAGE.STEPS_ACTION_PLACEHOLDER' | translate }}" size="30"></textarea>
+            </clr-dg-cell>
+
+            <clr-dg-cell>
+              <textarea type="text" id="testData" [ngModelOptions]="{standalone: true}" name="testData" [(ngModel)]="testcase.steps[i].testData"
+                placeholder="{{ 'TESTCASECREATEPAGE.TESTDATA_PLACEHOLDER' | translate }}" size="30"></textarea>
+            </clr-dg-cell>
+
+            <clr-dg-cell>
+              <textarea type="text" id="expectedResult" [ngModelOptions]="{standalone: true}" name="expectedResult"
+                [(ngModel)]="testcase.steps[i].expectedResult" placeholder="{{ 'TESTCASECREATEPAGE.EXPECTED_PLACEHOLDER' | translate }}"
+                size="30"></textarea>
+            </clr-dg-cell>
+
+          </clr-dg-row>
+
           <clr-dg-footer>{{ testcase.steps.length}} {{ 'TESTCASECREATEPAGE.STEPS_COUNT' | translate }}</clr-dg-footer>
         </clr-datagrid>
 
@@ -107,6 +118,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline" (click)="setOpened(false)">{{ 'COMMON.CANCEL_BUTTON' | translate }}</button>
-    <button type="button" class="btn btn-primary" (click)="editTestCaseForm.ngSubmit.emit();" [disabled]="!editTestCaseForm.form.valid">{{ 'COMMON.SAVE_BUTTON' | translate }}</button>
+    <button type="button" class="btn btn-primary" (click)="editTestCaseForm.ngSubmit.emit();" [disabled]="!editTestCaseForm.form.valid">{{
+      'COMMON.SAVE_BUTTON' | translate }}</button>
   </div>
 </clr-modal>
