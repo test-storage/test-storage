@@ -12,3 +12,16 @@
 .header-backdrop {
     z-index: 0 !important;
 }
+
+.login-wrapper [clrInput],
+.login-wrapper [clrPassword] {
+    width: 16rem;
+}
+
+.login-wrapper [clrPassword] {
+    width: calc(16rem - 16px);
+}
+
+.login-wrapper .checkbox {
+    padding-top: 15px;
+}

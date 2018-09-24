@@ -28,8 +28,8 @@
                     <progress value="{{ testrun.progress + 50 }}" max="100" data-displayval="0%"></progress>
                   </div>
                   <div *ngIf="testrun.startDate && testrun.endDate">
-                    <clr-icon *ngIf="(testrun.endDate <= tomorrow.toISOString() && testrun.endDate >= today.toISOString())" shape="clock" class="has-alert"
-                      title="Attention"></clr-icon>
+                    <clr-icon *ngIf="(testrun.endDate <= tomorrow.toISOString() && testrun.endDate >= today.toISOString())"
+                      shape="clock" class="has-alert" title="Attention"></clr-icon>
                     <clr-icon *ngIf="testrun.endDate < tomorrow.toISOString()" shape="clock" class="has-badge" title="Overdue"></clr-icon>
                     <clr-icon *ngIf="testrun.endDate > tomorrow.toISOString()" shape="clock"></clr-icon>
                     <span class="date"> {{ testrun.startDate | date }} — {{ testrun.endDate | date }} </span>
@@ -51,7 +51,8 @@
               <div class="card clickable">
                 <div class="card-block">
                   <h4 class="card-title">Corporate Portal Regression run</h4>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem.</p>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur
+                    magnam eos amet sit rem.</p>
                 </div>
                 <div class="card-footer">
                   <div class="progress labeled success">
@@ -65,7 +66,8 @@
               <div class="card clickable">
                 <div class="card-block">
                   <h4 class="card-title">iOS User Profile Feature run</h4>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur magnam eos amet sit rem..</p>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur
+                    magnam eos amet sit rem..</p>
                 </div>
                 <div class="card-footer">
                   <div class="progress labeled success">
@@ -90,7 +92,8 @@
           <img src="assets/add-project.png">
           <h4>{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_TITLE' | translate }}</h4>
           <p class="tips">{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_DESCRIPTION' | translate }}</p>
-          <a (click)="onAdd();" class="btn btn-primary">{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_CREATETESTRUN_BUTTON' | translate }}</a>
+          <a (click)="onAdd();" class="btn btn-primary">{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_CREATETESTRUN_BUTTON' |
+            translate }}</a>
         </div>
 
       </div>
