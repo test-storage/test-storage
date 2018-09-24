@@ -7,15 +7,15 @@
     <div class="login-group">
 
       <clr-input-container>
-        <input class="clr-input" size="51" clrInput type="text" id="username" name="username" [(ngModel)]="user.username" #username="ngModel"
-          required placeholder="{{ 'LOGINPAGE.USERNAME' | translate }}" minlength="5">
+        <input class="clr-input" clrInput type="text" id="username" name="username" [(ngModel)]="user.username"
+          #username="ngModel" required placeholder="{{ 'LOGINPAGE.USERNAME' | translate }}" minlength="5">
         <!--<clr-control-helper>Username should be email</clr-control-helper>-->
         <clr-control-error *clrIfError="'required'">{{ 'LOGINPAGE.LOGIN_REQUIRED' | translate }}</clr-control-error>
         <clr-control-error *clrIfError="'minlength'">It must be at least 5 characters!</clr-control-error>
       </clr-input-container>
 
       <clr-password-container>
-        <input class="clr-input" size="49" clrPassword type="password" id="password" name="password" [(ngModel)]="user.password"
+        <input class="clr-input" clrPassword type="password" id="password" name="password" [(ngModel)]="user.password"
           minlength="5" #password="ngModel" required placeholder="{{ 'LOGINPAGE.PASSWORD' | translate }}">
         <!--<clr-control-helper>Must contain at least 5 characters with at least one of them a special character like !@#$%^&*)</clr-control-helper>-->
         <clr-control-error *clrIfError="'required'">{{ 'LOGINPAGE.PASSWORD_REQUIRED' | translate }}</clr-control-error>
