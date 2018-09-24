@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.40.0 (September 24, 2018)
+- Add user stories backend end point ([@pumano](https://github.com/pumano) in [#91](https://github.com/test-storage/test-storage/pull/91))
+- Add basic PWA support
+- Add serial number for devices
+- Multiple bug fixes and enhancements
+- Fix some tests
+
 ## 0.39.0 (August 28, 2018)
 - Add websocket client/server for notifications ([@pumano](https://github.com/pumano) in [#90](https://github.com/test-storage/test-storage/pull/90))
 - Add jwt init on first run and possibility to set jwt key via SECRET environment variable
