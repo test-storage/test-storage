@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ClarityModule, ClrFormsNextModule } from '@clr/angular';
+import { ClarityModule, ClrFormsModule } from '@clr/angular';
 import { ValidateEqualDirective } from './validate-equal.directive';
 import { AutofocusDirective } from './autofocus.directive';
 import { ToastNotificationsService } from './toast-notifications.service';
@@ -10,11 +10,11 @@ import { ToastNotificationsService } from './toast-notifications.service';
   imports: [
     CommonModule,
     ClarityModule,
-    ClrFormsNextModule
+    ClrFormsModule
   ],
   exports: [
     ClarityModule,
-    ClrFormsNextModule,
+    ClrFormsModule,
     ValidateEqualDirective,
     AutofocusDirective
   ],

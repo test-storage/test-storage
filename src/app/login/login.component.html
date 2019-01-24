@@ -23,9 +23,9 @@
       </clr-password-container>
 
       <br>
-      <clr-checkbox name="rememberMe" id="rememberMe" [(clrChecked)]="user.rememberMe">
+      <input type="checkbox" clrCheckbox name="rememberMe" id="rememberMe" /> <!-- [(clrChecked)]="user.rememberMe" -->
         {{ 'LOGINPAGE.REMEMBER_ME' | translate }}
-      </clr-checkbox>
+
 
       <div *ngIf="f.form.valid && (username.dirty || username.touched || password.dirty || password.touched)">
         <div *ngIf="error" class="error active">
