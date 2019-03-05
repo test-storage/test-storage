@@ -5,7 +5,7 @@
       <clr-tab-content id="content1" *clrIfActive="true">
 
 
-        <clr-datagrid *ngIf="users" [(clrDgSelected)]="selectedUsers" [clDgRowSelection]="true">
+        <clr-datagrid *ngIf="users" [(clrDgSelected)]="selectedUsers" [clrDgRowSelection]="true">
           <clr-dg-action-bar>
             <div class="btn-group">
               <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
