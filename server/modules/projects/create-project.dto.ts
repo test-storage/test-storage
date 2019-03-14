@@ -13,10 +13,10 @@ export class CreateProjectDto {
   @IsNotEmpty()
   readonly name: string;
 
-  @ApiModelProperty({ type: String })
-  @IsString()
+  @ApiModelPropertyOptional({ type: String })
+  @IsOptional()
   @IsNotEmpty()
-  readonly description: string;
+  readonly description?: string;
 
   @ApiModelPropertyOptional({ type: String })
   @IsString()
