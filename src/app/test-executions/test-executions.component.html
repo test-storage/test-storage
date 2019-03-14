@@ -12,8 +12,8 @@
             {{ 'TESTEXECUTIONPAGE.ADD' | translate }}
           </a>
 
-          <div class="row">
-            <div *ngFor="let testrun of testruns" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="clr-row">
+            <div *ngFor="let testrun of testruns" class="clr-col-xs-12 clr-col-sm-6 clr-col-md-4 clr-col-lg-3">
               <a routerLink="./{{testrun._id}}" class="card clickable">
                 <div class="card-block">
                   <h4 class="card-title">{{ testrun.name }}
@@ -46,8 +46,8 @@
         <button clrTabLink>{{ 'TESTEXECUTIONPAGE.ARCHIEVED' | translate }}</button>
         <clr-tab-content *clrIfActive>
 
-          <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="clr-row">
+            <div class="clr-col-xs-12 clr-col-sm-6 clr-col-md-4 clr-col-lg-3">
               <div class="card clickable">
                 <div class="card-block">
                   <h4 class="card-title">Corporate Portal Regression run</h4>
@@ -62,7 +62,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+
+            <div class="clr-col-xs-12 clr-col-sm-6 clr-col-md-4 clr-col-lg-3">
               <div class="card clickable">
                 <div class="card-block">
                   <h4 class="card-title">iOS User Profile Feature run</h4>
@@ -86,7 +87,8 @@
 
   <ng-template #noExistTestruns>
     <div class="noexist-wrapper">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+      <div class="clr-col-lg-12 clr-col-md-12 clr-col-sm-12 clr-col-xs-12">
 
         <div class="no-testrun">
           <img src="assets/add-project.png">
