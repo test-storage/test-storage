@@ -7,9 +7,11 @@
       {{ 'PROJECTSPAGE.CREATE' | translate }}
     </a>
 
-    <div class="row">
+    <div class="clr-row">
 
-      <div *ngFor="let project of projects" class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+      
+
+      <div *ngFor="let project of projects" class="clr-col-xl-3 clr-col-lg-4 clr-col-md-6 clr-col-sm-6 clr-col-xs-12">
 
         <a routerLink="./{{project._id}}" class="card clickable">
           <div class="card-img">
@@ -24,7 +26,6 @@
               </clr-dropdown-menu>
             </clr-dropdown>
 
-            <!-- <img src="assets/placeholder_350x150.png" alt="..." /> -->
             <div *ngIf="project.avatarColor" class="avatar" [style.backgroundColor]="getBackgroundColor(project)" [style.color]="getColor(project)">
               <div class="avatar-name">{{ project.name.charAt(0).toUpperCase() }}</div>
             </div>
@@ -38,6 +39,7 @@
 
     </div>
 
+
   </ng-template>
 
 
@@ -48,7 +50,7 @@
 
   <ng-template #noExistProjects>
     <div class="noexist-wrapper">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="clr-col-lg-12 clr-col-md-12 clr-col-sm-12 clr-col-xs-12">
 
         <div class="no-project">
           <img src="assets/add-project.png">

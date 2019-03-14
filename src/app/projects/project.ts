@@ -1,7 +1,7 @@
 export class Project {
   _id?: string;
   name: string;
-  description: string;
+  description?: string;
   photo?: string;
   avatarColor?: number;
   enabled?: boolean;
