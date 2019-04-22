@@ -1,8 +1,10 @@
 import * as config from 'config';
 import {
   Post, Get, Put, Delete, Param, Controller,
-  UseInterceptors, FileInterceptor, UploadedFile, UseGuards
+  UseInterceptors, UploadedFile, UseGuards
 } from '@nestjs/common';
+
+import { FileInterceptor } from '@nestjs/platform-express';
 
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
 import { UserId } from '../common/decorators/user.decorator';

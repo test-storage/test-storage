@@ -1,4 +1,4 @@
-import { HttpException, Injectable, PipeTransform, Pipe, ArgumentMetadata, HttpStatus } from '@nestjs/common';
+import { HttpException, Injectable, PipeTransform, ArgumentMetadata, HttpStatus } from '@nestjs/common';
 
 @Injectable()
 export class ParseIntPipe implements PipeTransform<string> {
