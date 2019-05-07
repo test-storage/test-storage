@@ -44,8 +44,8 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       this.testrunId = params['id'];
       this.getTestrun(this.testrunId);
-      this.route.parent.parent.params.subscribe(params => {
-        this.getTestSuites(params['id']);
+      this.route.parent.parent.params.subscribe(mParams => {
+        this.getTestSuites(mParams['id']);
       });
     });
   }
