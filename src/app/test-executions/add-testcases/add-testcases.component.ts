@@ -11,6 +11,8 @@ import { Testrun } from '../testrun';
 import { TestSuiteService } from '../../test-management/test-suite.service';
 import { TestSuite } from './../../test-management/test-suite';
 
+import { ClrSelectedState } from '@clr/angular';
+
 
 @Component({
   selector: 'app-add-testcases',
@@ -30,62 +32,7 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
   testSuites: TestSuite[];
   selected: any;
 
-  testSuitesViewModel: any[] = [
-    {
-      name: 'Applications',
-      icon: 'folder',
-      expanded: true,
-      selected: true,
-      children: [
-        {
-          icon: 'calendar',
-          name: 'Calendar',
-          selected: true
-        },
-        {
-          icon: 'line-chart',
-          name: 'Charts',
-          selected: false
-        },
-        {
-          icon: 'dashboard',
-          name: 'Dashboard',
-          selected: false
-        },
-        {
-          icon: 'map',
-          name: 'Maps',
-          selected: false
-        }
-      ]
-    },
-    {
-      name: 'Files',
-      icon: 'folder',
-      expanded: false,
-      selected: false,
-      children: [
-        {
-          icon: 'file',
-          name: 'Cover Letter.doc',
-          selected: false
-        }
-      ]
-    },
-    {
-      name: 'Images',
-      icon: 'folder',
-      selected: false,
-      expanded: false,
-      children: [
-        {
-          icon: 'image',
-          name: 'Screenshot.png',
-          selected: false
-        }
-      ]
-    }
-  ];
+  testSuitesViewModel: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -97,6 +44,9 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       this.testrunId = params['id'];
       this.getTestrun(this.testrunId);
+      this.route.parent.parent.params.subscribe(params => {
+        this.getTestSuites(params['id']);
+      });
     });
   }
 
@@ -137,6 +87,7 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
       node['icon'] = 'folder';
       node['active'] = false;
       node['expanded'] = false;
+      node['selected'] = ClrSelectedState.UNSELECTED;
 
       idToNodeMap[node._id] = node;
 
