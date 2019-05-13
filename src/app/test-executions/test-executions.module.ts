@@ -18,6 +18,8 @@ import { EditTestRunModalComponent } from './edit-test-run-modal/edit-test-run-m
 import { DeleteTestRunModalComponent } from './delete-test-run-modal/delete-test-run-modal.component';
 
 import { AddTestcasesComponent } from './add-testcases/add-testcases.component';
+import { TestCasesComponent } from './test-cases/test-cases.component';
+import { TestCaseService } from '../test-management/test-cases/test-case.service';
 
 @NgModule({
   imports: [
@@ -27,14 +29,15 @@ import { AddTestcasesComponent } from './add-testcases/add-testcases.component';
     SharedModule,
     TranslateModule.forChild()
   ],
-  providers: [TestrunsService, TestSuiteService],
+  providers: [TestrunsService, TestSuiteService, TestCaseService],
   declarations: [
     TestExecutionsComponent,
     TestExecutionsDetailsComponent,
     CreateTestRunModalComponent,
     EditTestRunModalComponent,
     DeleteTestRunModalComponent,
-    AddTestcasesComponent
+    AddTestcasesComponent,
+    TestCasesComponent
   ]
 })
 export class TestExecutionsModule { }

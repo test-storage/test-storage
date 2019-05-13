@@ -10,6 +10,7 @@ import { Testrun } from '../testrun';
 
 import { TestSuiteService } from '../../test-management/test-suite.service';
 import { TestSuite } from './../../test-management/test-suite';
+import { TestSuiteViewModel } from './../../test-management/test-suite-view-model';
 
 import { ClrSelectedState } from '@clr/angular';
 
@@ -31,6 +32,7 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
 
   testSuites: TestSuite[];
   selected: any;
+  selectedTestSuite: TestSuiteViewModel;
 
   testSuitesViewModel: any[] = [];
 
@@ -105,12 +107,21 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
 
     this.testSuitesViewModel = [...root];
     if (!this.selected) {
-      // this.openTestSuite(root[0]);
+      this.openTestSuite(root[0]);
     }
   }
 
   getChildren(testsuite) {
     return testsuite.children;
+  }
+
+
+  openTestSuite(testSuite: TestSuite) {
+    this.selectedTestSuite = testSuite;
+  }
+
+  onSave() {
+    console.log('save');
   }
 
 
