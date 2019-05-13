@@ -109,6 +109,10 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
     }
   }
 
+  getChildren(testsuite) {
+    return testsuite.children;
+  }
+
 
 
 }
