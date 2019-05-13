@@ -23,7 +23,7 @@ export class TestManagementComponent implements OnInit {
   @HostBinding('style.display') display = 'block';
 
   public projectId: string;
-  selectedTestSuite: TestSuite;
+  selectedTestSuite: TestSuiteViewModel;
   public testSuites: TestSuite[];
   testSuitesViewModel: TestSuiteViewModel[] = [];
 
@@ -95,6 +95,10 @@ export class TestManagementComponent implements OnInit {
     if (!this.selectedTestSuite) {
       this.openTestSuite(root[0]);
     }
+  }
+
+  getChildren(testsuite) {
+    return testsuite.children;
   }
 
   onAdd(testsuite?: TestSuite) {
