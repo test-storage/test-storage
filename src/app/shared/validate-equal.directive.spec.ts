@@ -19,7 +19,7 @@ import { ValidateEqualDirective } from './validate-equal.directive';
   </form>`
 })
 export class TestValidateEqualComponent {
-  @ViewChild('form')
+  @ViewChild('form', { static: true})
   ngForm: NgForm;
 
   public user = {

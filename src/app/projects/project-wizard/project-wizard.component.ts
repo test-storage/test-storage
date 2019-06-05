@@ -11,7 +11,7 @@ import { Project } from '../project';
 })
 export class ProjectWizardComponent implements OnInit {
 
-  @ViewChild('wizardlg') wizardLarge: ClrWizard;
+  @ViewChild('wizardlg', { static: true }) wizardLarge: ClrWizard;
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
