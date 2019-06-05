@@ -8,7 +8,8 @@ const routes: Routes = [
     path: '', component: ProjectsComponent
   },
   {
-    path: ':id', loadChildren: '../project-layout/project-layout.module#ProjectLayoutModule'
+    path: ':id', loadChildren: () => import('../project-layout/project-layout.module').
+      then(m => m.ProjectLayoutModule)
   }
 ];
 

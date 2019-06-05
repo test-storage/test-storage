@@ -19,7 +19,7 @@
     "build": "ng build --prod && tsc -p ./server",
     "test": "ng test --watch=false --no-progress && npm run test:backend",
     "test:frontend": "./node_modules/.bin/istanbul cover ng test --watch=false --no-progress",
-    "test:backend": "./node_modules/.bin/_mocha ./server/**/*.spec.ts --require ts-node/register --recursive --check-leaks -t 50000 --exit",
+    "test:backend": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' ./node_modules/.bin/_mocha ./server/**/*.spec.ts --require ts-node/register --recursive --check-leaks -t 50000 --exit",
     "test:backend-e2e": "./node_modules/.bin/_mocha ./test/server/**/projects-.spec.ts --require ts-node/register --recursive --check-leaks -t 50000 --exit",
     "test:coverage": "ng test --code-coverage",
     "pree2e": "webdriver-manager update",
