@@ -5,17 +5,22 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    // "module": "es2015", off due to ts-node + mocha
+    "module": "esnext", // off due to ts-node + mocha
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "core-js/es7/reflect": [
+        "node_modules/core-js/proposals/reflect-metadata"
+      ]
+    }
   }
 }

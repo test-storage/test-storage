@@ -14,40 +14,24 @@
 
         <!-- TEST SUITES TREE COMPONENT -->
         <div *ngIf="testSuitesViewModel.length > 0" class="sidenav" [clr-nav-level]="2">
-          <!-- TODO move to testsuites tree component -->
 
-          <clr-tree-node class="suite-node" *ngFor="let testSuite of testSuitesViewModel">
-            <button clrVerticalNavLink (click)="openTestSuite(testSuite)" class="clr-treenode-link" [class.active]="selectedTestSuite.active">
-              <clr-icon shape="folder"></clr-icon>
-              {{ testSuite.name }}
-              <clr-icon shape="plus" (click)="onAdd(testSuite);"></clr-icon>
-              <clr-icon shape="pencil" (click)="onEdit(testSuite);"></clr-icon>
-              <clr-icon shape="close" (click)="onDelete(testSuite);"></clr-icon>
-            </button>
-            <ng-template [(clrIfExpanded)]="testSuite.expanded">
-              <clr-tree-node *ngFor="let subTestSuite of testSuite.children">
-                <button clrVerticalNavLink (click)="openTestSuite(subTestSuite)" class="clr-treenode-link"
-                  [class.active]="subTestSuite._id === selectedTestSuite._id">
-                  <clr-icon shape="folder"></clr-icon>
-                  {{ subTestSuite.name }}
-                  <clr-icon shape="plus" (click)="onAdd(subTestSuite);"></clr-icon>
-                  <clr-icon shape="pencil" (click)="onEdit(subTestSuite);"></clr-icon>
-                  <clr-icon shape="close" (click)="onDelete(subTestSuite);"></clr-icon>
-                </button>
-                <ng-template [(clrIfExpanded)]="subTestSuite.expanded">
-                  <clr-tree-node *ngFor="let thirdSubTestSuite of subTestSuite.children">
-                    <button clrVerticalNavLink (click)="openTestSuite(thirdSubTestSuite)" class="clr-treenode-link"
-                      [class.active]="thirdSubTestSuite._id === selectedTestSuite._id">
-                      <clr-icon shape="folder"></clr-icon>
-                      {{ thirdSubTestSuite.name }}
-                      <clr-icon shape="plus" (click)="onAdd(thirdSubTestSuite);"></clr-icon>
-                      <clr-icon shape="pencil" (click)="onEdit(thirdSubTestSuite);"></clr-icon>
-                      <clr-icon shape="close" (click)="onDelete(thirdSubTestSuite);"></clr-icon>
-                    </button>
-                  </clr-tree-node>
-                </ng-template>
-              </clr-tree-node>
-            </ng-template>
+          <clr-tree>
+            <clr-tree-node class="suite-node"
+              *clrRecursiveFor="let testSuite of testSuitesViewModel; getChildren: getChildren"
+              [clrExpanded]="testSuite.expanded">
+              <button clrVerticalNavLink (click)="openTestSuite(testSuite)" class="clr-treenode-link"
+                [class.active]="testSuite._id === selectedTestSuite._id">
+                <clr-icon shape="folder"></clr-icon>
+                {{ testSuite.name }}
+                <clr-icon shape="plus" (click)="onAdd(testSuite);"></clr-icon>
+                <clr-icon shape="pencil" (click)="onEdit(testSuite);"></clr-icon>
+                <clr-icon shape="close" (click)="onDelete(testSuite);"></clr-icon>
+              </button>
+            </clr-tree-node>
+          </clr-tree>
+
+          <clr-tree-node>
+            <clr-icon shape="plus" (click)="onAdd();"></clr-icon>
           </clr-tree-node>
         </div>
       </div>
@@ -72,7 +56,10 @@
 
   </ng-template>
 
-  <app-create-test-suite-modal [(opened)]="createOpened" (testsuiteChange)="createTestSuite($event);"></app-create-test-suite-modal>
-  <app-edit-test-suite-modal [testsuite]="selectedTestSuite" [(opened)]="editOpened" (testsuiteChange)="updateTestSuite($event);"></app-edit-test-suite-modal>
-  <app-delete-test-suite-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-test-suite-modal>
+  <app-create-test-suite-modal [(opened)]="createOpened" (testsuiteChange)="createTestSuite($event);">
+  </app-create-test-suite-modal>
+  <app-edit-test-suite-modal [testsuite]="selectedTestSuite" [(opened)]="editOpened"
+    (testsuiteChange)="updateTestSuite($event);"></app-edit-test-suite-modal>
+  <app-delete-test-suite-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)">
+  </app-delete-test-suite-modal>
 </div>

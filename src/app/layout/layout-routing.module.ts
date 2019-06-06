@@ -17,13 +17,13 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'projects', loadChildren: '../projects/projects.module#ProjectsModule'
+        path: 'projects', loadChildren: () => import('../projects/projects.module').then(m => m.ProjectsModule)
       },
       {
-        path: 'profile', loadChildren: '../user-profile/user-profile.module#UserProfileModule'
+        path: 'profile', loadChildren: () => import('../user-profile/user-profile.module').then(m => m.UserProfileModule)
       },
       {
-        path: 'settings', loadChildren: '../settings/settings.module#SettingsModule'
+        path: 'settings', loadChildren: () => import('../settings/settings.module').then(m => m.SettingsModule)
       }
     ]
   }

@@ -8,12 +8,15 @@ const routes: Routes = [
     path: '', component: ProjectLayoutComponent,
     children: [
       { path: '', redirectTo: 'test-management', pathMatch: 'full' },
-      { path: 'dashboard', loadChildren: '../dashboard/dashboard.module#DashboardModule' },
-      { path: 'requirements', loadChildren: '../requirements/requirements.module#RequirementsModule' },
-      { path: 'test-management', loadChildren: '../test-management/test-management.module#TestManagementModule' },
-      { path: 'test-executions', loadChildren: '../test-executions/test-executions.module#TestExecutionsModule' },
-      { path: 'reports', loadChildren: '../reports/reports.module#ReportsModule' },
-      { path: 'settings', loadChildren: '../project-settings/project-settings.module#ProjectSettingsModule', pathMatch: 'full' }
+      { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { path: 'requirements', loadChildren: () => import('../requirements/requirements.module').then(m => m.RequirementsModule) },
+      { path: 'test-management', loadChildren: () => import('../test-management/test-management.module').
+        then(m => m.TestManagementModule) },
+      { path: 'test-executions', loadChildren: () => import('../test-executions/test-executions.module').
+        then(m => m.TestExecutionsModule) },
+      { path: 'reports', loadChildren: () => import('../reports/reports.module').then(m => m.ReportsModule) },
+      { path: 'settings', loadChildren: () => import('../project-settings/project-settings.module').
+        then(m => m.ProjectSettingsModule), pathMatch: 'full' }
     ]
   }
 ];

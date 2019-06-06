@@ -1,17 +1,16 @@
 <div class="content-area">
-  <div class="row">
-    <div style="border: 1px dashed red; height: 500px;" class="col-sm-12 col-md-9 col-lg-9"></div>
-    <div style="border: 1px dashed green; height: 500px;" class="col-sm-12 col-md-3 col-lg-3">
+  <div class="clr-row">
+    <div style="height: 90vh;" class="clr-col-sm-12 clr-col-md-9 clr-col-lg-9">
+        <app-test-cases-execution [selectedTS]="selectedTestSuite" (save)="onSave()"></app-test-cases-execution>
+    </div>
+    <div style="height: 90vh;" class="clr-col-sm-12 clr-col-md-3 clr-col-lg-3">
 
-      <clr-tree-node *ngFor="let testsuite of testSuitesViewModel" [(clrSelected)]="testsuite.selected">
-
-        {{testsuite.name}}
-        <ng-template [(clrIfExpanded)]="testsuite.expanded">
-          <clr-tree-node *ngFor="let subtestsuite of testsuite.children" [(clrSelected)]="subtestsuite.selected">
-            {{subtestsuite.name}}
-          </clr-tree-node>
-        </ng-template>
-      </clr-tree-node>
+      <clr-tree>
+        <clr-tree-node *clrRecursiveFor="let testSuite of testSuitesViewModel; getChildren: getChildren"
+          [(clrSelected)]="testSuite.selected" [(clrExpanded)]="testSuite.expanded">
+          <button (click)="openTestSuite(testSuite)" class="clr-treenode-link">{{ testSuite.name }}</button>
+        </clr-tree-node>
+      </clr-tree>
 
     </div>
   </div>
