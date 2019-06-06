@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.41.0 (June 5, 2019)
+- Add testsuites selection to test runs ([@pumano](https://github.com/pumano) in [#92](https://github.com/test-storage/test-storage/pull/92))
+- Multiple bug fixes and enhancements
+- Update dependencies
+
 ## 0.40.0 (September 24, 2018)
 - Add user stories backend end point ([@pumano](https://github.com/pumano) in [#91](https://github.com/test-storage/test-storage/pull/91))
 - Add basic PWA support
