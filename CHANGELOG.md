@@ -1,7 +1,7 @@
 # Change Log
 
 ## 0.41.0 (June 5, 2019)
-- Add testsuites selection to test runs ([@pumano](https://github.com/pumano) in [#92](https://github.com/test-storage/test-storage/pull/92))
+- Add testsuites selection to test runs ([@pumano](https://github.com/pumano) in [#94](https://github.com/test-storage/test-storage/pull/94))
 - Multiple bug fixes and enhancements
 - Update dependencies
 
