@@ -34,6 +34,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "npm run lint && npm test"
     }
   },
@@ -99,6 +100,8 @@
     "@angular/cli": "^8.0.1",
     "@angular/language-service": "^8.0.0",
     "@biesbjerg/ngx-translate-extract": "^2.3.4",
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
     "@nestjs/cli": "^6.5.0",
     "@types/bcrypt": "^3.0.0",
     "@types/chai": "^4.1.7",
