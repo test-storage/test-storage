@@ -1,0 +1,4 @@
+{
+  "language": "ts",
+  "entryFile": "server/main.ts"
+}
