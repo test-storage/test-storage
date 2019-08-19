@@ -1,17 +1,17 @@
-<clr-modal *ngIf="project" [(clrModalOpen)]="opened" [clrModalSize]="'lg'">
+<clr-modal *ngIf="project" [clrModalOpen]="opened" [clrModalSize]="'lg'" (clrModalOpenChange)="setOpened($event)">
   <h3 class="modal-title">{{ 'PROJECTCREATEPAGE.TITLE' | translate }}</h3>
   <div class="modal-body">
-    <form (ngSubmit)="setOpened(false); createProject()" id="createProjectForm" #createProjectForm="ngForm" (keyup.enter)="createProjectForm.form.valid && createProjectForm.ngSubmit.emit();">
+    <form clrForm (ngSubmit)="setOpened(false); createProject()" id="createProjectForm" #createProjectForm="ngForm" (keyup.enter)="createProjectForm.form.valid && createProjectForm.ngSubmit.emit();">
       <section class="form-block">
 
-        <div class="form-group">
+        <clr-input-container>
           <label for="name" class="required">{{ 'PROJECTCREATEPAGE.NAME' | translate }}</label>
-          <input type="text" id="name" name="name" [(ngModel)]="project.name" #name="ngModel" size="35" required minlength="2">
-        </div>
-        <div class="form-group">
+          <input clrInput type="text" id="name" name="name" [(ngModel)]="project.name" #name="ngModel" size="35" required minlength="2">
+        </clr-input-container>
+        <clr-input-container>
           <label for="description">{{ 'PROJECTCREATEPAGE.DESCRIPTION' | translate }}</label>
-          <input type="text" id="description" name="description" [(ngModel)]="project.description" #description="ngModel" size="35">
-        </div>
+          <input clrInput type="text" id="description" name="description" [(ngModel)]="project.description" #description="ngModel" size="35">
+        </clr-input-container>
       </section>
     </form>
   </div>
