@@ -1,31 +1,22 @@
 <div class="content-area">
 
-  <form>
+  <form clrForm>
     <section class="form-block">
 
-      <div class="form-group">
+      <clr-toggle-container>
         <label for="theme">{{ 'MAINSETTINGS.THEME' | translate }}</label>
-        <div class="toggle-switch disabled">
-          <input type="checkbox" id="theme" disabled>
-          <label for="theme">{{ 'MAINSETTINGS.THEME_BRIGHT' | translate }}</label>
-          <label for="theme">{{ 'MAINSETTINGS.THEME_DARK' | translate }}</label>
-        </div>
-      </div>
-      <div class="form-group">
+        <clr-toggle-wrapper>
+          <input clrToggle type="checkbox" id="theme" disabled>
+        </clr-toggle-wrapper>
+      </clr-toggle-container>
+      <br>
+      <clr-select-container>
         <label for="language">{{ 'MAINSETTINGS.LANGUAGE' | translate }}</label>
-        <div class="select">
-          <select id="language" #langSelect (change)="changeLanguage(langSelect.value)">
-            <option *ngFor="let lang of translateService.getLangs()" [value]="lang" [selected]="lang === translateService.currentLang">{{ 'LANGUAGES.' + lang | translate }}</option>
-            <!--<option>{{ 'MAINSETTINGS.RUSSIAN' | translate }}</option>
-            <option>{{ 'MAINSETTINGS.ENGLISH' | translate }}</option>-->
-            <!--
-            <option>Spanish</option>
-            <option>German</option>
-            <option>Portugal</option>
-            -->
-          </select>
-        </div>
-      </div>
+        <select clrSelect id="language" #langSelect (change)="changeLanguage(langSelect.value)">
+          <option *ngFor="let lang of translateService.getLangs()" [value]="lang"
+            [selected]="lang === translateService.currentLang">{{ 'LANGUAGES.' + lang | translate }}</option>
+        </select>
+      </clr-select-container>
 
     </section>
   </form>

@@ -1,30 +1,30 @@
 <clr-modal *ngIf="opened" [(clrModalOpen)]="opened">
   <h3 class="modal-title">{{ 'TESTEXECUTIONCREATEPAGE.CREATE_TESTRUN' | translate }}</h3>
   <div class="modal-body">
-    <form (ngSubmit)="setOpened(false); createTestrun()" id="createTestrunForm" #createTestrunForm="ngForm" (keyup.enter)="createTestrunForm.form.valid && createTestrunForm.ngSubmit.emit();">
+    <form clrForm (ngSubmit)="setOpened(false); createTestrun()" id="createTestrunForm" #createTestrunForm="ngForm" (keyup.enter)="createTestrunForm.form.valid && createTestrunForm.ngSubmit.emit();">
       <section class="form-block">
 
-        <div class="form-group">
+        <clr-input-container>
           <label class="required" for="name">{{ 'TESTEXECUTIONCREATEPAGE.NAME' | translate }}</label>
-          <input [appAutofocus]="opened" type="text" id="name" name="name" [(ngModel)]="testrun.name" #name="ngModel" required placeholder="{{ 'TESTEXECUTIONCREATEPAGE.NAME_PLACEHOLDER' | translate }}"
+          <input clrInput [appAutofocus]="opened" type="text" id="name" name="name" [(ngModel)]="testrun.name" #name="ngModel" required placeholder="{{ 'TESTEXECUTIONCREATEPAGE.NAME_PLACEHOLDER' | translate }}"
             size="35">
-        </div>
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label for="description">{{ 'TESTEXECUTIONCREATEPAGE.DESCRIPTION' | translate }}</label>
-          <input type="text" id="description" name="description" [(ngModel)]="testrun.description" #description="ngModel" placeholder="{{ 'TESTEXECUTIONCREATEPAGE.DESCRIPTION_PLACEHOLDER' | translate }}"
+          <input clrInput type="text" id="description" name="description" [(ngModel)]="testrun.description" #description="ngModel" placeholder="{{ 'TESTEXECUTIONCREATEPAGE.DESCRIPTION_PLACEHOLDER' | translate }}"
             size="35">
-        </div>
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label for="startDate">Started from date</label>
-          <input type="date" id="startDate" name="startDate" [(clrDate)]="testrun.startDate">
-        </div>
+          <input clrInput type="date" id="startDate" name="startDate" [(clrDate)]="testrun.startDate">
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label for="endDate">Till date</label>
-          <input type="date" id="endDate" name="endDate" [(clrDate)]="testrun.endDate">
-        </div>
+          <input clrInput type="date" id="endDate" name="endDate" [(clrDate)]="testrun.endDate">
+        </clr-input-container>
 
       </section>
     </form>
