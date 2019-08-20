@@ -7,7 +7,7 @@
     <div class="login-group">
 
       <clr-input-container>
-        <input class="clr-input" clrInput type="text" id="username" name="username" [(ngModel)]="user.username"
+        <input clrInput  clrInput type="text" id="username" name="username" [(ngModel)]="user.username"
           #username="ngModel" required placeholder="{{ 'LOGINPAGE.USERNAME' | translate }}" minlength="5">
         <!--<clr-control-helper>Username should be email</clr-control-helper>-->
         <clr-control-error *clrIfError="'required'">{{ 'LOGINPAGE.LOGIN_REQUIRED' | translate }}</clr-control-error>
@@ -15,7 +15,7 @@
       </clr-input-container>
 
       <clr-password-container>
-        <input class="clr-input" clrPassword type="password" id="password" name="password" [(ngModel)]="user.password"
+        <input clrPassword clrPassword type="password" id="password" name="password" [(ngModel)]="user.password"
           minlength="5" #password="ngModel" required placeholder="{{ 'LOGINPAGE.PASSWORD' | translate }}">
         <!--<clr-control-helper>Must contain at least 5 characters with at least one of them a special character like !@#$%^&*)</clr-control-helper>-->
         <clr-control-error *clrIfError="'required'">{{ 'LOGINPAGE.PASSWORD_REQUIRED' | translate }}</clr-control-error>
@@ -23,9 +23,10 @@
       </clr-password-container>
 
       <br>
+      <clr-checkbox-wrapper>
       <input type="checkbox" clrCheckbox name="rememberMe" id="rememberMe" /> <!-- [(clrChecked)]="user.rememberMe" -->
-        {{ 'LOGINPAGE.REMEMBER_ME' | translate }}
-
+        <label>{{ 'LOGINPAGE.REMEMBER_ME' | translate }}</label>
+      </clr-checkbox-wrapper>
 
       <div *ngIf="f.form.valid && (username.dirty || username.touched || password.dirty || password.touched)">
         <div *ngIf="error" class="error active">
