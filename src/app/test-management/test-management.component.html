@@ -40,26 +40,25 @@
   </ng-template>
 
   <ng-template #noExistTestSuites>
-    <div class="noexist-wrapper">
-      <div class="clr-col-lg-12 clr-col-md-12 clr-col-sm-12 clr-col-xs-12">
-
-        <div class="no-testsuites">
-          <img src="assets/add-project.png">
-          <h4>{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_TITLE' | translate }}</h4>
-          <p class="tips">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_DESCRIPTION' | translate }}</p>
-          <a class="btn btn-primary" (click)="onAdd();">{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_CREATETESTSUITE_BUTTON' |
-            translate }}</a>
-        </div>
-
-      </div>
-    </div>
-
+    <app-empty-state
+      title="{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_TITLE' | translate }}"
+      description="{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_DESCRIPTION' | translate }}"
+      buttonText="{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_CREATETESTSUITE_BUTTON' | translate }}"
+      (click)="onAdd();">
+    </app-empty-state>
   </ng-template>
 
-  <app-create-test-suite-modal [(opened)]="createOpened" (testsuiteChange)="createTestSuite($event);">
+  <app-create-test-suite-modal
+    [(opened)]="createOpened"
+    (testsuiteChange)="createTestSuite($event);">
   </app-create-test-suite-modal>
-  <app-edit-test-suite-modal [testsuite]="selectedTestSuite" [(opened)]="editOpened"
-    (testsuiteChange)="updateTestSuite($event);"></app-edit-test-suite-modal>
-  <app-delete-test-suite-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)">
+  <app-edit-test-suite-modal
+    [testsuite]="selectedTestSuite"
+    [(opened)]="editOpened"
+    (testsuiteChange)="updateTestSuite($event);">
+  </app-edit-test-suite-modal>
+  <app-delete-test-suite-modal
+    [(opened)]="deleteOpened"
+    (confirmChange)="forceDelete($event)">
   </app-delete-test-suite-modal>
 </div>
