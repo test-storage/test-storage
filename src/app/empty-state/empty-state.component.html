@@ -3,7 +3,7 @@
 
     <div class="no-data">
       <!--<img src="assets/add-project.png">-->
-      <clr-icon shape="import" size="120"></clr-icon>
+      <clr-icon *ngIf="icon" [attr.shape]="icon" size="120"></clr-icon>
       <h4>{{ title }}</h4>
       <p class="tips">{{ description }}</p>
       <a class="btn btn-primary" (click)="onClickButton()">{{ buttonText }}</a>

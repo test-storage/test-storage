@@ -22,6 +22,9 @@ export class EmptyStateComponent {
   @Input()
   image: string;
 
+  @Input()
+  icon: string;
+
   onClickButton() {
     this.click.emit();
   }
