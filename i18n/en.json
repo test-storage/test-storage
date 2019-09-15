@@ -209,6 +209,11 @@
     "MODAL_DELETE_HEADER": "Delete Testrun",
     "MODAL_DELETE_DESCRIPTION": "Are you sure you want to delete selected test run? This action is permanent and cannot be recovered."
   },
+  "TESTEXECUTIONDETAILSPAGE": {
+    "EMPTYSTATE_NOTESTCASES_IN_TESTRUNS_TITLE": "You have not add any Testcases to Test Run.",
+    "EMPTYSTATE_NOTESTCASES_IN_TESTRUNS_DESCRIPTION": "Tap the 'Add Testcases' button to get started",
+    "EMPTYSTATE_NOTESTCASES_IN_TESTRUNS_BUTTON": "Add Testcases"
+  },
   "TESTCASE_DETAILSPAGE": {
     "DESCRIPTION": "Description",
     "EDIT": "Edit",

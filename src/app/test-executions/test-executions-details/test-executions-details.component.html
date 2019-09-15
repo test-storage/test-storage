@@ -20,33 +20,16 @@
   </ng-template>
 
   <ng-template #noExistTestCases>
-    <div class="wrapper">
-      <div class="title-header">
-        <h3>
-          {{testrun.name}}
-        </h3>
 
-        <a (click)="onEdit();" class="btn btn-primary">
-          <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}
-        </a>
-
-      </div>
+    <app-empty-state
+      icon="plus"
+      title="{{ 'TESTEXECUTIONDETAILSPAGE.EMPTYSTATE_NOTESTCASES_IN_TESTRUNS_TITLE' | translate }}"
+      description="{{ 'TESTEXECUTIONDETAILSPAGE.EMPTYSTATE_NOTESTCASES_IN_TESTRUNS_DESCRIPTION' | translate }}"
+      buttonText="{{ 'TESTEXECUTIONDETAILSPAGE.EMPTYSTATE_NOTESTCASES_IN_TESTRUNS_BUTTON' | translate }}"
+      routerLink="./add">
+    </app-empty-state>
 
 
-      <div class="noexist-wrapper">
-
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-          <div class="no-testsuites">
-            <img src="assets/add-project.png">
-            <h4>У вас не добавлено ни одного тест кейса к Тестовому Прогону.</h4>
-            <p class="tips">Нажмите кнопку 'Добавить тест кейсы' для добавления тест кейсов к прогону</p>
-            <a class="btn btn-primary" routerLink="./add">Добавить тест кейсы</a>
-          </div>
-
-        </div>
-      </div>
-    </div>
   </ng-template>
 
 

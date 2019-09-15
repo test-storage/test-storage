@@ -209,6 +209,11 @@
     "MODAL_DELETE_HEADER": "Удалить Тестовый Прогон",
     "MODAL_DELETE_DESCRIPTION": "Вы уверены, что хотите удалить выбранный тестовый прогон? Удаленные тестовые прогоны не смогут быть восстановлены."
   },
+  "TESTEXECUTIONDETAILSPAGE": {
+    "EMPTYSTATE_NOTESTCASES_IN_TESTRUNS_TITLE": "У вас не добавлено ни одного тест кейса к Тестовому Прогону.",
+    "EMPTYSTATE_NOTESTCASES_IN_TESTRUNS_DESCRIPTION": "Нажмите кнопку 'Добавить тест кейсы' для добавления тест кейсов к прогону",
+    "EMPTYSTATE_NOTESTCASES_IN_TESTRUNS_BUTTON": "Добавить тест кейсы"
+  },
   "TESTCASE_DETAILSPAGE": {
     "DESCRIPTION": "Описание",
     "EDIT": "Редактировать",
