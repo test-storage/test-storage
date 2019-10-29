@@ -52,7 +52,7 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
     this.yesterday.setDate(this.today.getDate() - 1);
     this.future.setDate(this.today.getDate() + 50);
     this.route.parent.parent.params.subscribe(params => {
-      this.projectId = params['id'];
+      this.projectId = params.id;
       this.getTestruns(this.projectId);
     });
     /*

@@ -1,4 +1,5 @@
 export class TestSuite {
+  // tslint:disable-next-line: variable-name
   _id?: string;
   parentId: string;
   projectId: string;

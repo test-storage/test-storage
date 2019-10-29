@@ -23,9 +23,9 @@
                 [class.active]="testSuite._id === selectedTestSuite._id">
                 <clr-icon shape="folder"></clr-icon>
                 {{ testSuite.name }}
-                <clr-icon shape="plus" (click)="onAdd(testSuite);"></clr-icon>
-                <clr-icon shape="pencil" (click)="onEdit(testSuite);"></clr-icon>
-                <clr-icon shape="close" (click)="onDelete(testSuite);"></clr-icon>
+                <clr-icon shape="plus" (click)="$event.stopPropagation(); onAdd(testSuite); false"></clr-icon>
+                <clr-icon shape="pencil" (click)="$event.stopPropagation(); onEdit(testSuite); false"></clr-icon>
+                <clr-icon shape="close" (click)="$event.stopPropagation(); onDelete(testSuite); false"></clr-icon>
               </button>
             </clr-tree-node>
           </clr-tree>
@@ -45,7 +45,7 @@
       title="{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_TITLE' | translate }}"
       description="{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_DESCRIPTION' | translate }}"
       buttonText="{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_CREATETESTSUITE_BUTTON' | translate }}"
-      (click)="onAdd();">
+      (clicked)=="onAdd();">
     </app-empty-state>
   </ng-template>
 

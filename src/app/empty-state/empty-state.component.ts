@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-empty-state',
@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class EmptyStateComponent {
 
   @Output()
-  click: EventEmitter<any> = new EventEmitter();
+  clicked: EventEmitter<any> = new EventEmitter();
 
   @Input()
   title: string;
@@ -26,7 +26,7 @@ export class EmptyStateComponent {
   icon: string;
 
   onClickButton() {
-    this.click.emit();
+    this.clicked.emit();
   }
 
 }

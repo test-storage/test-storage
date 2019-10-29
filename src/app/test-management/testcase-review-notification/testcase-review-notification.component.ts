@@ -18,7 +18,7 @@ export class TestcaseReviewNotificationComponent implements OnInit {
 
    ngOnInit() {
     this.route.parent.parent.params.subscribe(params => {
-      this.projectId = params['id'];
+      this.projectId = params.id;
       this.checkAvailableTestcasesForReview();
     });
 

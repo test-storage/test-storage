@@ -33,7 +33,7 @@ export class TestcaseReviewComponent implements OnInit {
       { value: this.statuses[key], key: parseInt(key, 10)}));
 
     this.route.parent.parent.params.subscribe(params => {
-      this.projectId = params['id'];
+      this.projectId = params.id;
       this.getTestCasesForProject(this.projectId);
     });
   }

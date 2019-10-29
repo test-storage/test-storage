@@ -29,7 +29,7 @@ export class ProjectLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = params['id'];
+      this.id = params.id;
       this.loadProject(this.id);
     });
   }

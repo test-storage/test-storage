@@ -17,7 +17,7 @@ export class TestrunsService {
 
   public getTestrunsByProjectId(projectId: string): Observable<Testrun[]> {
     const params = new HttpParams().set('projectId', projectId);
-    return this.http.get<Testrun[]>(this.apiPath, { params: params });
+    return this.http.get<Testrun[]>(this.apiPath, { params });
   }
 
   public getTestrun(id: string): Observable<Testrun> {

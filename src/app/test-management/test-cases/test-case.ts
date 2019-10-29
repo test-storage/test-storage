@@ -1,4 +1,5 @@
 export class TestCase {
+  // tslint:disable-next-line: variable-name
   _id?: string;
   key?: string;
   projectId: string;

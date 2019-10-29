@@ -21,7 +21,7 @@ export class TestCaseService {
 
   public getTestCasesBySuiteId(id: string): Observable<TestCase[]> {
     const params = new HttpParams().set('testSuiteId', id);
-    return this.http.get<TestCase[]>(this.apiPath, { params: params });
+    return this.http.get<TestCase[]>(this.apiPath, { params });
   }
 
   public getTestCasesByProjectId(id: string, status?: string): Observable<TestCase[]> {
@@ -29,7 +29,7 @@ export class TestCaseService {
     if (status) {
       params = params.set('status', status);
     }
-    return this.http.get<TestCase[]>(this.apiPath, { params: params });
+    return this.http.get<TestCase[]>(this.apiPath, { params });
   }
 
   public createTestCase(testcase: TestCase) {

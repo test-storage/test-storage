@@ -7,9 +7,9 @@ import { DonutChartOptions } from './chart-options';
   templateUrl: './donut-chart.component.html',
   styleUrls: ['./donut-chart.component.css']
 })
-export class DonutChartComponent implements OnInit {
+export class DonutChartComponent {
 
-  _options: Partial<DonutChartOptions> = {
+  mOptions: Partial<DonutChartOptions> = {
     backgroundColor: '#d9d9d9',
     fillColor: '#5ea41c',
     textColor: '#333333',
@@ -18,7 +18,7 @@ export class DonutChartComponent implements OnInit {
 
   @Input()
   set options(options: DonutChartOptions) {
-    this._options = options;
+    this.mOptions = options;
   }
 
   @Input()
@@ -28,11 +28,11 @@ export class DonutChartComponent implements OnInit {
   subText: string;
 
 
-  _percents: string;
+  mPercents: string;
 
   @Input()
   set percents(percents: number) {
-    this._percents = this.calculatePercents(percents);
+    this.mPercents = this.calculatePercents(percents);
   }
 
   calculatePercents(percents: number) {
@@ -41,8 +41,4 @@ export class DonutChartComponent implements OnInit {
 
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

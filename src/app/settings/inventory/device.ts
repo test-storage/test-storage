@@ -1,4 +1,5 @@
 export class Device {
+  // tslint:disable-next-line: variable-name
   _id?: string;
   manufacturer: string;
   model: string;

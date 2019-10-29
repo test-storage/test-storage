@@ -29,11 +29,11 @@ export class WebsocketNotificationsService {
         observer.next(data);
       });
 
-      this.socket.on('exception', function (data) {
+      this.socket.on('exception', (data) => {
         console.log('event', data);
       });
 
-      this.socket.on('disconnect', function () {
+      this.socket.on('disconnect', () => {
         console.log('Disconnected');
     });
       return () => {

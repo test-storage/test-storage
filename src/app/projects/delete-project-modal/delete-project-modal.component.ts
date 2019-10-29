@@ -1,17 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Project } from '../project';
-
 @Component({
   selector: 'app-delete-project-modal',
   templateUrl: './delete-project-modal.component.html',
   styleUrls: ['./delete-project-modal.component.css']
 })
-export class DeleteProjectModalComponent implements OnInit {
+export class DeleteProjectModalComponent {
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
-  @Output() confirmChange = new EventEmitter;
+  @Output() confirmChange = new EventEmitter();
 
   setOpened(val: boolean) {
     this.opened = val;
@@ -20,10 +18,6 @@ export class DeleteProjectModalComponent implements OnInit {
 
   deleteProject() {
     this.confirmChange.emit();
-  }
-
-
-  ngOnInit() {
   }
 
 }

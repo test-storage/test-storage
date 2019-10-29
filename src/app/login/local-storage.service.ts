@@ -55,7 +55,7 @@ export class LocalStorageService {
   setToken(token: string) {
     // store jwt token in local sotrage to keep user logged in between page refreshes
     localStorage.setItem('authToken', JSON.stringify({
-      token: token
+      token
     }));
     this.token = token;
   }
