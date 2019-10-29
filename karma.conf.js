@@ -32,6 +32,7 @@ module.exports = function (config) {
         flags: ['--headless', '--disable-gpu', '--remote-debugging-port=9222', '--no-sandbox']
       }
     },
-    singleRun: false
+    singleRun: false,
+    restartOnFileChange: true
   });
 };
