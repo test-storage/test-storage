@@ -1,13 +1,10 @@
 import { Test } from '@nestjs/testing';
+
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { User } from './user.interface';
 
 import { getModelToken } from '@nestjs/mongoose';
-
-import * as sinon from 'sinon';
-import * as chai from 'chai';
-const expect = chai.expect;
 
 describe('UsersController', () => {
   let usersController: UsersController;
@@ -28,7 +25,6 @@ describe('UsersController', () => {
   });
 
   afterEach(async () => {
-    sinon.restore();
   });
 
   describe('findAll', () => {
@@ -45,9 +41,9 @@ describe('UsersController', () => {
         }
       ];
 
-      sinon.replace(usersService, 'findAll', sinon.fake.returns(result));
+      jest.spyOn(usersService, 'findAll').mockImplementation(() => Promise.resolve(result));
 
-      expect(await usersController.findAll()).to.be.equal(result);
+      expect(await usersController.findAll()).toEqual(result);
     });
   });
 });

@@ -1,24 +1,23 @@
 import { Test } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
 
-import { NotificationsModule } from './../notifications/notifications.module';
 import { ProjectsController } from './projects.controller';
 import { ProjectsService } from './projects.service';
 import { Project } from './project.interface';
 
-import * as sinon from 'sinon';
-import * as chai from 'chai';
-const expect = chai.expect;
+import { NotificationsService } from './../notifications/notifications.service';
 
-xdescribe('ProjectsController', () => {
+describe('ProjectsController', () => {
   let projectsController: ProjectsController;
   let projectsService: ProjectsService;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      imports: [NotificationsModule],
+      imports: [],
       controllers: [ProjectsController],
-      providers: [ProjectsService,
+      providers: [
+        ProjectsService,
+        NotificationsService,
         {
           provide: getModelToken('Project'),
           useValue: {},
@@ -35,32 +34,32 @@ xdescribe('ProjectsController', () => {
   });
 
   afterEach(async () => {
-    sinon.restore();
+
   });
 
   describe('create', () => {
     it('should return an entity of created project', async () => {
 
-      const project: Project = {
+      const result: Project = {
         name: 'name',
         description: 'description'
       };
 
-      sinon.replace(projectsService, 'create', sinon.fake.returns(project));
+      jest.spyOn(projectsService, 'create').mockImplementation(() => Promise.resolve(result));
 
-      expect(await projectsController.create({}, project)).to.be.equal(project);
+      expect(await projectsController.create({}, result)).toEqual(result);
     });
 
     it('should throw an error when validation is failed', async () => {
 
-      const project = {
+      const result = {
         name: 'name',
         description: 'description'
       };
 
-      sinon.replace(projectsService, 'create', sinon.fake.returns(project));
+      jest.spyOn(projectsService, 'create').mockImplementation(() => Promise.resolve(result));
 
-      expect(await projectsController.create({}, project)).to.be.equal(project);
+      expect(await projectsController.create({}, result)).toEqual(result);
     });
   });
 
@@ -74,9 +73,9 @@ xdescribe('ProjectsController', () => {
         }
       ];
 
-      sinon.replace(projectsService, 'findAll', sinon.fake.returns(result));
+      jest.spyOn(projectsService, 'findAll').mockImplementation(() => Promise.resolve(result));
 
-      expect(await projectsController.findAll()).to.be.equal(result);
+      expect(await projectsController.findAll()).toEqual(result);
     });
   });
 });

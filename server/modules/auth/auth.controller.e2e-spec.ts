@@ -1,10 +1,9 @@
 import * as request from 'supertest';
-import { expect } from 'chai';
 
 import { ApplicationModule } from './../app.module';
 import { UserDto } from './user.dto';
 
-describe('AuthController', () => {
+xdescribe('AuthController', () => {
 
   describe('Get Access Token via valid login and password ', () => {
 
@@ -22,7 +21,7 @@ describe('AuthController', () => {
         .send(user)
         .expect(200)
         .then(response => {
-          expect(response.body.expiresIn).to.be.equal(86400000);
+          expect(response.body.expiresIn).toEqual(86400000);
         });
 
     });
@@ -41,7 +40,7 @@ describe('AuthController', () => {
         .send(user)
         .expect(200)
         .then(response => {
-          expect(response.body.expiresIn).to.be.equal(604800000);
+          expect(response.body.expiresIn).toEqual(604800000);
         });
 
     });
@@ -60,7 +59,7 @@ describe('AuthController', () => {
         .send(user)
         .expect(200)
         .then(response => {
-          expect(response.body.accessToken).to.be.a('string');
+          expect(typeof response.body.accessToken).toBe('string');
         });
     });
 
@@ -78,7 +77,7 @@ describe('AuthController', () => {
         .send(user)
         .expect(400)
         .then(response => {
-          expect(response.body.message).to.be.equal('Validation failed');
+          expect(response.body.message).toEqual('Validation failed');
         });
     });
 
@@ -96,7 +95,7 @@ describe('AuthController', () => {
         .send(user)
         .expect(401)
         .then(response => {
-          expect(response.body.error).to.be.equal('Unauthorized');
+          expect(response.body.error).toEqual('Unauthorized');
         });
     });
 
@@ -114,7 +113,7 @@ describe('AuthController', () => {
         .send(user)
         .expect(401)
         .then(response => {
-          expect(response.body.error).to.be.equal('Unauthorized');
+          expect(response.body.error).toEqual('Unauthorized');
         });
     });
   });

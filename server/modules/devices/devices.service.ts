@@ -20,11 +20,11 @@ export class DevicesService {
   }
 
   async findOne(id): Promise<Device> {
-    return await this.deviceModel.findOne({ '_id': id }).exec();
+    return await this.deviceModel.findOne({ _id: id }).exec();
   }
 
   async update(id, device: Device, userId: string): Promise<Device> {
-    const existedDevice = await this.deviceModel.findOne({ '_id': id }).exec();
+    const existedDevice = await this.deviceModel.findOne({ _id: id }).exec();
     if (existedDevice) {
       Object.assign(existedDevice, device);
       existedDevice.updatedBy = userId;
@@ -34,6 +34,6 @@ export class DevicesService {
   }
 
   async delete(id): Promise<void> {
-    return await this.deviceModel.findOneAndRemove({ '_id': id }).exec();
+    return await this.deviceModel.findOneAndRemove({ _id: id }).exec();
   }
 }

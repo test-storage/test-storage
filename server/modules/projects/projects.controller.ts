@@ -27,7 +27,7 @@ export class ProjectsController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createProjectDto: CreateProjectDto
   ): Promise<Project> {
     return await this.projectsService.create(createProjectDto, userId);
@@ -56,7 +56,7 @@ export class ProjectsController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findOneAndUpdate(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createProjectDto: CreateProjectDto,
     @Param('id', new ParameterValidationPipe()) id: string): Promise<Project> {
     return await this.projectsService.update(id, createProjectDto, userId);

@@ -5,10 +5,6 @@ import { Device } from './device.interface';
 
 import { getModelToken } from '@nestjs/mongoose';
 
-import * as sinon from 'sinon';
-import * as chai from 'chai';
-const expect = chai.expect;
-
 describe('DevicesController', () => {
   let devicesController: DevicesController;
   let devicesService: DevicesService;
@@ -27,7 +23,7 @@ describe('DevicesController', () => {
   });
 
   afterEach(async () => {
-    sinon.restore();
+
   });
 
   describe('findAll', () => {
@@ -53,9 +49,9 @@ describe('DevicesController', () => {
         }
       ];
 
-      sinon.replace(devicesService, 'findAll', sinon.fake.returns(result));
+      jest.spyOn(devicesService, 'findAll').mockImplementation(() => Promise.resolve(result));
 
-      expect(await devicesController.findAll()).to.be.equal(result);
+      expect(await devicesController.findAll()).toEqual(result);
     });
   });
 });
