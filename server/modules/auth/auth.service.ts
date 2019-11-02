@@ -11,16 +11,18 @@ import { AuthValidationService } from './auth-validation.service';
 @Injectable()
 export class AuthService {
 
+  private rememberMe = false;
+
   constructor(private validationService: AuthValidationService) { }
 
   private async createToken(validUser) {
     let expiresIn = 24 * 3600 * 1000; // 1 day
-    if (validUser.rememberMe === true) {
+    if (this.rememberMe === true) {
       expiresIn = 7 * 24 * 3600 * 1000; // 1 week
     }
     const secretOrKey = process.env.SECRET || jwtSecret();
     const user: JwtPayload = { email: validUser.email, userId: validUser._id, roles: [ validUser.role ] };
-    const token = jwt.sign(user, secretOrKey, { expiresIn });
+    const token: string = jwt.sign(user, secretOrKey, { expiresIn });
     return {
       expiresIn,
       accessToken: token
@@ -30,6 +32,7 @@ export class AuthService {
   async getAccessToken(userDto: UserDto) {
     const validUser: User = await this.validationService.validateLogin(userDto);
     if (validUser) {
+      this.rememberMe = userDto.rememberMe;
       return await this.createToken(validUser);
     } else {
       throw new UnauthorizedException();
