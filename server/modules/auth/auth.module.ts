@@ -6,11 +6,14 @@ import { AuthController } from './auth.controller';
 import { JwtStrategy } from './passport/jwt.strategy';
 import { UsersModule } from '../users/users.module';
 
+import { AuthValidationService } from './auth-validation.service';
+
 @Module({
   imports: [UsersModule],
   providers: [
     AuthService,
     JwtStrategy,
+    AuthValidationService
   ],
   controllers: [AuthController],
 })
