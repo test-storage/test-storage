@@ -15,6 +15,7 @@ const bootstrap = () => {
 };
 
 if (environment.hmr) {
+  // @ts-ignore
   if (module.hot) {
     hmrBootstrap(module, bootstrap);
   } else {
