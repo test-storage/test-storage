@@ -8,7 +8,6 @@ import { UserDto } from './user.dto';
 import { UsersService } from './../users/users.service';
 
 import { getModelToken } from '@nestjs/mongoose';
-import { mockRepository } from './../../repository.mock';
 
 describe('AuthController', () => {
   let authController: AuthController;
@@ -25,7 +24,7 @@ describe('AuthController', () => {
         UsersService,
         {
           provide: getModelToken('User'),
-          useValue: mockRepository,
+          useValue: {},
         }]
     }).compile();
 
