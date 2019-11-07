@@ -1,16 +1,7 @@
 {
   "env": "production",
-  "app": {
-    "enableGzipCompression": true,
-    "httpsEnabled": false
-  },
   "http": {
     "port": 80
-  },
-  "https": {
-    "port": 443,
-    "privateKey": "certs/server.key",
-    "certificate": "certs/server.crt"
   },
   "db": {
     "host": "localhost",
@@ -18,14 +9,6 @@
     "name": "test-storage",
     "user": "admin",
     "password": "admin"
-  },
-  "errorHandlerOptions": {
-    "dumpExceptions": true,
-    "showStack": true
-  },
-  "logger": {
-    "api": "logs/api.log",
-    "exception": "logs/exceptions.log"
   },
   "uploadDirectory": {
     "path": "./uploads"

@@ -16,23 +16,13 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 
 const expressServer = express();
 let app;
-let port;
 
 async function bootstrap() {
 
   expressServer.disable('x-powered-by');
 
-  if (config.get('app.httpsEnabled') === false) {
-    app = await NestFactory.create(ApplicationModule, new ExpressAdapter(expressServer), {});
-    port = config.get('http.port');
-  } else {
-    const httpsOptions = {
-      key: fs.readFileSync(config.get('https.privateKey'), 'utf8'),
-      cert: fs.readFileSync(config.get('https.certificate'), 'utf8')
-    };
-    app = await NestFactory.create(ApplicationModule, new ExpressAdapter(expressServer), { httpsOptions: httpsOptions });
-    port = config.get('https.port');
-  }
+  app = await NestFactory.create(ApplicationModule, new ExpressAdapter(expressServer), {});
+  const port: number = config.get('http.port');
 
   setMiddlewares();
 
@@ -46,10 +36,6 @@ async function bootstrap() {
 async function setMiddlewares() {
 
   app.useGlobalFilters(new NotFoundExceptionFilter());
-
-  if (config.get('app.enableGzipCompression') === true) {
-    app.use(compression());
-  }
 
   app.use(morgan('dev'));
 
