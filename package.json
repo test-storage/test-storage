@@ -136,7 +136,6 @@
     "prettier": "^1.18.2",
     "protractor": "~5.4.2",
     "rimraf": "^3.0.0",
-    "sinon": "^7.5.0",
     "supertest": "^4.0.2",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.1.1",
