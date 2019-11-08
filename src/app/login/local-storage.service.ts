@@ -8,7 +8,6 @@ export class LocalStorageService {
 
   constructor(private jwtHelper: JwtHelperService) { }
 
-
   getToken(): string {
 
     if (this.token === '') {
@@ -20,7 +19,7 @@ export class LocalStorageService {
     }
   }
 
-  private getTokenFromStorage() {
+  getTokenFromStorage() {
     if (localStorage.getItem('authToken')) {
 
       const authToken = JSON.parse(localStorage.getItem('authToken'));
