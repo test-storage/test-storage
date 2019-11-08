@@ -16,9 +16,9 @@ export class AuthService {
   constructor(private validationService: AuthValidationService) { }
 
   private async createToken(validUser) {
-    let expiresIn = 24 * 3600 * 1000; // 1 day
+    let expiresIn = 24 * 3600; // 1 day
     if (this.rememberMe === true) {
-      expiresIn = 7 * 24 * 3600 * 1000; // 1 week
+      expiresIn = 7 * 24 * 3600; // 1 week
     }
     const secretOrKey = process.env.SECRET || jwtSecret();
     const user: JwtPayload = { email: validUser.email, userId: validUser._id, roles: [ validUser.role ] };

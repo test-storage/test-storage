@@ -15,7 +15,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 const routes: Routes = [
   { path: 'auth', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: '', loadChildren: './layout/layout.module#LayoutModule' },
+  { path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule) },
   { path: '**', component: NotFoundComponent }
 ];
 

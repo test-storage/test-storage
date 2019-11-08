@@ -21,7 +21,7 @@ xdescribe('AuthController', () => {
         .send(user)
         .expect(200)
         .then(response => {
-          expect(response.body.expiresIn).toEqual(86400000);
+          expect(response.body.expiresIn).toEqual(86400);
         });
 
     });
@@ -40,7 +40,7 @@ xdescribe('AuthController', () => {
         .send(user)
         .expect(200)
         .then(response => {
-          expect(response.body.expiresIn).toEqual(604800000);
+          expect(response.body.expiresIn).toEqual(604800);
         });
 
     });
