@@ -11,8 +11,8 @@
 
           <clr-input-container>
             <label for="firstname">{{ 'USERPROFILEPAGE.FIRST_NAME' | translate }}</label>
-            <input clrInput type="text" id="firstname" name="firstName" [(ngModel)]="profile.firstName" #firstname="ngModel"
-              required placeholder="John" size="35">
+            <input clrInput type="text" id="firstname" name="firstName" [(ngModel)]="profile.firstName"
+              #firstname="ngModel" required placeholder="John" size="35">
           </clr-input-container>
 
           <clr-input-container>
@@ -38,17 +38,18 @@
 
           <clr-input-container>
             <label for="jobtitle">{{ 'USERPROFILEPAGE.JOB_TITLE' | translate }}</label>
-            <input clrInput type="text" id="jobtitle" name="jobTitle" [(ngModel)]="profile.workInfo.jobTitle" placeholder="Senior Test Engineer"
-              size="35">
+            <input clrInput type="text" id="jobtitle" name="jobTitle" [(ngModel)]="profile.workInfo.jobTitle"
+              placeholder="Senior Test Engineer" size="35">
           </clr-input-container>
 
           <clr-input-container>
             <label for="company">{{ 'USERPROFILEPAGE.COMPANY' | translate }}</label>
-            <input clrInput type="text" id="company" name="company" [(ngModel)]="profile.workInfo.companyName" placeholder="Example Inc."
-              size="35">
+            <input clrInput type="text" id="company" name="company" [(ngModel)]="profile.workInfo.companyName"
+              placeholder="Example Inc." size="35">
           </clr-input-container>
+            <br>
+            <button type="submit" class="btn btn-primary">{{ 'USERPROFILEPAGE.SAVE_BUTTON' | translate }}</button>
 
-          <button type="submit" class="btn btn-primary">{{ 'USERPROFILEPAGE.SAVE_BUTTON' | translate }}</button>
         </section>
       </form>
 
