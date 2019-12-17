@@ -1,0 +1,29 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: npm install
+    - name: Build Project
+      run: npm run build
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [build]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: npm install
+    - name: Run Frontend tests
+      run: npm run test
+    - name: Run Backend tests
+      run: npm run test:backend
