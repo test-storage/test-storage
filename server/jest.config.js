@@ -4,11 +4,11 @@ module.exports = {
     "json",
     "ts"
   ],
-  "rootDir": "server",
+  "rootDir": "src",
   "testRegex": ".spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
-  "coverageDirectory": "./coverage",
+  "coverageDirectory": "../coverage",
   "testEnvironment": "node"
 }

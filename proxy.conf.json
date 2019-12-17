@@ -6,9 +6,5 @@
     "/authentication/*": {
         "target": "http://localhost:3000",
         "secure": false
-    },
-    "/i18n/*": {
-        "target": "http://localhost:3000",
-        "secure": false
     }
 }

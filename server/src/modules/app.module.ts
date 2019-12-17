@@ -41,7 +41,7 @@ import { MongoDBConnectionStringBuilder } from './connection-string.builder';
     AttachmentsModule,
     TestResultsModule,
     NotificationsModule,
-    UserStoriesModule
+    UserStoriesModule,
   ],
   controllers: [],
   providers: [],

@@ -1,23 +1,15 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "../dist/server",
-    "mapRoot": "../dist/server",
-    "sourceMap": true,
-    "declaration": false,
-    "skipLibCheck": true,
-    "moduleResolution": "node",
+    "declaration": true,
+    "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2017"
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true
   },
-  "include": [
-    "modules/**/*",
-    "main.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "exclude": ["node_modules", "dist"]
 }
