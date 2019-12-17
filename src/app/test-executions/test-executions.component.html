@@ -101,6 +101,6 @@
   </app-create-test-run-modal>
   <app-edit-test-run-modal [testrun]="selectedTestrun" [(opened)]="editOpened" (testrunChange)="updateTestrun($event);">
   </app-edit-test-run-modal>
-  <app-delete-test-run-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)">
+  <app-delete-test-run-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete()">
   </app-delete-test-run-modal>
 </div>

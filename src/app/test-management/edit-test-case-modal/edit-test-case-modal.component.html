@@ -1,9 +1,8 @@
-<clr-modal *ngIf="testcase !== undefined" [(clrModalOpen)]="opened" [clrModalSize]="'lg'">
+<clr-modal *ngIf="testcase" [(clrModalOpen)]="opened" [clrModalSize]="'lg'">
   <h3 class="modal-title">{{ 'TESTCASECREATEPAGE.EDIT_TESTCASE' | translate }}</h3>
   <div class="modal-body">
 
-    <form clrForm (ngSubmit)="setOpened(false); updateTestCase(testcase)" id="editTestCaseForm" #editTestCaseForm="ngForm"
-      (keyup.enter)="editTestCaseForm.form.valid && editTestCaseForm.ngSubmit.emit();">
+    <form clrForm (ngSubmit)="setOpened(false); updateTestCase()" id="editTestCaseForm" #editTestCaseForm="ngForm" (keyup.enter)="editTestCaseForm.form.valid && editTestCaseForm.ngSubmit.emit();">
       <section class="form-block">
 
         <clr-input-container>

@@ -72,7 +72,7 @@
                 <clr-icon shape="plus"></clr-icon> {{ 'TESTMANAGEMENTPAGE.ADD' | translate }}</button>
               <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedTestSteps.length > 0">
                 <clr-icon shape="close"></clr-icon> {{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
-              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="true === false;">
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedTestSteps.length > 0">
                 <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}</button>
             </div>
           </clr-dg-action-bar>
