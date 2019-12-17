@@ -1,5 +1,5 @@
 ## Test Storage
-[![Build Status](https://travis-ci.org/test-storage/test-storage.svg?branch=master)](https://travis-ci.org/test-storage/test-storage) [![Build status](https://ci.appveyor.com/api/projects/status/9g6k7px0r3hdbloi?svg=true)](https://ci.appveyor.com/project/pumano/test-storage) [![Telegram](https://img.shields.io/badge/telegram-join%20chat-blue.svg?style=flat)](https://telegram.me/joinchat/Dz6MkggusIGwAUb4Qg1hwQ)
+[![Build Status](https://github.com/test-storage/test-storage/workflows/CI/badge.svg)](hhttps://github.com/test-storage/test-storage) [![Telegram](https://img.shields.io/badge/telegram-join%20chat-blue.svg?style=flat)](https://telegram.me/joinchat/Dz6MkggusIGwAUb4Qg1hwQ)
 
 Test Storage - test case management system.
 
