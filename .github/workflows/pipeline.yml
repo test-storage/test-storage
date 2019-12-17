@@ -14,7 +14,7 @@ jobs:
     - name: Build Project
       run: npm run build
 
-  test:
+  test-frontend:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +24,19 @@ jobs:
       run: npm install
     - name: Run Frontend tests
       run: npm run test
+
+  test-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: |
+        cd server
+        npm install
     - name: Run Backend tests
       run: |
         export SECRET=mytestsecret
-        npm run test:backend
+        cd server
+        npm run test
