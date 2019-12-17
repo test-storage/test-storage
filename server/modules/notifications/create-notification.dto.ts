@@ -1,54 +1,54 @@
-import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsOptional, IsISO8601, IsNotEmpty, IsBoolean } from 'class-validator';
 
 export class CreateNotificationDto {
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly _id?: string;
 
-  @ApiModelProperty({ type: String })
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly entity: string;
 
-  @ApiModelProperty({ type: String })
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly action: string;
 
-  @ApiModelProperty({ type: String })
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly senderId: string;
 
-  @ApiModelProperty({ type: String })
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly recipientId?: string;
 
-  @ApiModelProperty({ type: Boolean })
+  @ApiProperty()
   @IsBoolean()
   @IsNotEmpty()
   readonly isRead?: boolean;
 
-  @ApiModelPropertyOptional({ type: Date })
+  @ApiProperty()
   @IsOptional()
   @IsISO8601()
   readonly created?: Date;
 
-  @ApiModelPropertyOptional({ type: Date })
+  @ApiProperty()
   @IsOptional()
   @IsISO8601()
   readonly updated?: Date;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly createdBy?: string;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly updatedBy?: string;

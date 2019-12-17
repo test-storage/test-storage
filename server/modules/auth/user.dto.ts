@@ -1,21 +1,21 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty, IsDefined, IsBoolean } from 'class-validator';
 
 export class UserDto {
 
-  @ApiModelProperty({ type: String })
+  @ApiProperty()
   @IsDefined()
   @IsString()
   @IsNotEmpty()
   readonly username: string;
 
-  @ApiModelProperty({ type: String })
+  @ApiProperty()
   @IsDefined()
   @IsString()
   @IsNotEmpty()
   readonly password: string;
 
-  @ApiModelProperty({ type: Boolean })
+  @ApiProperty()
   @IsDefined()
   @IsBoolean()
   @IsNotEmpty()

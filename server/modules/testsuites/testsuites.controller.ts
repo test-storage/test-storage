@@ -10,17 +10,17 @@ import { TestsuitesService } from './testsuites.service';
 import { Testsuite } from './testsuite.interface';
 import { CreateTestsuiteDto } from './create-testsuite.dto';
 
-import { ApiUseTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiUseTags('Testsuites')
+@ApiTags('Testsuites')
 @Controller('api/v1/testsuites')
 export class TestsuitesController {
 
   constructor(private readonly testsuitesService: TestsuitesService) { }
 
   @Post()
-  @ApiOperation({ title: 'Create Test Suite' })
+  @ApiOperation({ description: 'Create Test Suite' })
   @ApiResponse({ status: 201, description: 'The test suite has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -31,7 +31,7 @@ export class TestsuitesController {
   }
 
   @Get()
-  @ApiOperation({ title: 'Get All Test Suites' })
+  @ApiOperation({ description: 'Get All Test Suites' })
   @ApiResponse({ status: 200, description: 'The list of test suites has been successfully retrieved.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findAll(@Query('projectId', new QueryIdValidationPipe()) id?: string): Promise<Testsuite[]> {
@@ -43,7 +43,7 @@ export class TestsuitesController {
   }
 
   @Get(':id')
-  @ApiOperation({ title: 'Get Single Test Suite by id' })
+  @ApiOperation({ description: 'Get Single Test Suite by id' })
   @ApiResponse({ status: 200, description: 'The single test suite has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -52,7 +52,7 @@ export class TestsuitesController {
   }
 
   @Put(':id')
-  @ApiOperation({ title: 'Update Single Test Suite by id' })
+  @ApiOperation({ description: 'Update Single Test Suite by id' })
   @ApiResponse({ status: 200, description: 'The single test suite has been successfully updated.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -64,7 +64,7 @@ export class TestsuitesController {
   }
 
   @Delete(':id')
-  @ApiOperation({ title: 'Delete Single Test Suite by id' })
+  @ApiOperation({ description: 'Delete Single Test Suite by id' })
   @ApiResponse({ status: 200, description: 'The single test suite has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })

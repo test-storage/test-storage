@@ -8,17 +8,17 @@ import { RolesService } from './roles.service';
 import { Role } from './role.interface';
 import { CreateRoleDto } from './create-role.dto';
 
-import { ApiUseTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiUseTags('Roles')
+@ApiTags('Roles')
 @Controller('api/v1/roles')
 export class RolesController {
 
   constructor(private readonly rolesService: RolesService) { }
 
   @Post()
-  @ApiOperation({ title: 'Create Role' })
+  @ApiOperation({ description: 'Create Role' })
   @ApiResponse({ status: 201, description: 'The role has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -27,7 +27,7 @@ export class RolesController {
   }
 
   @Get()
-  @ApiOperation({ title: 'Get All Roles' })
+  @ApiOperation({ description: 'Get All Roles' })
   @ApiResponse({ status: 200, description: 'The list of roles has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -36,7 +36,7 @@ export class RolesController {
   }
 
   @Get(':id')
-  @ApiOperation({ title: 'Get Single Role by id' })
+  @ApiOperation({ description: 'Get Single Role by id' })
   @ApiResponse({ status: 200, description: 'The single role has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -45,7 +45,7 @@ export class RolesController {
   }
 
   @Put(':id')
-  @ApiOperation({ title: 'Update Single Role by id' })
+  @ApiOperation({ description: 'Update Single Role by id' })
   @ApiResponse({ status: 200, description: 'The single role has been successfully updated.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -55,7 +55,7 @@ export class RolesController {
   }
 
   @Delete(':id')
-  @ApiOperation({ title: 'Delete Single Role by id' })
+  @ApiOperation({ description: 'Delete Single Role by id' })
   @ApiResponse({ status: 200, description: 'The single role has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })

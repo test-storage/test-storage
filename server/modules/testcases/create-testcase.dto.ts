@@ -1,104 +1,104 @@
-import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty, IsArray, IsBoolean, IsNumber, IsOptional, IsISO8601 } from 'class-validator';
 
 export class CreateTestcaseDto {
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly _id?: string;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly key?: string;
 
-  @ApiModelProperty({ type: String })
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly projectId: string;
 
-  @ApiModelProperty({ type: String })
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly testSuiteId: string;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly priority?: string;
 
-  @ApiModelPropertyOptional({ type: Number })
+  @ApiProperty()
   @IsOptional()
   @IsNumber()
   readonly order?: number;
 
-  @ApiModelProperty({ type: String })
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly title: string;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly description?: string;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly type?: string;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly preConditions?: string;
 
-  @ApiModelPropertyOptional({ type: Array })
+  @ApiProperty()
   @IsOptional()
   @IsArray()
   readonly steps?: Array<string>;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly postConditions?: string;
 
-  @ApiModelPropertyOptional({ type: Array })
+  @ApiProperty()
   @IsOptional()
   @IsArray()
   readonly tags?: Array<string>;
 
-  @ApiModelPropertyOptional({ type: Date })
+  @ApiProperty()
   @IsOptional()
   @IsISO8601()
   readonly created?: Date;
 
-  @ApiModelPropertyOptional({ type: Date })
+  @ApiProperty()
   @IsOptional()
   @IsISO8601()
   readonly updated?: Date;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly createdBy?: string;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly updatedBy?: string;
 
-  @ApiModelPropertyOptional({ type: Boolean })
+  @ApiProperty()
   @IsOptional()
   @IsBoolean()
   readonly isAutomated?: boolean;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly estimate?: string;
 
-  @ApiModelPropertyOptional({ type: String })
+  @ApiProperty()
   @IsOptional()
   @IsString()
   readonly status?: string;

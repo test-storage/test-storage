@@ -1,6 +1,6 @@
 import { Get, Post, Put, Delete, Controller, Body, Param } from '@nestjs/common';
 
-import { ApiUseTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ParameterValidationPipe } from '../common/pipes/parameter-validation.pipe';
@@ -12,14 +12,14 @@ import { Device } from './device.interface';
 import { CreateDeviceDto } from './create-device.dto';
 
 @ApiBearerAuth()
-@ApiUseTags('Devices')
+@ApiTags('Devices')
 @Controller('api/v1/devices')
 export class DevicesController {
 
   constructor(private readonly devicesService: DevicesService) { }
 
   @Post()
-  @ApiOperation({ title: 'Create Device' })
+  @ApiOperation({ description: 'Create Device' })
   @ApiResponse({ status: 201, description: 'The device has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -30,7 +30,7 @@ export class DevicesController {
   }
 
   @Get()
-  @ApiOperation({ title: 'Get All Devices' })
+  @ApiOperation({ description: 'Get All Devices' })
   @ApiResponse({ status: 200, description: 'The list of devices has been successfully retrieved.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findAll(): Promise<Device[]> {
@@ -38,7 +38,7 @@ export class DevicesController {
   }
 
   @Get(':id')
-  @ApiOperation({ title: 'Get Single Device by id' })
+  @ApiOperation({ description: 'Get Single Device by id' })
   @ApiResponse({ status: 200, description: 'The single device has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -47,7 +47,7 @@ export class DevicesController {
   }
 
   @Put(':id')
-  @ApiOperation({ title: 'Update Single Device by id' })
+  @ApiOperation({ description: 'Update Single Device by id' })
   @ApiResponse({ status: 200, description: 'The single device has been successfully updated.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -59,7 +59,7 @@ export class DevicesController {
   }
 
   @Delete(':id')
-  @ApiOperation({ title: 'Delete Single Device by id' })
+  @ApiOperation({ description: 'Delete Single Device by id' })
   @ApiResponse({ status: 200, description: 'The single device has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })

@@ -1,6 +1,6 @@
 import { Get, Post, Put, Delete, Controller, Body, Param, UseGuards } from '@nestjs/common';
 
-import { ApiUseTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
 import { Roles } from '../common/decorators/roles.decorator';
 import { RolesGuard } from './../common/guards/roles.guard';
@@ -15,14 +15,14 @@ import { Project } from './project.interface';
 import { CreateProjectDto } from './create-project.dto';
 
 @ApiBearerAuth()
-@ApiUseTags('Projects')
+@ApiTags('Projects')
 @Controller('api/v1/projects')
 export class ProjectsController {
 
   constructor(private readonly projectsService: ProjectsService) { }
 
   @Post()
-  @ApiOperation({ title: 'Create Project' })
+  @ApiOperation({ description: 'Create Project' })
   @ApiResponse({ status: 201, description: 'The project has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -34,7 +34,7 @@ export class ProjectsController {
   }
 
   @Get()
-  @ApiOperation({ title: 'Get All Projects' })
+  @ApiOperation({ description: 'Get All Projects' })
   @ApiResponse({ status: 200, description: 'The list of projects has been successfully retrieved.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findAll(): Promise<Project[]> {
@@ -42,7 +42,7 @@ export class ProjectsController {
   }
 
   @Get(':id')
-  @ApiOperation({ title: 'Get Single Project by id' })
+  @ApiOperation({ description: 'Get Single Project by id' })
   @ApiResponse({ status: 200, description: 'The single project has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -51,7 +51,7 @@ export class ProjectsController {
   }
 
   @Put(':id')
-  @ApiOperation({ title: 'Update Single Project by id' })
+  @ApiOperation({ description: 'Update Single Project by id' })
   @ApiResponse({ status: 200, description: 'The single project has been successfully updated.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -65,7 +65,7 @@ export class ProjectsController {
   @Delete(':id')
   @UseGuards(RolesGuard)
   @Roles('administrator')
-  @ApiOperation({ title: 'Delete Single Project by id' })
+  @ApiOperation({ description: 'Delete Single Project by id' })
   @ApiResponse({ status: 200, description: 'The single project has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })

@@ -11,23 +11,23 @@ import { UserStory } from './userstory.interface';
 import { CreateUserStoryDto } from './create-userstory.dto';
 
 import {
-  ApiUseTags,
+  ApiTags,
   ApiBearerAuth,
   ApiResponse,
   ApiOperation,
-  ApiImplicitQuery,
-  ApiImplicitParam
+  ApiQuery,
+  ApiParam
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiUseTags('User Stories')
+@ApiTags('User Stories')
 @Controller('api/v1/userstories')
 export class UserStoriesController {
 
   constructor(private readonly userStoriesService: UserStoriesService) { }
 
   @Post()
-  @ApiOperation({ title: 'Create User Story' })
+  @ApiOperation({ description: 'Create User Story' })
   @ApiResponse({ status: 201, description: 'The user story has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -38,7 +38,7 @@ export class UserStoriesController {
   }
 
   @Post('/import')
-  @ApiOperation({ title: 'User Story Import' })
+  @ApiOperation({ description: 'User Story Import' })
   @ApiResponse({ status: 201, description: 'The bulk user stories has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -49,13 +49,13 @@ export class UserStoriesController {
   }
 
   @Get()
-  @ApiOperation({ title: 'Get All User Storys' })
+  @ApiOperation({ description: 'Get All User Storys' })
   @ApiResponse({ status: 200, description: 'The list of user stories has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitQuery({ name: 'testSuiteId', description: 'filter user stories by test suite id', required: false })
-  @ApiImplicitQuery({ name: 'projectId', description: 'filter user stories by project id', required: false })
-  @ApiImplicitQuery({ name: 'status', description: 'filter user stories by status if project id specified', required: false })
+  @ApiQuery({ name: 'testSuiteId', description: 'filter user stories by test suite id', required: false })
+  @ApiQuery({ name: 'projectId', description: 'filter user stories by project id', required: false })
+  @ApiQuery({ name: 'status', description: 'filter user stories by status if project id specified', required: false })
   async findAll(
     @Query('testSuiteId', new QueryIdValidationPipe()) testsuiteId?: string,
     @Query('projectId', new QueryIdValidationPipe()) projectId?: string,
@@ -75,11 +75,11 @@ export class UserStoriesController {
   }
 
   @Get('/export')
-  @ApiOperation({ title: 'User Story Export' })
+  @ApiOperation({ description: 'User Story Export' })
   @ApiResponse({ status: 200, description: 'The export list of user stories has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitQuery({ name: 'projectId', description: 'filter user stories by project id', required: false })
+  @ApiQuery({ name: 'projectId', description: 'filter user stories by project id', required: false })
   async export(@Query('projectId', new QueryIdValidationPipe()) id?: string): Promise<UserStory[]> {
     if (!id) {
       return this.userStoriesService.findAll();
@@ -89,21 +89,21 @@ export class UserStoriesController {
   }
 
   @Get(':id')
-  @ApiOperation({ title: 'Get Single User Story by id' })
+  @ApiOperation({ description: 'Get Single User Story by id' })
   @ApiResponse({ status: 200, description: 'The single user story has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitParam({ name: 'id', description: 'User Story id' })
+  @ApiParam({ name: 'id', description: 'User Story id' })
   async findOne(@Param('id', new ParameterValidationPipe()) id: string): Promise<UserStory> {
     return this.userStoriesService.findOne(id);
   }
 
   @Put(':id')
-  @ApiOperation({ title: 'Update Single User Story by id' })
+  @ApiOperation({ description: 'Update Single User Story by id' })
   @ApiResponse({ status: 200, description: 'The single user story has been successfully updated.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitParam({ name: 'id', description: 'User Story id' })
+  @ApiParam({ name: 'id', description: 'User Story id' })
   async findOneAndUpdate(
     @UserId(new ParameterValidationPipe) userId,
     @Body(new ValidationPipe()) createUserStoryDto: CreateUserStoryDto,
@@ -112,11 +112,11 @@ export class UserStoriesController {
   }
 
   @Delete(':id')
-  @ApiOperation({ title: 'Delete Single User Story by id' })
+  @ApiOperation({ description: 'Delete Single User Story by id' })
   @ApiResponse({ status: 200, description: 'The single user story has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitParam({ name: 'id', description: 'User Story id' })
+  @ApiParam({ name: 'id', description: 'User Story id' })
   async delete(@Param('id', new ParameterValidationPipe()) id: string) {
     return this.userStoriesService.delete(id);
   }

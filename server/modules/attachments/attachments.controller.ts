@@ -14,18 +14,18 @@ import { RolesGuard } from './../common/guards/roles.guard';
 import { AttachmentsService } from './attachments.service';
 import { Attachment } from './attachment.interface';
 
-import { ApiUseTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
 
 @ApiBearerAuth()
-@ApiUseTags('Attachments')
+@ApiTags('Attachments')
 @Controller('api/v1/attachments')
 export class AttachmentsController {
 
   constructor(private readonly attachmentsService: AttachmentsService) { }
 
   @Post('upload')
-  @ApiOperation({ title: 'Upload attachment to server' })
+  @ApiOperation({ description: 'Upload attachment to server' })
   @ApiResponse({ status: 201, description: 'The attachment has been successfully uploaded.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -35,7 +35,7 @@ export class AttachmentsController {
   }
 
   @Get()
-  @ApiOperation({ title: 'Get All Attachments' })
+  @ApiOperation({ description: 'Get All Attachments' })
   @ApiResponse({ status: 200, description: 'The list of attachments has been successfully retrieved.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findAll(): Promise<Attachment[]> {
@@ -43,7 +43,7 @@ export class AttachmentsController {
   }
 
   @Get(':id')
-  @ApiOperation({ title: 'Get Single Attachment by id' })
+  @ApiOperation({ description: 'Get Single Attachment by id' })
   @ApiResponse({ status: 200, description: 'The single attachment has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -54,7 +54,7 @@ export class AttachmentsController {
   @Delete(':id')
   @UseGuards(RolesGuard)
   @Roles('administrator')
-  @ApiOperation({ title: 'Delete Single Attachment by id' })
+  @ApiOperation({ description: 'Delete Single Attachment by id' })
   @ApiResponse({ status: 200, description: 'The single attachment has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })

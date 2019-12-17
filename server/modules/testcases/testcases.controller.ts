@@ -11,23 +11,23 @@ import { Testcase } from './testcase.interface';
 import { CreateTestcaseDto } from './create-testcase.dto';
 
 import {
-  ApiUseTags,
+  ApiTags,
   ApiBearerAuth,
   ApiResponse,
   ApiOperation,
-  ApiImplicitQuery,
-  ApiImplicitParam
+  ApiQuery,
+  ApiParam
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiUseTags('Testcases')
+@ApiTags('Testcases')
 @Controller('api/v1/testcases')
 export class TestcasesController {
 
   constructor(private readonly testcasesService: TestcasesService) { }
 
   @Post()
-  @ApiOperation({ title: 'Create Test Case' })
+  @ApiOperation({ description: 'Create Test Case' })
   @ApiResponse({ status: 201, description: 'The test case has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -38,7 +38,7 @@ export class TestcasesController {
   }
 
   @Post('/import')
-  @ApiOperation({ title: 'Test Case Import' })
+  @ApiOperation({ description: 'Test Case Import' })
   @ApiResponse({ status: 201, description: 'The bulk test cases has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -49,13 +49,13 @@ export class TestcasesController {
   }
 
   @Get()
-  @ApiOperation({ title: 'Get All Test Cases' })
+  @ApiOperation({ description: 'Get All Test Cases' })
   @ApiResponse({ status: 200, description: 'The list of test cases has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitQuery({ name: 'testSuiteId', description: 'filter test cases by test suite id', required: false })
-  @ApiImplicitQuery({ name: 'projectId', description: 'filter test cases by project id', required: false })
-  @ApiImplicitQuery({ name: 'status', description: 'filter test cases by status if project id specified', required: false })
+  @ApiQuery({ name: 'testSuiteId', description: 'filter test cases by test suite id', required: false })
+  @ApiQuery({ name: 'projectId', description: 'filter test cases by project id', required: false })
+  @ApiQuery({ name: 'status', description: 'filter test cases by status if project id specified', required: false })
   async findAll(
     @Query('testSuiteId', new QueryIdValidationPipe()) testsuiteId?: string,
     @Query('projectId', new QueryIdValidationPipe()) projectId?: string,
@@ -75,11 +75,11 @@ export class TestcasesController {
   }
 
   @Get('/export')
-  @ApiOperation({ title: 'Test Case Export' })
+  @ApiOperation({ description: 'Test Case Export' })
   @ApiResponse({ status: 200, description: 'The export list of test cases has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitQuery({ name: 'projectId', description: 'filter test cases by project id', required: false })
+  @ApiQuery({ name: 'projectId', description: 'filter test cases by project id', required: false })
   async export(@Query('projectId', new QueryIdValidationPipe()) id?: string): Promise<Testcase[]> {
     if (!id) {
       return this.testcasesService.findAll();
@@ -89,21 +89,21 @@ export class TestcasesController {
   }
 
   @Get(':id')
-  @ApiOperation({ title: 'Get Single Test Case by id' })
+  @ApiOperation({ description: 'Get Single Test Case by id' })
   @ApiResponse({ status: 200, description: 'The single test case has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitParam({ name: 'id', description: 'Test Case id' })
+  @ApiParam({ name: 'id', description: 'Test Case id' })
   async findOne(@Param('id', new ParameterValidationPipe()) id: string): Promise<Testcase> {
     return this.testcasesService.findOne(id);
   }
 
   @Put(':id')
-  @ApiOperation({ title: 'Update Single Test Case by id' })
+  @ApiOperation({ description: 'Update Single Test Case by id' })
   @ApiResponse({ status: 200, description: 'The single test case has been successfully updated.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitParam({ name: 'id', description: 'Test Case id' })
+  @ApiParam({ name: 'id', description: 'Test Case id' })
   async findOneAndUpdate(
     @UserId(new ParameterValidationPipe) userId,
     @Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto,
@@ -112,11 +112,11 @@ export class TestcasesController {
   }
 
   @Delete(':id')
-  @ApiOperation({ title: 'Delete Single Test Case by id' })
+  @ApiOperation({ description: 'Delete Single Test Case by id' })
   @ApiResponse({ status: 200, description: 'The single test case has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitParam({ name: 'id', description: 'Test Case id' })
+  @ApiParam({ name: 'id', description: 'Test Case id' })
   async delete(@Param('id', new ParameterValidationPipe()) id: string) {
     return this.testcasesService.delete(id);
   }

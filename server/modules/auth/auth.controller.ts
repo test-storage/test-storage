@@ -5,10 +5,10 @@ import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { AuthService } from './auth.service';
 import { UserDto } from './user.dto';
 
-import { ApiUseTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiUseTags('Authentication')
+@ApiTags('Authentication')
 @Controller('authentication')
 export class AuthController {
 
@@ -16,7 +16,7 @@ export class AuthController {
 
   @HttpCode(200)
   @Post('login')
-  @ApiOperation({ title: 'Create Authentication token' })
+  @ApiOperation({ description: 'Create Authentication token' })
   @ApiResponse({ status: 200, description: 'The auth token has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -26,7 +26,7 @@ export class AuthController {
 
   @HttpCode(200)
   @Post('revoke')
-  @ApiOperation({ title: 'Revoke Authentication token' })
+  @ApiOperation({ description: 'Revoke Authentication token' })
   @ApiResponse({ status: 200, description: 'The auth token has been successfully revoked.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })

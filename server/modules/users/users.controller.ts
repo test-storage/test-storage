@@ -13,14 +13,14 @@ import { User } from './user.interface';
 import { CreateUserDto } from './create-user.dto';
 
 import {
-  ApiUseTags,
+  ApiTags,
   ApiBearerAuth,
   ApiResponse,
   ApiOperation,
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiUseTags('Users')
+@ApiTags('Users')
 @Controller('api/v1/users')
 @UseGuards(RolesGuard)
 export class UsersController {
@@ -28,19 +28,19 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
   @Post()
-  @ApiOperation({ title: 'Create User' })
+  @ApiOperation({ description: 'Create User' })
   @ApiResponse({ status: 201, description: 'The user has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createUserDto: CreateUserDto
   ): Promise<User> {
     return await this.usersService.create(createUserDto, userId);
   }
 
   @Get()
-  @ApiOperation({ title: 'Get All Users' })
+  @ApiOperation({ description: 'Get All Users' })
   @ApiResponse({ status: 200, description: 'The list of users has been successfully retrieved.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findAll(): Promise<User[]> {
@@ -48,15 +48,15 @@ export class UsersController {
   }
 
   @Get('me')
-  @ApiOperation({ title: 'Get Current User' })
+  @ApiOperation({ description: 'Get Current User' })
   @ApiResponse({ status: 200, description: 'The current user has been successfully retrieved.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async findMe(@UserId(new ParameterValidationPipe) userId): Promise<User> {
+  async findMe(@UserId(new ParameterValidationPipe()) userId): Promise<User> {
     return this.usersService.findMe(userId);
   }
 
   @Get(':id')
-  @ApiOperation({ title: 'Get Single User by id' })
+  @ApiOperation({ description: 'Get Single User by id' })
   @ApiResponse({ status: 200, description: 'The single user has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -65,12 +65,12 @@ export class UsersController {
   }
 
   @Put(':id')
-  @ApiOperation({ title: 'Update Single User by id' })
+  @ApiOperation({ description: 'Update Single User by id' })
   @ApiResponse({ status: 200, description: 'The single user has been successfully updated.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async findOneAndUpdate(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createUserDto: CreateUserDto,
     @Param('id', new ParameterValidationPipe()) id: string) {
     return await this.usersService.update(id, createUserDto, userId);
@@ -78,7 +78,7 @@ export class UsersController {
 
   @Delete(':id')
   @Roles('administrator')
-  @ApiOperation({ title: 'Delete Single User by id' })
+  @ApiOperation({ description: 'Delete Single User by id' })
   @ApiResponse({ status: 200, description: 'The single user has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })

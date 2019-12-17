@@ -11,23 +11,23 @@ import { TestResult } from './testresult.interface';
 import { CreateTestResultDto } from './create-testresult.dto';
 
 import {
-  ApiUseTags,
+  ApiTags,
   ApiBearerAuth,
   ApiResponse,
   ApiOperation,
-  ApiImplicitQuery,
-  ApiImplicitParam
+  ApiQuery,
+  ApiParam
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiUseTags('TestResults')
+@ApiTags('TestResults')
 @Controller('api/v1/testresults')
 export class TestResultsController {
 
   constructor(private readonly testresultsService: TestResultsService) { }
 
   @Post()
-  @ApiOperation({ title: 'Create Test Result' })
+  @ApiOperation({ description: 'Create Test Result' })
   @ApiResponse({ status: 201, description: 'The test result has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -38,12 +38,12 @@ export class TestResultsController {
   }
 
   @Get()
-  @ApiOperation({ title: 'Get All Test Results' })
+  @ApiOperation({ description: 'Get All Test Results' })
   @ApiResponse({ status: 200, description: 'The list of test results has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitQuery({ name: 'projectId', description: 'filter test results by project id', required: false })
-  @ApiImplicitQuery({ name: 'testrunId', description: 'filter test results by testrun id', required: false })
+  @ApiQuery({ name: 'projectId', description: 'filter test results by project id', required: false })
+  @ApiQuery({ name: 'testrunId', description: 'filter test results by testrun id', required: false })
   async findAll(
     @Query('projectId', new QueryIdValidationPipe()) projectId?: string,
     @Query('testrunId', new QueryIdValidationPipe()) testrunId?: string): Promise<TestResult[]> {
@@ -57,21 +57,21 @@ export class TestResultsController {
   }
 
   @Get(':id')
-  @ApiOperation({ title: 'Get Single Test Result by id' })
+  @ApiOperation({ description: 'Get Single Test Result by id' })
   @ApiResponse({ status: 200, description: 'The single test result has been successfully retrieved.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitParam({ name: 'id', description: 'Test Result id' })
+  @ApiParam({ name: 'id', description: 'Test Result id' })
   async findOne(@Param('id', new ParameterValidationPipe()) id: string): Promise<TestResult> {
     return this.testresultsService.findOne(id);
   }
 
   @Put(':id')
-  @ApiOperation({ title: 'Update Single Test Result by id' })
+  @ApiOperation({ description: 'Update Single Test Result by id' })
   @ApiResponse({ status: 200, description: 'The single test result has been successfully updated.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitParam({ name: 'id', description: 'Test Result id' })
+  @ApiParam({ name: 'id', description: 'Test Result id' })
   async findOneAndUpdate(
     @UserId(new ParameterValidationPipe) userId,
     @Body(new ValidationPipe()) createTestResultDto: CreateTestResultDto,
@@ -80,11 +80,11 @@ export class TestResultsController {
   }
 
   @Delete(':id')
-  @ApiOperation({ title: 'Delete Single Test Result by id' })
+  @ApiOperation({ description: 'Delete Single Test Result by id' })
   @ApiResponse({ status: 200, description: 'The single test result has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiImplicitParam({ name: 'id', description: 'Test Result id' })
+  @ApiParam({ name: 'id', description: 'Test Result id' })
   async delete(@Param('id', new ParameterValidationPipe()) id: string) {
     return this.testresultsService.delete(id);
   }
