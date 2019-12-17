@@ -26,4 +26,6 @@ jobs:
     - name: Run Frontend tests
       run: npm run test
     - name: Run Backend tests
-      run: npm run test:backend
+      run: |
+        export SECRET=mytestsecret
+        npm run test:backend
