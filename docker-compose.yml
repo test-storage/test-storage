@@ -32,7 +32,7 @@ services:
     image: mongo:latest
     command: mongod --auth
     volumes:
-      - ./data/db:/data/db
+      - ./db:/data/db
       - ./server/install:/docker-entrypoint-initdb.d
     ports:
       - '27017-27019:27017-27019'
