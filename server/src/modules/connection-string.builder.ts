@@ -36,6 +36,6 @@ export class MongoDBConnectionStringBuilder {
   }
 
   build(): string {
-    return `${this.uriSchema}${this.user}:${this.password}@${process.env.DOCKERIZED ? 'mongodb' : this.host}:${this.port}/${this.databaseName}`;
+    return `${this.uriSchema}${this.user}:${this.password}@${this.host}:${this.port}/${this.databaseName}`;
   }
 }

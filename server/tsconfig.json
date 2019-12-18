@@ -6,10 +6,18 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2017",
+    "skipLibCheck": true,
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true
   },
+  "typeRoots": [
+    "node_modules/@types"
+  ],
+  "types": [
+    "jest",
+    "node"
+  ],
   "exclude": ["node_modules", "dist"]
 }

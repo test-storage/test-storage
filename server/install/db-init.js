@@ -1,5 +1,5 @@
-conn = new Mongo();
-db = conn.getDB("test-storage");
+// conn = new Mongo();
+// db = conn.getDB("test-storage");
 
 
 db.createUser(

@@ -1,7 +1,5 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 
-import * as config from 'config';
-
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { CORSMiddleware } from './common/middlewares/cors.middleware';
@@ -24,11 +22,11 @@ import { MongoDBConnectionStringBuilder } from './connection-string.builder';
   imports: [
     MongooseModule.forRoot(process.env.MONGOLAB_URI ||
       new MongoDBConnectionStringBuilder()
-        .setUser(config.get('db.user'))
-        .setPassword(config.get('db.password'))
-        .setHost(config.get('db.host'))
-        .setPort(config.get('db.port'))
-        .setDatabaseName(config.get('db.name'))
+        .setUser(process.env.DB_USER)
+        .setPassword(process.env.DB_PASSWORD)
+        .setHost(process.env.DB_HOST)
+        .setPort(process.env.DB_PORT)
+        .setDatabaseName(process.env.DB_NAME)
         .build(), { useNewUrlParser: true }),
     AuthModule,
     ProjectsModule,

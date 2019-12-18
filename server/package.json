@@ -14,7 +14,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "prebuild:old": "ts-node ./modules/jwt-init.ts",
+    "prebuild:old": "ts-node ./src/modules/jwt-init.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -27,7 +27,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "clean": "rimraf node_modules dist package-lock.json"
   },
   "dependencies": {
     "@nestjs/common": "^6.10.11",
@@ -37,7 +38,7 @@
     "@nestjs/platform-socket.io": "^6.10.11",
     "@nestjs/swagger": "^4.0.9",
     "@nestjs/websockets": "^6.10.11",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "3.0.6",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.11.0",
     "config": "^3.2.4",
