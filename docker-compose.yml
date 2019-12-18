@@ -1,26 +1,41 @@
 version: "2"
 
 services:
-  app:
-    container_name: application_container
+  frontend:
+    container_name: test-storage-frontend
     build: .
-    command: npm start
     environment:
       - NODE_ENV=production
     volumes:
       - .:/app
+    ports:
+      - "8080:80"
+
+  backend:
+    container_name: test-storage-backend
+    build: ./server
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=test-storage-database
+      - DB_PORT=27017
+      - DB_NAME=test-storage
+      - DB_USER=admin
+      - DB_PASSWORD=admin
+      - UPLOAD_DIR="./uploads"
+    volumes:
+      - ./server:/app
     ports:
       - "80:80"
     depends_on:
       - mongodb
 
   mongodb:
-    container_name: mongodb_container
+    container_name: test-storage-database
     image: mongo:latest
     command: mongod --auth
     volumes:
       - dbdata:/data/db
-      - ./install:/docker-entrypoint-initdb.d
+      - ./server/install:/db-init.js
     ports:
       - '27017:27017'
     environment:
