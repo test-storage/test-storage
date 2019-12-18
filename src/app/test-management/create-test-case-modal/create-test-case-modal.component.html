@@ -1,68 +1,68 @@
 <clr-modal *ngIf="testcase" [(clrModalOpen)]="opened" [clrModalSize]="'lg'">
   <h3 class="modal-title">{{ 'TESTCASECREATEPAGE.CREATE_TESTCASE' | translate }}</h3>
   <div class="modal-body">
-    <form (ngSubmit)="setOpened(false); createTestCase()" id="createTestCaseForm" #createTestCaseForm="ngForm" (keyup.enter)="createTestCaseForm.form.valid && createTestCaseForm.ngSubmit.emit();">
+    <form clrForm (ngSubmit)="setOpened(false); createTestCase()" id="createTestCaseForm" #createTestCaseForm="ngForm" (keyup.enter)="createTestCaseForm.form.valid && createTestCaseForm.ngSubmit.emit();">
       <section class="form-block">
 
-        <div class="form-group">
+        <clr-input-container>
           <label class="required" for="title">{{ 'TESTCASECREATEPAGE.TITLE' | translate }}</label>
-          <input [appAutofocus]="opened" type="text" id="title" name="title" [(ngModel)]="testcase.title" #title="ngModel" required
+          <input clrInput [appAutofocus]="opened" type="text" id="title" name="title" [(ngModel)]="testcase.title" #title="ngModel" required
             placeholder="{{ 'TESTCASECREATEPAGE.TITLE_PLACEHOLDER' | translate }}" size="35">
-        </div>
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label for="description">{{ 'TESTCASECREATEPAGE.DESCRIPTION' | translate }}</label>
-          <input type="text" id="description" name="description" [(ngModel)]="testcase.description" #description="ngModel" placeholder="{{ 'TESTCASECREATEPAGE.DESCRIPTION_PLACEHOLDER' | translate }}"
+          <input clrInput type="text" id="description" name="description" [(ngModel)]="testcase.description" #description="ngModel" placeholder="{{ 'TESTCASECREATEPAGE.DESCRIPTION_PLACEHOLDER' | translate }}"
             size="35">
-        </div>
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-select-container>
           <label for="priority">{{ 'TESTCASECREATEPAGE.PRIORITY' | translate }}</label>
-          <div class="select">
-            <select id="priority" name="priority" [(ngModel)]="testcase.priority" #priority="ngModel">
+
+            <select clrSelect id="priority" name="priority" [(ngModel)]="testcase.priority" #priority="ngModel">
               <option *ngFor="let priority of priorityKeys" [value]="priority.value">{{ 'PRIORITIES.' + priority.value | translate }}</option>
             </select>
-          </div>
-        </div>
 
-        <div class="form-group">
+        </clr-select-container>
+
+        <clr-select-container>
           <label for="type">{{ 'TESTCASECREATEPAGE.TYPE' | translate }}</label>
-          <div class="select">
-            <select id="type" name="type" [(ngModel)]="testcase.type" #priority="ngModel">
+
+            <select clrSelect id="type" name="type" [(ngModel)]="testcase.type" #type="ngModel">
               <option *ngFor="let type of typeKeys" [value]="type.value">{{ 'TESTCASETYPE.' + type.value | translate }}</option>
             </select>
-          </div>
-        </div>
+        </clr-select-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label for="tags">{{ 'TESTCASECREATEPAGE.TAGS' | translate }}</label>
-          <input #tag type="text" id="tags" name="tags" (keyup.enter)="setTag(tag.value); tag.value = '';" placeholder="{{ 'TESTCASECREATEPAGE.TAGS_PLACEHOLDER' | translate }}"
+          <input clrInput #tag type="text" id="tags" name="tags" (keyup.enter)="setTag(tag.value); tag.value = '';" placeholder="{{ 'TESTCASECREATEPAGE.TAGS_PLACEHOLDER' | translate }}"
             size="35">
-          <button type="button" class="btn btn-sm btn-secondary" (click)="setTag(tag.value); tag.value = '';">
-            <clr-icon shape="plus"></clr-icon> Add</button>
-        </div>
+        </clr-input-container>
 
-        <div class="form-group">
+        <button type="button" class="btn btn-sm btn-secondary" (click)="setTag(tag.value); tag.value = '';">
+        <clr-icon shape="plus"></clr-icon> Add</button>
+
+
           <label for="tag-list"></label>
           <span *ngFor="let tag of tags" class="label">{{ tag }}
             <a (click)="removeTag(tag);">
               <clr-icon shape="close"></clr-icon>
             </a>
           </span>
-        </div>
 
 
-        <div class="form-group">
+
+          <clr-textarea-container>
             <label for="preconditions">{{ 'TESTCASECREATEPAGE.PRECONDITIONS' | translate }}</label>
-            <textarea id="preconditions" name="preconditions" [(ngModel)]="testcase.preConditions" #preconditions="ngModel" placeholder="{{ 'TESTCASECREATEPAGE.PRECONDITIONS_PLACEHOLDER' | translate }}"
+            <textarea clrTextarea id="preconditions" name="preconditions" [(ngModel)]="testcase.preConditions" #preconditions="ngModel" placeholder="{{ 'TESTCASECREATEPAGE.PRECONDITIONS_PLACEHOLDER' | translate }}"
               size="35"></textarea>
-          </div>
+          </clr-textarea-container>
 
 
 
-        <div class="form-group">
+        <clr-input-container>
           <label>{{ 'TESTCASECREATEPAGE.STEPS' | translate }}</label>
-        </div>
+        </clr-input-container>
         <br>
         <clr-datagrid *ngIf="testcase.steps" [(clrDgSelected)]="selectedTestSteps">
 
@@ -72,7 +72,7 @@
                 <clr-icon shape="plus"></clr-icon> {{ 'TESTMANAGEMENTPAGE.ADD' | translate }}</button>
               <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedTestSteps.length > 0">
                 <clr-icon shape="close"></clr-icon> {{ 'TESTMANAGEMENTPAGE.DELETE' | translate }}</button>
-              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="true === false;">
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedTestSteps.length > 0">
                 <clr-icon shape="pencil"></clr-icon> {{ 'TESTMANAGEMENTPAGE.EDIT' | translate }}</button>
             </div>
           </clr-dg-action-bar>

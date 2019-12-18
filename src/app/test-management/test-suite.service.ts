@@ -17,7 +17,7 @@ export class TestSuiteService {
 
   public getTestSuitesByProjectId(projectId: string): Observable<TestSuite[]> {
     const params = new HttpParams().set('projectId', projectId);
-    return this.http.get<TestSuite[]>(this.apiPath, { params: params });
+    return this.http.get<TestSuite[]>(this.apiPath, { params });
   }
 
   public getTestSuite(id: string): Observable<TestSuite> {

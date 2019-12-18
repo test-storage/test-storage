@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.42.0 (December 18, 2019)
+- Refactor server ([@pumano](https://github.com/pumano) in [#95](https://github.com/test-storage/test-storage/pull/95))
+- Multiple bug fixes and enhancements
+- Update dependencies
+
 ## 0.41.0 (June 5, 2019)
 - Add testsuites selection to test runs ([@pumano](https://github.com/pumano) in [#94](https://github.com/test-storage/test-storage/pull/94))
 - Multiple bug fixes and enhancements

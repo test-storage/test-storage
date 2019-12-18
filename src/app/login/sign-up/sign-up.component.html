@@ -1,5 +1,5 @@
 <div class="login-wrapper">
-  <form class="login" (ngSubmit)="register()" id="createUserForm" #createUserForm="ngForm" (keyup.enter)="createUserForm.form.valid && createUserForm.ngSubmit.emit();">
+  <form clrForm class="login" (ngSubmit)="register()" id="createUserForm" #createUserForm="ngForm" (keyup.enter)="createUserForm.form.valid && createUserForm.ngSubmit.emit();">
     <section class="form-block">
 
       <label class="title">
@@ -9,42 +9,42 @@
 
       <h5>{{ 'USERCREATEPAGE.TITLE' | translate }}</h5>
       <div class="login-group">
-        <div class="form-group">
+        <clr-input-container>
           <label class="required" for="lastName">{{ 'USERCREATEPAGE.LASTNAME' | translate }}</label>
-          <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required placeholder="{{ 'USERCREATEPAGE.LASTNAME_PLACEHOLDER' | translate }}"
-            size="35">
-        </div>
+          <input clrInput type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required placeholder="{{ 'USERCREATEPAGE.LASTNAME_PLACEHOLDER' | translate }}"
+            size="30">
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label class="required" for="firstName">{{ 'USERCREATEPAGE.FIRSTNAME' | translate }}</label>
-          <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required placeholder="{{ 'USERCREATEPAGE.FIRSTNAME_PLACEHOLDER' | translate }}"
-            size="35">
-        </div>
+          <input clrInput type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required placeholder="{{ 'USERCREATEPAGE.FIRSTNAME_PLACEHOLDER' | translate }}"
+            size="30">
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label class="required" for="email">{{ 'USERCREATEPAGE.EMAIL' | translate }}</label>
-          <input type="text" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required placeholder="{{ 'USERCREATEPAGE.EMAIL_PLACEHOLDER' | translate }}"
-            size="35">
-        </div>
+          <input clrInput type="text" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required placeholder="{{ 'USERCREATEPAGE.EMAIL_PLACEHOLDER' | translate }}"
+            size="30">
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-password-container>
           <label class="required" for="password">{{ 'USERCREATEPAGE.PASSWORD' | translate }}</label>
-          <input type="password" id="password" name="password" placeholder="password" [(ngModel)]="user.password" #password="ngModel"
-            required size="35" appValidateEqual="confirmPassword" reverse="true">
+          <input clrPassword type="password" id="password" name="password" placeholder="password" [(ngModel)]="user.password" #password="ngModel"
+            required size="30" appValidateEqual="confirmPassword" reverse="true">
           <small [hidden]="password.valid || (password.pristine && !createUserForm.submitted)">
             Password is required
           </small>
-        </div>
+        </clr-password-container>
 
-        <div class="form-group">
+        <clr-password-container>
           <label class="required" for="confirmPassword">{{ 'USERCREATEPAGE.CONFIRMPASSWORD' | translate }}</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="confirm password" [(ngModel)]="user.confirmPassword"
-            #confirmPassword="ngModel" size="35" appValidateEqual="password">
+          <input clrPassword type="password" id="confirmPassword" name="confirmPassword" required placeholder="confirm password" [(ngModel)]="user.confirmPassword"
+            #confirmPassword="ngModel" size="30" appValidateEqual="password">
           <p *ngIf="confirmPassword?.errors?.isEqual">Passwords don't match</p>
           <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !createUserForm.submitted)">
             Password mismatch
           </small>
-        </div>
+        </clr-password-container>
         <button type="submit" class="btn btn-primary" (click)="createUserForm.ngSubmit.emit();" [disabled]="!createUserForm.form.valid">{{ 'TESTCASECREATEPAGE.CREATE_BUTTON' | translate }}</button>
         <a routerLink="/auth" class="signup">{{ 'TESTMANAGEMENTPAGE.CANCEL' | translate }}</a>
 

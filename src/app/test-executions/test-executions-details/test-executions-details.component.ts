@@ -32,7 +32,7 @@ export class TestExecutionsDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.testrunId = params['id'];
+      this.testrunId = params.id;
       this.getTestrun(this.testrunId);
     });
   }

@@ -1,22 +1,20 @@
 <clr-modal *ngIf="testsuite" [(clrModalOpen)]="opened">
   <h3 class="modal-title">{{ 'TESTSUITECREATEPAGE.CREATE_TESTSUITE' | translate }}</h3>
   <div class="modal-body">
-    <form (ngSubmit)="setOpened(false); createTestSuite()" id="createTestSuiteForm" #createTestSuiteForm="ngForm" (keyup.enter)="createTestSuiteForm.form.valid && createTestSuiteForm.ngSubmit.emit();">
+    <form clrForm (ngSubmit)="setOpened(false); createTestSuite()" id="createTestSuiteForm" #createTestSuiteForm="ngForm" (keyup.enter)="createTestSuiteForm.form.valid && createTestSuiteForm.ngSubmit.emit();">
       <section class="form-block">
 
-        <label>Детали</label>
-
-        <div class="form-group">
+        <clr-input-container>
           <label class="required" for="name">{{ 'TESTSUITECREATEPAGE.NAME' | translate }}</label>
-          <input [appAutofocus]="opened" type="text" id="name" name="name" [(ngModel)]="testsuite.name" #name="ngModel" required placeholder="{{ 'TESTSUITECREATEPAGE.NAME_PLACEHOLDER' | translate }}"
+          <input clrInput [appAutofocus]="opened" type="text" id="name" name="name" [(ngModel)]="testsuite.name" #name="ngModel" required placeholder="{{ 'TESTSUITECREATEPAGE.NAME_PLACEHOLDER' | translate }}"
             size="35">
-        </div>
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label for="description">{{ 'TESTSUITECREATEPAGE.DESCRIPTION' | translate }}</label>
-          <input type="text" id="description" name="description" [(ngModel)]="testsuite.description" #description="ngModel" placeholder="{{ 'TESTSUITECREATEPAGE.DESCRIPTION_PLACEHOLDER' | translate }}"
+          <input clrInput type="text" id="description" name="description" [(ngModel)]="testsuite.description" #description="ngModel" placeholder="{{ 'TESTSUITECREATEPAGE.DESCRIPTION_PLACEHOLDER' | translate }}"
             size="35">
-        </div>
+        </clr-input-container>
 
 
 

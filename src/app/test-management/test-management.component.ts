@@ -40,7 +40,7 @@ export class TestManagementComponent implements OnInit {
 
   ngOnInit() {
     this.route.parent.parent.params.subscribe(params => {
-      this.projectId = params['id'];
+      this.projectId = params.id;
       this.getTestSuites(this.projectId);
     });
   }
@@ -68,26 +68,26 @@ export class TestManagementComponent implements OnInit {
     const root = [];
     let parentNode;
 
-    for (let i = 0; i < this.testSuites.length; i++) {
+    for (const testsuite of this.testSuites) {
 
-      const node = this.testSuites[i];
-      node['children'] = [];
+      const node: TestSuiteViewModel = testsuite;
+      node.children = [];
       // View Model
-      node['icon'] = 'folder';
-      node['active'] = false;
-      node['expanded'] = false;
+      node.icon = 'folder';
+      node.active = false;
+      node.expanded = false;
 
       idToNodeMap[node._id] = node;
 
       if (node.parentId === 'root') {
-        node['expanded'] = true;
-        node['active'] = true;
+        node.expanded = true;
+        node.active = true;
         root[rootNodes] = node;
         rootNodes++;
       } else {
         parentNode = idToNodeMap[node.parentId];
         parentNode.children.push(node);
-        parentNode['expanded'] = true;
+        parentNode.expanded = true;
       }
     }
 
@@ -102,7 +102,6 @@ export class TestManagementComponent implements OnInit {
   }
 
   onAdd(testsuite?: TestSuite) {
-    event.stopPropagation();
     if (testsuite) {
       this.selectedTestSuite = testsuite;
     } else {
@@ -114,13 +113,11 @@ export class TestManagementComponent implements OnInit {
   }
 
   onEdit(testsuite: TestSuite) {
-    event.stopPropagation();
     this.selectedTestSuite = testsuite;
     this.editOpened = true;
   }
 
   onDelete(testsuite: TestSuite) {
-    event.stopPropagation();
     this.selectedTestSuite = testsuite;
     this.deleteOpened = true;
   }

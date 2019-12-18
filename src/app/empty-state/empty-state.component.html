@@ -1,0 +1,13 @@
+<div class="noexist-wrapper">
+  <div class="clr-col-lg-12 clr-col-md-12 clr-col-sm-12 clr-col-xs-12">
+
+    <div class="no-data">
+      <!--<img src="assets/add-project.png">-->
+      <clr-icon *ngIf="icon" [attr.shape]="icon" size="120"></clr-icon>
+      <h4>{{ title }}</h4>
+      <p class="tips">{{ description }}</p>
+      <a class="btn btn-primary" (click)="onClickButton()">{{ buttonText }}</a>
+    </div>
+
+  </div>
+</div>

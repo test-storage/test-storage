@@ -27,11 +27,11 @@ export class ValidateEqualDirective implements Validator {
     const controlToCompare = control.parent.get(this.appValidateEqual);
 
     if (controlToCompare && controlToCompare.value !== control.value && !this.isReverse) {
-      return { 'notEqual': true };
+      return { notEqual: true };
     }
 
     if (controlToCompare && controlToCompare.value === control.value && this.isReverse) {
-      delete controlToCompare.errors['notEqual'];
+      delete controlToCompare.errors.notEqual;
       if (!Object.keys(controlToCompare.errors).length) {
         controlToCompare.setErrors(null);
       }
@@ -39,7 +39,7 @@ export class ValidateEqualDirective implements Validator {
     }
 
     if (controlToCompare && controlToCompare.value !== control.value && this.isReverse) {
-      controlToCompare.setErrors({ 'notEqual': true });
+      controlToCompare.setErrors({ notEqual: true });
     }
 
     return null;

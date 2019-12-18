@@ -1,0 +1,42 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: npm install
+    - name: Build Project
+      run: npm run build
+
+  test-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: npm install
+    - name: Run Frontend tests
+      run: npm run test
+
+  test-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: |
+        cd server
+        npm install
+    - name: Run Backend tests
+      run: |
+        export SECRET=mytestsecret
+        cd server
+        npm run test

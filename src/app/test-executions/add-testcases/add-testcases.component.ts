@@ -44,10 +44,10 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.testrunId = params['id'];
+      this.testrunId = params.id;
       this.getTestrun(this.testrunId);
       this.route.parent.parent.params.subscribe(mParams => {
-        this.getTestSuites(mParams['id']);
+        this.getTestSuites(mParams.id);
       });
     });
   }
@@ -81,27 +81,28 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
     const root = [];
     let parentNode;
 
-    for (let i = 0; i < this.testSuites.length; i++) {
+    for (const testsuite of this.testSuites) {
 
-      const node = this.testSuites[i];
-      node['children'] = [];
+      const node: TestSuiteViewModel = testsuite;
+      node.children = [];
       // View Model
-      node['icon'] = 'folder';
-      node['active'] = false;
-      node['expanded'] = false;
-      node['selected'] = ClrSelectedState.UNSELECTED;
+      node.icon = 'folder';
+      node.active = false;
+      node.expanded = false;
+      // @ts-ignore
+      node.selected = ClrSelectedState.UNSELECTED;
 
       idToNodeMap[node._id] = node;
 
       if (node.parentId === 'root') {
-        node['expanded'] = true;
-        node['active'] = true;
+        node.expanded = true;
+        node.active = true;
         root[rootNodes] = node;
         rootNodes++;
       } else {
         parentNode = idToNodeMap[node.parentId];
         parentNode.children.push(node);
-        parentNode['expanded'] = true;
+        parentNode.expanded = true;
       }
     }
 

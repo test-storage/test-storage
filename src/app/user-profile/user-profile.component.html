@@ -4,51 +4,52 @@
 
 
 
-      <form>
+      <form clrForm>
         <h1>{{ 'USERPROFILEPAGE.USER_PROFILE' | translate }}</h1>
-        <section class="form-block">
+        <section>
           <label>{{ 'USERPROFILEPAGE.USER' | translate }}</label>
 
-          <div class="form-group">
-            <label class="required" for="firstname">{{ 'USERPROFILEPAGE.FIRST_NAME' | translate }}</label>
-            <input type="text" id="firstname" name="firstName" [(ngModel)]="profile.firstName" #firstname="ngModel"
-              required placeholder="John" size="35">
-          </div>
+          <clr-input-container>
+            <label for="firstname">{{ 'USERPROFILEPAGE.FIRST_NAME' | translate }}</label>
+            <input clrInput type="text" id="firstname" name="firstName" [(ngModel)]="profile.firstName"
+              #firstname="ngModel" required placeholder="John" size="35">
+          </clr-input-container>
 
-          <div class="form-group">
+          <clr-input-container>
             <label class="required" for="lastname">{{ 'USERPROFILEPAGE.LAST_NAME' | translate }}</label>
-            <input type="text" id="lastname" name="lastName" [(ngModel)]="profile.lastName" #lastname="ngModel"
+            <input clrInput type="text" id="lastname" name="lastName" [(ngModel)]="profile.lastName" #lastname="ngModel"
               required placeholder="Doe" size="35">
-          </div>
+          </clr-input-container>
 
           <br>
           <label>{{ 'USERPROFILEPAGE.COMPANY_DETAILS' | translate }}</label>
 
-          <div class="form-group">
+          <clr-input-container>
             <label class="required" for="email">{{ 'USERPROFILEPAGE.EMAIL' | translate }}</label>
-            <input type="text" id="email" name="email" [(ngModel)]="profile.email" #email="ngModel" required
+            <input clrInput type="text" id="email" name="email" [(ngModel)]="profile.email" #email="ngModel" required
               placeholder="johndoe@example.com" size="35">
-          </div>
+          </clr-input-container>
 
-          <div class="form-group">
+          <clr-input-container>
             <label for="phonenumber">{{ 'USERPROFILEPAGE.PHONE_NUMBER' | translate }}</label>
-            <input type="text" id="phonenumber" name="phoneNumber" [(ngModel)]="profile.workInfo.phoneNumber"
+            <input clrInput type="text" id="phonenumber" name="phoneNumber" [(ngModel)]="profile.workInfo.phoneNumber"
               placeholder="+7 (495) 123-45-67" size="35">
-          </div>
+          </clr-input-container>
 
-          <div class="form-group">
+          <clr-input-container>
             <label for="jobtitle">{{ 'USERPROFILEPAGE.JOB_TITLE' | translate }}</label>
-            <input type="text" id="jobtitle" name="jobTitle" [(ngModel)]="profile.workInfo.jobTitle" placeholder="Senior Test Engineer"
-              size="35">
-          </div>
+            <input clrInput type="text" id="jobtitle" name="jobTitle" [(ngModel)]="profile.workInfo.jobTitle"
+              placeholder="Senior Test Engineer" size="35">
+          </clr-input-container>
 
-          <div class="form-group">
+          <clr-input-container>
             <label for="company">{{ 'USERPROFILEPAGE.COMPANY' | translate }}</label>
-            <input type="text" id="company" name="company" [(ngModel)]="profile.workInfo.companyName" placeholder="Example Inc."
-              size="35">
-          </div>
+            <input clrInput type="text" id="company" name="company" [(ngModel)]="profile.workInfo.companyName"
+              placeholder="Example Inc." size="35">
+          </clr-input-container>
+            <br>
+            <button type="submit" class="btn btn-primary">{{ 'USERPROFILEPAGE.SAVE_BUTTON' | translate }}</button>
 
-          <button type="submit" class="btn btn-primary">{{ 'USERPROFILEPAGE.SAVE_BUTTON' | translate }}</button>
         </section>
       </form>
 

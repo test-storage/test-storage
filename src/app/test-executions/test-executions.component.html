@@ -28,9 +28,11 @@
                     <progress value="{{ testrun.progress + 50 }}" max="100" data-displayval="0%"></progress>
                   </div>
                   <div *ngIf="testrun.startDate && testrun.endDate">
-                    <clr-icon *ngIf="(testrun.endDate <= tomorrow.toISOString() && testrun.endDate >= today.toISOString())"
+                    <clr-icon
+                      *ngIf="(testrun.endDate <= tomorrow.toISOString() && testrun.endDate >= today.toISOString())"
                       shape="clock" class="has-alert" title="Attention"></clr-icon>
-                    <clr-icon *ngIf="testrun.endDate < tomorrow.toISOString()" shape="clock" class="has-badge" title="Overdue"></clr-icon>
+                    <clr-icon *ngIf="testrun.endDate < tomorrow.toISOString()" shape="clock" class="has-badge"
+                      title="Overdue"></clr-icon>
                     <clr-icon *ngIf="testrun.endDate > tomorrow.toISOString()" shape="clock"></clr-icon>
                     <span class="date"> {{ testrun.startDate | date }} — {{ testrun.endDate | date }} </span>
                   </div>
@@ -86,24 +88,19 @@
   </ng-template>
 
   <ng-template #noExistTestruns>
-    <div class="noexist-wrapper">
-
-      <div class="clr-col-lg-12 clr-col-md-12 clr-col-sm-12 clr-col-xs-12">
-
-        <div class="no-testrun">
-          <img src="assets/add-project.png">
-          <h4>{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_TITLE' | translate }}</h4>
-          <p class="tips">{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_DESCRIPTION' | translate }}</p>
-          <a (click)="onAdd();" class="btn btn-primary">{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_CREATETESTRUN_BUTTON' |
-            translate }}</a>
-        </div>
-
-      </div>
-    </div>
-
+    <app-empty-state
+      icon="plus"
+      title="{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_TITLE' | translate }}"
+      description="{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_DESCRIPTION' | translate }}"
+      buttonText="{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_CREATETESTRUN_BUTTON' | translate }}"
+      (clicked)="onAdd();">
+    </app-empty-state>
   </ng-template>
 
-  <app-create-test-run-modal [(opened)]="createOpened" (testrunChange)="createTestrun($event);"></app-create-test-run-modal>
-  <app-edit-test-run-modal [testrun]="selectedTestrun" [(opened)]="editOpened" (testrunChange)="updateTestrun($event);"></app-edit-test-run-modal>
-  <app-delete-test-run-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-test-run-modal>
+  <app-create-test-run-modal [(opened)]="createOpened" (testrunChange)="createTestrun($event);">
+  </app-create-test-run-modal>
+  <app-edit-test-run-modal [testrun]="selectedTestrun" [(opened)]="editOpened" (testrunChange)="updateTestrun($event);">
+  </app-edit-test-run-modal>
+  <app-delete-test-run-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete()">
+  </app-delete-test-run-modal>
 </div>

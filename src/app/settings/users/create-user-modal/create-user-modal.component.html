@@ -1,83 +1,80 @@
 <clr-modal *ngIf="opened" [(clrModalOpen)]="opened">
   <h3 class="modal-title">{{ 'USERCREATEPAGE.TITLE' | translate }}</h3>
   <div class="modal-body">
-    <form (ngSubmit)="setOpened(false); createUser()" id="createUserForm" #createUserForm="ngForm" (keyup.enter)="createUserForm.form.valid && createUserForm.ngSubmit.emit();">
+    <form clrForm (ngSubmit)="setOpened(false); createUser()" id="createUserForm" #createUserForm="ngForm" (keyup.enter)="createUserForm.form.valid && createUserForm.ngSubmit.emit();">
       <section class="form-block">
 
         <label>{{ 'USERCREATEPAGE.SECTION_GENERAL' | translate }}</label>
 
-        <div class="form-group">
+        <clr-input-container>
           <label class="required" for="lastName">{{ 'USERCREATEPAGE.LASTNAME' | translate }}</label>
-          <input [appAutofocus]="opened" type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required placeholder="{{ 'USERCREATEPAGE.LASTNAME_PLACEHOLDER' | translate }}"
+          <input clrInput [appAutofocus]="opened" type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required placeholder="{{ 'USERCREATEPAGE.LASTNAME_PLACEHOLDER' | translate }}"
             size="35">
-        </div>
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label class="required" for="firstName">{{ 'USERCREATEPAGE.FIRSTNAME' | translate }}</label>
-          <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required placeholder="{{ 'USERCREATEPAGE.FIRSTNAME_PLACEHOLDER' | translate }}"
+          <input clrInput type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required placeholder="{{ 'USERCREATEPAGE.FIRSTNAME_PLACEHOLDER' | translate }}"
             size="35">
-        </div>
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label class="required" for="email">{{ 'USERCREATEPAGE.EMAIL' | translate }}</label>
-          <input type="text" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required placeholder="{{ 'USERCREATEPAGE.EMAIL_PLACEHOLDER' | translate }}"
+          <input clrInput type="text" id="email" name="email" [(ngModel)]="user.email" #email="ngModel" required placeholder="{{ 'USERCREATEPAGE.EMAIL_PLACEHOLDER' | translate }}"
             size="35">
-        </div>
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label class="required" for="password">{{ 'USERCREATEPAGE.PASSWORD' | translate }}</label>
-          <input type="password" id="password" name="password" placeholder="password" [(ngModel)]="user.password" #password="ngModel"
+          <input clrInput type="password" id="password" name="password" placeholder="password" [(ngModel)]="user.password" #password="ngModel"
             required size="35" appValidateEqual="confirmPassword" reverse="true">
           <small [hidden]="password.valid || (password.pristine && !createUserForm.submitted)">
             Password is required
           </small>
-        </div>
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label class="required" for="confirmPassword">{{ 'USERCREATEPAGE.CONFIRMPASSWORD' | translate }}</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="confirm password" [(ngModel)]="user.confirmPassword"
+          <input clrInput type="password" id="confirmPassword" name="confirmPassword" required placeholder="confirm password" [(ngModel)]="user.confirmPassword"
             #confirmPassword="ngModel" size="35" appValidateEqual="password">
           <p *ngIf="confirmPassword?.errors?.isEqual">Passwords don't match</p>
           <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !createUserForm.submitted)">
             Password mismatch
           </small>
-        </div>
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-checkbox-container>
           <label class="required">{{ 'USERCREATEPAGE.ACTIVE' | translate }}</label>
-          <div class="checkbox">
-            <input type="checkbox" id="active" name="active" [(ngModel)]="user.active" #active="ngModel">
-            <label for="active"></label>
-          </div>
-        </div>
+          <clr-checkbox-wrapper>
+            <input clrCheckbox type="checkbox" id="active" name="active" [(ngModel)]="user.active" #active="ngModel">
+          </clr-checkbox-wrapper>
+        </clr-checkbox-container>
 
-        <div class="form-group">
+        <clr-select-container>
           <label class="required" for="role">{{ 'USERCREATEPAGE.ROLE' | translate }}</label>
-          <div class="select" *ngIf="roles">
-            <select id="role" name="role" [(ngModel)]="user.role" #role="ngModel">
+            <select clrSelect id="role" *ngIf="roles" name="role" [(ngModel)]="user.role" #role="ngModel">
               <option *ngFor="let role of roles" [value]="role._id">{{ role.name }}</option>
             </select>
-          </div>
-        </div>
+        </clr-select-container>
 
 
         <br>
         <label>{{ 'USERPROFILEPAGE.COMPANY_DETAILS' | translate }}</label>
 
-        <div class="form-group">
+        <clr-input-container>
           <label for="phonenumber">{{ 'USERPROFILEPAGE.PHONE_NUMBER' | translate }}</label>
-          <input type="text" id="phonenumber" name="phoneNumber" placeholder="+7 (495) 123-45-67" size="35">
-        </div>
+          <input clrInput type="text" id="phonenumber" name="phoneNumber" placeholder="+7 (495) 123-45-67" size="35">
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label for="jobtitle">{{ 'USERPROFILEPAGE.JOB_TITLE' | translate }}</label>
-          <input type="text" id="jobtitle" name="jobTitle" placeholder="Senior Test Engineer" size="35">
-        </div>
+          <input clrInput type="text" id="jobtitle" name="jobTitle" placeholder="Senior Test Engineer" size="35">
+        </clr-input-container>
 
-        <div class="form-group">
+        <clr-input-container>
           <label for="company">{{ 'USERPROFILEPAGE.COMPANY' | translate }}</label>
-          <input type="text" id="company" name="company" placeholder="Example Inc." size="35">
-        </div>
+          <input clrInput type="text" id="company" name="company" placeholder="Example Inc." size="35">
+        </clr-input-container>
 
       </section>
     </form>
