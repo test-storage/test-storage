@@ -8,8 +8,6 @@ RUN npm run build
 
 # production stage
 FROM nginx:stable-alpine as production-stage
-COPY default-heroku.conf /etc/nginx/conf.d/default.conf
+COPY default-heroku.conf /etc/nginx/conf.d/default.conf.template
 COPY --from=build-stage /app/dist/test-storage /usr/share/nginx/html
-COPY ./entrypoint-heroku.sh .
-
-ENTRYPOINT [ "entrypoint-heroku.sh" ]
+CMD /bin/sh -c "envsubst < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
