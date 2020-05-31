@@ -2,7 +2,12 @@ import { Test } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { AuthValidationService } from './auth-validation.service';
-import { JwtStrategy } from './passport/jwt.strategy';
+
+import { jwtSecret } from './strategies/jwt.secret';
+import { LocalStrategy } from './strategies/local.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
 
 import { UserDto } from './user.dto';
 import { UsersService } from './../users/users.service';
@@ -15,11 +20,17 @@ describe('AuthController', () => {
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      imports: [],
+      imports: [
+      PassportModule.register({ defaultStrategy: 'jwt' }),
+      JwtModule.register({
+        secret: process.env.SECRET || jwtSecret(),
+        signOptions: { expiresIn: '1d' },
+      })],
       controllers: [AuthController],
       providers: [
         AuthService,
         JwtStrategy,
+        LocalStrategy,
         AuthValidationService,
         UsersService,
         {
@@ -46,11 +57,10 @@ describe('AuthController', () => {
       };
 
       const result = {
-        expiresIn: 3600,
         accessToken: 'data'
       };
 
-      jest.spyOn(authService, 'getAccessToken').mockImplementation(() => Promise.resolve(result));
+      jest.spyOn(authService, 'login').mockImplementation(() => Promise.resolve(result));
 
       expect(await authController.login(user)).toEqual(result);
     });

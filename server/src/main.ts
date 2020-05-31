@@ -1,16 +1,13 @@
-import * as express from 'express';
-import { ExpressAdapter } from '@nestjs/platform-express';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 import { ApplicationModule } from './modules/app.module';
+import { JwtAuthGuard } from './modules/common/guards/jwt.guard';
 
 async function bootstrap() {
 
-  const expressServer = express();
-  expressServer.disable('x-powered-by');
-
-  const app = await NestFactory.create(ApplicationModule, new ExpressAdapter(expressServer), {});
+  const app = await NestFactory.create(ApplicationModule);
+  app.useGlobalGuards(new JwtAuthGuard())
 
   if (process.env.NODE_ENV !== 'production') {
     await initSwagger(app);
@@ -31,3 +28,4 @@ function initSwagger(app) {
 }
 
 bootstrap();
+
