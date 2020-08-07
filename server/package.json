@@ -38,7 +38,7 @@
     "@nestjs/swagger": "^4.0.9",
     "@nestjs/websockets": "^6.10.11",
     "bcrypt": "^3.0.7",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "class-validator": "^0.11.0",
     "config": "^3.2.4",
     "database-updates": "^2.0.0",
