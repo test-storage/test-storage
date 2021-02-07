@@ -13,7 +13,7 @@ import { User } from './user';
 export class LoginComponent implements OnInit {
 
   public user: User;
-  public error;
+  public error!: string | null;
 
   constructor(
     private router: Router,
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.user.rememberMe = false;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.authenticationService.isLoggedIn().subscribe((loggedIn: boolean) => {
       if (loggedIn) {
         this.router.navigateByUrl('');
@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
-    this.error = undefined;
+  login(): void {
+    this.error = null;
     this.authenticationService.login(this.user).subscribe(
       response => this.authenticationService.setToken(response),
       error => {

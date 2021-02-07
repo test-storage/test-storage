@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../settings/users/user';
 
 @Injectable()
 export class LocalStorageService {
@@ -11,7 +12,7 @@ export class LocalStorageService {
   getToken(): string {
 
     if (this.token === '') {
-      const token = this.getTokenFromStorage();
+      const token = this.getTokenFromStorage() || '';
       this.token = token;
       return this.token;
     } else {
@@ -19,10 +20,10 @@ export class LocalStorageService {
     }
   }
 
-  getTokenFromStorage() {
+  getTokenFromStorage(): string | void {
     if (localStorage.getItem('authToken')) {
 
-      const authToken = JSON.parse(localStorage.getItem('authToken'));
+      const authToken = JSON.parse(localStorage.getItem('authToken') as string);
       const token = authToken && authToken.token;
 
       if (token) {
@@ -36,15 +37,11 @@ export class LocalStorageService {
   }
 
   tokenNotExpired(token: string): boolean {
-    if (token) {
-      // if token not expired return true
-      return !this.jwtHelper.isTokenExpired(token);
-    } else {
-      throw new Error('Token not provided.');
-    }
+    // if token not expired return true
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
-  setToken(token: string) {
+  setToken(token: string): void {
     // store jwt token in local sotrage to keep user logged in between page refreshes
     localStorage.setItem('authToken', JSON.stringify({
       token
@@ -59,17 +56,16 @@ export class LocalStorageService {
   }
 
 
-  getUser() {
-    return JSON.parse(localStorage.getItem('authUser'));
+  getUser(): string {
+    return JSON.parse(localStorage.getItem('authUser') as string);
   }
 
-  setUser(userObject) {
-    // store user data: username, firstname, lastnamet and job title
+  setUser(userObject: User): void {
     localStorage.setItem('authUser', JSON.stringify({
       username: userObject.email,
       firstName: userObject.firstName,
       lastName: userObject.lastName,
-      title: userObject.title
+      jobTitle: userObject.workInfo?.jobTitle
     }));
   }
 

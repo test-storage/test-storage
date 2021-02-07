@@ -12,24 +12,23 @@ export class EditDeviceModalComponent implements OnInit {
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() deviceChange = new EventEmitter<Device>();
-  @Input() device: Device;
+  @Input() device!: Device;
   public deviceTypes = DeviceType;
-  typeKeys; // Type enumeration keys
+  typeKeys!: any[]; // Type enumeration keys
 
   constructor() { }
 
-  setOpened(val: boolean) {
+  setOpened(val: boolean): void {
     this.opened = val;
     this.openedChange.emit(this.opened);
   }
 
-  updateDevice() {
-    console.log(this.device);
+  updateDevice(): void {
     this.deviceChange.emit(this.device);
   }
 
-  ngOnInit() {
-    this.typeKeys = Object.keys(this.deviceTypes).filter(f => !isNaN(Number(f))).map(key => (
+  ngOnInit(): void {
+    this.typeKeys = Object.keys(this.deviceTypes).filter(f => !isNaN(Number(f))).map((key: any) => (
       { value: this.deviceTypes[key], key: parseInt(key, 10) }));
   }
 

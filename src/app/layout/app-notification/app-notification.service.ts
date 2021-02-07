@@ -22,7 +22,7 @@ export class AppNotificationService {
     return this.http.get<Notification>(this.apiPath);
   }
 
-  public updateNotification(notification: Notification) {
+  public updateNotification(notification: Notification): Observable<any> {
     return this.http.put(`${this.apiPath}/${notification._id}`, notification, { observe: 'response' });
   }
 

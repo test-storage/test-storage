@@ -32,7 +32,7 @@ export class UserStoriesController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createUserStoryDto: CreateUserStoryDto): Promise<UserStory> {
     return await this.userStoriesService.create(createUserStoryDto, userId);
   }
@@ -43,7 +43,7 @@ export class UserStoriesController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async import(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createUserStoryDto: CreateUserStoryDto[]): Promise<UserStory[]> {
     return await this.userStoriesService.bulkImport(createUserStoryDto, userId);
   }
@@ -105,9 +105,9 @@ export class UserStoriesController {
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiParam({ name: 'id', description: 'User Story id' })
   async findOneAndUpdate(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createUserStoryDto: CreateUserStoryDto,
-    @Param('id', new ParameterValidationPipe()) id: string) {
+    @Param('id', new ParameterValidationPipe()) id: string): Promise<UserStory> {
     return await this.userStoriesService.update(id, createUserStoryDto, userId);
   }
 
@@ -117,7 +117,7 @@ export class UserStoriesController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiParam({ name: 'id', description: 'User Story id' })
-  async delete(@Param('id', new ParameterValidationPipe()) id: string) {
+  async delete(@Param('id', new ParameterValidationPipe()) id: string): Promise<void> {
     return this.userStoriesService.delete(id);
   }
 

@@ -13,16 +13,16 @@ export class DeleteTestSuiteModalComponent implements OnInit {
 
   constructor() { }
 
-  setOpened(val: boolean) {
+  setOpened(val: boolean): void {
     this.opened = val;
     this.openedChange.emit(this.opened);
   }
 
-  deleteTestSuite() {
+  deleteTestSuite(): void {
     this.confirmChange.emit();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

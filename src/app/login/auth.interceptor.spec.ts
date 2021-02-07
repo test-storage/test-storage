@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { AuthInterceptor } from './auth.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 
 import { LocalStorageService } from './local-storage.service';
 
@@ -12,6 +12,7 @@ describe(`AuthInterceptor`, () => {
   let service: ProjectsService;
   let httpMock: HttpTestingController;
   let localStorageService: LocalStorageService;
+  let httpClient: HttpClient;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -25,14 +26,15 @@ describe(`AuthInterceptor`, () => {
         },
         {
           provide: LocalStorageService,
-          useValue: { getToken: (token) => 'token' }
+          useValue: { getToken: (token: {token: string}) => 'token' }
         }
       ],
     });
 
-    service = TestBed.get(ProjectsService);
-    httpMock = TestBed.get(HttpTestingController);
-    localStorageService = TestBed.get(LocalStorageService);
+    service = TestBed.inject(ProjectsService);
+    httpMock = TestBed.inject(HttpTestingController);
+    localStorageService = TestBed.inject(LocalStorageService);
+    httpClient = TestBed.inject(HttpClient);
   });
 
   afterEach(() => {

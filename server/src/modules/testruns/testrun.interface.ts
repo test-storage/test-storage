@@ -1,5 +1,7 @@
-export interface Testrun {
-  readonly _id?: string;
+import { Document } from 'mongoose';
+
+export interface Testrun extends Document {
+  readonly _id: string;
   readonly name: string;
   readonly description?: string;
   readonly projectId: string;

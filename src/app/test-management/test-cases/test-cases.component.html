@@ -20,6 +20,7 @@
     <clr-dg-placeholder>{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTCASES_TITLE' | translate }}</clr-dg-placeholder>
     <!--<clr-dg-column >Order</clr-dg-column>-->
     <!--<clr-dg-column>Status</clr-dg-column>-->
+    <clr-dg-column>Автоматизирован</clr-dg-column>
     <!--<clr-dg-column>{{ 'TESTMANAGEMENTPAGE.TAGS' | translate }}</clr-dg-column>-->
     <!--<clr-dg-column style="width: 30px !important;">{{ 'TESTMANAGEMENTPAGE.TYPE' | translate }}</clr-dg-column>-->
     <!--<clr-dg-column>{{ 'PROJECTCREATEPAGE.STATUS' | translate }}</clr-dg-column>-->
@@ -55,11 +56,18 @@
 
     </clr-dg-cell>
   -->
-      <!--
+
+    <!--
     <clr-dg-cell>
       {{ 'TESTCASESTATUS.' + testCase.status | translate }}
     </clr-dg-cell>
+
     -->
+
+    <clr-dg-cell *ngIf="testCase.status === 'AUTOMATED'">
+      <clr-icon shape="check" style="color: #318700"></clr-icon>
+    </clr-dg-cell>
+
 
       <!--
     <clr-dg-cell [ngSwitch]="testCase.type" style="text-align: center;">

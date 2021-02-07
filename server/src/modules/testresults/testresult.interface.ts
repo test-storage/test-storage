@@ -1,5 +1,7 @@
-export interface TestResult {
-  readonly _id?: string;
+import { Document } from 'mongoose';
+
+export interface TestResult extends Document {
+  readonly _id: string;
   readonly projectId: string;
   readonly testrunId: string;
   readonly testcaseId: string;

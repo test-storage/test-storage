@@ -12,8 +12,10 @@ export class TestrunsService {
   constructor(@InjectModel('Testrun') private readonly testrunModel: Model<Testrun>) { }
 
   async create(testrunDto: CreateTestrunDto, userId: string): Promise<Testrun> {
-    const createdTestrun = new this.testrunModel(testrunDto);
-    createdTestrun.createdBy = userId;
+    const createdTestrun = new this.testrunModel({
+      ...testrunDto,
+      createdBy: userId
+    });
     return await createdTestrun.save();
   }
 
@@ -26,20 +28,22 @@ export class TestrunsService {
   }
 
   async findOne(id: string): Promise<Testrun> {
-    return await this.testrunModel.findOne({ '_id': id }).exec();
+    return await this.testrunModel.findOne({ _id: id }).exec();
   }
 
   async update(id: string, testrun: CreateTestrunDto, userId: string): Promise<Testrun> {
-    const existedTestRun = await this.testrunModel.findOne({ '_id': id }).exec();
+    const existedTestRun = await this.testrunModel.findOne({ _id: id }).exec();
     if (existedTestRun) {
-      Object.assign(existedTestRun, testrun);
-      existedTestRun.updatedBy = userId;
-      existedTestRun.updated = new Date().toISOString();
+      Object.assign(existedTestRun, {
+        ...testrun,
+        updatedBy: userId,
+        updated: new Date().toISOString()
+      });
       return existedTestRun.save();
     }
   }
 
   async delete(id: string): Promise<void> {
-    return await this.testrunModel.findOneAndRemove({ '_id': id }).exec();
+    await this.testrunModel.findOneAndRemove({ _id: id }).exec();
   }
 }

@@ -9,13 +9,13 @@ import { ClrWizard } from '@clr/angular';
 })
 export class SystemWizardComponent implements OnInit {
 
-  @ViewChild('wizardxl', { static: true }) wizardExtraLarge: ClrWizard;
+  @ViewChild('wizardxl', { static: true }) wizardExtraLarge!: ClrWizard;
 
   @Input() opened = false;
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

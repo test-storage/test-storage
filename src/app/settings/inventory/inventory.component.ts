@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
+
 import { pageTransition } from '../../animations';
 
 import { Device } from './device';
@@ -18,9 +19,9 @@ export class InventoryComponent implements OnInit, OnDestroy {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  subscription;
-  selectedDevices = [];
-  public devices: Device[];
+  private subscription!: Subscription;
+  selectedDevices: Device[] = [];
+  public devices: Device[] = [];
 
   public createOpened = false;
   public editOpened = false;
@@ -32,40 +33,40 @@ export class InventoryComponent implements OnInit, OnDestroy {
     private notificationsService: ToastNotificationsService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadDevices();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  loadDevices() {
+  loadDevices(): void {
     this.subscription = this.inventoryService.getDevices().subscribe(
       data => this.devices = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
-  onAdd() {
+  onAdd(): void {
     this.createOpened = true;
   }
 
-  onEdit() {
+  onEdit(): void {
     this.editOpened = true;
   }
 
-  onDelete() {
+  onDelete(): void {
     this.deleteOpened = true;
   }
 
-  createDevice(device: Device) {
+  createDevice(device: Device): void {
 
     this.inventoryService.createDevice(device).subscribe(
-      (response: HttpResponse<Device>) => {
+      (response) => {
         if (response.status === 201) {
           this.notificationsService.successfullyCreated(`${device.manufacturer} ${device.model}`);
 
-          this.devices.push(response.body);
+          this.devices.push(response.body as Device);
         }
       },
       error => {
@@ -81,7 +82,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
     );
   }
 
-  updateDevice(device: Device) {
+  updateDevice(device: Device): void {
     this.inventoryService.updateDevice(device, device._id).subscribe(
       response => {
         if (response.status === 200) {
@@ -110,9 +111,9 @@ export class InventoryComponent implements OnInit, OnDestroy {
     this.selectedDevices = [];
   }
 
-  forceDelete($event) {
+  forceDelete($event: any): void {
     this.selectedDevices.forEach(selectedDevice => {
-      this.inventoryService.deleteDevice(selectedDevice._id).subscribe(
+      this.inventoryService.deleteDevice(selectedDevice._id as string).subscribe(
         response => {
           if (response.status === 200) {
             this.notificationsService.successfullyDeleted(`${selectedDevice.manufacturer} ${selectedDevice.model}`);

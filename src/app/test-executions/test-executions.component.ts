@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { pageTransition } from '../animations';
-import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -20,20 +20,20 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  private subscription;
+  private subscription!: Subscription;
 
   createOpened = false;
   editOpened = false;
   deleteOpened = false;
 
-  public projectId: string;
+  public projectId!: string;
   public testruns: Testrun[] = [];
-  public selectedTestrun: Testrun;
+  public selectedTestrun!: Testrun;
 
-  public today: Date;
-  public tomorrow: Date;
-  public future: Date;
-  public yesterday: Date;
+  public today!: Date;
+  public tomorrow!: Date;
+  public future!: Date;
+  public yesterday!: Date;
 
   constructor(
     private testrunService: TestrunsService,
@@ -42,7 +42,7 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
     protected translateService: TranslateService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
     this.today = new Date();
     this.tomorrow = new Date();
@@ -51,7 +51,7 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
     this.tomorrow.setDate(this.today.getDate() + 1);
     this.yesterday.setDate(this.today.getDate() - 1);
     this.future.setDate(this.today.getDate() + 50);
-    this.route.parent.parent.params.subscribe(params => {
+    this.route.parent?.parent?.params.subscribe(params => {
       this.projectId = params.id;
       this.getTestruns(this.projectId);
     });
@@ -114,42 +114,42 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
     ]; */
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
 
-  getTestruns(projectId: string) {
+  getTestruns(projectId: string): void {
     this.subscription = this.testrunService.getTestrunsByProjectId(projectId).subscribe(
       data => this.testruns = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
 
-  onAdd() {
+  onAdd(): void {
     this.createOpened = true;
   }
 
-  onEdit(testrun: Testrun) {
+  onEdit(testrun: Testrun): void {
     this.editOpened = true;
     this.selectedTestrun = testrun;
   }
 
-  onDelete(testrun: Testrun) {
+  onDelete(testrun: Testrun): void {
     this.deleteOpened = true;
     this.selectedTestrun = testrun;
   }
 
-  createTestrun(testrun: Testrun) {
+  createTestrun(testrun: Testrun): void {
 
     testrun.projectId = this.projectId;
 
     this.testrunService.createTestrun(testrun).subscribe(
-      (response: HttpResponse<Testrun>) => {
+      (response) => {
         if (response.status === 201) {
           this.notificationsService.successfullyCreated(testrun.name);
 
-          this.testruns.push(response.body);
+          this.testruns.push(response.body as Testrun);
         }
       },
       error => {
@@ -165,7 +165,7 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
     );
   }
 
-  updateTestrun(testrun: Testrun) {
+  updateTestrun(testrun: Testrun): void {
     this.testrunService.updateTestrun(testrun, testrun._id).subscribe(
       response => {
         if (response.status === 200) {
@@ -189,8 +189,8 @@ export class TestExecutionsComponent implements OnInit, OnDestroy {
     );
   }
 
-  forceDelete() {
-    this.testrunService.deleteTestrun(this.selectedTestrun._id).subscribe(
+  forceDelete(): void {
+    this.testrunService.deleteTestrun(this.selectedTestrun._id as string).subscribe(
       response => {
         if (response.status === 200) {
           this.notificationsService.successfullyDeleted(this.selectedTestrun.name);

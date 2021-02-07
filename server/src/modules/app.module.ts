@@ -1,4 +1,5 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
@@ -20,6 +21,9 @@ import { MongoDBConnectionStringBuilder } from './connection-string.builder';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.development.env',
+    }),
     MongooseModule.forRoot(process.env.MONGOLAB_URI ||
       new MongoDBConnectionStringBuilder()
         .setUser(process.env.DB_USER)

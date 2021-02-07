@@ -1,12 +1,12 @@
 export class TestCase {
-  // tslint:disable-next-line: variable-name
+  // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match
   _id?: string;
   key?: string;
-  projectId: string;
-  testSuiteId: string;
+  projectId!: string;
+  testSuiteId!: string;
   priority?: Priority;
   order?: number;
-  title: string;
+  title!: string;
   description?: string;
   type?: TestCaseType;
   preConditions?: string;

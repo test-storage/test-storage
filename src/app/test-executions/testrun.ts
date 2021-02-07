@@ -1,9 +1,9 @@
 export class Testrun {
-  // tslint:disable-next-line: variable-name
+  // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match
   _id?: string;
-  name: string;
+  name!: string;
   description?: string;
-  projectId: string;
+  projectId!: string;
   builds?: Array<string>;
   environments?: Array<string>;
   platforms?: Array<string>;

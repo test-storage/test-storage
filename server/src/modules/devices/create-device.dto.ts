@@ -16,7 +16,7 @@ export class CreateDeviceDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  readonly model: string;
+  readonly deviceModel: string;
 
   @ApiProperty()
   @IsString()

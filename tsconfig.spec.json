@@ -1,15 +1,17 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    // "target": "ES5",
+    "allowJs": true,
     "outDir": "./out-tsc/spec",
     "types": [
       "jest",
+      "jsdom",
       "node"
-    ],
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
-    "allowJs": true
+    ]
   },
   "files": [
     "src/polyfills.ts"

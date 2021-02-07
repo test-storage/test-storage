@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { AuthGuard } from './../../login/auth.guard';
@@ -32,7 +33,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       isRead: true
     }
   ];
-  private websocketConnection;
+  private websocketConnection!: Subscription;
 
   constructor(
     private authGuard: AuthGuard,
@@ -42,30 +43,30 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private coldNotificationsService: AppNotificationService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadNotifications();
     this.subscribeToHotNotifications();
   }
 
-  loadNotifications() {
+  loadNotifications(): void {
     this.coldNotificationsService.getNotifications().subscribe(
       notification => this.notifications.push(notification),
       error => console.log(error));
   }
 
-  subscribeToHotNotifications() {
+  subscribeToHotNotifications(): void {
     this.websocketConnection = this.notificationsService.connect().subscribe(notification => {
       this.notifications.push(notification as Notification);
       console.log('notifications:', this.notifications);
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.websocketConnection.unsubscribe();
   }
 
 
-  logout() {
+  logout(): void {
     this.authService.logout();
     this.authGuard.canActivate();
   }

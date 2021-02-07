@@ -72,7 +72,7 @@ export class UsersController {
   async findOneAndUpdate(
     @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createUserDto: CreateUserDto,
-    @Param('id', new ParameterValidationPipe()) id: string) {
+    @Param('id', new ParameterValidationPipe()) id: string): Promise<User> {
     return await this.usersService.update(id, createUserDto, userId);
   }
 
@@ -82,7 +82,7 @@ export class UsersController {
   @ApiResponse({ status: 200, description: 'The single user has been successfully deleted.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async delete(@Param('id', new ParameterValidationPipe()) id: string) {
+  async delete(@Param('id', new ParameterValidationPipe()) id: string): Promise<void> {
     return this.usersService.delete(id);
   }
 

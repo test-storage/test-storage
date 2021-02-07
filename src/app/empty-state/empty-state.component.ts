@@ -11,21 +11,21 @@ export class EmptyStateComponent {
   clicked: EventEmitter<any> = new EventEmitter();
 
   @Input()
-  title: string;
+  title!: string;
 
   @Input()
-  description: string;
+  description!: string;
 
   @Input()
-  buttonText: string;
+  buttonText!: string;
 
   @Input()
-  image: string;
+  image!: string;
 
   @Input()
-  icon: string;
+  icon!: string;
 
-  onClickButton() {
+  onClickButton(): void {
     this.clicked.emit();
   }
 

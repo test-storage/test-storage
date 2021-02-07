@@ -2,8 +2,7 @@
   <h3 class="modal-title">{{ 'PROJECTCREATEPAGE.TITLE' | translate }}</h3>
   <div class="modal-body">
     <form clrForm (ngSubmit)="setOpened(false); createProject()" id="createProjectForm" #createProjectForm="ngForm" (keyup.enter)="createProjectForm.form.valid && createProjectForm.ngSubmit.emit();">
-      <section class="form-block">
-
+      <section>
         <clr-input-container>
           <label for="name" class="required">{{ 'PROJECTCREATEPAGE.NAME' | translate }}</label>
           <input clrInput type="text" id="name" name="name" [(ngModel)]="project.name" #name="ngModel" size="35" required minlength="2">

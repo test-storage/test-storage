@@ -1,3 +1,49 @@
+<div>
+  <div class="w-screen h-screen flex">
+  <div class="hidden md:block w-full h-full bg-light-gray"></div>
+  <div class="w-full h-full flex justify-center items-center">
+    <div class="w-full md:w-2/3">
+
+    <form class="bg-white px-8 pt-6 pb-8 mb-4" (ngSubmit)="f.form.valid && login()" #f="ngForm" (keyup.enter)="f.ngSubmit.emit()" novalidate>
+      <h3 class="text-2xl font-bold mb-4">Log In</h3>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          Username
+        </label>
+        <input
+          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username" type="text" placeholder="Username" name="username" [(ngModel)]="user.username">
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Password
+        </label>
+        <input
+          class="appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          id="password" type="password" placeholder="******************" name="password" [(ngModel)]="user.password">
+        <p class="text-red-500 text-xs italic">Please choose a password.</p>
+      </div>
+      <div class="flex">
+        <button
+          class="w-full bg-soft-violet hover:bg-soft-violet text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit">
+          Log In
+        </button>
+
+      </div>
+      <a class="inline-block mt-4 align-baseline font-bold text-xs text-soft-violet hover:text-blue-800" href="#">
+        Forgot Password?
+      </a>
+    </form>
+    <p class="text-center text-gray-500 text-xs">
+      &copy;2020 Test Storage. All rights reserved.
+    </p>
+  </div>
+  </div>
+  </div>
+</div>
+
+<!--
 <div class="login-wrapper">
   <form class="login" (ngSubmit)="f.form.valid && login()" #f="ngForm" (keyup.enter)="f.ngSubmit.emit()" novalidate>
     <label class="title">
@@ -9,7 +55,7 @@
       <clr-input-container>
         <input clrInput  clrInput type="text" id="username" name="username" [(ngModel)]="user.username"
           #username="ngModel" required placeholder="{{ 'LOGINPAGE.USERNAME' | translate }}" minlength="5">
-        <!--<clr-control-helper>Username should be email</clr-control-helper>-->
+
         <clr-control-error *clrIfError="'required'">{{ 'LOGINPAGE.LOGIN_REQUIRED' | translate }}</clr-control-error>
         <clr-control-error *clrIfError="'minlength'">It must be at least 5 characters!</clr-control-error>
       </clr-input-container>
@@ -17,14 +63,14 @@
       <clr-password-container>
         <input clrPassword clrPassword type="password" id="password" name="password" [(ngModel)]="user.password"
           minlength="5" #password="ngModel" required placeholder="{{ 'LOGINPAGE.PASSWORD' | translate }}">
-        <!--<clr-control-helper>Must contain at least 5 characters with at least one of them a special character like !@#$%^&*)</clr-control-helper>-->
+
         <clr-control-error *clrIfError="'required'">{{ 'LOGINPAGE.PASSWORD_REQUIRED' | translate }}</clr-control-error>
         <clr-control-error *clrIfError="'minlength'">It must be at least 5 characters!</clr-control-error>
       </clr-password-container>
 
       <br>
       <clr-checkbox-wrapper>
-      <input type="checkbox" clrCheckbox name="rememberMe" id="rememberMe" /> <!-- [(clrChecked)]="user.rememberMe" -->
+      <input type="checkbox" clrCheckbox name="rememberMe" id="rememberMe" />
         <label>{{ 'LOGINPAGE.REMEMBER_ME' | translate }}</label>
       </clr-checkbox-wrapper>
 
@@ -39,3 +85,4 @@
     </div>
   </form>
 </div>
+-->

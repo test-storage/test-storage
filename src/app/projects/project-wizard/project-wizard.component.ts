@@ -11,7 +11,7 @@ import { Project } from '../project';
 })
 export class ProjectWizardComponent implements OnInit {
 
-  @ViewChild('wizardlg', { static: true }) wizardLarge: ClrWizard;
+  @ViewChild('wizardlg', { static: true }) wizardLarge!: ClrWizard;
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
@@ -19,12 +19,12 @@ export class ProjectWizardComponent implements OnInit {
 
   project: Project;
 
-  setOpened(val) {
+  setOpened(val: boolean) {
     this.opened = val;
     this.openedChange.emit(this.opened);
   }
 
-  createProject() {
+  createProject(): void {
     this.projectChange.emit(this.project);
     this.project = new Project();
   }
@@ -33,7 +33,7 @@ export class ProjectWizardComponent implements OnInit {
     this.project = new Project();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // TODO delete project data if exists
   }
 

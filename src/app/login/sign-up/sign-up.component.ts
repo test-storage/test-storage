@@ -14,7 +14,7 @@ export class SignUpComponent implements OnInit {
 
   public user: User = new User();
   public success = false;
-  public error;
+  public error: string | null = null;
 
   constructor(
     private router: Router,
@@ -22,11 +22,11 @@ export class SignUpComponent implements OnInit {
     protected translateService: TranslateService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  register() {
-    this.error = undefined;
+  register(): void {
+    this.error = null;
     /*
     this.signUpService.registerNewUser(this.user).subscribe(
       response => this.success = true,

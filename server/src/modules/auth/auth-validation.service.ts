@@ -1,7 +1,6 @@
 import * as bcrypt from 'bcrypt';
 
 import { Injectable,  ForbiddenException } from '@nestjs/common';
-import { JwtPayload } from './strategies/jwt-payload.interface';
 
 import { UserDto } from './user.dto';
 import { User } from '../users/user.interface';
@@ -41,7 +40,7 @@ export class AuthValidationService {
     }
   }
 
-  isUserActivated(user) {
+  isUserActivated(user): User {
     if (user.active === true) {
       return user;
     } else {

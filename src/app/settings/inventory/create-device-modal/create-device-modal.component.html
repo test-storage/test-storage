@@ -17,7 +17,7 @@
         </clr-input-container>
 
         <clr-select-container>
-          <label class="required" for="type">{{ 'DEVICECREATEPAGE.TYPE' | translate }}</label>
+          <label for="type">{{ 'DEVICECREATEPAGE.TYPE' | translate }}</label>
 
             <select clrSelect id="type" name="type" [(ngModel)]="device.type" #type="ngModel">
               <option *ngFor="let deviceType of typeKeys" [value]="deviceType.value">{{ 'DEVICETYPES.' + deviceType.value | translate }}</option>
@@ -25,13 +25,13 @@
         </clr-select-container>
 
         <clr-input-container>
-          <label class="required" for="os">{{ 'DEVICECREATEPAGE.OS' | translate }}</label>
+          <label for="os">{{ 'DEVICECREATEPAGE.OS' | translate }}</label>
           <input clrInput type="text" id="os" name="os" [(ngModel)]="device.os" #os="ngModel" required placeholder="{{ 'DEVICECREATEPAGE.OS_PLACEHOLDER' | translate }}"
             size="35">
         </clr-input-container>
 
         <clr-input-container>
-          <label class="required" for="version">{{ 'DEVICECREATEPAGE.OS_VERSION' | translate }}</label>
+          <label for="version">{{ 'DEVICECREATEPAGE.OS_VERSION' | translate }}</label>
           <input clrInput type="text" id="version" name="version" [(ngModel)]="device.osVersion" #osVersion="ngModel" required placeholder="{{ 'DEVICECREATEPAGE.OS_VERSION_PLACEHOLDER' | translate }}"
             size="35">
         </clr-input-container>

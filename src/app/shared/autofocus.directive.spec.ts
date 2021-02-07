@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { AutofocusDirective } from './autofocus.directive';
@@ -17,7 +17,7 @@ describe('AutofocusDirective', () => {
   let directives: DebugElement[];
   let focused: DebugElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [TestAutoFocusComponent, AutofocusDirective],
       schemas: [NO_ERRORS_SCHEMA]

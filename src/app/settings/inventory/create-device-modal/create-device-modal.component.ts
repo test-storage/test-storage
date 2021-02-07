@@ -15,25 +15,25 @@ export class CreateDeviceModalComponent implements OnInit {
 
   public device: Device;
   public deviceTypes = DeviceType;
-  typeKeys; // Type enumeration keys
+  typeKeys!: any[]; // Type enumeration keys
 
   constructor() {
     this.device = new Device();
   }
 
-  setOpened(val: boolean) {
+  setOpened(val: boolean): void {
     this.opened = val;
     this.openedChange.emit(this.opened);
   }
 
-  createDevice() {
+  createDevice(): void {
     console.log(this.device);
     this.deviceChange.emit(this.device);
     this.device = new Device();
   }
 
-  ngOnInit() {
-    this.typeKeys = Object.keys(this.deviceTypes).filter(f => !isNaN(Number(f))).map(key => (
+  ngOnInit(): void {
+    this.typeKeys = Object.keys(this.deviceTypes).filter(f => !isNaN(Number(f))).map((key: any) => (
       { value: this.deviceTypes[key], key: parseInt(key, 10) }));
   }
 

@@ -1,7 +1,7 @@
 import { Document } from 'mongoose';
 
 export interface Testcase extends Document {
-  readonly _id?: string;
+  readonly _id: string;
   readonly key?: string;
   readonly projectId: string;
   readonly testSuiteId: string;
@@ -11,9 +11,9 @@ export interface Testcase extends Document {
   readonly description?: string;
   readonly type?: string;
   readonly preConditions?: string;
-  readonly steps?: Array<string>;
+  readonly steps?: string[];
   readonly postConditions?: string;
-  readonly tags?: Array<string>;
+  readonly tags?: string[];
   readonly created?: Date;
   readonly updated?: Date;
   readonly createdBy?: string;

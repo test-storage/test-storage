@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { User } from '../user';
 import { RolesService } from '../../roles/roles.service';
@@ -14,30 +15,30 @@ export class EditUserModalComponent implements OnInit, OnDestroy {
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() userChange = new EventEmitter<User>();
-  @Input() user: User;
-  public roles: Role[];
-  subscription;
+  @Input() user!: User;
+  public roles: Role[] = [];
+  private subscription!: Subscription;
 
   constructor(private rolesService: RolesService) { }
 
-  setOpened(val: boolean) {
+  setOpened(val: boolean): void {
     this.opened = val;
     this.openedChange.emit(this.opened);
   }
 
-  updateUser() {
+  updateUser(): void {
     this.userChange.emit(this.user);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadRoles();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  loadRoles() {
+  loadRoles(): void {
     this.subscription = this.rolesService.getRoles().subscribe(
       data => this.roles = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));

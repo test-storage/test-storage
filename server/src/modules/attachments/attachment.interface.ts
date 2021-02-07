@@ -1,7 +1,7 @@
 import { Document } from 'mongoose';
 
 export interface Attachment extends Document {
-  readonly _id?: string;
+  readonly _id: string;
   readonly name: string;
   readonly fileName: string;
   readonly image?: string;

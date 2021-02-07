@@ -2,7 +2,7 @@ import { EmptyStateComponent } from './../empty-state/empty-state.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ClarityModule, ClrFormsModule } from '@clr/angular';
+import { ClarityModule, ClrFormsModule, ClrTreeViewModule } from '@clr/angular';
 import { ValidateEqualDirective } from './validate-equal.directive';
 import { AutofocusDirective } from './autofocus.directive';
 import { ToastNotificationsService } from './toast-notifications.service';
@@ -11,11 +11,13 @@ import { ToastNotificationsService } from './toast-notifications.service';
   imports: [
     CommonModule,
     ClarityModule,
-    ClrFormsModule
+    ClrFormsModule,
+    ClrTreeViewModule
   ],
   exports: [
     ClarityModule,
     ClrFormsModule,
+    ClrTreeViewModule,
     ValidateEqualDirective,
     AutofocusDirective,
     EmptyStateComponent

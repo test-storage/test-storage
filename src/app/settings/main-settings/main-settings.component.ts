@@ -20,11 +20,11 @@ export class MainSettingsComponent implements OnInit {
     private appSettingsService: SettingsService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  changeLanguage(language) {
-    const loadedSettings: Settings = this.appSettingsService.getAppSettings();
+  changeLanguage(language: string): void {
+    const loadedSettings: Settings | undefined = this.appSettingsService.getAppSettings();
     let settings: Settings;
     if (!loadedSettings) {
       settings = new Settings();

@@ -22,20 +22,20 @@ export class DonutChartComponent {
   }
 
   @Input()
-  text: string;
+  text!: string;
 
   @Input()
-  subText: string;
+  subText!: string;
 
 
-  mPercents: string;
+  mPercents!: string;
 
   @Input()
   set percents(percents: number) {
     this.mPercents = this.calculatePercents(percents);
   }
 
-  calculatePercents(percents: number) {
+  calculatePercents(percents: number): string {
     return `${ percents } ${ 100 - percents }`;
   }
 

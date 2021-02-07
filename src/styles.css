@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+
+@import 'tailwindcss/utilities';
+/*
 
 .app-loader {
     display: flex;
@@ -6,8 +12,6 @@
     justify-content: center;
     height: 100vh;
 }
-
-/* hack for fix backdrop over all layout */
 
 .header-backdrop {
     z-index: 0 !important;
@@ -25,3 +29,5 @@
 .login-wrapper .checkbox {
     padding-top: 15px;
 }
+
+*/

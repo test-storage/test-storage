@@ -11,9 +11,11 @@ export class NotificationsService {
   constructor(@InjectModel('Notification') private readonly notificationModel: Model<Notification>) { }
 
   async create(notificationDto: CreateNotificationDto, userId: string): Promise<Notification> {
-    const createdNotification = await new this.notificationModel(notificationDto);
+    const createdNotification = await new this.notificationModel({
+      ...notificationDto,
+      createdBy: userId
+    });
 
-    createdNotification.createdBy = userId;
     return await createdNotification.save();
   }
 
@@ -29,17 +31,19 @@ export class NotificationsService {
     return await this.notificationModel.findOne({ _id: id }).exec();
   }
 
-  async update(id: string, notification: Notification, userId: string): Promise<Notification> {
+  async update(id: string, notification: CreateNotificationDto, userId: string): Promise<Notification> {
     const existedNotification = await this.notificationModel.findOne({ _id: id }).exec();
     if (existedNotification) {
-      Object.assign(existedNotification, notification);
-      existedNotification.updatedBy = userId;
-      existedNotification.updated = new Date().toISOString();
+      Object.assign(existedNotification, {
+        ...notification,
+        updatedBy: userId,
+        updated: new Date().toISOString()
+      });
       return await existedNotification.save();
     }
   }
 
   async delete(id): Promise<void> {
-    return await this.notificationModel.findOneAndRemove({ _id: id }).exec();
+    await this.notificationModel.findOneAndRemove({ _id: id }).exec();
   }
 }

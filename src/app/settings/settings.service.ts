@@ -9,26 +9,26 @@ export class SettingsService {
 
   apiPath = '/api/v1/settings';
 
-  public appSettings: Settings;
+  public appSettings!: Settings;
 
   constructor(private http: HttpClient) {
     this.loadDataFromStorage();
   }
 
-  public setAppSettings(settings: Settings) {
+  public setAppSettings(settings: Settings): void {
     localStorage.setItem('appSettings', JSON.stringify(settings));
   }
 
-  public getAppSettings() {
+  public getAppSettings(): Settings {
     if (this.appSettings) {
       return this.appSettings;
     } else {
-      return undefined;
+      return {};
     }
   }
 
-  private loadDataFromStorage() {
-    this.appSettings = JSON.parse(localStorage.getItem('appSettings'));
+  private loadDataFromStorage(): void {
+    this.appSettings = JSON.parse(localStorage.getItem('appSettings') as any);
   }
 
   public getSettings(): Observable<Settings[]> {

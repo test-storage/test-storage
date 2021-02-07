@@ -1,4 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { pageTransition } from '../../animations';
 
@@ -19,9 +20,9 @@ export class TestExecutionsDetailsComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  testrunId: string;
-  testrun: Testrun;
-  subscription;
+  testrunId!: string;
+  testrun!: Testrun;
+  subscription!: Subscription;
 
   constructor(
     protected translateService: TranslateService,
@@ -30,20 +31,20 @@ export class TestExecutionsDetailsComponent implements OnInit {
     private testrunService: TestrunsService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.testrunId = params.id;
       this.getTestrun(this.testrunId);
     });
   }
 
-  onEdit() {
+  onEdit(): void {
 
   }
 
-  getTestrun(id: string) {
+  getTestrun(id: string): void {
     this.subscription = this.testrunService.getTestrun(id).subscribe(
-      data => {this.testrun = data; console.log(this.testrun); console.log(this.testrun.testcases.length > 0); },
+      data => this.testrun = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 

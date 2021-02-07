@@ -1,73 +1,72 @@
-import { Schema } from 'mongoose';
+import { Document } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { randomBytes } from 'crypto';
-import { genSalt, hash } from 'bcrypt';
+import { genSalt, hash, compare } from 'bcrypt';
+// import { User } from './user.interface';
 
-export const UserSchema = new Schema({
-  _id: {
+
+export type UserDocument = User & Document;
+
+
+@Schema()
+export class User extends Document {
+
+  @Prop({
     type: String,
-    default: function () {
+    default(): string {
       return randomBytes(16).toString('hex');
     }
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    require: true
-  },
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
-    type: String,
-    required: true
-  },
-  active: Boolean,
-  photo: String,
-  avatarColor: Number,
-  workInfo: {
-    jobTitle: { type: String },
-    phoneNumber: String,
-    companyName: String
-  },
-  social: {
-    skype: String,
-    github: String,
-    facebook: String,
-    twitter: String,
-    linkedin: String,
-    instagram: String,
-    vk: String
-  },
-  role: String,
-  userGroups: Array,
-  projects: Array,
-  created: { type: Date, required: true, default: Date.now },
-  updated: { type: Date, required: true, default: Date.now },
-  createdBy: String,
-  updatedBy: String
-});
+  })
+  // tslint:disable-next-line:variable-name
+  _id: string;
 
-UserSchema.pre('save', function (next) {
-  const user = this;
-  if (this.isModified('password') || this.isNew) {
-    genSalt(10, function (err, salt) {
-      if (err) {
-        return next(err);
-      }
-      hash(user.password, salt, function (error, passwordHash) {
-        if (error) {
-          return next(error);
-        }
-        user.password = passwordHash;
-        next();
-      });
-    });
-  } else {
-    return next();
-  }
-});
+  @Prop()
+  email: string;
+
+  @Prop()
+  password: string;
+
+  @Prop()
+  firstName: string;
+
+  @Prop()
+  lastName: string;
+
+  @Prop()
+  active: boolean;
+
+  @Prop()
+  photo?: string;
+
+  @Prop()
+  avatarColor?: number;
+
+  @Prop()
+  workInfo?: object;
+
+  @Prop()
+  social?: object;
+
+  @Prop()
+  role: string;
+
+  @Prop()
+  userGroups?: Array<string>;
+
+  @Prop()
+  projects?: Array<string>;
+
+  @Prop()
+  created?: Date;
+
+  @Prop()
+  updated?: Date;
+
+  @Prop()
+  createdBy?: string;
+
+  @Prop()
+  updatedBy?: string;
+}
+
+export const UserSchema = SchemaFactory.createForClass(User);

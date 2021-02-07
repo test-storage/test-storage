@@ -15,16 +15,16 @@ export class DeleteTestRunModalComponent implements OnInit {
 
   constructor() { }
 
-  setOpened(val: boolean) {
+  setOpened(val: boolean): void {
     this.opened = val;
     this.openedChange.emit(this.opened);
   }
 
-  deleteTestrun() {
+  deleteTestrun(): void {
     this.confirmChange.emit();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

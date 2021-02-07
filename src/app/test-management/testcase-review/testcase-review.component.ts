@@ -18,33 +18,33 @@ export class TestcaseReviewComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  private projectId;
-  public testCases: TestCase[];
+  private projectId!: string;
+  public testCases!: TestCase[];
   public statuses = TestcaseStatus;
-  statusesKeys; // enumeration keys
+  statusesKeys!: {[key: string]: any}; // enumeration keys
 
   constructor(
     private testCaseService: TestCaseService,
     private route: ActivatedRoute,
     private notificationsService: ToastNotificationsService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.statusesKeys = Object.keys(this.statuses).filter(f => !isNaN(Number(f))).map(key => (
-      { value: this.statuses[key], key: parseInt(key, 10)}));
+      { value: this.statuses[key as any], key: parseInt(key, 10)}));
 
-    this.route.parent.parent.params.subscribe(params => {
+    this.route.parent?.parent?.params.subscribe(params => {
       this.projectId = params.id;
       this.getTestCasesForProject(this.projectId);
     });
   }
 
-  getTestCasesForProject(id: string) {
+  getTestCasesForProject(id: string): void {
     this.testCaseService.getTestCasesByProjectId(id, 'CREATED').subscribe(
       data => this.testCases = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
-  updateTestCaseStatus(testcase: TestCase) {
+  updateTestCaseStatus(testcase: TestCase): void {
     this.testCaseService.updateTestCase(testcase, testcase._id).subscribe(
       response => {
         if (response.status === 200) {

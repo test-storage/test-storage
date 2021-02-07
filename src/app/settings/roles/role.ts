@@ -1,6 +1,6 @@
 export class Role {
-  // tslint:disable-next-line: variable-name
+  // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match
   _id?: string;
-  name: string;
+  name!: string;
   description?: string;
 }

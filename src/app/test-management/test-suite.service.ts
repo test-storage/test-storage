@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { TestSuite } from './test-suite';
@@ -24,20 +24,20 @@ export class TestSuiteService {
     return this.http.get<TestSuite>(`${this.apiPath}/${id}`);
   }
 
-  public createTestSuite(testsuite: TestSuite) {
-    return this.http.post(this.apiPath, testsuite, { observe: 'response' });
+  public createTestSuite(testsuite: TestSuite): Observable<HttpResponse<TestSuite>> {
+    return this.http.post<TestSuite>(this.apiPath, testsuite, { observe: 'response' });
   }
 
-  public updateTestSuite(testsuite: TestSuite, id?: string) {
+  public updateTestSuite(testsuite: TestSuite, id?: string): Observable<HttpResponse<TestSuite>>{
     if (id !== undefined) {
-      return this.http.put(`${this.apiPath}/${id}`, testsuite, { observe: 'response' });
+      return this.http.put<TestSuite>(`${this.apiPath}/${id}`, testsuite, { observe: 'response' });
     } else {
       return this.createTestSuite(testsuite);
     }
   }
 
-  public deleteTestSuite(id: string) {
-    return this.http.delete(`${this.apiPath}/${id}`, { observe: 'response' });
+  public deleteTestSuite(id: string): Observable<HttpResponse<TestSuite>> {
+    return this.http.delete<TestSuite>(`${this.apiPath}/${id}`, { observe: 'response' });
   }
 
 }

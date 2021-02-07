@@ -10,7 +10,7 @@ export class SidebarComponent implements OnInit {
 
   constructor(protected translateService: TranslateService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

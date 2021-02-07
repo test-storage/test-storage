@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { Testrun } from '../testrun';
 
@@ -14,24 +15,24 @@ export class CreateTestRunModalComponent implements OnInit {
   @Output() testrunChange = new EventEmitter<Testrun>();
 
   public testrun: Testrun;
-  subscription;
+  subscription!: Subscription;
 
   constructor() {
     this.testrun = new Testrun();
     this.testrun.testcases = [];
   }
 
-  setOpened(val: boolean) {
+  setOpened(val: boolean): void {
     this.opened = val;
     this.openedChange.emit(this.opened);
   }
 
-  createTestrun() {
+  createTestrun(): void {
     this.testrunChange.emit(this.testrun);
     this.testrun = new Testrun();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 

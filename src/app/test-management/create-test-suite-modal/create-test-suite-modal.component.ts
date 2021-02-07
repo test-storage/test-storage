@@ -12,23 +12,23 @@ export class CreateTestSuiteModalComponent implements OnInit {
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() testsuiteChange = new EventEmitter<TestSuite>();
 
-  public testsuite: TestSuite;
+  public testsuite!: TestSuite;
 
   constructor() {
     this.testsuite = new TestSuite();
   }
 
-  setOpened(val: boolean) {
+  setOpened(val: boolean): void {
     this.opened = val;
     this.openedChange.emit(this.opened);
   }
 
-  createTestSuite() {
+  createTestSuite(): void {
     this.testsuiteChange.emit(this.testsuite);
     this.testsuite = new TestSuite();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

@@ -22,9 +22,9 @@ export class TestManagementComponent implements OnInit {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  public projectId: string;
-  selectedTestSuite: TestSuiteViewModel;
-  public testSuites: TestSuite[];
+  public projectId!: string;
+  selectedTestSuite!: TestSuiteViewModel;
+  public testSuites!: TestSuite[];
   testSuitesViewModel: TestSuiteViewModel[] = [];
 
   createOpened = false;
@@ -38,14 +38,14 @@ export class TestManagementComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
-    this.route.parent.parent.params.subscribe(params => {
+  ngOnInit(): void {
+    this.route.parent?.parent?.params.subscribe(params => {
       this.projectId = params.id;
       this.getTestSuites(this.projectId);
     });
   }
 
-  getTestSuites(projectId: string) {
+  getTestSuites(projectId: string): void {
     this.testSuiteService.getTestSuitesByProjectId(projectId).subscribe(
       testsuites => {
         this.testSuites = testsuites;
@@ -57,13 +57,13 @@ export class TestManagementComponent implements OnInit {
     );
   }
 
-  openTestSuite(testSuite: TestSuite) {
+  openTestSuite(testSuite: TestSuite): void {
     this.selectedTestSuite = testSuite;
   }
 
-  fromFlatToTree() {
+  fromFlatToTree(): void {
     // build tree with childs from flat list
-    const idToNodeMap = {};
+    const idToNodeMap: any = {};
     let rootNodes = 0;
     const root = [];
     let parentNode;
@@ -77,7 +77,7 @@ export class TestManagementComponent implements OnInit {
       node.active = false;
       node.expanded = false;
 
-      idToNodeMap[node._id] = node;
+      idToNodeMap[node._id as any] = node;
 
       if (node.parentId === 'root') {
         node.expanded = true;
@@ -97,11 +97,11 @@ export class TestManagementComponent implements OnInit {
     }
   }
 
-  getChildren(testsuite) {
+  getChildren(testsuite: TestSuite): TestSuite {
     return testsuite.children;
   }
 
-  onAdd(testsuite?: TestSuite) {
+  onAdd(testsuite?: TestSuite): void {
     if (testsuite) {
       this.selectedTestSuite = testsuite;
     } else {
@@ -112,18 +112,18 @@ export class TestManagementComponent implements OnInit {
     this.createOpened = true;
   }
 
-  onEdit(testsuite: TestSuite) {
+  onEdit(testsuite: TestSuite): void {
     this.selectedTestSuite = testsuite;
     this.editOpened = true;
   }
 
-  onDelete(testsuite: TestSuite) {
+  onDelete(testsuite: TestSuite): void {
     this.selectedTestSuite = testsuite;
     this.deleteOpened = true;
   }
 
-  createTestSuite(testsuite: TestSuite) {
-    testsuite.parentId = this.selectedTestSuite._id;
+  createTestSuite(testsuite: TestSuite): void {
+    testsuite.parentId = this.selectedTestSuite._id as string;
     testsuite.projectId = this.selectedTestSuite.projectId;
     if (this.testSuites.length > 0) {
       testsuite.order = this.testSuites.length + 1;
@@ -136,7 +136,7 @@ export class TestManagementComponent implements OnInit {
         if (response.status === 201) {
           this.notificationsService.successfullyCreated(testsuite.name);
 
-          this.testSuites.push(response.body);
+          this.testSuites.push(response.body as TestSuite);
           this.fromFlatToTree();
         }
       },
@@ -153,7 +153,7 @@ export class TestManagementComponent implements OnInit {
     );
   }
 
-  updateTestSuite(testsuite: TestSuite) {
+  updateTestSuite(testsuite: TestSuite): void {
     testsuite.projectId = this.selectedTestSuite.projectId;
 
     this.testSuiteService.updateTestSuite(testsuite, testsuite._id).subscribe(
@@ -180,8 +180,8 @@ export class TestManagementComponent implements OnInit {
     );
   }
 
-  forceDelete($event) {
-    this.testSuiteService.deleteTestSuite(this.selectedTestSuite._id).subscribe(
+  forceDelete($event: any): void {
+    this.testSuiteService.deleteTestSuite(this.selectedTestSuite._id as string).subscribe(
       response => {
         if (response.status === 200) {
           this.notificationsService.successfullyUpdated(this.selectedTestSuite.name);

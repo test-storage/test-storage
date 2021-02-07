@@ -16,9 +16,9 @@ describe('AuthenticationService', () => {
       providers: [AuthenticationService, { provide: LocalStorageService, useValue: { getToken: () => 'token'}}]
     });
 
-    service = TestBed.get(AuthenticationService);
-    httpMock = TestBed.get(HttpTestingController);
-    localStorageService = TestBed.get(LocalStorageService);
+    service = TestBed.inject(AuthenticationService);
+    httpMock = TestBed.inject(HttpTestingController);
+    localStorageService = TestBed.inject(LocalStorageService);
   });
 
   it('should return token on login() method', () => {

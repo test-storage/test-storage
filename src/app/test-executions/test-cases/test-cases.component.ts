@@ -17,12 +17,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TestCasesComponent implements OnInit {
 
-  selectedTestSuite: TestSuite;
+  selectedTestSuite!: TestSuite;
   @Input()
   set selectedTS(testsuite: TestSuite) {
     if (testsuite !== undefined) {
       this.selectedTestSuite = testsuite;
-      this.getTestCasesForTestSuite(testsuite._id);
+      this.getTestCasesForTestSuite(testsuite._id as string);
     }
   }
   @Output() save = new EventEmitter();
@@ -37,16 +37,16 @@ export class TestCasesComponent implements OnInit {
     private notificationsService: ToastNotificationsService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  getTestCasesForTestSuite(id: string) {
+  getTestCasesForTestSuite(id: string): void {
     this.testCaseService.getTestCasesBySuiteId(id).subscribe(
       data => this.testCases = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
-  onSave() {
+  onSave(): void {
     this.save.emit();
   }
 

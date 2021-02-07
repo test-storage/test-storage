@@ -32,7 +32,7 @@ export class TestcasesController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto): Promise<Testcase> {
     return await this.testcasesService.create(createTestcaseDto, userId);
   }
@@ -43,7 +43,7 @@ export class TestcasesController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async import(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createTestcaseDto: CreateTestcaseDto[]): Promise<Testcase[]> {
     return await this.testcasesService.bulkImport(createTestcaseDto, userId);
   }

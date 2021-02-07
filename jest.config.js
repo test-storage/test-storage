@@ -1,4 +1,8 @@
+// require('jest-preset-angular/ngcc-jest-processor');
+
 module.exports = {
+  preset: 'jest-preset-angular',
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
   "globals": {
     "ts-jest": {
       "tsConfig": "<rootDir>/tsconfig.spec.json",
@@ -15,6 +19,7 @@ module.exports = {
     "html",
     "ts"
   ],
+  "testRegex": ".spec.ts$",
   "preset": "jest-preset-angular",
   "moduleNameMapper": {
     '^src/(.*)$': '<rootDir>/src/$1',
@@ -26,13 +31,12 @@ module.exports = {
   "roots": [
     "src"
   ],
-  "setupFilesAfterEnv": [
-    "<rootDir>/src/setup-jest.ts"
+  transformIgnorePatterns: [
+      "node_modules/(?!@ngrx|angular2-ui-switch|ng-dynamic|@cds|lit-html)"
   ],
-  "testRegex": ".spec.ts$",
-  "transform": {
-    "^.+\\.(ts|js|html)$": "ts-jest"
+  transform: {
+    "^.+\\.(ts|html)$": "ts-jest",
+    "^.+\\.js$": "babel-jest"
   },
-  "transformIgnorePatterns": ['node_modules/(?!@ngrx)'],
   "coverageDirectory": "./coverage"
 }

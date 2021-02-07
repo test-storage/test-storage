@@ -14,14 +14,14 @@ export class AuthService {
 
   constructor(private validationService: AuthValidationService, private jwtService: JwtService) { }
 
-  async login(userDto: UserDto) {
+  async login(userDto: UserDto): Promise<{ accessToken: string }> {
     const validUser: User = await this.validationService.validateLogin(userDto);
     if (validUser) {
       // this.rememberMe = userDto.rememberMe;
       const user: JwtPayload = { email: validUser.email, userId: validUser._id, roles: [ validUser.role ] };
       return {
         accessToken: this.jwtService.sign(user)
-      }
+      };
     } else {
       throw new UnauthorizedException();
     }

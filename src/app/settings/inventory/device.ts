@@ -1,11 +1,11 @@
 export class Device {
-  // tslint:disable-next-line: variable-name
+  // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle, id-blacklist, id-match
   _id?: string;
-  manufacturer: string;
-  model: string;
-  os: string;
-  osVersion: string;
-  type: DeviceType;
+  manufacturer!: string;
+  model!: string;
+  os!: string;
+  osVersion!: string;
+  type!: DeviceType;
   location?: string;
   hostname?: string;
   title?: string;

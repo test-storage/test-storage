@@ -19,15 +19,15 @@ export class EditTestSuiteModalComponent implements OnInit {
     this.testsuite = new TestSuite();
   }
 
-  setOpened(val: boolean) {
+  setOpened(val: boolean): void {
     this.opened = val;
     this.openedChange.emit(this.opened);
   }
 
-  updateTestSuite() {
+  updateTestSuite(): void {
     this.testsuiteChange.emit(this.testsuite);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 }

@@ -22,7 +22,7 @@ export class AuthController {
   @ApiResponse({ status: 200, description: 'The auth token has been successfully created.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  public async login(@Body(new ValidationPipe()) userDto: UserDto) {
+  public async login(@Body(new ValidationPipe()) userDto: UserDto): Promise<any> {
     return await this.authService.login(userDto);
   }
 

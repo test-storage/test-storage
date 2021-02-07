@@ -13,15 +13,17 @@ export class AttachmentsService {
   constructor(@InjectModel('Attachment') private readonly attachmentModel: Model<Attachment>) { }
 
   async create(metadata: MulterFileMetadata, userId: string): Promise<Attachment> {
-    const attachment: Attachment = {
+    const attachment = {
       name: metadata.originalname,
       mimeType: metadata.mimetype,
       size: metadata.size,
       fileName: metadata.filename,
       path: metadata.path,
     };
-    const createdAttachment = new this.attachmentModel(attachment);
-    createdAttachment.createdBy = userId;
+    const createdAttachment = new this.attachmentModel({
+      ...attachment,
+      createdBy: userId
+    });
     return await createdAttachment.save();
   }
 
@@ -33,9 +35,11 @@ export class AttachmentsService {
     return await this.attachmentModel.findOne({ '_id': id }).exec();
   }
 
+  /*
   async update(id: string): Promise<Attachment> {
     return await this.attachmentModel.findOneAndUpdate({ '_id': id }).exec();
   }
+  */
 
   async delete(id: string): Promise<void> {
     const fileMetadata: Attachment = await this.attachmentModel.findOne({ '_id': id }).exec();
@@ -46,6 +50,6 @@ export class AttachmentsService {
         }
       });
     }
-    return await this.attachmentModel.findOneAndRemove({ '_id': id }).exec();
+    await this.attachmentModel.findOneAndRemove({ '_id': id }).exec();
   }
 }

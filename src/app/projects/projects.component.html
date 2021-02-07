@@ -9,11 +9,12 @@
 
     <div class="clr-row">
 
-      
 
-      <div *ngFor="let project of projects" class="clr-col-xl-3 clr-col-lg-4 clr-col-md-6 clr-col-sm-6 clr-col-xs-12">
 
-        <a routerLink="./{{project._id}}" class="card clickable">
+      <div *ngFor="let project of projects" class="clr-col-xl-3 clr-col-lg-4 clr-col-md-6 clr-col-sm-6 clr-col-xs-12" >
+
+        <a routerLink="./{{project._id}}" class="card clickable" [clrDraggable]="project" clrDroppable (clrDrop)="onDrop($event, project)">
+
           <div class="card-img">
 
             <clr-dropdown class="edit-icon" [clrCloseMenuOnItemClick]="false">
@@ -34,7 +35,16 @@
             <p class="card-title">{{ project.name }}</p>
             <p class="card-text">{{ project.description }}</p>
           </div>
+
+          <clr-draggable-ghost *clrIfDragged>
+              <div class="drop-location">
+                  <div class="drop-location-cirle"></div>
+                  <div class="drop-location-line"></div>
+                </div>
+          </clr-draggable-ghost>
+
         </a>
+
       </div>
 
     </div>

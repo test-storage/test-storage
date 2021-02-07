@@ -26,13 +26,13 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  testrunId: string;
-  testrun: Testrun;
-  subscription: Subscription;
+  testrunId!: string;
+  testrun!: Testrun;
+  subscription!: Subscription;
 
-  testSuites: TestSuite[];
+  testSuites!: TestSuite[];
   selected: any;
-  selectedTestSuite: TestSuiteViewModel;
+  selectedTestSuite!: TestSuiteViewModel;
 
   testSuitesViewModel: any[] = [];
 
@@ -42,17 +42,17 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
     private testsuiteService: TestSuiteService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.testrunId = params.id;
       this.getTestrun(this.testrunId);
-      this.route.parent.parent.params.subscribe(mParams => {
+      this.route.parent?.parent?.params.subscribe(mParams => {
         this.getTestSuites(mParams.id);
       });
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
@@ -74,9 +74,9 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
     );
   }
 
-  fromFlatToTree() {
+  fromFlatToTree(): void {
     // build tree with childs from flat list
-    const idToNodeMap = {};
+    const idToNodeMap: any = {};
     let rootNodes = 0;
     const root = [];
     let parentNode;
@@ -92,7 +92,7 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
       // @ts-ignore
       node.selected = ClrSelectedState.UNSELECTED;
 
-      idToNodeMap[node._id] = node;
+      idToNodeMap[node._id as string] = node;
 
       if (node.parentId === 'root') {
         node.expanded = true;
@@ -112,16 +112,16 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
     }
   }
 
-  getChildren(testsuite) {
+  getChildren(testsuite: TestSuite): TestSuite {
     return testsuite.children;
   }
 
 
-  openTestSuite(testSuite: TestSuite) {
+  openTestSuite(testSuite: TestSuite): void {
     this.selectedTestSuite = testSuite;
   }
 
-  onSave() {
+  onSave(): void {
     console.log('save');
   }
 

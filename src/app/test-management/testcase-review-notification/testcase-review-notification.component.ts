@@ -9,22 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestcaseReviewNotificationComponent implements OnInit {
 
-  private projectId: string;
+  private projectId!: string;
   public isReviewAvailable = false;
 
   constructor(
     private testcaseService: TestCaseService,
     private route: ActivatedRoute) { }
 
-   ngOnInit() {
-    this.route.parent.parent.params.subscribe(params => {
+   ngOnInit(): void {
+    this.route.parent?.parent?.params.subscribe(params => {
       this.projectId = params.id;
       this.checkAvailableTestcasesForReview();
     });
 
    }
 
-  checkAvailableTestcasesForReview() {
+  checkAvailableTestcasesForReview(): void {
     this.testcaseService.getTestCasesByProjectId(this.projectId, 'CREATED').subscribe(
       data => data.length > 0 ? this.isReviewAvailable = true : this.isReviewAvailable = false,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));

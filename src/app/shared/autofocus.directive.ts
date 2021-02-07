@@ -5,14 +5,14 @@ import { Directive, Input, ElementRef, OnChanges, SimpleChanges } from '@angular
 })
 export class AutofocusDirective implements OnChanges {
 
-  @Input() appAutofocus: boolean;
+  @Input() appAutofocus!: boolean;
   private el: any;
 
   constructor(private elementRef: ElementRef) {
     this.el = this.elementRef.nativeElement;
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.appAutofocus.currentValue) {
       setTimeout(() => this.el.focus(), 0);
     }

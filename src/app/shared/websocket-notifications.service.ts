@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-
-import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
+
 import * as io from 'socket.io-client';
 
 @Injectable({
@@ -10,12 +9,11 @@ import * as io from 'socket.io-client';
 export class WebsocketNotificationsService {
 
   private url = 'http://localhost:3000';
-  private socket;
+  private socket!: SocketIOClient.Socket;
 
   constructor() { }
 
-
-  connect() {
+  connect(): Observable<any> {
     const result = new Observable(observer => {
       // TODO move to env
       this.socket = io(this.url);
@@ -24,12 +22,12 @@ export class WebsocketNotificationsService {
         console.log('Connected');
       });
 
-      this.socket.on('notifications', (data) => {
+      this.socket.on('notifications', (data: any) => {
         console.log('Received notifications from Websocket Server');
         observer.next(data);
       });
 
-      this.socket.on('exception', (data) => {
+      this.socket.on('exception', (data: any) => {
         console.log('event', data);
       });
 

@@ -1,7 +1,8 @@
-import { HttpResponse } from '@angular/common/http';
-import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { pageTransition } from '../../animations';
+
+import { TranslateService } from '@ngx-translate/core';
 
 import { UsersService } from './users.service';
 import { User } from './user';
@@ -19,9 +20,9 @@ export class UsersComponent implements OnInit, OnDestroy {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  selectedUsers = [];
-  subscription;
-  users: User[];
+  selectedUsers: User[] = [];
+  private subscription!: Subscription;
+  public users: User[] = [];
 
   public createOpened = false;
   public editOpened = false;
@@ -34,29 +35,29 @@ export class UsersComponent implements OnInit, OnDestroy {
     protected translateService: TranslateService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadUsers();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  loadUsers() {
+  loadUsers(): void {
     this.subscription = this.usersService.getUsers().subscribe(
       data => this.users = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
-  onAdd() {
+  onAdd(): void {
     this.createOpened = true;
   }
 
-  onEdit() {
+  onEdit(): void {
     this.editOpened = true;
   }
 
-  onDelete() {
+  onDelete(): void {
     this.deleteOpened = true;
   }
 
@@ -68,17 +69,17 @@ export class UsersComponent implements OnInit, OnDestroy {
     return `hsl(${user.avatarColor}, 50%, 50%)`;
   }
 
-  createUser(user: User) {
+  createUser(user: User): void {
     // remove unused field (used only for validation)
     delete user.confirmPassword;
     user.avatarColor = Math.floor(Math.random() * 360);
 
     this.usersService.createUser(user).subscribe(
-      (response: HttpResponse<User>) => {
+      (response) => {
         if (response.status === 201) {
           this.notificationsService.successfullyCreated(`${user.lastName} ${user.firstName}`);
 
-          this.users.push(response.body);
+          this.users.push(response.body as User);
         }
       },
       error => {
@@ -94,7 +95,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     );
   }
 
-  updateUser(user: User) {
+  updateUser(user: User): void {
     // TODO thinking about password change
     // remove unused field (used only for validation)
     delete user.confirmPassword;
@@ -134,7 +135,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.selectedUsers = [];
   }
 
-  forceDelete($event) {
+  forceDelete($event: any) {
     this.selectedUsers.forEach(selectedUser => {
       if (selectedUser.email === 'admin') {
         this.notifications.warn(
@@ -142,7 +143,7 @@ export class UsersComponent implements OnInit, OnDestroy {
           this.translateService.instant('USERCREATEPAGE.ADMIN_CANT_BE_DELETED')
         );
       } else {
-        this.usersService.deleteUser(selectedUser._id).subscribe(
+        this.usersService.deleteUser(selectedUser._id as string).subscribe(
           response => {
             if (response.status === 200) {
               this.notificationsService.successfullyDeleted(`${selectedUser.lastName} ${selectedUser.firstName}`);

@@ -17,15 +17,15 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TestCasesComponent implements OnInit {
 
-  selectedTestSuite: TestSuite;
+  selectedTestSuite!: TestSuite;
   @Input()
   set selectedTS(testsuite: TestSuite) {
     if (testsuite !== undefined) {
       this.selectedTestSuite = testsuite;
-      this.getTestCasesForTestSuite(testsuite._id);
+      this.getTestCasesForTestSuite(testsuite._id as string);
     }
   }
-  public selectedTestCases = [];
+  public selectedTestCases: TestCase[] = [];
   public testCases: TestCase[] = [];
 
   public ascSort = ClrDatagridSortOrder.ASC;
@@ -40,28 +40,28 @@ export class TestCasesComponent implements OnInit {
     private notificationsService: ToastNotificationsService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  getTestCasesForTestSuite(id: string) {
+  getTestCasesForTestSuite(id: string): void {
     this.testCaseService.getTestCasesBySuiteId(id).subscribe(
       data => this.testCases = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
-  onAdd() {
+  onAdd(): void {
     this.createOpened = true;
   }
 
-  onEdit() {
+  onEdit(): void {
     this.editOpened = true;
   }
 
-  onDelete() {
+  onDelete(): void {
     this.deleteOpened = true;
   }
 
-  onCopy() {
+  onCopy(): void {
     const testcase: TestCase = Object.assign({}, this.selectedTestCases[0]);
     testcase.title = `${this.selectedTestCases[0].title}(1)`;
     delete testcase.createdBy;
@@ -70,11 +70,11 @@ export class TestCasesComponent implements OnInit {
     delete testcase.updated;
     delete testcase._id;
     this.testCaseService.createTestCase(testcase).subscribe(
-      (response: HttpResponse<TestCase>) => {
+      (response) => {
         if (response.status === 201) {
           this.notificationsService.successfullyCreated(testcase.title);
 
-          this.testCases.push(response.body);
+          this.testCases.push(response.body as TestCase);
           // remove selection
           this.selectedTestCases = [];
         }
@@ -92,8 +92,8 @@ export class TestCasesComponent implements OnInit {
     );
   }
 
-  createTestCase(testcase: TestCase) {
-    testcase.testSuiteId = this.selectedTestSuite._id;
+  createTestCase(testcase: TestCase): void {
+    testcase.testSuiteId = this.selectedTestSuite._id as string;
     testcase.projectId = this.selectedTestSuite.projectId;
     if (this.testCases.length > 0) {
       testcase.order = this.testCases.length + 1;
@@ -102,11 +102,11 @@ export class TestCasesComponent implements OnInit {
     }
 
     this.testCaseService.createTestCase(testcase).subscribe(
-      (response: HttpResponse<TestCase>) => {
+      (response) => {
         if (response.status === 201) {
           this.notificationsService.successfullyCreated(testcase.title);
 
-          this.testCases.push(response.body);
+          this.testCases.push(response.body as TestCase);
           // remove selection
           this.selectedTestCases = [];
         }
@@ -124,8 +124,8 @@ export class TestCasesComponent implements OnInit {
     );
   }
 
-  updateTestCase(testcase: TestCase) {
-    testcase.testSuiteId = this.selectedTestSuite._id;
+  updateTestCase(testcase: TestCase): void {
+    testcase.testSuiteId = this.selectedTestSuite._id as string;
     testcase.projectId = this.selectedTestSuite.projectId;
 
     this.testCaseService.updateTestCase(testcase, testcase._id).subscribe(
@@ -154,9 +154,9 @@ export class TestCasesComponent implements OnInit {
     );
   }
 
-  forceDelete($event) {
+  forceDelete($event: any): void {
     this.selectedTestCases.forEach(selectedTestCase => {
-      this.testCaseService.deleteTestCase(selectedTestCase._id).subscribe(
+      this.testCaseService.deleteTestCase(selectedTestCase._id as string).subscribe(
         response => {
           if (response.status === 200) {
             this.notificationsService.successfullyDeleted(selectedTestCase.title);

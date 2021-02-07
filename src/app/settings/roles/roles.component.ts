@@ -1,4 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { TranslateService } from '@ngx-translate/core';
 
 import { RolesService } from './roles.service';
@@ -11,38 +13,38 @@ import { Role } from './role';
 })
 export class RolesComponent implements OnInit, OnDestroy {
 
-  subscription;
+  private subscription!: Subscription;
   selectedRoles = [];
-  public roles: Role[];
+  public roles: Role[] = [];
 
   constructor(
     private rolesService: RolesService,
     protected translateService: TranslateService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadRoles();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  loadRoles() {
+  loadRoles(): void {
     this.subscription = this.rolesService.getRoles().subscribe(
       data => this.roles = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
-  onAdd() {
+  onAdd(): void {
 
   }
 
-  onEdit() {
+  onEdit(): void {
 
   }
 
-  onDelete() {
+  onDelete(): void {
 
   }
 }

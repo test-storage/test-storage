@@ -1,9 +1,9 @@
 import { Document } from 'mongoose';
 
 export interface Device extends Document {
-  readonly _id?: string;
+  readonly _id: string;
   readonly manufacturer: string;
-  readonly model: string;
+  readonly deviceModel: string;
   readonly os: string;
   readonly osVersion: string;
   readonly type: string;
@@ -14,7 +14,7 @@ export interface Device extends Document {
   readonly inventoryId?: string;
   readonly serialNumber?: string;
   readonly sku?: string;
-  readonly assignedTo?: Array<string>; // User id
+  readonly assignedTo?: string[]; // User id
   readonly created?: Date;
   readonly updated?: Date;
   readonly createdBy?: string;

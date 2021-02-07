@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Project } from './project';
@@ -19,19 +19,19 @@ export class ProjectsService {
     return this.http.get<Project>(this.apiPath + '/' + id);
   }
 
-  public createProject(project: Project) {
-    return this.http.post(this.apiPath, project, { observe: 'response' });
+  public createProject(project: Project): Observable<HttpResponse<Project>> {
+    return this.http.post<Project>(this.apiPath, project, { observe: 'response' });
   }
 
-  public updateProject(project: Project, id?: string) {
+  public updateProject(project: Project, id?: string): Observable<HttpResponse<Project>> {
     if (id !== undefined) {
-      return this.http.put(`${this.apiPath}/${id}`, project, { observe: 'response' });
+      return this.http.put<Project>(`${this.apiPath}/${id}`, project, { observe: 'response' });
     } else {
       return this.createProject(project);
     }
   }
 
-  public deleteProject(id: string) {
+  public deleteProject(id: string): Observable<any> {
     return this.http.delete(this.apiPath + '/' + id, { observe: 'response' });
   }
 

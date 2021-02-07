@@ -1,5 +1,6 @@
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 import { pageTransition } from '../animations';
 
 import { Project } from './project';
@@ -18,9 +19,9 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
-  private subscription;
-  projects: Project[];
-  selectedProject: Project;
+  private subscription!: Subscription;
+  projects!: Project[];
+  selectedProject!: Project;
 
   projectWizardOpened = false;
 
@@ -34,30 +35,43 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     private notificationsService: ToastNotificationsService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadProjects();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  loadProjects() {
+  loadProjects(): void {
     this.subscription = this.projectsService.getProjects().subscribe(
       data => this.projects = data,
       error => console.log(error)); // this.notificationsService.error(error.status, error.error));
   }
 
-  onAdd() {
+  onDragStart(event: any): void {
+    console.log(event);
+    // event.dataTransfer.setDataTransfer('update', event.target.id);
+  }
+
+  onDrop(event: any, target: any): void {
+    const prevIndex = this.projects.findIndex((item) => item._id === event.dragDataTransfer._id);
+    const targetIndex = this.projects.findIndex((item) => item._id === target._id);
+    const temp = this.projects[prevIndex];
+    this.projects[prevIndex] = this.projects[targetIndex];
+    this.projects[targetIndex] = temp;
+  }
+
+  onAdd(): void {
     this.createOpened = true;
   }
 
-  onEdit(project: Project) {
+  onEdit(project: Project): void {
     this.selectedProject = project;
     this.editOpened = true;
   }
 
-  onDelete(project: Project) {
+  onDelete(project: Project): void {
     this.selectedProject = project;
     this.deleteOpened = true;
   }
@@ -70,13 +84,13 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     return `hsl(${project.avatarColor}, 50%, 50%)`;
   }
 
-  createProject(project: Project) {
+  createProject(project: Project): void {
 
     this.projectsService.createProject(project).subscribe(
       (response: HttpResponse<Project>) => {
         if (response.status === 201) {
           this.notificationsService.successfullyCreated(project.name);
-          this.projects.push(response.body);
+          this.projects.push(response.body as Project);
         }
       },
       error => {
@@ -92,7 +106,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     );
   }
 
-  updateProject(project: Project) {
+  updateProject(project: Project): void {
 
     this.projectsService.updateProject(project, project._id).subscribe(
       response => {
@@ -116,9 +130,9 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       });
   }
 
-  forceDelete($event) {
+  forceDelete($event: any): void {
 
-    this.projectsService.deleteProject(this.selectedProject._id).subscribe(
+    this.projectsService.deleteProject(this.selectedProject._id as string).subscribe(
       response => {
         if (response.status === 200) {
           this.notificationsService.successfullyDeleted(this.selectedProject.name);

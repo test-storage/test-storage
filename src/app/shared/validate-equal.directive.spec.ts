@@ -1,6 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, NO_ERRORS_SCHEMA, ViewChild } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import { FormsModule, NgForm } from '@angular/forms';
 
 import { ValidateEqualDirective } from './validate-equal.directive';
@@ -20,7 +19,7 @@ import { ValidateEqualDirective } from './validate-equal.directive';
 })
 export class TestValidateEqualComponent {
   @ViewChild('form', { static: true})
-  ngForm: NgForm;
+  ngForm!: NgForm;
 
   public user = {
     password: '',
@@ -32,7 +31,7 @@ describe('ValidateEqualDirective', () => {
   let component: TestValidateEqualComponent;
   let fixture: ComponentFixture<TestValidateEqualComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
       declarations: [TestValidateEqualComponent, ValidateEqualDirective],
@@ -56,7 +55,7 @@ describe('ValidateEqualDirective', () => {
 
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      expect(component.ngForm.form.get('confirmPassword').valid).toBeTruthy();
+      expect(component.ngForm.form.get('confirmPassword')?.valid).toBeTruthy();
       done();
     });
   });
@@ -64,10 +63,10 @@ describe('ValidateEqualDirective', () => {
   it('should check validation when fields is empty', (done) => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      expect(component.ngForm.form.get('password').valid).toBe(false);
-      expect(component.ngForm.form.get('password').errors.required).toBe(true);
-      expect(component.ngForm.form.get('confirmPassword').valid).toBe(false);
-      expect(component.ngForm.form.get('confirmPassword').errors.required).toBe(true);
+      expect(component.ngForm.form.get('password')?.valid).toBe(false);
+      expect(component.ngForm.form.get('password')?.errors?.required).toBe(true);
+      expect(component.ngForm.form.get('confirmPassword')?.valid).toBe(false);
+      expect(component.ngForm.form.get('confirmPassword')?.errors?.required).toBe(true);
       done();
     });
   });
@@ -78,8 +77,8 @@ describe('ValidateEqualDirective', () => {
 
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      expect(component.ngForm.form.get('confirmPassword').valid).toBeFalsy();
-      expect(component.ngForm.form.get('confirmPassword').errors.notEqual).toBe(true);
+      expect(component.ngForm.form.get('confirmPassword')?.valid).toBeFalsy();
+      expect(component.ngForm.form.get('confirmPassword')?.errors?.notEqual).toBe(true);
       done();
     });
   });
@@ -90,8 +89,8 @@ describe('ValidateEqualDirective', () => {
 
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      expect(component.ngForm.form.get('confirmPassword').valid).toBeFalsy();
-      expect(component.ngForm.form.get('confirmPassword').errors.notEqual).toBe(true);
+      expect(component.ngForm.form.get('confirmPassword')?.valid).toBeFalsy();
+      expect(component.ngForm.form.get('confirmPassword')?.errors?.notEqual).toBe(true);
       done();
     });
   });
