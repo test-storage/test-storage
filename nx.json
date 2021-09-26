@@ -1,0 +1,34 @@
+{
+  "npmScope": "test-storage",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
+  },
+  "projects": {
+    "api": {
+      "tags": []
+    },
+    "test-storage": {
+      "tags": []
+    },
+    "test-storage-e2e": {
+      "tags": [],
+      "implicitDependencies": ["test-storage"]
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  }
+}

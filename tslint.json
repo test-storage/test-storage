@@ -83,9 +83,24 @@
     "template-banana-in-box": true,
     "template-no-negated-async": true,
     "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true
+    "use-pipe-transform-interface": true,
+    "nx-enforce-module-boundaries": [
+      true,
+      {
+        "allow": [],
+        "depConstraints": [
+          {
+            "sourceTag": "*",
+            "onlyDependOnLibsWithTags": [
+              "*"
+            ]
+          }
+        ]
+      }
+    ]
   },
   "rulesDirectory": [
-    "codelyzer"
+    "codelyzer",
+    "node_modules/@nrwl/workspace/src/tslint"
   ]
 }

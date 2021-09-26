@@ -2,7 +2,7 @@
 
 Some basic conventions for contributing to this project.
 
-### General
+## General
 
 Please make sure that there aren't existing pull requests attempting to address the issue mentioned. Likewise, please check for issues related to update, as someone else may be working on the issue in a branch or fork.
 
@@ -10,11 +10,12 @@ Please make sure that there aren't existing pull requests attempting to address 
 * Develop in a topic branch, not master
 * Squash your commits
 
-### Linting
+## Linting
 
 Please check your code using `npm run lint` before submitting your pull requests, as the CI build will fail if `lint` fails.
 
-### Versioning
+## Versioning
+
 Test Storage will be maintained under the [Semantic Versioning](http://semver.org)
 guidelines such that release versions will be formatted as `<major>.<minor>.<patch>`
 where
@@ -27,7 +28,7 @@ where
 
 Each commit message should include a **type**, a **scope** and a **subject**:
 
-```
+```text
  <type>(<scope>): <subject>
  <BLANK LINE>
  <body>
@@ -37,7 +38,7 @@ Each commit message should include a **type**, a **scope** and a **subject**:
 
 Lines should not exceed 100 characters. This allows the message to be easier to read on github as well as in various git tools and produces a nice, neat commit log ie:
 
-```
+```text
  #271 feat(standard): add style config and refactor to match
  #270 fix(config): only override publicPath when served by webpack
  #269 feat(eslint-config-defaults): replace eslint-config-airbnb
@@ -73,41 +74,46 @@ The subject contains succinct description of the change:
 * no dot (.) at the end
 
 #### Body
+
 Just as in the **subject**, use the imperative, present tense: "change" not "changed" nor "changes".
 The body should include the motivation for the change and contrast this with previous behavior.
 
 #### Footer
+
 The footer should contain any information about **Breaking Changes** and is also the place to
 [reference GitHub issues that this commit closes](https://help.github.com/articles/closing-issues-via-commit-messages/).
 
 #### Referencing issues
 
 Closed bugs should be listed on a separate line in the footer prefixed with "Closes" keyword like this:
-```
+
+```text
 Closes #234
 ```
 
 or in case of multiple issues:
-```
+
+```text
 Closes #123, #245, #992
 ```
 
 **Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines.
 The rest of the commit message is then used for this.
 
-Development
-======
+## Development
 
 ## Pre-installation
+
 for execution you should also install globally:
+
 ```bash
-$ npm install -g nodemon @angular/cli
+npm install -g nodemon @angular/cli
 ```
 
 ## Installation
 
 ```bash
-$ npm install -g test-storage
+npm install -g test-storage
 ```
 
 ## Start
@@ -115,32 +121,37 @@ $ npm install -g test-storage
 Basic dev setup:
 
 ```bash
-$ npm run dev
+npm run dev
 ```
 
 With Hot module replacement:
 
 ```bash
-$ npm run hmr
+npm run hmr
 ```
 
 ## Tests
 
 unit tests:
+
+```bash
+ng test --single-run
 ```
-$ ng test --single-run
-```
+
 __note:__ For running tests on each file change use:
-```
-$ ng test
+
+```bash
+ng test
 ```
 
 e2e tests:
-```
-$ npm e2e
+
+```bash
+npm e2e
 ```
 
 backend tests:
-```
-$ npm run test:backend
+
+```bash
+npm run test:backend
 ```

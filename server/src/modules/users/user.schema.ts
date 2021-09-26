@@ -41,10 +41,12 @@ export class User extends Document {
   @Prop()
   avatarColor?: number;
 
-  @Prop()
+  // TODO fix type
+  @Prop({ type: Object })
   workInfo?: object;
 
-  @Prop()
+  // TODO fix type
+  @Prop({ type: Object })
   social?: object;
 
   @Prop()

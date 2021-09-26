@@ -1,0 +1,58 @@
+<div *ngIf="testSuites" class="flex">
+
+  <div *ngIf="testSuites.length > 0; then existTestSuites else noExistTestSuites"></div>
+  <ng-template #existTestSuites>
+    <div class="wrapper w-full p-4">
+      <app-testcase-review-notification></app-testcase-review-notification>
+      <div class="flex">
+
+        <div class="w-2/3 h-full">
+          <app-test-cases [selectedTS]="selectedTestSuite"></app-test-cases>
+        </div>
+
+        <!-- TEST SUITES TREE COMPONENT -->
+        <div *ngIf="testSuitesViewModel.length > 0" class="w-1/3">
+
+          <!--
+          <clr-tree>
+            <clr-tree-node class="suite-node"
+              *clrRecursiveFor="let testSuite of testSuitesViewModel; getChildren: getChildren"
+              [clrExpanded]="testSuite.expanded">
+              <ng-template>
+                <button clrVerticalNavLink (click)="openTestSuite(testSuite)" class="clr-treenode-link"
+                  [class.active]="testSuite._id === selectedTestSuite._id">
+                  <clr-icon shape="folder"></clr-icon>
+                  {{ testSuite.name }}
+                  <clr-icon shape="plus" (click)="$event.stopPropagation(); onAdd(testSuite); false"></clr-icon>
+                  <clr-icon shape="pencil" (click)="$event.stopPropagation(); onEdit(testSuite); false"></clr-icon>
+                  <clr-icon shape="close" (click)="$event.stopPropagation(); onDelete(testSuite); false"></clr-icon>
+                </button>
+            </ng-template>
+            </clr-tree-node>
+          </clr-tree>
+          -->
+
+          <clr-tree-node>
+            <clr-icon shape="plus" (click)="onAdd();"></clr-icon>
+          </clr-tree-node>
+        </div>
+      </div>
+    </div>
+
+  </ng-template>
+
+  <ng-template #noExistTestSuites>
+    <app-empty-state class="w-full" icon="import" title="{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_TITLE' | translate }}"
+      description="{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_NOTESTSUITES_DESCRIPTION' | translate }}"
+      buttonText="{{ 'TESTMANAGEMENTPAGE.EMPTYSTATE_CREATETESTSUITE_BUTTON' | translate }}" (clicked)="onAdd();">
+    </app-empty-state>
+  </ng-template>
+
+  <app-create-test-suite-modal [(opened)]="createOpened" (testsuiteChange)="createTestSuite($event);">
+  </app-create-test-suite-modal>
+  <app-edit-test-suite-modal [testsuite]="selectedTestSuite" [(opened)]="editOpened"
+    (testsuiteChange)="updateTestSuite($event);">
+  </app-edit-test-suite-modal>
+  <app-delete-test-suite-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)">
+  </app-delete-test-suite-modal>
+</div>

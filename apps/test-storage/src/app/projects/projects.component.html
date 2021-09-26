@@ -1,0 +1,87 @@
+<div *ngIf="projects" class="content-area">
+
+  <div *ngIf="projects.length > 0; then existProjects else noExistProjects"></div>
+  <ng-template #existProjects>
+
+    <div class="px-4 pt-6">
+      <button (click)="onAdd();" data-test-id="create-project" class=" bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        <!--<clr-icon shape="plus"></clr-icon>-->
+        + {{ 'PROJECTSPAGE.CREATE' | translate }}
+      </button>
+    </div>
+
+    <div class="flex flex-col md:flex-row my-6 mx-4 space-y-4 md:space-y-0 md:space-x-4">
+
+
+      <!-- clr-col-xl-3 clr-col-lg-4 clr-col-md-6 clr-col-sm-6 clr-col-xs-12 -->
+      <div *ngFor="let project of projects" class="w-full md:w-1/2 lg:w-1/3" >
+
+        <a routerLink="./{{project._id}}" class="flex border-gray-400 rounded" > <!--[clrDraggable]="project" clrDroppable (clrDrop)="onDrop($event, project)" -->
+
+          <div class="w-full">
+
+            <!--
+            <clr-dropdown class="edit-icon" [clrCloseMenuOnItemClick]="false">
+              <a (click)="$event.stopPropagation(); false" clrDropdownTrigger>
+                <clr-icon shape="ellipsis-vertical"></clr-icon>
+              </a>
+              <clr-dropdown-menu *clrIfOpen>
+                <button type="button" (click)="$event.stopPropagation(); onEdit(project); false" clrDropdownItem>Edit</button>
+                <button type="button" (click)="$event.stopPropagation(); onDelete(project); false" clrDropdownItem>Delete</button>
+              </clr-dropdown-menu>
+            </clr-dropdown>-->
+
+            <div *ngIf="project.avatarColor" class="avatar flex py-4 flex-col justify-center items-center h-full" [style.backgroundColor]="getBackgroundColor(project)" [style.color]="getColor(project)">
+              <div class="text-4xl">{{ project.name.charAt(0).toUpperCase() }}</div>
+              <div>{{ project.name }}</div>
+            </div>
+          </div>
+
+          <!--
+          <clr-draggable-ghost *clrIfDragged>
+              <div class="drop-location">
+                  <div class="drop-location-cirle"></div>
+                  <div class="drop-location-line"></div>
+                </div>
+          </clr-draggable-ghost>
+          -->
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </ng-template>
+
+
+
+
+
+
+
+  <ng-template #noExistProjects>
+    <div class="noexist-wrapper">
+      <div class="clr-col-lg-12 clr-col-md-12 clr-col-sm-12 clr-col-xs-12">
+        <div class="no-project">
+          <img src="assets/add-project.png">
+          <h4>{{ 'PROJECTSPAGE.EMPTYSTATE_NOPROJECTS_TITLE' | translate }}</h4>
+          <p class="tips">{{ 'PROJECTSPAGE.EMPTYSTATE_NOPROJECTS_DESCRIPTION' | translate }}</p>
+          <a (click)="onAdd();" class="btn btn-primary">{{ 'PROJECTSPAGE.EMPTYSTATE_CREATEPROJECT_BUTTON' | translate }}</a>
+        </div>
+
+      </div>
+    </div>
+
+  </ng-template>
+
+  <app-create-project-modal [(opened)]="createOpened" (projectChange)="createProject($event);"></app-create-project-modal>
+
+  <app-edit-project-modal [project]="selectedProject" [(opened)]="editOpened" (projectChange)="updateProject($event);"></app-edit-project-modal>
+
+  <app-delete-project-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-project-modal>
+
+  <app-project-wizard [(opened)]="projectWizardOpened" (projectChange)="createProject($event);"></app-project-wizard>
+
+  <app-system-wizard></app-system-wizard>
+</div>
