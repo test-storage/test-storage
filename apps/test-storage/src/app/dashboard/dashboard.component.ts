@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { pageTransition } from '../animations';
 import { DonutChartOptions } from '../donut-chart/chart-options';
 
@@ -8,7 +8,7 @@ import { DonutChartOptions } from '../donut-chart/chart-options';
   styleUrls: ['./dashboard.component.css'],
   animations: [pageTransition]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
@@ -19,10 +19,5 @@ export class DashboardComponent implements OnInit {
     textColor: '#EAEAEA',
     subTextColor: '#333333'
   };
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }

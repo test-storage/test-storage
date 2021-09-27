@@ -1,10 +1,7 @@
 module.exports = {
-  future: {
-    purgeLayersByDefault: true
-  },
   purge: {
-    enabled: true,
-    content: ['./src/**/*.html', './src/**/*.ts'],
+    enabled: process.env.NODE_ENV === "production",
+    content: ["./src/**/*.{html,ts}"],
   },
   theme: {
     extend: {

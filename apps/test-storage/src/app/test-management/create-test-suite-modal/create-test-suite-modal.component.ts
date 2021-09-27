@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { TestSuite } from '../test-suite';
 @Component({
@@ -6,7 +6,7 @@ import { TestSuite } from '../test-suite';
   templateUrl: './create-test-suite-modal.component.html',
   styleUrls: ['./create-test-suite-modal.component.css']
 })
-export class CreateTestSuiteModalComponent implements OnInit {
+export class CreateTestSuiteModalComponent {
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
@@ -26,9 +26,6 @@ export class CreateTestSuiteModalComponent implements OnInit {
   createTestSuite(): void {
     this.testsuiteChange.emit(this.testsuite);
     this.testsuite = new TestSuite();
-  }
-
-  ngOnInit(): void {
   }
 
 }

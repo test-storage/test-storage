@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { TestCase, Priority, TestCaseStep, TestCaseType } from '../test-cases/test-case';
 
@@ -7,18 +7,18 @@ import { TestCase, Priority, TestCaseStep, TestCaseType } from '../test-cases/te
   templateUrl: './edit-test-case-modal.component.html',
   styleUrls: ['./edit-test-case-modal.component.css']
 })
-export class EditTestCaseModalComponent implements OnInit {
+export class EditTestCaseModalComponent {
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() testcaseChange = new EventEmitter<TestCase>();
 
   @Input() testcase: TestCase = new TestCase();
-  public priorities = Priority;
-  public types = TestCaseType;
-  priorityKeys!: {[key: string]: any}; // Priority enumeration keys
-  typeKeys!: {[key: string]: any}; // Type enumeration keys
-  public selectedTestSteps = [];
+
+  public priorities = Object.keys(Priority).map(priority => ({ value: priority }));
+  public types = Object.keys(TestCaseType).map(type => ({ value: type })); ;
+
+  public selectedTestSteps: any[] = [];
   public testCaseStep: TestCaseStep;
 
   constructor() {
@@ -53,11 +53,10 @@ export class EditTestCaseModalComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.priorityKeys = Object.keys(this.priorities).filter(f => !isNaN(Number(f))).map(key => (
-      { value: this.priorities[key as any], key: parseInt(key, 10)}));
-    this.typeKeys = Object.keys(this.types).filter(f => !isNaN(Number(f))).map(key => (
-      { value: this.types[key as any], key: parseInt(key, 10)}));
+  optionsFromEnum(dictionary: any): any {
+    return Object.keys(dictionary).map((key) => {
+      return { value: key, label: dictionary[key] };
+    });
   }
 
 }

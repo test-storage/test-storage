@@ -105,21 +105,7 @@
             "namedChunks": true
           },
           "configurations": {
-            "hmr": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/test-storage/src/environments/environment.ts",
-                  "with": "apps/test-storage/src/environments/environment.hmr.ts"
-                }
-              ]
-            },
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/test-storage/src/environments/environment.ts",
-                  "with": "apps/test-storage/src/environments/environment.prod.ts"
-                }
-              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -132,17 +118,24 @@
                   "maximumError": "4kb"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "serviceWorker": true
+              "fileReplacements": [
+                {
+                  "replace": "apps/test-storage/src/environments/environment.ts",
+                  "with": "apps/test-storage/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -152,10 +145,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "test-storage:build:production"
+              "browserTarget": "rosbank:build:production"
             },
-            "ci": {
-              "progress": false
+            "development": {
+              "browserTarget": "rosbank:build:development"
             }
           }
         },
@@ -166,13 +159,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "apps/test-storage/tsconfig.app.json",
-              "apps/test-storage/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "apps/test-storage/src/**/*.ts",
+              "apps/test-storage/**/*.html"
+            ]
           }
         },
         "test": {

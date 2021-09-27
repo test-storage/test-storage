@@ -20,8 +20,7 @@ export class TestcaseReviewComponent implements OnInit {
 
   private projectId!: string;
   public testCases!: TestCase[];
-  public statuses = TestcaseStatus;
-  statusesKeys!: {[key: string]: any}; // enumeration keys
+  public statuses = Object.keys(TestcaseStatus).map(status => ({ value: status }));
 
   constructor(
     private testCaseService: TestCaseService,
@@ -29,9 +28,6 @@ export class TestcaseReviewComponent implements OnInit {
     private notificationsService: ToastNotificationsService) { }
 
   ngOnInit(): void {
-    this.statusesKeys = Object.keys(this.statuses).filter(f => !isNaN(Number(f))).map(key => (
-      { value: this.statuses[key as any], key: parseInt(key, 10)}));
-
     this.route.parent?.parent?.params.subscribe(params => {
       this.projectId = params.id;
       this.getTestCasesForProject(this.projectId);

@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Testrun } from '../testrun';
 
@@ -8,14 +7,13 @@ import { Testrun } from '../testrun';
   templateUrl: './create-test-run-modal.component.html',
   styleUrls: ['./create-test-run-modal.component.css']
 })
-export class CreateTestRunModalComponent implements OnInit {
+export class CreateTestRunModalComponent {
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() testrunChange = new EventEmitter<Testrun>();
 
   public testrun: Testrun;
-  subscription!: Subscription;
 
   constructor() {
     this.testrun = new Testrun();
@@ -31,9 +29,5 @@ export class CreateTestRunModalComponent implements OnInit {
     this.testrunChange.emit(this.testrun);
     this.testrun = new Testrun();
   }
-
-  ngOnInit(): void {
-  }
-
 
 }

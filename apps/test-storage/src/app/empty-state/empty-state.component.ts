@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class EmptyStateComponent {
 
   @Output()
-  clicked: EventEmitter<any> = new EventEmitter();
+  clicked: EventEmitter<MouseEvent> = new EventEmitter();
 
   @Input()
   title!: string;
@@ -25,8 +25,8 @@ export class EmptyStateComponent {
   @Input()
   icon!: string;
 
-  onClickButton(): void {
-    this.clicked.emit();
+  onClickButton(event: MouseEvent): void {
+    this.clicked.emit(event);
   }
 
 }

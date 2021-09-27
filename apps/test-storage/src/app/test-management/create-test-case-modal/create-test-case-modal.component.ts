@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { TestCase, Priority, TestCaseStep, TestCaseType } from '../test-cases/test-case';
 
@@ -7,22 +7,21 @@ import { TestCase, Priority, TestCaseStep, TestCaseType } from '../test-cases/te
   templateUrl: './create-test-case-modal.component.html',
   styleUrls: ['./create-test-case-modal.component.css']
 })
-export class CreateTestCaseModalComponent implements OnInit {
+export class CreateTestCaseModalComponent {
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() testcaseChange = new EventEmitter<TestCase>();
 
   public testcase: TestCase;
-  public priorities = Priority;
-  public types = TestCaseType;
-  priorityKeys!: {[key: string]: any}; // Priority enumeration keys
-  typeKeys!: {[key: string]: any}; // Type enumeration keys
+  public priorities = Object.keys(Priority).map(priority => ({ value: priority }));
+  public types = Object.keys(TestCaseType).map(type => ({ value: type }));
+
   testCaseSteps: TestCaseStep[] = [];
   testCaseStep: TestCaseStep;
   tags: string[] = [];
 
-  public selectedTestSteps = [];
+  public selectedTestSteps: any[] = [];
 
   constructor() {
     this.testcase = new TestCase();
@@ -58,20 +57,13 @@ export class CreateTestCaseModalComponent implements OnInit {
   }
 
   onEdit(): void {
-
+    // TODO
   }
 
   onDelete(): void {
     this.selectedTestSteps.forEach(testStep => {
       this.testcase.steps = this.testcase.steps?.filter(steps => steps !== testStep);
     });
-  }
-
-  ngOnInit(): void {
-    this.priorityKeys = Object.keys(this.priorities).filter(f => !isNaN(Number(f))).map((key: any) => (
-      { value: this.priorities[key as any], key: parseInt(key, 10)}));
-    this.typeKeys = Object.keys(this.types).filter(f => !isNaN(Number(f))).map(key => (
-      { value: this.types[key as any], key: parseInt(key, 10)}));
   }
 
 }

@@ -1,6 +1,6 @@
 <div *ngIf="testrun" class="content-area">
 
-  <div *ngIf="testrun.testcases.length > 0; then existTestCases else noExistTestCases"></div>
+  <div *ngIf="testrun?.testcases; then existTestCases else noExistTestCases"></div>
 
   <ng-template #existTestCases>
     <h3>

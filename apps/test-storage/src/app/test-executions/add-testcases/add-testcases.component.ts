@@ -89,8 +89,8 @@ export class AddTestcasesComponent implements OnInit, OnDestroy {
       node.icon = 'folder';
       node.active = false;
       node.expanded = false;
-      // @ts-ignore
-      node.selected = ClrSelectedState.UNSELECTED;
+
+      // node.selected = ClrSelectedState.UNSELECTED;
 
       idToNodeMap[node._id as string] = node;
 

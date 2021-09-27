@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Testrun } from './../testrun';
 
@@ -7,13 +7,11 @@ import { Testrun } from './../testrun';
   templateUrl: './delete-test-run-modal.component.html',
   styleUrls: ['./delete-test-run-modal.component.css']
 })
-export class DeleteTestRunModalComponent implements OnInit {
+export class DeleteTestRunModalComponent {
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() confirmChange = new EventEmitter();
-
-  constructor() { }
 
   setOpened(val: boolean): void {
     this.opened = val;
@@ -22,9 +20,6 @@ export class DeleteTestRunModalComponent implements OnInit {
 
   deleteTestrun(): void {
     this.confirmChange.emit();
-  }
-
-  ngOnInit(): void {
   }
 
 }

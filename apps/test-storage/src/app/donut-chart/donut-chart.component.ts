@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { DonutChartOptions } from './chart-options';
 
@@ -31,14 +31,14 @@ export class DonutChartComponent {
   mPercents!: string;
 
   @Input()
-  set percents(percents: number) {
-    this.mPercents = this.calculatePercents(percents);
+  set percents(percents: string) {
+    if (percents) {
+      this.mPercents = this.calculatePercents(parseInt(percents, 10));
+    }
   }
 
   calculatePercents(percents: number): string {
     return `${ percents } ${ 100 - percents }`;
   }
 
-
-  constructor() { }
 }

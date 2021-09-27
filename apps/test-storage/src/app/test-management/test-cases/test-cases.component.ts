@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
+import { Component, Input } from '@angular/core';
 
 import { TestCase } from './test-case';
 import { TestSuite } from '../test-suite';
@@ -15,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './test-cases.component.html',
   styleUrls: ['./test-cases.component.css']
 })
-export class TestCasesComponent implements OnInit {
+export class TestCasesComponent {
 
   selectedTestSuite!: TestSuite;
   @Input()
@@ -39,9 +38,6 @@ export class TestCasesComponent implements OnInit {
     protected translateService: TranslateService,
     private notificationsService: ToastNotificationsService
   ) { }
-
-  ngOnInit(): void {
-  }
 
   getTestCasesForTestSuite(id: string): void {
     this.testCaseService.getTestCasesBySuiteId(id).subscribe(

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Notification } from './notification';
 
@@ -7,7 +7,7 @@ import { Notification } from './notification';
   templateUrl: './app-notification.component.html',
   styleUrls: ['./app-notification.component.css']
 })
-export class AppNotificationComponent implements OnInit {
+export class AppNotificationComponent {
 
   public notifications: Notification[] = [
     {
@@ -18,10 +18,5 @@ export class AppNotificationComponent implements OnInit {
       isRead: false
     }
   ];
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }

@@ -1,17 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-delete-test-case-modal',
   templateUrl: './delete-test-case-modal.component.html',
   styleUrls: ['./delete-test-case-modal.component.css']
 })
-export class DeleteTestCaseModalComponent implements OnInit {
+export class DeleteTestCaseModalComponent {
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() confirmChange = new EventEmitter();
-
-  constructor() { }
 
   setOpened(val: boolean): void {
     this.opened = val;
@@ -20,9 +18,6 @@ export class DeleteTestCaseModalComponent implements OnInit {
 
   deleteTestCase(): void {
     this.confirmChange.emit();
-  }
-
-  ngOnInit(): void {
   }
 
 }

@@ -39,7 +39,7 @@ export class TestExecutionsDetailsComponent implements OnInit {
   }
 
   onEdit(): void {
-
+    // TODO
   }
 
   getTestrun(id: string): void {

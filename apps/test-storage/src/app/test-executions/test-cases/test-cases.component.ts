@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ClrDatagridSortOrder } from '@clr/angular';
 
 import { TestSuite } from '../../test-management/test-suite';
@@ -15,7 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './test-cases.component.html',
   styleUrls: ['./test-cases.component.css']
 })
-export class TestCasesComponent implements OnInit {
+export class TestCasesComponent {
 
   selectedTestSuite!: TestSuite;
   @Input()
@@ -36,9 +36,6 @@ export class TestCasesComponent implements OnInit {
     protected translateService: TranslateService,
     private notificationsService: ToastNotificationsService
   ) { }
-
-  ngOnInit(): void {
-  }
 
   getTestCasesForTestSuite(id: string): void {
     this.testCaseService.getTestCasesBySuiteId(id).subscribe(

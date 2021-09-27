@@ -20,7 +20,7 @@
           <label for="priority">{{ 'TESTCASECREATEPAGE.PRIORITY' | translate }}</label>
 
             <select clrSelect id="priority" name="priority" [(ngModel)]="testcase.priority" #priority="ngModel">
-              <option *ngFor="let priority of priorityKeys" [value]="priority.value">{{ 'PRIORITIES.' + priority.value | translate }}</option>
+              <option *ngFor="let priority of priorities" [value]="priority.value">{{ 'PRIORITIES.' + priority.value | translate }}</option>
             </select>
 
         </clr-select-container>
@@ -29,7 +29,7 @@
           <label for="type">{{ 'TESTCASECREATEPAGE.TYPE' | translate }}</label>
 
             <select clrSelect id="type" name="type" [(ngModel)]="testcase.type" #type="ngModel">
-              <option *ngFor="let type of typeKeys" [value]="type.value">{{ 'TESTCASETYPE.' + type.value | translate }}</option>
+              <option *ngFor="let type of types" [value]="type.value">{{ 'TESTCASETYPE.' + type.value | translate }}</option>
             </select>
         </clr-select-container>
 
