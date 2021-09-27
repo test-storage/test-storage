@@ -11,8 +11,6 @@ export class WebsocketNotificationsService {
   private url = 'http://localhost:3000';
   private socket!: SocketIOClient.Socket;
 
-  constructor() { }
-
   connect(): Observable<any> {
     const result = new Observable(observer => {
       // TODO move to env

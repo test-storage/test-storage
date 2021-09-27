@@ -6,7 +6,9 @@ import { AuthenticationService } from './authentication.service';
 import { Router } from '@angular/router';
 
 class MockRouter {
-  navigate(path: any) { }
+  navigate(path: any) {
+    // mock
+   }
 }
 
 describe('AuthGuard', () => {

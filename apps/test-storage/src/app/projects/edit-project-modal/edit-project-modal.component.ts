@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Project } from '../project';
 
@@ -7,7 +7,7 @@ import { Project } from '../project';
   templateUrl: './edit-project-modal.component.html',
   styleUrls: ['./edit-project-modal.component.css']
 })
-export class EditProjectModalComponent implements OnInit {
+export class EditProjectModalComponent {
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
@@ -26,10 +26,6 @@ export class EditProjectModalComponent implements OnInit {
 
   updateProject() {
     this.projectChange.emit(this.project);
-  }
-
-
-  ngOnInit() {
   }
 
 }

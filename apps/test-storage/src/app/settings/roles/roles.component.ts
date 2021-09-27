@@ -37,14 +37,14 @@ export class RolesComponent implements OnInit, OnDestroy {
   }
 
   onAdd(): void {
-
+    // TODO
   }
 
   onEdit(): void {
-
+    // TODO
   }
 
   onDelete(): void {
-
+    // TODO
   }
 }

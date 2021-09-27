@@ -135,7 +135,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.selectedUsers = [];
   }
 
-  forceDelete($event: any) {
+  forceDelete() {
     this.selectedUsers.forEach(selectedUser => {
       if (selectedUser.email === 'admin') {
         this.notifications.warn(

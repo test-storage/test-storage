@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -6,12 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent {
 
   collapsed = false;
   constructor(protected translateService: TranslateService) { }
-
-  ngOnInit() {
-  }
 
 }

@@ -7,7 +7,7 @@
         <clr-icon shape="plus"></clr-icon> {{ 'ROLESSETTINGS.ADD' | translate }}</button>
       <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedRoles.length > 0">
         <clr-icon shape="close"></clr-icon> {{ 'ROLESSETTINGS.DELETE' | translate }}</button>
-      <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedRoles.length == 1">
+      <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedRoles.length === 1">
         <clr-icon shape="pencil"></clr-icon> {{ 'ROLESSETTINGS.EDIT' | translate }}</button>
     </div>
   </clr-dg-action-bar>

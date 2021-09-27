@@ -111,7 +111,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
     this.selectedDevices = [];
   }
 
-  forceDelete($event: any): void {
+  forceDelete(): void {
     this.selectedDevices.forEach(selectedDevice => {
       this.inventoryService.deleteDevice(selectedDevice._id as string).subscribe(
         response => {

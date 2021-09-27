@@ -16,8 +16,6 @@ export class EditDeviceModalComponent implements OnInit {
   public deviceTypes = DeviceType;
   typeKeys!: any[]; // Type enumeration keys
 
-  constructor() { }
-
   setOpened(val: boolean): void {
     this.opened = val;
     this.openedChange.emit(this.opened);

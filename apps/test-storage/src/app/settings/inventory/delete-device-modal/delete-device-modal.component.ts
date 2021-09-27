@@ -1,17 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-delete-device-modal',
   templateUrl: './delete-device-modal.component.html',
   styleUrls: ['./delete-device-modal.component.css']
 })
-export class DeleteDeviceModalComponent implements OnInit {
+export class DeleteDeviceModalComponent {
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() confirmChange = new EventEmitter();
-
-  constructor() { }
 
   setOpened(val: boolean) {
     this.opened = val;
@@ -20,9 +18,6 @@ export class DeleteDeviceModalComponent implements OnInit {
 
   deleteUser() {
     this.confirmChange.emit();
-  }
-
-  ngOnInit() {
   }
 
 }

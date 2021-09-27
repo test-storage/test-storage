@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { pageTransition } from '../animations';
 
 @Component({
@@ -7,14 +7,9 @@ import { pageTransition } from '../animations';
   styleUrls: ['./requirements.component.css'],
   animations: [pageTransition]
 })
-export class RequirementsComponent implements OnInit {
+export class RequirementsComponent {
 
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import { SignUpService } from './sign-up.service';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
 
   public user: User = new User();
   public success = false;
@@ -21,9 +21,6 @@ export class SignUpComponent implements OnInit {
     private signUpService: SignUpService,
     protected translateService: TranslateService
   ) { }
-
-  ngOnInit(): void {
-  }
 
   register(): void {
     this.error = null;

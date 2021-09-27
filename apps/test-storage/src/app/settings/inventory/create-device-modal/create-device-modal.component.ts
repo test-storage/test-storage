@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Device, DeviceType } from '../device';
 
@@ -7,15 +7,14 @@ import { Device, DeviceType } from '../device';
   templateUrl: './create-device-modal.component.html',
   styleUrls: ['./create-device-modal.component.css']
 })
-export class CreateDeviceModalComponent implements OnInit {
+export class CreateDeviceModalComponent {
 
   @Input() opened = false;
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() deviceChange = new EventEmitter<Device>();
 
   public device: Device;
-  public deviceTypes = DeviceType;
-  typeKeys!: any[]; // Type enumeration keys
+  public deviceTypes = Object.keys(DeviceType).map(type => ({ value: type }));
 
   constructor() {
     this.device = new Device();
@@ -30,11 +29,6 @@ export class CreateDeviceModalComponent implements OnInit {
     console.log(this.device);
     this.deviceChange.emit(this.device);
     this.device = new Device();
-  }
-
-  ngOnInit(): void {
-    this.typeKeys = Object.keys(this.deviceTypes).filter(f => !isNaN(Number(f))).map((key: any) => (
-      { value: this.deviceTypes[key], key: parseInt(key, 10) }));
   }
 
 }

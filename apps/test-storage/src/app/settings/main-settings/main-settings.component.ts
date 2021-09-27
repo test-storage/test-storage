@@ -1,5 +1,5 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { pageTransition } from '../../animations';
 import { SettingsService } from '../settings.service';
 import { Settings } from '../settings';
@@ -10,7 +10,7 @@ import { Settings } from '../settings';
   styleUrls: ['./main-settings.component.css'],
   animations: [pageTransition]
 })
-export class MainSettingsComponent implements OnInit {
+export class MainSettingsComponent {
 
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
@@ -19,9 +19,6 @@ export class MainSettingsComponent implements OnInit {
     public translateService: TranslateService,
     private appSettingsService: SettingsService
   ) { }
-
-  ngOnInit(): void {
-  }
 
   changeLanguage(language: string): void {
     const loadedSettings: Settings | undefined = this.appSettingsService.getAppSettings();

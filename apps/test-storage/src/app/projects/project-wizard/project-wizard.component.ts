@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 
 import { ClrWizard } from '@clr/angular';
 
@@ -9,7 +9,7 @@ import { Project } from '../project';
   templateUrl: './project-wizard.component.html',
   styleUrls: ['./project-wizard.component.css']
 })
-export class ProjectWizardComponent implements OnInit {
+export class ProjectWizardComponent {
 
   @ViewChild('wizardlg', { static: true }) wizardLarge!: ClrWizard;
 
@@ -31,10 +31,6 @@ export class ProjectWizardComponent implements OnInit {
 
   constructor() {
     this.project = new Project();
-  }
-
-  ngOnInit(): void {
-    // TODO delete project data if exists
   }
 
 }

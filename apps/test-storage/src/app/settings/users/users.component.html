@@ -12,7 +12,7 @@
                 <clr-icon shape="plus"></clr-icon> {{ 'USERSSETTINGS.ADD' | translate }}</button>
               <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedUsers.length > 0">
                 <clr-icon shape="close"></clr-icon> {{ 'USERSSETTINGS.DELETE' | translate }}</button>
-              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedUsers.length == 1">
+              <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedUsers.length === 1">
                 <clr-icon shape="pencil"></clr-icon> {{ 'USERSSETTINGS.EDIT' | translate }}</button>
             </div>
           </clr-dg-action-bar>
@@ -65,4 +65,4 @@
 </div>
 <app-create-user-modal [(opened)]="createOpened" (userChange)="createUser($event);"></app-create-user-modal>
 <app-edit-user-modal [user]="selectedUsers[0]" [(opened)]="editOpened" (userChange)="updateUser($event);"></app-edit-user-modal>
-<app-delete-user-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-user-modal>
+<app-delete-user-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete()"></app-delete-user-modal>
