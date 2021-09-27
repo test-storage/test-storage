@@ -1,9 +1,9 @@
 import { randomBytes } from 'crypto';
 import { resolve } from 'path';
 import { writeFile } from 'fs';
-import { jwtSecret } from './auth/passport/jwt.secret';
+import { jwtSecret } from './auth/strategies/jwt.secret';
 
-export function checkJWTSecret() {
+export function checkJWTSecret(): boolean {
   if (jwtSecret() === '') {
     return false;
   } else {
@@ -11,7 +11,7 @@ export function checkJWTSecret() {
   }
 }
 
-export function checkEnvSecret() {
+export function checkEnvSecret(): boolean {
   if (process.env.SECRET) {
     return true;
   } else {
@@ -19,9 +19,9 @@ export function checkEnvSecret() {
   }
 }
 
-export async function generateJWTSecret() {
+export async function generateJWTSecret(): Promise<void> {
   console.log('Generating JWT key...');
-  const fileName = resolve(__dirname, './auth/passport/jwt.secret.ts');
+  const fileName = resolve(__dirname, './auth/strategies/jwt.secret.ts');
   const key = randomBytes(256).toString('hex');
 
   const data = `export function jwtSecret() {
@@ -29,7 +29,7 @@ export async function generateJWTSecret() {
 }
 `;
 
-  await writeFile(fileName, data, (err) => {
+  writeFile(fileName, data, (err) => {
     if (err) {
       console.error(`File IO error: ${err}`);
     } else {

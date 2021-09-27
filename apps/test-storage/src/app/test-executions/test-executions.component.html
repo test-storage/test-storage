@@ -1,0 +1,106 @@
+<div *ngIf="testruns" class="content-area">
+
+  <div *ngIf="testruns.length > 0; then existTestruns else noExistTestruns"></div>
+  <ng-template #existTestruns>
+    <clr-tabs>
+      <clr-tab>
+        <button clrTabLink id="link1">{{ 'TESTEXECUTIONPAGE.ACTIVE' | translate }}</button>
+        <clr-tab-content id="content1" *clrIfActive="true">
+
+          <a (click)="onAdd();" class="btn btn-primary">
+            <clr-icon shape="plus"></clr-icon>
+            {{ 'TESTEXECUTIONPAGE.ADD' | translate }}
+          </a>
+
+          <div class="clr-row">
+            <div *ngFor="let testrun of testruns" class="clr-col-xs-12 clr-col-sm-6 clr-col-md-4 clr-col-lg-3">
+              <a routerLink="./{{testrun._id}}" class="card clickable">
+                <div class="card-block">
+                  <h4 class="card-title">{{ testrun.name }}
+                    <span class="build">Build:
+                      <strong>6.1</strong>
+                    </span>
+                  </h4>
+                  <p class="card-text">{{ testrun.description }}</p>
+                </div>
+                <div class="card-footer">
+                  <div class="progress labeled success">
+                    <progress value="{{ 50 }}" max="100" data-displayval="0%"></progress>
+                  </div>
+                  <div *ngIf="testrun.startDate && testrun.endDate">
+                    <clr-icon
+                      *ngIf="(testrun.endDate <= tomorrow.toISOString() && testrun.endDate >= today.toISOString())"
+                      shape="clock" class="has-alert" title="Attention"></clr-icon>
+                    <clr-icon *ngIf="testrun.endDate < tomorrow.toISOString()" shape="clock" class="has-badge"
+                      title="Overdue"></clr-icon>
+                    <clr-icon *ngIf="testrun.endDate > tomorrow.toISOString()" shape="clock"></clr-icon>
+                    <span class="date"> {{ testrun.startDate | date }} — {{ testrun.endDate | date }} </span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+
+        </clr-tab-content>
+      </clr-tab>
+      <clr-tab>
+        <button clrTabLink>{{ 'TESTEXECUTIONPAGE.ARCHIEVED' | translate }}</button>
+        <clr-tab-content *clrIfActive>
+
+          <div class="clr-row">
+            <div class="clr-col-xs-12 clr-col-sm-6 clr-col-md-4 clr-col-lg-3">
+              <div class="card clickable">
+                <div class="card-block">
+                  <h4 class="card-title">Corporate Portal Regression run</h4>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur
+                    magnam eos amet sit rem.</p>
+                </div>
+                <div class="card-footer">
+                  <div class="progress labeled success">
+                    <progress value="100" max="100" data-displayval="0%"></progress>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="clr-col-xs-12 clr-col-sm-6 clr-col-md-4 clr-col-lg-3">
+              <div class="card clickable">
+                <div class="card-block">
+                  <h4 class="card-title">iOS User Profile Feature run</h4>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consectetur
+                    magnam eos amet sit rem..</p>
+                </div>
+                <div class="card-footer">
+                  <div class="progress labeled success">
+                    <progress value="100" max="100" data-displayval="10%"></progress>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </clr-tab-content>
+      </clr-tab>
+    </clr-tabs>
+  </ng-template>
+
+  <ng-template #noExistTestruns>
+    <app-empty-state
+      icon="plus"
+      title="{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_TITLE' | translate }}"
+      description="{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_NOTESTRUNS_DESCRIPTION' | translate }}"
+      buttonText="{{ 'TESTEXECUTIONPAGE.EMPTYSTATE_CREATETESTRUN_BUTTON' | translate }}"
+      (clicked)="onAdd();">
+    </app-empty-state>
+  </ng-template>
+
+  <app-create-test-run-modal [(opened)]="createOpened" (testrunChange)="createTestrun($event);">
+  </app-create-test-run-modal>
+  <app-edit-test-run-modal [testrun]="selectedTestrun" [(opened)]="editOpened" (testrunChange)="updateTestrun($event);">
+  </app-edit-test-run-modal>
+  <app-delete-test-run-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete()">
+  </app-delete-test-run-modal>
+</div>

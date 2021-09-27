@@ -1,7 +1,7 @@
 import { Document } from 'mongoose';
 
 export interface UserStory extends Document {
-  readonly _id?: string;
+  readonly _id: string;
   readonly key?: string;
   readonly projectId: string;
   readonly priority?: string;

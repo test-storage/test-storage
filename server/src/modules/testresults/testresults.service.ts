@@ -12,8 +12,10 @@ export class TestResultsService {
   constructor(@InjectModel('TestResult') private readonly testresultModel: Model<TestResult>) { }
 
   async create(testresultDto: CreateTestResultDto, userId: string): Promise<TestResult> {
-    const createdTestResult = new this.testresultModel(testresultDto);
-    createdTestResult.createdBy = userId;
+    const createdTestResult = new this.testresultModel({
+      ...testresultDto,
+      createdBy: userId
+    });
     return await createdTestResult.save();
   }
 
@@ -30,20 +32,22 @@ export class TestResultsService {
   }
 
   async findOne(id: string): Promise<TestResult> {
-    return await this.testresultModel.findOne({ '_id': id }).exec();
+    return await this.testresultModel.findOne({ _id: id }).exec();
   }
 
   async update(id: string, testresult: CreateTestResultDto, userId: string): Promise<TestResult> {
-    const existedTestRun = await this.testresultModel.findOne({ '_id': id }).exec();
+    const existedTestRun = await this.testresultModel.findOne({ _id: id }).exec();
     if (existedTestRun) {
-      Object.assign(existedTestRun, testresult);
-      existedTestRun.updatedBy = userId;
-      existedTestRun.updated = new Date().toISOString();
+      Object.assign(existedTestRun, {
+        ...testresult,
+        updatedBy: userId,
+        updated: new Date().toISOString()
+      });
       return existedTestRun.save();
     }
   }
 
   async delete(id: string): Promise<void> {
-    return await this.testresultModel.findOneAndRemove({ '_id': id }).exec();
+    await this.testresultModel.findOneAndRemove({ _id: id }).exec();
   }
 }

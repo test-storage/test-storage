@@ -23,17 +23,20 @@ export class DevicesService {
     return await this.deviceModel.findOne({ _id: id }).exec();
   }
 
-  async update(id, device: Device, userId: string): Promise<Device> {
+  async update(id, device: CreateDeviceDto, userId: string): Promise<Device> {
     const existedDevice = await this.deviceModel.findOne({ _id: id }).exec();
     if (existedDevice) {
-      Object.assign(existedDevice, device);
-      existedDevice.updatedBy = userId;
-      existedDevice.updated = new Date().toISOString();
+      Object.assign(existedDevice, {
+        ...device,
+        updatedBy: userId,
+        updated: new Date().toISOString()
+      });
+
       return await existedDevice.save();
     }
   }
 
   async delete(id): Promise<void> {
-    return await this.deviceModel.findOneAndRemove({ _id: id }).exec();
+    await this.deviceModel.findOneAndRemove({ _id: id }).exec();
   }
 }

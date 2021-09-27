@@ -1,7 +1,6 @@
 import * as bcrypt from 'bcrypt';
 
 import { Injectable,  ForbiddenException } from '@nestjs/common';
-import { JwtPayload } from './passport/jwt-payload.interface';
 
 import { UserDto } from './user.dto';
 import { User } from '../users/user.interface';
@@ -12,8 +11,8 @@ export class AuthValidationService {
 
   constructor(private usersService: UsersService) { }
 
-  async validateUser(payload: JwtPayload): Promise<boolean> {
-    const existedUser = await this.usersService.findOneByUsername(payload.email);
+  async validateUser(username: string): Promise<boolean> {
+    const existedUser = await this.usersService.findOneByUsername(username);
     if (existedUser) {
       return true;
     } else {
@@ -41,7 +40,7 @@ export class AuthValidationService {
     }
   }
 
-  isUserActivated(user) {
+  isUserActivated(user): User {
     if (user.active === true) {
       return user;
     } else {

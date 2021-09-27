@@ -1,0 +1,74 @@
+<div class="p-4 border-b border-gray-300"> <!--border-b border-gray-300 -->
+  <div class="flex flex-row justify-between">
+    <div>
+      <a routerLink="/">
+        <span class="title">Test Storage</span>
+      </a>
+    </div>
+    <div class="">
+      <button class="flex" data-test-id="settings-dropdown" (click)="logout()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!--
+<clr-header class="header header-6">
+  <div class="branding">
+    <a routerLink="/">
+      <span class="title">Test Storage</span>
+    </a>
+  </div>
+  <div class="header-nav">
+  </div>
+  <div class="header-actions">
+
+    <clr-dropdown>
+      <button class="nav-icon" data-test-id="notifications" clrDropdownTrigger>
+        <clr-icon shape="bell" class="has-badge is-solid"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <label class="dropdown-header" style="text-align: center;">Notifications</label>
+        <div class="dropdown-divider"></div>-->
+        <!--
+            <a routerLink="/notifications" clrDropdownItem>Regression test suite assigned to you</a>
+            <div class="dropdown-divider"></div>
+            <a routerLink="/notifications" clrDropdownItem>Test cases created</a>
+            <div class="dropdown-divider"></div>
+            <a routerLink="/notifications" clrDropdownItem>Test project created</a>
+          -->
+          <!--
+        <a *ngFor="let notification of notifications" clrDropdownItem>
+          {{ notification.senderId }} {{
+          notification.action }} {{ notification.entity }}
+        </a>
+        <div class="dropdown-divider"></div>
+        <button type="button" class="dropdown-item" style="text-align: center; text-transform: uppercase;">View all</button>
+
+      </clr-dropdown-menu>
+    </clr-dropdown>
+
+    <clr-dropdown>
+      <button class="nav-icon" data-test-id="settings-dropdown" clrDropdownTrigger>
+        <clr-icon shape="user"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a routerLink="/profile" data-test-id="profile" clrDropdownItem>{{ 'HEADER.PROFILE' | translate }}</a>
+        <div class="dropdown-divider"></div>
+        <a routerLink="/settings" data-test-id="settings" clrDropdownItem>{{ 'HEADER.SETTINGS' | translate }}</a>
+        <div class="dropdown-divider"></div>
+        <a (click)="logout()" data-test-id="logout" clrDropdownItem>{{ 'HEADER.LOGOUT' | translate }}</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
+</clr-header>-->

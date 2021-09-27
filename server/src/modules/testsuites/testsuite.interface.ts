@@ -1,7 +1,7 @@
 import { Document } from 'mongoose';
 
 export interface Testsuite extends Document {
-  readonly _id?: string;
+  readonly _id: string;
   readonly parentId: string;
   readonly projectId: string;
   readonly status?: string;

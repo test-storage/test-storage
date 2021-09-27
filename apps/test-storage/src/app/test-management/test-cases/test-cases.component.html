@@ -1,0 +1,30 @@
+<h4 *ngIf="selectedTestSuite">{{ selectedTestSuite.name }}</h4>
+<div>
+
+
+  <button (click)="onAdd()">{{ 'TESTMANAGEMENTPAGE.ADD' | translate }}</button>
+
+  <table>
+    <thead>
+    <th>{{ 'TESTMANAGEMENTPAGE.TITLE' | translate }}</th>
+    <th>Автоматизирован</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let testCase of testCases">
+        <td>{{ testCase.title }}</td>
+        <td><clr-icon shape="check" style="color: #318700" *ngIf="testCase.status === 'AUTOMATED'"></clr-icon></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<!-- CREATE TEST CASE -->
+<app-create-test-case-modal [(opened)]="createOpened" (testcaseChange)="createTestCase($event);"></app-create-test-case-modal>
+
+<!-- EDIT TEST CASE -->
+<app-edit-test-case-modal [testcase]="selectedTestCases[0]" [(opened)]="editOpened" (testcaseChange)="updateTestCase($event);"></app-edit-test-case-modal>
+
+<!-- DELETE TEST CASE -->
+<app-delete-test-case-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete($event)"></app-delete-test-case-modal>

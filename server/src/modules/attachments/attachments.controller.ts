@@ -1,8 +1,6 @@
-import * as config from 'config';
 import {
   Post, Get, Put, Delete, Param, Controller,
-  UseInterceptors, UploadedFile, UseGuards
-} from '@nestjs/common';
+  UseInterceptors, UploadedFile, UseGuards } from '@nestjs/common';
 
 import { FileInterceptor } from '@nestjs/platform-express';
 
@@ -16,7 +14,6 @@ import { Attachment } from './attachment.interface';
 
 import { ApiTags, ApiBearerAuth, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
-
 @ApiBearerAuth()
 @ApiTags('Attachments')
 @Controller('api/v1/attachments')
@@ -29,8 +26,8 @@ export class AttachmentsController {
   @ApiResponse({ status: 201, description: 'The attachment has been successfully uploaded.' })
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @UseInterceptors(FileInterceptor('filename', { dest: config.get('uploadDirectory.path') }))
-  async uploadFile(@UploadedFile() file, @UserId(new ParameterValidationPipe) userId) {
+  @UseInterceptors(FileInterceptor('filename', { dest: process.env.UPLOAD_DIR }))
+  async uploadFile(@UploadedFile() file, @UserId(new ParameterValidationPipe()) userId) {
     return await this.attachmentsService.create(file, userId);
   }
 

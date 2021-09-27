@@ -1,8 +1,4 @@
-conn = new Mongo();
-db = conn.getDB("test-storage");
-
-
-db.createUser(
+db.getSiblingDB('test-storage').createUser(
   {
     user: "admin",
     pwd: "admin",
@@ -17,7 +13,7 @@ db.createUser(
 );
 
 
-db.roles.insertMany(
+db.getSiblingDB('test-storage').roles.insertMany(
   [
     {
       _id: "readonly",
@@ -59,7 +55,7 @@ db.roles.insertMany(
 );
 
 
-db.users.insertOne(
+db.getSiblingDB('test-storage').users.insertOne(
   {
     _id: "3ebbce696d3e19e323bc540fb4a34fb4",
     email: "admin",

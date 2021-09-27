@@ -12,8 +12,8 @@ export class TestcasesService {
   constructor(@InjectModel('Testcase') private readonly testcaseModel: Model<Testcase>) { }
 
   async create(testcaseDto: CreateTestcaseDto, userId: string): Promise<Testcase> {
-    const createdTestcase = new this.testcaseModel(testcaseDto);
-    createdTestcase.createdBy = userId;
+    const createdTestcase = new this.testcaseModel({...testcaseDto, createdBy: userId});
+    // createdTestcase.createdBy = userId;
     return await createdTestcase.save();
   }
 
@@ -30,28 +30,26 @@ export class TestcasesService {
   }
 
   async findOne(id: string): Promise<Testcase> {
-    return await this.testcaseModel.findOne({ '_id': id }).exec();
+    return await this.testcaseModel.findOne({ _id: id }).exec();
   }
 
   async update(id: string, testcase: CreateTestcaseDto, userId: string): Promise<Testcase> {
-    const existedTestCase = await this.testcaseModel.findOne({ '_id': id }).exec();
+    const existedTestCase = await this.testcaseModel.findOne({ _id: id }).exec();
     if (existedTestCase) {
-      Object.assign(existedTestCase, testcase);
-      existedTestCase.updatedBy = userId;
-      existedTestCase.updated = new Date().toISOString();
+      Object.assign(existedTestCase, { ...testcase, updatedBy: userId, updated: new Date().toISOString() });
       return existedTestCase.save();
     }
   }
 
   async delete(id: string): Promise<void> {
-    return await this.testcaseModel.findOneAndRemove({ '_id': id }).exec();
+    await this.testcaseModel.findOneAndRemove({ _id: id }).exec();
   }
 
-  async bulkImport(testcases: Testcase[], userId: string) {
+  async bulkImport(testcases: CreateTestcaseDto[], userId: string): Promise<Testcase[]> {
     const createdTestcases: Testcase[] = [];
     testcases.forEach(testcase => {
-      const createdTestcase = new this.testcaseModel(testcase);
-      createdTestcase.createdBy = userId;
+      const createdTestcase = new this.testcaseModel({ ...testcase, createdBy: userId });
+      // createdTestcase.createdBy = userId;
       createdTestcases.push(createdTestcase);
     });
     return this.testcaseModel.insertMany(createdTestcases);

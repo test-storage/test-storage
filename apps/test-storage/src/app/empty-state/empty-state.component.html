@@ -1,0 +1,12 @@
+<div class="noexist-wrapper flex justify-center items-center w-full h-full">
+  <div class="flex flex-row">
+
+    <div class="flex flex-col justify-center items-center space-y-6 text-center">
+      <!--<img src="assets/add-project.png">-->
+      <clr-icon *ngIf="icon" [attr.shape]="icon" size="120" class="text-gray-700"></clr-icon>
+      <h4>{{ title }}</h4>
+      <p class="text-gray-500">{{ description }}</p>
+      <button class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="onClickButton($event)">{{ buttonText }}</button>
+    </div>
+  </div>
+</div>

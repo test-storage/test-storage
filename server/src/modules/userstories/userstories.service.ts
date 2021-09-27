@@ -12,8 +12,7 @@ export class UserStoriesService {
   constructor(@InjectModel('UserStory') private readonly userStoryModel: Model<UserStory>) { }
 
   async create(userstoryDto: CreateUserStoryDto, userId: string): Promise<UserStory> {
-    const createdUserStory = new this.userStoryModel(userstoryDto);
-    createdUserStory.createdBy = userId;
+    const createdUserStory = new this.userStoryModel({ ...userstoryDto, createdBy: userId });
     return await createdUserStory.save();
   }
 
@@ -30,28 +29,25 @@ export class UserStoriesService {
   }
 
   async findOne(id: string): Promise<UserStory> {
-    return await this.userStoryModel.findOne({ '_id': id }).exec();
+    return await this.userStoryModel.findOne({ _id: id }).exec();
   }
 
   async update(id: string, userstory: CreateUserStoryDto, userId: string): Promise<UserStory> {
-    const existedTestCase = await this.userStoryModel.findOne({ '_id': id }).exec();
+    const existedTestCase = await this.userStoryModel.findOne({ _id: id }).exec();
     if (existedTestCase) {
-      Object.assign(existedTestCase, userstory);
-      existedTestCase.updatedBy = userId;
-      existedTestCase.updated = new Date().toISOString();
+      Object.assign(existedTestCase, { ...userstory, updatedBy: userId, updated: new Date().toISOString() });
       return existedTestCase.save();
     }
   }
 
   async delete(id: string): Promise<void> {
-    return await this.userStoryModel.findOneAndRemove({ '_id': id }).exec();
+    await this.userStoryModel.findOneAndRemove({ _id: id }).exec();
   }
 
-  async bulkImport(userstories: UserStory[], userId: string) {
+  async bulkImport(userstories: CreateUserStoryDto[], userId: string): Promise<UserStory[]> {
     const createdUserStories: UserStory[] = [];
     userstories.forEach(userstory => {
-      const createdUserStory = new this.userStoryModel(userstory);
-      createdUserStory.createdBy = userId;
+      const createdUserStory = new this.userStoryModel({ ...userstory, createdBy: userId });
       createdUserStories.push(createdUserStory);
     });
     return this.userStoryModel.insertMany(createdUserStories);

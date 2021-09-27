@@ -1,0 +1,9 @@
+  <div class="bg-blue-100 border border-solid border-blue-600 w-full p-2 flex justify-between" *ngIf="isReviewAvailable">
+    <span class="alert-text text-blue-600">
+      {{ 'PROJECTSPAGE.NOT_REVIEWED_TESTCASES' | translate }}
+    </span>
+    <div class="">
+      <button class="bg-purple-600 hover:bg-purple-500 text-white text-sm font-bold py-0 px-2 rounded focus:outline-none focus:shadow-outline" routerLink="./review">{{ 'PROJECTSPAGE.REVIEW' | translate }}</button>
+    </div>
+  </div>
+

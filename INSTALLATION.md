@@ -1,18 +1,18 @@
-Installation
-======
+# Installation
 
 ## Dependencies
+
 - mongodb
 - node.js
 
 ## Pre-installation
 
-* install node.js
-* install mongodb
+- install node.js
+- install mongodb
 
 __note:__ `mongo` and `mongod` should be accessible via command line interface
 
-## Installation
+## Installation steps
 
 clone repo then install packages
 
@@ -24,7 +24,7 @@ $ cd test-storage
 $ npm install
 ```
 
-1. run db-init.js script (script connects to test-storage db and create default user for authentication and default user for application)
+run db-init.js script (script connects to test-storage db and create default user for authentication and default user for application)
 
 ```bash
 $ mongo test-storage install/db-init.js
@@ -32,35 +32,38 @@ $ mongo test-storage install/db-init.js
 
 __note:__ to change database user/password for application check config/production.json file
 
-2. run mongo db with authentication
+run mongo db with authentication
 
 ```bash
-$ mongod --auth
+mongod --auth
 ```
 
 ## Start
-1. build test-storage
+
+build test-storage
 
 ```bash
-$ npm run build
+npm run build
 ```
-2. Start test-storage
+start test-storage
 ```bash
-$ npm start
+npm start
 ```
 
-3. you can access application on `localhost`
+you can access application on `localhost`
 
 ## Start using Docker
-1. build test-storage image
+
+build test-storage image
 
 ```bash
-$ docker-compose build
+docker-compose build
 ```
-2. run containters
+
+run containters
 
 ```bash
-$ docker-compose up
+docker-compose up
 ```
 
-3. you can access application on `localhost`
+you can access application on `localhost`

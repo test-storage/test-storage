@@ -1,0 +1,59 @@
+version: "3.1"
+
+services:
+  frontend:
+    container_name: test-storage-frontend
+    build: .
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "8080:80"
+
+  backend:
+    container_name: test-storage-backend
+    build: ./server
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=mongodb # path to mongodb container
+      - DB_PORT=27017
+      - DB_NAME=test-storage
+      - DB_USER=admin
+      - DB_PASSWORD=admin
+      - UPLOAD_DIR="./uploads"
+    ports:
+      - "80:80"
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+
+  mongodb:
+    container_name: test-storage-database
+    image: mongo:latest
+    command: mongod --auth
+    volumes:
+      - ./db:/data/db
+      - ./server/install:/docker-entrypoint-initdb.d
+    ports:
+      - '27017-27019:27017-27019'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=test-storage
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/logs
+    restart: always
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=admin
+    depends_on:
+      - mongodb
+    links:
+      - mongodb

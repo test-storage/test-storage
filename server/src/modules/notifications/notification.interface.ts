@@ -1,7 +1,7 @@
 import { Document } from 'mongoose';
 
 export interface Notification extends Document {
-  readonly _id?: string;
+  readonly _id: string;
   readonly entity: string;
   readonly action: string; // TODO enum
   readonly senderId: string;

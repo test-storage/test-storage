@@ -3,7 +3,7 @@ import { Injectable, NestMiddleware } from '@nestjs/common';
 @Injectable()
 export class CORSMiddleware implements NestMiddleware {
 
-  use(req, res, next: Function) {
+  use(req, res, next) {
     // CORS headers
     res.header('Access-Control-Allow-Origin', '*'); // restrict it to the required domain
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');

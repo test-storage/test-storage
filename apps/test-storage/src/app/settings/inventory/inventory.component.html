@@ -1,0 +1,61 @@
+<div class="content-area" *ngIf="devices">
+  <!--
+  <div class="row">
+    <input type="text" id="search" name="search" placeholder="{{ 'DEVICESSETTINGS.SEARCH' | translate }}">
+  </div>
+  -->
+  <clr-datagrid [(clrDgSelected)]="selectedDevices" [clrDgRowSelection]="true">
+
+    <clr-dg-action-bar>
+      <div class="btn-group">
+        <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()">
+          <clr-icon shape="plus"></clr-icon> {{ 'COMMON.ADD_BUTTON' | translate }}</button>
+        <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" *ngIf="selectedDevices.length > 0">
+          <clr-icon shape="close"></clr-icon> {{ 'COMMON.DELETE_BUTTON' | translate }}</button>
+        <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" *ngIf="selectedDevices.length === 1">
+          <clr-icon shape="pencil"></clr-icon> {{ 'COMMON.EDIT_BUTTON' | translate }}</button>
+      </div>
+    </clr-dg-action-bar>
+
+    <clr-dg-column style="width: 20px;">{{ 'DEVICESSETTINGS.TYPE' | translate }}</clr-dg-column>
+    <clr-dg-column>{{ 'DEVICESSETTINGS.NAME' | translate }}</clr-dg-column>
+    <clr-dg-column>{{ 'DEVICESSETTINGS.OS' | translate }}</clr-dg-column>
+    <clr-dg-column>{{ 'DEVICESSETTINGS.OS_VERSION' | translate }}</clr-dg-column>
+    <clr-dg-column>{{ 'DEVICESSETTINGS.ASSIGNED_USER' | translate }}</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let device of devices" [clrDgItem]="device">
+      <clr-dg-cell [ngSwitch]="device.type">
+        <clr-icon *ngSwitchCase="'MOBILE'" shape="mobile"></clr-icon>
+        <clr-icon *ngSwitchCase="'TABLET'" shape="tablet"></clr-icon>
+        <clr-icon *ngSwitchCase="'SERVER'" shape="host"></clr-icon>
+        <clr-icon *ngSwitchCase="'HARDWARE'" shape="hard-disk"></clr-icon>
+        <clr-icon *ngSwitchCase="'VM'" shape="vm"></clr-icon>
+        <clr-icon *ngSwitchCase="'CONTAINER'" shape="deploy"></clr-icon>
+      </clr-dg-cell>
+      <clr-dg-cell>{{ device.manufacturer }} {{ device.model }}</clr-dg-cell>
+      <clr-dg-cell>{{ device.os }}</clr-dg-cell>
+      <clr-dg-cell>{{ device.osVersion }}</clr-dg-cell>
+      <clr-dg-cell>
+        <!--
+        <div class="form-group">
+          <label for="selects_1"></label>
+          <div class="select">
+            <select id="selects_1">
+              <option>John Doe</option>
+              <option>Alice Work</option>
+              <option>Thomas Marken</option>
+              <option>Andreas Brandson</option>
+            </select>
+          </div>
+        </div>
+        -->
+        <!-- {{ device.assignedTo }} // get users list -->
+      </clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer> {{ devices?.length }} {{ 'DEVICESSETTINGS.DEVICES' | translate }}</clr-dg-footer>
+  </clr-datagrid>
+</div>
+<app-create-device-modal [(opened)]="createOpened" (deviceChange)="createDevice($event);"></app-create-device-modal>
+<app-edit-device-modal [device]="selectedDevices[0]" [(opened)]="editOpened" (deviceChange)="updateDevice($event);"></app-edit-device-modal>
+<app-delete-device-modal [(opened)]="deleteOpened" (confirmChange)="forceDelete()"></app-delete-device-modal>

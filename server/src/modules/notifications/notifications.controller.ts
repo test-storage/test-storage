@@ -60,7 +60,7 @@ export class NotificationsController {
   async findOneAndUpdate(
     @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createNotificationDto: CreateNotificationDto,
-    @Param('id', new ParameterValidationPipe()) id: string) {
+    @Param('id', new ParameterValidationPipe()) id: string): Promise<Notification> {
     return await this.notificationsService.update(id, createNotificationDto, userId);
   }
 

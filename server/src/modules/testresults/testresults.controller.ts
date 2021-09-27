@@ -32,7 +32,7 @@ export class TestResultsController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createTestResultDto: CreateTestResultDto): Promise<TestResult> {
     return await this.testresultsService.create(createTestResultDto, userId);
   }
@@ -73,9 +73,9 @@ export class TestResultsController {
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiParam({ name: 'id', description: 'Test Result id' })
   async findOneAndUpdate(
-    @UserId(new ParameterValidationPipe) userId,
+    @UserId(new ParameterValidationPipe()) userId,
     @Body(new ValidationPipe()) createTestResultDto: CreateTestResultDto,
-    @Param('id', new ParameterValidationPipe()) id: string) {
+    @Param('id', new ParameterValidationPipe()) id: string): Promise<TestResult> {
     return await this.testresultsService.update(id, createTestResultDto, userId);
   }
 
@@ -85,7 +85,7 @@ export class TestResultsController {
   @ApiResponse({ status: 400, description: 'Validation failed' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiParam({ name: 'id', description: 'Test Result id' })
-  async delete(@Param('id', new ParameterValidationPipe()) id: string) {
+  async delete(@Param('id', new ParameterValidationPipe()) id: string): Promise<void> {
     return this.testresultsService.delete(id);
   }
 }

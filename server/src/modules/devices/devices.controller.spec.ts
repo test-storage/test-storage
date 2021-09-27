@@ -22,10 +22,6 @@ describe('DevicesController', () => {
     devicesController = module.get<DevicesController>(DevicesController);
   });
 
-  afterEach(async () => {
-
-  });
-
   describe('findAll', () => {
     it('should return an array of devices', async () => {
       const result: Device[] = [

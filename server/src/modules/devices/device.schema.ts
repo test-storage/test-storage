@@ -4,12 +4,12 @@ import { randomBytes } from 'crypto';
 export const DeviceSchema = new Schema({
   _id: {
     type: String,
-    default: function () {
+    default(): string {
       return randomBytes(16).toString('hex');
     }
   },
   manufacturer: String,
-  model: String,
+  deviceModel: String,
   os: String,
   osVersion: String,
   type: {

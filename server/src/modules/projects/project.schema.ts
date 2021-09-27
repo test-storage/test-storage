@@ -4,7 +4,7 @@ import { randomBytes } from 'crypto';
 export const ProjectSchema = new Schema({
   _id: {
     type: String,
-    default: function () {
+    default() {
       return randomBytes(16).toString('hex');
     }
   },
